@@ -1,0 +1,6 @@
+# ignore idea files
+.idea/**
+*.iml
+*.png
+*.html
+
