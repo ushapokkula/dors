@@ -1,6 +1,7 @@
 Given(/^that I am logged into the system$/) do
   # @trainers.login_page.login
   visit $Trainers_Link
+
 end
 
 When(/^I will see "([^"]*)" on the page$/) do |text|

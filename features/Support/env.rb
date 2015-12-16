@@ -20,7 +20,7 @@ require 'active_support/core_ext/string/inflections'
 # require 'mysql2'
 # require 'pg'
 require 'sort'
- #require 'TinyTds'
+#require 'TinyTDS'
 #require 'time_difference'
 require 'pry'
 

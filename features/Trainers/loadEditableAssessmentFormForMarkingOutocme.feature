@@ -1,5 +1,5 @@
-Feature:@DR-252
-  Load Editable Assessment Form For Marking Outcome
+Feature:
+Load Editable Assessment Form For Marking Outcome
 
   Background:
     Given that I am logged into the system
@@ -10,22 +10,24 @@ Feature:@DR-252
 
   @markoutcome1
   Scenario: NGU Marks outcome for a booked assessment
-    And I will be shown editable mode to mark outcomes against each trainer
+    And I will be shown editable mode with following outcomes against each trainer
+      | Outcomes           |
+      | ---Please select--- |
+      | Absent              |
+      | Action Note         |
+      | Cancelled           |
+      | Competent           |
+      | Compliance Note     |
 
-
+  @markoutcome2
   Scenario: Verify the ability to mark outcomes against each trainer
-    And I will be able to mark outcomes as below for each trainer:
-      | Outcomes `       |
-      | Absent          |
-      | Action Note     |
-      | Cancelled       |
-      | Competent       |
-      | Compliance Note |
+    And I will be able to mark outcome for each trainer
 
+  @markoutcome3
   Scenario: Verify the optional field Compliance Notes against each trainer
     And I will be to view "Compliance Notes" against each trainer
 
-
+  @markoutcome4
   Scenario: Verify the ability to display of Mark Complete button
     When I select possible outcome against each trainer
     Then The button Mark Complete will be activated and displayed

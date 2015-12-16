@@ -24,4 +24,4 @@ gem "activesupport"
 gem "sort"
 gem "tiny_tds"
 #gem "time_difference"
-gem "pry"
+gem 'pry'
