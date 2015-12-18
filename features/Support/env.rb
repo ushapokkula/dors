@@ -23,6 +23,7 @@ require 'sort'
 #require 'TinyTDS'
 #require 'time_difference'
 require 'pry'
+require 'date'
 
 include RSpec:: Matchers
 

@@ -32,7 +32,7 @@ class TrainersListingPage < SitePrism::Page
 
   def not_displaying_results_after_30days
     expiry_date=[]
-    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
     puts "connected to database"
     result= client.execute("select DATEDIFF(day, cast(GetDATE() as Date), ExpiryDate) as days FROM (SELECT expirydate  FROM [DORS_Classified].[dbo].[tbl_TrainerLicense] where ExpiryDate < cast(GetDATE() as date) or expirydate > Dateadd(d, 30, cast(GetDATE() as date))) dates")
@@ -58,7 +58,7 @@ class TrainersListingPage < SitePrism::Page
 
   def multiple_licenses_as_seperate_entry
     duplicate_trainer__details= [], duplicate_trainer__count=[]
-    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
     result = client.execute("select Forename + ' ' + surname as 'fullname' from [DORS_Classified].[dbo].[tbl_Trainer]  t1 join tbl_TrainerLicense t2 on t2.TrainerId=t1.TrainerId where (ExpiryDate >= (cast(GetDATE() as Date)) and EXPIRYDATE <= Dateadd(d,30, cast(GetDATE() as Date))) group by Forename, surname having (count(*)>1) order by forename desc")
     result.each do |row|
@@ -137,7 +137,7 @@ class TrainersListingPage < SitePrism::Page
   require 'tiny_tds'
 
   def database_connection
-    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
   end
 

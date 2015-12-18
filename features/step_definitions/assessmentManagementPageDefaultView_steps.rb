@@ -13,4 +13,5 @@ end
 
 When(/^There are no assessments with status requested$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  sleep 3
 end
