@@ -1,3 +1,4 @@
+@assessmentDetails
 Feature:
   As an assessor,
   I want to be able to load details of an assessment,

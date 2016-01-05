@@ -1,6 +1,7 @@
 When(/^I click one of the items in the list$/) do
   sleep 5
-  page.all('.btn.btn-default')[1].click
+  page.find('.btn.btn-default').all[1].click
+  #(page.all('.btn.btn-default')[1]).click
 end
 
 Then(/^The system will load "([^"]*)" page$/) do |text|

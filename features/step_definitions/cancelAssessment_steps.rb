@@ -23,7 +23,7 @@ And(/^the trainer will be available for bookings for assessors$/) do
   within(:xpath, "html/body/div[1]/div[2]/div") do
     expect(page.text).to include("CIA624")
     expect(page.text).to include("DOA123")
-    expect(page.text).to include("WTF539")
+    expect(page.text).to include("FSB422")
   end
 end
 
@@ -36,9 +36,9 @@ And(/^The assessment will not be cancelled and I will remain on 'My Assessments'
   click_link_or_button("REQUEST ASSESSMENT")
   sleep 2
   within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).not_to include("SWAP123")
+    expect(page.text).not_to include("CIA624")
     expect(page.text).not_to include("DOA123")
-    expect(page.text).not_to include("WTF539")
+    expect(page.text).not_to include("FSB422")
   end
 end
 
