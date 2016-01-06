@@ -3,7 +3,7 @@ class MileageExpenseCalculationPage< SitePrism::Page
   def mileage_calculation(expenses_claimed, miles)
     sleep 5
     actual_expenses = find_field('expenses').value
-    puts expect(actual_expenses).to be == (expenses_claimed)
+    expect(actual_expenses).to be == (expenses_claimed)
   end
 
   def verify_mileage_restriction(mileage)
@@ -20,4 +20,17 @@ class MileageExpenseCalculationPage< SitePrism::Page
     mileage_value = find("#mileage").value
     expect(mileage_value).to be == mileage_value
   end
-end
+
+  require 'tiny_tds'
+  def verify_DB_for_mileage_and_expense(expected_mileage,expected_expense)
+    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client.active?
+    result = client.execute("select mileage,expenses from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    result.each do |row|
+      actual_mileage = row['mileage'].to_i
+      actual_expense = row['expenses']
+     puts expect(expected_mileage).to eq(actual_mileage)
+      puts expect(actual_expense).to eq(expected_expense)
+    end
+  end
+  end

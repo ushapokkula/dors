@@ -1,4 +1,6 @@
 Given(/^I navigate to Summary page$/) do
+@trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  click_link_or_button("REQUEST ASSESSMENT")
   first(:button, 'Pick a slot').click
   sleep 5
   first(:button, 'Request Assessment').click
@@ -32,4 +34,8 @@ end
 
 And(/^I see that the mileage field does not accept numbers and displays as "([^"]*)"$/)do|mileage_value|
   @trainers.mileage_expense_calculation_page.verify_decimal_inclusion_in_mileage_field(mileage_value)
+end
+
+And(/^The mileage and expenses will be saved with the assessment request record as ([^"]*) and "([^"]*)"$/)do|expected_mileage,expected_expense|
+ @trainers.mileage_expense_calculation_page.verify_DB_for_mileage_and_expense(expected_mileage,expected_expense)
 end
