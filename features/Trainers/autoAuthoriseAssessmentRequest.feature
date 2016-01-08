@@ -1,3 +1,4 @@
+@DR-122
 Feature:
   As an assessor
   I want to be able to have my assessment requests auto authorised/approved which have multiple trainers and no expenses claimed
@@ -12,7 +13,7 @@ Feature:
     And I have multiple trainers included in  my request
     And no mileage expenses claimed
     When I click "Submit"
-    #Then The assessment request will be marked Booked
+    Then The status of the assessment request will be marked Booked in the database
     And I will be redirected to Request Assessment page
     And I see a message "The assessment has been Booked"
 
@@ -23,7 +24,7 @@ Feature:
     When I click "Submit"
     And I will be redirected to Request Assessment page
     And I see a message "The assessment has been Requested"
-
+  @auto1
   Scenario: Verify the Cancel button without data entered
     When I click "Cancel" button without entering data
     Then I should be redirected to Pick a slot page

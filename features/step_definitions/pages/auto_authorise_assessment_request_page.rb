@@ -7,15 +7,26 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   def navigate_assessment_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
     sleep 3
-    page.all('.btn.btn-default')[1].click
+    first(:button, 'Pick a slot').click
     sleep 2
     $primary_trianer=page.all('.ng-binding')[0].text
-    puts $primary_trianer
-    page.all('.btn.btn-default')[0].click
+    first(:button, 'Request Assessment').click
   end
 
   def validate_and_check_include_box
-    check('Include')
+    sleep 2
+    page.all('.ng-pristine.ng-valid')[1].click
+    page.all('.ng-pristine.ng-valid')[3].click
+  end
+
+  require 'tiny_tds'
+  def check_status_in_DB
+    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    result.each do |row|
+      assessment_status = row['StatusId']
+     puts  expect(assessment_status).to be == 2
+    end
   end
 
 

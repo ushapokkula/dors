@@ -51,7 +51,7 @@ Feature: Total Mileage calculation
     And I enter "<Miles>" miles
     And The expenses claimed will be "<Expenses Claimed>" for "<Miles>"
     When I click "Submit"
-    Then The mileage and expenses will be saved with the assessment request record as <Miles> and "<Expenses Claimed>"
+    Then The mileage and expenses will be saved with the assessment request record as "<Miles>" and "<Expenses Claimed>"
 
   Examples:
   | Miles | Expenses Claimed |
