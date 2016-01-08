@@ -11,8 +11,8 @@ Feature:
 
   Scenario: Verify default view to show only assessments falling in next 30 calendar days
     Then I will be shown list of all assessments i requested
-    And The status are "Booked"
-    And The default view will only show assessments falling in next 30 calendar days
+    And The status are "Approved"
+    And The view will only show assessments for which the daya are configured
 
   Scenario: Verify default view not to display the assessments falling out of 30 calendar days
     And I will not be able to view dates which fall out of 30 calendar days

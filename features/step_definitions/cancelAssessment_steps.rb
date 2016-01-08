@@ -31,6 +31,19 @@ And(/^The confirmation message will close$/) do
   expect(page.text).not_to have_content("Are you sure you want to cancel this assessment?")
 end
 
+And(/^I have assessments with Booked status$/)do
+  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  @trainers.ngu_search_assessment_id_page.book_assessment
+end
+
+And(/^I enter Cancellation Notes$/)do
+  fill_in('cancellationNotes', :with => 'This assessment need to cancel')
+end
+
+And(/^I see Cancellation Notes$/)do
+  expect(page).to have_css("#cancellationNotes")
+end
+
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
   expect(page.text).to have_content("My assessment details")
   click_link_or_button("REQUEST ASSESSMENT")
@@ -38,7 +51,7 @@ And(/^The assessment will not be cancelled and I will remain on 'My Assessments'
   within(:xpath, "html/body/div[1]/div[2]/div") do
     expect(page.text).not_to include("CIA624")
     expect(page.text).not_to include("DOA123")
-    expect(page.text).not_to include("FSB422")
+    expect(page.text).not_to include("SWAP124")
   end
 end
 
