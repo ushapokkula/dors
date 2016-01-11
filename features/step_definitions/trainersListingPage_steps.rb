@@ -9,12 +9,12 @@ When(/^I will see "([^"]*)" on the page$/) do |text|
 end
 
 
-Then(/^I will be shown a list of trainers who have their license expiring in the next thirty calendar days$/) do
-  @trainers.trainers_listing_page.display_list_of_trainers_next_30days
+Then(/^I will be shown a list of trainers who have their license expiring within configured days$/) do
+  @trainers.trainers_listing_page.display_list_of_trainers_within_configured_days
 end
 
-And(/^Trainer Name, number of days to license expiry, course name, course type and license number will be displayed in trainer listing view for each trainer$/) do
-  @trainers.trainers_listing_page.display_list_of_trainers_next_30days
+And(/^Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer$/) do
+  @trainers.trainers_listing_page.verify_details_on_listing_page
 end
 
 Then(/^the license expiring soon will be shown at top$/)do

@@ -33,9 +33,7 @@ When(/^I check "([^"]*)" for second trainer$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^The system will include the selected trainer in the booking request$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
+
 
 Then(/^I uncheck "([^"]*)"$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions

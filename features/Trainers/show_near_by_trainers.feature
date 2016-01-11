@@ -9,10 +9,13 @@ Feature: As an assessor,
     When I click Request assessmet button against trainer I want to book an assessment
     Then I will be taken to Request Assessment Summary page
 
+  Scenario: Verify courses displaying with same postcode in near by courses section
+  And I see that the courses displaying near by have same postcode as Primary one
+
 
   Scenario: Show near by trainers with same postcode
     And I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon
-  @near_by_trainers
+
   Scenario: Verify the display of trainer details in near by courses
     And The following information will be shown for each of these trainers
       | Trainer Details |
@@ -25,8 +28,9 @@ Feature: As an assessor,
       | Scheme          |
     And I see Trainer Full name and site address
 
+  @near_by_trainers
   Scenario: Verify the @Include this Trainer' checkbox
-    When I check Inclkude this Trainer for a trainer
+    When I check Include this Trainer for a trainer
     Then The system will include the selected trainer in the booking request
 
 

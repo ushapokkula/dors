@@ -1,4 +1,5 @@
-Feature:
+@DR-113,@DR-118,
+Feature: DR-113 and DR-118
   As an assessor,
   I want to be able to view trainers whose license is expiring soon,
   so that I can request and carry out assessments.
@@ -6,17 +7,16 @@ Feature:
   Background:
     Given that I am logged into the system
     When I navigate to "REQUEST ASSESSMENT" page
-    And I will see "Trainer licenses expiring within the next 30 days:" on the page
 
   @Expiry_Within_30_days
-  Scenario: Displaying Trainer license details for which licenses are expiring in next 30 days
-    Then I will be shown a list of trainers who have their license expiring in the next thirty calendar days
-    And Trainer Name, number of days to license expiry, course name, course type and license number will be displayed in trainer listing view for each trainer
+  Scenario: Displaying Trainer license details for which licenses are expiring in configured days
+    Then I will be shown a list of trainers who have their license expiring within configured days
+    And Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer
     And  the license expiring soon will be shown at top
 
   @Expiry_outof_30_days
-  Scenario: NO Trainer License details are displayed for which licenses are expiring out of 30 days and before current date
-    Then I will not be shown a list of trainers who have their license expiring out of thirty calender days
+  Scenario: NO Trainer License details are displayed for which licenses are expiring out configured days and before current date
+    Then I will not be shown a list of trainers who have their license expiring outside of configured days
 
   @multiple_trainer_details
   Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
@@ -30,8 +30,18 @@ Feature:
   Scenario: Display list of courses delivering in future
 
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
-    Then The system will display a list of courses the selected trainer is delivering in future with course, site address and secondary trainer details
-    And The page will also show Primary Trainers Full Name, License Number, Scheme Name and days in which their license expires
+    Then The system will display a list of courses the selected trainer is delivering in future
+    And The system will display the following details on Pick slot page
+    |Display_Items        |
+    |Venue                |
+    |Date                 |
+    |Time                 |
+    |License Expiry Date  |
+    |Trainer              |
+    |License              |
+    |Scheme               |
+
+    And The page will also show primary trainers Full Name,econdary trainer fullname
 
   @Pick_A_Slot2
   Scenario: Verify the course dates are of future dates only

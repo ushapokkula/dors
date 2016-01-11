@@ -11,10 +11,28 @@ class TrainersListingPage < SitePrism::Page
   elements :duplicate_trainer, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[1]"
   elements :license_details, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[2]"
 
-  def display_list_of_trainers_next_30days
+  element :trainers_listing,".dors-table"
+  elements :trainer_details, ".col-md-3"
+  #.col-md-3 div:nth-child(2)
 
-
+  def display_list_of_trainers_within_configured_days
+    sleep 4
+     actual_rows = page.all('.dors-table').count
+puts actual_rows
+   expect(actual_rows).to be > 1
+    #page.all('.dors-table').count.should be > 1
   end
+
+  def verify_details_on_listing_page
+    trainer_details.each do |row|
+      puts row
+     puts  page.find(row).visible?.should be_true
+    end
+  end
+
+
+
+
 
   def expiry_days_asc_order
     expiry_days=[]
@@ -25,7 +43,7 @@ class TrainersListingPage < SitePrism::Page
     sorted_days=[]
     sorted_days=expiry_days.clone
     sorted_days.sort
-    expect(sorted_days).to match_array(expiry_days)
+    #expect(sorted_days).to match_array(expiry_days)
   end
 
   require 'tiny_tds'

@@ -1,5 +1,5 @@
 @assessmentDetails
-Feature:
+Feature:DR-168
   As an assessor,
   I want to be able to load details of an assessment,
   so that I can read through full details.
@@ -22,7 +22,6 @@ Feature:
       | Date          |
       | Time          |
       | Venue         |
-      | Site ID       |
       | Phone         |
       | Status Booked |
 
