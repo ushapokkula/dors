@@ -7,7 +7,7 @@ Feature:
   Background:
     Given that I am logged into the system
     And I am on Assessment Request Summary page
-#    Given I am on Pick a Slot Page
+   Given I am on Pick a Slot Page
 #    And I navigate to Pick a Course Page by clicking on PIck a slot against a trainer
 #    When I click Request Assessment button against a slot i have choosen
 

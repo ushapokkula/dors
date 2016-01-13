@@ -6,17 +6,19 @@ Feature: DR-113 and DR-118
 
   Background:
     Given that I am logged into the system
-    When I navigate to "REQUEST ASSESSMENT" page
+    And I navigate to "REQUEST ASSESSMENT" page
+    When I configure the assessment time window to "365" days
 
   @Expiry_Within_30_days
-  Scenario: Displaying Trainer license details for which licenses are expiring in configured days
-    Then I will be shown a list of trainers who have their license expiring within configured days
+  Scenario: Displaying Trainer license details for which licenses are expiring in configured time window
+    Then I will be shown a list of trainers who have their license expiring within time window of "365" days
     And Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer
     And  the license expiring soon will be shown at top
 
   @Expiry_outof_30_days
-  Scenario: NO Trainer License details are displayed for which licenses are expiring out configured days and before current date
-    Then I will not be shown a list of trainers who have their license expiring outside of configured days
+  Scenario: NO Trainer License details are displayed for which licenses are expiring out of configured time window and before current date
+    Then I will not be shown a list of trainers who have their license expiring outside of configured time window
+    And I will not be shown a list of trainers for previous dates already expired
 
   @multiple_trainer_details
   Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
@@ -28,7 +30,6 @@ Feature: DR-113 and DR-118
 
   @Pick_A_Slot1
   Scenario: Display list of courses delivering in future
-
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
     Then The system will display a list of courses the selected trainer is delivering in future
     And The system will display the following details on Pick slot page

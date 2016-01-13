@@ -7,100 +7,105 @@ class TrainersListingPage < SitePrism::Page
   elements :primary_trainer_details, :xpath, ".//*[@id='pick-course-view']/section/div/div/div/h3"
   elements :course_dates, :xpath, ".//*[@id='pick-course-view']/section/div/table/tbody/tr/td[1]"
   elements :expiry_dates_order, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[3]"
-  elements :duplicate_trainer, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[1]"
+  elements :duplicate_trainer, ".col-md-12.row-span"
   elements :license_details, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[2]"
 
 
   elements :expiry_dates, ".col-md-3 div:nth-child(2)"
 
-  def display_list_of_trainers_within_configured_days
+  def display_list_of_trainers_within_configured_days(count)
     sleep 10
     actual_rows = page.all('.dors-table').count
-    #expect(actual_rows).to be > 1
-    #verify_expiry_dates
+    expect(actual_rows).to be > 1
+    verify_expiry_dates(count)
   end
 
   def verify_details_on_listing_page
     actual_rows = page.all('.col-md-3').count
-    #expect(actual_rows).to be > 1
+    expect(actual_rows).to be > 1
   end
 
-  def verify_expiry_dates
-    #dates = (Date.today..(Date.today+120.days))
-    expiry_dates.each do |row|
-      puts row.text
-      #dates.include?(row.text)
+  def verify_expiry_dates(count)
+     expiry_dates.each do|date|
+      today_date = Date.today.to_s
+      configured_date = Date.today + count.to_i
+      range = (today_date..configured_date.to_s)
+      expected_date=Date.parse(date.text).strftime("%Y-%m-%d")
+      range.include?(expected_date)
+      previous_date=Date.parse(expected_date) < Date.today
+      expect(previous_date).to be false
     end
+
   end
 
 
   def expiry_days_asc_order
-
-      expiry_dates.map do |x|
-        y = x.map[x|x.text]
-
-      end
-    #   dates=element.text
-    #   actual_date=Date.parse(dates).strftime("%d/%m/%Y")
-    # end
-    # expiry_dates1=[],  sorted_dates=[]
-    # expiry_dates1.push(actual_date)
-    # sorted_dates=expiry_dates1.clone
-    #
-    # sorted_dates.to_ary.sort
-    # puts expect(sorted_dates.to_ary).to match_array(expiry_dates1)
+    expiry_dates1=[]
+    expiry_dates.each do |element|
+      dates=element.text
+      actual_date=Date.parse(dates).strftime("%d/%m/%Y")
+      expiry_dates1.push(actual_date)
+    end
+    sorted_dates=[]
+    sorted_dates=expiry_dates1.clone
+    sorted_dates.sort
+    expect(sorted_dates).to match_array(expiry_dates1)
   end
 
   require 'tiny_tds'
 
-  def not_displaying_results_after_30days
+  def not_displaying_results_out_of_time
     expiry_date=[]
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
-    puts "connected to database"
-    result= client.execute("select DATEDIFF(day, cast(GetDATE() as Date), ExpiryDate) as days FROM (SELECT expirydate  FROM [DORS_Classified].[dbo].[tbl_TrainerLicense] where ExpiryDate < cast(GetDATE() as date) or expirydate > Dateadd(d, 30, cast(GetDATE() as date))) dates")
+    result= client.execute("SELECT ExpiryDate FROM  tbl_TrainerLicense where ExpiryDate > DATEADD(dd, 365, GETDATE())")
     result.each do |row|
-      date = row['days']
-      expiry_dates_order.each do |element|
+      date = row['ExpiryDate']
+      expiry_dates.each do |element|
         (element.text) != date
       end
     end
     client.close
   end
 
+  def verify_previous_expired_dates
+    expiry_dates.each do|date|
+      expected_date=Date.parse(date.text).strftime("%Y-%m-%d")
+      previous_date=Date.parse(expected_date) < Date.today
+      expect(previous_date).to be false
+    end
+    end
+
   def validating_unique_licenses
+    sleep 5
     unique_licenses=[]
     license_details.each do |licenses|
       unique_licenses.push(licenses.text)
     end
-    #expect(unique_licenses).to match_array(unique_licenses.uniq)
+    puts unique_licenses
+    puts unique_licenses.uniq
+    puts expect(unique_licenses).to match_array(unique_licenses.uniq)
   end
 
 
   require 'tiny_tds'
 
   def multiple_licenses_as_seperate_entry
-    duplicate_trainer__details= [], duplicate_trainer__count=[]
+    duplicate_trainers= []
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
     result = client.execute("select Forename + ' ' + surname as 'fullname' from [DORS_Classified].[dbo].[tbl_Trainer]  t1 join tbl_TrainerLicense t2 on t2.TrainerId=t1.TrainerId where (ExpiryDate >= (cast(GetDATE() as Date)) and EXPIRYDATE <= Dateadd(d,30, cast(GetDATE() as Date))) group by Forename, surname having (count(*)>1) order by forename desc")
     result.each do |row|
-      duplicate_trainer__count = row['fullname']
-      duplicate_trainer__details=duplicate_trainer__count_ #to.ary'
+      duplicate_trainer_details = row['fullname']
+      duplicate_trainers.push(duplicate_trainer_details)
     end
     duplicate_names=[]
     duplicate_trainer.each do |duplicates|
       elements=duplicates.text
       duplicate_names.push(elements)
     end
-    puts "******"
-    #puts duplicate_names
-    #puts "&&&&&&&&&&&"
-    duplicate_count_array=[]
     duplicate_count=duplicate_names.group_by { |e| e }.select { |k, v| v.size > 1 }.map(&:first)
-    #duplicate_count_array.push(duplicate_count)
-    puts duplicate_count
-    #puts expect(duplicate_count).to match_array(duplicate_trainer__details)
+     expect(duplicate_count).to match_array(duplicate_trainers)
   end
 
 

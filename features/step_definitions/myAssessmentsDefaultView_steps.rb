@@ -6,10 +6,6 @@ And(/^I configure the days in assessmnet window$/)do
   @trainers.my_assessments_default_view_page.configure_days_in_assessment_window
 end
 
-And(/^I will see a message for assessments for configured days$/)do
-  expect(page).to have_content("Assessments for next 365 days.")
-end
-
 And(/^I will be shown list of all assessments i requested$/) do
   @trainers.my_assessments_default_view_page.delte_assessments_details_from_db
   @trainers.ngu_search_assessment_id_page.book_assessment
@@ -31,21 +27,20 @@ And(/^I will not be able to view dates which fall out of 30 calendar days$/) do
 end
 
 Then(/^I can see "([^"]*)" label for trainer count$/) do |label|
-  within(".dors-well-container") do
-    expect(page).to have_content(label)
-  end
-
+  assessment_label = page.all(".my-assessments-count-label").count
+   expect(assessment_label).to be > 1
 end
 
 Then(/^This column will show count of trainers for assessment$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  assessment_count = page.all(".my-assessments-count").count
+  expect(assessment_count).to be > 1
 end
 
 Then(/^Trainer names are not displayed on summary page$/) do
-  expect(page).not_to have_css(".col-md-3.vertical-center.text-md")
+   expect(page).not_to have_css(".col-md-3.vertical-center.text-md")
 end
 
 Then(/^I see Trainer names included in an assessment request$/) do
-  expect(page).to have_css(".col-md-3.vertical-center.text-md")
+   expect(page).to have_css(".col-md-3.vertical-center.text-md")
 end
 

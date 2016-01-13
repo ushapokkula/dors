@@ -9,8 +9,8 @@ When(/^I will see "([^"]*)" on the page$/) do |text|
 end
 
 
-Then(/^I will be shown a list of trainers who have their license expiring within configured days$/) do
-  @trainers.trainers_listing_page.display_list_of_trainers_within_configured_days
+Then(/^I will be shown a list of trainers who have their license expiring within time window of "([^"]*)" days$/) do |count|
+  @trainers.trainers_listing_page.display_list_of_trainers_within_configured_days(count)
 end
 
 And(/^Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer$/) do
@@ -21,12 +21,24 @@ Then(/^the license expiring soon will be shown at top$/)do
   @trainers.trainers_listing_page.expiry_days_asc_order
 end
 
+And(/^I configure the assessment time window to "([^"]*)" days$/)do|days|
+  click_link_or_button("ADMINISTRATION")
+  fill_in('assessmentsWindow', :with=> days)
+  click_button("Save")
+  expect(page).to have_content("Assessments booking time window has been successfully set")
+  click_link_or_button("REQUEST ASSESSMENT")
+end
+
 Then(/^Trainers who have multiple licenses expiring will be shown multiple times as a separate entry$/) do
   @trainers.trainers_listing_page.multiple_licenses_as_seperate_entry
 end
 
-Then(/^I will not be shown a list of trainers who have their license expiring out of thirty calender days$/) do
-  @trainers.trainers_listing_page.not_displaying_results_after_30days
+Then(/^I will not be shown a list of trainers who have their license expiring outside of configured time window$/) do
+  @trainers.trainers_listing_page.not_displaying_results_out_of_time
+end
+
+And(/^I will not be shown a list of trainers for previous dates already expired$/)do
+  @trainers.trainers_listing_page.verify_previous_expired_dates
 end
 
 And(/^I will see that the licenses are unique to the scheme$/)do
