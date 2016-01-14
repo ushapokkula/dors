@@ -5,13 +5,16 @@ class TrainersListingPage < SitePrism::Page
   elements :course_details, :xpath, ".//*[@id='pick-course-view']/section/div/table/tbody/tr/td"
   elements :course_headers, :xpath, ".//*[@id='pick-course-view']/section/div/table/thead/tr/td"
   elements :primary_trainer_details, :xpath, ".//*[@id='pick-course-view']/section/div/div/div/h3"
-  elements :course_dates, :xpath, ".//*[@id='pick-course-view']/section/div/table/tbody/tr/td[1]"
+
   elements :expiry_dates_order, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[3]"
   elements :duplicate_trainer, ".col-md-12.row-span"
-  elements :license_details, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[2]"
+  elements :license_details, ".trainer-licenseCode"
 
+  elements :list_of_courses, ".dors-table"
+  elements :pick_a_slot_buttons, :xpath, "html/body/div[1]/div[2]/div/div[2]/div/div[2]/button"
+  elements :course_dates, ".course-date"
 
-  elements :expiry_dates, ".col-md-3 div:nth-child(2)"
+  elements :expiry_dates, ".license-expiry-date"
 
   def display_list_of_trainers_within_configured_days(count)
     sleep 10
@@ -27,6 +30,7 @@ class TrainersListingPage < SitePrism::Page
 
   def verify_expiry_dates(count)
      expiry_dates.each do|date|
+       puts date.text
       today_date = Date.today.to_s
       configured_date = Date.today + count.to_i
       range = (today_date..configured_date.to_s)
@@ -36,6 +40,15 @@ class TrainersListingPage < SitePrism::Page
       expect(previous_date).to be false
     end
 
+  end
+
+  def verify_date_format
+    expiry_dates.each do |date|
+      actual_date_format = (date.text).match(/[0-9][2-9]-([A-z][a-z][a-z])-(\d{4})/).to_s
+      split_value = actual_date_format.split(" ").first
+      expect(split_value).to match(date.text)
+
+    end
   end
 
 
@@ -82,9 +95,7 @@ class TrainersListingPage < SitePrism::Page
     license_details.each do |licenses|
       unique_licenses.push(licenses.text)
     end
-    puts unique_licenses
-    puts unique_licenses.uniq
-    puts expect(unique_licenses).to match_array(unique_licenses.uniq)
+    expect(unique_licenses).to match_array(unique_licenses.uniq)
   end
 
 
@@ -110,33 +121,37 @@ class TrainersListingPage < SitePrism::Page
 
 
   def pick_a_slot
-    for i in 1..6
-      if (page.has_xpath?("//*[@id='expiring-licenses-view']/section/div/table/tbody/tr[#{i}]/td[6]/button"))
-        value=find(:xpath, "//*[@id='expiring-licenses-view']/section/div/table/tbody/tr[#{i}]/td[6]/button").text
+
+    for i in 2..8
+      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
+        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
         if (value == "Pick a slot")
-          find(:xpath, "//*[@id='expiring-licenses-view']/section/div/table/tbody/tr[#{i}]/td[6]/button").click
-          sleep 2
-          check_column_headers
-          sleep 2
-          check_course_details
-          primary_trainer_details_on_pickacourse_page
+          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
+          courses = page.all(".dors-table").count
+          expect(courses).to be > 0
           page.evaluate_script('window.history.back()')
-          sleep 2
         end
       end
     end
   end
 
+  def verify_details_on_pickaslot(new_table)
+    for i in 2..8
+      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
+        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
+        if (value == "Pick a slot")
+          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
+          columns = new_table.map { |x| x['Display_Items'] }
+          for i in 0...columns.size
+            expect(page).to have_content(columns[i])
+          end
 
-  def check_column_headers
-    for i in 1..5
-      column_headers=[], data_value=[]
-      column_headers =["", "DATE", "TIME", "TITLE", "SITE", "OTHER TRAINERS"]
-      data_value[i]=find(:xpath, ".//*[@id='pick-course-view']/section/div/table/thead/tr/td[#{i}]").text
-      #expect(data_value[i]).to include(column_headers[i])
+        end
+      end
+      page.evaluate_script('window.history.back()')
     end
-
   end
+
 
   def check_course_details
     course_details.each do |element|
@@ -144,21 +159,28 @@ class TrainersListingPage < SitePrism::Page
     end
   end
 
-
   def pick_a_slot_to_verify_course_dates
-    for i in 1..6
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div/table/tbody/tr[#{i}]/td[6]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr[#{i}]/td[6]/button").text
+    for i in 2..8
+      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
+        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
         if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr[#{i}]/td[6]/button").click
-          sleep 2
+          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
+
           course_dates.each do |date|
-            Date.parse(date.text) >= Date.today
+           Date.parse(date.text) >= Date.today
           end
-          page.evaluate_script('window.history.back()')
+
         end
       end
+      page.evaluate_script('window.history.back()')
     end
+  end
+
+
+  def verify_trianers_fullname
+    first(:button, 'Pick a slot').click
+    expect(page).to have_css(".trainer-fullname")
+    expect(page).to have_css(".secondary-trainer-full-name")
   end
 
 
@@ -175,7 +197,9 @@ class TrainersListingPage < SitePrism::Page
     end
   end
 
-end
+    end
+
+
 
 
 

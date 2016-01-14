@@ -54,14 +54,28 @@ Then(/^The page will also show Primary Trainers Full Name, License Number, Schem
   @trainers.trainers_listing_page.primary_trainer_details_on_pickacourse_page
 end
 
-Then(/^The system will display a list of courses the selected trainer is delivering in future with course, site address and secondary trainer details$/) do
+Then(/^The system will display a list of courses the selected trainer is delivering in future$/) do
   @trainers.trainers_listing_page.pick_a_slot
 end
 
 When(/^I click 'Pick a slot' on Request Assessment Page$/) do
-  @trainers.trainers_listing_page.pick_a_slot_to_verify_course_dates
+  sleep 3
+  first(:button, 'Pick a slot').click
+end
+
+And(/^I see the Expiry Date is in dd-Mmm-YYYY format$/)do
+  @trainers.trainers_listing_page.verify_date_format
 end
 
 Then(/^I validate the course dates delivered by trainer are of future dates only$/) do
   @trainers.trainers_listing_page.pick_a_slot_to_verify_course_dates
+end
+
+When(/^The system will display the following details on Pick slot page$/) do |table|
+  new_table =table.hashes
+  @trainers.trainers_listing_page.verify_details_on_pickaslot(new_table)
+end
+
+When(/^The page will also show primary trainers Full Name,secondary trainer fullname$/) do
+  @trainers.trainers_listing_page.verify_trianers_fullname
 end

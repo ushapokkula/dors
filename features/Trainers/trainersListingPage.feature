@@ -28,6 +28,10 @@ Feature: DR-113 and DR-118
   Scenario: Validating unique licenses to a scheme
     And I will see that the licenses are unique to the scheme
 
+  @verify_date_format
+    Scenario: Verify the Expiry Date format in dd-mmm-yyyy
+     Then I see the Expiry Date is in dd-Mmm-YYYY format
+
   @Pick_A_Slot1
   Scenario: Display list of courses delivering in future
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
@@ -35,14 +39,12 @@ Feature: DR-113 and DR-118
     And The system will display the following details on Pick slot page
     |Display_Items        |
     |Venue                |
-    |Date                 |
-    |Time                 |
-    |License Expiry Date  |
+    |Date & Time          |
+    |License Expiry date  |
     |Trainer              |
     |License              |
     |Scheme               |
-
-    And The page will also show primary trainers Full Name,econdary trainer fullname
+    And The page will also show primary trainers Full Name,secondary trainer fullname
 
   @Pick_A_Slot2
   Scenario: Verify the course dates are of future dates only
