@@ -9,8 +9,9 @@ end
 And(/^I will be shown list of all assessments i requested$/) do
   @trainers.my_assessments_default_view_page.delte_assessments_details_from_db
   @trainers.ngu_search_assessment_id_page.book_assessment
+  sleep 5
   click_link_or_button("MY ASSESSMENTS")
-   page.should have_css('.dors-well-other.ng-scope')
+  page.should have_css('.dors-well-other')
 end
 
 And(/^The status are "([^"]*)"$/) do |status|

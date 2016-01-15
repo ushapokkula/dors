@@ -18,20 +18,34 @@ Feature: DR-253
     And I see a message "has been successfully marked completed"
 
   @assessmentform2
-  Scenario:Verify the license status when the outcome of the trainer is Absent/Cancelled
-    When I select "Absent" or "Cancelled" as outcome
+  Scenario Outline:Verify the license status when the outcome of the trainer is Absent/Cancelled
+    When I select "<Outcomes>" as outcome
+    When I click "Mark Complete"
     Then the license of the trainer will not be changed
     And The trainer will be available for bookings on Request Assessment page
+
+    Examples:
+    |Outcomes|
+    |Absent  |
+    |Cancelled|
 
   @assessmentform3
   Scenario:Verify the license status when the outcome of the trainer is Compliannce Note
     When I select "Compliance Note" as outcome
+    When I click "Mark Complete"
     Then the license of the trainer will be renewed for 180 days from the date of assessment
-    And The status of the license will be updated to Full valid
+    And The status of the license will be updated to Provisional
+    And The trainer will be available for bookings on Request Assessment page
 
   @assessmentform4
-  Scenario:Verify the license status when the outcome of the trainer is Action note/Competent
-    When I select "Action Note" or "Competent" as outcome
+  Scenario Outline:Verify the license status when the outcome of the trainer is Action note/Competent
+    When I select "<Outcomes>" as outcome
     Then the license of the trainer will be renewed for two years from the date of assessment
     And The status of the license will be updated to Full valid
+    And The trainer will be available for bookings on Request Assessment page
+
+    Examples:
+    |Outcomes|
+    |Action Note|
+    |Competent|
 

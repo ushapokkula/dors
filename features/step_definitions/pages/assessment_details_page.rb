@@ -6,7 +6,6 @@ class AssessmentDetailsPage < SitePrism::Page
 
   def verify_assessor_and_trainer_details(new_table)
     columns = new_table.map { |x| x['Details'] }
-    puts columns
     for i in 1..columns.size
       expect(page).to have_content(columns[i])
     end

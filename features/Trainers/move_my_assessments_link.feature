@@ -1,4 +1,4 @@
-@DR-257
+
 Feature: DR-257
 
   Scenario: Verify the visibility of My Assessments Link before Request Assessments on header navbar

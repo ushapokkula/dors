@@ -12,8 +12,7 @@ Then(/^The system will load the following information for assessment record in v
 end
 
 Then(/^The page will include 'Mark Complete' and 'Cancel'button$/) do
-  @trainers.ngu_search_assessment_id_page.verify_buttons_other_trainers
-  @trainers.ngu_search_assessment_id_page.verify_buttons_primary
+  @trainers.ngu_search_assessment_id_page.select_outcome
   find_button('Mark Complete').visible?
   find_button('Cancel').visible?
 end

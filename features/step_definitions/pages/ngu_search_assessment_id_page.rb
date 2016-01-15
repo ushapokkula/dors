@@ -10,6 +10,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     book_assessment
     verify_booked_assessmemt_id_in_DB
     click_link_or_button("ASSESSMENT MANAGEMENT")
+    sleep 3
     fill_in('txt-assessment-id', :with => $booked_status)
   end
 
@@ -81,16 +82,13 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     end
   end
 
-  def verify_buttons_other_trainers
-    outcome_dropdowns_other_trainer.each do |dropdown|
-      dropdown.select('Action Note')
-    end
+  def select_outcome
+    select("Absent", :from => 'status-SWAP124')
+
+    select("Absent", :from => 'status-DOA123')
+
+    select("Absent", :from => 'status-CIA624')
   end
 
-  def verify_buttons_primary
-    outcome_dropdowns_primary.each do |dropdown|
-      dropdown.select('Action Note')
-    end
-  end
 
 end

@@ -30,7 +30,6 @@ class TrainersListingPage < SitePrism::Page
 
   def verify_expiry_dates(count)
      expiry_dates.each do|date|
-       puts date.text
       today_date = Date.today.to_s
       configured_date = Date.today + count.to_i
       range = (today_date..configured_date.to_s)

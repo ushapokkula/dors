@@ -18,7 +18,7 @@ Then(/^I will be taken to Request Assessment Summary page$/) do
 end
 
 Then(/^I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon$/) do
-  # .dors-well-container
+  @trainers.show_near_by_trainers_page.verify_trainer_details_in_nearby_courses
 end
 
 Then(/^The following information will be shown for each of these trainers$/) do |table|
@@ -39,4 +39,8 @@ end
 
 Then(/^The system will include the selected trainer in the booking request$/) do
   @trainers.show_near_by_trainers_page.verify_trainer_inlcuded_booking_request
+end
+
+And(/^I see that the courses displaying near by have same postcode as Primary one$/)do
+  @trainers.show_near_by_trainers_page.verify_near_by_courses_same_postcode
 end

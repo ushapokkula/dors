@@ -1,4 +1,4 @@
-@assessmentDetails
+
 Feature:DR-168
   As an assessor,
   I want to be able to load details of an assessment,
@@ -16,14 +16,14 @@ Feature:DR-168
     And The page will display the Assessor and Trainer details
       | Details       |
       | Assessor Name |
-      |Scheme Name    |
+      | Scheme        |
       | License       |
       | Expiry Date   |
       | Date          |
       | Time          |
       | Venue         |
       | Phone         |
-      | Status Booked |
+      | Status Approved |
 
   @AssessmentDetails2
   Scenario: Verify the display of mileage, expenses claimed and Noted field

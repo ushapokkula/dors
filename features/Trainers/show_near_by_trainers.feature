@@ -1,5 +1,6 @@
-@DR-165
-Feature: As an assessor,
+
+Feature: DR-165
+  As an assessor,
   I want to be able to see a list of nearby trainers on the assessment request summary page while I am booking assessment for a trainer,
   so that I can maximise efficiency of assessment bookings.
 
@@ -12,7 +13,7 @@ Feature: As an assessor,
   Scenario: Verify courses displaying with same postcode in near by courses section
   And I see that the courses displaying near by have same postcode as Primary one
 
-
+  @near_by_trainers
   Scenario: Show near by trainers with same postcode
     And I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon
 
@@ -28,7 +29,7 @@ Feature: As an assessor,
       | Scheme          |
     And I see Trainer Full name and site address
 
-  @near_by_trainers
+
   Scenario: Verify the @Include this Trainer' checkbox
     When I check Include this Trainer for a trainer
     Then The system will include the selected trainer in the booking request
