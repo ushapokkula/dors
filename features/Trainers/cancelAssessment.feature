@@ -1,5 +1,3 @@
-@DR-15
-
 Feature:DR-15
   Assessor Cancels an Assessment Session
 

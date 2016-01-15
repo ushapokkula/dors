@@ -9,15 +9,13 @@ Feature:Default View
     And I configure the days in assessmnet window
     When I navigate to "MY ASSESSMENTS" page
 
-@configured
+@my_assessments_default1
   Scenario: Verify default view to show only assessments for which the days are configured
     Then I will be shown list of all assessments i requested
     And The status are "Approved"
     And The view will only show assessments for which the days are configured
 
-  #Scenario: Verify default view not to display the assessments falling out of 30 calendar days
-   # And I will not be able to view dates which fall out of 30 calendar days
-
+  @my_assessments_default2
   Scenario: Verify the message when there are no Assessments Booked
     When I have no assessments on My Assessments page
     Then I will see "You do not have any Booked assessments" on the page

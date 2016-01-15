@@ -1,4 +1,3 @@
-
 Feature:DR-251
   NGU searches for an Assessment by ID
 

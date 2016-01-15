@@ -1,4 +1,3 @@
-
 Feature:DR-240
   Show all courses grouped under each assessment on My Asseessments page
 
@@ -15,6 +14,7 @@ Feature:DR-240
     And I will be shown list of all assessments i requested as seperate blocks
     Then multiple courses under each assessment are displayed as blocks
 
+  @display_trainers
   Scenario: Verify the display of trainers per course
     And I will be shown list of all assessments i requested as seperate blocks
     And multiple courses under each assessment are displayed as blocks

@@ -1,4 +1,3 @@
-
 Feature: DR-113 and DR-118
   As an assessor,
   I want to be able to view trainers whose license is expiring soon,

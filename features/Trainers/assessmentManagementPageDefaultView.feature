@@ -1,4 +1,3 @@
-@trainer
 Feature:DR-285
   Assessment Management Default View
 

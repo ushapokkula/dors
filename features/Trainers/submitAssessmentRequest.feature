@@ -11,7 +11,7 @@ Feature:
 #    And I navigate to Pick a Course Page by clicking on PIck a slot against a trainer
 #    When I click Request Assessment button against a slot i have choosen
 
-  @current
+
   Scenario: Verifying the Assessor and Trainer Details on Assessment Request Summary page
     Then The system will load Assessment Request Summary page with following Assessor details
     And The page will display with the following Trainer Details
