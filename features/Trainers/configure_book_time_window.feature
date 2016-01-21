@@ -35,6 +35,21 @@ Feature: DR-31
     |120 |
 
   @time_window4
+    Scenario Outline: Verify the ability to view trainer lilcenses expiring on summary page within time window
+      When I set the assessment time window to  certain "<Days>"
+      And I click "Save"
+      And I navigate to "REQUEST ASSESSMENT" page
+      And I am on Pick a course page
+      And I click Request assessmet button against trainer I want to book an assessment
+      And I will be taken to Request Assessment Summary page
+      Then I will able to view only those trainer licenses expiring in "<Days>" time window on summary page
+
+      Examples:
+      |Days|
+      |365 |
+      |120 |
+
+  @time_window5
     Scenario: Verify the field validation when characters and zero is entered in time window
       When I enter characters in the assessment time window
       Then The field will not accept the characters

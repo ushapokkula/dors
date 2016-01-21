@@ -45,7 +45,10 @@ end
 Then(/^The Assessors will only be able to view trainers licenses expiring in "([^"]*)"time window$/) do|count|
   sleep 4
   @trainers.trainers_listing_page.verify_expiry_dates(count)
+end
 
+Then(/^I will able to view only those trainer licenses expiring in "([^"]*)" time window on summary page$/)do |count|
+  @trainers.configure_book_time_window_page.verify_trainer_licenses_on_summarypage(count)
 end
 
 

@@ -1,4 +1,7 @@
 class ConfigureBookTimeWindowPage < SitePrism::Page
+  element :sign_out_link, "#btn-signout"
+
+
 
   def verify_time_window_field_acceptance
     fill_in('assessmentsWindow', :with => '200')
@@ -7,6 +10,13 @@ class ConfigureBookTimeWindowPage < SitePrism::Page
     fill_in('assessmentsWindow', :with => 'ABC')
     entered_char_Value = find("#assessmentsWindow").value
     expect(entered_char_Value).to be == ""
+  end
+
+  def verify_no_user_is_signed_in
+
+    if has_sign_out_link?
+      sign_out_link.click
+    end
   end
 
 
@@ -18,6 +28,10 @@ class ConfigureBookTimeWindowPage < SitePrism::Page
       configured_days_in_DB = row['AssessmentBookingWindowDays']
       expect(configured_days_in_DB).to be == ($configured_days.to_i)
     end
+  end
+
+  def verify_trainer_licenses_on_summarypage(count)
+
   end
 
 end
