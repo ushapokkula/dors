@@ -28,6 +28,9 @@ And(/^I will not be able to view dates which fall out of 30 calendar days$/) do
 end
 
 Then(/^I can see "([^"]*)" label for trainer count$/) do |label|
+  @trainers.my_assessments_default_view_page.delte_assessments_details_from_db
+  @trainers.ngu_search_assessment_id_page.book_assessment
+  click_link_or_button("MY ASSESSMENTS")
   assessment_label = page.all(".my-assessments-count-label").count
    expect(assessment_label).to be > 1
 end

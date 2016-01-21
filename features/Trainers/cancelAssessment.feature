@@ -39,6 +39,10 @@ Feature:DR-15
     Then the trainer will be available for bookings for assessors
 
   @cancelassessment4
+  Scenario: Verify the availability of Cancel Button for assessments with status Requested/Booked
+    And I see "Cancel Request" button for assessments with status Booked or Requested
+
+  @cancelassessment5
   Scenario: Verify the assessment cancellation  when clicked on 'NO'
     When I click "Cancel Request"
     Then The confirmation message will be displayed as  "Are you sure you want to cancel this assessment?"
@@ -46,10 +50,6 @@ Feature:DR-15
     When I click "No"
     Then The confirmation message will close
     And The assessment will not be cancelled and I will remain on 'My Assessments' section
-
-  @cancelassessment5
-  Scenario: Verify the availability of Cancel Button for assessments with status Requested/Booked
-    And I see "Cancel Request" button for assessments with status Booked or Requested
 
   @cancelassessment6
   Scenario: Verify the unavailability of Cancel Button for assessments with status Cancelled

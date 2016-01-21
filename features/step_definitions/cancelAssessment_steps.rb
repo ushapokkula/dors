@@ -61,6 +61,7 @@ And(/^I get the current URL$/)do
 end
 
 Given(/^I see "([^"]*)" button for assessments with status Booked or Requested$/) do |button|
+  sleep 5
   find_button(button).visible?
 end
 

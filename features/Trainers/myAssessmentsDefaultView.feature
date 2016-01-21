@@ -1,4 +1,3 @@
-
 Feature:Default View
   As an assessor,
   I want to be able to view my requested assessments,

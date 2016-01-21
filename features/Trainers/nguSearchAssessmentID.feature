@@ -31,19 +31,19 @@ Feature:DR-251
       | Assessment Notes   |
 
   @three
+  Scenario: Verify the visibility of 'Reject' button when the status is Requested
+    And I type the Request Assessment ID in the Assessment search field
+    When I click "Search"
+    Then The system will load the detailed information for assessment record in view mode
+    And The page will include "Reject" button
+
+  @four
   Scenario: Verify the visibility of 'Mark Complete' and ' Cancel' when the status is Booked
     And I type the Booked Assessment ID in the Assessment search field
     When I click "Search"
     Then The system will load the detailed information for assessment record in view mode
     And The page will include 'Mark Complete' and 'Cancel'button
     And 'Outcome' dropdown
-
-  @four
-  Scenario: Verify the visibility of 'Reject' button when the status is Requested
-    And I type the Request Assessment ID in the Assessment search field
-    When I click "Search"
-    Then The system will load the detailed information for assessment record in view mode
-    And The page will include "Reject" button
 
   @five
   Scenario: Verify the validation message when Invalid assessment Id is entered to search

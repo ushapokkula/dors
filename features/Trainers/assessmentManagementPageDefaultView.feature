@@ -6,20 +6,20 @@ Feature:DR-285
     And I navigate to "ASSESSMENT MANAGEMENT" page
 
   @default1
+  Scenario: Verify the message when there are no assessments with status requested
+    When There are no assessments with status requested
+    Then I see a message "There are no assessments to display."
+
+  @default2
   Scenario: Verify the default view of Assessment management
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
       | Details       |
       | Assessor Name |
-      | Date/Time     |
+      | Date    |
       | Expenses      |
       | Name          |
       | Expiry Date   |
       | Status        |
-
-  @default2
-  Scenario: Verify the message when there are no assessments with status requested
-    When There are no assessments with status requested
-    Then I see a message "There are no assessments to display."
 
 

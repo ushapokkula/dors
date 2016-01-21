@@ -12,7 +12,6 @@ When(/^I navigate to "([^"]*)" page$/) do |tab|
 end
 
 Then(/^I see a message "(.*?)"$/) do |message|
-  sleep 3
   expect(page).to have_content(message)
 end
 
