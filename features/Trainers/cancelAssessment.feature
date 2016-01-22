@@ -8,7 +8,6 @@ Feature:DR-15
     And I click "View Details"
     And I see "My assessment details" on the page
 
-
   @cancelassessment1
   Scenario: Assessor Cancels an assessment  when clicked 'Yes' on confirmation message
     When I click "Cancel Request"
