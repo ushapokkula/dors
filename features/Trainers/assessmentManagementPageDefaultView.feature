@@ -1,8 +1,10 @@
+@DR-285
 Feature:DR-285
   Assessment Management Default View
 
   Background:
     Given that I am logged into the system
+#    When There are no assessments on the assessment management page
     And I navigate to "ASSESSMENT MANAGEMENT" page
 
   @default1
