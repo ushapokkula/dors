@@ -23,23 +23,32 @@ Feature: DR-171
       | Force Areas            |
 
   @create_assessor2
-  Scenario: Verify The mandatory and optional fields
-    Then I see the following fields as Mandatory
-      | Mandatory            |
-      | Username             |
-      | First Name           |
-      | Last Name             |
-      | Primary Phone Number |
-      | Email                |
-      | Address              |
-      | Postcode             |
-      | Force Areas          |
-    And I see the following fields as optional
+  Scenario Outline: Verify The mandatory and optional fields
+
+    Then I see the following fields as "<Mandatory>" with "<Error Messages>"
+
+    Examples:
+      | Mandatory            | Error Messages                   |
+      | Username             | Please provide a username.       |
+      | First Name           | Please provide a first name.     |
+      | Last Name            | Please provide a last name.      |
+      | Primary Phone Number | Please provide a phone number.   |
+      | Email                | Please provide an email address. |
+      | Address              | Please provide an address.       |
+      | Postcode             | Please provide a postcode.       |
+
+  @create_assessor3
+  Scenario Outline: Verify The mandatory and optional fields
+
+    Then I see the following fields as "<Optional>"
+
+    Examples:
       | Optional               |
       | Assessor Number        |
       | Secondary Phone Number |
+      | Force Areas            |
 
-  @create_assessor3
-    Scenario: Verify the Cancel and Create Assessor buttons
-      And I see that the page includes "Create Assessor" and "Cancel" buttons
+  @create_assessor4
+  Scenario: Verify the Cancel and Create Assessor buttons
+    And I see that the page includes "Create Assessor" and "Cancel" buttons
 

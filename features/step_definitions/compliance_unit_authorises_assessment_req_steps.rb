@@ -10,9 +10,9 @@ end
 When(/^I click "([^"]*)" against one of the items on the list$/) do |button|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.request_assessment
-  sleep 3
+  sleep 5
   click_link_or_button("ASSESSMENT MANAGEMENT")
-  sleep 3
+  sleep 2
   first(:button, button).click
 end
 

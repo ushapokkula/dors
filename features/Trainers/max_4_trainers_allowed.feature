@@ -1,4 +1,3 @@
-@DR-182
 Feature: Maximum 4 trainers allowed per assessment request
 
   Background:

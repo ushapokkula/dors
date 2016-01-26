@@ -3,10 +3,9 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
 
   def verify_four_trainer_inclusion
     sleep 2
-    find(:xpath, 'html/body/div[1]/div[2]/div[1]/div[8]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[2]/div[6]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[3]/div[6]/div/div[5]/div/label/input').click
-
+    find('div.dors-well > div:nth-child(8) > div  label > input').click
+    page.all('.include-nearby-trainer-checkbox')[0].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
   end
 
   require 'tiny_tds'
@@ -43,16 +42,17 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
   end
 
   def verify_validationmsg_morethan_4_trianers
-    find(:xpath, 'html/body/div[1]/div[2]/div[1]/div[8]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[2]/div[6]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[3]/div[6]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[2]/div[7]/div/div[5]/div/label/input').click
+
+    find('div.dors-well > div:nth-child(8) > div  label > input').click
+    page.all('.include-nearby-trainer-checkbox')[0].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
+    page.all('.include-nearby-trainer-checkbox')[1].click
   end
 
   def verify_validation_more_trainers_on_course
-    find(:xpath, 'html/body/div[1]/div[2]/div[1]/div[8]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[2]/div[6]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[3]/div[6]/div/div[5]/div/label/input').click
-    find(:xpath, 'html/body/div[1]/div[2]/div[1]/div[7]/div/div[5]/div/label/input').click
+    find('div.dors-well > div:nth-child(7) > div  label > input').click
+    page.all('.include-nearby-trainer-checkbox')[0].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
+    find('div.dors-well > div:nth-child(8) > div  label > input').click
   end
 end
