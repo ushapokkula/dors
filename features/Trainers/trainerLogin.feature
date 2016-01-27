@@ -47,11 +47,10 @@ Feature: Trainer Login
     Then I see a message "Please provide a username."
     And I see a message "Please provide a password."
 
-
- Scenario Outline: Account locked for five unsuccessfull attempts
+  Scenario: Account locked for five unsuccessfull attempts
 
    Given that I have logged into trainers.ndors.org.uk
    When I make three failed login attempts
    Then my account will be locked and I will be shown a message, "Your login credentials are invalid. Please try again with correct login credentials."
 
-   Examples:
+
