@@ -5,7 +5,9 @@ Feature: DR-31
   encouraged to assess near future expiry trainers.
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
     And I navigate to "ADMINISTRATION" page
     And I will be able to view the field "Assessment Window"
 
@@ -26,6 +28,7 @@ Feature: DR-31
   Scenario Outline: Verify the ability to view trainer licenses expiring in selected time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       Then The Assessors will only be able to view trainers licenses expiring in "<Days>"time window
 
@@ -38,6 +41,7 @@ Feature: DR-31
     Scenario Outline: Verify the ability to view trainer lilcenses expiring on summary page within time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       And I am on Pick a course page
       And I click Request assessmet button against trainer I want to book an assessment

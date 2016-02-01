@@ -3,7 +3,9 @@ Feature:DR-285
   Assessment Management Default View
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
 #    When There are no assessments on the assessment management page
     And I navigate to "ASSESSMENT MANAGEMENT" page
 

@@ -4,7 +4,9 @@ Feature:DR-168
   so that I can read through full details.
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     When I navigate to "MY ASSESSMENTS" page
     When I click one of the items in the list
     Then The system will load "My assessment details" page

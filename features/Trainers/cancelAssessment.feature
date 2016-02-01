@@ -2,7 +2,9 @@ Feature:DR-15
   Assessor Cancels an Assessment Session
 
   Background:
-    Given that I am logged into the system
+   # Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     And I have assessments with Booked status
     And I navigate to "MY ASSESSMENTS" page
     And I click "View Details"

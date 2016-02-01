@@ -4,7 +4,9 @@ Feature: DR-171
   so that they can use the system to manage assessments.
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
 
   @create_assessor1

@@ -2,7 +2,9 @@ Feature:DR-251
   NGU searches for an Assessment by ID
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
 
   @one

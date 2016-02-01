@@ -1,8 +1,10 @@
+DR-240
 Feature:DR-240
   Show all courses grouped under each assessment on My Asseessments page
 
   Background:
-    Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     And I navigate to "MY ASSESSMENTS" page
 
   @assessment_block

@@ -30,8 +30,7 @@ And(/^I configure the assessment time window to "([^"]*)" days$/)do|days|
   fill_in('assessmentsWindow', :with=> days)
   click_button("Save")
   expect(page).to have_content("Assessments booking time window has been successfully set")
-  click_link_or_button("REQUEST ASSESSMENT")
-end
+ end
 
 Then(/^Trainers who have multiple licenses expiring will be shown multiple times as a separate entry$/) do
   @trainers.trainers_listing_page.multiple_licenses_as_seperate_entry

@@ -1,7 +1,9 @@
 Feature: Maximum 4 trainers allowed per assessment request
 
   Background:
-    Given that I am logged into the system
+#    Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     And I am on Assessment Request Summary page
 
     @maximum1

@@ -1,7 +1,9 @@
 Feature: Total Mileage calculation
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     And I navigate to Summary page
 

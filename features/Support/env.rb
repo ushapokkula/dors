@@ -31,11 +31,11 @@ include RSpec:: Matchers
 TRAINER_USERNAME =
 TRAINER_PASSWORD =
 
-ASSESSOR_USERNAME=
-ASSESSOR_PASSWORD=
+ASSESSOR_USERNAME= "sudiv"
+ASSESSOR_PASSWORD= "P@ssw0rd"
 
-COMPLAINCE_USERNAME=
-COMPLAINCE_PASSWORD=
+COMPLAINCE_USERNAME= "jane1"
+COMPLAINCE_PASSWORD= "P@ssw0rd"
 
 $Trainers_Link="https://systest.trainer.dors.wtg.co.uk"
 
@@ -79,7 +79,7 @@ end
 Capybara.configure do |config|
 
   config.default_driver = :selenium
-  #config.app_host = "https://trainers.clients.wtg.co.uk"
+  config.app_host = "https://systest.trainer.dors.wtg.co.uk"
   config.default_wait_time = 10
 end
 World(Capybara)

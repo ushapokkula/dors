@@ -1,12 +1,17 @@
+@DR-113
 Feature: DR-113 and DR-118
   As an assessor,
   I want to be able to view trainers whose license is expiring soon,
   so that I can request and carry out assessments.
 
   Background:
-    Given that I am logged into the system
-    And I navigate to "REQUEST ASSESSMENT" page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
+    And I click "ADMINISTRATION"
     When I configure the assessment time window to "365" days
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+
 
   @Expiry_Within_30_days
   Scenario: Displaying Trainer license details for which licenses are expiring in configured time window
@@ -39,7 +44,7 @@ Feature: DR-113 and DR-118
     |Display_Items        |
     |Venue                |
     |Date & Time          |
-    |License Expiry date  |
+    |License Expiry date:  |
     |Trainer              |
     |License              |
     |Scheme               |

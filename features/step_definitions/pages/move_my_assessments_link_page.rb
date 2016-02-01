@@ -2,7 +2,7 @@ class MoveMyAssessmentsLinkPage < SitePrism::Page
   elements :navbar_elements, "ul.nav"
 
   def verify_my_assessments_link
-    expected_array = ["HOME MY ASSESSMENTS REQUEST ASSESSMENT ASSESSMENT MANAGEMENT ADMINISTRATION"]
+    expected_array = ["MY ASSESSMENTS REQUEST ASSESSMENT MYPROFILE"]
     actual_array = []
     navbar_elements.each do |row|
       $actual_array_elements = row.text

@@ -4,7 +4,9 @@ Feature: Auto Authorise
   So that appropriate requests can be processed quickly avoiding burden on Compliance Unit
 
   Background:
-    Given that I am logged into the system
+    #Given that I am logged into the system
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
     And I am on Assessment Request Summary page
 
 @auto_authorise_assessment_req1
