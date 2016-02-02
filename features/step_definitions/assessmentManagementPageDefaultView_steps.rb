@@ -2,6 +2,7 @@ Then(/^I will see  list of all Assessments Requests with status requested$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.request_assessment
   sleep 3
+  @trainers.trainer_login_page.log_in("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
  @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
 end
@@ -13,10 +14,9 @@ end
 
 When(/^There are no assessments with status requested$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  sleep 2
+  click_link_or_button("ASSESSORS")
   click_link_or_button("ASSESSMENT MANAGEMENT")
-  sleep 6
+    sleep 3
 end
 
-And(/^There are no assessments on the assessment management page$/)do
-
-end

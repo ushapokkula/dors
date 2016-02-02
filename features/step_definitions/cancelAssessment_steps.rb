@@ -51,7 +51,7 @@ And(/^The assessment will not be cancelled and I will remain on 'My Assessments'
   within(:xpath, "html/body/div[1]/div[2]/div") do
     expect(page.text).not_to include("CIA624")
     expect(page.text).not_to include("DOA123")
-    expect(page.text).not_to include("SWAP124")
+    expect(page.text).not_to include("FSB422")
   end
 end
 

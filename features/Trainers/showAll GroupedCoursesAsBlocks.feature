@@ -1,4 +1,4 @@
-DR-240
+@DR-240
 Feature:DR-240
   Show all courses grouped under each assessment on My Asseessments page
 
