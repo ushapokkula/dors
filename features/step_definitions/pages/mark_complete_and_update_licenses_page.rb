@@ -33,7 +33,7 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     $actual_date = client.execute("SELECT  tbl_Course.CourseDateTime FROM tbl_Course INNER JOIN tbl_CourseTrainer ON tbl_Course.CourseID = tbl_CourseTrainer.CourseId WHERE (tbl_CourseTrainer.TrainerId = 6)")
 
-    select(outcome1, :from => 'status-SWAP124')
+    select(outcome1, :from => 'status-FSB422')
 
     select(outcome1, :from => 'status-DOA123')
 
@@ -55,7 +55,7 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
   def visibility_of_trainers
     expect(page).to have_content('DOA123')
     expect(page).to have_content('CIA624')
-    expect(page).to have_content('SWAP124')
+    expect(page).to have_content('FSB422')
   end
 
   def verify_license_status_for_actionnote_competent

@@ -23,11 +23,25 @@ Then(/^'Outcome' dropdown$/) do
   page.has_select?('staus-03Q', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
 end
 
-And(/^I type the Request Assessment ID in the Assessment search field$/)do
+And(/^I type the Request Assessment ID in the Assessment search field$/) do
   @trainers.ngu_search_assessment_id_page.search_requested_assessment_id
 end
 
-And(/^The page will include "([^"]*)" button$/)do|button|
+And(/^I login as Compliance Manager and click assessment management tab to search booked assessments$/) do
+  @trainers.trainer_login_page.log_in("Compliance Manager")
+  click_link_or_button("ASSESSMENT MANAGEMENT")
+  fill_in('txt-assessment-id', :with => $booked_status)
+end
+
+And(/^I login as Compliance Manager and click assessment management tab to search requested assessments$/) do
+  @trainers.trainer_login_page.log_in("Compliance Manager")
+  click_link_or_button("ASSESSMENT MANAGEMENT")
+  sleep 2
+  fill_in('txt-assessment-id', :with => $requested_status)
+
+end
+
+And(/^The page will include "([^"]*)" button$/) do |button|
   find_button(button).visible?
 end
 
@@ -36,9 +50,9 @@ When(/^I enter the assessment Id which does'nt exists$/) do
 end
 
 Then(/^I will see "([^"]*)"$/) do |text|
- expect(page).to have_content(text)
+  expect(page).to have_content(text)
 end
 
-And(/^I do not enter any assessment Id$/)do
+And(/^I do not enter any assessment Id$/) do
 
 end

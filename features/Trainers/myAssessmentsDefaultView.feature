@@ -4,8 +4,6 @@ Feature:Default View
   so that I can plan my working week(s) effectively.
 
   Background:
-    #Given that I am logged into the system
-    #And I configure the days in assessmnet window
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     When I navigate to "MY ASSESSMENTS" page

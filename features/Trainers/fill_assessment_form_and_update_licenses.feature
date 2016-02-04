@@ -1,3 +1,4 @@
+@DR-253
 Feature: DR-253
   Fill Assessment Form and Fill their details
 
@@ -24,6 +25,7 @@ Feature: DR-253
     When I select "<Outcomes>" as outcome
     When I click "Mark Complete"
     Then the license of the trainer will not be changed
+    And I login as an "Assessor"
     And The trainer will be available for bookings on Request Assessment page
 
     Examples:

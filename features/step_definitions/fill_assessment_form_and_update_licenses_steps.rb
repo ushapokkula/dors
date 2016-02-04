@@ -15,7 +15,7 @@ Then(/^the license of the trainer will not be changed$/) do
 end
 
 And(/^The trainer will be available for bookings on Request Assessment page$/)do
-  click_link_or_button("REQUEST ASSESSMENT")
+   click_link_or_button("REQUEST ASSESSMENT")
   @trainers.mark_complete_and_update_licenses_page.visibility_of_trainers
 end
 

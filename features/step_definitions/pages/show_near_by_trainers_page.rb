@@ -13,13 +13,14 @@ end
 require 'tiny_tds'
 def verify_trainer_inlcuded_booking_request
   trainer_ids = []
-  expected_trainers_included = [1,9,17]
+  expected_trainers_included = [1,9,15]
   client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
   result = client.execute("select TrainerLicenseId from [DORS_Classified].[dbo].[tbl_TrainerLicenseAssessment]")
   result.each do |row|
     $trainers = row['TrainerLicenseId']
     trainer_ids.push($trainers)
   end
+  puts trainer_ids
   expect(trainer_ids).to match_array(expected_trainers_included)
 end
 

@@ -11,7 +11,7 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
   require 'tiny_tds'
 
   def verify_trainers_inclusion_per_request
-     actual_licenses = [1,9,5,17]
+     actual_licenses = [1,9,5]
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
       trainer_licenses=[]
@@ -45,8 +45,8 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
 
     find('div.dors-well > div:nth-child(8) > div  label > input').click
     page.all('.include-nearby-trainer-checkbox')[0].click
-    page.all('.include-nearby-trainer-checkbox')[2].click
     page.all('.include-nearby-trainer-checkbox')[1].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
   end
 
   def verify_validation_more_trainers_on_course

@@ -34,6 +34,7 @@ end
 And(/^I check Include this Trainer for a trainer$/)do
   page.all('.ng-pristine.ng-valid')[1].click
   page.all('.ng-pristine.ng-valid')[3].click
+  sleep 4
   click_link_or_button("Submit")
 end
 

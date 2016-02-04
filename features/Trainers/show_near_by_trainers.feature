@@ -1,3 +1,4 @@
+@DR-165
 Feature: DR-165
   As an assessor,
   I want to be able to see a list of nearby trainers on the assessment request summary page while I am booking assessment for a trainer,

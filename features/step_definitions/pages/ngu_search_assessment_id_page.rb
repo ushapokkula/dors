@@ -9,17 +9,12 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     verify_booked_assessmemt_id_in_DB
     book_assessment
     verify_booked_assessmemt_id_in_DB
-    click_link_or_button("ASSESSMENT MANAGEMENT")
-    sleep 3
-    fill_in('txt-assessment-id', :with => $booked_status)
-  end
+     end
 
   def search_requested_assessment_id
     delete_assessments_from_DB
     request_assessment
     verify_requested_assessmemt_id_in_DB
-    click_link_or_button("ASSESSMENT MANAGEMENT")
-    fill_in('txt-assessment-id', :with => $requested_status)
   end
 
   require 'tiny_tds'
@@ -83,7 +78,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def select_outcome
-    select("Absent", :from => 'status-SWAP124')
+    select("Absent", :from => 'status-FSB422')
 
     select("Absent", :from => 'status-DOA123')
 
