@@ -1,3 +1,4 @@
+@DR-171
 Feature: DR-171
   As an user,
   I want to be able to create a new Assessor,

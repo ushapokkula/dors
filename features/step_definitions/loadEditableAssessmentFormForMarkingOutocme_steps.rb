@@ -20,6 +20,6 @@ When(/^I select possible outcome against each trainer$/) do
 end
 
 Then(/^The button Mark Complete will be activated and displayed$/) do
- puts  find_button("Mark Complete").visible?
+  find_button("Mark Complete").visible?
 end
 

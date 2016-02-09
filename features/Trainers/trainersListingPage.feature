@@ -13,6 +13,14 @@ Feature: DR-113 and DR-118
     And I navigate to "REQUEST ASSESSMENT" page
 
 
+  @DR-373
+  Scenario: Verify the message on request assessment page when no trainer is available
+    And I will be shown a list of trainers who have their license expiring within time window of "365" days
+    And I set the time window to "2" days
+    When I navigate to "REQUEST ASSESSMENT" page
+    Then I see a message "No assessments available to book."
+
+
   @Expiry_Within_30_days
   Scenario: Displaying Trainer license details for which licenses are expiring in configured time window
     Then I will be shown a list of trainers who have their license expiring within time window of "365" days
@@ -54,6 +62,11 @@ Feature: DR-113 and DR-118
   Scenario: Verify the course dates are of future dates only
     When I click 'Pick a slot' on Request Assessment Page
     Then I validate the course dates delivered by trainer are of future dates only
+
+
+
+
+
 
 
 

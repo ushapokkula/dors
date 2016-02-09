@@ -23,4 +23,43 @@ Feature:DR-285
       | Expiry Date   |
       | Status        |
 
+  @DR-173
+    Scenario: Verify Assessment ID, maximum count of trainers
+      Given that I have licence.ndors.org.uk page opened
+      And I login as an "Assessor"
+      And I request all assessments
+      And I login as an "Compliance Manager"
+      And I click "ASSESSMENT MANAGEMENT"
+      Then I will see  list of all Assessments Requests with status requested
+      And Each request contains Assessment ID
+      And Maximum trainers included are not more than four
+
+
+    Scenario: Verify 'View Details' and 'Approve' button
+      Given that I have licence.ndors.org.uk page opened
+      And I login as an "Assessor"
+      And I request all assessments
+      And I login as an "Compliance Manager"
+      And I click "ASSESSMENT MANAGEMENT"
+      Then I will see  list of all Assessments Requests with status requested
+      And I see "View Details"
+      And I see "Approve" button
+
+
+    Scenario: Verify the list of assessments sorted  by assessment date
+      Given that I have licence.ndors.org.uk page opened
+      And I login as an "Assessor"
+      And I request all assessments
+      And I login as an "Compliance Manager"
+      And I click "ASSESSMENT MANAGEMENT"
+      Then I will see  list of all Assessments Requests with status requested
+      And The assessment list will be sorted by assessment date
+
+
+
+
+
+
+
+
 

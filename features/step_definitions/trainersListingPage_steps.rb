@@ -82,3 +82,11 @@ end
 When(/^The page will also show primary trainers Full Name,secondary trainer fullname$/) do
   @trainers.trainers_listing_page.verify_trianers_fullname
 end
+
+And(/^I set the time window to "([^"]*)" days$/)do |days|
+  @trainers.trainer_login_page.log_in("Compliance Manager")
+  click_link_or_button("ADMINISTRATION")
+  fill_in('assessmentsWindow', :with=> days)
+  click_button("Save")
+  @trainers.trainer_login_page.log_in("Assessor")
+end
