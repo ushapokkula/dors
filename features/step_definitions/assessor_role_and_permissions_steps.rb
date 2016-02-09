@@ -10,5 +10,25 @@ And(/^I will be directed to My assessments page$/)do
 end
 
 And(/^The page will show the list of assessments with status Approved$/)do
-  
+  click_link_or_button("MY ASSESSMENTS")
+  @trainers.assessor_role_and_permissions_page.verify_assessments_list_with_status
+end
+
+And(/^I enter username "([^"]*)"$/)do |username|
+fill_in('txtemail', :with=>username)
+end
+
+And(/^I enter password "([^"]*)"$/)do |password|
+  fill_in('txtpassword', :with=>password)
+end
+
+And(/^I request assessments to be booked$/)do
+  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  @trainers.ngu_search_assessment_id_page.book_assessment
+  #@trainers.ngu_search_assessment_id_page.book_assessment
+end
+
+Then(/^The page will show the list of assessments "([^"]*)" requested$/)do |user|
+  click_link_or_button("MY ASSESSMENTS")
+  @trainers.assessor_role_and_permissions_page.verify_assessor_requested_assessments(user)
 end
