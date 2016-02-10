@@ -1,3 +1,4 @@
+@DR-285
 Feature:DR-285
   Assessment Management Default View
 
@@ -13,6 +14,8 @@ Feature:DR-285
   Scenario: Verify the default view of Assessment management
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
+    And I request all assessments
+    And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
       | Details       |

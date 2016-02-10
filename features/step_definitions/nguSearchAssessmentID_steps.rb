@@ -1,9 +1,6 @@
 And(/^I type the Booked Assessment ID in the Assessment search field$/) do
-  @trainers.trainer_login_page.log_in("Assessor")
-  @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
-  @trainers.trainer_login_page.log_in("Compliance Manager")
-  fill_in('txt-assessment-id', :with => $booked_status)
-end
+   @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
+  end
 
 And(/^The system will load the detailed information for assessment record in view mode$/) do
   expect(page).to have_content("Assessment Outcome")
@@ -39,9 +36,8 @@ end
 And(/^I login as Compliance Manager and click assessment management tab to search requested assessments$/) do
   @trainers.trainer_login_page.log_in("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
-  sleep 2
+   sleep 5
   fill_in('txt-assessment-id', :with => $requested_status)
-
 end
 
 And(/^The page will include "([^"]*)" button$/) do |button|

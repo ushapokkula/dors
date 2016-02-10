@@ -1,5 +1,5 @@
+@DR-388
 Feature: Assessor Role and Permissions
-
 
   Scenario: Verify the access to Request Assessment, My assessments and My profile pages
     Given that I have licence.ndors.org.uk page opened
@@ -18,7 +18,7 @@ Feature: Assessor Role and Permissions
     And I request assessments to be booked
     Then The page will show the list of assessments with status Approved
 
-  @DR-388
+
   Scenario Outline: Verify the ability to display the assessment records which they have requested
     Given that I have licence.ndors.org.uk page opened
     When I enter username "<Username>"

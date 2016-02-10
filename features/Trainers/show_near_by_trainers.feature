@@ -5,7 +5,6 @@ Feature: DR-165
   so that I can maximise efficiency of assessment bookings.
 
   Background:
-    #Given that I am logged into the system
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I am on Pick a course page

@@ -13,6 +13,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def search_requested_assessment_id
     delete_assessments_from_DB
+    verify_requested_assessmemt_id_in_DB
     request_assessment
     verify_requested_assessmemt_id_in_DB
   end
