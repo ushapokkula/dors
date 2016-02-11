@@ -6,7 +6,7 @@ Then(/^I see that I have access to "([^"]*)","([^"]*)","([^"]*)"$/) do |tab1, ta
 end
 
 And(/^I will be directed to My assessments page$/)do
-  puts page.has_content?("My assessments")
+   page.has_content?("My assessments")
 end
 
 And(/^The page will show the list of assessments with status Approved$/)do
@@ -29,7 +29,6 @@ And(/^I request assessments to be booked$/)do
 end
 
 Then(/^The page will show the list of assessments "([^"]*)" requested$/)do |user|
-  click_link_or_button("MY ASSESSMENTS")
   @trainers.assessor_role_and_permissions_page.verify_assessor_requested_assessments(user)
 end
 

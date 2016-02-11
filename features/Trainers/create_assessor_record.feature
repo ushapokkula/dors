@@ -22,6 +22,7 @@ Feature: DR-171
       | Email                  |
       | Address                |
       | Postcode               |
+      | Town                   |
       | Force Areas            |
 
   @create_assessor2

@@ -1,3 +1,4 @@
+@DR-388
 Feature: Assessor Role and Permissions
 
   Scenario: Verify the access to Request Assessment, My assessments and My profile pages
@@ -31,7 +32,7 @@ Feature: Assessor Role and Permissions
       | sudiv    | P@ssw0rd |
       | johnny   | P@ssw0rd |
 
-  @DR-388
+
   Scenario: Verify the visibility of pages when logged in as Compliance User
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
