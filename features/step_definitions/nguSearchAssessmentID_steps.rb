@@ -1,6 +1,10 @@
 And(/^I type the Booked Assessment ID in the Assessment search field$/) do
+   @trainers.trainer_login_page.log_in("Assessor")
    @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
-  end
+   @trainers.trainer_login_page.log_in("Compliance Manager")
+   fill_in('txt-assessment-id', :with => $booked_status)
+
+end
 
 And(/^The system will load the detailed information for assessment record in view mode$/) do
   expect(page).to have_content("Assessment Outcome")

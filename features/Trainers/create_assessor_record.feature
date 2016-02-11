@@ -5,7 +5,6 @@ Feature: DR-171
   so that they can use the system to manage assessments.
 
   Background:
-    #Given that I am logged into the system
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
@@ -39,6 +38,7 @@ Feature: DR-171
       | Email                | Please provide an email address. |
       | Address              | Please provide an address.       |
       | Postcode             | Please provide a postcode.       |
+      | Town                 | Please provide a town.           |
 
   @create_assessor3
   Scenario Outline: Verify The mandatory and optional fields

@@ -16,9 +16,10 @@ class AssessorRoleAndPermissionsPage < SitePrism::Page
 
   def verify_assessor_requested_assessments(user)
     click_link_or_button("View Details")
+    sleep 2
     assessor_name.each do |row|
     assessor_name = row.text
-  expect(assessor_name).to include(user)
+    expect(assessor_name).to include(user)
   end
 end
 end

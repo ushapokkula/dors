@@ -3,7 +3,7 @@ Feature:Mark Outcome
 Load Editable Assessment Form For Marking Outcome
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I have received assessment form from the Assessor with details of their assessment results

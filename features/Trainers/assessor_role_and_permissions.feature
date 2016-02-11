@@ -1,4 +1,3 @@
-@DR-388
 Feature: Assessor Role and Permissions
 
   Scenario: Verify the access to Request Assessment, My assessments and My profile pages
@@ -10,7 +9,6 @@ Feature: Assessor Role and Permissions
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     Then I will be directed to My assessments page
-
 
   Scenario: Verify the page for requested assessments with status Approved
     Given that I have licence.ndors.org.uk page opened
@@ -29,9 +27,17 @@ Feature: Assessor Role and Permissions
     And The page will show the list of assessments "<Username>" requested
 
     Examples:
-    |Username|Password|
-    |sudiv   |P@ssw0rd|
-    |johnny  |P@ssw0rd|
+      | Username | Password |
+      | sudiv    | P@ssw0rd |
+      | johnny   | P@ssw0rd |
+
+  @DR-388
+  Scenario: Verify the visibility of pages when logged in as Compliance User
+    Given that I have licence.ndors.org.uk page opened
+    When I login as an "Compliance Manager"
+    Then I see that I have no access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE"
+
+
 
 
 
