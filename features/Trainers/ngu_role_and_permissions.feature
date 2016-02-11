@@ -1,5 +1,5 @@
 @DR-392
-  Feature:
+  Feature:DR-392
     As a Compliance Manager,
     I want to have access to features and data on the system relevant to my role and account,
     so that I can use the system effectively for compliance, assessment, licence and user management.
@@ -27,7 +27,7 @@
     Scenario: Verify the visibility of pages when logged in as Assessor
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Assessor"
-      Then I see that I have no access to "ASSESSMENT MAANAGEMENT","ADMINISTRATION","ASSESSORS"
+      Then I see that I have no access to these "ASSESSMENT MAANAGEMENT","ADMINISTRATION","ASSESSORS"
 
 
     Scenario: Verify the ability to display the assessment records which they have requested

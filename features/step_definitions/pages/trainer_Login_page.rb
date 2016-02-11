@@ -19,6 +19,9 @@ class TrainerLoginPage < SitePrism::Page
     elsif user=="Trainer"
       verify_no_user_is_signed_in
       login_as(TRAINER_USERNAME,TRAINER_PASSWORD)
+    elsif user=="Assessor1"
+      verify_no_user_is_signed_in
+      login_as(ASSESSOR_USERNAME1,ASSESSOR_PASSWORD1)
     end
   end
 

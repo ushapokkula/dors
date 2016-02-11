@@ -30,3 +30,12 @@ And(/^I login as two different assessors and request assessments as requested$/)
   @trainers.trainer_login_page.log_in("Assessor1")
   @trainers.ngu_search_assessment_id_page.request_assessment
 end
+
+Then(/^I see that I have no access to these "([^"]*)","([^"]*)","([^"]*)"$/) do |tab1, tab2,tab3|
+  sleep 3
+  page.has_no_link?(tab1, {}).should == true
+  page.has_no_link?(tab2, {}).should == true
+  page.has_no_link?(tab3, {}).should == true
+
+
+end

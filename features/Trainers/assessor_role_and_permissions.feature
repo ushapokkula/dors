@@ -36,7 +36,7 @@ Feature: Assessor Role and Permissions
   Scenario: Verify the visibility of pages when logged in as Compliance User
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
-    Then I see that I have no access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE"
+    Then I see that I have no access to "MY ASSESSMENTS","REQUEST ASSESSMENT"
 
 
 

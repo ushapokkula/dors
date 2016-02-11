@@ -83,7 +83,7 @@ Capybara.configure do |config|
 
   config.default_driver = :selenium
   config.app_host = "https://systest.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 15
+  config.default_max_wait_time = 20
 end
 World(Capybara)
 

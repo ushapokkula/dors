@@ -11,6 +11,7 @@ end
 
 And(/^The page will show the list of assessments with status Approved$/)do
   click_link_or_button("MY ASSESSMENTS")
+  sleep 2
   @trainers.assessor_role_and_permissions_page.verify_assessments_list_with_status
 end
 
@@ -25,16 +26,16 @@ end
 And(/^I request assessments to be booked$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
-
+  click_link_or_button("MY ASSESSMENTS")
 end
 
 Then(/^The page will show the list of assessments "([^"]*)" requested$/)do |user|
   @trainers.assessor_role_and_permissions_page.verify_assessor_requested_assessments(user)
 end
 
-Then(/^I see that I have no access to "([^"]*)","([^"]*)","([^"]*)"$/) do |tab1, tab2, tab3|
+Then(/^I see that I have no access to "([^"]*)","([^"]*)"$/) do |tab1, tab2|
   sleep 3
    page.has_no_link?(tab1, {}).should == true
    page.has_no_link?(tab2, {}).should == true
-   page.has_no_link?(tab3, {}).should == true
+
 end
