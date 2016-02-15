@@ -34,6 +34,17 @@ Feature: Maximum 4 trainers allowed per assessment request
     When I try to include more than 2 trainers per course
     Then I see a message "You can only include a maximum of 4 trainers per assessment with a limit of 2 trainers per course and a maximum of 2 courses included ."
 
+  @DR-396
+  Scenario: Verify the validation when more than 2 courses are selected for an assessment
+    When I try to include more than two courses per assessment
+    Then I see a message "You can only include a maximum of 4 trainers per assessment with a limit of 2 trainers per course and a maximum of 2 courses included ."
+
+  @DR-396
+  Scenario: Assessment with 2 courses and 2 trainers within each course
+    When I try to include two courses and two trainers within each course
+    And I click "Submit"
+    And I see a message "The assessment has been Booked"
+
 
 
 

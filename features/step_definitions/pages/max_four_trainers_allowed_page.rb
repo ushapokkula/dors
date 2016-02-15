@@ -55,4 +55,17 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
     page.all('.include-nearby-trainer-checkbox')[2].click
     find('div.dors-well > div:nth-child(8) > div  label > input').click
   end
+
+  def verify_validation_for_morethan_2_courses
+    find('div.dors-well > div:nth-child(7) > div  label > input').click
+    page.all('.include-nearby-trainer-checkbox')[0].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
+  end
+
+  def verify_assessment_with_2_courses_2_trainers
+    find('div.dors-well > div:nth-child(7) > div  label > input').click
+    page.all('.include-nearby-trainer-checkbox')[0].click
+    page.all('.include-nearby-trainer-checkbox')[1].click
+    sleep 5
+  end
 end

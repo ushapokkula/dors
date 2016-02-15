@@ -15,12 +15,11 @@ class NGURoleAndPermissionsPage < SitePrism::Page
   end
 
   def verify_all_assessor_requested_assessments
-    actual_users = ["sudiv","johnny"]
+    actual_users = ["sudiv p","johnny p"]
     sleep 2
     assessor_name.each do |row|
       assessor_name = row.text
-      puts assessor_name
-      puts expect(actual_users.to include(assessor_name))
+      expect(actual_users).to include(assessor_name)
     end
   end
 end

@@ -1,5 +1,8 @@
 class CreateAssessorRecordPage < SitePrism::Page
   elements :mandatory_fields, ".form-group.has-error"
+  element :username, "#assessorUsername"
+  element :force_area, "#assessorForceAreas"
+  element :forcearea_list, "#typeahead-312-8525"
 
   def verify_assessor_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
@@ -28,7 +31,8 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields(optional_field)
-    fill_in('assessorUsername', :with=>'gswapna')
+    username.set Faker::Name.name
+    #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with=>'swapna')
     fill_in('assessorLastName', :with=>'gopu')
     fill_in('assessorPhone', :with=>'0753333222')
@@ -38,11 +42,11 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorPostcode', :with=>'TW5 7GH')
     fill_in('assessorNumber', :with=>'111111')
     fill_in('assessorSecondaryPhone', :with=>'07811111111')
-    fill_in('assessorForceAreas', :with=>'xxxxxx')
+    fill_in('assessorForceAreas', :with=>'pol')
+    find("#assessorForceAreas + ul li:nth-child(2) > a").click
     fill_in(optional_field, :with=>'')
     click_link_or_button("Create Assessor")
     expect(page).not_to have_css(".help-block")
   end
-
 
 end

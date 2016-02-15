@@ -22,6 +22,15 @@ end
 When(/^I try to include more than 4 trainers in assessment request$/) do
   @trainers.max_four_trainers_allowed_page.verify_validationmsg_morethan_4_trianers
 end
+
 When(/^I try to include more than 2 trainers per course$/)do
   @trainers.max_four_trainers_allowed_page.verify_validation_more_trainers_on_course
+end
+
+When(/^I try to include more than two courses per assessment$/)do
+  @trainers.max_four_trainers_allowed_page.verify_validation_for_morethan_2_courses
+end
+
+When(/^I try to include two courses and two trainers within each course$/)do
+  @trainers.max_four_trainers_allowed_page.verify_assessment_with_2_courses_2_trainers
 end

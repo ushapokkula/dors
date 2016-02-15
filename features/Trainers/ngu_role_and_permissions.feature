@@ -33,15 +33,7 @@
     Scenario: Verify the ability to display the assessment records which they have requested
       Given that I have licence.ndors.org.uk page opened
       And I login as two different assessors and request assessments as requested
-#      When I enter username "<Assessor_Username>"
-#      And I enter password "<Password>"
-#      And I click "Sign in"
-#      And I request assessments as requested
       When I login as an "Compliance Manager"
       Then The page will show the list of assessments with status Requested
-      #And The page will show the list of requested assessments made by all assessors
+      And The page will show the list of requested assessments made by all assessors
 
-#      Examples:
-#        | Assessor_Username | Password |
-#        | sudiv             | P@ssw0rd |
-#        | johnny            | P@ssw0rd |
