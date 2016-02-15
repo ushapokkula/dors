@@ -2,7 +2,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   elements :mandatory_fields, ".form-group.has-error"
   element :username, "#assessorUsername"
   element :force_area, "#assessorForceAreas"
-  element :forcearea_list, "#typeahead-312-8525"
+  elements :forcearea_list, "#assessorForceAreas + ul li "
 
   def verify_assessor_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
@@ -43,10 +43,15 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorNumber', :with=>'111111')
     fill_in('assessorSecondaryPhone', :with=>'07811111111')
     fill_in('assessorForceAreas', :with=>'pol')
-    find("#assessorForceAreas + ul li:nth-child(2) > a").click
+    random_selector(forcearea_list)
     fill_in(optional_field, :with=>'')
     click_link_or_button("Create Assessor")
     expect(page).not_to have_css(".help-block")
+  end
+
+  def random_selector(x)
+    size = x.count
+    x[rand(1...size)].select_option
   end
 
 end

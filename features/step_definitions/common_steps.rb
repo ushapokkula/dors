@@ -30,3 +30,5 @@ end
 Then(/^I should see error message "(.*?)"$/) do |message|
   expect(page).to have_content(message)
 end
+
+
