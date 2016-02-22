@@ -58,6 +58,10 @@ After do |scenario|
   end
 end
 
+After do |scenario|
+  Capybara.reset_sessions!
+end
+
 
 =begin
 
@@ -89,7 +93,7 @@ World(Capybara)
 
 Capybara.register_driver :selenium do |app|
   http_client = Selenium::WebDriver::Remote::Http::Default.new
-  http_client.timeout = 100
+  # http_client.timeout = 100
   #Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => http_client, :switches => %w[--test-type] )
   #Capybara::Selenium::Driver.new(app, :browser => :ie, :http_client => http_client, :switches => %w[--test-type] )
   Capybara::Selenium::Driver.new(app, :browser => :firefox)

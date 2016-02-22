@@ -12,7 +12,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_assessor_mandatory_fields(new_table)
-    expect(page.all(".form-group.has-error").count).to be == 7
+    expect(page.all(".form-group.has-error").count).to be == 8
   end
 
   def verify_mandatory_field_err_msgs(fields, error_msgs)
