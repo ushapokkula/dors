@@ -11,27 +11,27 @@ class TrainerLoginPage < SitePrism::Page
 
   def log_in(user)
     if user=="Assessor"
-      verify_no_user_is_signed_in
+      #verify_no_user_is_signed_in
       login_as(ASSESSOR_USERNAME,ASSESSOR_PASSWORD)
     elsif user=="Compliance Manager"
-      verify_no_user_is_signed_in
+      #verify_no_user_is_signed_in
       login_as(COMPLAINCE_USERNAME,COMPLAINCE_PASSWORD)
     elsif user=="Trainer"
-      verify_no_user_is_signed_in
+      #verify_no_user_is_signed_in
       login_as(TRAINER_USERNAME,TRAINER_PASSWORD)
     elsif user=="Assessor1"
-      verify_no_user_is_signed_in
+      #verify_no_user_is_signed_in
       login_as(ASSESSOR_USERNAME1,ASSESSOR_PASSWORD1)
     end
   end
 
   def login_as(username,password)
-    wait_for_username_field
+    #wait_for_username_field
     username_field.set(username)
-    wait_for_password_field
+    #wait_for_password_field
     password_field.set(password)
     sign_in_button.click
-    wait_for_sign_out_link
+    #wait_for_sign_out_link
   end
 
 

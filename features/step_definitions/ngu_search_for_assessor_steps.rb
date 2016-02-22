@@ -14,8 +14,8 @@ And(/^The system will start autopredicting it and the list appears$/) do
 end
 
 Then(/^The auto predicted dropdown list will display the names in this format$/)do
-  within("#txt-assessor-name + ul li") do
-    expect(page).to have_content("zara turner |1111")
+  within("#txt-assessor-name + ul") do
+    expect(page).to have_content("zara turner | 1111")
   end
 end
 
