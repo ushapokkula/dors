@@ -58,9 +58,9 @@ After do |scenario|
   end
 end
 
-After do |scenario|
-  Capybara.reset_sessions!
-end
+# After do |scenario|
+#   Capybara.reset_sessions!
+# end
 
 
 =begin

@@ -13,7 +13,7 @@ Feature: As an NGU,
     Then I see the search field on the page to search an assessor
 
 @auto_predict1
-  Scenario Outline: Verify the auto-predict search
+  Scenario Outline: Verify the auto-predict search for assessor
     When I start typing atleast three characters as an "<Assessor Name>" in the search field
     Then The system will start autopredicting it and the list appears
 
@@ -27,11 +27,11 @@ Feature: As an NGU,
   Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
     When I start typing atleast three characters as an "<Assessor Name>" in the search field
     And The system will start autopredicting it and the list appears
-    Then The auto predicted dropdown list will display the names in this format
+    Then The auto predicted dropdown list will display the names in this format "<Format>"
 
     Examples:
-      | Assessor Name |
-      | zar           |
+      | Assessor Name |Format|
+      | zar           |zara turner (1111)|
 
 
   @auto_predict3
