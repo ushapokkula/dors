@@ -46,7 +46,7 @@ Feature: As an NGU user (Compliance Manager/TrainingGovernance),
       | zar           | zara     |
 
   @load_assessor3
-  Scenario Outline: Verify the oder of Assessor Input fields display when assessor is loaded from search
+  Scenario Outline: Verify the order of Assessor Input fields display when assessor is loaded from search
     And I start typing atleast three characters as an "<Assessor Name>" in the search field
     And The system will start autopredicting it and the list appears
     When I click on the assessor item from the list which i want to edit

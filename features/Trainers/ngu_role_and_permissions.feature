@@ -7,7 +7,7 @@
     Scenario: Verify the access to Assessment Management,Administration, Assessors, My profile
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
-      Then I see that I have access to "ASSESSMENT MANAGEMENT","ADMINISTRATION","ASSESSORS","MY PROFILE"
+      Then I see that I have access to "ASSESSMENT MANAGEMENT","ADMINISTRATION","ASSESSORS","TRAINERS"
 
 
     Scenario: Verify the landing page after logging in as an assessor
