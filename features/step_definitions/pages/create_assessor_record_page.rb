@@ -3,6 +3,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   element :username, "#assessorUsername"
   element :force_area, "#assessorForceAreas"
   elements :forcearea_list, "#assessorForceAreas + ul li "
+  elements :assessor_input_fields, ".label.control-label"
 
   def verify_assessor_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
@@ -52,6 +53,18 @@ class CreateAssessorRecordPage < SitePrism::Page
   def random_selector(x)
     size = x.count
     x[rand(1...size)].select_option
+  end
+
+  def verify_order_of_assessor_input_fields(new_table)
+     fields=[]
+    assessor_input_fields.each do |input_fields|
+     fields = input_fields.text
+     puts fields
+    end
+    #  assessor_fields=[]
+    # assessor_fields.push(fields)
+
+   puts  expect(new_table.map { |x| x['Assessor Input Fields'] }).to match_array(fields)
   end
 
 end

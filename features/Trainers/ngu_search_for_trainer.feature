@@ -37,7 +37,7 @@ Feature: As an NGU (TrainingGovernance),
 
   @trainer_auto_predict3
   Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
-    When I start typing atleast three characters as an "<Trainer Name>" in the search field
+    When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     Then The system will start autopredicting it and the list of trainer appears
     Then The auto predicted dropdown list will display the names in the format "<Format>"
 
