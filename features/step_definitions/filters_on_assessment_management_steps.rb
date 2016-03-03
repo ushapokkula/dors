@@ -23,6 +23,7 @@ end
 When(/^I select "([^"]*)"$/) do |status_filter|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   if (status_filter == "APPROVED")
+   # @trainers.filters_on_assessment_management_page.verify_book_filter_status
     @trainers.trainer_login_page.log_in("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
@@ -30,6 +31,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     check('assessmentStatusChk1')
 
   elsif(status_filter == "REQUESTED")
+   # @trainers.filters_on_assessment_management_page.verify_request_filter_status
   @trainers.trainer_login_page.log_in("Assessor")
   @trainers.ngu_search_assessment_id_page.request_assessment
   @trainers.trainer_login_page.log_in("Compliance Manager")
@@ -37,7 +39,8 @@ When(/^I select "([^"]*)"$/) do |status_filter|
   check('assessmentStatusChk0')
 
   elsif (status_filter == "REJECTED")
-  @trainers.trainer_login_page.log_in("Assessor")
+   # @trainers.filters_on_assessment_management_page.verify_reject_filter_status
+    @trainers.trainer_login_page.log_in("Assessor")
   @trainers.ngu_search_assessment_id_page.request_assessment
   @trainers.trainer_login_page.log_in("Compliance Manager")
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
@@ -50,6 +53,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
   check('assessmentStatusChk2')
 
   elsif (status_filter == "CANCELLED")
+    #@trainers.filters_on_assessment_management_page.verify_cancelled_filter_status
     @trainers.trainer_login_page.log_in("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
@@ -63,6 +67,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     check('assessmentStatusChk3')
 
   else (status_filter == "COMPLETED")
+ # @trainers.filters_on_assessment_management_page.verify_completed_filter_status
     @trainers.trainer_login_page.log_in("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
