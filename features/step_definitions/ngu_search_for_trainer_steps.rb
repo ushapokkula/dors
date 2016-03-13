@@ -28,7 +28,7 @@ When(/^I hit enter after typing first three characters of trainer name as "([^"]
 end
 
 Then(/^The first trainer name will be selected from the drop down list by default "([^"]*)"$/)do |trainer_name|
-  expect(find("#txt-trainer-name").value).to include(trainer_name)
+  expect(find("#trainerFirstName").value).to be == trainer_name
 end
 
 And(/^The search criteria does'nt match any trainer record on the database$/)do

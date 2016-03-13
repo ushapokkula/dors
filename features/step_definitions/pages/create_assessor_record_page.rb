@@ -17,7 +17,9 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_mandatory_field_err_msgs(fields, error_msgs)
-    fill_in('assessorUsername', :with=>'gswapna')
+    #username.set Faker::Name.name
+    username. set random_string(7)
+    #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with=>'swapna')
     fill_in('assessorLastName', :with=>'gopu')
     fill_in('assessorPhone', :with=>'0753333222')
@@ -32,6 +34,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields(optional_field)
+
     username.set Faker::Name.name
     #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with=>'swapna')
@@ -53,6 +56,12 @@ class CreateAssessorRecordPage < SitePrism::Page
   def random_selector(x)
     size = x.count
     x[rand(1...size)].select_option
+  end
+
+  def random_string(x)
+    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
+    string = (0..x).map {chars.sample}.join
   end
 
   def verify_order_of_assessor_input_fields(new_table)

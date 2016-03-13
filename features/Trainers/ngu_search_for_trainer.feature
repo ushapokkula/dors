@@ -20,9 +20,9 @@ Feature: As an NGU (TrainingGovernance),
 
     Examples:
       | Trainer ID |
-      | 000001     |
-      | 000003     |
-      | 000005     |
+      | 111111     |
+      | 333333     |
+      | 555555     |
 
   @trainer_auto_predict2
   Scenario Outline: Verify the auto-predict search for trainer when searched with Firstname or lastname
@@ -42,20 +42,20 @@ Feature: As an NGU (TrainingGovernance),
     Then The auto predicted dropdown list will display the names in the format "<Format>"
 
     Examples:
-      | Trainer Name |Format|
-      | zar          |Zara Turner (6)|
+      | Trainer Name | Format               |
+      | zar          | Zara Turner (666666) |
 
   @trainer_auto_predict4
   Scenario Outline: Verify the default search assessor
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     And The system will start autopredicting it and the list of trainer appears
     When I hit enter after typing first three characters of trainer name as "<Trainer Name>"
-    Then The first trainer name will be selected from the drop down list by default "<Default>"
+    Then The first trainer name will be selected from the drop down list by default "<First Name>"
 
 
     Examples:
-      | Trainer Name | Default     |
-      | zar          | Zara Turner |
+      | Trainer Name | First Name |
+      | zar          | Zara       |
 
   @trainer_auto_predict5
   Scenario: Verify the validation message when no record does'nt match the search criteria
@@ -74,8 +74,8 @@ Feature: As an NGU (TrainingGovernance),
 
 
     Examples:
-      | Trainer Name | Down_Arrow         | UP_Arrow            |
-      | ani           | AnitaWTGTEST Hegde (11) | AnitaTest1 WTGtest1 (10) |
+      | Trainer Name | Down_Arrow              | UP_Arrow                 |
+      | ani          | AnitaWTGTEST Hegde (11) | AnitaTest1 WTGtest1 (10) |
 
 
 

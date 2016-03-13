@@ -40,7 +40,6 @@ end
 And(/^I login as Compliance Manager and click assessment management tab to search requested assessments$/) do
   @trainers.trainer_login_page.log_in("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
-   sleep 5
   fill_in('txt-assessment-id', :with => $requested_status)
 end
 

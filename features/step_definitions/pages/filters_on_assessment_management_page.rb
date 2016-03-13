@@ -1,6 +1,7 @@
 class FiltersOnAssessmentManagementPage < SitePrism::Page
 
   elements :status_values, :xpath,  "html/body/div[1]/div[2]/div[2]/div/div/ul/li/div/label"
+
   elements :assessment_status, ".assessment-status"
 
   def verify_status_filter_visibility(new_table)
@@ -13,6 +14,7 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
       status = values.text
       actual_status_values.push(status)
     end
+    puts actual_status_values
      expect(new_table.map { |x| x['Expected Status Filters'] }).to match_array(actual_status_values)
   end
 
@@ -61,7 +63,7 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
     assessment_status.each do |status|
       actual_status = status.text
 
-      puts expect(status_array).to include(actual_status)
+       expect(status_array).to include(actual_status)
     end
   end
 end

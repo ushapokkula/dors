@@ -26,7 +26,7 @@ Feature: DR-171
       | Force Areas            |
 
   @create_assessor2
-  Scenario Outline: Verify The mandatory and optional fields
+  Scenario Outline: Verify The mandatory fields
 
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
 
@@ -42,13 +42,13 @@ Feature: DR-171
       | Town                 | Please provide a town.           |
 
   @create_assessor3
-  Scenario Outline: Verify The mandatory and optional fields
+  Scenario Outline: Verify The  optional fields
 
     Then I see the following fields as "<Optional>"
 
     Examples:
       | Optional               |
-      | Assessor Number        |
+     | Assessor Number        |
       | Secondary Phone Number |
       | Force Areas            |
 
