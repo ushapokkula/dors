@@ -8,6 +8,6 @@ Then(/^I see the following fields as "([^"]*)" with "([^"]*)" on create trainer 
 end
 
 Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |optional_field|
-  @trainers.create_trainer_record_page.verify_optional_fields(optional_field)
+  @trainers.create_trainer_record_page.verify_optional_fields_on_trainer_form(optional_field)
 
 end

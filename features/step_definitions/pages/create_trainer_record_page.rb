@@ -37,7 +37,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     expect(page).to have_content(error_msgs)
   end
 
-  def verify_optional_fields(optional_field)
+  def verify_optional_fields_on_trainer_form(optional_field)
 
     username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
@@ -50,10 +50,10 @@ class CreateTrainerRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
-    field_input('trainerSecondaryPhone', :required=> false)
-    # fill_in(optional_field, :with => '')
+    fill_in(optional_field, :with => '')
     # uncheck('trainerisInstructor')
      click_link_or_button("Create Trainer")
     expect(page).not_to have_css(".help-block")
+    expect(page).to have_content("New trainer successfully created.")
   end
 end

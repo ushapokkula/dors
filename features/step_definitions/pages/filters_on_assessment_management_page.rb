@@ -1,6 +1,6 @@
 class FiltersOnAssessmentManagementPage < SitePrism::Page
 
-  elements :status_values, :xpath,  "html/body/div[1]/div[2]/div[2]/div/div/ul/li/div/label"
+  elements :status_values,  "#single-button+ul li label"      #   :xpath,  "html/body/div[1]/div[2]/div[2]/div/div/ul/li/div/label"
 
   elements :assessment_status, ".assessment-status"
 
