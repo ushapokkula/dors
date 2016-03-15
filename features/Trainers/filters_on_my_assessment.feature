@@ -26,7 +26,7 @@ Feature: Filter on My Assessment page
       | Rejected                |
       | Cancelled               |
       | Completed               |
-    Then I see that the "Approved" option is selected by default
+    Then I see that the "Approved" option is selected by default on my assessments page
 
   @my_assessment_status_filter3
   Scenario Outline: Verify the visibility of assessments when respective status filter is choosen

@@ -16,7 +16,6 @@ end
 And(/^I see that the "([^"]*)" option is selected by default$/) do |status|
   within(".dropdown-menu") do
      find("input[type='checkbox']:checked + label").text == status
-    # find(:xpath, "html/body/div[1]/div[2]/div[2]/div/div/ul/li[1]/div/label").text == status
     find("#assessmentStatusChk0").should be_checked
     find("#assessmentStatusChk1").should_not be_checked
   end

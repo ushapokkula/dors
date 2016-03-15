@@ -75,6 +75,15 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   end
 end
 
+Then(/^I see that the "([^"]*)" option is selected by default on my assessments page$/)do|default_status|
+  within(".dropdown-menu") do
+    find("input[type='checkbox']:checked + label").text == default_status
+    find("#assessmentStatusChk1").should be_checked
+    find("#assessmentStatusChk0").should_not be_checked
+  end
+end
+
+
 When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filter1,status_filter2|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   if (status_filter1 == "REQUESTED" && status_filter2 == "APPROVED" )
