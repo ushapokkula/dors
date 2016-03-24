@@ -11,7 +11,7 @@ class TrainerLoginPage < SitePrism::Page
 
   def log_in(user)
     if user=="Assessor"
-      verify_no_user_is_signed_in
+      # verify_no_user_is_signed_in
       login_as(ASSESSOR_USERNAME,ASSESSOR_PASSWORD)
     elsif user=="Compliance Manager"
       verify_no_user_is_signed_in
@@ -36,9 +36,8 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def verify_no_user_is_signed_in
-
-    if page.has_content?('Sign out')
-      click_link_or_button('Sign out')
+      click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:2)
+      # click_link_or_button('Sign out') if page.has_content?('Sign out')
     end
   end
 
@@ -58,5 +57,3 @@ class TrainerLoginPage < SitePrism::Page
     sign_in_button.click
   end
 
-
-end
