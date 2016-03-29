@@ -25,3 +25,5 @@ gem "sort"
 gem "tiny_tds"
 #gem "time_difference"
 gem 'pry'
+gem 'parallel_tests'
+gem 'report_builder'

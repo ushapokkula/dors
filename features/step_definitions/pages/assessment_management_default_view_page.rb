@@ -3,39 +3,38 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   elements :assessment_dates, ".assessment-date"
 
 
-
-
   def verify_assessment_default_view_details(new_table)
-    sleep 5
     columns = new_table.map { |x| x['Details'] }
-    for i in 1..columns.size
-      expect(page.text).to match(/#{columns[i]}/i)
+    columns.each do |label|
+      within(".dors-table") do
+        expect(page).to have_text(label)
+      end
     end
   end
 
   def verify_list_of_assessment_requests
-    sleep 5
+    # sleep 5
     list_of_assessment_requests.each do |row|
       expect(row.text).to include("Status Requested")
     end
   end
 
   def verify_assessment_ID
-    expect(page.all(".text-md.primary-color").count).to be > 1
+    expect(page.all(".dors-table-row").count).to be >= 1
   end
 
   def verify_max_trainers
     list_of_assessment_requests.each do |row|
-     expect(page.all(".trainer-full-name").count).to be <=4
+      expect(page.all(".trainer-full-name").count).to be <=4
     end
   end
 
   def verify_approve_button(button)
     list_of_assessment_requests.each do |row|
-       expect(row.text).to include("Approve")
-       expect(page).to have_content("Approve")
+      expect(row.text).to include("Approve")
+      expect(page).to have_content("Approve")
     end
-     expect(page.all(".btn.btn-sm.btn-primary").count).to be > 1
+    expect(page.all(".btn.btn-sm.btn-primary").count).to be >= 1
   end
 
   def verify_assessment_list_sorting

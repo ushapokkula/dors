@@ -9,7 +9,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     verify_booked_assessmemt_id_in_DB
     book_assessment
     verify_booked_assessmemt_id_in_DB
-     end
+  end
 
   def search_requested_assessment_id
     delete_assessments_from_DB
@@ -19,8 +19,9 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   require 'tiny_tds'
+
   def verify_booked_assessmemt_id_in_DB
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.active?
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '2'")
     result.each do |row|
@@ -30,7 +31,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
 
   def verify_requested_assessmemt_id_in_DB
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     # client.active?
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '1'")
     result.each do |row|
@@ -39,20 +40,21 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def delete_assessments_from_DB
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainerLicenseAssessment]")
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
   end
 
   def book_assessment
-    click_link_or_button("REQUEST ASSESSMENT")
-    sleep 5
-    first(:button, 'Pick a slot').click
-    sleep 5
-    first(:button, 'Request Assessment').click
-    sleep 5
-    page.all('.ng-pristine.ng-valid')[1].click
-    page.all('.ng-pristine.ng-valid')[2].click
+    # click_link_or_button("REQUEST ASSESSMENT")
+    # sleep 5
+    find('a',text: "REQUEST ASSESSMENT").click
+    first(:button, 'Pick a slot',match: :first).click
+    # sleep 5
+    first(:button, 'Request Assessment',match: :first).click
+    # sleep 5
+    all('.ng-pristine.ng-valid')[1].click
+    all('.ng-pristine.ng-valid')[2].click
     click_link_or_button("Submit")
     within('.alert.alert-success.ng-binding') do
       expect(page).to have_content("The assessment has been Booked")
@@ -61,11 +63,12 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def request_assessment
     click_link_or_button("REQUEST ASSESSMENT")
-    sleep 4
-    first(:button, 'Pick a slot').click
-    sleep 5
-    first(:button, 'Request Assessment').click
-    sleep 5
+    # sleep 4
+    first(:button, 'Pick a slot').click if find(:button, 'Pick a slot', match: :first)
+    # sleep 5
+    first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
+    # sleep 5
+    expect(page).to have_selector('.ng-pristine.ng-valid')
     page.all('.ng-pristine.ng-valid')[1].click
     fill_in('mileage', :with => '500')
     click_link_or_button("Submit")
