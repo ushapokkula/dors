@@ -47,13 +47,13 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def book_assessment
     # click_link_or_button("REQUEST ASSESSMENT")
+    find('a', text: "REQUEST ASSESSMENT").click
+    find(:button, 'Pick a slot', match: :first).click
+    find(:button, 'Request Assessment', match: :first).click
     # sleep 5
-    find('a',text: "REQUEST ASSESSMENT").click
-    first(:button, 'Pick a slot',match: :first).click
-    # sleep 5
-    first(:button, 'Request Assessment',match: :first).click
-    # sleep 5
-    all('.ng-pristine.ng-valid')[1].click
+    find(".ng-pristine.ng-valid", match: :first)
+    page.all('.ng-pristine.ng-valid')[1].click
+    find(".ng-pristine.ng-valid", match: :first)
     all('.ng-pristine.ng-valid')[2].click
     click_link_or_button("Submit")
     within('.alert.alert-success.ng-binding') do
