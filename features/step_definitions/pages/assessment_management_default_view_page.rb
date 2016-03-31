@@ -6,6 +6,7 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   def verify_assessment_default_view_details(new_table)
     columns = new_table.map { |x| x['Details'] }
     columns.each do |label|
+      find(".dors-table")
       within(".dors-table") do
         expect(page).to have_text(label)
       end

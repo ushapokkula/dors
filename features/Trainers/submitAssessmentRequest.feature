@@ -1,4 +1,4 @@
-Feature:
+Feature: submit assessment request feature
   As an assessor,
   I want to be able to view a summary of my assessment request with all details before I submit it,
   so that I can ensure all details are correct.
