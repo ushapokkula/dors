@@ -5,7 +5,7 @@ at_exit do
     config.report_types = [:html]
     config.report_tabs = [:overview, :features, :scenarios, :errors]
     config.report_title = 'Test Results'
-    config.compress_images = true
+    config.compress_images = false
   end
 
   ReportBuilder.build_report
