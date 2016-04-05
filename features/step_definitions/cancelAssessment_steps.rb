@@ -14,18 +14,26 @@ Then(/^The confirmation message will be displayed as  "([^"]*)"$/) do |message|
   expect(page.text).to have_content(message)
 end
 
+
+
+And(/^I enter Cancellation Notes$/)do
+  fill_in('cancellationNotes', :with => 'This assessment need to cancel')
+end
+
+
 Then(/^I see 'Yes' and 'No' buttons on the confirmation message box$/) do
   find_button('Yes').visible?
   find_button('No').visible?
 end
 
 And(/^the trainer will be available for bookings for assessors$/) do
-  within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).to include("CIA624")
-    expect(page.text).to include("DOA123")
-    expect(page.text).to include("FSB422")
-  end
+  #within(:xpath, "html/body/div[1]/div[2]/div") do
+    expect(page.text).to include("100001 /101")
+    expect(page.text).to include("100022 /122")
+    #expect(page.text).to include("FSB422")
 end
+#end
+
 
 And(/^The confirmation message will close$/) do
   expect(page.text).not_to have_content("Are you sure you want to cancel this assessment?")
@@ -36,9 +44,11 @@ And(/^I have assessments with Booked status$/)do
   @trainers.ngu_search_assessment_id_page.book_assessment
 end
 
-And(/^I enter Cancellation Notes$/)do
-  fill_in('cancellationNotes', :with => 'This assessment need to cancel')
-end
+
+#And(/^I enter Cancellation Notes$/)do
+  #fill_in('cancellationNotes', :with => 'This assessment need to cancel')
+#end
+
 
 And(/^I see Cancellation Notes$/)do
   expect(page).to have_css("#cancellationNotes")
