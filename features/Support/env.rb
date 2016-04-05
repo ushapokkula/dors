@@ -61,7 +61,7 @@ Capybara.configure do |config|
 
   config.default_driver = :debug
   config.app_host = "https://systest.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 10
+  # config.default_max_wait_time = 10
 end
 World(Capybara)
 
@@ -72,8 +72,8 @@ end
 
 Capybara.register_driver :debug do |app|
   profile = Selenium::WebDriver::Firefox::Profile.new
-  profile.add_extension "features/Support/firebug.xpi"
-  profile.add_extension "features/Support/firepath.xpi"
+  profile.add_extension "features/support/firebug.xpi"
+  profile.add_extension "features/support/firepath.xpi"
   Capybara::Selenium::Driver.new app, :profile => profile
 end
 Capybara.server_port = 8888 + ENV['TEST_ENV_NUMBER'].to_i

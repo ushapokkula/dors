@@ -1,6 +1,6 @@
 When(/^I click "(.*?)"$/) do |link_or_button|
   click_link_or_button(link_or_button)
-  sleep 10
+  sleep 2
 end
 
 When(/^I click "(.*?)" tab$/) do |tab|

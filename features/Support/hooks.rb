@@ -44,7 +44,7 @@ unless Dir.glob('images/*').empty?
 end
 
 #create reports directory if not present
-Dir.mkdir("reports") unless File.directory?("reports")
+# Dir.mkdir("reports") unless File.directory?("reports")
 
 After do |scenario|
   if (scenario.failed?)
