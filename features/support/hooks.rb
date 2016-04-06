@@ -37,10 +37,15 @@ After do |scenario|
   # end
 end
 
+Dir.mkdir("reports") unless File.directory?("reports")
 
 #delete the images files before every test
 unless Dir.glob('images/*').empty?
   FileUtils.rm_rf Dir.glob('images/*')
+end
+#delete the error reports generated for failures
+unless Dir.glob('error_pages/*').empty?
+  FileUtils.rm_rf Dir.glob('error_pages/*')
 end
 
 #create reports directory if not present

@@ -44,16 +44,6 @@ COMPLAINCE_PASSWORD= "P@ssw0rd"
 
 $Trainers_Link="https://systest.trainer.dors.wtg.co.uk"
 
-#delete the images files before every test
-unless Dir.glob('images/*').empty?
-  FileUtils.rm_rf Dir.glob('images/*')
-end
-#delete the error reports generated for failures
-unless Dir.glob('error_pages/*').empty?
-  FileUtils.rm_rf Dir.glob('error_pages/*')
-end
-
-
 
 
 
