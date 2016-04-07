@@ -15,6 +15,7 @@ end
 
 Then(/^I will be shown a list of trainers who have their license expiring within time window of "([^"]*)" days$/) do |count|
   @trainers.trainers_listing_page.display_list_of_trainers_within_configured_days(count)
+
 end
 
 And(/^Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer$/) do
@@ -84,9 +85,10 @@ When(/^The page will also show primary trainers Full Name,secondary trainer full
 end
 
 And(/^I set the time window to "([^"]*)" days$/)do |days|
-  @trainers.trainer_login_page.log_in("Compliance Manager")
+  @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ADMINISTRATION")
   fill_in('assessmentsWindow', :with=> days)
+  # sleep 2
   click_button("Save")
-  @trainers.trainer_login_page.log_in("Assessor")
+  # @trainers.trainer_login_page.login_as("Assessor")
 end

@@ -10,16 +10,15 @@ class TrainersListingPage < SitePrism::Page
   elements :duplicate_trainer, ".col-md-12.row-span"
   elements :license_details, ".trainer-licenseCode"
 
-  elements :list_of_courses, ".dors-table"
+  elements :list_of_courses, :xpath, "//div[@class='dors-table-row row']"
   elements :pick_a_slot_buttons, :xpath, "html/body/div[1]/div[2]/div/div[2]/div/div[2]/button"
   elements :course_dates, ".course-date"
 
   elements :expiry_dates, ".license-expiry-date"
 
   def display_list_of_trainers_within_configured_days(count)
-    sleep 10
-    actual_rows = page.all('.dors-table').count
-    expect(actual_rows).to be > 1
+    find(:xpath, "//div[@class='dors-table-row row']", match: :first)
+    expect(list_of_courses.count).to be > 1
     verify_expiry_dates(count)
   end
 
@@ -177,9 +176,14 @@ class TrainersListingPage < SitePrism::Page
 
 
   def verify_trianers_fullname
-    first(:button, 'Pick a slot').click
-    expect(page).to have_css(".trainer-fullname")
-    expect(page).to have_css(".secondary-trainer-full-name")
+    find(:xpath, "//button[@class='btn btn-primary']",  match: :first).click
+    expect(page).to have_css(".dors-well .trainer-fullname", match: :first)
+    # expect(page).to have_css(".dors-well-other .trainer-full-name", index: :one)
+
+    #
+    #expect(page.all(".trainer-full-name"), match: :first)
+    #expect(page.all(".trainer-full-name")[1])
+
   end
 
 

@@ -20,6 +20,7 @@ def verify_trainer_inlcuded_booking_request
   result.each do |row|
     $trainers = row['TrainerLicenseId']
     trainer_ids.push($trainers)
+    #p $trainers
   end
   expect(trainer_ids).to match_array(expected_trainers_included)
 end
