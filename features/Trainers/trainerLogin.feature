@@ -56,13 +56,25 @@ Feature:  Login
     Then I see a message "Please provide a username."
     And I see a message "Please provide a password."
 
-  @login7
-  Scenario: Account locked for five unsuccessfull attempts
+  @login7 @manual
+  Scenario Outline:  Account locked for five unsuccessfull attempts
 
     Given that I have licence.ndors.org.uk page opened
-   When I make five failed login attempts
-    And I enter valid credentials
-   Then My account will be locked and I will be shown a message, "Your login credentials are invalid. Please try again with correct login credentials."
+    #When I make five failed login attempts
+    #And I enter valid credentials
+    When I enter username "<Username>"
+    And I enter password "<Password>"
+    And I click "Sign in"
+   Then My account will be locked and I will be shown a message, "Your login credentials are invalid.Please try again with correct login credentials."
+
+    Examples:
+      | Username | Password |
+      | sudiv  | Pwd1 |
+      #| sudiv   | P@ss76|
+      #| sudiv   | Password |
+      #| sudiv| P@ssw0rd1 |
+      #| sudiv  | P@ssw0rd1 |
+
 
     Scenario: Login as an Assessor
       Given that I have licence.ndors.org.uk page opened

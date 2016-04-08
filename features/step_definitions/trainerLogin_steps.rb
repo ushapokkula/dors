@@ -53,12 +53,14 @@ Then(/^I will not be granted access to the system$/)do
 end
 
 When(/^I make five failed login attempts$/) do
-  5.times do
-    @trainers.trainer_login_page.enter_valid_username
-    @trainers.trainer_login_page.enter_invalid_password
-    @trainers.trainer_login_page.click_login
+
+ @trainers.trainer_login_page.enter_valid_username
+ @trainers.trainer_login_page.enter_invalid_password
+  @trainers.trainer_login_page.click_login
+
   end
-end
+
+
 
 And(/^I enter valid credentials$/)do
   @trainers.trainer_login_page.enter_valid_username
@@ -66,6 +68,7 @@ And(/^I enter valid credentials$/)do
   @trainers.trainer_login_page.click_login
 end
 
-Then(/^My account will be locked and I will be shown a message, "([^"]*)"$/) do |text|
- page.should have_content(text)
+Then(/^My account will be locked and I will be shown a message, "([^"]*)"$/) do|text|
+ page.should have_css(".alert.alert-danger", first: :match)
+  page.should have_content(text)
 end
