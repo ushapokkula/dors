@@ -6,6 +6,8 @@ class TrainersListingPage < SitePrism::Page
   elements :course_headers, :xpath, ".//*[@id='pick-course-view']/section/div/table/thead/tr/td"
   elements :primary_trainer_details, :xpath, ".//*[@id='pick-course-view']/section/div/div/div/h3"
 
+
+
   elements :expiry_dates_order, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[3]"
   elements :duplicate_trainer, ".col-md-12.row-span"
   elements :license_details, ".trainer-licenseCode"
@@ -177,12 +179,9 @@ class TrainersListingPage < SitePrism::Page
 
   def verify_trianers_fullname
     find(:xpath, "//button[@class='btn btn-primary']",  match: :first).click
-    expect(page).to have_css(".dors-well .trainer-fullname", match: :first)
-    # expect(page).to have_css(".dors-well-other .trainer-full-name", index: :one)
+    expect(page.should have_css(".dors-well .trainer-fullname", match: :first))
+    expect(page.should have_css(".dors-well .trainer-fullname", match: :one))
 
-    #
-    #expect(page.all(".trainer-full-name"), match: :first)
-    #expect(page.all(".trainer-full-name")[1])
 
   end
 

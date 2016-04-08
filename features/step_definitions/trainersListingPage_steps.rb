@@ -64,7 +64,7 @@ end
 
 When(/^I click 'Pick a slot' on Request Assessment Page$/) do
   sleep 3
-  first(:button, 'Pick a slot').click
+  find(:button, 'Pick a slot').click
 end
 
 And(/^I see the Expiry Date is in dd-Mmm-YYYY format$/)do

@@ -1,6 +1,5 @@
 When(/^I click "(.*?)"$/) do |link_or_button|
   click_link_or_button(link_or_button)
-  sleep 2
 end
 
 When(/^I click "(.*?)" tab$/) do |tab|
@@ -34,5 +33,5 @@ end
 
 And(/^I logout$/) do
   find('#btn-signout').click
-  expect(page).to have_selector('#txtemail')
+  expect(page.should have_css('#txtemail'))
 end
