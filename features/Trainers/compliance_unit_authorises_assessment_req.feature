@@ -1,4 +1,4 @@
-@DR-305
+@DR-305 @skip
 Feature:DR-305
 
   Background:

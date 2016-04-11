@@ -1,4 +1,4 @@
-@DR-285
+@DR-285 @pass
 Feature:DR-285
   Assessment Management Default View
 

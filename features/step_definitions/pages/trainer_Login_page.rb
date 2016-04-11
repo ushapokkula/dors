@@ -23,8 +23,11 @@ class TrainerLoginPage < SitePrism::Page
 
   def login_as(user)
     username_field.set($users[user]['username'])
+    #p ($users[user]['username'])
     password_field.set($users[user]['password'])
+    #p ($users[user]['password'])
     sign_in_button.click
+
   end
 
 
@@ -35,12 +38,13 @@ class TrainerLoginPage < SitePrism::Page
   end
 
   def enter_valid_username
-    username_field.set "varma"
+    username_field.set "verma"
   end
 
   def enter_valid_password
     password_field.set "P@ssw0rd"
   end
+
 
   def enter_invalid_password
     password_field.set "invalidpassword"

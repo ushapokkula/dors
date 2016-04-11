@@ -28,19 +28,23 @@ require 'date'
 require_relative 'misc'
 include RSpec:: Matchers
 include Misc
-$users = load_yaml_file('../config/users')
+$users = load_yaml_file('users')
 
-TRAINER_USERNAME =
-TRAINER_PASSWORD =
+#//* below users are commented out due to not in use *//
 
-ASSESSOR_USERNAME= "sudiv"
-ASSESSOR_PASSWORD= "P@ssw0rd1"
+#TRAINER_USERNAME =
+#TRAINER_PASSWORD =
 
-ASSESSOR_USERNAME1= "johnny"
-ASSESSOR_PASSWORD1= "P@ssw0rd"
+#ASSESSOR_USERNAME= "sudiv"
+#ASSESSOR_PASSWORD= "P@ssw0rd1"
 
-COMPLAINCE_USERNAME= "jane1"
-COMPLAINCE_PASSWORD= "P@ssw0rd"
+#ASSESSOR_USERNAME1= "johnny"
+#ASSESSOR_PASSWORD1= "P@ssw0rd"
+
+#COMPLAINCE_USERNAME= "jane1"
+#COMPLAINCE_PASSWORD= "P@ssw0rd"
+
+
 
 $Trainers_Link="https://systest.trainer.dors.wtg.co.uk"
 
