@@ -41,7 +41,7 @@ end
 
 When(/^click Sign in$/) do
   click_button("Sign in")
-  sleep 5
+  #sleep 5
 end
 
 Then(/^I will be granted access to the system$/) do
@@ -53,13 +53,13 @@ Then(/^I will not be granted access to the system$/)do
 end
 
 When(/^I make five failed login attempts$/) do
-
+5.times do
  @trainers.trainer_login_page.enter_valid_username
  @trainers.trainer_login_page.enter_invalid_password
   @trainers.trainer_login_page.click_login
+end
 
-  end
-
+end
 
 
 And(/^I enter valid credentials$/)do
@@ -70,5 +70,5 @@ end
 
 Then(/^My account will be locked and I will be shown a message, "([^"]*)"$/) do|text|
  page.should have_css(".alert.alert-danger", first: :match)
-  page.should have_content(text)
+  page.should have_text(text)
 end

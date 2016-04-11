@@ -32,7 +32,7 @@ Feature: Assessor Role and Permissions
 
     Examples:
       | Username | Password |
-      | sudiv    | P@ssw0rd1 |
+      | sudiv    | P@ssw0rd |
       | johnny   | P@ssw0rd1 |
 
   @role_permission5
