@@ -1,4 +1,5 @@
 @DR-113 @pass
+#Note: due to this feature assessment widow keep changing
 Feature: DR-113 and DR-118
   As an assessor,
   I want to be able to view trainers whose license is expiring soon,
@@ -38,10 +39,10 @@ Feature: DR-113 and DR-118
     Then I will not be shown a list of trainers who have their license expiring outside of configured time window
     And I will not be shown a list of trainers for previous dates already expired
 
-  @multiple_trainer_details @manual
+  #@multiple_trainer_details @manual @fail
     #/* Tagged this scenario as @manual - felt doing manual better than auto for this instance */
-  Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
-    And Trainers who have multiple licenses expiring will be shown multiple times as a separate entry
+ # Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
+  #  And Trainers who have multiple licenses expiring will be shown multiple times as a separate entry
 
   @unique_licenses
   Scenario: Validating unique licenses to a scheme

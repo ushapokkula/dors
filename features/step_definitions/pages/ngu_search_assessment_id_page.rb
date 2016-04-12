@@ -2,6 +2,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   elements :outcome_dropdowns, :css, ".dors-well-other select"
   elements :outcome_dropdowns_primary, ".dors-well select"
 
+
   require 'tiny_tds'
 
   def search_booked_assessment_id

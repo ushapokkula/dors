@@ -63,8 +63,7 @@ Then(/^The system will display a list of courses the selected trainer is deliver
 end
 
 When(/^I click 'Pick a slot' on Request Assessment Page$/) do
-  sleep 3
-  find(:button, 'Pick a slot').click
+  find(:button, 'Pick a slot', match: :first).click
 end
 
 And(/^I see the Expiry Date is in dd-Mmm-YYYY format$/)do

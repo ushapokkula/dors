@@ -7,7 +7,8 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    When There are no assessments with status requested
+    #When There are no assessments with status requested
+    #/* commented above scenario due to dont wanted to delete data  using database - by default requested assessments shouldn't display */
     Then I see a message "There are no assessments to display."
 
   @default2
