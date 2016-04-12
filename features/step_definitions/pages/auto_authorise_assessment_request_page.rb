@@ -15,8 +15,8 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
   def validate_and_check_include_box
     sleep 2
-    page.all('.ng-pristine.ng-valid')[1].click
-    page.all('.ng-pristine.ng-valid')[3].click
+    page.all("//input[@type='checkbox']")[1].click
+    page.all("//input[@type='checkbox']")[3].click
   end
 
   require 'tiny_tds'

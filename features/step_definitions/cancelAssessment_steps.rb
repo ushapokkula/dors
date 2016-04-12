@@ -11,7 +11,7 @@ end
 
 
 Then(/^The confirmation message will be displayed as  "([^"]*)"$/) do |message|
-  expect(page.text).to have_content(message)
+  expect(page.text).to have_(message)
 end
 
 
@@ -27,10 +27,10 @@ Then(/^I see 'Yes' and 'No' buttons on the confirmation message box$/) do
 end
 
 And(/^the trainer will be available for bookings for assessors$/) do
-  #within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).to include("100001 /101")
-    expect(page.text).to include("100022 /122")
-    #expect(page.text).to include("FSB422")
+  #within(:css, ".trainer-licenseCode.ng-binding") do
+    expect(page.should have_text("100001 /101"))
+    #expect(page.text).to include("100022 /122")
+    expect(page.should have_text("100006 /106"))
 end
 #end
 
@@ -57,7 +57,7 @@ end
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
   expect(page.text).to have_content("My assessment details")
   click_link_or_button("REQUEST ASSESSMENT")
-  sleep 2
+  #sleep 2
   within(:xpath, "html/body/div[1]/div[2]/div") do
     expect(page.text).not_to include("CIA624")
     expect(page.text).not_to include("DOA123")

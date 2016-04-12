@@ -11,7 +11,7 @@ When(/^I navigate to "([^"]*)" page$/) do |tab|
 end
 
 Then(/^I see a message "(.*?)"$/) do |message|
-  expect(page).to have_content(message)
+  expect(page).to have_text(message)
 end
 
 Then(/^an "(.*?)" button$/) do |button|
