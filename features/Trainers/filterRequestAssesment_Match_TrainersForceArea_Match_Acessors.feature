@@ -1,4 +1,4 @@
-@DR-268
+@DR-268 @inprogress
 Feature:
   Assuming this  Assessor linked force area 'Metropolitan police'
   Request Assessment page default and filter view
@@ -8,7 +8,7 @@ Feature:
     When I login as an "Assessor"
 
 
-  @Trainers_linked_forceareas_match_to_myrecord
+  @Trainers_linked_forceareas_match_to_myrecord @pass
     Scenario: will see only those trainers whose linked Force Areas match to those linked to my record
     #Then I will be redirected to Request Assessment page
      And I should see linked Force Areas
