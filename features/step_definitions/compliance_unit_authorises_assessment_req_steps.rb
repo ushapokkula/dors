@@ -11,7 +11,6 @@ end
 
 When(/^I click "([^"]*)" against one of the items on the list$/) do |button|
   find(:button, button, match: :first).click
-  #first(:button, button).click
 end
 
 Then(/^The request will be accepted and status of assessment request will be updated to Booked$/) do
