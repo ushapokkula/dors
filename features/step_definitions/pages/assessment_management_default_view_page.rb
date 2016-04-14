@@ -3,6 +3,7 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   elements :assessment_dates, ".assessment-date"
 
 
+
   def verify_assessment_default_view_details(new_table)
     columns = new_table.map { |x| x['Details'] }
     columns.each do |label|
@@ -23,6 +24,8 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   def verify_assessment_ID
     expect(page.all(".dors-table-row").count).to be >= 1
   end
+
+
 
   def verify_max_trainers
     list_of_assessment_requests.each do |row|
@@ -50,5 +53,7 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
 
   end
 
+   end
 
-end
+
+

@@ -1,17 +1,24 @@
 class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
+  elements :linked_force_area, ".selectedForceAreaFilter"
+  element :force_area_filters, ".well label"
 
+  def navigate_to_request_summary_page
+    click_link_or_button("REQUEST ASSESSMENT")
+
+
+  end
 
 
   def navigate_assessment_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
-    sleep 3
-    first(:button, 'Pick a slot').click
-    sleep 2
+    find(:button, 'Pick a slot', match: :first).click
     $primary_trianer=page.all('.ng-binding')[0].text
-    first(:button, 'Request Assessment').click
+    find(:button, 'Request Assessment', match: :first).click
   end
+
+
 
   def validate_and_check_include_box
     sleep 2
@@ -27,6 +34,15 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
       assessment_status = row['StatusId']
      puts  expect(assessment_status).to be == 2
     end
+  end
+
+
+  def verify_linked_force_areas
+    click_link_or_button("REQUEST ASSESSMENT")
+    sleep 2
+    expect(page).to have_css(".well label")
+    expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first)
+    #page.all('.selectedForceAreaFilter',
   end
 
 

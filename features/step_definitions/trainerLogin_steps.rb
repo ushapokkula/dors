@@ -44,6 +44,8 @@ When(/^click Sign in$/) do
   sleep 5
 end
 
+
+
 Then(/^I will be granted access to the system$/) do
    expect(page).to have_content("Sign out")
 end

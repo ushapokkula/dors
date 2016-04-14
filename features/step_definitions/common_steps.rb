@@ -9,6 +9,7 @@ end
 
 When(/^I navigate to "([^"]*)" page$/) do |tab|
   click_link_or_button(tab)
+  #wait_for page_to load '#/request-assessment/expiring-licenses/'
 end
 
 Then(/^I see a message "(.*?)"$/) do |message|
@@ -35,4 +36,8 @@ end
 And(/^I logout$/) do
   find('#btn-signout').click
   # Capybara.reset_sessions!
+end
+
+And(/^click on Request Assessment$/) do
+  find(:button, button).click
 end
