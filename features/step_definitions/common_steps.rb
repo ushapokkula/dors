@@ -1,6 +1,6 @@
 When(/^I click "(.*?)"$/) do |link_or_button|
   click_link_or_button(link_or_button)
-  sleep 2
+  sleep(2)
 end
 
 When(/^I click "(.*?)" tab$/) do |tab|
@@ -9,9 +9,7 @@ end
 
 When(/^I navigate to "([^"]*)" page$/) do |tab|
   click_link_or_button(tab)
-  #wait_for page_to load '#/request-assessment/expiring-licenses/'
 end
-
 Then(/^I see a message "(.*?)"$/) do |message|
   expect(page).to have_content(message)
 end
@@ -41,3 +39,4 @@ end
 And(/^click on Request Assessment$/) do
   find(:button, button).click
 end
+

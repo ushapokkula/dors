@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="wtgDors" class="ng-scope"><head><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-datepicker-popup.dropdown-menu{display:block;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <base href="/" />
+
+    <title>DORS Trainer</title>
+    <link rel="stylesheet" href="/Content/dors.css" />
+
+ 
+    
+    <script src="/Scripts/jquery-2.1.1.js"></script>
+
+    <script src="/Scripts/angular.js"></script>
+<script src="/Scripts/angular-messages.js"></script>
+<script src="/Scripts/angular-animate.js"></script>
+<script src="/Scripts/angular-route.js"></script>
+<script src="/Scripts/angular-sanitize.js"></script>
+<script src="/Scripts/validate.js"></script>
+<script src="/Scripts/ngStorage.js"></script>
+<script src="/Scripts/ui-bootstrap-tpls-1.1.2.min.js"></script>
+<script src="/Scripts/angular-toastr.tpls.js"></script>
+<script src="/Scripts/select.js"></script>
+<script src="/Scripts/moment.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+       
+        <!-- ngInclude: undefined --><ng-include src="%27app/views/menu-bar.html%27" class="ng-scope" style=""><div data-ng-controller="MenuNavigationController as menuNavVm" class="header ng-scope">
+    <nav class="clearfix">
+
+
+        <a href="#"> <img style="width: 111px;" class="pull-right" src="content/images/ndors_logo.png" /></a>
+
+        <div class="pull-right" data-ng-show="menuNavVm.isAuthenticated" id="login-container" style="">
+            <b class="ng-binding">jane1</b>
+            <a data-ng-click="menuNavVm.signOut($event)" href="#/signout/" id="btn-signout">Sign out</a>
+        </div>
+        <!-- ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope" style="">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/request-assessment/assessment-management/" class="ng-binding">ASSESSMENT MANAGEMENT</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/admin/" class="ng-binding">ADMINISTRATION</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/assessors/" class="ng-binding">ASSESSORS</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/trainers/" class="ng-binding">TRAINERS</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems -->
+    </nav>
+
+
+</div></ng-include>
+
+        <!-- ngView:  --><div data-ng-view="" class="ng-scope" style=""><div class="ng-scope">
+
+    <div data-ng-show="adminVm.showSettingsSavedMessage" class="alert alert-success ng-hide">
+        Assessments booking time window has been successfully set
+
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">System Settings</h3>
+        </div>
+
+        <div class="panel-body">
+
+            <form data-ng-submit="adminVm.saveSettings()" class="form-horizontal ng-valid ng-valid-min ng-valid-max ng-valid-required ng-valid-maxlength ng-dirty ng-valid-number" name="adminVm.frmSystemSettings" novalidate="" style="">
+                <div data-ng-class="{ 'has-error': adminVm.frmSystemSettings.assessmentsWindow.$invalid &amp;&amp; (adminVm.submitted ||adminVm.frmSystemSettings.assessmentsWindow.$dirty  ) }" class="form-group">
+                    <label for="assessmentsWindow" class="col-md-3 control-label">Assessments Window</label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <input type="number" data-ng-model="adminVm.bookingWindow" data-numbers-only="" max="9999" maxlength="4" min="1" id="assessmentsWindow" name="assessmentsWindow" class="form-control ng-untouched ng-valid ng-isolate-scope ng-valid-min ng-valid-max ng-valid-required ng-valid-maxlength ng-dirty ng-valid-number" required="" style="" />
+
+                            <div class="input-group-addon">days</div>
+                        </div>
+                    
+                    </div>
+                   
+                        
+                        <div class="col-md-5">
+
+                            <div ng-show="(adminVm.frmSystemSettings.assessmentsWindow.$dirty || adminVm.submitted)  &amp;&amp; adminVm.frmSystemSettings.assessmentsWindow.$invalid" class="ng-hide">
+                                <span class="help-block ng-hide" data-ng-show="adminVm.frmSystemSettings.assessmentsWindow.$error.required">Please provide the number of days.</span>
+                                <span class="help-block ng-hide" data-ng-show="adminVm.frmSystemSettings.assessmentsWindow.$error.min">Number of days must be greater than zero.</span>
+                            </div>
+
+                        </div>
+                    </div>
+            </form>
+
+        </div>
+
+        <div class="panel-footer clearfix">
+            <button class="btn btn-primary pull-right" data-ng-click="adminVm.saveSettings()" type="button">Save</button>
+
+        </div>
+
+    </div>
+
+</div></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+
+            <p class="footer-text">© 2016 - NATIONAL DRIVER OFFENDER RETRAINING SCHEME</p>
+        </div>
+    </footer>
+   
+    <script src="/app/app.js"></script>
+<script src="/app/config/toastr.config.js"></script>
+<script src="/app/controllers/AdminController.js"></script>
+<script src="/app/controllers/AssessCoursesController.js"></script>
+<script src="/app/controllers/AssessmentDetailsController.js"></script>
+<script src="/app/controllers/AssessmentManagementController.js"></script>
+<script src="/app/controllers/AssessmentOutcomeController.js"></script>
+<script src="/app/controllers/AssessorsController.js"></script>
+<script src="/app/controllers/CreateAssessmentRequestController.js"></script>
+<script src="/app/controllers/ErrorController.js"></script>
+<script src="/app/controllers/ForgotPasswordController.js"></script>
+<script src="/app/controllers/LoginController.js"></script>
+<script src="/app/controllers/MenuNavigationController.js"></script>
+<script src="/app/controllers/MyAssessmentsController.js"></script>
+<script src="/app/controllers/MyProfileController.js"></script>
+<script src="/app/controllers/PasswordResetController.js"></script>
+<script src="/app/controllers/SignupController.js"></script>
+<script src="/app/controllers/TrainerLicensesController.js"></script>
+<script src="/app/controllers/TrainersController.js"></script>
+<script src="/app/directives/alphanumericOnly.js"></script>
+<script src="/app/directives/assessorNameValidator.js"></script>
+<script src="/app/directives/inputCompare.js"></script>
+<script src="/app/directives/isComplexPassword.js"></script>
+<script src="/app/directives/mustNotStartWithZero.js"></script>
+<script src="/app/directives/mustStartWithZero.js"></script>
+<script src="/app/directives/no-space.js"></script>
+<script src="/app/directives/number-only.js"></script>
+<script src="/app/directives/passwordFormatValidation.js"></script>
+<script src="/app/directives/scrollToBottom.js"></script>
+<script src="/app/directives/trainerIdValidator.js"></script>
+<script src="/app/directives/uppercaseInput.js"></script>
+<script src="/app/directives/validateEmailMatchAccount.js"></script>
+<script src="/app/directives/validatePassword.js"></script>
+<script src="/app/directives/validateUsernameMatchAccount.js"></script>
+<script src="/app/filters/capitalizeFilter.js"></script>
+<script src="/app/filters/propertyFilter.js"></script>
+<script src="/app/filters/ukFormatDateFilter.js"></script>
+<script src="/app/services/accountService.js"></script>
+<script src="/app/services/courseService.js"></script>
+<script src="/app/services/httpResponseInterceptor.js"></script>
+<script src="/app/services/lookupService.js"></script>
+<script src="/app/services/systemSettingsService.js"></script>
+<script src="/app/services/trainerService.js"></script>
+<script src="/app/services/assessment/assessCoursesService.js"></script>
+<script src="/app/services/assessment/assessmentService.js"></script>
+<script src="/app/services/assessment/assessorService.js"></script>
+<script src="/app/services/assessment/createAssessmentRequestService.js"></script>
+<script src="/app/services/security/authenticationService.js"></script>
+
+    
+
+
+</body></html>

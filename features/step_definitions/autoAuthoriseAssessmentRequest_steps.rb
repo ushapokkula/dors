@@ -16,7 +16,8 @@ And(/^The status of the assessment request will be marked Booked in the database
 end
 
 Then(/^I will be redirected to Request Assessment page$/) do
-  expect(page).to have_content("Request Assessment")
+  expect(page.text).to have_selector(:css,"h1",text: "Request Assessment")
+
 end
 
 Then(/^A message will be displayed "([^"]*)"$/) do |text|
@@ -40,3 +41,14 @@ And (/^I should see linked Force Areas$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas
 end
 
+Then(/^I should see message for no trainers to match requirements$/) do
+  expect(page.text).to have_selector(:css,".alert.alert-info", text: "No assessments available to book.")
+end
+
+And (/^I should not see trainers Force Area which not linked to Assessor$/)do
+  @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas_not_related_to_assessor
+end
+
+And (/^I should see default pre-selected Force Area$/)do
+  @trainers.auto_authorise_assessment_request_page.verify_defalut_preselected_forcearea
+end
