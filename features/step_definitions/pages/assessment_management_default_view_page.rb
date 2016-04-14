@@ -14,7 +14,6 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   end
 
   def verify_list_of_assessment_requests
-    # sleep 5
     list_of_assessment_requests.each do |row|
       expect(row.text).to include("Status Requested")
     end

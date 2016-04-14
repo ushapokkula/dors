@@ -6,15 +6,16 @@ Feature:DR-305
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I have all assessments requested
+    And I logout
 
 
-   @Approve1
+   @Approve1 @pass
   Scenario: Verify the visibility of Approve button
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSMENT MANAGEMENT" page
     Then I see "Approve" button for each assessment request
 
-  @Approve2
+  @Approve2 @fail
   Scenario: Verify Approve button on My Assessments page
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
@@ -22,7 +23,7 @@ Feature:DR-305
     Then The request will be accepted and status of assessment request will be updated to Booked
     And I see a message "has been marked Booked"
 
-  @Approve3
+  @Approve3 @fail
   Scenario: Verify trainers visibility on request assessment page after Approving a request
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page

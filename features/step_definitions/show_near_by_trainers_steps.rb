@@ -7,8 +7,8 @@ Given(/^I am on Pick a course page$/) do
 end
 
 When(/^I click Request assessmet button against trainer I want to book an assessment$/) do
-  sleep 5
-  first(:button, 'Request Assessment').click
+  find(:button, 'Requested Assessment', match: :first).click
+  #first(:button, 'Request Assessment').click
 end
 
 Then(/^I will be taken to Request Assessment Summary page$/) do

@@ -11,11 +11,11 @@ Feature: DR-31
     And I navigate to "ADMINISTRATION" page
     And I will be able to view the field "Assessment Window"
 
-  @time_window1
+  @time_window1 @pass
   Scenario: Verify the assessment time window field visisbility
     And The system will be able to allow to set a time duration in number of days
 
-  @time_window2
+  @time_window2 @pass
   Scenario: Verify the assessment time window field validation
     And The field will only take numbers as input
     And The value should be greater than zero
@@ -24,10 +24,11 @@ Feature: DR-31
     Then The system will save the preferences
     And I see a message " Assessments booking time window has been successfully set"
 
-  @time_window3
+  @time_window3 @pass
   Scenario Outline: Verify the ability to view trainer licenses expiring in selected time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I logout
       And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       Then The Assessors will only be able to view trainers licenses expiring in "<Days>"time window
@@ -37,10 +38,11 @@ Feature: DR-31
     |365 |
     |120 |
 
-  @time_window4
+  @time_window4 @fail
     Scenario Outline: Verify the ability to view trainer lilcenses expiring on summary page within time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I logout
       And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       And I am on Pick a course page
@@ -53,7 +55,7 @@ Feature: DR-31
       |365 |
       |120 |
 
-  @time_window5
+  @time_window5 @pass
     Scenario: Verify the field validation when characters and zero is entered in time window
       When I enter characters in the assessment time window
       Then The field will not accept the characters

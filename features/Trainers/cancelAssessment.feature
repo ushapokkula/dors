@@ -1,4 +1,4 @@
-@DR-15
+@DR-15 @fail
 Feature:DR-15
   Assessor Cancels an Assessment Session
 

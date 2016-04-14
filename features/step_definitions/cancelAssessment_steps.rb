@@ -11,7 +11,8 @@ end
 
 
 Then(/^The confirmation message will be displayed as  "([^"]*)"$/) do |message|
-  expect(page.text).to have_(message)
+  page.assert_selector('.modal-body>p', message)
+
 end
 
 
@@ -57,13 +58,14 @@ end
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
   expect(page.text).to have_content("My assessment details")
   click_link_or_button("REQUEST ASSESSMENT")
-  #sleep 2
-  within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).not_to include("CIA624")
-    expect(page.text).not_to include("DOA123")
-    expect(page.text).not_to include("FSB422")
+
+  #within(:css, ".trainer-licenseCode") do
+    expect(page).not_to have_css('.trainer-licenseCode', text: '100001/101')
+    #page.should_not have_text(".trainer-licenseCode", count: 2)
+    #expect(page.text).not_to include("100022 /122")
+    #expect(page.text).not_to include("100006 /106")
   end
-end
+#end
 
 And(/^I get the current URL$/)do
   $cuurent_url = URI.parse(current_url)
