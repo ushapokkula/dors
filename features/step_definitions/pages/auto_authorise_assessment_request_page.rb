@@ -38,9 +38,9 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
 
   def verify_linked_force_areas
-    page.find(".selectedForceAreaFilter").should be_visible
-    expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first)
-    expect(page).to have_css(".selectedForceAreaFilter", text: "METROPOLITAN POLICE")
+    #page.find(".selectedForceAreaFilter").should be_visible
+    expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first,text: "METROPOLITAN POLICE")
+    #expect(page).to have_css(".selectedForceAreaFilter", text: "METROPOLITAN POLICE")
   end
 
 

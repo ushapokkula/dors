@@ -16,7 +16,7 @@ And(/^The status of the assessment request will be marked Booked in the database
 end
 
 Then(/^I will be redirected to Request Assessment page$/) do
-  expect(page.text).to have_selector(:css,"h1",text: "Request Assessment")
+  expect(page).to have_selector(:css,"h1",text: "Request Assessment")
 
 end
 
@@ -41,6 +41,8 @@ end
 
 And (/^I should see linked Force Areas$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas
+
+
 end
 
 

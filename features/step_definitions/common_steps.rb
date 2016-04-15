@@ -1,5 +1,6 @@
 When(/^I click "(.*?)"$/) do |link_or_button|
   click_link_or_button(link_or_button)
+
 end
 
 When(/^I click "(.*?)" tab$/) do |tab|
@@ -8,7 +9,10 @@ end
 
 When(/^I navigate to "([^"]*)" page$/) do |tab|
   click_link_or_button(tab)
+  # find(:xpath,)
 end
+
+
 Then(/^I see a message "(.*?)"$/) do |message|
   expect(page).to have_content(message)
 end

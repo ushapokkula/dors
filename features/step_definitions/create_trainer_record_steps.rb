@@ -12,10 +12,15 @@ Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |opt
 
 end
 
-Then(/^I fill following fields as Mandatory with  required details on create trainer form$/) do
+Then(/^I fill Mandatory fields with required details on create trainer form$/) do
   @trainers.create_trainer_record_page.filling_trainer_details
 end
 
   And(/^I click on create trainer button$/)do
-   @trainers.create_trainer_record_page.create_trainer()
+   @trainers.create_trainer_record_page.create_trainer
+  end
+
+Then (/^I see success message$/)do
+  page.find(".alert.alert-success").should be_visible
+ expect(page).to have_selector(:css, ".alert.alert-success", text: "New trainer successfully created.")
 end
