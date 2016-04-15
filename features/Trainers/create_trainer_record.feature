@@ -1,4 +1,4 @@
-@DR-169
+@DR-169 @DR-674
 Feature: As an an NGU (TrainingGovernance),
   I want to be able to create new Trainer records,
   so that they can be added onto courses by suppliers and have a visibility on the system.
@@ -54,5 +54,14 @@ Feature: As an an NGU (TrainingGovernance),
      # | Is Instructor          |
 
 
-  Scenario: Verify the validation for username field length and uniqueness
-    And
+  #Scenario: Verify the validation for username field length and uniqueness
+    #And
+
+
+
+  @DR-674 @Licence_validation_fails
+    Scenario: Verify Licence validation
+      Then I fill following fields as Mandatory with  required details on create trainer form
+      And I click on create trainer button
+      Then I should see created trainer message
+

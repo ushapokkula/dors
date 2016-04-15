@@ -2,7 +2,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
   elements :linked_force_area, ".selectedForceAreaFilter"
-  #element :force_area_filters, ".well label[for='txtSearchForceArea']"
 
   def navigate_to_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
@@ -39,17 +38,11 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
 
   def verify_linked_force_areas
-
-    #expect(page).to find(:button, "REQUEST ASSESSMENT").click
-    #click_link_or_button("REQUEST ASSESSMENT")
-    #sleep(2)
-    #page.find('force_area_filters').should be_visible
-    #expect(page).to have_css(force_area_filters, text: "Force Area Filters:")
     page.find(".selectedForceAreaFilter").should be_visible
     expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first)
-    p()
     expect(page).to have_css(".selectedForceAreaFilter", text: "METROPOLITAN POLICE")
   end
+
 
   def verify_linked_force_areas_not_related_to_assessor
 

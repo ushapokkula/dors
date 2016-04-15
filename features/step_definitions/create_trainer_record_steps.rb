@@ -11,3 +11,11 @@ Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |opt
   @trainers.create_trainer_record_page.verify_optional_fields_on_trainer_form(optional_field)
 
 end
+
+Then(/^I fill following fields as Mandatory with  required details on create trainer form$/) do
+  @trainers.create_trainer_record_page.filling_trainer_details
+end
+
+  And(/^I click on create trainer button$/)do
+   @trainers.create_trainer_record_page.create_trainer()
+end

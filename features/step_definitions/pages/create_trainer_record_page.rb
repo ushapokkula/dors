@@ -56,4 +56,19 @@ class CreateTrainerRecordPage < SitePrism::Page
     expect(page).not_to have_css(".help-block")
     expect(page).to have_content("New trainer successfully created.")
   end
-end
+
+  def filling_trainer_details
+    username.set Faker::Name.name[4..70]
+    trainer_id.set Faker::Number.number(6)
+    trainer_first_name.set Faker::Name.name
+    trainer_last_name.set Faker::Name.name
+    primary_phone.set Faker::PhoneNumber.numerify('0##########')
+    email.set Faker::Internet.email
+    address.set Faker::Address.city
+    town.set Faker::Address.city
+  end
+
+  def create_trainer()
+    find("#btnCreateUpdateTrainer").click
+  end
+  end

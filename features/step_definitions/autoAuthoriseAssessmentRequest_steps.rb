@@ -37,15 +37,24 @@ And(/^I should be redirected to Pick a slot page$/) do
   expect(page).to have_content("Request Assessment")
 end
 
+
+
 And (/^I should see linked Force Areas$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas
 end
 
-Then(/^I should see message for no trainers to match requirements$/) do
-  expect(page.text).to have_selector(:css,".alert.alert-info", text: "No assessments available to book.")
+
+And(/^I should see list of trainers match to my record$/)do
+
 end
 
-And (/^I should not see trainers Force Area which not linked to Assessor$/)do
+
+Then(/^I should see message for no trainers to match requirements$/) do
+  expect(page).to have_selector(:css,".alert.alert-info", text: "No assessments available to book.")
+end
+
+
+And (/^I should not see trainers Force Area not linked to Assessor$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas_not_related_to_assessor
 end
 
