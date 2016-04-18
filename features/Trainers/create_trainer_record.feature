@@ -57,7 +57,7 @@ Feature: As an an NGU (TrainingGovernance),
   #Scenario: Verify the validation for username field length and uniqueness
     #And
 
-  @DR-674 @Licence_validation_fails
+  @DR-674 @Licence_validation_fails @wip
     Scenario: Verify Licence validation
       Then I fill Mandatory fields with required details on create trainer form
       And I click on create trainer button

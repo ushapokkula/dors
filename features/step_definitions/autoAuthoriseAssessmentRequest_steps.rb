@@ -41,15 +41,45 @@ end
 
 And (/^I should see linked Force Areas$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas
-
-
 end
 
 
 And(/^I should see list of trainers match to my record$/)do
-
+expect(page.all(".dors-table").count).to be >0
+$primary_trianer=page.all('.dors-table')[0].text
+p($primary_trianer)
 end
 
+When(/^I start typing three letters as "([^"]*)" in the trainer search force areas$/) do |chars|
+
+  find('.ui-select-search').set(chars)
+  find('.ui-select-search').send_keys(:enter)
+end
+
+Then(/^The system will start autopredicting it and the list of force area appear$/) do
+  if ( page.should have_no_css(".alert.alert-info"))
+    $List_of_force_area=page.find(".ui-select-container").should be_visible
+    p($List_of_force_area)
+    expect(page.all(".ui-select-choices").count).to be > 0
+  end
+end
+
+And(/^I should see selected force areas in search force area filter$/) do
+  expect(page).to have_selector(:css,".selectedForceAreaFilter")
+end
+
+And(/^I should see selected "([^"]*)" in search force area filter$/) do |name|
+ $Force_name=expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :'one', text: name)
+p($Force_name)
+end
+
+
+Then (/^The selected force area name will not be in the drop down list$/) do
+  expect(page).to have_selector(:css, ".selectedForceAreaFilter",match: :'one', text: 'CITY OF LONDON POLICE')
+  page.find(".ui-select-choices", match: :'one').should_not have_text('CITY OF LONDON POLICE')
+
+
+end
 
 Then(/^I should see message for no trainers to match requirements$/) do
   expect(page).to have_selector(:css,".alert.alert-info", text: "No assessments available to book.")
