@@ -6,7 +6,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   def navigate_to_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
 
-
   end
 
 
@@ -39,16 +38,23 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
   def verify_linked_force_areas
     expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first,text: "METROPOLITAN POLICE")
-
   end
 
 
   def verify_linked_force_areas_not_related_to_assessor
-
+   $List_of_trainers=page.all(".dors-table").count.should == 3
+    p($List_of_trainers)
   end
 
-  def verify_defalut_preselected_forcearea
 
+
+  def verify_defalut_preselected_forcearea
+    page.find(:css,".selectedForceAreaFilter",match: :first).should have_text('METROPOLITAN POLICE')
+    $List_of_trainers=all(:css,".dors-table").count
+    p($List_of_trainers)
+   $trainers=page.find(:css,".trainer-licenseCode").text
+    p($trainers)
+    page.should have_css(".trainer-licenseCode", text: '525252/002')
   end
 
 

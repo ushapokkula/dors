@@ -46,8 +46,10 @@ end
 
 And(/^I should see list of trainers match to my record$/)do
 expect(page.all(".dors-table").count).to be >0
+page.find(".trainer-licenseCode", match: first).should have_text('525252/002')
 $primary_trianer=page.all('.dors-table')[0].text
 p($primary_trianer)
+
 end
 
 When(/^I start typing three letters as "([^"]*)" in the trainer search force areas$/) do |chars|
@@ -57,12 +59,12 @@ When(/^I start typing three letters as "([^"]*)" in the trainer search force are
 end
 
 Then(/^The system will start autopredicting it and the list of force area appear$/) do
-  if ( page.should have_no_css(".alert.alert-info"))
+  #if ( page.should have_no_css(".alert.alert-info"))
     $List_of_force_area=page.find(".ui-select-container").should be_visible
     p($List_of_force_area)
     expect(page.all(".ui-select-choices").count).to be > 0
   end
-end
+#end
 
 And(/^I should see selected force areas in search force area filter$/) do
   expect(page).to have_selector(:css,".selectedForceAreaFilter")
@@ -86,8 +88,15 @@ Then(/^I should see message for no trainers to match requirements$/) do
 end
 
 
-And (/^I should not see trainers Force Area not linked to Assessor$/)do
+And (/^I should not see trainers force area not linked to Assessor$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas_not_related_to_assessor
+
+  page.find(:css,".btn.btn-danger").click
+
+ $result=page.find(:css,".selectedForceAreaFilter",match: :first).text
+  p($result)
+  $List_of_trainers=page.should have_css(".dors-table",:count=>1)
+  p($List_of_trainers)
 end
 
 And (/^I should see default pre-selected Force Area$/)do
