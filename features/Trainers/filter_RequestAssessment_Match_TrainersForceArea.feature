@@ -1,6 +1,6 @@
 Feature: DR-268 and DR-720 and DR-719
   /*Assuming Assessor 'sudiv' linked force area 'Metropolitan police'
-  And verifying Request Assessment page for default and filter view */
+  And verifying Search Force Area for default and filter view */
 
   Background:
     Given that I have licence.ndors.org.uk page opened

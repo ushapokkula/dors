@@ -45,29 +45,28 @@ end
 
 
 And(/^I should see list of trainers match to my record$/)do
-expect(page.all(".dors-table").count).to be >0
-page.find(".trainer-licenseCode", match: first).should have_text('525252/002')
+$List_of_trainers=all(".dors-table").count
+p($List_of_trainers)
 $primary_trianer=page.all('.dors-table')[0].text
 p($primary_trianer)
-
+page.should have_css(".trainer-licenseCode", text: '525252/002')
 end
 
 When(/^I start typing three letters as "([^"]*)" in the trainer search force areas$/) do |chars|
-
   find('.ui-select-search').set(chars)
   find('.ui-select-search').send_keys(:enter)
 end
 
 Then(/^The system will start autopredicting it and the list of force area appear$/) do
   #if ( page.should have_no_css(".alert.alert-info"))
-    $List_of_force_area=page.find(".ui-select-container").should be_visible
-    p($List_of_force_area)
-    expect(page.all(".ui-select-choices").count).to be > 0
+   page.find(".ui-select-container").should be_visible
+   $force_area_choice=all(".ui-select-choices-row-inner").count
+   p($force_area_choice)
   end
 #end
 
 And(/^I should see selected force areas in search force area filter$/) do
-  expect(page).to have_selector(:css,".selectedForceAreaFilter")
+  expect(page).to have_selector(:css, ".selectedForceAreaFilter")
 end
 
 And(/^I should see selected "([^"]*)" in search force area filter$/) do |name|
@@ -79,9 +78,8 @@ end
 Then (/^The selected force area name will not be in the drop down list$/) do
   expect(page).to have_selector(:css, ".selectedForceAreaFilter",match: :'one', text: 'CITY OF LONDON POLICE')
   page.find(".ui-select-choices", match: :'one').should_not have_text('CITY OF LONDON POLICE')
-
-
 end
+
 
 Then(/^I should see message for no trainers to match requirements$/) do
   expect(page).to have_selector(:css,".alert.alert-info", text: "No assessments available to book.")
@@ -90,10 +88,8 @@ end
 
 And (/^I should not see trainers force area not linked to Assessor$/)do
   @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas_not_related_to_assessor
-
   page.find(:css,".btn.btn-danger").click
-
- $result=page.find(:css,".selectedForceAreaFilter",match: :first).text
+  $result=page.find(:css,".selectedForceAreaFilter",match: :first).text
   p($result)
   $List_of_trainers=page.should have_css(".dors-table",:count=>1)
   p($List_of_trainers)

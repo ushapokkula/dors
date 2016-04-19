@@ -18,6 +18,7 @@ end
 
 And(/^I start typing atleast three characters as "([^"]*)" in the trainer search field$/)do |chars|
   fill_in('txt-trainer-name', :with => chars)
+  sleep 2
 end
 
 

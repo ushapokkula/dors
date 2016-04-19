@@ -13,6 +13,10 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :known_as, "#trainerKnownAs"
   element :secondary_phone, "#trainerSecondaryPhone"
   element :is_instructor, "#trainerisInstructor"
+  #element :course_dropdown, "#courseNames"
+  #element :licence_status, "#licenseStatuses"
+  #element :licence_expiry_date, "#licenseExpiryDate"
+
 
 
   def verify_trainer_record_details(new_table)
@@ -58,7 +62,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def filling_trainer_details
-    fill_in('trainerUsername', :with => "test678")
+    #fill_in('trainerUsername', :with=> 'trainer-test123')
     username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name
@@ -70,7 +74,28 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in('trainerPostcode', :with => "W14 8UD")
   end
 
-  def create_trainer
+  def create_trainer_button
     find("#btnCreateUpdateTrainer").click
+  end
+
+  def add_course
+    page.find("#courseNames > option:nth-child(2)").click
+  end
+
+  def add_licences
+    page.find("#licenseStatuses > option:nth-child(2)").click
+  end
+
+  def add_licence_button
+    page.find("#btnAddLicense").click
+  end
+
+  def update_trainer
+    page.find("#btnCreateUpdateTrainer").click
+  end
+
+  def add_expiry_date
+    find("#licenseExpiryDate").click
+    page.find("#licenseExpiryDate").set("20/10/2017")
   end
   end

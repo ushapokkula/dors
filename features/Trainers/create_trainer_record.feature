@@ -57,10 +57,45 @@ Feature: As an an NGU (TrainingGovernance),
   #Scenario: Verify the validation for username field length and uniqueness
     #And
 
-  @DR-674 @Licence_validation_fails @wip
+  @DR-674 @create_tainer_licences
     Scenario: Verify Licence validation
       Then I fill Mandatory fields with required details on create trainer form
+      And I add Licences
       And I click on create trainer button
       Then I see success message
-      And I add licences
+
+     @DR-674 @create_Licences_number
+     Scenario Outline: Generating Licence Numbers and saving to database
+       And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
+       Then The system will start autopredicting it and the list of trainer appears
+       When I hit enter after typing characters of trainer name
+       And I add Licences
+       And I click Add licence button
+       And I click update Trainer
+       Then I see update message
+       Examples:
+       |Trainer Name|
+       |roopa|
+
+     @DR-674 @create_Licences
+    Scenario Outline: Licence Validation fails
+       And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
+       Then The system will start autopredicting it and the list of trainer appears
+       When I hit enter after typing characters of trainer name
+       Then I should not see added course
+       When I click update Trainer
+       Then I should see error message on trainers page
+       Examples:
+         |Trainer Name|
+             |roopa |
+
+
+
+
+
+
+
+
+
+
 

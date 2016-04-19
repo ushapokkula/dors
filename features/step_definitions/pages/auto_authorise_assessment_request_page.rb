@@ -34,8 +34,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     end
   end
 
-
-
   def verify_linked_force_areas
     expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first,text: "METROPOLITAN POLICE")
   end
@@ -46,8 +44,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     p($List_of_trainers)
   end
 
-
-
   def verify_defalut_preselected_forcearea
     page.find(:css,".selectedForceAreaFilter",match: :first).should have_text('METROPOLITAN POLICE')
     $List_of_trainers=all(:css,".dors-table").count
@@ -56,8 +52,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     p($trainers)
     page.should have_css(".trainer-licenseCode", text: '525252/002')
   end
-
-
 
 
   def primary_trainer_include_bydefault
