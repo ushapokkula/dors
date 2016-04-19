@@ -11,3 +11,14 @@ Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |opt
   @trainers.create_trainer_record_page.verify_optional_fields_on_trainer_form(optional_field)
 
 end
+
+And (/^I should able to edit exisiting licences status and expiry date$/) do
+  page.find("#licenseStatuses_0").should be_visible  #Licence dropdown
+  page.find("#licenseExpiryDate_0").should be_visible  #LicenceExpiry date field
+@trainers.create_trainer_record_page.verify_editable_fields_of_trainer_licences
+end
+
+
+
+
+

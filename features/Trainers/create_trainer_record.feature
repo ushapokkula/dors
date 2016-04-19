@@ -54,5 +54,46 @@ Feature: As an an NGU (TrainingGovernance),
      # | Is Instructor          |
 
 
-  Scenario: Verify the validation for username field length and uniqueness
-    And
+  #Scenario: Verify the validation for username field length and uniqueness
+
+
+
+  @DR-39 @NGU-manually-editing-licences
+  Scenario Outline: NGU edits a trainer's license details
+    When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
+    Then The system will start autopredicting it and the list of trainer appears
+    When I hit DOWN arrow key from the trainer auto predict list
+    Then The second value will be selected from the auto predict list "<Down_Arrow>"
+    And I should able to edit exisiting licences status and expiry date
+    And I click update licences
+    Then I should see updated licence details
+
+    Examples:
+    |Trainer Name |Down_Arrow|
+    |roo          |roopa test|
+
+
+  @DR-39 @Editable_fields
+   Scenario Outline: Verify the Editable Licence Fields
+    Then I see the following fields as "<Editable Licence Fields>" on  trainer form
+
+    Examples:
+      | Editable Licence Fields |
+      |  License Status         |
+      |  License Expiry Date    |
+
+
+
+
+    Scenario Outline: verify the Licence status values which I can select
+      Then I see the following fields as "<Licence Status>" on trainer record
+     Examples:
+
+       |Licence Status|
+    |Provisional/Conditional|
+    |     Full                  |
+    |Expired                    |
+    |Suspended                  |
+    |Revoked                    |
+    |Surrendered                |
+

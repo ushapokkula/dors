@@ -56,4 +56,17 @@ class CreateTrainerRecordPage < SitePrism::Page
     expect(page).not_to have_css(".help-block")
     expect(page).to have_content("New trainer successfully created.")
   end
+
+  def verify_editable_fields_of_trainer_licences
+    find("#licenseStatuses_0").click
+    find("#licenseStatuses_0").set("full")
+    find("#licenseExpiryDate_0").click
+    find("#licenseExpiryDate_0").set("23/10/20")
+  end
+
+
+
+
+
+
 end
