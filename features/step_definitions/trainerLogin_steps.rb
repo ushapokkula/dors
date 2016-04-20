@@ -6,6 +6,11 @@ Given(/^I login as an "([^"]*)"$/) do |user|
   @trainers.trainer_login_page.login_as(user)
 end
 
+When(/^I login as an "([^"]*)" as accessor$/) do |user|
+  @trainers.trainer_login_page.login_as(user)
+end
+
+
 When(/^I enter valid username$/) do
 
 end
@@ -71,3 +76,4 @@ end
 Then(/^My account will be locked and I will be shown a message, "([^"]*)"$/) do |text|
  page.should have_content(text)
 end
+
