@@ -64,13 +64,15 @@ Feature: As an an NGU (TrainingGovernance),
     Then The system will start autopredicting it and the list of trainer appears
     When I hit DOWN arrow key from the trainer auto predict list
     Then The second value will be selected from the auto predict list "<Down_Arrow>"
-    And I should able to edit exisiting licences status and expiry date
-    And I click update licences
-    Then I should see updated licence details
+    And I should able to edit exisiting licences status "<Licence status>" and "<Expiry date>"
+    And I click update Trainer button
+    Then I should see an error message "Sorry, the license has expired, please amend the status accordingly." on trainer page
 
     Examples:
-    |Trainer Name |Down_Arrow|
-    |roo          |roopa test|
+    |Trainer Name |Down_Arrow   |Licence status         |Expiry date|
+    |roo          |roopa trainer|Full                   |04/04/2016|
+    |roo          |roopa trainer|Provisional/Conditional|04/04/2016|
+    |roo          |roopa trainer|Expired                |04/04/2016|
 
 
   @DR-39 @Editable_fields
@@ -80,10 +82,12 @@ Feature: As an an NGU (TrainingGovernance),
       |Licence Status|
       |---Please select---|
       |Provisional/Conditional|
-      |Full              |
+      |Full                   |
       |Expired                |
       |Suspended              |
       |Revoked                |
       |Surrendered            |
+
+
 
 

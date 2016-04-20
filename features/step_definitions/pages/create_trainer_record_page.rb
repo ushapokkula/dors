@@ -82,15 +82,19 @@ end
 end
 
 
-
-
-
-
-
 def verify_default_Licence_trainer_page
   find("#courseNames").text == "Course name"
   find("#licenseStatuses").text == "Licence status"
   find("#licenseExpiryDate").text == "Expiry Date"
 end
+
+  def verify_error_message_for_diff_licence_status(status,date)
+    page.find("#licenseStatuses_0").click
+    page.find("#licenseStatuses_0").set("1")
+    page.find("#licenseExpiryDate_0").click
+    page.find("#licenseExpiryDate_0").set(date)
+  end
+
+
 
 end

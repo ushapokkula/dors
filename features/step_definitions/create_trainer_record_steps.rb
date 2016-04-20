@@ -21,10 +21,24 @@ end
 
 Then(/^I see the following default Licence status fields$/) do |table|
   new_table = (table.hashes)
-  page.find("#licenseStatuses").should be_visible  #Licence dropdown
-  page.find("#licenseExpiryDate").should be_visible  #LicenceExpiry date field
   @trainers.create_trainer_record_page.verify_default_licence_fields(new_table)
 end
+
+And (/^I should able to edit exisiting licences status "([^"]*)" and "([^"]*)"$/) do |status,date|
+  @trainers.create_trainer_record_page.verify_error_message_for_diff_licence_status(status,date)
+end
+
+And (/^I click update Trainer button$/)do
+  page.find("#btnCreateUpdateTrainer").click
+end
+
+Then(/^I should see an error message "([^"]*") on trainer page$/)do |message|
+  page.find(".help-block p").should have_text(message)
+
+end
+
+
+
 
 
 #@trainers.create_trainer_record_page.verify_editable_fields_of_trainer_licences
