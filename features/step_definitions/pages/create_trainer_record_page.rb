@@ -13,6 +13,8 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :known_as, "#trainerKnownAs"
   element :secondary_phone, "#trainerSecondaryPhone"
   element :is_instructor, "#trainerisInstructor"
+  elements :licence_status, "#licenseStatuses > option"
+  elements :licence_label, ".control-label"
 
 
   def verify_trainer_record_details(new_table)
@@ -64,9 +66,31 @@ class CreateTrainerRecordPage < SitePrism::Page
     find("#licenseExpiryDate_0").set("23/10/20")
   end
 
+def verify_default_licence_fields(new_table)
+  licence_fields = [], status =[]
+  page.has_css?("#licenseStatuses")
+  find("#licenseStatuses").text == "Licence status"
+  find("#licenseStatuses").click
+ expect(page).to have_css("#licenseStatuses > option")
+  licence_status.each do |values|
+  status  = values.text
+  licence_fields.push(status)
+end
+  puts licence_fields
+ expect( new_table.map { |x| x['Licence Status']})
+
+end
 
 
 
 
+
+
+
+def verify_default_Licence_trainer_page
+  find("#courseNames").text == "Course name"
+  find("#licenseStatuses").text == "Licence status"
+  find("#licenseExpiryDate").text == "Expiry Date"
+end
 
 end

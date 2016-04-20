@@ -5,7 +5,7 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
   elements :assessment_status, ".assessment-status"
 
   def verify_status_filter_visibility(new_table)
-    staus =[], actual_status_values = []
+    status =[], actual_status_values = []
      page.has_css?("#single-button")
     find("#single-button").text == "Assessment Status"
     find("#single-button").click

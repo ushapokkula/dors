@@ -74,26 +74,16 @@ Feature: As an an NGU (TrainingGovernance),
 
 
   @DR-39 @Editable_fields
-   Scenario Outline: Verify the Editable Licence Fields
-    Then I see the following fields as "<Editable Licence Fields>" on  trainer form
+   Scenario: Verify the Editable Licence Fields
+    When the default view of the trainer page loaded
+    Then I see the following default Licence status fields
+      |Licence Status|
+      |---Please select---|
+      |Provisional/Conditional|
+      |Full              |
+      |Expired                |
+      |Suspended              |
+      |Revoked                |
+      |Surrendered            |
 
-    Examples:
-      | Editable Licence Fields |
-      |  License Status         |
-      |  License Expiry Date    |
-
-
-
-
-    Scenario Outline: verify the Licence status values which I can select
-      Then I see the following fields as "<Licence Status>" on trainer record
-     Examples:
-
-       |Licence Status|
-    |Provisional/Conditional|
-    |     Full                  |
-    |Expired                    |
-    |Suspended                  |
-    |Revoked                    |
-    |Surrendered                |
 
