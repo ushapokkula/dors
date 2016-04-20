@@ -57,13 +57,13 @@ When(/^I start typing three letters as "([^"]*)" in the trainer search force are
   find('.ui-select-search').send_keys(:enter)
 end
 
+# Then(/^The system will start autopredicting it and the list of force area appear$/) do |arg|
 Then(/^The system will start autopredicting it and the list of force area appear$/) do
-  #if ( page.should have_no_css(".alert.alert-info"))
-   page.find(".ui-select-container").should be_visible
+   expect(page).to have_css('.ui-select-container',visible: true)
    $force_area_choice=all(".ui-select-choices-row-inner").count
    p($force_area_choice)
+  # expect(page).to have_css('.ui-select-highlight',text:arg)
   end
-#end
 
 And(/^I should see selected force areas in search force area filter$/) do
   expect(page).to have_selector(:css, ".selectedForceAreaFilter")
