@@ -13,7 +13,7 @@ Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |opt
 end
 
 
-When (/^the default view of the trainer page loaded$/)do
+Then(/^I see "Trainers management" page$/)do
   expect(page).to have_content("Trainers management")
   expect(page).to have_content("Licences")
   @trainers.create_trainer_record_page.verify_default_Licence_trainer_page
@@ -24,24 +24,38 @@ Then(/^I see the following default Licence status fields$/) do |table|
   @trainers.create_trainer_record_page.verify_default_licence_fields(new_table)
 end
 
-And (/^I should able to edit exisiting licences status "([^"]*)" and "([^"]*)"$/) do |status,date|
-  @trainers.create_trainer_record_page.verify_error_message_for_diff_licence_status(status,date)
+And (/^I try to update "([^"]*)" and "([^"]*)"$/) do |status,date|
+  @trainers.create_trainer_record_page.update_diff_licence_status_with_expiry_date(status,date)
 end
 
 And (/^I click update Trainer button$/)do
   page.find("#btnCreateUpdateTrainer").click
 end
 
-Then(/^I should see an error message "([^"]*") on trainer page$/)do |message|
-  page.find(".help-block p").should have_text(message)
+Then(/^the system will trigger the user with an error message "([^"]*)" on trainer page$/)do |message|
+  expect(page).to have_selector(:css,".help-block p", text: message)
+
 
 end
 
+Then(/^trainer record page get displayed with Licence state of 'Full or Provisional' with Expiry date$/)do
+  expect(page).to have_css("#licenseStatuses_2", text: 'Full',visible:true)
+  puts page.find("#licenseExpiryDate_2").text
+  expect(page).to have_css("#licenseStatuses_3", text: 'Provisional/Conditional',visible:true)
+  puts page.find("#licenseExpiryDate_3").text
+end
 
+And (/^I try to change "([^"]*)" in past$/)do |date|
+  page.find("#licenseExpiryDate_2").set(date)
+  page.find("#licenseExpiryDate_2").send_keys(:enter)
+  page.find("#licenseExpiryDate_3").set(date)
+  page.find("#licenseExpiryDate_3").send_keys(:enter)
+end
 
+Then (/^I should see a message saying "([^"]*)"$/)do |message|
+  expect(page).to have_selector(:css,".toast-message", text: message)
+end
 
-
-#@trainers.create_trainer_record_page.verify_editable_fields_of_trainer_licences
 
 
 

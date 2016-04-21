@@ -58,21 +58,27 @@ Feature: As an an NGU (TrainingGovernance),
 
 
 
-  @DR-39 @NGU-manually-editing-licences
-  Scenario Outline: NGU edits a trainer's license details
-    When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
-    Then The system will start autopredicting it and the list of trainer appears
-    When I hit DOWN arrow key from the trainer auto predict list
-    Then The second value will be selected from the auto predict list "<Down_Arrow>"
-    And I should able to edit exisiting licences status "<Licence status>" and "<Expiry date>"
-    And I click update Trainer button
-    Then I should see an error message "Sorry, the license has expired, please amend the status accordingly." on trainer page
+    @DR-39 @NGU-manually-editing-licences
+    Scenario Outline: Display error message when exisiting licences Full or Provisional status have expiry date in past
+      Then I see "Trainers management" page
+      When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
+      Then The system will start autopredicting it and the list of trainer appears
+      When I hit DOWN arrow key from the trainer auto predict list
+      Then The second value will be selected from the auto predict list "<Down_Arrow>"
+      Then trainer record page get displayed with Licence state of 'Full or Provisional' with Expiry date
+      And I try to change "<Expiry date>" in past
+      Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
+      And I try to update "<Licence status>" and "<Expiry date>"
+      And I click update Trainer button
+      Then I should see a message saying "Trainer record successfully updated."
 
     Examples:
-    |Trainer Name |Down_Arrow   |Licence status         |Expiry date|
-    |roo          |roopa trainer|Full                   |04/04/2016|
-    |roo          |roopa trainer|Provisional/Conditional|04/04/2016|
-    |roo          |roopa trainer|Expired                |04/04/2016|
+    |Trainer Name |Down_Arrow   |Licence status        |Expiry date|
+    |roo          |roopa trainer|Expired               |04/04/2016|
+    #|roo          |roopa trainer|Surrendered            |04/04/2016|
+    #|roo          |roopa trainer|Suspended              |04/04/2016|
+    #|roo          |roopa trainer|Revoked                |04/04/2016|
+
 
 
   @DR-39 @Editable_fields
