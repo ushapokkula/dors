@@ -15,6 +15,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :is_instructor, "#trainerisInstructor"
   elements :licence_status, "#licenseStatuses > option"
   elements :licence_label, ".control-label"
+  element :updateTrainer_button, "#btnCreateUpdateTrainer"
 
 
   def verify_trainer_record_details(new_table)
@@ -88,13 +89,13 @@ def verify_default_Licence_trainer_page
   find("#licenseExpiryDate").text == "Expiry Date"
 end
 
-  def verify_error_message_for_diff_licence_status(status,date)
-    page.find("#licenseStatuses_0").click
-    page.find("#licenseStatuses_0").set("1")
-    page.find("#licenseExpiryDate_0").click
-    page.find("#licenseExpiryDate_0").set(date)
+  def update_diff_licence_status_with_expiry_date(status,date)
+    page.find("#licenseStatuses_2").click
+    page.find("#licenseStatuses_2").set(status)
+    page.find("#licenseExpiryDate_2").set(date)
+    page.find("#licenseStatuses_3").click
+    page.find("#licenseStatuses_3").set(status)
+    page.find("#licenseExpiryDate_3").set(date)
   end
-
-
 
 end

@@ -29,7 +29,7 @@ And (/^I try to update "([^"]*)" and "([^"]*)"$/) do |status,date|
 end
 
 And (/^I click update Trainer button$/)do
-  page.find("#btnCreateUpdateTrainer").click
+  @trainers.create_trainer_record_page.updateTrainer_button.click
 end
 
 Then(/^the system will trigger the user with an error message "([^"]*)" on trainer page$/)do |message|
@@ -38,19 +38,18 @@ Then(/^the system will trigger the user with an error message "([^"]*)" on train
 
 end
 
-Then(/^trainer record page get displayed with Licence state of 'Full or Provisional' with Expiry date$/)do
-  expect(page).to have_css("#licenseStatuses_2", text: 'Full',visible:true)
-  puts page.find("#licenseExpiryDate_2").text
-  expect(page).to have_css("#licenseStatuses_3", text: 'Provisional/Conditional',visible:true)
-  puts page.find("#licenseExpiryDate_3").text
+Then(/^I change "([^"]*)" of the displayed exisiting trainer which has Licence state 'Full or Provisional'$/)do |date|
+  if(page.should have_css("#licenseStatuses_2", text:'Full'))
+    page.find("#licenseExpiryDate_2").set(date)
+    page.find("#licenseExpiryDate_2").send_keys(:enter)
+  end
+  if(page.should have_css("#licenseStatuses_3",text:'Provisional/Conditional'))
+    page.find("#licenseExpiryDate_3").set(date)
+    page.find("#licenseExpiryDate_3").send_keys(:enter)
+  end
 end
 
-And (/^I try to change "([^"]*)" in past$/)do |date|
-  page.find("#licenseExpiryDate_2").set(date)
-  page.find("#licenseExpiryDate_2").send_keys(:enter)
-  page.find("#licenseExpiryDate_3").set(date)
-  page.find("#licenseExpiryDate_3").send_keys(:enter)
-end
+
 
 Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)
