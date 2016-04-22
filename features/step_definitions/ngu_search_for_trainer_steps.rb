@@ -18,9 +18,8 @@ end
 
 And(/^I start typing atleast three characters as "([^"]*)" in the trainer search field$/)do |chars|
   fill_in('txt-trainer-name', :with => chars)
-  sleep 2
-end
 
+end
 
 When(/^I hit enter after typing first three characters of trainer name as "([^"]*)"$/)do |chars|
   fill_in('txt-trainer-name', :with => chars)

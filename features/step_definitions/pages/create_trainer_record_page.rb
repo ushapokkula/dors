@@ -13,9 +13,15 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :known_as, "#trainerKnownAs"
   element :secondary_phone, "#trainerSecondaryPhone"
   element :is_instructor, "#trainerisInstructor"
+  element :create_trainer_button, "#btnCreateUpdateTrainer"
+  element :update_trainer_button, "#btnCreateUpdateTrainer"
+  element :add_licence_button, "#btnAddLicense"
   #element :course_dropdown, "#courseNames"
   #element :licence_status, "#licenseStatuses"
   #element :licence_expiry_date, "#licenseExpiryDate"
+  element :select_course_name, "#courseNames > option:nth-child(2)"
+  element :select_licence_name, "#licenseStatuses > option:nth-child(2)"
+  element :expiry_date, "#licenseExpiryDate"
 
 
 
@@ -74,28 +80,4 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in('trainerPostcode', :with => "W14 8UD")
   end
 
-  def create_trainer_button
-    find("#btnCreateUpdateTrainer").click
-  end
-
-  def add_course
-    page.find("#courseNames > option:nth-child(2)").click
-  end
-
-  def add_licences
-    page.find("#licenseStatuses > option:nth-child(2)").click
-  end
-
-  def add_licence_button
-    page.find("#btnAddLicense").click
-  end
-
-  def update_trainer
-    page.find("#btnCreateUpdateTrainer").click
-  end
-
-  def add_expiry_date
-    find("#licenseExpiryDate").click
-    page.find("#licenseExpiryDate").set("20/10/2017")
-  end
-  end
+end

@@ -12,7 +12,7 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
 
   def verify_provisional_status
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
-    result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    result = client.execute("select StatusId from [DORS_].[dbo].[tbl_TrainingAssessment]")
     result.each do |row|
       license_status = row['StatusId']
       license_status.eql?(2)

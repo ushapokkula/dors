@@ -16,47 +16,46 @@ Then(/^I fill Mandatory fields with required details on create trainer form$/) d
   @trainers.create_trainer_record_page.filling_trainer_details
 end
 
-And (/^I add Licences$/)do
-  @trainers.create_trainer_record_page.add_course
-  @trainers.create_trainer_record_page.add_licences
-  @trainers.create_trainer_record_page.add_expiry_date
+And (/^I have added licences for the trainer and all mandatory fields for every licence have a value$/)do
+  @trainers.create_trainer_record_page.select_course_name.text == "Berks-Scheme"
+  @trainers.create_trainer_record_page.select_course_name.click
+  @trainers.create_trainer_record_page.select_licence_name.text == "Provisional/Conditional"
+  @trainers.create_trainer_record_page.select_licence_name.click
+  @trainers.create_trainer_record_page.expiry_date.set("20/04/2018")
 end
 And(/^I click Add licence button$/)do
-  @trainers.create_trainer_record_page.add_licence_button
+  @trainers.create_trainer_record_page.add_licence_button.click
 end
 
-And(/^I click on create trainer button$/)do
-   @trainers.create_trainer_record_page.create_trainer_button
+And(/^I click on Create Trainer button$/)do
+   @trainers.create_trainer_record_page.create_trainer_button.click
   end
 
-Then (/^I see success message$/)do
+Then (/^a Success message will be displayed for Create Trainer "([^"]*)"$/)do |message|
   page.find(".toast.toast-success").should be_visible
- expect(page).to have_selector(:css, ".toast.toast-success", text: "New trainer successfully created.")
+ expect(page).to have_selector(:css, ".toast.toast-success", text: message)
 end
 
-And (/^I click update Trainer$/)do
-  @trainers.create_trainer_record_page.update_trainer
+And (/^I click Update Trainer$/)do
+  @trainers.create_trainer_record_page.update_trainer_button.click
 end
-Then (/^I see update message$/)do
+
+Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
   page.find(".toast-message").should be_visible
-  expect(page).to have_selector(:css, ".toast-message", text: "Trainer record successfully updated.")
+  expect(page).to have_selector(:css, ".toast-message", text: message)
 end
 
-When(/^I hit enter after typing characters of trainer name$/)do
-  find('#txt-trainer-name').set("roopa test")
-  find('#txt-trainer-name').send_keys(:enter)
 
-end
-
-Then (/^I should not see added course$/)do
+Then (/^I should not see added course name in the course dropdown-menu$/)do
   page.find("#courseNames").click
-  $find_current_course=page.find(:css,"#courseNames > option:nth-child(2)").text
-  p($find_current_course)
-  page.find(:css,"#courseNames > option:nth-child(2)").should_not have_text("Berks-Scheme")
+ expect(page).should_not have_selector(:css,"#courseNames > option:nth-child(2)",text: 'Berks-Scheme')
 end
 
-Then (/^I should see error message on trainers page$/)do
-  $error_mssg=page.find(:css,".help-block p").text
-  p($error_mssg)
-  page.find(:css,".help-block p", text: "Please select a course name.")
+Then(/^I should see an error message on trainers page "([^"]*)"$/)do |message|
+  page.find(:css,".help-block p",text:message, visible:true)
+end
+
+And(/^I started searching existing "([^"]*)" in the trainer search field$/) do |chars|
+ fill_in('txt-trainer-name', :with=> chars)
+  find("#txt-trainer-name").send_keys(:enter)
 end
