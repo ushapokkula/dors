@@ -66,7 +66,7 @@ Feature: As an an NGU (TrainingGovernance),
       When I hit DOWN arrow key from the trainer auto predict list
       Then The second value will be selected from the auto predict list "<Down_Arrow>"
       When I change "<Expiry date>" of the displayed exisiting trainer which has Licence state 'Full or Provisional'
-      Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
+      #Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
 
     Examples:
     |Trainer Name |Down_Arrow   |Expiry date|

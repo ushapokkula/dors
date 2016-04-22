@@ -39,17 +39,16 @@ Then(/^the system will trigger the user with an error message "([^"]*)" on train
 end
 
 Then(/^I change "([^"]*)" of the displayed exisiting trainer which has Licence state 'Full or Provisional'$/)do |date|
-  if(page.should have_css("#licenseStatuses_2", text:'Full'))
+ if(page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text:'Full'))
     page.find("#licenseExpiryDate_2").set(date)
     page.find("#licenseExpiryDate_2").send_keys(:enter)
-  end
-  if(page.should have_css("#licenseStatuses_3",text:'Provisional/Conditional'))
+ end
+
+if(page.should have_css("#licenseStatuses_3",text:'Provisional/Conditional'))
     page.find("#licenseExpiryDate_3").set(date)
     page.find("#licenseExpiryDate_3").send_keys(:enter)
   end
 end
-
-
 
 Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)
