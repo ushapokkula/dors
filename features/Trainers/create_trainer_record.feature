@@ -54,7 +54,7 @@ Feature: As an an NGU (TrainingGovernance),
      # | Is Instructor          |
 
 
-  @DR-674 @create_tainer_licences
+  @DR-674 @Create_Trainer_Licences
     Scenario: Add Licences and Verify the Success message
       Then I fill Mandatory fields with required details on create trainer form
       And I have added licences for the trainer and all mandatory fields for every licence have a value
@@ -62,7 +62,7 @@ Feature: As an an NGU (TrainingGovernance),
       And I click on Create Trainer button
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
 
-     @DR-674 @create_Licences_number
+     @DR-674 @Create_Trainer_Licences_
      Scenario Outline: Generating Licence Numbers and saving to database
        And I started searching existing "<Trainer Name>" in the trainer search field
        And I have added licences for the trainer and all mandatory fields for every licence have a value
@@ -73,7 +73,7 @@ Feature: As an an NGU (TrainingGovernance),
        |Trainer Name|
        |roopa trainer|
 
-     @DR-674 @create_Licences
+     @DR-674 @Create_Trainer_Licences
     Scenario Outline: Licence Validation fails
        And I started searching existing "<Trainer Name>" in the trainer search field
        Then I should not see added course name in the course dropdown-menu

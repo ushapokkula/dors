@@ -1,6 +1,7 @@
-Feature: DR-268 and DR-720 and DR-719
-  /*Assuming Assessor 'sudiv' linked force area 'Metropolitan police'
-  And verifying Search Force Area for default and filter view */
+Feature: DR-268 and DR-719
+  /*DR-720 still in Devlopment
+   Assuming Assessor 'sudiv' linked force area 'Metropolitan police'
+   And verifying Search Force Area for default and filter view */
 
   Background:
     Given that I have licence.ndors.org.uk page opened
@@ -9,16 +10,27 @@ Feature: DR-268 and DR-720 and DR-719
     Then I will be redirected to Request Assessment page
 
 
-   @trainers_linked_forceareas_match_to_myrecord  @pass
+
+   @DR-268 @Force_Areas_filtering_on_Request_Assessments_page  @pass
     Scenario: will see only those trainers whose linked Force Areas match to those linked to my record
-     And I should see linked Force Areas
-     And I should see list of trainers match to my record
+     Then I will see only those trainers whose linked Force Areas match to those linked to my record
+
+
+  @DR-268 @trainers_forcearea_not_linked_to_Assessor @pass
+  Scenario Outline: won't see trianers who have a force area assigned which i am not linked to
+    When I start typing three letters as "<Force Area>" in the trainer search force areas
+    Then The system will start autopredicting it and the list of highlight "<Force Area Name>" appear
+    And I should not see trainers force area not linked to Assessor
+    Examples:
+      |Force Area|Force Area Name              |
+      |Avo      |AVON AND SOMERSET CONSTABULARY|
+
 
 
   @trainer_force_arear_auto_predict1 @pass
   Scenario Outline: Verify the auto-predict search for force area when searched with force area
     When I start typing three letters as "<Force Area>" in the trainer search force areas
-    Then The system will start autopredicting it and the list of force area appear
+    Then The system will start autopredicting and the list of highlight "<0orce area appear
     And I should see selected force areas in search force area filter
 
     Examples:
@@ -39,15 +51,6 @@ Feature: DR-268 and DR-720 and DR-719
       | BED        |BEDFORDSHIRE POLICE|
 
 
-
-   @trainers_forcearea_not_linked_to_Assessor @pass
-    Scenario Outline: won't see trianers who have a force area assigned which i am not linked to
-     When I start typing three letters as "<Force Area>" in the trainer search force areas
-     Then The system will start autopredicting it and the list of force area appear
-     And I should not see trainers force area not linked to Assessor
-     Examples:
-     |Force Area|
-     |Bri      |
 
 
   @trainer_preselected_forceArea @reset @pass
@@ -78,7 +81,6 @@ Feature: DR-268 and DR-720 and DR-719
        Then I login as an "Assessor"
        And I click "REQUEST ASSESSMENT"
        Then I should see message for no trainers to match requirements
-
 
 
 

@@ -34,14 +34,11 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     end
   end
 
-  def verify_linked_force_areas
-    expect(page).to have_selector(:css,".selectedForceAreaFilter", match: :first,text: "METROPOLITAN POLICE")
-  end
-
 
   def verify_linked_force_areas_not_related_to_assessor
-   $List_of_trainers=page.all(".dors-table").count.should == 3
-    p($List_of_trainers)
+    if(page.all(".dors-table").count>1)
+      page.all(:css, 'linked_force_area'[1], text: 'AVON AND SOMERSET CONSTABULARY')
+    end
   end
 
   def verify_defalut_preselected_forcearea

@@ -37,32 +37,28 @@ And(/^I should be redirected to Pick a slot page$/) do
   expect(page).to have_content("Request Assessment")
 end
 
+Then(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/)do
+  page.all(:css,('linked_force_area')[0],text: 'METROPOLITAN POLICE')
+  if(page.find("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
+    page.all(".dors-table").count == 1
+    expect(page).to have_selector(:css,".trainer-licenseCode", text: '525252/002')
+  end
+  if(page.all(".dors-table").count > 1)
+  expect(page).all(:css,".dors-table").should be_visible
+  end
+  end
 
-
-And (/^I should see linked Force Areas$/)do
-  @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas
-end
-
-
-And(/^I should see list of trainers match to my record$/)do
-$List_of_trainers=all(".dors-table").count
-p($List_of_trainers)
-$primary_trianer=page.all('.dors-table')[0].text
-p($primary_trianer)
-page.should have_css(".trainer-licenseCode", text: '525252/002')
-end
 
 When(/^I start typing three letters as "([^"]*)" in the trainer search force areas$/) do |chars|
   find('.ui-select-search').set(chars)
-  find('.ui-select-search').send_keys(:enter)
 end
 
-# Then(/^The system will start autopredicting it and the list of force area appear$/) do |arg|
-Then(/^The system will start autopredicting it and the list of force area appear$/) do
+Then(/^The system will start autopredicting it and the list of highlight "([^"]*)" appear$/) do |forceareaname|
    expect(page).to have_css('.ui-select-container',visible: true)
-   $force_area_choice=all(".ui-select-choices-row-inner").count
-   p($force_area_choice)
-  # expect(page).to have_css('.ui-select-highlight',text:arg)
+   expect(page).to have_css("#ui-select-choices-row-0-0", text: forceareaname)
+   find('.ui-select-search').send_keys(:enter)
+   expect(page).to have_css(".selectedForceAreaFilter", match: :first, text: forceareaname)
+   expect(page).to have_css(".ui-select-choices-row-inner",match: :first,text: 'BEDFORDSHIRE POLICE')
   end
 
 And(/^I should see selected force areas in search force area filter$/) do
