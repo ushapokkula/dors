@@ -58,19 +58,16 @@ Feature: As an an NGU (TrainingGovernance),
 
 
 
-    @DR-39 @NGU-manually-editing-licences
+    @DR-39 @NGU-manually-editing-licences @bug-story
     Scenario Outline: Display error message when exisiting licences Full or Provisional status have expiry date in past
       Then I see "Trainers management" page
-      When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
-      Then The system will start autopredicting it and the list of trainer appears
-      When I hit DOWN arrow key from the trainer auto predict list
-      Then The second value will be selected from the auto predict list "<Down_Arrow>"
-      When I change "<Expiry date>" of the displayed exisiting trainer which has Licence state 'Full or Provisional'
-      #Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
-
-    Examples:
-    |Trainer Name |Down_Arrow   |Expiry date|
-    |roo          |roopa trainer|04/04/2016|
+      When I start searching for existing "<Trainer Name>" in the trainer search field
+      Then I should see existing trainer details on trainer management page
+      And I change "<Expiry date>" in past for trainer which has Licence state of 'Full or Provisional'
+      Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
+      Examples:
+       |Trainer Name |Expiry date|
+       |roopa trainer|04/04/2016|
 
 
 
