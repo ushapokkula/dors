@@ -58,7 +58,6 @@ And (/^the Licence Status, Course Name or Expiry Date is not set$/)do
   page.find("#licenseStatuses").click
   page.find("#licenseStatuses").send_keys(:enter)
   page.all(:css,('error_messages')[1],text:'Please select a license status.')
-
 end
 
 Then(/^I should see an error messages on trainers page$/)do
