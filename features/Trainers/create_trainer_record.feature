@@ -44,33 +44,23 @@ Feature: As an an NGU (TrainingGovernance),
 
   @create_trainer3
   Scenario Outline: Verify The  optional fields
-
     Then I see the following fields as "<Optional>" on create trainer form
-
     Examples:
       | Optional               |
       | Known As               |
       | Secondary Phone Number |
      # | Is Instructor          |
 
-
-  #Scenario: Verify the validation for username field length and uniqueness
-
-
-
-    @DR-39 @NGU-manually-editing-licences @bug-story
-    Scenario Outline: Display error message when exisiting licences Full or Provisional status have expiry date in past
+  @DR-39 @NGU-manually-editing-licences @bug-story
+    Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
       Then I see "Trainers management" page
       When I start searching for existing "<Trainer Name>" in the trainer search field
       Then I should see existing trainer details on trainer management page
-      And I change "<Expiry date>" in past for trainer which has Licence state of 'Full or Provisional'
+      And I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
       Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
       Examples:
        |Trainer Name |Expiry date|
        |roopa trainer|04/04/2016|
-
-
-
 
   @DR-39 @Editable_fields
    Scenario: Verify the Editable Licence Fields
@@ -86,5 +76,40 @@ Feature: As an an NGU (TrainingGovernance),
       |Surrendered            |
 
 
+  @DR-39 @NGU-manually-editing-licences
+    Scenario Outline: NGU edits a trainer's license details
+    When I select the "<Licence status>" as 'Expired' or 'Suspended'
+    Then the system will default the Expiry Date to today's date
+    And I can change this to any other "<date>" as well from (not in past)
+
+    Examples:
+    |Licence status|date       |
+    |Expired       |           |
+    |Susupended    |           |
 
 
+  Scenario Outline: NGU edits a trainer's license detail
+    When I select the status as to 'Full' from any other value
+    Then the system will default the Expiry Date to 730 days from current date
+    And I can change this to any other date as well (not in past)
+
+    Examples:
+      |Licence status|Expiry date|
+
+  Scenario Outline:
+    When I select the status as 'Provisional/Conditional'
+    Then the system will default the Expiry Date to 183 days from current date
+    And I can change this to any other date as well (not in past)
+    Examples:
+      |Licence status|Expiry date|
+
+  Scenario Outline:
+    When I manually set the Expiry Date to more than 730 days from system/current date
+    Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
+    Examples:
+
+  Scenario Outline:
+    When I have made desired change and click 'Save'
+    Then the system will save the changes to the license record in the database
+    And the system will show a success message, "License details for trainer << Trainer Name >> have been updated"
+    And I will remain on the trainer's record page

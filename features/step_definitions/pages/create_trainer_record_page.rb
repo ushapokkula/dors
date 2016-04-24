@@ -83,7 +83,7 @@ end
 end
 
 
-def verify_default_Licence_trainer_page
+def verify_default_trainer_licence_details
   find("#courseNames").text == "Course name"
   find("#licenseStatuses").text == "Licence status"
   find("#licenseExpiryDate").text == "Expiry Date"

@@ -27,7 +27,7 @@ end
 Then(/^I see "Trainers management" page$/)do
   expect(page).to have_content("Trainers management")
   expect(page).to have_content("Licences")
-  @trainers.create_trainer_record_page.verify_default_Licence_trainer_page
+  @trainers.create_trainer_record_page.verify_default_trainer_licence_details
 end
 
 Then(/^I see the following default Licence status fields$/) do |table|
@@ -47,7 +47,7 @@ Then(/^the system will trigger the user with an error message "([^"]*)" on train
   expect(page).to have_selector(:css,".help-block p", text: message)
 end
 
-And(/^I change "([^"]*)" in past for trainer which has Licence state of 'Full or Provisional'$/)do |date|
+And(/^I change "([^"]*)" in past for trainer which has Licence state of 'Full' or 'Provisional'$/)do |date|
  if(page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text:'Full'))
     page.find("#licenseExpiryDate_2").set(date)
     page.find("#licenseExpiryDate_2").send_keys(:enter)
@@ -64,6 +64,10 @@ Then (/^I should see a message saying "([^"]*)"$/)do |message|
 end
 
 
+#DR-39#
+When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/)do
+expect(page).to have_selector()
+end
 
 
 
