@@ -75,10 +75,12 @@ Feature: As an an NGU (TrainingGovernance),
 
      @DR-674 @Create_Trainer_Licences
     Scenario Outline: Licence Validation fails
-       And I started searching existing "<Trainer Name>" in the trainer search field
+       When I started searching existing "<Trainer Name>" in the trainer search field
        Then I should not see added course name in the course dropdown-menu
-       When I click Update Trainer
-       Then I should see an error message on trainers page "Please select a course name."
+       And the Licence Status, Course Name or Expiry Date is not set
+       And I click Add licence button
+       And I click on Update Trainer
+       Then I should see an error messages on trainers page
 
        Examples:
          |Trainer Name|

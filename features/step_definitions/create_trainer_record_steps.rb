@@ -36,7 +36,7 @@ Then (/^a Success message will be displayed for Create Trainer "([^"]*)"$/)do |m
  expect(page).to have_selector(:css, ".toast.toast-success", text: message)
 end
 
-And (/^I click Update Trainer$/)do
+And (/^I click on Update Trainer$/)do
   @trainers.create_trainer_record_page.update_trainer_button.click
 end
 
@@ -51,8 +51,18 @@ Then (/^I should not see added course name in the course dropdown-menu$/)do
  expect(page).should_not have_selector(:css,"#courseNames > option:nth-child(2)",text: 'Berks-Scheme')
 end
 
-Then(/^I should see an error message on trainers page "([^"]*)"$/)do |message|
-  page.find(:css,".help-block p",text:message, visible:true)
+And (/^the Licence Status, Course Name or Expiry Date is not set$/)do
+  page.find("#courseNames").click
+  page.find("#courseNames").send_keys(:enter)
+  page.all(:css,('error_messages')[0],text:'Please select a course name.')
+  page.find("#licenseStatuses").click
+  page.find("#licenseStatuses").send_keys(:enter)
+  page.all(:css,('error_messages')[1],text:'Please select a license status.')
+
+end
+
+Then(/^I should see an error messages on trainers page$/)do
+  page.all(:css,'error_messages', visible:true)
 end
 
 And(/^I started searching existing "([^"]*)" in the trainer search field$/) do |chars|
