@@ -15,16 +15,16 @@ Feature: DR-268 and DR-719
     Scenario: will see only those trainers whose linked Force Areas match to those linked to my record
      Then I will see only those trainers whose linked Force Areas match to those linked to my record
 
-
-  @DR-268 @trainers_forcearea_not_linked_to_Assessor @pass
-  Scenario Outline: won't see trianers who have a force area assigned which i am not linked to
+   @DR-268 @trainers_forcearea_not_linked_to_Assessor @pass
+    Scenario Outline: won't see trianers who have a force area assigned which i am not linked to
     When I start typing three letters as "<Force Area>" in the trainer search force areas
     Then The system will start autopredicting it and the list of highlight "<Force Area Name>" appear
-    And I should not see trainers force area not linked to Assessor
+    And I won't see trainers who have a Force Area assigned which I am not linked to
+    And the Force Areas filter control on the page will have my linked Force Areas pre-selected as default
     Examples:
       |Force Area|Force Area Name              |
       |Avo      |AVON AND SOMERSET CONSTABULARY|
-
+      |Bri      |BRITISH TRANSPORT POLICE      |
 
 
   @trainer_force_arear_auto_predict1 @pass
@@ -52,12 +52,6 @@ Feature: DR-268 and DR-719
 
 
 
-
-  @trainer_preselected_forceArea @reset @pass
-    Scenario: the Force Areas filter control on the page will have my linked Force Areas pre-selected as default
-      And I should see default pre-selected Force Area
-
-
   @trainer_selected_forcearea_not_be_inlist @pass
   Scenario Outline: Verify the selected force area name search not in force area dropdown
     When I start typing three letters as "<Force Area>" in the trainer search force areas
@@ -69,7 +63,7 @@ Feature: DR-268 and DR-719
       | Cit      |
 
 
-  @no_trainers_available @ignore @pass
+   @DR-268 @no_trainers_available @ignore @pass
      Scenario: no trainers are available to match this requirement
        And I logout
        Then I login as an "Compliance Manager"

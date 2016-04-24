@@ -82,15 +82,12 @@ Then(/^I should see message for no trainers to match requirements$/) do
 end
 
 
-And (/^I should not see trainers force area not linked to Assessor$/)do
-  @trainers.auto_authorise_assessment_request_page.verify_linked_force_areas_not_related_to_assessor
-  page.find(:css,".btn.btn-danger").click
-  $result=page.find(:css,".selectedForceAreaFilter",match: :first).text
-  p($result)
-  $List_of_trainers=page.should have_css(".dors-table",:count=>1)
-  p($List_of_trainers)
+And (/^I won't see trainers who have a Force Area assigned which I am not linked to$/)do
+  @trainers.auto_authorise_assessment_request_page.verify_list_of_trainers_not_related_to_assessor
+  page.find(:css,"#btnResetForceAreas").click
+  puts page.find(:css,".selectedForceAreaFilter",match: :first).text
 end
 
-And (/^I should see default pre-selected Force Area$/)do
+And (/^the Force Areas filter control on the page will have my linked Force Areas pre-selected as default$/)do
   @trainers.auto_authorise_assessment_request_page.verify_defalut_preselected_forcearea
 end
