@@ -43,7 +43,7 @@ Then(/^I will see only those trainers whose linked Force Areas match to those li
     expect(page).to have_css('.dors-table', count: 1)
     expect(page).to have_css(".trainer-licenseCode", text: '525252/002')
   else
-    expect(page).to have_css(".dors-table")
+    expect(page).to have_css(".dors-table",:count > 1 )
   end
 
 end
