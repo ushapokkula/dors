@@ -64,7 +64,7 @@ Feature: As an an NGU (TrainingGovernance),
 
   @DR-39 @Editable_fields
    Scenario: Verify the Editable Licence Fields
-    When the default view of the trainer page loaded
+    #When the default view of the trainer page loaded
     Then I see the following default Licence status fields
       |Licence Status|
       |---Please select---|
@@ -77,38 +77,39 @@ Feature: As an an NGU (TrainingGovernance),
 
 
   @DR-39 @NGU-manually-editing-licences
-    Scenario Outline: NGU edits a trainer's license details
+    #Scenario Outline: NGU edits a trainer's license details
     When I select the "<Licence status>" as 'Expired' or 'Suspended'
     Then the system will default the Expiry Date to today's date
     And I can change this to any other "<date>" as well from (not in past)
 
     Examples:
-    |Licence status|date       |
-    |Expired       |           |
-    |Susupended    |           |
+    #|Licence status|date       |
+    #|Expired       |           |
+    #|Susupended    |           |
 
 
-  Scenario Outline: NGU edits a trainer's license detail
+  #Scenario Outline: NGU edits a trainer's license detail
     When I select the status as to 'Full' from any other value
     Then the system will default the Expiry Date to 730 days from current date
     And I can change this to any other date as well (not in past)
 
     Examples:
-      |Licence status|Expiry date|
+      #|Licence status|Expiry date|
 
-  Scenario Outline:
+  #Scenario Outline:
     When I select the status as 'Provisional/Conditional'
     Then the system will default the Expiry Date to 183 days from current date
     And I can change this to any other date as well (not in past)
     Examples:
       |Licence status|Expiry date|
 
-  Scenario Outline:
+  #Scenario Outline:
     When I manually set the Expiry Date to more than 730 days from system/current date
     Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
     Examples:
 
-  Scenario Outline:
+
+  #Scenario Outline:
     When I have made desired change and click 'Save'
     Then the system will save the changes to the license record in the database
     And the system will show a success message, "License details for trainer << Trainer Name >> have been updated"
