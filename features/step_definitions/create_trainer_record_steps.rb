@@ -65,11 +65,25 @@ end
 
 
 #DR-39#
-When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/)do
-expect(page).to have_selector()
+When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/)do |status|
+  if(page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text:'Full'))
+  page.find("#licenseStatuses_2").click
+  select(status, :from => 'licenseStatuses_2')
+  end
+  end
+
+
+Then(/^the system will default the Expiry Date to today's date$/)do
+  t = Time.now()
+  find("#licenseExpiryDate_2").value == t.strftime("%d/%m/%Y")   #verifying today date#
+  puts find("#licenseExpiryDate_2").value
 end
 
-
+And(/^I can change this to any other "([^"]*)" not in past$/) do |date|
+  find("#licenseExpiryDate_2").click
+  find("#licenseExpiryDate_2").set(date)
+  find("#licenseExpiryDate_2").send_keys(:enter)
+end
 
 
 

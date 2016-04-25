@@ -16,6 +16,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   elements :licence_status, "#licenseStatuses > option"
   elements :licence_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
+  element :expiry_date, "#licenseExpiryDate_0"
 
 
   def verify_trainer_record_details(new_table)
@@ -98,4 +99,12 @@ end
     page.find("#licenseExpiryDate_3").set(date)
   end
 
-end
+
+  def verify_todays_date
+      #expiry_date.each do|date|
+        today.date=Time.now.strftime("%d/%m/%Y")
+        #previous_date=Date.parse(expected_date) > Date.today
+        expect(today.date).to be true
+      end
+    end
+
