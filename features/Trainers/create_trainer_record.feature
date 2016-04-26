@@ -83,7 +83,7 @@ Feature: As an an NGU (TrainingGovernance),
     Then I should see existing trainer details on trainer management page
     When I select the "<Licence status>" as 'Expired' or 'Suspended'
     Then the system will default the Expiry Date to today's date
-    And I can change this to any other "<date>" not in past
+    And I can change today's date to any other "<date>" not in past
     Examples:
     |Trainer Name|Licence status |date      |
     |roopa trainer|Expired       |17/04/2017|
@@ -96,27 +96,41 @@ Feature: As an an NGU (TrainingGovernance),
     Then I should see existing trainer details on trainer management page
     When I select the status as to 'Full' from any other value
     Then the system will default the Expiry Date to 730 days from current date
-    And I can change this to any other "<date>" not in past
+    And I can change Expiry Date value to any other "<date>" not in past
     Examples:
       |Trainer Name|date|
       |roopa trainer|17/04/2017|
 
+  Scenario Outline: Verify Expiry date for Provisional status
+    Then I see "Trainers management" page
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
+    When I select the "<Licence status>" as 'Provisional or Conditional'
+    Then the system will default the Expiry Date to 183 days from current date
+    And I can change Expiry Date to any other "<date>" as well not in past
+    Examples:
+     |Trainer Name|Licence status          |date|
+     |roopa trainer|Provisional/Conditional|22/04/2017|
 
-  #Scenario Outline:
-   # When I select the status as 'Provisional/Conditional'
-    #Then the system will default the Expiry Date to 183 days from current date
-    #And I can change this to any other date as well (not in past)
-    #Examples:
-     # |Licence status|Expiry date|
+  Scenario Outline: Verify warning-message when expiry date more than 730 days
+    Then I see "Trainers management" page
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
+   When I manually set the "<Expiry Date>" to more than 730 days from system or current date
+   Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
+   Examples:
+   |Trainer Name|Expiry Date|
+   |roopa trainer|26/04/2019|
 
-  #Scenario Outline:
-    #When I manually set the Expiry Date to more than 730 days from system/current date
-    #Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
-   # Examples:
-
-
-  #Scenario Outline:
-    #When I have made desired change and click 'Save'
+  Scenario Outline: Verify the 'updated message' after few changes
+    Then I see "Trainers management" page
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
+    When I have made desired changes as "<Postcode>" and click 'Save'
     #Then the system will save the changes to the license record in the database
-    #And the system will show a success message, "License details for trainer << Trainer Name >> have been updated"
-    #And I will remain on the trainer's record page
+    And the system will show a success message, "Trainer record successfully updated."
+    And I will remain on the trainer's record page
+    Examples:
+    |Trainer Name|Postcode|
+    |roopa trainer|HA9 7lm|
+

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="wtgDors" class="ng-scope"><head><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-datepicker-popup.dropdown-menu{display:block;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <base href="/" />
+
+    <title>DORS Trainer</title>
+    <link rel="stylesheet" href="/Content/css?v=TAlcp5udkhQRtNHukmxb5mQzpUNJVwDS9OTcc-AVWUI1" />
+
+ 
+    
+    <script src="/bundles/jquery?v=KVlI-fyBB-Z8AxpOE7nGfeB4Lms7WAtGmiTFfQ0bG8s1"></script>
+
+    <script src="/bundles/angular?v=4QbHQXV9bcTb-elufnLMBIM5vw3wUNmu9JbIImkXshQ1"></script>
+
+</head>
+<body>
+
+    <div class="container">
+       
+        <!-- ngInclude: undefined --><ng-include src="%27app/views/menu-bar.html%27" class="ng-scope" style=""><div data-ng-controller="MenuNavigationController as menuNavVm" class="header ng-scope">
+    <nav class="clearfix">
+
+
+        <a href="#"> <img style="width: 111px;" class="pull-right" src="content/images/ndors_logo.png" /></a>
+
+        <div class="pull-right" data-ng-show="menuNavVm.isAuthenticated" id="login-container" style="">
+            <b class="ng-binding">jane1</b>
+            <a data-ng-click="menuNavVm.signOut($event)" href="#/signout/" id="btn-signout">Sign out</a>
+        </div>
+        <!-- ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope" style="">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/request-assessment/assessment-management/" class="ng-binding">ASSESSMENT MANAGEMENT</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/admin/" class="ng-binding">ADMINISTRATION</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/assessors/" class="ng-binding">ASSESSORS</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems --><ul data-ng-repeat="menuItem in menuNavVm.menuItems" class="nav nav-pills pull-left ng-scope">
+            <li role="presentation"><a data-ng-click="menuNavVm.navigateTo($event, menuItem)" href="#/trainers/" class="ng-binding">TRAINERS</a></li>
+        </ul><!-- end ngRepeat: menuItem in menuNavVm.menuItems -->
+    </nav>
+
+
+</div></ng-include>
+
+        <!-- ngView:  --><div data-ng-view="" class="ng-scope" style=""><h1 class="ng-scope">Trainers management </h1>
+<div style="height: 100px" class="clearfix ng-scope">
+    <form class="form-inline pull-right ng-valid ng-dirty ng-valid-editable" novalidate="" style="">
+        <div class="form-group">
+            <label for="txt-trainer-name" class="sr-only">Search Trainer</label>
+
+            <input type="text" data-ng-model="TrainersVm.trainerNameIdSearch" placeholder="Search Trainer" uib-typeahead="trainer as trainer.forename + ' ' + trainer.surname  + ' (' + trainer.trainerRef +')' for trainer in TrainersVm.getMatchingTrainers($viewValue)" typeahead-on-select="TrainersVm.trainerSearchSelected($item, $model, $label, $event)" typeahead-min-length="3" typeahead-no-results="noTrainerFound" autocomplete="off" spellcheck="false" name="txt-trainer-name" id="txt-trainer-name" class="form-control input-lg ng-valid ng-dirty ng-valid-editable ng-touched" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-74-8100" style="" /><ul aria-hidden="true" role="listbox" ng-style="{top: position().top+'px', left: position().left+'px'}" ng-show="isOpen() &amp;&amp; !moveInProgress" class="dropdown-menu ng-isolate-scope ng-hide" uib-typeahead-popup="" id="typeahead-74-8100" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate" style="top: 234px; left: 1053px;">
+    <!-- ngRepeat: match in matches track by $index -->
+</ul>
+            <div>
+                <em>3 characters or 6 digits required</em>
+            </div>
+
+            <!-- ngIf: noTrainerFound && TrainersVm.nameNotFound() -->
+            <!-- ngIf: noTrainerFound && TrainersVm.idNotFound() -->
+        </div>
+    </form>
+</div>
+
+<div data-ng-show="TrainersVm.showTrainerCreatedMessage" class="alert alert-success ng-scope ng-hide">
+    New trainer successfully created.
+</div>
+
+<div data-ng-show="TrainersVm.showTrainerUpdatedMessage" class="alert alert-info ng-scope ng-hide">
+    Trainer record successfully updated.
+</div>
+
+
+<div class="panel panel-default ng-scope">
+    <div class="panel-heading">
+        <h3 class="panel-title"><strong class="ng-binding"> Update Trainer</strong></h3>
+    </div>
+
+
+    <div class="panel-body">
+        <form data-ng-submit="TrainersVm.createTrainer()" class="form-horizontal ng-valid-minlength ng-valid-maxlength ng-valid-must-not-start-with-zero ng-valid-must-start-with-zero ng-valid-email ng-valid-required ng-valid-is-username-unique ng-valid-is-trainer-id-unique ng-dirty ng-valid-parse ng-invalid ng-invalid-pattern" name="TrainersVm.frmCreateTrainer" novalidate="" style="">
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerUsername.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerUsername.$dirty  ) }" class="form-group">
+                <label for="trainerUsername" class="col-md-3 control-label required-field">Username</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerUsername" data-ng-disabled="TrainersVm.disableUsername" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0} }" data-ng-pattern="/^[a-zA-Z0-9-_]+$/" maxlength="70" data-minlength="4" assessor-name-validator="" data-no-space="" id="trainerUsername" name="trainerUsername" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-valid-minlength ng-valid-maxlength ng-valid-required ng-valid ng-valid-is-username-unique" required="" disabled="disabled" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerUsername.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerUsername.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerUsername.$error.required" style="">Please provide a username.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerUsername.$error.isUsernameUnique">Sorry, the username is already taken. Please try a different username.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerUsername.$error.pattern">Sorry, the username can only contain numbers, letters, dashes and underscores.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerUsername.$error.minlength">Sorry, the username must be at least 4 characters long.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerNumber.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerNumber.$dirty  ) }" class="form-group">
+                <label for="trainerNumber" class="col-md-3 control-label required-field">Trainer Id</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0} }" data-ng-disabled="TrainersVm.disableTrainerNumber" data-ng-pattern="/^[0-9]+$/i" must-not-start-with-zero="" trainer-id-validator="" alphanumeric-only="" spellcheck="false" minlength="6" maxlength="6" id="trainerNumber" name="trainerNumber" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-valid-must-not-start-with-zero ng-valid-minlength ng-valid-maxlength ng-valid-required ng-valid ng-valid-is-trainer-id-unique" required="" disabled="disabled" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerNumber.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerNumber.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerNumber.$error.required" style="">Please provide a trainer id.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerNumber.$error.isTrainerIdUnique">Sorry, the trainer id already exist. Please try a different trainer id.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerNumber.$error.pattern">Sorry, only numbers.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerNumber.$error.mustNotStartWithZero">Sorry, the trainer Id must not start with zero</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerNumber.$error.minlength">Sorry, the trainerId must be 6 numbers long.</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerFirstName.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerFirstName.$dirty  ) }" class="form-group">
+                <label for="trainerFirstName" class="col-md-3 control-label required-field">First Name</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerFirstName" id="trainerFirstName" name="trainerFirstName" class="form-control required-field ng-pristine ng-untouched ng-valid ng-valid-required" required="" style="" />
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerFirstName.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerFirstName.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerFirstName.$error.required" style="">Please provide a first name.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerLastName.$invalid &amp;&amp; (TrainersVm.submitted || TrainersVm.frmCreateTrainer.trainerLastName.$dirty  ) }" class="form-group">
+                <label for="trainerLastName" class="col-md-3 control-label required-field">Last Name</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerLastName" id="trainerLastName" name="trainerLastName" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerLastName.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerLastName.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerLastName.$error.required" style="">Please provide a last name.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerKnownAs.$invalid &amp;&amp; (TrainersVm.submitted || TrainersVm.frmCreateTrainer.trainerKnownAs.$dirty  ) }" class="form-group">
+                <label for="trainerKnownAs" class="col-md-3 control-label">Known As</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerKnownAs" id="trainerKnownAs" name="trainerKnownAs" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$invalid &amp;&amp; (TrainersVm.submitted || TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$dirty )}" class="form-group">
+                <label for="trainerPrimaryPhone" class="col-md-3 control-label required-field">Primary Phone Number</label>
+                <div class="col-md-3">
+                    <input type="tel" check-for-max-length="false" numbers-only="" data-ng-pattern="/^\d+$/" must-start-with-zero="" data-minlength="10" maxlength="11" data-ng-model="TrainersVm.trainerPrimaryPhone" id="trainerPrimaryPhone" name="trainerPrimaryPhone" class="form-control ng-pristine ng-untouched ng-isolate-scope ng-valid-pattern ng-valid-must-start-with-zero ng-valid-minlength ng-valid-maxlength ng-valid ng-valid-required" required="" style="" />
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$error.required" style="">Please provide a phone number.</span>
+
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$error.mustStartWithZero">Sorry, the phone number must start with zero</span>
+
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$error.minlength">Sorry, the phone number must be at least 10 digits long.</span>
+
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPrimaryPhone.$error.pattern">Sorry, only numbers are accepted.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerSecondaryPhone.$invalid &amp;&amp; (TrainersVm.submitted || TrainersVm.frmCreateTrainer.trainerSecondaryPhone.$dirty )}" class="form-group">
+                <label for="trainerSecondaryPhone" class="col-md-3 control-label">Secondary Phone Number</label>
+                <div class="col-md-3">
+                    <input type="tel" numbers-only="" data-ng-pattern="/^\d+$/" must-start-with-zero="" data-minlength="10" maxlength="11" data-ng-model="TrainersVm.trainerSecondaryPhone" id="trainerSecondaryPhone" name="trainerSecondaryPhone" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-pattern ng-valid-must-start-with-zero ng-valid-minlength ng-valid-maxlength" />
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerSecondaryPhone.$error.mustStartWithZero">Sorry, the phone number must start with zero</span>
+
+                    <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerSecondaryPhone.$error.minlength">Sorry, the phone number must be at least 10 digits long.</span>
+
+                    <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerSecondaryPhone.$error.pattern">Sorry, only numbers are accepted.</span>
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerEmail.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerEmail.$dirty  ) }" class="form-group">
+                <label for="trainerEmail" class="col-md-3 control-label required-field">Email</label>
+                <div class="col-md-3">
+                    <input type="email" data-ng-model="TrainersVm.trainerEmail" data-ng-pattern="/^[_A-Za-z0-9]+(\.[_A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$/" id="trainerEmail" name="trainerEmail" class="form-control ng-pristine ng-untouched ng-valid-email ng-valid-pattern ng-valid ng-valid-required" required="" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerEmail.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerEmail.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerEmail.$error.required" style="">Please provide an email address.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerEmail.$error.pattern">Please provide a valid email address.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerAddress.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerAddress.$dirty  ) }" class="form-group">
+                <label for="trainerAddress" class="col-md-3 control-label required-field">Address</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerAddress" id="trainerAddress" name="trainerAddress" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerAddress.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerAddress.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerAddress.$error.required" style="">Please provide an address.</span>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerTown.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerTown.$dirty  ) }" class="form-group">
+                <label for="trainerTown" class="col-md-3 control-label required-field">Town</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-model="TrainersVm.trainerTown" id="trainerTown" name="trainerTown" class="form-control required-field ng-pristine ng-untouched ng-valid ng-valid-required" required="" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerTown.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerTown.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerTown.$error.required" style="">Please provide a town.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div data-ng-class="{ 'has-error': TrainersVm.frmCreateTrainer.trainerPostcode.$invalid &amp;&amp; (TrainersVm.submitted ||TrainersVm.frmCreateTrainer.trainerPostcode.$dirty  ) }" class="form-group">
+                <label for="trainerPostcode" class="col-md-3 control-label required-field">Postcode</label>
+                <div class="col-md-3">
+                    <input type="text" data-ng-pattern="/^[a-z]{1,2}[0-9][a-z0-9]?\s?[0-9][a-z]{2}$/i" data-ng-model="TrainersVm.trainerPostcode" id="trainerPostcode" name="trainerPostcode" class="form-control ng-untouched ng-valid-required ng-dirty ng-valid-parse ng-invalid ng-invalid-pattern" required="" style="" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <div ng-show="(TrainersVm.frmCreateTrainer.trainerPostcode.$dirty || TrainersVm.submitted)  &amp;&amp; TrainersVm.frmCreateTrainer.trainerPostcode.$invalid" class="ng-hide">
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPostcode.$error.required" style="">Please provide a postcode.</span>
+                        <span class="help-block ng-hide" data-ng-show="TrainersVm.frmCreateTrainer.trainerPostcode.$error.pattern">Please provide a valid postcode.</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ng-hide" ng-show="TrainersVm.showSelectedForceAreas">
+                <label for="trainerForceAreas" class="col-md-3 control-label">Force Areas </label>
+
+                <div class="col-md-9">
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <ul class="list-group" name="trainerForceAreas" id="selected-force-areas">
+                                <!-- ngRepeat: selectedForce in TrainersVm.selectedForceAreas -->
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="trainerisInstructor" class="col-md-3 control-label">Is Instructor </label>
+                <div class="col-md-6">
+
+                    <div class="">
+
+                        <input type="checkbox" class="include-nearby-trainer-checkbox ng-pristine ng-untouched ng-valid" data-ng-model="TrainersVm.isInstructor" id="trainerisInstructor" name="trainerisInstructor" />
+                    </div>
+
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+<div class="panel panel-default ng-scope">
+    <div class="panel-heading">
+        <h3 class="panel-title"><strong>Licences</strong></h3>
+    </div>
+
+    <div class="panel-body">
+        <form style="padding-bottom: 15px;" name="TrainersVm.frmLicenses" novalidate="" class="ng-pristine ng-valid ng-valid-required ng-valid-expired-license ng-valid-date">
+
+
+            <div data-ng-show="TrainersVm.licenses.length &gt; 0" class="row" style="">
+                <div class="col-md-3 col-md-offset-1">
+                    <span><strong class="">Course name</strong></span>
+                </div>
+
+                <div class="col-md-3">
+                    <span><strong class="">Licence status</strong></span>
+                </div>
+
+                <div class="col-md-2">
+                    <span><strong class="">Expiry Date</strong></span>
+                </div>
+            </div>
+
+
+            <!-- ngRepeat: license in TrainersVm.licenses --><div style="padding-bottom: 15px;" data-ng-repeat="license in TrainersVm.licenses" class="ng-scope">
+
+
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['courseNames_0'].$invalid &amp;&amp; (TrainersVm.frmLicenses['courseNames_0'].$touched)}" class="">
+
+                            <input type="text" disabled="disabled" data-ng-model="license.selectedCourseName" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                            <!-- ngIf: TrainersVm.frmLicenses['courseNames_{{$index}}'].$touched || TrainersVm.frmLicenses['courseNames_{{$index}}'].$submitted -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['licenseStatuses_0'].licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicenses['licenseStatuses_0'].licenseStatuses.$touched)}" class="">
+
+
+                            <select required="" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" data-ng-change="TrainersVm.licenseStatusChanged(license, $index)" data-ng-model="license.selectedLicenseStatus" name="licenseStatuses_0" id="licenseStatuses_0">
+                                <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                            </select>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseStatuses_{{$index}}'].licenseStatuses.$touched || TrainersVm.frmLicenses['_{{$index}}'].$invalid -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div data-ng-class="{ 'has-error':TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid}" class="">
+
+                            <input type="text" popup-placement="top" name="licenseExpiryDate_0" id="licenseExpiryDate_0" placeholder="dd/mm/yyyy" ui-validate="{expiredLicense : 'TrainersVm.validateExpiredLicense($value, license)' }" data-ng-change="TrainersVm.licenseExpiryDateChanged(license)" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(license)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptionsForExistingLicenses" is-open="license.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="license.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-expired-license ng-valid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1 ">
+                        <button class="btn btn-danger ng-hide" type="button" data-ng-click="TrainersVm.removeLicense($index, license)" data-ng-show="license.showDeleteButton"><span>×</span></button>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-danger ng-hide" data-ng-show="license.showLongLicenseExpiryDateMessage">
+                            You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div><!-- end ngRepeat: license in TrainersVm.licenses --><div style="padding-bottom: 15px;" data-ng-repeat="license in TrainersVm.licenses" class="ng-scope">
+
+
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['courseNames_1'].$invalid &amp;&amp; (TrainersVm.frmLicenses['courseNames_1'].$touched)}" class="">
+
+                            <input type="text" disabled="disabled" data-ng-model="license.selectedCourseName" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                            <!-- ngIf: TrainersVm.frmLicenses['courseNames_{{$index}}'].$touched || TrainersVm.frmLicenses['courseNames_{{$index}}'].$submitted -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['licenseStatuses_1'].licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicenses['licenseStatuses_1'].licenseStatuses.$touched)}" class="">
+
+
+                            <select required="" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" data-ng-change="TrainersVm.licenseStatusChanged(license, $index)" data-ng-model="license.selectedLicenseStatus" name="licenseStatuses_1" id="licenseStatuses_1">
+                                <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                            </select>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseStatuses_{{$index}}'].licenseStatuses.$touched || TrainersVm.frmLicenses['_{{$index}}'].$invalid -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div data-ng-class="{ 'has-error':TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid}" class="">
+
+                            <input type="text" popup-placement="top" name="licenseExpiryDate_1" id="licenseExpiryDate_1" placeholder="dd/mm/yyyy" ui-validate="{expiredLicense : 'TrainersVm.validateExpiredLicense($value, license)' }" data-ng-change="TrainersVm.licenseExpiryDateChanged(license)" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(license)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptionsForExistingLicenses" is-open="license.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="license.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-expired-license ng-valid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1 ">
+                        <button class="btn btn-danger ng-hide" type="button" data-ng-click="TrainersVm.removeLicense($index, license)" data-ng-show="license.showDeleteButton"><span>×</span></button>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-danger ng-hide" data-ng-show="license.showLongLicenseExpiryDateMessage">
+                            You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div><!-- end ngRepeat: license in TrainersVm.licenses --><div style="padding-bottom: 15px;" data-ng-repeat="license in TrainersVm.licenses" class="ng-scope">
+
+
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['courseNames_2'].$invalid &amp;&amp; (TrainersVm.frmLicenses['courseNames_2'].$touched)}" class="">
+
+                            <input type="text" disabled="disabled" data-ng-model="license.selectedCourseName" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                            <!-- ngIf: TrainersVm.frmLicenses['courseNames_{{$index}}'].$touched || TrainersVm.frmLicenses['courseNames_{{$index}}'].$submitted -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['licenseStatuses_2'].licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicenses['licenseStatuses_2'].licenseStatuses.$touched)}" class="">
+
+
+                            <select required="" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" data-ng-change="TrainersVm.licenseStatusChanged(license, $index)" data-ng-model="license.selectedLicenseStatus" name="licenseStatuses_2" id="licenseStatuses_2">
+                                <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                            </select>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseStatuses_{{$index}}'].licenseStatuses.$touched || TrainersVm.frmLicenses['_{{$index}}'].$invalid -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div data-ng-class="{ 'has-error':TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid}" class="">
+
+                            <input type="text" popup-placement="top" name="licenseExpiryDate_2" id="licenseExpiryDate_2" placeholder="dd/mm/yyyy" ui-validate="{expiredLicense : 'TrainersVm.validateExpiredLicense($value, license)' }" data-ng-change="TrainersVm.licenseExpiryDateChanged(license)" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(license)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptionsForExistingLicenses" is-open="license.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="license.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-expired-license ng-valid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1 ">
+                        <button class="btn btn-danger ng-hide" type="button" data-ng-click="TrainersVm.removeLicense($index, license)" data-ng-show="license.showDeleteButton"><span>×</span></button>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-danger ng-hide" data-ng-show="license.showLongLicenseExpiryDateMessage">
+                            You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div><!-- end ngRepeat: license in TrainersVm.licenses --><div style="padding-bottom: 15px;" data-ng-repeat="license in TrainersVm.licenses" class="ng-scope">
+
+
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['courseNames_3'].$invalid &amp;&amp; (TrainersVm.frmLicenses['courseNames_3'].$touched)}" class="">
+
+                            <input type="text" disabled="disabled" data-ng-model="license.selectedCourseName" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                            <!-- ngIf: TrainersVm.frmLicenses['courseNames_{{$index}}'].$touched || TrainersVm.frmLicenses['courseNames_{{$index}}'].$submitted -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['licenseStatuses_3'].licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicenses['licenseStatuses_3'].licenseStatuses.$touched)}" class="">
+
+
+                            <select required="" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" data-ng-change="TrainersVm.licenseStatusChanged(license, $index)" data-ng-model="license.selectedLicenseStatus" name="licenseStatuses_3" id="licenseStatuses_3">
+                                <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                            </select>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseStatuses_{{$index}}'].licenseStatuses.$touched || TrainersVm.frmLicenses['_{{$index}}'].$invalid -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div data-ng-class="{ 'has-error':TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid}" class="">
+
+                            <input type="text" popup-placement="top" name="licenseExpiryDate_3" id="licenseExpiryDate_3" placeholder="dd/mm/yyyy" ui-validate="{expiredLicense : 'TrainersVm.validateExpiredLicense($value, license)' }" data-ng-change="TrainersVm.licenseExpiryDateChanged(license)" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(license)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptionsForExistingLicenses" is-open="license.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="license.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-expired-license ng-valid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1 ">
+                        <button class="btn btn-danger ng-hide" type="button" data-ng-click="TrainersVm.removeLicense($index, license)" data-ng-show="license.showDeleteButton"><span>×</span></button>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-danger ng-hide" data-ng-show="license.showLongLicenseExpiryDateMessage">
+                            You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div><!-- end ngRepeat: license in TrainersVm.licenses --><div style="padding-bottom: 15px;" data-ng-repeat="license in TrainersVm.licenses" class="ng-scope">
+
+
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['courseNames_4'].$invalid &amp;&amp; (TrainersVm.frmLicenses['courseNames_4'].$touched)}" class="">
+
+                            <input type="text" disabled="disabled" data-ng-model="license.selectedCourseName" class="form-control ng-pristine ng-untouched ng-valid" />
+
+                            <!-- ngIf: TrainersVm.frmLicenses['courseNames_{{$index}}'].$touched || TrainersVm.frmLicenses['courseNames_{{$index}}'].$submitted -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div data-ng-class="{ 'has-error': TrainersVm.frmLicenses['licenseStatuses_4'].licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicenses['licenseStatuses_4'].licenseStatuses.$touched)}" class="">
+
+
+                            <select required="" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" data-ng-change="TrainersVm.licenseStatusChanged(license, $index)" data-ng-model="license.selectedLicenseStatus" name="licenseStatuses_4" id="licenseStatuses_4">
+                                <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                            </select>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseStatuses_{{$index}}'].licenseStatuses.$touched || TrainersVm.frmLicenses['_{{$index}}'].$invalid -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div data-ng-class="{ 'has-error':TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid}" class="">
+
+                            <input type="text" popup-placement="top" name="licenseExpiryDate_4" id="licenseExpiryDate_4" placeholder="dd/mm/yyyy" ui-validate="{expiredLicense : 'TrainersVm.validateExpiredLicense($value, license)' }" data-ng-change="TrainersVm.licenseExpiryDateChanged(license)" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(license)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptionsForExistingLicenses" is-open="license.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="license.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-expired-license ng-valid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+
+                            <!-- ngIf: TrainersVm.frmLicenses['licenseExpiryDate_'+$index].$invalid -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1 ">
+                        <button class="btn btn-danger ng-hide" type="button" data-ng-click="TrainersVm.removeLicense($index, license)" data-ng-show="license.showDeleteButton"><span>×</span></button>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-danger ng-hide" data-ng-show="license.showLongLicenseExpiryDateMessage">
+                            You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div><!-- end ngRepeat: license in TrainersVm.licenses -->
+            
+        </form>
+
+
+        <form data-ng-submit="TrainersVm.addLicense()" data-ng-show="!TrainersVm.showMaxLicenseMessage" name="TrainersVm.frmLicense" novalidate="" class="ng-pristine ng-invalid ng-invalid-required ng-invalid-min-range ng-valid-date">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                    <div data-ng-class="{ 'has-error': TrainersVm.frmLicense.courseNames.$invalid &amp;&amp; (TrainersVm.frmLicense.courseNames.$touched || TrainersVm.frmLicense.$submitted)}">
+                        <label for="courseNames" class="control-label">Course name</label>
+                        <select required="" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" data-ng-model="TrainersVm.selectedCourse" name="courseNames" id="courseNames">
+                            <option value="">---Please select---</option>
+                            <!-- ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="6" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope" style="">drive well</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="136" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">Driving 4 Change</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="11" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">mictest</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="139" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">Motorway Course</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="5" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">New Trend</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="138" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">NSAC20</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="3" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">RiDE</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="137" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">Speed Awareness</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="7" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">Speed Control</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' --><option value="100" ng-repeat="option in TrainersVm.schemes | orderBy:'name'" class="ng-binding ng-scope">Twenty16</option><!-- end ngRepeat: option in TrainersVm.schemes | orderBy:'name' -->
+                        </select>
+
+                        <!-- ngIf: TrainersVm.frmLicense.courseNames.$touched || TrainersVm.frmLicense.$submitted -->
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div data-ng-class="{ 'has-error': TrainersVm.frmLicense.licenseStatuses.$invalid &amp;&amp; (TrainersVm.frmLicense.licenseStatuses.$touched || TrainersVm.frmLicense.$submitted)}">
+                        <label for="licenseStatuses" class="control-label">Licence status</label>
+                        <select data-ng-change="TrainersVm.licenseStatusChanged(TrainersVm)" required="" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" data-ng-model="TrainersVm.selectedLicenseStatus" name="licenseStatuses" id="licenseStatuses">
+                            <option value="">---Please select---</option>
+                            <!-- ngRepeat: option in TrainersVm.licenseStatuses --><option value="2" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Provisional/Conditional</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="1" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Full</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="3" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="4" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Suspended</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="5" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Revoked</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses --><option value="6" ng-repeat="option in TrainersVm.licenseStatuses" class="ng-binding ng-scope">Surrendered</option><!-- end ngRepeat: option in TrainersVm.licenseStatuses -->
+                        </select>
+
+                        <!-- ngIf: TrainersVm.frmLicense.licenseStatuses.$touched || TrainersVm.frmLicense.$submitted -->
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div data-ng-class="{ 'has-error': TrainersVm.frmLicense.licenseExpiryDate.$invalid &amp;&amp; (TrainersVm.frmLicense.licenseExpiryDate.$touched || TrainersVm.frmLicense.$submitted)}">
+                        <label for="licenseExpiryDate" class="control-label">Expiry Date</label>
+                        <input type="text" data-ng-change="TrainersVm.licenseExpiryDateChanged(TrainersVm)" name="licenseExpiryDate" ui-validate="{minRange : 'TrainersVm.checkMinRange($value)' }" id="licenseExpiryDate" placeholder="dd/mm/yyyy" data-ng-click="TrainersVm.showLicenseExpiryDatePicker(TrainersVm)" on-open-focus="false" close-text="Close" ng-required="true" datepicker-options="TrainersVm.datePickerOptions" is-open="TrainersVm.licenseExpiryDatePicker.opened" show-button-bar="false" ng-model="TrainersVm.licenseExpiryDate" uib-datepicker-popup="dd/MM/yyyy" class="form-control ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-min-range ng-invalid-required ng-valid-date" required="required" /><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid ng-pristine ng-untouched" style="">
+  <!-- ngIf: isOpen -->
+</div>
+
+                        <!-- ngIf: TrainersVm.frmLicense.licenseExpiryDate.$touched || TrainersVm.frmLicense.$submitted -->
+
+                       
+
+                    </div>
+                </div>
+
+                <div class="col-md-1 ">
+                    <button class="btn btn-primary align-bottom" type="submit" id="btnAddLicense">Add licence</button>
+                </div>
+
+              </div>
+            <div class="row">
+
+                <div class="col-md-10 col-md-offset-1">
+                    <p class="text-danger ng-hide" data-ng-show="TrainersVm.showLongLicenseExpiryDateMessage">
+                    You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct.
+                    </p>
+
+                   
+                </div>
+
+            </div>
+        </form>
+
+        <div class="alert alert-info text-center ng-hide" data-ng-show="TrainersVm.showMaxLicenseMessage">
+            You have reached the maximum number of licences
+        </div>
+        
+</div>
+
+</div>
+
+<div style="margin-bottom:100px" class="clearfix ng-scope">
+    <button class="btn btn-primary pull-right ng-binding" data-ng-click="TrainersVm.createTrainer()" id="btnCreateUpdateTrainer" type="submit">Update Trainer</button>
+    <button data-ng-click="TrainersVm.cancel()" class="btn btn-default" id="btnCancelTrainer" type="button">Cancel</button>
+</div></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+
+            <p class="footer-text">© 2016 - NATIONAL DRIVER OFFENDER RETRAINING SCHEME</p>
+        </div>
+    </footer>
+   
+    <script src="/bundles/dors-angular?v=dqmq2CQbnT3JIHGrjM9pAZC_H6QnUreq0eFzf7Qn04Y1"></script>
+
+    
+
+
+</body></html>
