@@ -99,12 +99,5 @@ end
     page.find("#licenseExpiryDate_3").set(date)
   end
 
-
-  def verify_todays_date
-      #expiry_date.each do|date|
-        today.date=Time.now.strftime("%d/%m/%Y")
-        #previous_date=Date.parse(expected_date) > Date.today
-        expect(today.date).to be true
-      end
-    end
+end
 

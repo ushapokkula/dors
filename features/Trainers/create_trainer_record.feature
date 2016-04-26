@@ -43,7 +43,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Postcode             | Please provide a postcode.       |
 
   @create_trainer3
-  Scenario Outline: Verify The  optional fields
+  Scenario Outline: Verify The optional fields
     Then I see the following fields as "<Optional>" on create trainer form
     Examples:
       | Optional               |
@@ -80,23 +80,27 @@ Feature: As an an NGU (TrainingGovernance),
   Scenario Outline: NGU edits a trainer's license details
     Then I see "Trainers management" page
     When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
     When I select the "<Licence status>" as 'Expired' or 'Suspended'
     Then the system will default the Expiry Date to today's date
     And I can change this to any other "<date>" not in past
-
     Examples:
-    |Trainer Name|date       |Licence status|
-    |roopa trainer|17/04/2017  |Expired     |
-    |roopa trainer|17/04/2017  |Suspended   |
+    |Trainer Name|Licence status |date      |
+    |roopa trainer|Expired       |17/04/2017|
+    |roopa trainer|Suspended     |17/04/2017|
 
 
-  #Scenario Outline: NGU edits a trainer's license detail
-    #When I select the status as to 'Full' from any other value
-    #Then the system will default the Expiry Date to 730 days from current date
-    #And I can change this to any other date as well (not in past)
+  Scenario Outline: NGU edits a trainer's license detail
+    Then I see "Trainers management" page
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
+    When I select the status as to 'Full' from any other value
+    Then the system will default the Expiry Date to 730 days from current date
+    And I can change this to any other "<date>" not in past
+    Examples:
+      |Trainer Name|date|
+      |roopa trainer|17/04/2017|
 
-    #Examples:
-      #|Licence status|Expiry date|
 
   #Scenario Outline:
    # When I select the status as 'Provisional/Conditional'

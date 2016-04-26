@@ -63,11 +63,10 @@ Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)
 end
 
-
 #DR-39#
 When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/)do |status|
   if(page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text:'Full'))
-  page.find("#licenseStatuses_2").click
+    page.find("#licenseStatuses_2").click
   select(status, :from => 'licenseStatuses_2')
   end
   end
@@ -75,15 +74,31 @@ When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/)do |status|
 
 Then(/^the system will default the Expiry Date to today's date$/)do
   t = Time.now()
-  find("#licenseExpiryDate_2").value == t.strftime("%d/%m/%Y")   #verifying today date#
+  find("#licenseExpiryDate_2").value==('(t.strftime("%d/%m/%Y")') #verifying today date#
   puts find("#licenseExpiryDate_2").value
 end
 
 And(/^I can change this to any other "([^"]*)" not in past$/) do |date|
+  if(page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text:'Full'))
   find("#licenseExpiryDate_2").click
   find("#licenseExpiryDate_2").set(date)
   find("#licenseExpiryDate_2").send_keys(:enter)
+  elsif(page.should have_css("#licenseStatuses_3 > option:nth-child(1)", text:'Provisional/Conditional'))
+  find("#licenseExpiryDate_3").click
+  find("#licenseExpiryDate_3").set(date)
+  find("#licenseExpiryDate_3").send_keys(:enter)
+  end
+  end
+
+When(/^I select the status as to 'Full' from any other value$/) do
+  if(page.should have_css("#licenseStatuses_3 > option:nth-child(1)", text:'Provisional/Conditional'))
+   page.find("#licenseStatuses_3").click
+  select('Full',:from=>'licenseStatuses_3')
+  end
 end
 
+Then(/^the system will default the Expiry Date to 730 days from current date$/)do
+find("#licenseExpiryDate_3").value == ('((Date.today) + 730').to_s
+end
 
 
