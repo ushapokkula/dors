@@ -8,18 +8,18 @@ Feature: As an NGU,
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
     Then I see "Trainers management" page
-    When I start searching for existing 'Trainer Name' in the trainer search field
-    Then I should see existing trainer details on trainer management page
 
 
   @DR-39 @NGU-manually-editing-licences @bug-story
   Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see existing trainer details on trainer management page
     Then I should see existing trainer details on trainer management page
     And I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
     Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
     Examples:
-       |Expiry date|
-       |04/04/2016|
+   |Trainer Name    |Expiry date|
+    |roopa trainer   |04/04/2016|
 
   @DR-39 @Editable_fields
   Scenario: Verify the Editable Licence Fields

@@ -1,26 +1,27 @@
-When(/^I start searching for existing 'Trainer Name' in the trainer search field$/)do
-  fill_in('txt-trainer-name', :with => 'roopa trainer')
-  find("#txt-trainer-name").send_keys(:enter)
+When(/^I start searching for existing "([^"]*)" in the trainer search field$/)do|chars|
+  @trainer.edit_or_update_trainer_record_page.searching_exisisting_trainer_name_in_trainer_search_field(chars)
+  #fill_in('txt-trainer-name', :with => 'roopa trainer')
+  #find("#txt-trainer-name").send_keys(:enter)
 end
 
 
 Then(/^I should see existing trainer details on trainer management page$/)do
   expect(page).to have_selector(:css,"h3.panel-title",match: :first,text:'Update Trainer')
   expect(page).to have_selector(:css,"h3.panel-title",match: :'one',text:'Licences')
-  expect(page).to have_selector(:css,"#licenseStatuses_2 > option:nth-child(2)", text:'Full') #verifying 'Full' licence state#
-  expect(page).to have_selector(:css,"#licenseStatuses_3 > option:nth-child(1)",text:'Provisional/Conditional') #verifying 'Provisional' licence state#
+  expect(page).to have_selector(:css,"#licenseStatuses_2 > option:nth-child(2)", text:'Full')                       #verifying 'Full' licence state#
+  expect(page).to have_selector(:css,"#licenseStatuses_3 > option:nth-child(1)",text:'Provisional/Conditional')     #verifying 'Provisional' licence state#
 end
 
 
 Then(/^I see "Trainers management" page$/)do
   expect(page).to have_content("Trainers management")
   expect(page).to have_content("Licences")
-  @trainers.create_trainer_record_page.verify_default_trainer_licence_details
+  @trainers.edit_or_update_trainer_record_page.verify_default_trainer_licence_details
 end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|
   new_table = (table.hashes)
-  @trainers.EditORUpdate_trainer_record_page.verify_default_licence_fields(new_table)
+  @trainers.edit_or_update_Trainer_Record_page.verify_default_licence_fields(new_table)
 end
 
 And(/^I change "([^"]*)" in past for trainer which has Licence state of 'Full' or 'Provisional'$/)do |date|
@@ -124,7 +125,7 @@ end
 When (/^I have made desired changes as "([^"]*)" and click 'Save'$/)do |postcode|
   page.find("#trainerPostcode").click
   page.find("#trainerPostcode").set(postcode)
-  @trainers.create_trainer_record_page.updateTrainer_button.click
+  @trainers.edit_or_update_trainer_record_page.updateTrainer_button.click
 
 end
 

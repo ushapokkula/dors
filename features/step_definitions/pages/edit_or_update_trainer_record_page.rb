@@ -1,4 +1,4 @@
- class EditORUpdateTrainerRecordPage < SitePrism::Page
+ class EditOrUpdateTrainerRecordPage < SitePrism::Page
   elements :licence_status, "#licenseStatuses > option"
   elements :licence_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
@@ -41,4 +41,10 @@
     page.find("#licenseStatuses_3").set(status)
     page.find("#licenseExpiryDate_3").set(date)
   end
+
+
+   def searching_exisisting_trainer_name_in_trainer_search_field(chars)
+     fill_in("txt-trainer-name", :with=> chars)
+     find("#txt-trainer-name").send_keys(:enter)
+   end
 end

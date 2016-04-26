@@ -20,7 +20,7 @@
 
     <div class="container">
        
-        <!-- ngInclude: undefined --><ng-include src="%27app/views/menu-bar.html%27" class="ng-scope"><div data-ng-controller="MenuNavigationController as menuNavVm" class="header ng-scope">
+        <!-- ngInclude: undefined --><ng-include src="%27app/views/menu-bar.html%27" class="ng-scope" style=""><div data-ng-controller="MenuNavigationController as menuNavVm" class="header ng-scope">
     <nav class="clearfix">
 
 
@@ -50,7 +50,7 @@
         <div class="form-group">
             <label for="txt-trainer-name" class="sr-only">Search Trainer</label>
 
-            <input type="text" data-ng-model="TrainersVm.trainerNameIdSearch" placeholder="Search Trainer" uib-typeahead="trainer as trainer.forename + ' ' + trainer.surname  + ' (' + trainer.trainerRef +')' for trainer in TrainersVm.getMatchingTrainers($viewValue)" typeahead-on-select="TrainersVm.trainerSearchSelected($item, $model, $label, $event)" typeahead-min-length="3" typeahead-no-results="noTrainerFound" autocomplete="off" spellcheck="false" name="txt-trainer-name" id="txt-trainer-name" class="form-control input-lg ng-pristine ng-untouched ng-valid" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-74-7695" /><ul aria-hidden="true" role="listbox" ng-style="{top: position().top+'px', left: position().left+'px'}" ng-show="isOpen() &amp;&amp; !moveInProgress" class="dropdown-menu ng-isolate-scope ng-hide" uib-typeahead-popup="" id="typeahead-74-7695" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate" style="">
+            <input type="text" data-ng-model="TrainersVm.trainerNameIdSearch" placeholder="Search Trainer" uib-typeahead="trainer as trainer.forename + ' ' + trainer.surname  + ' (' + trainer.trainerRef +')' for trainer in TrainersVm.getMatchingTrainers($viewValue)" typeahead-on-select="TrainersVm.trainerSearchSelected($item, $model, $label, $event)" typeahead-min-length="3" typeahead-no-results="noTrainerFound" autocomplete="off" spellcheck="false" name="txt-trainer-name" id="txt-trainer-name" class="form-control input-lg ng-pristine ng-untouched ng-valid" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-74-1877" /><ul aria-hidden="true" role="listbox" ng-style="{top: position().top+'px', left: position().left+'px'}" ng-show="isOpen() &amp;&amp; !moveInProgress" class="dropdown-menu ng-isolate-scope ng-hide" uib-typeahead-popup="" id="typeahead-74-1877" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate" style="">
     <!-- ngRepeat: match in matches track by $index -->
 </ul>
             <div>
