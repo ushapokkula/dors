@@ -69,7 +69,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def filling_trainer_details
-    #fill_in('trainerUsername', :with=> 'trainer-test123')
     $user_name=username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name
@@ -79,7 +78,6 @@ class CreateTrainerRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
-    puts $user_name
   end
 
 end
