@@ -1,5 +1,5 @@
 When(/^I start searching for existing "([^"]*)" in the trainer search field$/)do|chars|
-  @trainer.edit_or_update_trainer_record_page.searching_exisisting_trainer_name_in_trainer_search_field(chars)
+  @trainers.edit_or_update_trainer_record_page.searching_exisisting_trainer_name_in_trainer_search_field(chars)
   #fill_in('txt-trainer-name', :with => 'roopa trainer')
   #find("#txt-trainer-name").send_keys(:enter)
 end

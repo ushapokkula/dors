@@ -1,4 +1,4 @@
- class EditOrUpdateTrainerRecordPage < SitePrism::Page
+class EditOrUpdateTrainerRecordPage < SitePrism::Page
   elements :licence_status, "#licenseStatuses > option"
   elements :licence_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
