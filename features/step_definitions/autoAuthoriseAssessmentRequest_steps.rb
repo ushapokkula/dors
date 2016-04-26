@@ -1,5 +1,5 @@
 Given(/^I am on Assessment Request Summary page$/) do
-  #@trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.auto_authorise_assessment_request_page.navigate_assessment_request_summary_page
 end
 
