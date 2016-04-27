@@ -71,8 +71,6 @@ Feature: As an NGU (TrainingGovernance),
     Then The second value will be selected from the auto predict list "<Down_Arrow>"
     When I hit UP arrow key from the trainer auto predict list
     Then The first name will be selected from the auto predict list "<UP_Arrow>"
-
-
     Examples:
       | Trainer Name | Down_Arrow              | UP_Arrow                 |
       | ani          | AnitaWTGTEST Hegde (11) | AnitaTest1 WTGtest1 (10) |

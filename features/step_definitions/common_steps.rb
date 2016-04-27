@@ -39,9 +39,6 @@ And(/^I logout$/) do
   # Capybara.reset_sessions!
 end
 
-And(/^click on Request Assessment$/) do
-  find(:button, button).click
-end
 
 And(/^I click Save$/) do
  find("#btnSaveSettings").click
