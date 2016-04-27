@@ -9,17 +9,15 @@ Feature: As an NGU,
     And I click "TRAINERS"
     Then I see "Trainers management" page
 
-
   @DR-39 @NGU-manually-editing-licences @bug-story
   Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
     When I start searching for existing "<Trainer Name>" in the trainer search field
-    Then I should see existing trainer details on trainer management page
-    Then I should see existing trainer details on trainer management page
+    Then I should see searched Trainer details
     And I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
     Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
     Examples:
-   |Trainer Name    |Expiry date|
-    |roopa trainer   |04/04/2016|
+   |Trainer Name |Expiry date|
+    |roopa trainer|04/04/2016|
 
   @DR-39 @Editable_fields
   Scenario: Verify the Editable Licence Fields
@@ -36,44 +34,53 @@ Feature: As an NGU,
 
   @DR-39 @NGU-manually-editing-licences
   Scenario Outline: Verify Expiry date for 'Expired' and 'Suspende' status
-    When I select the "<Licence status>" as 'Expired' or 'Suspended'
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see searched Trainer details
+    And I select the "<Licence status>" as 'Expired' or 'Suspended'
     Then the system will default the Expiry Date to today's date
     And I can change today's date to any other "<date>" not in past
     Examples:
-      |Licence status |date      |
-      |Expired       |17/04/2017|
-      |Suspended     |17/04/2017|
+    |Trainer Name |Licence status |date      |
+    |roopa trainer|Expired         |17/04/2017|
+    |roopa trainer|Suspended     |17/04/2017|
 
 
   Scenario Outline: Verify Expiry date for 'Full' status
-    When I select the status as to 'Full' from any other value
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see searched Trainer details
+    And I select the status as to 'Full' from any other value
     Then the system will default the Expiry Date to 730 days from current date
     And I can change Expiry Date value to any other "<date>" not in past
     Examples:
-      |date      |
-      |17/04/2017|
+      |Trainer Name |date      |
+      |roopa trainer|17/04/2017|
 
   Scenario Outline: Verify Expiry date for 'Provisional' status
-    When I select the "<Licence status>" as 'Provisional or Conditional'
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see searched Trainer details
+    And I select the "<Licence status>" as 'Provisional or Conditional'
     Then the system will default the Expiry Date to 183 days from current date
     And I can change Expiry Date to any other "<date>" as well not in past
     Examples:
-      |Licence status          |date|
-      |Provisional/Conditional|22/04/2017|
+    |Trainer Name |Licence status          |date|
+    |roopa trainer|Provisional/Conditional|22/04/2017|
 
   Scenario Outline: Verify warning-message when expiry date more than 730 days
-    When I manually set the "<Expiry Date>" to more than 730 days from system or current date
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see searched Trainer details
+    And I manually set the "<Expiry Date>" to more than 730 days from system or current date
     Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
     Examples:
-     |Expiry Date|
-     |26/04/2019|
+   |Trainer Name|Expiry Date|
+   |roopa trainer|26/04/2019|
 
   Scenario Outline: Verify the 'updated message' after few changes
-    When I have made desired changes as "<Postcode>" and click 'Save'
-    #Then the system will save the changes to the license record in the database
+    When I start searching for existing "<Trainer Name>" in the trainer search field
+    Then I should see searched Trainer details
+    And I have made desired changes for "<Postcode>" and click 'Save'
     And the system will show a success message, "Trainer record successfully updated."
     And I will remain on the trainer's record page
     Examples:
-    |Postcode|
-    |HA9 7lm|
+    |Trainer Name |Postcode|
+    |roopa trainer|HA9 7lm|
 

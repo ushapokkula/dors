@@ -3,6 +3,7 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
   elements :licence_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
   element :expiry_date, "#licenseExpiryDate_0"
+  element :search_trainer_field, "//input[@id='txt-trainer-name']"
 
   def verify_editable_fields_of_trainer_licences
     find("#licenseStatuses_0").click
@@ -23,7 +24,6 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     end
     puts licence_fields
     expect( new_table.map { |x| x['Licence Status']})
-
   end
 
 
@@ -42,9 +42,12 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     page.find("#licenseExpiryDate_3").set(date)
   end
 
+  def searching_exisisting_trainer_name_in_trainer_search_field(chars)
+    find("#txt-trainer-name").click
+    fill_in("txt-trainer-name", :with=> chars)
+    #page.all(:css,"#txt-trainer-name + ul", match::first, text:'roopa tariner(123458')
+    find("#txt-trainer-name").send_keys(:enter)
+  end
 
-   def searching_exisisting_trainer_name_in_trainer_search_field(chars)
-     fill_in("txt-trainer-name", :with=> chars)
-     find("#txt-trainer-name").send_keys(:enter)
-   end
+
 end
