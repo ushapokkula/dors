@@ -10,8 +10,8 @@ end
 
 Then (/^I should see searched Trainer details$/)do
   page.find("#trainerFirstName").value == 'roopa'
-  page.find("#licenseStatuses_2 > option:nth-child(2)", text:'Full', visible:true)
-  page.find("#btnCreateUpdateTrainer", text:'Update Trainer', visible:true)
+  page.find("#licenseStatuses_2 > option:nth-child(2)").text == 'Full'
+  page.find("#btnCreateUpdateTrainer").text == 'Update Trainer'
 end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|

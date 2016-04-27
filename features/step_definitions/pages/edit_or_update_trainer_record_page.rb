@@ -45,7 +45,6 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
   def searching_exisisting_trainer_name_in_trainer_search_field(chars)
     find("#txt-trainer-name").click
     fill_in("txt-trainer-name", :with=> chars)
-    #page.all(:css,"#txt-trainer-name + ul", match::first, text:'roopa tariner(123458')
     find("#txt-trainer-name").send_keys(:enter)
   end
 
