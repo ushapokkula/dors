@@ -45,3 +45,4 @@ end
 And(/^I see that the courses displaying near by have same postcode as Primary one$/)do
   @trainers.show_near_by_trainers_page.verify_near_by_courses_same_postcode
 end
+
