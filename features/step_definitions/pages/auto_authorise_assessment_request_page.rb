@@ -56,7 +56,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
   def verify_defalut_preselected_forcearea
-    page.find(:css,".selectedForceAreaFilter",match: :first).should have_text('METROPOLITAN POLICE')
+    page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
     puts all(:css,".dors-table").count
     page.should have_css(".trainer-licenseCode", text: '525252/002')
   end

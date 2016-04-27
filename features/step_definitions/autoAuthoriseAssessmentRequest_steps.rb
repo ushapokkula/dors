@@ -78,7 +78,7 @@ end
 
 
 And (/^I won't see trainers who have a Force Area assigned which I am not linked to$/)do
-  page.find_all((".close")[1]).click
+  find("span.ui-select-match-close", match: :'first').click
   puts page.find(:css,".selectedForceAreaFilter",match: :first).text
 end
 
