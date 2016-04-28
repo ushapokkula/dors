@@ -34,6 +34,6 @@ Feature:DR-305
     Then The trainers on this request will not be available for further bookings
 
 
-  Note: @fail=> kept due to at the moment unable to connect to the backend , can't delete and verify status of the Assessment in backend.
+
 
 

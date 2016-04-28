@@ -1,4 +1,4 @@
-@DR-168 @pass
+@DR-168
 Feature:DR-168
   As an assessor,
   I want to be able to load details of an assessment,
@@ -27,8 +27,7 @@ Feature:DR-168
       | Phone         |
       | Status Approved |
 
-  @AssessmentDetails2
-  Scenario: Verify the display of mileage, expenses claimed and Noted field
+  Scenario: Verify the display of mileage, expenses claimed and Notes field
     And The mileage and expenses claimed  will be shown
     And The Notes field will be displayed
 

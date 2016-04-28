@@ -18,9 +18,9 @@ Before do
   @trainers=Trainers.new
 end
 
-After do
-  page.execute_script("window.localStorage.clear()")
-end
+# After do
+#   page.execute_script("window.localStorage.clear()")
+# end
 =begin
 After do
   find('#btn-signout').click

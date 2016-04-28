@@ -42,7 +42,7 @@ ASSESSOR_PASSWORD1= "P@ssw0rd"
 COMPLAINCE_USERNAME= "jane1"
 COMPLAINCE_PASSWORD= "P@ssw0rd"
 
-$Trainers_Link="https://systest.trainer.dors.wtg.co.uk"
+$Trainers_Link= "https://auto.trainer.dors.wtg.co.uk"
 
 
 
