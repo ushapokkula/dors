@@ -1,4 +1,4 @@
-@DR-169 @DR-674 @pass
+@DR-169 @DR-674
 Feature: As an an NGU (TrainingGovernance),
   I want to be able to create new Trainer records,
   so that they can be added onto courses by suppliers and have a visibility on the system.
@@ -82,6 +82,8 @@ Feature: As an an NGU (TrainingGovernance),
        Examples:
          |Trainer Name|
          |roopa trainer|
+
+
 
 
 

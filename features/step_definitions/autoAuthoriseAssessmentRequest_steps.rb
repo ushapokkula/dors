@@ -37,8 +37,15 @@ And(/^I should be redirected to Pick a slot page$/) do
   expect(page).to have_content("Request Assessment")
 end
 
-And(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
-  @trainers.auto_authorise_assessment_request_page.verify_force_area_linked_to_assessor
+Then(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
+  expect(page).to have_css('.selectedForceAreaFilter', text: 'METROPOLITAN POLICE')
+  if (page.find("#assessmentExpiringIntro", text: 'Trainer licenses expiring within the next 365 days:'))
+    expect(page).to have_css('.dors-table', count: 1)
+    expect(page).to have_css(".trainer-licenseCode", text: '525252/002')
+  else
+    expect(page).to have_css(".dors-table",:count > 1 )
+  end
+
 end
 
 
@@ -49,25 +56,35 @@ end
 Then(/^The system will start autopredicting it and the list of highlight "([^"]*)" appear$/) do |forceareaname|
   expect(page).to have_css('.ui-select-container', visible: true)
   expect(page).to have_css("#ui-select-choices-row-0-0", text: forceareaname)
-end
-
-And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/)do|forceareaname|
   find('.ui-select-search').send_keys(:enter)
   expect(page).to have_css(".selectedForceAreaFilter", match: :first, text: forceareaname)
+  expect(page).to have_css(".ui-select-choices-row-inner", match: :first, text: 'BEDFORDSHIRE POLICE')
 end
 
-And (/^I should see the matching Force Area in Force Area Filters$/)do
-  expect(page).to have_css(".selectedForceAreaFilter", match: :first, text: 'CHESHIRE')
+And(/^I should see selected force areas in search force area filter$/) do
+  expect(page).to have_selector(:css, ".selectedForceAreaFilter")
+end
+
+And(/^I should see selected "([^"]*)" in search force area filter$/) do |name|
+  $Force_name=expect(page).to have_selector(:css, ".selectedForceAreaFilter", match: :'one', text: name)
+  p($Force_name)
 end
 
 
-Then(/^I should see message for "([^"]*)"$/) do |message|
-  expect(page).to have_selector(:css, ".alert.alert-info", text: message)
+Then (/^The selected force area name will not be in the drop down list$/) do
+  expect(page).to have_selector(:css, ".selectedForceAreaFilter", match: :'one', text: 'CITY OF LONDON POLICE')
+  page.find(".ui-select-choices", match: :'one').should_not have_text('CITY OF LONDON POLICE')
+end
+
+
+Then(/^I should see message for no trainers to match requirements$/) do
+  expect(page).to have_selector(:css, ".alert.alert-info", text: "No assessments available to book.")
 end
 
 
 And (/^I won't see trainers who have a Force Area assigned which I am not linked to$/) do
-  find_all('span.ui-select-match-close')[1].click
+  @trainers.auto_authorise_assessment_request_page.verify_list_of_trainers_not_related_to_assessor
+  page.find(:css, "#btnResetForceAreas").click
   puts page.find(:css, ".selectedForceAreaFilter", match: :first).text
 end
 

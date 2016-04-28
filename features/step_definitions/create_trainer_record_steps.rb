@@ -16,6 +16,7 @@ And (/^I try to update "([^"]*)" and "([^"]*)"$/) do |status,date|
   @trainers.create_trainer_record_page.update_diff_licence_status_with_expiry_date(status,date)
 end
 
+
 Then(/^I fill Mandatory fields with required details on create trainer form$/) do
   @trainers.create_trainer_record_page.filling_trainer_details
 end
@@ -27,7 +28,6 @@ And (/^I have added licences for the trainer and all mandatory fields for every 
   @trainers.create_trainer_record_page.select_licence_name.click
   @trainers.create_trainer_record_page.expiry_date.set("20/04/2018")
 end
-
 And(/^I click Add licence button$/)do
   @trainers.create_trainer_record_page.add_licence_button.click
 end
@@ -74,3 +74,11 @@ And(/^I started searching existing "([^"]*)" in the trainer search field$/) do |
   find("#txt-trainer-name").send_keys(:enter)
 end
 
+And (/^I click update Trainer button$/)do
+  @trainers.create_trainer_record_page.updateTrainer_button.click
+end
+
+
+Then (/^I should see a message saying "([^"]*)"$/)do |message|
+  expect(page).to have_selector(:css,".toast-message", text: message)
+end
