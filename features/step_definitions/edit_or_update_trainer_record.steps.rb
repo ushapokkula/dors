@@ -18,8 +18,9 @@ Then(/^I should see searched "([^"]*)" and "([^"]*)" trainer details$/) do |firs
 end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|
-  new_table = (table.hashes)
-  @trainers.edit_or_update_trainer_record_page.verify_default_licence_fields(new_table)
+  expected_options = table.hashes.map { |x| x['Licence Status'] }
+  actual_options = @trainers.edit_or_update_trainer_record_page.license_status_options.map { |x| x.text }
+  expect(actual_options).to match_array(expected_options)
 end
 
 And(/^I change "([^"]*)" in past for trainer which has Licence state of 'Full' or 'Provisional'$/) do |date|

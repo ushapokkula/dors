@@ -7,6 +7,7 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
   element :search_trainer, '#txt-trainer-name'
   element :trainer_first_name, '#trainerFirstName'
   element :trainer_last_name, '#trainerLastName'
+  elements :license_status_options,"#licenseStatuses option"
 
   def verify_editable_fields_of_trainer_licences
     find("#licenseStatuses_0").click
@@ -15,19 +16,6 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     find("#licenseExpiryDate_0").set("23/10/20")
   end
 
-  def verify_default_licence_fields(new_table)
-    licence_fields = [], status =[]
-    page.has_css?("#licenseStatuses")
-    find("#licenseStatuses").text == "Licence status"
-    find("#licenseStatuses").click
-    expect(page).to have_css("#licenseStatuses > option")
-    licence_status.each do |values|
-      status = values.text
-      licence_fields.push(status)
-    end
-    puts licence_fields
-    expect(new_table.map { |x| x['Licence Status'] })
-  end
 
 
   def verify_default_trainer_licence_details
