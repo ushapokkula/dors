@@ -4,6 +4,9 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
   element :expiry_date, "#licenseExpiryDate_0"
   element :search_trainer_field, "//input[@id='txt-trainer-name']"
+  element :search_trainer, '#txt-trainer-name'
+  element :trainer_first_name, '#trainerFirstName'
+  element :trainer_last_name, '#trainerLastName'
 
   def verify_editable_fields_of_trainer_licences
     find("#licenseStatuses_0").click
@@ -19,11 +22,11 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     find("#licenseStatuses").click
     expect(page).to have_css("#licenseStatuses > option")
     licence_status.each do |values|
-      status  = values.text
+      status = values.text
       licence_fields.push(status)
     end
     puts licence_fields
-    expect( new_table.map { |x| x['Licence Status']})
+    expect(new_table.map { |x| x['Licence Status'] })
   end
 
 
@@ -33,19 +36,13 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     find("#licenseExpiryDate").text == "Expiry Date"
   end
 
-  def update_diff_licence_status_with_expiry_date(status,date)
+  def update_diff_licence_status_with_expiry_date(status, date)
     page.find("#licenseStatuses_2").click
     page.find("#licenseStatuses_2").set(status)
     page.find("#licenseExpiryDate_2").set(date)
     page.find("#licenseStatuses_3").click
     page.find("#licenseStatuses_3").set(status)
     page.find("#licenseExpiryDate_3").set(date)
-  end
-
-  def searching_exisisting_trainer_name_in_trainer_search_field(chars)
-    find("#txt-trainer-name").click
-    fill_in("txt-trainer-name", :with=> chars)
-    find("#txt-trainer-name").send_keys(:enter)
   end
 
 
