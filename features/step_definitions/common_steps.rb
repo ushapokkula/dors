@@ -1,5 +1,6 @@
 When(/^I click "(.*?)"$/) do |link_or_button|
   click_link_or_button(link_or_button)
+  sleep 2
 end
 
 When(/^I click "(.*?)" tab$/) do |tab|
@@ -11,7 +12,7 @@ When(/^I navigate to "([^"]*)" page$/) do |tab|
 end
 
 Then(/^I see a message "(.*?)"$/) do |message|
-  expect(page).to have_text(message)
+  expect(page).to have_content(message)
 end
 
 Then(/^an "(.*?)" button$/) do |button|
@@ -33,5 +34,7 @@ end
 
 And(/^I logout$/) do
   find('#btn-signout').click
-  expect(page.should have_css('#txtemail'))
+  # Capybara.reset_sessions!
 end
+
+

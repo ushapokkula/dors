@@ -25,6 +25,8 @@ require 'sort'
 #require 'time_difference'
 require 'pry'
 require 'date'
+require 'waitutil'
+
 require_relative 'misc'
 include RSpec:: Matchers
 include Misc
@@ -42,7 +44,7 @@ ASSESSOR_PASSWORD1= "P@ssw0rd"
 COMPLAINCE_USERNAME= "jane1"
 COMPLAINCE_PASSWORD= "P@ssw0rd"
 
-$Trainers_Link= "https://auto.trainer.dors.wtg.co.uk"
+$Trainers_Link="https://auto.trainer.dors.wtg.co.uk"
 
 
 
@@ -50,8 +52,8 @@ $Trainers_Link= "https://auto.trainer.dors.wtg.co.uk"
 Capybara.configure do |config|
 
   config.default_driver = :debug
-  config.app_host = "https://systest.trainer.dors.wtg.co.uk"
-  # config.default_max_wait_time = 10
+  config.app_host = "https://auto.trainer.dors.wtg.co.uk"
+  config.default_max_wait_time = 10
 end
 World(Capybara)
 

@@ -15,6 +15,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :is_instructor, "#trainerisInstructor"
 
 
+
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -56,4 +57,8 @@ class CreateTrainerRecordPage < SitePrism::Page
     expect(page).not_to have_css(".help-block")
     expect(page).to have_content("New trainer successfully created.")
   end
+
+
+
 end
+

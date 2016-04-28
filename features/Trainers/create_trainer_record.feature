@@ -43,16 +43,11 @@ Feature: As an an NGU (TrainingGovernance),
       | Postcode             | Please provide a postcode.       |
 
   @create_trainer3
-  Scenario Outline: Verify The  optional fields
-
+  Scenario Outline: Verify The optional fields
     Then I see the following fields as "<Optional>" on create trainer form
-
     Examples:
       | Optional               |
       | Known As               |
       | Secondary Phone Number |
      # | Is Instructor          |
 
-
-  Scenario: Verify the validation for username field length and uniqueness
-    And

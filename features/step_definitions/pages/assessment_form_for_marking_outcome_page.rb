@@ -4,7 +4,7 @@ class AssessmentFormForMarkingOutcomePage < SitePrism::Page
   def verify_outcomes(new_table)
     outcome_dropdown.each do |row|
       dropdown_elements=[]
-      dropdown_elements=row.text
+      dropdown_elements=row.
       columns= new_table.map { |x| x['Outcomes'] }
       for i in 1...columns.size
         expect(dropdown_elements).to match(/#{columns[i]}/i)

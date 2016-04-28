@@ -62,3 +62,4 @@ Then(/^The first name will be selected from the auto predict list "([^"]*)"$/) d
   puts find("#txt-trainer-name").text
   find("#txt-trainer-name").text == selected_trainer
 end
+
