@@ -81,7 +81,6 @@ Feature: As an an NGU (TrainingGovernance),
        And I click Add licence button
        And I click on Update Trainer
        Then I should see an error messages on trainers page
-
        Examples:
          |Trainer Name|
          |roopa trainer|

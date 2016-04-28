@@ -1,7 +1,7 @@
 class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
-  elements :linked_force_area, ".selectedForceAreaFilter"
+  elements :linked_force_area_name, ".selectedForceAreaFilter"
 
   def navigate_to_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
@@ -35,6 +35,17 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
 
+  def force_area_linked_to_assessor_record
+    page.find_all(('linked_force_area_name')[0],text: 'METROPOLITAN POLICE')
+    if(page.find("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
+      page.all(".dors-table").count == 1
+      page.should have_css(".trainer-licenseCode", text: '525252/002')
+      end
+      page.all(".dors-table").count > 1
+      page.find_all('linked_force_area_name')
+      end
+
+
   def verify_list_of_trainers_not_related_to_assessor
     if(page.all(".dors-table").count>1)
       page.all(:css, 'linked_force_area'[1])
@@ -45,7 +56,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
   def verify_defalut_preselected_forcearea
-    page.find(:css,".selectedForceAreaFilter",match: :first).should have_text('METROPOLITAN POLICE')
+    page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
     puts all(:css,".dors-table").count
     page.should have_css(".trainer-licenseCode", text: '525252/002')
   end

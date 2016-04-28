@@ -69,8 +69,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def filling_trainer_details
-    #fill_in('trainerUsername', :with=> 'trainer-test123')
-    username.set Faker::Name.name[4..70]
+    $user_name=username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
