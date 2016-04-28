@@ -67,7 +67,7 @@ Feature: As an an NGU (TrainingGovernance),
        And I started searching existing "<Trainer Name>" in the trainer search field
        And I have added licences for the trainer and all mandatory fields for every licence have a value
        And I click Add licence button
-       And I click Update Trainer
+       And I click on Update Trainer
        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
        Examples:
        |Trainer Name|

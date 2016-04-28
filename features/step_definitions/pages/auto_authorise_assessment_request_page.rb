@@ -2,6 +2,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
   elements :linked_force_area_name, ".selectedForceAreaFilter"
+  elements :expiry_dates, ".license-expiry-date"
 
   def navigate_to_request_summary_page
     click_link_or_button("REQUEST ASSESSMENT")
@@ -35,31 +36,60 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
 
-  def force_area_linked_to_assessor_record
+  def verify_force_area_linked_to_assessor
     page.find_all(('linked_force_area_name')[0],text: 'METROPOLITAN POLICE')
-    if(page.find("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
+    if (page.find("#assessmentExpiringIntro", text: 'Trainer licenses expiring within the next 365 days:'))
+    expect(page).to have_css('.dors-table', count: 1)
+    expect(page).to have_css(".trainer-licenseCode", text: '525252/002')
+    else
+      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
+     expect(page).to have_css(".dors-table")
+    end
+
+    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
       page.all(".dors-table").count == 1
-      page.should have_css(".trainer-licenseCode", text: '525252/002')
-      end
-      page.all(".dors-table").count > 1
-      page.find_all('linked_force_area_name')
-      end
-
-
-  def verify_list_of_trainers_not_related_to_assessor
-    if(page.all(".dors-table").count>1)
-      page.all(:css, 'linked_force_area'[1])
+    page.should have_css(".trainer-licenseCode", text: '525252/002')
+    else
+      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
+      expect(page).to have_css(".dors-table")
     end
-    if(page.all(".dors-table").count == 1)
-      page.should have_css(".trainer-licenseCode", text: '525252/002')
+    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
+     page.all(".dors-table").count > 1
+     page.should have_css(".trainer-licenseCode", text: '525252/002')
+    else
+      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
+      expect(page).to have_css(".dors-table")
+     #find_all(".dors-table")[1].should have_css(('expiry_dates')[1])
+     #page.find_all('expiry_dates')[0]< ('expiry_dates')[1]
     end
-  end
+    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
+     page.should have_css(".alert.alert-info",text: 'No assessments available to book.')
+     page.all(".dors-table").count == 0
+    else
+      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
+      page.should have_css(".alert.alert-info",text: 'No assessments available to book.')
+      expect(page).to have_css(".dors-table")
+
+    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:'))
+    page.all(".dors-table")>1
+    end
+    end
+    end
+
 
   def verify_defalut_preselected_forcearea
+    if(page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE'))
+    find_all('span.ui-select-match-close')[0].click
+    click_link_or_button('REQUEST ASSESSMENT')
     page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
-    puts all(:css,".dors-table").count
+    page.all(:css,".dors-table").count == 1
     page.should have_css(".trainer-licenseCode", text: '525252/002')
-  end
+    end
+    if(page.find_all('linked_force_area_name')[0].should_not have_text('METROPOLITAN POLICE'))
+
+    end
+
+    end
 
 
   def primary_trainer_include_bydefault

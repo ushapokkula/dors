@@ -23,6 +23,7 @@ And (/^I have added licences for the trainer and all mandatory fields for every 
   @trainers.create_trainer_record_page.select_licence_name.click
   @trainers.create_trainer_record_page.expiry_date.set("20/04/2018")
 end
+
 And(/^I click Add licence button$/)do
   @trainers.create_trainer_record_page.add_licence_button.click
 end

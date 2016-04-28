@@ -40,7 +40,7 @@ class MyAssessmentsDefaultViewPage < SitePrism::Page
     end
   end
 
-  def verify_assessment_date_out_of_30_days
+ def verify_assessment_date_out_of_30_days
     for i in 2..3
       date=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div[1]/div[1]/h4").text
       expected_date=Date.parse(date).strftime("%Y-%m-%d")
