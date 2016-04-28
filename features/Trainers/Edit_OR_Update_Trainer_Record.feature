@@ -34,7 +34,7 @@ Feature: As an NGU,
 
 
   @DR-39 @NGU-manually-editing-licences
-  Scenario Outline: Verify Expiry date for 'Expired' and 'Suspende' status
+  Scenario Outline: Verify Expiry date for 'Expired' and 'Suspended' status
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
     And I select the "<Licence status>" as 'Expired' or 'Suspended'

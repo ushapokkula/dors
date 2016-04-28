@@ -27,3 +27,4 @@ gem "tiny_tds"
 gem 'pry'
 gem 'parallel_tests'
 gem 'report_builder'
+gem 'waitutil'

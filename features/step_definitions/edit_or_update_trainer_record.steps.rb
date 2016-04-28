@@ -1,7 +1,7 @@
 Given(/^I search for "([^"]*)" and "([^"]*)" in the trainer search field$/) do |firstname, lastname|
-  @trainers.edit_or_update_trainer_record_page.search_trainer.set(firstname + " " + lastname)
+  @trainers.edit_or_update_trainer_record_page.search_trainer_field.set(firstname + " " + lastname)
   sleep 1 # for some reason i needed this sleep, need to figure out why
-  @trainers.edit_or_update_trainer_record_page.search_trainer.send_keys(:enter)
+  @trainers.edit_or_update_trainer_record_page.search_trainer_field.send_keys(:enter)
 end
 
 
@@ -13,13 +13,15 @@ end
 
 
 Then(/^I should see searched "([^"]*)" and "([^"]*)" trainer details$/) do |firstname, lastname|
-  expect(@trainers.edit_or_update_trainer_record_page.trainer_first_name.value).to eq firstname
-  expect(@trainers.edit_or_update_trainer_record_page.trainer_last_name.value).to eq lastname
+  WaitUtil.wait_for_condition("waiting for first name and last name", :timeout_sec => 10, :delay_sec => 0.5) do
+  @trainers.edit_or_update_trainer_record_page.trainer_first_name.value ==  firstname
+  @trainers.edit_or_update_trainer_record_page.trainer_last_name.value == lastname
+  end
 end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|
   expected_options = table.hashes.map { |x| x['Licence Status'] }
-  actual_options = @trainers.edit_or_update_trainer_record_page.license_status_options.map { |x| x.text }
+  actual_options = @trainers.edit_or_update_trainer_record_page.licence_status_options.map { |x| x.text }
   expect(actual_options).to match_array(expected_options)
 end
 
@@ -41,8 +43,7 @@ end
 
 
 When (/^I select the "([^"]*)" as 'Expired' or 'Suspended'$/) do |status|
-  if (page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text: 'Full'))
-    page.find("#licenseStatuses_2").click
+  if find("#licenseStatuses_2").value.to_i == 1
     select(status, :from => 'licenseStatuses_2')
   end
 end
@@ -55,7 +56,7 @@ Then(/^the system will default the Expiry Date to today's date$/) do
 end
 
 And(/^I can change today's date to any other "([^"]*)" not in past$/) do |date|
-  if (page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text: 'Full'))
+  if find("#licenseStatuses_2").value.to_i == 1
     find("#licenseExpiryDate_2").click
     find("#licenseExpiryDate_2").set(date)
     find("#licenseExpiryDate_2").send_keys(:enter)
@@ -63,7 +64,7 @@ And(/^I can change today's date to any other "([^"]*)" not in past$/) do |date|
 end
 
 When(/^I select the status as to 'Full' from any other value$/) do
-  if (page.should have_css("#licenseStatuses_3 > option:nth-child(1)", text: 'Provisional/Conditional'))
+  if find("#licenseStatuses_3").value.to_i == 2
     page.find("#licenseStatuses_3").click
     select('Full', :from => 'licenseStatuses_3')
   end
@@ -76,7 +77,7 @@ end
 
 
 And (/^I can change Expiry Date value to any other "([^"]*)" not in past$/) do |date|
-  if (page.should have_css("#licenseStatuses_3 > option:nth-child(1)", text: 'Provisional/Conditional'))
+  if find("#licenseStatuses_3").value.to_i == 2
     find("#licenseExpiryDate_3").click
     find("#licenseExpiryDate_3").set(date)
     find("#licenseExpiryDate_3").send_keys(:enter)
@@ -85,7 +86,7 @@ end
 
 
 When (/^I select the "([^"]*)" as 'Provisional or Conditional'$/) do |status|
-  if (page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text: 'Full'))
+  if find("#licenseStatuses_2").value.to_i == 1
     page.find("#licenseStatuses_2").click
     select(status, :from => 'licenseStatuses_2')
   end
@@ -97,7 +98,7 @@ Then (/^the system will default the Expiry Date to 183 days from current date$/)
 end
 
 And (/^I can change Expiry Date to any other "([^"]*)" as well not in past$/) do |date|
-  if (page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text: 'Full'))
+  if find("#licenseStatuses_2").value.to_i == 1
     find("#licenseExpiryDate_2").click
     find("#licenseExpiryDate_2").set(date)
     find("#licenseExpiryDate_2").send_keys(:enter)
@@ -105,7 +106,7 @@ And (/^I can change Expiry Date to any other "([^"]*)" as well not in past$/) do
 end
 
 When (/^I manually set the "([^"]*)" to more than 730 days from system or current date$/) do |date|
-  if (page.should have_css("#licenseStatuses_2 > option:nth-child(2)", text: 'Full'))
+  if find("#licenseStatuses_2").value.to_i == 1
     find("#licenseExpiryDate_2").click
     find("#licenseExpiryDate_2").set(date)
     find("#licenseExpiryDate_2").send_keys(:enter)
