@@ -43,3 +43,4 @@ end
 And(/^I click Save$/) do
  find("#btnSaveSettings").click
 end
+

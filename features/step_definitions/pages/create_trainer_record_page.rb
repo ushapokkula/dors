@@ -26,6 +26,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
 
 
+
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -68,6 +69,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     expect(page).to have_content("New trainer successfully created.")
   end
 
+
   def filling_trainer_details
     $user_name=username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
@@ -81,3 +83,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
 end
+
+
+
