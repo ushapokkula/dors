@@ -126,3 +126,6 @@ DEPENDENCIES
   syntax
   tiny_tds
   waitutil
+
+BUNDLED WITH
+   1.11.2

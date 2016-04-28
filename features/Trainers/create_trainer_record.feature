@@ -60,16 +60,16 @@ Feature: As an an NGU (TrainingGovernance),
       And I click on Create Trainer button
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
 
-     @DR-674 @Create_Trainer_Licences_
+     @DR-674 @Search_Update_Trainer_Licences_
      Scenario Outline: Generating Licence Numbers and saving to database
-       And I started searching existing "<Trainer Name>" in the trainer search field
-       And I have added licences for the trainer and all mandatory fields for every licence have a value
+       When I started searching existing "<Trainer Name>" in the trainer search field
+       Then I updated exisiting "<licence status>" status
        And I click Add licence button
        And I click on Update Trainer
        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
        Examples:
-       |Trainer Name|
-       |roopa trainer|
+       |Trainer Name|licence status|
+       |roopa trainer|Full          |
 
      @DR-674 @Create_Trainer_Licences
     Scenario Outline: Licence Validation fails

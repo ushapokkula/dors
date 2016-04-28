@@ -50,7 +50,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
-
     username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name
@@ -66,7 +65,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     # uncheck('trainerisInstructor')
      click_link_or_button("Create Trainer")
     expect(page).not_to have_css(".help-block")
-    expect(page).to have_content("New trainer successfully created.")
+    expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end
 
 

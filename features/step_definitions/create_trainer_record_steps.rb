@@ -22,12 +22,17 @@ Then(/^I fill Mandatory fields with required details on create trainer form$/) d
 end
 
 And (/^I have added licences for the trainer and all mandatory fields for every licence have a value$/)do
-  @trainers.create_trainer_record_page.select_course_name.text == "Berks-Scheme"
-  @trainers.create_trainer_record_page.select_course_name.click
-  @trainers.create_trainer_record_page.select_licence_name.text == "Provisional/Conditional"
-  @trainers.create_trainer_record_page.select_licence_name.click
+  select('Berks-Scheme', :from=> 'Course name')
+  select('Provisional/Conditional', :from=> 'Licence status')
   @trainers.create_trainer_record_page.expiry_date.set("20/04/2018")
 end
+
+Then (/^I updated exisiting "([^"]*)" status$/)do|status|
+ if(page.find("#licenseStatuses_0").value.to_i == 3)
+  #licenseStatuses_0 > option:nth-child(3)
+  select(status,:from=>'Licence status')
+ end
+ end
 And(/^I click Add licence button$/)do
   @trainers.create_trainer_record_page.add_licence_button.click
 end
@@ -46,14 +51,14 @@ And (/^I click on Update Trainer$/)do
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
-  page.find(".toast-message").should be_visible
-  expect(page).to have_selector(:css, ".toast-message", text: message)
+  page.find("toast.toast-success").should be_visible
+  expect(page).to have_selector(:css, "toast.toast-success", text: message)
 end
 
 
 Then (/^I should not see added course name in the course dropdown-menu$/)do
   page.find("#courseNames").click
- expect(page).should_not have_selector(:css,"#courseNames > option:nth-child(2)",text: 'Berks-Scheme')
+ expect(page).not_to have_selector(:css,"#courseNames > option:nth-child(1)",text: 'Berks-Scheme')
 end
 
 And (/^the Licence Status, Course Name or Expiry Date is not set$/)do
