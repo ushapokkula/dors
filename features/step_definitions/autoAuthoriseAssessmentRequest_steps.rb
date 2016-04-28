@@ -37,7 +37,7 @@ And(/^I should be redirected to Pick a slot page$/) do
   expect(page).to have_content("Request Assessment")
 end
 
-Then(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
+And(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
   @trainers.auto_authorise_assessment_request_page.verify_force_area_linked_to_assessor
 end
 

@@ -25,7 +25,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   elements :error_messages, ".help-block p"
 
 
-
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -81,3 +80,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
 end
+
+
+end
+

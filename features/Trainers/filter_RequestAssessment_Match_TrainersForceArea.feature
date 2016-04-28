@@ -11,14 +11,14 @@ Feature: DR-268 and DR-719
 
     @DR-268 @Force_Areas_filtering_on_Request_Assessments_page  @pass
     Scenario: default view to show trainers which have matching Force Areas as Assessor's Force Areas
-     Then I will see only those trainers whose linked Force Areas match to those linked to my record
+     And I will see only those trainers whose linked Force Areas match to those linked to my record
 
     @DR-268 @no_trainers_available
     Scenario: no trainers are available to match this requirement
     When I login as an "Assessor3"
     And I click "REQUEST ASSESSMENT"
     Then I will be redirected to Request Assessment page
-    And I should see the matching Force Area in Force Area Filters
+    And I should see the matching Force Area Name in Force Area Filters
     Then I should see message for "No assessments available to book."
 
     @DR-719 @trainers_forcearea_not_linked_to_Assessor

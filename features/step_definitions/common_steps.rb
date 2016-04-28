@@ -39,7 +39,7 @@ And(/^I logout$/) do
   # Capybara.reset_sessions!
 end
 
-
 And(/^I click Save$/) do
  find("#btnSaveSettings").click
 end
+

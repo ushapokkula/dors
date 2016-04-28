@@ -51,13 +51,3 @@ end
 #create reports directory if not present
 # Dir.mkdir("reports") unless File.directory?("reports")
 
-After do |scenario|
-  if (scenario.failed?)
-    scenario_name = scenario.name.gsub /[^\w\-]/, ' '
-    time = Time.now.strftime("%Y-%m-%d-%H%M")
-    filename = time + '_' + scenario_name
-    Dir.mkdir("error_pages") unless File.directory?("error_pages")
-    save_and_open_page("error_pages/#{filename}")
-    # File.open("error_pages/#{filename}.html", 'w') { |f| f.write(page.html) }
-  end
-end
