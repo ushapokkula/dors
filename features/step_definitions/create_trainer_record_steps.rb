@@ -22,17 +22,19 @@ Then(/^I fill Mandatory fields with required details on create trainer form$/) d
 end
 
 And (/^I have added licences for the trainer and all mandatory fields for every licence have a value$/)do
-  select('Berks-Scheme', :from=> 'Course name')
-  select('Provisional/Conditional', :from=> 'Licence status')
+  @trainers.create_trainer_record_page.select_course_name
+  @trainers.create_trainer_record_page.select_course_name.click
+  @trainers.create_trainer_record_page.select_licence_name
+  @trainers.create_trainer_record_page.select_licence_name.click
   @trainers.create_trainer_record_page.expiry_date.set("20/04/2018")
 end
 
-Then (/^I updated exisiting "([^"]*)" status$/)do|status|
- if(page.find("#licenseStatuses_0").value.to_i == 3)
-  #licenseStatuses_0 > option:nth-child(3)
-  select(status,:from=>'Licence status')
+And(/I update existing licences for the trainer with new "([^"]*)" status$/)do|status|
+ if find("#licenseStatuses_0").value.to_i == 2
+   select(status, :from => 'licenseStatuses_0')
  end
  end
+
 And(/^I click Add licence button$/)do
   @trainers.create_trainer_record_page.add_licence_button.click
 end
@@ -51,8 +53,8 @@ And (/^I click on Update Trainer$/)do
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
-  page.find("toast.toast-success").should be_visible
-  expect(page).to have_selector(:css, "toast.toast-success", text: message)
+  page.find(".toast-message").should be_visible
+  expect(page).to have_selector(:css, ".toast-message", text: message)
 end
 
 
@@ -76,13 +78,9 @@ end
 
 And(/^I started searching existing "([^"]*)" in the trainer search field$/) do |chars|
  fill_in('txt-trainer-name', :with=> chars)
+ sleep 2
   find("#txt-trainer-name").send_keys(:enter)
 end
-
-And (/^I click update Trainer button$/)do
-  @trainers.create_trainer_record_page.updateTrainer_button.click
-end
-
 
 Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)

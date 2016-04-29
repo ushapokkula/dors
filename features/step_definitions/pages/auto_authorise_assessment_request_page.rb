@@ -36,60 +36,22 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
 
-  def verify_force_area_linked_to_assessor
-    page.find_all(('linked_force_area_name')[0],text: 'METROPOLITAN POLICE')
-    if (page.find("#assessmentExpiringIntro", text: 'Trainer licenses expiring within the next 365 days:'))
-    expect(page).to have_css('.dors-table', count: 1)
-    expect(page).to have_css(".trainer-licenseCode", text: '525252/002')
-    else
-      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
-     expect(page).to have_css(".dors-table")
-    end
-
-    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
-      page.all(".dors-table").count == 1
-    page.should have_css(".trainer-licenseCode", text: '525252/002')
-    else
-      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
-      expect(page).to have_css(".dors-table")
-    end
-    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
-     page.all(".dors-table").count > 1
-     page.should have_css(".trainer-licenseCode", text: '525252/002')
-    else
-      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
-      expect(page).to have_css(".dors-table")
-     #find_all(".dors-table")[1].should have_css(('expiry_dates')[1])
-     #page.find_all('expiry_dates')[0]< ('expiry_dates')[1]
-    end
-    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 365 days:'))
-     page.should have_css(".alert.alert-info",text: 'No assessments available to book.')
-     page.all(".dors-table").count == 0
-    else
-      page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:')
-      page.should have_css(".alert.alert-info",text: 'No assessments available to book.')
-      expect(page).to have_css(".dors-table")
-
-    if(page.should have_css("#assessmentExpiringIntro",text: 'Trainer licenses expiring within the next 1000 days:'))
-    page.all(".dors-table")>1
-    end
-    end
-    end
+  def verify_list_of_trainers_not_related_to_assessor
+    page.find_all('linked_force_area_name')
+    find_all('span.ui-select-match-close')[0].click
+    page.find_all(('linked_force_area_name')[0],text:'METROPOLTAN POLICE')
+  end
 
 
   def verify_defalut_preselected_forcearea
-    if(page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE'))
+    if page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
     find_all('span.ui-select-match-close')[0].click
     click_link_or_button('REQUEST ASSESSMENT')
     page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
     page.all(:css,".dors-table").count == 1
-    page.should have_css(".trainer-licenseCode", text: '525252/002')
+    page.should have_css(".trainer-licenseCode", text: '525252/001')
     end
-    if(page.find_all('linked_force_area_name')[0].should_not have_text('METROPOLITAN POLICE'))
-
-    end
-
-    end
+  end
 
 
   def primary_trainer_include_bydefault

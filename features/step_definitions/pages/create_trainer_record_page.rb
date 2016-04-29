@@ -62,15 +62,16 @@ class CreateTrainerRecordPage < SitePrism::Page
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
     fill_in(optional_field, :with => '')
-    # uncheck('trainerisInstructor')
-     click_link_or_button("Create Trainer")
+   page.find("#trainerisInstructor").click
+    #check('trainerisInstructor')
     expect(page).not_to have_css(".help-block")
+     click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end
 
 
   def filling_trainer_details
-    $user_name=username.set Faker::Name.name[4..70]
+    username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name

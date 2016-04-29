@@ -130,11 +130,5 @@ And (/^the system will show a success message, "([^"]*)"$/) do |message|
   expect(page).to have_css(".toast-message", text: message)
 end
 
-And (/^I will remain on the trainer's record page$/) do
-  expect(page).to have_content("Trainers management")
-  expect(page).to have_selector(:css, "h3.panel-title", match: :first, text: 'Update Trainer')
-  expect(page).to have_selector(:css, "h3.panel-title", match: :'one', text: 'Licences')
-  page.should
-end
 
 

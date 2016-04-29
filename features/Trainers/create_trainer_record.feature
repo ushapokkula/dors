@@ -1,4 +1,4 @@
-@DR-169 @DR-674
+@DR-169 @DR-674 @pass
 Feature: As an an NGU (TrainingGovernance),
   I want to be able to create new Trainer records,
   so that they can be added onto courses by suppliers and have a visibility on the system.
@@ -49,7 +49,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Optional               |
       | Known As               |
       | Secondary Phone Number |
-     # | Is Instructor          |
+      #| Is Instructor          |
 
 
   @DR-674 @Create_Trainer_Licences
@@ -60,19 +60,24 @@ Feature: As an an NGU (TrainingGovernance),
       And I click on Create Trainer button
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
 
-     @DR-674 @Search_Update_Trainer_Licences_
+
+     @DR-674 @Update_Trainer_Licences
      Scenario Outline: Generating Licence Numbers and saving to database
-       When I started searching existing "<Trainer Name>" in the trainer search field
-       Then I updated exisiting "<licence status>" status
+       Then I fill Mandatory fields with required details on create trainer form
+       And I have added licences for the trainer and all mandatory fields for every licence have a value
        And I click Add licence button
+       And I click on Create Trainer button
+       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
+       And I will remain on the trainer's record page
+       And I update existing licences for the trainer with new "<Licence status>" status
        And I click on Update Trainer
        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
        Examples:
-       |Trainer Name|licence status|
-       |roopa trainer|Full          |
+       |Licence status|
+       |Full          |
 
      @DR-674 @Create_Trainer_Licences
-    Scenario Outline: Licence Validation fails
+       Scenario Outline: Licence Validation fails
        When I started searching existing "<Trainer Name>" in the trainer search field
        Then I should not see added course name in the course dropdown-menu
        And the Licence Status, Course Name or Expiry Date is not set
