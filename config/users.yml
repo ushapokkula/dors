@@ -11,10 +11,10 @@ Assessor1:
  username: johnny
  password: P@ssw0rd
 Assessor2:
-  username: test_forces   #no assessments available#
-  password: Lakshay75
+  username: test_forces
+  password: P@s5w0rd
 Assessor3:
-  username: deena
+  username: deena           #no assessments available#
   password: P@ssw0rd
 
 
