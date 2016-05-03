@@ -35,4 +35,3 @@ And(/^I see "([^"]*)" button$/) do |button|
   @trainers.assessment_management_default_view_page.verify_approve_button(button)
  end
 
-

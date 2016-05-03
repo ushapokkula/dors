@@ -17,7 +17,7 @@ Feature: As a NGU user,
 
 
   Scenario: Verify the default option selected as 'Requested' from the status filter
-    And the default view of the page is loaded
+    And default view of the page is loaded
     Then I can see the assessment status filter with these following options
       | Expected Status Filters |
       | Requested               |
@@ -28,8 +28,14 @@ Feature: As a NGU user,
     Then I see that the "Requested" option is selected by default
 
   Scenario: Verify the Assessments sorted by Date
-    And Assessments sorted by nearest date first
+    And default view of the page is loaded
+    When I login as an "Assessor"
+    Then I request assessments
+    And I login as an "Compliance Manager"
+    And I click "ASSESSMENT MANAGEMENT"
+    Then I will see  list of all Assessments Requests with status requested
+    And The assessment list will be sorted by assessment date
 
-    Scenario:
-     And default date range filter will have no selection
-     Then
+    #Scenario:
+    #And default date range filter will have no selection
+     #Then
