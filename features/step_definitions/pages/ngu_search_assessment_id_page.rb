@@ -51,7 +51,6 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
-    # sleep 5
     find(".ng-pristine.ng-valid", match: :first)
     page.all('.ng-pristine.ng-valid')[1].click
     find(".ng-pristine.ng-valid", match: :first)

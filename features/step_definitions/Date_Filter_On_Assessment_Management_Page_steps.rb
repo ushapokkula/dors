@@ -1,6 +1,7 @@
 And(/^default view of the page is loaded$/) do
-  @trainers.date_filter_on_assessment_management_page.delete_assessments_from_DB
+@trainers.date_filter_on_assessment_management_page.delete_assessments_from_DB
   click_link("ASSESSMENT MANAGEMENT")
+
 end
 
 

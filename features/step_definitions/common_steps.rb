@@ -49,5 +49,5 @@ And (/^I will remain on the trainer's record page$/) do
   expect(page).to have_content("Trainers management")
   expect(page).to have_selector(:css, "h3.panel-title", match: :first, text: 'Update Trainer')
   expect(page).to have_selector(:css, "h3.panel-title", match: :'one', text: 'Licences')
-  page.should
+  page.should have_css(:button,"btnCreateUpdateTrainer", text: 'Update Trainer')
 end

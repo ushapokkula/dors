@@ -8,16 +8,17 @@ Feature: As a NGU user,
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
     Then I am on the Assessments Management page
+    And default view of the page is loaded
 
 
   Scenario: In conjunction with existing filters
-    And default view of the page is loaded
+    #And default view of the page is loaded
     When I select a date range and set a filter on other filters available on the page (e.g. Status) i.e. use multiple filters in combination
     Then assessments that meet all filter criteria in combination will be displayed
 
 
   Scenario: Verify the default option selected as 'Requested' from the status filter
-    And default view of the page is loaded
+    #And default view of the page is loaded
     Then I can see the assessment status filter with these following options
       | Expected Status Filters |
       | Requested               |
@@ -28,7 +29,6 @@ Feature: As a NGU user,
     Then I see that the "Requested" option is selected by default
 
   Scenario: Verify the Assessments sorted by Date
-    And default view of the page is loaded
     When I login as an "Assessor"
     Then I request assessments
     And I login as an "Compliance Manager"
