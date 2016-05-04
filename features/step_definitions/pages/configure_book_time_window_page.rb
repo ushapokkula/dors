@@ -12,15 +12,7 @@ class ConfigureBookTimeWindowPage < SitePrism::Page
     expect(entered_char_Value).to be == ""
   end
 
-  def verify_no_user_is_signed_in
-
-    if has_sign_out_link?
-      sign_out_link.click
-    end
-  end
-
-
-  def verify_time_window_preferences_in_DB
+   def verify_time_window_preferences_in_DB
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.active?
     result= client.execute("SELECT AssessmentBookingWindowDays FROM  [DORS_Classified].[dbo].[tbl_TrainerWebSiteSettings]")

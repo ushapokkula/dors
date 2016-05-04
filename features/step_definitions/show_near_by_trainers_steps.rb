@@ -12,7 +12,7 @@ When(/^I click Request assessmet button against trainer I want to book an assess
 end
 
 Then(/^I will be taken to Request Assessment Summary page$/) do
-  sleep 3
+
   link = find(".breadcrumb li:last-child > span").text
  expect(link).to be == "Summary"
 end

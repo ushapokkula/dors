@@ -5,7 +5,7 @@ Feature: DR-31
   encouraged to assess near future expiry trainers.
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ADMINISTRATION" page
