@@ -4,7 +4,7 @@ And(/^I request all assessments$/)do
   @trainers.ngu_search_assessment_id_page.request_assessment
 end
 
-Then(/^I will see  list of all Assessments Requests with status requested$/) do
+Then(/^I will see list of all Assessments Requests with status requested$/) do
  @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
 end
 
