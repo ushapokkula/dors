@@ -28,12 +28,14 @@ Then(/^I see 'Yes' and 'No' buttons on the confirmation message box$/) do
 end
 
 And(/^the trainer will be available for bookings for assessors$/) do
-  #within(:css, ".trainer-licenseCode.ng-binding") do
-    expect(page.should have_text("100001 /101"))
-    #expect(page.text).to include("100022 /122")
-    expect(page.should have_text("100006 /106"))
+  @trainers.ngu_search_assessment_id_page.assessor_availability
+#   within(:css, ".container") do
+#     expect(page.text).to_include("100017 /114")
+#     #expect(page.text).to include("111333 /001")
+#     expect(page.text).to_include("111333 /001")
+#     expect(page.text).to_include("111222 /001")
+# end
 end
-#end
 
 
 And(/^The confirmation message will close$/) do
@@ -43,6 +45,7 @@ end
 And(/^I have assessments with Booked status$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
+  expect(page).to have_selector(".alert.alert-success")
 end
 
 

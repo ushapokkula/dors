@@ -2,7 +2,7 @@
 Feature:DR-305
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I have all assessments requested

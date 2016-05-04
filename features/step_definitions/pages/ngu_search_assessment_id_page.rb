@@ -1,6 +1,8 @@
 class NguSearchAssessmentIDPage < SitePrism::Page
   elements :outcome_dropdowns, :css, ".dors-well-other select"
   elements :outcome_dropdowns_primary, ".dors-well select"
+  elements :assessments_list, ".dors-table"
+  elements :trainer_licenses, ".trainer-licenseCode"
 
 
   require 'tiny_tds'
@@ -48,28 +50,37 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
   end
 
+  def delete_assessments_from_UI
+
+   if (page.all(".dors-table").count) >=1
+     click_link('View Details')
+     # find(:link, 'View Details', match: :first).click
+     find(:button, 'Reject').click
+     fill_in('#cancellationNotes',:with=> 'Notes for Cancelling/Rejecting')
+     click_button('Yes')
+   end
+  end
+
   def book_assessment
     # click_link_or_button("REQUEST ASSESSMENT")
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
-    find(".ng-pristine.ng-valid", match: :first)
-    page.all('.ng-pristine.ng-valid')[1].click
-    find(".ng-pristine.ng-valid", match: :first)
-    all('.ng-pristine.ng-valid')[2].click
-    click_link_or_button("Submit")
-    within('.alert.alert-success.ng-binding') do
-      expect(page).to have_content("The assessment has been Booked")
-    end
+    find(".include-main-trainer-checkbox", match: :first)
+    all('.include-main-trainer-checkbox')[0].click
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
+    click_button("Submit")
+
   end
 
   def request_assessment
     click_link_or_button("REQUEST ASSESSMENT")
     find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
-        first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
-    # sleep 5
-    expect(page).to have_selector('.ng-pristine.ng-valid')
-    page.all('.ng-pristine.ng-valid')[1].click
+    first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
+    expect(page).to have_selector(".include-nearby-trainer-checkbox")
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
     fill_in('mileage', :with => '500')
     click_link_or_button("Submit")
   end
@@ -88,6 +99,20 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
     select("Absent", :from => 'status-CIA624')
   end
+
+  def assessor_availability
+    actual_licenses=[],licenses=[]
+    trainer_licenses.each do |row|
+    licenses= row.text
+    end
+
+    actual_licenses.push(licenses)
+    puts actual_licenses
+    expect(actual_licenses.to_a).to include("100017 /114")
+    expect(actual_licenses).to include("111333 /001")
+    expect(actual_licenses).to include("111222 /001")
+  end
+
 
 
 end

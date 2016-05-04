@@ -5,27 +5,26 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
 
   def navigate_assessment_request_summary_page
-    click_link_or_button("REQUEST ASSESSMENT")
-    sleep 3
-    first(:button, 'Pick a slot').click
-    sleep 2
-    $primary_trianer=page.all('.ng-binding')[0].text
-    first(:button, 'Request Assessment').click
+    find('a', text: "REQUEST ASSESSMENT").click
+    find(:button, 'Pick a slot', match: :first).click
+    find(:button, 'Request Assessment', match: :first).click
   end
 
   def validate_and_check_include_box
-    sleep 2
-    page.all("//input[@type='checkbox']")[1].click
-    page.all("//input[@type='checkbox']")[3].click
+    find(".include-main-trainer-checkbox", match: :first)
+    all('.include-main-trainer-checkbox')[0].click
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
   end
 
   require 'tiny_tds'
   def check_status_in_DB
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
     result.each do |row|
       assessment_status = row['StatusId']
-     puts  expect(assessment_status).to be == 2
+      expect(assessment_status).to be == 2
     end
   end
 

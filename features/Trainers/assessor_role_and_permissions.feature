@@ -1,26 +1,26 @@
-@DR-388
+@DR-388 @pass
 Feature: Assessor Role and Permissions
 
-  @role_permission1 @pass
+  @role_permission1
   Scenario: Verify the access to Request Assessment, My assessments and My profile pages
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     Then I see that I have access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE"
 
-  @role_permission2 @pass
+  @role_permission2
   Scenario: Verify the landing page after logging in as an assessor
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     Then I will be directed to My assessments page
 
-  @role_permission3 @fail
+  @role_permission3
   Scenario: Verify the page for requested assessments with status Approved
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     And I request assessments to be booked
     Then The page will show the list of assessments with status Approved
 
-  @role_permission4 @fail @in_progress
+  @role_permission4
   Scenario Outline: Verify the ability to display the assessment records which they have requested
     Given that I have licence.ndors.org.uk page opened
     When I enter username "<Username>"
@@ -33,9 +33,9 @@ Feature: Assessor Role and Permissions
     Examples:
       | Username | Password |
       | sudiv    | P@ssw0rd1|
-      | johnny   | P@ssw0rd|
+      | johnny   | P@ssw0rd1|
 
-  @role_permission5 @pass
+  @role_permission5
   Scenario: Verify the visibility of pages when logged in as Compliance User
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"

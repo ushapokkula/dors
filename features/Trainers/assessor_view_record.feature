@@ -8,14 +8,14 @@ Feature: As an assessor,
     And I login as an "Assessor"
     And I click "MY PROFILE"
     Then I will be shown my record with below read only "<Assessor Readonly Fields>" fields
-    #Then I should see "Username", "Acessor Number", "Forces Areas" as read only fields
+
 
   Examples:
       | Assessor Readonly Fields |
       | Username        |
       | Assessor Number |
       | Force Areas     |
-      #/* this field should only display when we have added forces to that user*/
+
 
   Scenario Outline: Verify the editable fields on My Profile page
     Given that I have licence.ndors.org.uk page opened
@@ -34,5 +34,8 @@ Feature: As an assessor,
       | Address                |
       | Postcode               |
       | Status                 |
+
+
+
 
 
