@@ -14,8 +14,12 @@ Assessor2:
   username: test_forces
   password: P@s5w0rd
 Assessor3:
-  username: deena           #no assessments available#
+  username: deena
   password: P@ssw0rd
+
+Assessor4:
+  username: chiefd
+  password: Ch123456
 
 
 
