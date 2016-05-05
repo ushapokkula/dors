@@ -50,7 +50,7 @@ Feature: As a NGU user,
        |21/05/2016|06/05/2016|
 
      Scenario Outline: Sort the assessments with in the selected date range
-       #When I login as an "Assessor3"
+       When I login as an "Assessor3"
        Then I request assessments
        #And I login as an "Compliance Manager"
        #And I click "ASSESSMENT MANAGEMENT"
