@@ -16,7 +16,7 @@ Feature: DR-268 and DR-719 @pass
 
     @DR-268 @no_trainers_available
     Scenario: no trainers are available to match this requirement
-    When I login as an "Assessor3"
+    When I login as an "Assessor4"
     And I click "REQUEST ASSESSMENT"
     Then I will be redirected to Request Assessment page
     And I should see the matching Force Area Name in Force Area Filters
