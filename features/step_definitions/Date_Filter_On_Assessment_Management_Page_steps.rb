@@ -77,7 +77,6 @@ Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/)d
 end
 end
 
-
 And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/)do |start_date, end_date|
   find("#txtStartDate").click
   find("#txtStartDate").set(start_date)
@@ -86,8 +85,12 @@ And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/)do |start_date, 
   find("#txtEndDate").click
   find("#txtEndDate").set(end_date)
   find("#txt-assessment-id").click
+
+  sleep 4
+
 end
 
-Then (/^assessments that meet all filter criteria in combination will be displayed$/)do|status|
-
+Then (/^assessments that meet all filter criteria in combination will be displayed$/)do
+  page.find_all(('.assessment-date'), match: :first , text:'10-Aug-2016', visible:true)
+  page.find_all(('.assessment-date')[1], text:'22-Jan-2017', visible:true)
 end

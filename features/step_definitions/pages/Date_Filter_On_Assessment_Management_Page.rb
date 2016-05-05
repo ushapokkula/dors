@@ -44,6 +44,8 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   click_link("REQUEST ASSESSMENT")
   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+  find(".ng-pristine.ng-valid", match: :first)
+  page.all('.ng-pristine.ng-valid')[1].click
   click_link_or_button("Submit")
 end
 
