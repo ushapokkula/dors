@@ -1,6 +1,8 @@
 And(/^default view of the page is loaded$/) do
 @trainers.date_filter_on_assessment_management_page.delete_assessments_from_DB
 click_link("ASSESSMENT MANAGEMENT")
+page.find("#single-button").click
+find("#assessmentStatusChk0").should be_checked
 expect(page).to have_css(".alert.alert-info", text: 'There are no assessments to display.')
 end
 
@@ -11,7 +13,7 @@ And (/^I request assessments$/)do
   end
 
 And(/^The assessment list will be sorted by assessment date$/)do
-@trainers.date_filter_on_assessment_management_page.verify_assessment_list_sorting
+@trainers.date_filter_on_assessment_management_page.verify_assessment_sorting_by_date
 
 end
 
@@ -20,15 +22,15 @@ puts find_field('txtStartDate').value.eql?("")
  puts find_field('txtEndDate').value.eql?("")
 end
 
-When (/^I select "([^"]*)" or type it in$/)do |date|
+When (/^I enter "([^"]*)" in start date field$/)do |date|
   fill_in('txtStartDate', :with=> date)
 end
 
-Then(/^the end date option will be enabled$/)do
-  find("#txtEndDate", visible: true)
+Then(/^the end date option will be empty$/)do
+  find_field('txtEndDate').value.eql?("")
 end
 
-When (/^I enter or select "([^"]*)" in End date field$/)do |date|
+When (/^I enter "([^"]*)" in End date field$/)do |date|
   fill_in('txtEndDate', :with=> date)
 
 end
@@ -86,11 +88,14 @@ And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/)do |start_date, 
   find("#txtEndDate").set(end_date)
   find("#txt-assessment-id").click
 
-  sleep 4
-
 end
 
 Then (/^assessments that meet all filter criteria in combination will be displayed$/)do
   page.find_all(('.assessment-date'), match: :first , text:'10-Aug-2016', visible:true)
   page.find_all(('.assessment-date')[1], text:'22-Jan-2017', visible:true)
+  page.find_all(('.dors-table'), match: :first ,text: 'Requested',visible:true)
+  page.find_all(('.dors-table')[1], match: :first ,text: 'Approved',visible:true)
+  page.find_all(('.assessment-status'), match: :first,text:'Requested')
+  page.find_all(('.assessment-status')[1],text:'Approved')
+
 end

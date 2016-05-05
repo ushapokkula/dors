@@ -11,13 +11,6 @@ Feature: As a NGU user,
     And default view of the page is loaded
 
   Scenario: Verify the default option selected as 'Requested' from the status filter
-    Then I can see the assessment status filter with these following options
-      | Expected Status Filters |
-      | Requested               |
-      | Approved                |
-      | Rejected                |
-      | Cancelled               |
-      | Completed               |
     Then I see that the "Requested" option is selected by default
 
     Scenario: Verify the Assessments sorted by Date
@@ -28,18 +21,18 @@ Feature: As a NGU user,
     Then I will see list of all Assessments Requests with status requested
     And The assessment list will be sorted by assessment date
 
-    Scenario: Verify by default Start and End date fields filter
+    Scenario: Verify default Start and End date fields filter
       And default Date range filter will have no selection
 
     Scenario Outline: Verify Start date and End Date fields enable functionality
-      When I select "<start_date>" or type it in
-      Then the end date option will be enabled
+      When I enter "<start_date>" in start date field
+      Then the end date option will be empty
       Examples:
       |start_date|
       |10/12/2016|
 
     Scenario Outline: won't be able to select an end date which falls before the start date
-        When I enter or select "<end_date>" in End date field
+        When I enter "<end_date>" in End date field
         Then the start date field auto populated with date
         And the value of the start date will be today date
         And I enter "<start_date>" more than end date

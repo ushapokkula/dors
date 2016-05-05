@@ -9,7 +9,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :cancel_notes_area, "#cancellationNotes"
   element :cancel_yes, "#cancel-assessment-yes"
 
-  def verify_assessment_list_sorting
+  def verify_assessment_sorting_by_date
     actual_order= []
     assessment_dates.each do |row|
       assessment_dates= row.text
@@ -44,9 +44,12 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   click_link("REQUEST ASSESSMENT")
   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-  find(".ng-pristine.ng-valid", match: :first)
-  page.all('.ng-pristine.ng-valid')[1].click
+  #page.find_all(".include-main-trainer-checkbox", match: :first)
+  find('.include-main-trainer-checkbox').click
   click_link_or_button("Submit")
+  within('.alert.alert-success.ng-binding') do
+    expect(page).to have_content("The assessment has been Booked")
+  end
 end
 
   end
