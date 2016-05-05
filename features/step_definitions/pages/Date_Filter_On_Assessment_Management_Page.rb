@@ -37,12 +37,17 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   fill_in('mileage',:with=>'500')
   click_link_or_button("Submit")
   end
+
+
+
+   def book_assessments_without_milage
+  click_link("REQUEST ASSESSMENT")
+  find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+  first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+  click_link_or_button("Submit")
+end
+
   end
-
-
-
-
-
 
 
 

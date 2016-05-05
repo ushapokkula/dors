@@ -20,7 +20,7 @@ Feature: As a NGU user,
       | Completed               |
     Then I see that the "Requested" option is selected by default
 
-  Scenario: Verify the Assessments sorted by Date
+    Scenario: Verify the Assessments sorted by Date
     When I login as an "Assessor3"
     Then I request assessments
     And I login as an "Compliance Manager"
@@ -29,10 +29,7 @@ Feature: As a NGU user,
     And The assessment list will be sorted by assessment date
 
     Scenario: Verify by default Start and End date fields filter
-      #Then I see that the "Requested" option is selected by default
       And default Date range filter will have no selection
-
-    #Scenario:selecting end date option will be disabled until I have selected a start date
 
     Scenario Outline: Verify Start date and End Date fields enable functionality
       When I select "<start_date>" or type it in
@@ -43,32 +40,32 @@ Feature: As a NGU user,
 
     Scenario Outline: won't be able to select an end date which falls before the start date
         When I enter or select "<end_date>" in End date field
-        Then the "<start_date>" field auto populated with date
-        And The value of the "<start_date>" will be end date -1 day
-       Examples:
-       |start_date|end_date|
-       |21/05/2016|06/05/2016|
+        Then the start date field auto populated with date
+        And the value of the start date will be today date
+        And I enter "<start_date>" more than end date
+        Then the "<start_date>" falls one day before end day
+      Examples:
+       |end_date|start_date|
+       |06/12/2016|27/12/2016|
 
-     Scenario Outline: Sort the assessments with in the selected date range
+    Scenario Outline: Sort the assessments with in the selected date range
        When I login as an "Assessor3"
        Then I request assessments
-       #And I login as an "Compliance Manager"
-       #And I click "ASSESSMENT MANAGEMENT"
-       #Then I will see list of all Assessments Requests with status requested
-       When I have selected the "<start_date>" and "<end_date>"
-       Then assessment falling in that range will be displayed
-       And the assessments will be sorted by nearest date first
+       And I login as an "Compliance Manager"
+       And I click "ASSESSMENT MANAGEMENT"
+       Then I will see list of all Assessments Requests with status requested
+       And I set "<start_date>" and "<end_date>" filter on assessment page
+       Then assessments falling in that range will be displayed
       Examples:
       |start_date|end_date|
       |10/08/2016|10/08/2016|
-      |10/07/2016|23/01/2017|
-      |10/08/2016|22/01/2017|
-      |20/01/2017|23/01/2017|
+      |10/08/2016|23/01/2017|
+
 
   Scenario Outline: In conjunction with existing filters
-    When I select a "<start_date>" and "<end_date>"
-    And  I set a filter on "<Status_filter>" available on the assessment page
+    Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
+    And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments that meet all filter criteria in combination will be displayed
     Examples:
-    |Status_filter|start_date|end_date|
-
+    |Status_filter1|Status_filter2|start_date|end_date|
+    | Requested    |Approved      |10/08/2016|23/01/2017|

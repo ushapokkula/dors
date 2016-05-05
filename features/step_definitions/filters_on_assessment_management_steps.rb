@@ -25,7 +25,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   if (status_filter == "APPROVED")
     # @trainers.filters_on_assessment_management_page.verify_book_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
     find("#single-button").click
@@ -33,7 +33,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
 
   elsif (status_filter == "REQUESTED")
     # @trainers.filters_on_assessment_management_page.verify_request_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.request_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
     find("#single-button").click
@@ -41,7 +41,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
 
   elsif (status_filter == "REJECTED")
     # @trainers.filters_on_assessment_management_page.verify_reject_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.request_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
@@ -55,7 +55,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
 
   elsif (status_filter == "CANCELLED")
     #@trainers.filters_on_assessment_management_page.verify_cancelled_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
@@ -70,7 +70,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
   else
     (status_filter == "COMPLETED")
     # @trainers.filters_on_assessment_management_page.verify_completed_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
@@ -86,7 +86,7 @@ end
 When(/^I select "([^"]*)" and "([^"]*)"$/)do |status_filter1,status_filter2|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   if (status_filter1 == "REQUESTED" && status_filter2 == "APPROVED" )
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.ngu_search_assessment_id_page.request_assessment
     @trainers.trainer_login_page.log_in("Compliance Manager")
@@ -95,10 +95,10 @@ When(/^I select "([^"]*)" and "([^"]*)"$/)do |status_filter1,status_filter2|
     check('assessmentStatusChk1')
 
   elsif (status_filter1 == "APPROVED" && status_filter2 == "REJECTED")
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.ngu_search_assessment_id_page.request_assessment
-    @trainers.trainer_login_page.log_in("Compliance Manager")
+    @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     @trainers.filters_on_assessment_management_page.reject_assessment
     find("#single-button").click
@@ -106,10 +106,10 @@ When(/^I select "([^"]*)" and "([^"]*)"$/)do |status_filter1,status_filter2|
     check('assessmentStatusChk2')
 
   elsif (status_filter1 == "REJECTED" && status_filter2 == "CANCELLED")
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.ngu_search_assessment_id_page.request_assessment
-    @trainers.trainer_login_page.log_in("Compliance Manager")
+    @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
     @trainers.filters_on_assessment_management_page.reject_assessment
@@ -119,10 +119,10 @@ When(/^I select "([^"]*)" and "([^"]*)"$/)do |status_filter1,status_filter2|
     check('assessmentStatusChk3')
 
   else (status_filter1 == "REJECTED" && status_filter2 == "COMPLETED")
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.ngu_search_assessment_id_page.request_assessment
-    @trainers.trainer_login_page.log_in("Compliance Manager")
+    @trainers.trainer_login_page.login_as("Compliance Manager")
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
   @trainers.filters_on_assessment_management_page.reject_assessment
   @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
