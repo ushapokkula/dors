@@ -34,9 +34,12 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     click_link("REQUEST ASSESSMENT")
   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-  fill_in('mileage',:with=>'500')
+  fill_in('mileage',:with=>'500')  #adding mileage#
   click_link_or_button("Submit")
-  end
+    within('.alert.alert-success') do
+      expect(page).to have_content("The assessment has been Requested")
+    end
+    end
 
 
 
@@ -44,10 +47,9 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   click_link("REQUEST ASSESSMENT")
   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-  #page.find_all(".include-main-trainer-checkbox", match: :first)
   find('.include-main-trainer-checkbox').click
   click_link_or_button("Submit")
-  within('.alert.alert-success.ng-binding') do
+  within('.alert.alert-success') do
     expect(page).to have_content("The assessment has been Booked")
   end
 end
