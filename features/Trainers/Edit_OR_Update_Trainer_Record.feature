@@ -9,16 +9,6 @@ Feature: As an NGU,
     And I click "TRAINERS"
     Then I see "Trainers management" page
 
-  @DR-39 @NGU-manually-editing-licences @bug-story
-  Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
-    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
-    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
-    When I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
-    Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
-    Examples:
-      | trainer first name | trainer last name | Expiry date |
-      | roopa              | trainer           | 04/04/2016  |
-
   @DR-39 @Editable_fields
   Scenario: Verify the license status options
     Given I see "Trainers management" page
@@ -84,4 +74,16 @@ Feature: As an NGU,
     Examples:
       | trainer first name | trainer last name | Postcode |
       | roopa              | trainer           | HA9 7lm  |
+
+
+    @DR-39 @NGU-manually-editing-licences @bug-story @fail
+    Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+     When I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
+     Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
+     Examples:
+      | trainer first name | trainer last name | Expiry date |
+      | roopa              | trainer           | 04/04/2016  |
+
 
