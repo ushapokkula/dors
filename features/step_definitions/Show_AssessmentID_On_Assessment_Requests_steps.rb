@@ -27,7 +27,7 @@ end
 Then (/^I should see the "([^"]*)" on summary view of assessment requests on 'My assessment' page$/)do|assesmentID|
   expect(page).to have_css(".dors-well-other")
   within(".dors-well-other") do
-    expect(page).to have_css(".assessment-id", text:assesmentID,visible:true)
+    expect(page).to have_css(".assessment-id", text:assesmentID, visible:true)
   end
 end
 
