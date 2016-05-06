@@ -36,9 +36,6 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
   fill_in('mileage',:with=>'500')  #adding mileage#
   click_link_or_button("Submit")
-    within('.alert.alert-success') do
-      expect(page).to have_content("The assessment has been Requested")
-    end
     end
 
 
