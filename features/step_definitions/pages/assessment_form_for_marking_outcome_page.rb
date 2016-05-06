@@ -14,24 +14,24 @@ class AssessmentFormForMarkingOutcomePage < SitePrism::Page
 
 
   def verify_ability_to_mark_outcome
-    select('Cancelled', :from => 'status-FSB422')
-    find("#status-FSB422").value == "5"
-    select('Absent', :from => 'status-DOA123')
-    find("#status-DOA123").value == "4"
-    select('Action Note', :from => 'status-CIA624')
-    find("#status-CIA624").value == "2"
+    select('Cancelled', :from => 'status-111333/001')
+    find("#status-111333/001").value == "5"
+    select('Absent', :from => 'status-111222/001')
+    find("#status-111222/001").value == "4"
+    select('Action Note', :from => 'status-111555/003')
+    find("#status-111555/003").value == "2"
   end
 
   def verify_compliance_notes
-    find("#notes-FSB422").visible?
-    find("#notes-DOA123").visible?
-    find("#notes-CIA624").visible?
+    find("#notes-111333/001").visible?
+    find("#notes-111222/001").visible?
+    find("#notes-111555/003").visible?
   end
 
   def select_outcome_against_trainer
-    select('Absent', :from => 'status-FSB422')
-    select('Absent', :from => 'status-DOA123')
-    select('Absent', :from => 'status-CIA624')
+    select('Absent', :from => 'status-111333/001')
+    select('Absent', :from => 'status-111222/001')
+    select('Absent', :from => 'status-111555/003')
   end
 
 

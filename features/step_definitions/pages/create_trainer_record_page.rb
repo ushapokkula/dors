@@ -15,7 +15,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :is_instructor, "#trainerisInstructor"
 
 
-
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -34,8 +33,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
     fill_in(fields, :with => '')
-    click_link_or_button("Create Trainer")
-    expect(page).to have_content(error_msgs)
+    find(:button,("Create Trainer")).click
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
@@ -53,11 +51,8 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in('trainerPostcode', :with => 'W14 8UD')
     fill_in(optional_field, :with => '')
     # uncheck('trainerisInstructor')
-     click_link_or_button("Create Trainer")
-    expect(page).not_to have_css(".help-block")
-    expect(page).to have_content("New trainer successfully created.")
-  end
-
+    click_link_or_button("Create Trainer")
+      end
 
 
 end

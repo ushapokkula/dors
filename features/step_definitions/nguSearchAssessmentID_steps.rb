@@ -1,7 +1,7 @@
 And(/^I type the Booked Assessment ID in the Assessment search field$/) do
-   @trainers.trainer_login_page.log_in("Assessor")
+   @trainers.trainer_login_page.login_as("Assessor")
    @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
-   @trainers.trainer_login_page.log_in("Compliance Manager")
+   @trainers.trainer_login_page.login_as("Compliance Manager")
    fill_in('txt-assessment-id', :with => $booked_status)
 
 end

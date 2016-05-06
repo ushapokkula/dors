@@ -1,20 +1,18 @@
 Given(/^I am on Pick a course page$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  expect(page).to have_content("REQUEST ASSESSMENT")
-  click_link_or_button("REQUEST ASSESSMENT")
-  sleep 5
-  first(:button, 'Pick a slot').click
+  find('a', text: "REQUEST ASSESSMENT").click
+  find(:button, 'Pick a slot', match: :first).click
+
 end
 
 When(/^I click Request assessmet button against trainer I want to book an assessment$/) do
-  find(:button, 'Requested Assessment', match: :first).click
-  #first(:button, 'Request Assessment').click
+  find(:button, 'Request Assessment', match: :first).click
 end
 
 Then(/^I will be taken to Request Assessment Summary page$/) do
-
-  link = find(".breadcrumb li:last-child > span").text
- expect(link).to be == "Summary"
+  puts expect(page).to have_selector(".breadcrumb li:last-child > span", text: "Summary")
+ #  link = find(".breadcrumb li:last-child > span").text
+ # expect(link).to be == "Summary"
 end
 
 Then(/^I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon$/) do

@@ -25,17 +25,18 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def verify_booked_assessmemt_id_in_DB
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
-    client.active?
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '2'")
     result.each do |row|
       $booked_status=row['TrainingAssessmentId']
+      puts $booked_status
     end
   end
 
 
   def verify_requested_assessmemt_id_in_DB
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
-    # client.active?
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '1'")
     result.each do |row|
       $requested_status=row['TrainingAssessmentId']
