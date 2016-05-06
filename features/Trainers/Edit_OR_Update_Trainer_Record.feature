@@ -9,7 +9,6 @@ Feature: As an NGU,
     And I click "TRAINERS"
     Then I see "Trainers management" page
 
-  @DR-39 @Editable_fields
   Scenario: Verify the license status options
     Given I see "Trainers management" page
     Then I see the following default Licence status in Licence status dropdown
@@ -23,7 +22,6 @@ Feature: As an NGU,
       | Surrendered             |
 
 
-  @DR-39 @NGU-manually-editing-licences
   Scenario Outline: Verify Expiry date for 'Expired' and 'Suspended' status
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
@@ -76,7 +74,6 @@ Feature: As an NGU,
       | roopa              | trainer           | HA9 7lm  |
 
 
-    @DR-39 @NGU-manually-editing-licences @bug-story @fail
     Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
      Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
