@@ -11,6 +11,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_booked_assessmemt_id_in_DB
     book_assessment
+    expect(page).to have_selector(".alert.alert-success", :text => 'The assessment has been Booked')
     verify_booked_assessmemt_id_in_DB
   end
 
@@ -29,7 +30,6 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '2'")
     result.each do |row|
       $booked_status=row['TrainingAssessmentId']
-      puts $booked_status
     end
   end
 
@@ -53,13 +53,13 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def delete_assessments_from_UI
 
-   if (page.all(".dors-table").count) >=1
-     click_link('View Details')
-     # find(:link, 'View Details', match: :first).click
-     find(:button, 'Reject').click
-     fill_in('#cancellationNotes',:with=> 'Notes for Cancelling/Rejecting')
-     click_button('Yes')
-   end
+    if (page.all(".dors-table").count) >=1
+      click_link('View Details')
+      # find(:link, 'View Details', match: :first).click
+      find(:button, 'Reject').click
+      fill_in('#cancellationNotes', :with => 'Notes for Cancelling/Rejecting')
+      click_button('Yes')
+    end
   end
 
   def book_assessment
@@ -102,9 +102,9 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def assessor_availability
-    actual_licenses=[],licenses=[]
+    actual_licenses=[], licenses=[]
     trainer_licenses.each do |row|
-    licenses= row.text
+      licenses= row.text
     end
 
     actual_licenses.push(licenses)
@@ -113,7 +113,6 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     expect(actual_licenses).to include("111333 /001")
     expect(actual_licenses).to include("111222 /001")
   end
-
 
 
 end

@@ -1,4 +1,4 @@
-@DR-175
+@DR-175 @pass
 Feature: As a NGU user,
   I want to be able to filter assessment records on Assessment Management page by Status,
   so that I can view filtered list of records I am interested in.

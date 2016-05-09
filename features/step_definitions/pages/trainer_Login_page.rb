@@ -34,9 +34,8 @@ class TrainerLoginPage < SitePrism::Page
 
   def verify_no_user_is_signed_in
       click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:4)
-      # click_link_or_button('Sign out') if page.has_content?('Sign out')
     end
-  end
+
 
   def enter_valid_username
     username_field.set "verma"
@@ -53,5 +52,7 @@ class TrainerLoginPage < SitePrism::Page
 
   def click_login
     sign_in_button.click
+  end
+
   end
 

@@ -14,22 +14,21 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
       status = values.text
       actual_status_values.push(status)
     end
-    puts actual_status_values
      expect(new_table.map { |x| x['Expected Status Filters'] }).to match_array(actual_status_values)
   end
 
   def verify_book_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.book_assessment
-    @trainers.trainer_login_page.log_in("Compliance Manager")
+    @trainers.trainer_login_page.login_as("Compliance Manager")
     find("#single-button").click
     check('assessmentStatusChk1')
   end
 
   def verify_request_filter_status
-    @trainers.trainer_login_page.log_in("Assessor")
+    @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.request_assessment
-    @trainers.trainer_login_page.log_in("Compliance Manager")
+    @trainers.trainer_login_page.login_as("Compliance Manager")
     find("#single-button").click
     check('assessmentStatusChk0')
   end

@@ -1,4 +1,4 @@
-@DR-167
+@DR-167 @pass
 Feature: Filter on My Assessment page
 
   Background:
@@ -18,7 +18,7 @@ Feature: Filter on My Assessment page
       | Completed               |
 
   @my_assessment_status_filter2
-  Scenario: Verify the default option selected as 'Requested' from the status filter
+  Scenario: Verify the default option selected as 'Booked' from the status filter
     When I can see the assessment status filter with these following options on My Assessments page
       | Expected Status Filters |
       | Requested               |
@@ -48,8 +48,8 @@ Feature: Filter on My Assessment page
 
 
     Examples:
-      | Status Filter1 | Status Filter2 |Status Assertion1|Status Assertion2|
-      | REQUESTED      | APPROVED       |Requested        |Approved         |
-      | APPROVED       | REJECTED       |Approved         |Rejected         |
-      | REJECTED       | CANCELLED      |Rejected         |Cancelled        |
-      | REJECTED      | COMPLETED      |Rejected        |Completed        |
+      | Status Filter1 | Status Filter2 | Status Assertion1 | Status Assertion2 |
+      | REQUESTED      | APPROVED       | Requested         | Approved          |
+      | APPROVED       | REJECTED       | Approved          | Rejected          |
+      | REJECTED       | CANCELLED      | Rejected          | Cancelled         |
+      | REJECTED       | COMPLETED      | Rejected          | Completed         |
