@@ -40,7 +40,7 @@ end
 Then(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
  if page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
     expect(page).to have_css("#assessmentExpiringIntro", text: 'Trainer licenses expiring within the next 365 days:')
-    expect(page).to have_css('.dors-table', count: 1)
+    page.find_all('.dors-table', count: 1)
     expect(page).to have_css(".trainer-licenseCode", text: '989898/001')
     else
     expect(page).to have_selector(:css, ".alert.alert-info", text: "No assessments available to book.")

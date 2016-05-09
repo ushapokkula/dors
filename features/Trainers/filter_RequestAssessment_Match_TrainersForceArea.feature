@@ -2,7 +2,7 @@ Feature: DR-268 and DR-719 @pass
   /*
    Assuming 'Assessor2' linked force area 'Metropolitan police'
    And verifying Search Force Area for default and filter view
-   And 'Assessor3' linked force area 'CHESHIRE' with no assessments */
+   And 'Assessor4' linked force area 'CHESHIRE' with no assessments */
 
   Background:
     Given that I have licence.ndors.org.uk page opened
