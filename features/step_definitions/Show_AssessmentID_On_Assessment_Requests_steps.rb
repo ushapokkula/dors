@@ -5,7 +5,7 @@ And (/^I request assessment$/)do
 end
 
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/)do
-  expect(page).to have_css("h1", text: 'My assessments') #verifying header#
+  expect(page).to have_css("h1", text: 'My assessments')      #verifying header#
   page.find("#single-button").click
   check('assessmentStatusChk0')
 end
@@ -15,10 +15,10 @@ Then (/^I see "([^"]*)" assessments on 'My Assessments' page$/)do|status|
  expect(page).to have_css(".assessment-status", text:status)
 end
 
-Then (/^I should see the "([^"]*)" on summary view of assessment requests on 'My assessment' page$/)do|assessmentID|
+Then (/^I should see the "([^"]*)" on summary view of assessment on 'My assessment' page$/)do|assessmentID|
   expect(page).to have_css(".dors-well-other")
   within(".dors-well-other") do
-    expect(page).to have_css(".assessment-id", text:assessmentID, visible:true)
+    expect(page).to have_css(".assessmentIdHeader", text:assessmentID, visible:true)
     expect(page).to have_css(".assessmentStatus",text: 'Requested')
   end
 end
@@ -36,9 +36,9 @@ And (/^I should see "([^"]*)" on detailed view of assessment request$/)do |asses
   end
 end
 
-And (/^I should see "([^"]*)" on summary view of assessment requests on 'Manage Assessments' page$/)do |assessmentID|
+And (/^I should see "([^"]*)" on summary view of assessment on 'Manage Assessments' page$/)do |assessmentID|
   expect(page).to have_css("h1", text:'Assessments')    #Verifying header#
-  expect(page).to have_css(".dors-table")
+  page.find_all(".dors-table")
   within(".dors-table") do
     expect(page).to have_css(".text-md", text: assessmentID, visible:true)
     expect(page).to have_css(".assessment-status",text: 'Requested')

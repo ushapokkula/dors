@@ -14,7 +14,7 @@ Feature:
     And I navigate to "MY ASSESSMENTS" page
     Then I select 'Requested' status from 'Assessment Status' dropdown
     And I see "Requested" assessments on 'My Assessments' page
-    Then I should see the "Assessment ID" on summary view of assessment requests on 'My assessment' page
+    Then I should see the "Assessment ID" on summary view of assessment on 'My assessment' page
 
   Scenario: The detailed view of an assessment request should show Assessment ID.
     And I navigate to "MY ASSESSMENTS" page
@@ -25,7 +25,7 @@ Feature:
   Scenario: The summary view of assessment requests on Manage Assessments page should show the Assessment ID.
     When I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I should see "Assessment ID" on summary view of assessment requests on 'Manage Assessments' page
+    Then I should see "Assessment ID" on summary view of assessment on 'Manage Assessments' page
 
   Scenario: The detailed view of an assessment request should show Assessment ID.
     When I login as an "Compliance Manager"
