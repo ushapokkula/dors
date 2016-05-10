@@ -9,7 +9,7 @@ Feature: Auto Authorise
     And I login as an "Assessor"
     And I am on Assessment Request Summary page
 
-@auto_authorise_assessment_req1
+  @auto_authorise_assessment_req1
   Scenario: Auto Authorise assessment request with multiple trainer and no expenses claimed
     And I have multiple trainers included in  my request
     And no mileage expenses claimed
@@ -18,7 +18,7 @@ Feature: Auto Authorise
     And I will be redirected to Request Assessment page
     And I see a message "The assessment has been Booked"
 
-@auto_authorise_assessment_req2
+  @auto_authorise_assessment_req2
   Scenario: Assessment request status without multiple trainer included and no expenses claimed
     And I have not included multiple trainers in my request
     And no mileage expenses claimed
@@ -26,7 +26,7 @@ Feature: Auto Authorise
     And I will be redirected to Request Assessment page
     And I see a message "The assessment has been Requested"
 
- @auto_authorise_assessment_req3
+  @auto_authorise_assessment_req3
   Scenario: Verify the Cancel button without data entered
     When I click "Cancel" button without entering data
     Then I should be redirected to Pick a slot page

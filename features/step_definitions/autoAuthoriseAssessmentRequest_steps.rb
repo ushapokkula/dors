@@ -16,8 +16,6 @@ And(/^The status of the assessment request will be marked Booked in the database
 end
 
 Then(/^I will be redirected to Request Assessment page$/) do
-
-  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   expect(page).to have_selector(:css, "h1", text: "Request Assessment")
 
 end
@@ -45,6 +43,7 @@ Then(/^I will see only those trainers whose linked Force Areas match to those li
     page.find_all('.dors-table', count: 1)
     expect(page).to have_css(".trainer-licenseCode", text: '989898/001')
  end
+
 
 And (/^I should see the matching Force Area Name in Force Area Filters$/)do
  page.find_all(('linked_force_area_name')[0],text:'NORTHUMBRIA POLICE')

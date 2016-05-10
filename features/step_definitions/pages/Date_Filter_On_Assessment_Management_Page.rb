@@ -8,6 +8,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :assessment_status_dropdwn, "#single-button"
   element :cancel_notes_area, "#cancellationNotes"
   element :cancel_yes, "#cancel-assessment-yes"
+  element :notes_field, "#notes"
 
   def verify_assessment_sorting_by_date
     actual_order= []
@@ -26,6 +27,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
   fill_in('mileage',:with=>'500')  #adding mileage#
+    fill_in('notes',:with=>'Test')
   click_link_or_button("Submit")
     end
 

@@ -32,3 +32,4 @@ Feature:
     And I navigate to "ASSESSMENT MANAGEMENT" page
     And I click on "View Details" button on 'Assessment management' page
     Then I should see "Assessment ID" on detailed view of an assessment request
+
