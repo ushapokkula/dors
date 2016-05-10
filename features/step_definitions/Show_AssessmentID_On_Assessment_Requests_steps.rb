@@ -19,7 +19,7 @@ Then (/^I should see the "([^"]*)" on summary view of assessment on 'My assessme
   expect(page).to have_css(".dors-well-other")
   within(".dors-well-other") do
     expect(page).to have_css(".assessmentIdHeader", text:assessmentID, visible:true)
-    expect(page).to have_css(".assessmentStatus",text: 'Requested')
+    expect(page).to have_css(".assessment-status",text: 'Requested')
   end
 end
 
