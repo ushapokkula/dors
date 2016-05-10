@@ -13,11 +13,12 @@ end
 
 
 Then(/^I should see searched "([^"]*)" and "([^"]*)" trainer details$/) do |firstname, lastname|
-  WaitUtil.wait_for_condition("waiting for first name and last name", :timeout_sec => 10, :delay_sec => 0.5) do
+  #WaitUtil.wait_for_condition("waiting for first name and last name", :timeout_sec => 5, :delay_sec => 0.5) do
+  sleep 2
   @trainers.edit_or_update_trainer_record_page.trainer_first_name.value ==  firstname
   @trainers.edit_or_update_trainer_record_page.trainer_last_name.value == lastname
   end
-end
+#end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|
   expected_options = table.hashes.map { |x| x['Licence Status'] }
