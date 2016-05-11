@@ -6,7 +6,8 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
     expect(page).to have_css("h1",text: 'My assessment details')
     click_link_or_button("Cancel Request")
     expect(page).to have_css("h4",text: 'Cancel Assessment')
-    fill_in("cancellationNotes", :with => "Notes for cancellation")
+    $cancel_notes = "Notes for cancellation"
+    fill_in("cancellationNotes", :with => $cancel_notes)
     click_button('Yes')
 
   end
@@ -17,7 +18,8 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   expect(page).to have_css("h1",text: 'Assessment Outcome')
   click_link_or_button("Reject")
   expect(page).to have_css("h4",text: 'Reject Assessment')
-  fill_in("cancellationNotes", :with => "Notes for Rejection")
+    $reject_notes = "Notes for Rejection"
+  fill_in("cancellationNotes", :with => $reject_notes)
   click_button('Yes')
 
   end
@@ -28,7 +30,8 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
     expect(page).to have_css("h1",text: 'Assessment Outcome')
     click_link_or_button("Cancel")
     expect(page).to have_css("h4",text: 'Cancel Assessment')
-    fill_in("cancellationNotes", :with => "Notes for cancellation")
+    $cancel_notes = "Notes for cancellation"
+    fill_in("cancellationNotes", :with => $cancel_notes)
     click_button('Yes')
 
   end

@@ -12,12 +12,11 @@ And (/^I should see the 'Cancellation Notes' on My Assessment details page$/)do
   click_link_or_button("View Details")
   expect(page).to have_css("h1", text: 'My assessment details')
  page.find_all("label", text: 'Cancellation Notes')
-  page.should have_css("#actionNotes")
-  #expect(page).to have_css("#actionNotes", text: 'Notes for cancellation')
-
+  page.should have_css("#actionNotes", visible: false)
+  page.find("#actionNotes").value == "Notes for Cancellation"
 end
 
-Then(/^I see that the "([^"]*)" option is in selected status$/)do|status|
+Then(/^I see the "([^"]*)" option is in selected status$/)do|status|
   page.find("#single-button").click
   within(".dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == status
@@ -42,7 +41,8 @@ And (/^I should see the 'Rejection Notes' on Assessment Outcome page$/)do
   click_link_or_button("View Details")
   expect(page).to have_css("h1", text: 'Assessment Outcome')
   page.find_all("label", text: 'Rejection Notes')
-  page.should have_css("#actionNotes")
+  page.should have_css("#actionNotes", visible: false)
+  page.find("#actionNotes").value == "Notes for Rejection"
 end
 
 And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
@@ -61,5 +61,6 @@ And (/^I should see the 'Cancellation Notes' on Assessment Outcome page$/)do
   click_link_or_button("View Details")
   expect(page).to have_css("h1", text: 'Assessment Outcome')
   page.find_all("label", text: 'Cancellation Notes')
-  page.should have_css("#actionNotes")
+  page.should have_css("#actionNotes", visible: false)
+  page.find("#actionNotes").value == "Notes for Cancellation"
 end

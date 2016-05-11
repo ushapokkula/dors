@@ -42,7 +42,8 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   within('.alert.alert-success') do
     expect(page).to have_content("The assessment has been Booked")
   end
-end
+   end
+
 
   end
 
