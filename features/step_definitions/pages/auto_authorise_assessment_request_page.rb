@@ -1,12 +1,15 @@
 class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
+  elements :pick_a_slot, ".btn.btn-primary"
+
 
 
 
   def navigate_assessment_request_summary_page
     find('a', text: "REQUEST ASSESSMENT").click
-    find(:button, 'Pick a slot', match: :first).click
+    find(:button, 'Pick a slot', match: :first)
+    all(".btn.btn-primary:nth-child(2)")[2].click
     find(:button, 'Request Assessment', match: :first).click
   end
 

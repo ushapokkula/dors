@@ -3,8 +3,7 @@ When(/^I include one trainer from each course which include max four trainers in
 end
 
 Then(/^I verify that all the four trainers are included in the assessment request$/) do
-  sleep 3
-  @trainers.max_four_trainers_allowed_page.verify_trainers_inclusion_per_request
+   @trainers.max_four_trainers_allowed_page.verify_trainers_inclusion_per_request
 end
 
 Then(/^I check the status as Booked$/) do

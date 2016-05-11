@@ -30,7 +30,7 @@ When(/^I hit enter after typing first three characters as "([^"]*)"$/)do |chars|
 end
 
 Then(/^The first name will be selected from the drop down list by default "([^"]*)"$/)do |username|
-  sleep 3
+
   find("#assessorUsername").text == username
 end
 
@@ -41,7 +41,7 @@ end
 
 Then(/^The second value will be selected from the drop down list "([^"]*)"$/) do |down_selected_value|
   find("#assessorUsername").text == down_selected_value
-  sleep 2
+
 end
 
 When(/^I hit UP arrow key from the list$/) do
