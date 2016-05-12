@@ -108,7 +108,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     end
 
     actual_licenses.push(licenses)
-    puts actual_licenses
+
     expect(actual_licenses.to_a).to include("100017 /114")
     expect(actual_licenses).to include("111333 /001")
     expect(actual_licenses).to include("111222 /001")

@@ -24,17 +24,15 @@ class TrainerLoginPage < SitePrism::Page
   def login_as(user)
     verify_no_user_is_signed_in
     username_field.set($users[user]['username'])
-    #p ($users[user]['username'])
     password_field.set($users[user]['password'])
-    #p ($users[user]['password'])
     sign_in_button.click
 
   end
 
 
   def verify_no_user_is_signed_in
-      click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:4)
-    end
+    click_link_or_button('Sign out') if page.has_selector?('#btn-signout', wait: 4)
+  end
 
 
   def enter_valid_username
@@ -54,5 +52,5 @@ class TrainerLoginPage < SitePrism::Page
     sign_in_button.click
   end
 
-  end
+end
 

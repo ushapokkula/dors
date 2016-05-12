@@ -4,15 +4,6 @@ class MyAssessmentsDefaultViewPage < SitePrism::Page
   elements :booked_status, :xpath, "html/body/div[1]/div[2]/div/div/div[1]/div[2]/h4"
   elements :assessment_date, ".assessment-date"
 
-  require 'tiny_tds'
-
-  def delte_assessments_details_from_db
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
-    client.active?
-    puts "connected to database"
-    result= client.execute("DELETE FROM [dbo].[tbl_TrainerLicenseAssessment]")
-
-  end
 
   def check_booked_status(status)
 
