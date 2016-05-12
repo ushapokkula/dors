@@ -6,8 +6,8 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
     click_link("REQUEST ASSESSMENT")
     find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
     first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-    expect(page).to have_css(".dors-well-other")
-    find_all('.include-nearby-trainer-checkbox')[1].click
+    page.find_all('.dors-well-other')[1]
+    first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
     fill_in('mileage',:with=>'500')  #adding mileage#
     fill_in('notes',:with=>'Test')
     click_link_or_button("Submit")
@@ -26,6 +26,9 @@ end
     click_link_or_button("View Details")
    select('Cancelled', :from=> 'status-281')
     fill_in('notes-281',:with=> 'TEST TRAINER OUTCOME')
+    page.find_all('.dors-well-other')[1]
+    select('Cancelled', :from=> 'status-279')
+    fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')
     click_link_or_button("Mark Complete")
   end
 

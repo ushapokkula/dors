@@ -10,18 +10,38 @@ And (/^I "([^"]*)" requested Assessment$/)do |status|
   expect(page).to have_css(".assessment-status",text: 'Approved')
 end
 
-Then(/^I "Completed" approved Assessment$/)do
+Then(/^I 'Completed' approved Assessment$/)do
   @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.complete_Approved_Assessment
 end
 
-Then (/^I load detailed view of the Completed Assessment$/)do
-  find("#single-button").click
-  check('assessmentStatusChk4')
+Then (/^I load detailed view of 'Completed' Assessment$/)do
+  find("#single-button").click                                            #clicking on  'Assessment status dropdown'
+  check('assessmentStatusChk4')                                               #selecting Completed status#
   expect(page).to have_css(".assessment-status", text:'Completed')
- click_link_or_button("View Detail")
+  click_link_or_button("View Detail")                                          #clicking on 'View detail' link'
 end
 
-Then (/^I should able to see below "([^"]*)" on assessment outcome page$/)do |fields|
+Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do |table|
   expect(page).to have_css("h1", text:'Assessment Outcome')
+
+end
+
+
+And (/^I select 'Completed' status from 'Assessment Status' dropdown$/)do
+  find("#single-button").click                                            #clicking on  'Assessment status dropdown'
+  check('assessmentStatusChk4')
+end
+
+Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
+  expect(page).to have_css(".assessment-status", text:'Completed')
+  click_link_or_button("View Details")
+
+end
+
+Then(/^I should see below information in view mode on 'My assessment details' page$/)do |table|
+  expect(page).to have_css("h1", text:'My assessment details')
+  expect(page).to have_css(".assessmentStatus", text:'Completed')
+
+
 
 end
