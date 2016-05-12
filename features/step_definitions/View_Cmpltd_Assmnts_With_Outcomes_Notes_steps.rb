@@ -23,7 +23,9 @@ end
 
 Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do |table|
   expect(page).to have_css("h1", text:'Assessment Outcome')
-
+  expected_info = table.hashes.map{|x|x['information']}
+  actual_info = @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.assessment_info.map{|x| x.value}
+  expect(actual_info).to match_array(expected_info)
 end
 
 
@@ -41,7 +43,10 @@ end
 Then(/^I should see below information in view mode on 'My assessment details' page$/)do |table|
   expect(page).to have_css("h1", text:'My assessment details')
   expect(page).to have_css(".assessmentStatus", text:'Completed')
-
+  expect(page).to have_css("h1", text:'Assessment Outcome')
+  expected_info = table.hashes.map{|x|x['information']}
+  actual_info = @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.assessment_info.map{|x| x.value}
+  expect(actual_info).to match_array(expected_info)
 
 
 end

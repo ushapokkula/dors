@@ -1,4 +1,3 @@
-@DR-181 @pass
 Feature:
   As an 'Assessor' & 'NGU' user
   can view the completed Assessments which includes
@@ -10,7 +9,7 @@ Feature:
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessment with nearby trainer
 
-    Scenario: When an NGU user loads detailed view of the Completed Assessment, they should be able to see:
+    Scenario:  When an NGU user loads detailed view of the Completed Assessment, they should be able to see:
        When I login as an "Compliance Manager"
        And I navigate to "ASSESSMENT MANAGEMENT" page
        Then I see the "Requested" option is in selected status
@@ -18,24 +17,22 @@ Feature:
        And I 'Completed' approved Assessment
        Then I load detailed view of 'Completed' Assessment
        Then I should see below information in view mode on 'Assessment Outcome' page
-       #Examples:
-       #|information              |
-       #|Trainer Name             |
-      # |Trainer Licence Code/ID  |
-       #|Trainer Outcome          |
-       #|Compliance Notes         |
+       |information              |
+       |Trainer Name             |
+       |Licence          |
+       |Outcome          |
+       |Compliance Notes         |
 
   Scenario: When an 'Assessor' loads detailed view of the 'Completed' Assessment, they should be able to see:
      And I navigate to "My ASSESSMENTS" page
      And I select 'Completed' status from 'Assessment Status' dropdown
      Then I load detailed view of 'Completed' Assessment from 'My Assessments' page
      Then I should see below information in view mode on 'My assessment details' page
-     #Examples:
-     #|information             |
-     #|Trainer Name            |
-     #|Trainer Licence Code/ID |
-     #|Trainer Outcome         |
-     #|Compliance Notes        |
+     |information             |
+     |Trainer Name            |
+     |Trainer Licence Code/ID |
+     |Trainer Outcome         |
+     |Compliance Notes        |
 
 
 
