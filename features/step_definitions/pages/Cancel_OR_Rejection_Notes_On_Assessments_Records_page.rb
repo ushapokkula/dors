@@ -20,7 +20,6 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
       if page.has_content?($cancel_notes)
         page.should have_css('a', :text => $cancel_notes, :visible => true)
       end
-      
       if page.has_content?($reject_notes)
         page.should have_css('a', :text => $reject_notes, :visible => true)
       end
