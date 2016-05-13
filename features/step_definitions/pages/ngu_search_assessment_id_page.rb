@@ -19,6 +19,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_requested_assessmemt_id_in_DB
     request_assessment
+    expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Requested')
     verify_requested_assessmemt_id_in_DB
   end
 
@@ -89,16 +90,16 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   def verify_assessment_outcome_details(new_table)
     columns = new_table.map { |x| x['Details'] }
     for i in 1..columns.size
-      #expect(page.text).to match(/#{columns[i]}/i)
+      expect(page).to have_content(columns[i])
     end
   end
 
   def select_outcome
-    select("Absent", :from => 'status-FSB422')
+    select("Absent", :from => 'status-281')
 
-    select("Absent", :from => 'status-DOA123')
+    select("Absent", :from => 'status-279')
 
-    select("Absent", :from => 'status-CIA624')
+    select("Absent", :from => 'status-392')
   end
 
   def assessor_availability

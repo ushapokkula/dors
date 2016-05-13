@@ -36,7 +36,7 @@ Feature: As an NGU (TrainingGovernance),
       | pil          |
 
   @trainer_auto_predict3
-  Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
+  Scenario Outline: Verify the format of displaying the list of names when trainer name is searched
     When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     Then The system will start autopredicting it and the list of trainer appears
     Then The auto predicted dropdown list will display the names in the format "<Format>"
@@ -46,7 +46,7 @@ Feature: As an NGU (TrainingGovernance),
       | zar          | Zara Turner (666666) |
 
   @trainer_auto_predict4
-  Scenario Outline: Verify the default search assessor
+  Scenario Outline: Verify the default search Trainer
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     And The system will start autopredicting it and the list of trainer appears
     When I hit enter after typing first three characters of trainer name as "<Trainer Name>"
@@ -60,11 +60,11 @@ Feature: As an NGU (TrainingGovernance),
   @trainer_auto_predict5
   Scenario: Verify the validation message when no record does'nt match the search criteria
     When The search criteria does'nt match any trainer record on the database
-    Then I see a message "No Trainers with this name exist."
+    Then I see the message "No Trainers with this name exist."
 
 
   @trainer_auto_predict6
-  Scenario Outline: Verify the default search assessor
+  Scenario Outline: Verify the trainer details by moving up and down arrow keys from auto-predict list
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     And The system will start autopredicting it and the list of trainer appears
     When I hit DOWN arrow key from the trainer auto predict list
@@ -74,8 +74,8 @@ Feature: As an NGU (TrainingGovernance),
 
 
     Examples:
-      | Trainer Name | Down_Arrow              | UP_Arrow                 |
-      | ani          | AnitaWTGTEST Hegde (11) | AnitaTest1 WTGtest1 (10) |
+      | Trainer Name | Down_Arrow   | UP_Arrow   |
+      | ani          | AnitaWTGTEST | AnitaTest1 |
 
 
 
