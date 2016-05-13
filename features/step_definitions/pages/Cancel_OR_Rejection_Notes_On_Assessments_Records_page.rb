@@ -18,19 +18,18 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   def cancel_notes_should_be_visible
     within(cancel_or_rejection_notes) do
       page.has_content?($cancel_notes)
-        page.should have_css('a', :text => $cancel_notes, :visible => true)
+        page.should have_css('a', :text => $cancel_notes, :visible => false)
         puts ($cancel_notes)
+    end
     end
 
     def rejection_notes_should_be_visible
     within(cancel_or_rejection_notes) do
     page.has_content?($reject_notes)
-        page.should have_css('a', :text => $reject_notes, :visible => true)
+        page.should have_css('a', :text => $reject_notes, :visible => false)
         puts ($reject_notes)
       end
     end
-  end
-
 
 
   def verify_rejection_field_value
@@ -48,7 +47,6 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   expect(page).to have_css("h4",text: 'Reject Assessment')
   fill_in("cancellationNotes", :with => $reject_notes)
   click_button('Yes')
-
   end
 
 
