@@ -14,7 +14,19 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
   end
 
 
-def approve_Assessment(status)
+
+ def book_Assessment_includes_nearby_trainer
+   click_link("REQUEST ASSESSMENT")
+   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+   page.find_all('.dors-well-other')[1]
+   first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
+   fill_in('notes',:with=>'Test')
+   click_link_or_button("Submit")
+ end
+
+
+ def approve_Assessment(status)
   expect(page).to have_css(".assessment-status", text: 'Requested')
   click_link_or_button(status)
 end

@@ -15,13 +15,18 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
     click_button('Yes')
   end
 
-  def cancel_or_reject_notes_should_be_visible
+  def cancel_notes_should_be_visible
     within(cancel_or_rejection_notes) do
-      if page.has_content?($cancel_notes)
+      page.has_content?($cancel_notes)
         page.should have_css('a', :text => $cancel_notes, :visible => true)
-      end
-      if page.has_content?($reject_notes)
+        puts ($cancel_notes)
+    end
+
+    def rejection_notes_should_be_visible
+    within(cancel_or_rejection_notes) do
+    page.has_content?($reject_notes)
         page.should have_css('a', :text => $reject_notes, :visible => true)
+        puts ($reject_notes)
       end
     end
   end
