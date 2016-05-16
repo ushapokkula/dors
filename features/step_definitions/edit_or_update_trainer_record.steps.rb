@@ -128,6 +128,7 @@ end
 
 And (/^the system will show a success message, "([^"]*)"$/) do |message|
   expect(page).to have_css(".toast-message", text: message)
+
 end
 
 
