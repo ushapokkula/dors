@@ -9,25 +9,27 @@ Feature: As a NGU user,
     When I login as an "Compliance Manager"
     Then I am on the Assessments Management page
     And default view of the page is loaded
-    When I request assessments
+
 
   Scenario: Verify the Assessments sorted by (Date) with nearest Date first
-      Then I will see list of all Assessments Requests with status requested
-      And The assessment list will be sorted by assessment date
+    When I request assessments
+    Then I will see list of all Assessments Requests with status requested
+    And The assessment list will be sorted by assessment date
 
   Scenario: Verify default date range filter selection
       And default Date range filter will have no selection
 
   Scenario Outline: Verify Start date and End Date fields enable functionality
-      When I enter "<start_date>" in start date field
-      Then The assessment list will be sorted by assessment date
-      And the end date option will be empty
-      Examples:
+    When I request assessments
+    And I enter "<start_date>" in start date field
+    Then The assessment list will be sorted by assessment date
+    And the end date option will be empty
+    Examples:
       |start_date|
       |15/06/2016|
       |10/08/2016|
 
-  Scenario Outline: won't be able to select an 'end date' which falls before the 'start date'
+  Scenario Outline: Won't be able to select an 'end date' which falls before the 'start date'
     When I enter "<end_date>" in End date field
     Then the 'start date' field auto populated with date
     And the value of the 'start date' will be 'today date'
@@ -39,6 +41,7 @@ Feature: As a NGU user,
 
 
   Scenario Outline: Sort the assessments with in the selected date range
+    When I request assessments
     And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments falling in that range will be displayed
     And The assessment list will be sorted by assessment date

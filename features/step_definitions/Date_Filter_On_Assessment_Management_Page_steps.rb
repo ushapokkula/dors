@@ -10,8 +10,7 @@ end
 
 And (/^I request assessments$/)do
   @trainers.trainer_login_page.login_as("Assessor3")
-  @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage
-  5.times do
+  4.times do
     @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
   end
   @trainers.trainer_login_page.login_as("Compliance Manager")
@@ -101,6 +100,14 @@ end
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/)do|status1, status2|
   if (status1 == "Requested" && status2 == "Approved" )
+    @trainers.trainer_login_page.login_as("Assessor3")
+    2.times do
+      @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage
+    end
+    2.times do
+    @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
+    end
+    @trainers.trainer_login_page.login_as("Compliance Manager")
     find("#single-button").click
     check('assessmentStatusChk1')
   end
