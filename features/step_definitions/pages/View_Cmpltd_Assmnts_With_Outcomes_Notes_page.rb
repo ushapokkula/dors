@@ -1,5 +1,5 @@
 class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
- elements :assessment_info , ".dors-well-container> div:nth-child(2)"
+ element :assessment_outcome_info , ".dors-well-container"
 
 
   def request_Assessment_includes_nearby_trainer

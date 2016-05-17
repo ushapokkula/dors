@@ -18,11 +18,15 @@ end
 
 
 
-Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do
+Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do|table|
   expect(page).to have_css("h1", text:'Assessment Outcome')
-  expected_info = table.hashes.map{|x|x['information']}
-  actual_info = @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.assessment_info.map{|x| x.value}
-  expect(actual_info).to match_array(expected_info)
+  expect(page).to have_css(".trainer-full-name")
+  expect(page).to have_css(".trainer-license-label", text: 'License')
+  expect(page).to have_css(".trainer-license")
+  expect(page).to have_css(".trainer-outcome-label",text: 'Outcome')
+  expect(page).to have_css(".trainer-outcome")
+  expect(page).to have_css(".trainer-compliance-notes-label", text: 'Compliance Notes')
+  expect(page).to have_css(".trainer-compliance-notes")
 end
 
 
@@ -35,11 +39,15 @@ Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' pag
 
 end
 
-Then(/^I should see below information in view mode on 'My assessment details' page$/)do
+Then(/^I should see below information in view mode on 'My assessment details' page$/)do|table|
   expect(page).to have_css("h1", text:'My assessment details')
   expect(page).to have_css(".assessmentStatus", text:'Completed')
-  expected_info = table.hashes.map{|x|x['information']}
-  actual_info = @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.assessment_info.map{|x| x.value}
-  expect(actual_info).to match_array(expected_info)
+  expect(page).to have_css(".trainer-full-name")
+  expect(page).to have_css(".license-code-label", text: 'License')
+  expect(page).to have_css(".license-code")
+  expect(page).to have_css(".license-outcome-label",text: 'Outcome')
+  expect(page).to have_css(".license-outcome")
+  expect(page).to have_css(".license-compliance-notes-label", text: 'Compliance Notes')
+  expect(page).to have_css(".license-compliance-notes")
 
 end

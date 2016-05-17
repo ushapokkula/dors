@@ -1,6 +1,5 @@
 class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   element :cancel_or_rejection_notes, "#actionNotes"
-  #element :cancellation_or_rejection_notes_label,  "label[for='actionNotes']"
 
 
   $cancel_notes = "Notes for cancellation"
@@ -15,24 +14,18 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
     click_button('Yes')
   end
 
-  def cancel_notes_should_be_visible
-    within(cancel_or_rejection_notes) do
-      page.has_content?($cancel_notes)
-        page.should have_css('a', :text => $cancel_notes, :visible => false)
+  def verify_cancel_or_reject_filed_readonly
+    expect(page).to have_selector("#actionNotes[readonly]") #Verify readonly field#
+   if  page.has_content?($cancel_notes)
         puts ($cancel_notes)
+   end
+    if page.has_content?($reject_notes)
+      puts ($reject_notes)
     end
-    end
-
-    def rejection_notes_should_be_visible
-    within(cancel_or_rejection_notes) do
-    page.has_content?($reject_notes)
-        page.should have_css('a', :text => $reject_notes, :visible => false)
-        puts ($reject_notes)
-      end
+    puts "Cancel or Reject Notes verified"
     end
 
-
-  def verify_rejection_field_value
+    def verify_rejection_field_value
     page.find("#actionNotes").value == $reject_notes
   end
 
