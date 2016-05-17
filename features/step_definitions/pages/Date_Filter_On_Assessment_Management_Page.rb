@@ -10,16 +10,15 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :cancel_yes, "#cancel-assessment-yes"
 
   def verify_assessment_sorting_by_date
-    actual_order= []
-    assessment_dates.each do |row|
-      assessment_dates= row.text
+    actual_order = []
+    assessment_dates.each do |element|
+    dates=element.text
+  actual_order.push(assessment_dates)
+      end
+    expected_order =[]
+  expected_order=actual_order.clone
+        puts expect(actual_order).to match_array(expected_order)
     end
-    actual_order.push(assessment_dates)
-    expected_order = []
-    expected_order=actual_order.clone
-   puts expect(actual_order).to match_array(expected_order)
-
-  end
 
 
     def delete_assessments_from_DB

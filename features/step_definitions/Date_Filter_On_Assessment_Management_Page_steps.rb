@@ -9,11 +9,9 @@ end
 
 
 And (/^I request assessments$/)do
-  @trainers.trainer_login_page.login_as("Assessor3")
-  4.times do
+  6.times do
     @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
   end
-  @trainers.trainer_login_page.login_as("Compliance Manager")
 end
 
 
@@ -68,7 +66,7 @@ puts find_field('txtStartDate').value.eql?(date)
 start_date_value =find_field('txtStartDate').value
 end_date_value =   find_field('txtEndDate').value
 (end_date_value) > (start_date_value)
-expect(page).to have_css(".alert.alert-info", text: 'There are no assessments to display.')
+page.find_all('.assessment-status', text:'Requested')
 end
 
 
@@ -84,28 +82,43 @@ And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/)do |start_date, 
 
 end
 
-Then (/^assessments falling in that range will be displayed$/)do
-  if find_field('txtStartDate').value == find_field('txtEndDate').value
-    page.all('.dors-table').count == 1
-    expect(page).to have_css('.assessment-date', visible: true)
-  end
-  if find_field('txtEndDate').value == '23/01/2017'
+Then (/^assessments falling in "([^"]*)" and "([^"]*)" range will be displayed$/)do |start_date, end_date|
+  if (start_date == "10/08/2016" && end_date == "16/11/2016" )
     page.all('.dors-table').count>=1
-    page.find_all(('.assessment-date'), match: :first , text:'10-Aug-2016', visible:true)
-    page.find_all(('.assessment-date')[1], text:'22-Jan-2017', visible:true)
+    page.find_all('.assessment-date')[0].text == '10-Aug-2016'
+    page.find_all('.assessment-date')[1].text == '16-Nov-2016'
+  end
+
+  if (start_date == "10/08/2016" && end_date == "23/05/2017" )
+    page.all('.dors-table').count>=1
+    page.find_all('.assessment-date')[0].text == '10-Aug-2016'
+    page.find_all('.assessment-date')[1].text == '16-Nov-2016'
+    page.find_all('.assessment-date')[2].text == '22-Jan-2017'
+    page.find_all('.assessment-date')[3].text == '27-Apr-2017'
+    page.find_all('.assessment-date')[4].text == '15-May-2017'
+  end
+
+  if (start_date == "05/05/2017" && end_date == "16/05/2017" )
+    page.all('.dors-table').count>=1
+    page.find_all('.assessment-date')[0].text == '27-May-2017'
+    page.find_all('.assessment-date')[1].text == '15-May-2017'
+  end
+
+  if (start_date == end_date)
+    page.all('.dors-table').count>=1
+    page.find_all('.assessment-date')[0].text == '15-May-2017'
   end
 end
-
 
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/)do|status1, status2|
   if (status1 == "Requested" && status2 == "Approved" )
     @trainers.trainer_login_page.login_as("Assessor3")
     2.times do
-      @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage
+      @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage  #booking 2 assessments#
     end
     2.times do
-    @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
+    @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course #requesting 2 assessments#
     end
     @trainers.trainer_login_page.login_as("Compliance Manager")
     find("#single-button").click
@@ -114,11 +127,12 @@ Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/)d
 end
 
 Then (/^assessments that meet all filter criteria in combination will be displayed$/)do
-  page.find_all(('.assessment-date'), match: :first , text:'', visible:true)
-  page.find_all(('.assessment-date')[1], text:'', visible:true)
-  page.find_all(('.dors-table'), match: :first ,text: 'Requested',visible:true)
-  page.find_all(('.dors-table')[1], match: :first ,text: 'Approved',visible:true)
-  page.find_all(('.assessment-status'), match: :first,text:'Requested')
-  page.find_all(('.assessment-status')[1],text:'Approved')
-
+  page.find_all('.assessment-date')[0].text == '10-Aug-2016'
+  page.find_all('.assessment-status')[0].text == 'Approved'
+  page.find_all('.assessment-date')[1].text == '16-Nov-2016'
+  page.find_all('.assessment-status')[1].text == 'Requested'
+  page.find_all('.assessment-date')[2].text == '22-Jan-2017'
+  page.find_all('.assessment-status')[2].text == 'Approved'
+  page.find_all('.assessment-date')[3].text == '27-Apr-2017'
+  page.find_all('.assessment-status')[3].text == 'Requested'
 end
