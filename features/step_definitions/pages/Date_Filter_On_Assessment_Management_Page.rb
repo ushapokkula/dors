@@ -43,7 +43,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   def book_assessments_without_milage
     click_link("REQUEST ASSESSMENT")
     expect(page).to have_css("h1", text: 'Request Assessment')
-    page.find_all(:button,'Pick a slot')[2].click
+    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
    page.find_all(".include-main-trainer-checkbox", match: :first)
    find('.include-main-trainer-checkbox', match: :first).click if find('.include-main-trainer-checkbox', match: :first)

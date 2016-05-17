@@ -114,8 +114,8 @@ Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/)d
 end
 
 Then (/^assessments that meet all filter criteria in combination will be displayed$/)do
-  page.find_all(('.assessment-date'), match: :first , text:'10-Aug-2016', visible:true)
-  page.find_all(('.assessment-date')[1], text:'22-Jan-2017', visible:true)
+  page.find_all(('.assessment-date'), match: :first , text:'', visible:true)
+  page.find_all(('.assessment-date')[1], text:'', visible:true)
   page.find_all(('.dors-table'), match: :first ,text: 'Requested',visible:true)
   page.find_all(('.dors-table')[1], match: :first ,text: 'Approved',visible:true)
   page.find_all(('.assessment-status'), match: :first,text:'Requested')
