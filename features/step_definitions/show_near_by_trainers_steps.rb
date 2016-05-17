@@ -10,10 +10,8 @@ When(/^I click Request assessmet button against trainer I want to book an assess
 end
 
 Then(/^I will be taken to Request Assessment Summary page$/) do
-  puts expect(page).to have_selector(".breadcrumb li:last-child > span", text: "Summary")
- #  link = find(".breadcrumb li:last-child > span").text
- # expect(link).to be == "Summary"
-end
+  expect(page).to have_selector(".breadcrumb li:last-child > span", text: "Summary")
+ end
 
 Then(/^I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon$/) do
   @trainers.show_near_by_trainers_page.verify_trainer_details_in_nearby_courses
@@ -30,9 +28,12 @@ Then(/^I see Trainer Full name and site address$/) do
 end
 
 And(/^I check Include this Trainer for a trainer$/)do
-  page.all('.ng-pristine.ng-valid')[1].click
-  page.all('.ng-pristine.ng-valid')[2].click
-  click_link_or_button("Submit")
+  find(".include-main-trainer-checkbox", match: :first)
+  all('.include-main-trainer-checkbox')[0].click
+  find(".include-nearby-trainer-checkbox", match: :first)
+  all('.include-nearby-trainer-checkbox')[1].click
+    click_link_or_button("Submit")
+  expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Booked')
 end
 
 Then(/^The system will include the selected trainer in the booking request$/) do

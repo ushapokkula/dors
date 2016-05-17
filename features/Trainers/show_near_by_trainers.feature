@@ -32,7 +32,7 @@ Feature: DR-165
       | Scheme          |
     And I see Trainer Full name and site address
 
-  @near_by_trainers4 @regression
+  @near_by_trainers4
   Scenario: Verify the @Include this Trainer' checkbox
     When I check Include this Trainer for a trainer
     Then The system will include the selected trainer in the booking request

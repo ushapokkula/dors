@@ -35,12 +35,13 @@ class TrainerLoginPage < SitePrism::Page
   end
 
 
-  def enter_valid_username
-    username_field.set "verma"
+  def enter_valid_username(user)
+    username_field.set($users[user]['username'])
   end
 
-  def enter_valid_password
-    password_field.set "P@ssw0rd"
+  def enter_valid_password(user)
+    password_field.set($users[user]['password'])
+    #password_field.set "P@ssw0rd"
   end
 
 

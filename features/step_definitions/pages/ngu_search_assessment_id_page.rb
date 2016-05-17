@@ -64,7 +64,6 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def book_assessment
-    # click_link_or_button("REQUEST ASSESSMENT")
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click

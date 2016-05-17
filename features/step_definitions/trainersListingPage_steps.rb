@@ -67,6 +67,7 @@ When(/^I click 'Pick a slot' on Request Assessment Page$/) do
 end
 
 And(/^I see the Expiry Date is in dd-Mmm-YYYY format$/)do
+  expect(page).to have_css(".license-expiry-date")
   @trainers.trainers_listing_page.verify_date_format
 end
 
@@ -87,7 +88,6 @@ And(/^I set the time window to "([^"]*)" days$/)do |days|
   @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ADMINISTRATION")
   fill_in('assessmentsWindow', :with=> days)
-  # sleep 2
   click_button("Save")
   # @trainers.trainer_login_page.login_as("Assessor")
 end

@@ -9,40 +9,33 @@ Feature: DR-113 and DR-118
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I click "ADMINISTRATION"
-    When I configure the assessment time window to "1000" days
-    Then I logout
+    When I configure the assessment time window to "365" days
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
 
-
-
-  @DR-373 @regressions
+  @DR-373
   Scenario: Verify the message on request assessment page when no trainer is available
     And I will be shown a list of trainers who have their license expiring within time window of "365" days
-    Then I logout
     And I set the time window to "2" days
-    Then I logout
     And I login as an "Assessor"
     When I navigate to "REQUEST ASSESSMENT" page
- # /*due to below scenario need to keep change days for other scenarios -> so leaving for now , will pick later or else create a test account for this test*/
-    #Then I see a message "No assessments available to book."
+    Then I see a message "No assessments available to book."
 
 
-  @Expiry_Within_30_days @regressions
+  @Expiry_Within_365_days
   Scenario: Displaying Trainer license details for which licenses are expiring in configured time window
     Then I will be shown a list of trainers who have their license expiring within time window of "365" days
     And Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer
-    And  the license expiring soon will be shown at top
+    And the license expiring soon will be shown at top
 
-  @Expiry_outof_30_days
+  @Expiry_outof_365_days
   Scenario: NO Trainer License details are displayed for which licenses are expiring out of configured time window and before current date
     Then I will not be shown a list of trainers who have their license expiring outside of configured time window
     And I will not be shown a list of trainers for previous dates already expired
 
-  #@multiple_trainer_details @manual @fail
-    #/* Tagged this scenario as @manual - felt doing manual better than auto for this instance */
- # Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
-  #  And Trainers who have multiple licenses expiring will be shown multiple times as a separate entry
+  @multiple_trainer_details
+  Scenario: Trainer with multiple licenses are displayed multiple times in seperate entry
+    And Trainers who have multiple licenses expiring will be shown multiple times as a separate entry
 
   @unique_licenses
   Scenario: Validating unique licenses to a scheme
