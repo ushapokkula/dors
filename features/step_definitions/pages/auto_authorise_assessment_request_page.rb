@@ -39,17 +39,17 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   def verify_list_of_trainers_not_related_to_assessor
     page.find_all('linked_force_area_name')
     find_all('span.ui-select-match-close')[0].click
-    page.find_all(('linked_force_area_name')[0],text:'METROPOLTAN POLICE')
+    page.find_all(('linked_force_area_name')[0],text:'GREATER MANCHESTER POLICE')
   end
 
 
   def verify_defalut_preselected_forcearea
-    if page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
+    if page.find_all(('linked_force_area_name')[0], text: 'GREATER MANCHESTER POLICE')
     find_all('span.ui-select-match-close')[0].click
     click_link_or_button('REQUEST ASSESSMENT')
-    page.find_all(('linked_force_area_name')[0], text: 'METROPOLITAN POLICE')
+    page.find_all(('linked_force_area_name')[0], text: 'GREATER MANCHESTER POLICE')
     page.all(:css,".dors-table").count == 1
-    page.should have_css(".trainer-licenseCode", text: '989898/001')
+    page.should have_css(".trainer-licenseCode", text: '268721/001')
     end
   end
 
