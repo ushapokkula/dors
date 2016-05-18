@@ -44,6 +44,16 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     end
   end
 
+  def verify_requested_assessment_status_in_DB
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    result.each do |row|
+      $assessment_status = row['StatusId']
+
+    end
+  end
+
   def delete_assessments_from_DB
 
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
@@ -52,18 +62,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
   end
 
-  def delete_assessments_from_UI
-
-    if (page.all(".dors-table").count) >=1
-      click_link('View Details')
-      # find(:link, 'View Details', match: :first).click
-      find(:button, 'Reject').click
-      fill_in('#cancellationNotes', :with => 'Notes for Cancelling/Rejecting')
-      click_button('Yes')
-    end
-  end
-
-  def book_assessment
+   def book_assessment
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click

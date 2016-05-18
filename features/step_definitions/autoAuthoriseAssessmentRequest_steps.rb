@@ -16,7 +16,7 @@ And(/^The status of the assessment request will be marked Booked in the database
 end
 
 Then(/^I will be redirected to Request Assessment page$/) do
-  puts expect(page).to have_css("h1",text: 'Request Assessment')
+   expect(page).to have_css("h1",text: 'Request Assessment')
 end
 
 Then(/^A message will be displayed "([^"]*)"$/) do |text|
@@ -29,8 +29,7 @@ end
 
 And(/^I click "([^"]*)" button without entering data$/) do |button|
   click_link_or_button(button)
-  sleep 2
-end
+ end
 
 And(/^I should be redirected to Pick a slot page$/) do
   expect(page).to have_css("h1",text: 'Request Assessment')

@@ -9,24 +9,17 @@ class TrainersListingPage < SitePrism::Page
 
 
   elements :expiry_dates_order, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[3]"
-  elements :duplicate_trainer, ".col-md-12.row-span"
+  elements :duplicate_trainer, ".trainer-full-name"
   elements :license_details, ".trainer-licenseCode"
 
   elements :list_of_courses, :xpath, "//div[@class='dors-table-row row']"
-  elements :pick_a_slot_buttons, :xpath, "html/body/div[1]/div[2]/div/div[2]/div/div[2]/button"
   elements :course_dates, ".course-date"
-
   elements :expiry_dates, ".license-expiry-date"
 
   def display_list_of_trainers_within_configured_days(count)
     find(:xpath, "//div[@class='dors-table-row row']", match: :first)
     expect(list_of_courses.count).to be > 1
     verify_expiry_dates(count)
-  end
-
-  def verify_details_on_listing_page
-    actual_rows = page.all('.col-md-3').count
-    expect(actual_rows).to be > 1
   end
 
   def verify_expiry_dates(count)
@@ -113,12 +106,12 @@ class TrainersListingPage < SitePrism::Page
       duplicate_trainers.push(duplicate_trainer_details)
     end
     duplicate_names=[]
+    expect(page).to have_css(".trainer-full-name")
     duplicate_trainer.each do |duplicates|
       elements=duplicates.text
       duplicate_names.push(elements)
     end
     duplicate_count=duplicate_names.group_by { |e| e }.select { |k, v| v.size > 1 }.map(&:first)
-
     expect(duplicate_count).to match_array(duplicate_trainers)
   end
 
@@ -132,37 +125,13 @@ class TrainersListingPage < SitePrism::Page
     page.evaluate_script('window.history.back()')
     end
 
-
-    # for i in 2..8
-    #   if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-    #     value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-    #     if (value == "Pick a slot")
-    #       find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-    #       courses = page.all(".dors-table").count
-    #       expect(courses).to be > 0
-    #       page.evaluate_script('window.history.back()')
-    #     end
-    #   end
-    # end
-  # end
-
   def verify_details_on_pickaslot(new_table)
-    for i in 2..8
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-        if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-          columns = new_table.map { |x| x['Display_Items'] }
-          for i in 0...columns.size
-            expect(page).to have_content(columns[i])
-          end
 
-        end
-      end
-      page.evaluate_script('window.history.back()')
+    columns = new_table.map { |x| x['Display_Items'] }
+    for i in 0...columns.size
+       expect(page).to have_content(columns[i])
     end
   end
-
 
   def check_course_details
     course_details.each do |element|
@@ -171,27 +140,18 @@ class TrainersListingPage < SitePrism::Page
   end
 
   def pick_a_slot_to_verify_course_dates
-    for i in 2..8
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-        if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-
-          course_dates.each do |date|
-            Date.parse(date.text) >= Date.today
-          end
-
-        end
-      end
-      page.evaluate_script('window.history.back()')
+    expect(page).to have_css(".course-date")
+    expect(page.all(".course-date").count).to be > 0
+    course_dates.each do |date|
+      Date.parse(date.text) >= Date.today
     end
+
   end
 
 
   def verify_trianers_fullname
-    #find(:xpath, "//button[@class='btn btn-primary']", match: :first).click
-    expect(page.should have_css(".dors-well .trainer-fullname", match: :first))
-    expect(page.should have_css(".dors-well .trainer-fullname", match: :one))
+    expect(page).to  have_css(".trainer-fullname")
+    expect(page).to have_css(".secondary-trainer-full-name")
   end
 
 

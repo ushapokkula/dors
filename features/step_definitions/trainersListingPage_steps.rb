@@ -5,7 +5,6 @@ Given(/^that I am logged into the system$/) do
   fill_in('txtemail', :with=> "ushag")
   fill_in('txtpassword', :with=> "Password2!")
   click_link_or_button("Sign in")
-
 end
 
 When(/^I will see "([^"]*)" on the page$/) do |text|
@@ -19,7 +18,11 @@ Then(/^I will be shown a list of trainers who have their license expiring within
 end
 
 And(/^Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer$/) do
-  @trainers.trainers_listing_page.verify_details_on_listing_page
+ expect(page).to have_css(".trainer-full-name")
+ expect(page).to have_css(".trainer-licenseCode")
+ expect(page).to have_css(".license-expiry-date")
+ expect(page).to have_css(".license-scheme-name")
+ expect(page).to have_css(".license-scheme-type")
 end
 
 Then(/^the license expiring soon will be shown at top$/)do
@@ -51,7 +54,8 @@ end
 
 
 When(/^I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess$/) do
-  @trainers.trainers_listing_page.pick_a_slot
+  find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
+  #@trainers.trainers_listing_page.pick_a_slot
 end
 
 Then(/^The page will also show Primary Trainers Full Name, License Number, Scheme Name and days in which their license expires$/) do
@@ -59,7 +63,10 @@ Then(/^The page will also show Primary Trainers Full Name, License Number, Schem
 end
 
 Then(/^The system will display a list of courses the selected trainer is delivering in future$/) do
-  @trainers.trainers_listing_page.pick_a_slot
+  expect(page).to have_css(".dors-table")
+  expect(page.all(".dors-table").count).to be > 0
+
+ # @trainers.trainers_listing_page.pick_a_slot
 end
 
 When(/^I click 'Pick a slot' on Request Assessment Page$/) do
