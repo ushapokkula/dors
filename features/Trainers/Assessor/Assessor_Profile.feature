@@ -24,8 +24,11 @@ Feature:
         | Town                   |
         | Force Areas            |
 
-  Scenario: Verify Cancel button functionality on Profile Page
+  Scenario: Verify 'Cancel' button functionality on 'Profile Page'
     Then the system will load the page where I can update assessor record
     When I click Cancel button on profile page
     And I will be redirected to "MY ASSESSMENTS" page
     Then unsaved changes will be lost
+
+    Scenario: Validation error handling
+      When I request to updated my profile data
