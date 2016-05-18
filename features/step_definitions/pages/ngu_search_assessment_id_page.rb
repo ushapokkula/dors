@@ -56,7 +56,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     find(".ng-pristine.ng-valid", match: :first)
     all('.ng-pristine.ng-valid')[2].click
     click_link_or_button("Submit")
-    within('.alert.alert-success.ng-binding') do
+    within('.alert.alert-success') do
       expect(page).to have_content("The assessment has been Booked")
     end
   end

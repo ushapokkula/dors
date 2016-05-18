@@ -7,7 +7,7 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
 
   def cancel_Assessment
     click_link_or_button("View Details")
-    expect(page).to have_css("h1",text: 'My assessment details')
+    expect(page).to have_css("h1",text: 'Assessment Request')
     click_link_or_button("Cancel Request")
     expect(page).to have_css("h4",text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
@@ -15,7 +15,7 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   end
 
   def verify_cancel_or_reject_filed_readonly
-    expect(page).to have_selector("#actionNotes[readonly]") #Verify readonly field#
+    page.should have_css("#actionNotes[readonly]")  #Verify readonly field#
    if  page.has_content?($cancel_notes)
         puts ($cancel_notes)
    end
@@ -35,7 +35,7 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
 
   def reject_Assessment
     click_link_or_button("View Details")
-  expect(page).to have_css("h1",text: 'Assessment Outcome')
+  expect(page).to have_css("h1",text: 'Assessment Request')
   click_link_or_button("Reject")
   expect(page).to have_css("h4",text: 'Reject Assessment')
   fill_in("cancellationNotes", :with => $reject_notes)

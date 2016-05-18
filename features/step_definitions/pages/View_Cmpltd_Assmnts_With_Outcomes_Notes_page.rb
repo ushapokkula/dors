@@ -1,5 +1,6 @@
 class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
  element :assessment_outcome_info , ".dors-well-container"
+ element :assessmentID, ".assessmentid"
 
 
   def request_Assessment_includes_nearby_trainer
@@ -8,7 +9,7 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
     first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
     page.find_all('.dors-well-other')[1]
     first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
-    fill_in('mileage',:with=>'500')  #adding mileage#
+    fill_in('mileage',:with=>'500')   #adding mileage#
     fill_in('notes',:with=>'Test')
     click_link_or_button("Submit")
   end
@@ -23,6 +24,9 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
    first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
    fill_in('notes',:with=>'Test')
    click_link_or_button("Submit")
+   within('.alert.alert-success') do
+     expect(page).to have_content("The assessment has been Booked")
+   end
  end
 
 
@@ -43,5 +47,4 @@ end
     fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')
     click_link_or_button("Mark Complete")
   end
-
 end

@@ -7,18 +7,15 @@ And(/^I 'Completed' Approved Assessment$/)do
   @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.complete_Approved_Assessment
 end
 
-
-
 Then (/^I load detailed view of 'Completed' Assessment$/)do
-  find("#single-button").click                                            #clicking on  'Assessment status dropdown'
-  check('assessmentStatusChk4')                                               #selecting Completed status#
+  find("#single-button").click                     #clicking on  'Assessment status dropdown'
+  check('assessmentStatusChk4')                     #selecting Completed status#
   expect(page).to have_css(".assessment-status", text:'Completed')
-  click_link_or_button("View Detail")                                          #clicking on 'View detail' link'
+  click_link_or_button("View Detail")              #clicking on 'View detail' link'
 end
 
 
-
-Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do|table|
+Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do |information|
   expect(page).to have_css("h1", text:'Assessment Outcome')
   expect(page).to have_css(".trainer-full-name")
   expect(page).to have_css(".trainer-license-label", text: 'License')
@@ -30,19 +27,18 @@ Then (/^I should see below information in view mode on 'Assessment Outcome' page
 end
 
 
-
 Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
-  find("#single-button").click                                            #clicking on  'Assessment status dropdown'
+  find("#single-button").click                #clicking on  'Assessment status dropdown'
   check('assessmentStatusChk4')
   expect(page).to have_css(".assessment-status", text:'Completed')
   click_link_or_button("View Details")
 
 end
 
-Then(/^I should see below information in view mode on 'My assessment details' page$/)do|table|
-  expect(page).to have_css("h1", text:'My assessment details')
+Then(/^I should see below information in view mode on 'My assessment details' page$/)do |information|
+  expect(page).to have_css("h1", text:'Assessment Outcome')
   expect(page).to have_css(".assessmentStatus", text:'Completed')
-  expect(page).to have_css(".trainer-full-name")
+  expect(page).to have_css(".trainer-fullname")
   expect(page).to have_css(".license-code-label", text: 'License')
   expect(page).to have_css(".license-code")
   expect(page).to have_css(".license-outcome-label",text: 'Outcome')

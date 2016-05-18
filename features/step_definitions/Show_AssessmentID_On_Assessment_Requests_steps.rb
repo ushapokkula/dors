@@ -28,7 +28,7 @@ And (/^I click on "([^"]*)" button on 'My assessments' page$/)do |view_details|
 end
 
 And (/^I should see "([^"]*)" on detailed view of assessment request$/)do |assessmentID|
-  expect(page).to have_css("h1", text: 'My assessment details')   #Verifying header#
+  expect(page).to have_css("h1", text: 'Assessment Request')   #Verifying header#
    expect(page).to have_css(".dors-table")
  within(".dors-table") do
   expect(page).to have_css(".assessmentIdHeader",text:assessmentID, visible:true)
@@ -50,7 +50,7 @@ And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|view_det
 end
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/)do |assessmentID|
-  expect(page).to have_css("h1",text: 'Assessment Outcome')     #Verifying header#
+  expect(page).to have_css("h1",text: 'Assessment Request')     #Verifying header#
   expect(page).to have_css(".dors-table")
   within(".dors-table") do
     expect(page).to have_css(".assessmentIdHeader", text: assessmentID ,visible:true)
