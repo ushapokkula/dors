@@ -18,7 +18,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def verify_mandatory_field_err_msgs(fields, error_msgs)
     #username.set Faker::Name.name
-    username. set random_string(7)
+    #username.set random_string(7)
     #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with=>'swapna')
     fill_in('assessorLastName', :with=>'gopu')

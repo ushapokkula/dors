@@ -34,7 +34,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     end
   end
 
-  def verify_mandatory_field_err_msgs(fields, error_msgs)
+  def verify_mandatory_fields_err_msgs(fields, error_msgs)
     username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name

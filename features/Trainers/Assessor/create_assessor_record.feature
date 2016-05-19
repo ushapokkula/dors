@@ -27,11 +27,9 @@ Feature: DR-171
 
   @create_assessor2
   Scenario Outline: Verify The mandatory fields
-
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
-
     Examples:
-           | Mandatory            | Error Messages                   |
+      | Mandatory            | Error Messages                   |
       | Username             | Please provide a username.       |
       | First Name           | Please provide a first name.     |
       | Last Name            | Please provide a last name.      |
@@ -41,21 +39,20 @@ Feature: DR-171
       | Postcode             | Please provide a postcode.       |
       | Town                 | Please provide a town.           |
 
+
   @create_assessor3
   Scenario Outline: Verify The  optional fields
-
     Then I see the following fields as "<Optional>"
-
     Examples:
       | Optional               |
-     | Assessor Number        |
+      | Assessor Number        |
       | Secondary Phone Number |
       | Force Areas            |
+
 
   @create_assessor4
   Scenario: Verify the Cancel and Create Assessor buttons
     And I see that the page includes "Create Assessor" and "Cancel" buttons
-
 
   @create_assessor5
   Scenario: Verify Cancel button on create assessor page is working
