@@ -30,7 +30,7 @@ Feature:
     And I will be redirected to "MY ASSESSMENTS" page
     Then unsaved changes will be lost
 
-    #Scenario: Assessor updtaes their profile data successfully
+    #Scenario: Assessor updates their profile data successfully
      # And I fill all Profile fields to meet their validation rules
       #And the system will refresh My Profile page to show updated record
       #And a message "Your profile has been successfully updated." will be displayed.
@@ -50,3 +50,4 @@ Feature:
     Then I see validation messages for "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>"
     Examples:
     |First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|
+    |          |         |123456789           |567890XFFR        |r@)g.com|xz£$$%%|LONdon |ax34tf|

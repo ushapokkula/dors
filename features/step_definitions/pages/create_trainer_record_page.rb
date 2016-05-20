@@ -64,7 +64,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in(optional_field, :with => '')
    page.find("#trainerisInstructor").click
     #check('trainerisInstructor')
-    expect(page).not_to have_css(".help-block")
+    expect(page).not_to have_css("p.help-block")
      click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end

@@ -93,9 +93,7 @@ end
       should have_content('Sorry, the phone number must be at least 10 digits long.')
 
     elsif (primaryPhoneNumber[0]!= '0')
-
       should have_content('Sorry, the phone number must start with zero')
-
     elsif((primaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
       should have_content('Sorry, only numbers are accepted.')
     end
@@ -103,19 +101,13 @@ end
   end
 
   def validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
-
     secondaryPhoneNumberLength = secondaryPhoneNumber.length
 
     if (secondaryPhoneNumber.empty?)
-
       should have_content('Please provide a phone number.')
-
     elsif(secondaryPhoneNumberLength<=9)
-
       should have_content('Sorry, the phone number must be at least 10 digits long.')
-
     elsif (secondaryPhoneNumber[0]!= '0')
-
       should have_content('Sorry, the phone number must start with zero')
 
     elsif((secondaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
@@ -125,94 +117,59 @@ end
   end
 
   def validateAssessorEmail(email)
-
     x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
-
     p x
-
   end
 
 
   def validateAssessorAddress(address)
-
     if (address.empty?)
-
       should have_content('Please provide an address.')
-
     end
-
   end
 
   def validateAssessorTown(town)
-
     if (town.empty?)
-
       should have_content('Please provide a town.')
-
     end
-
   end
-
 
   def validateAssessorPostcode(postcode)
-
-
     if (postcode.empty?)
-
       should have_content('Please provide a postcode.')
-
     end
-
-
   end
 
-
   def fillinAssessorfirstName(firstName)
-
     fill_in('assessorFirstName', :with=> firstName)
-
   end
 
   def fillinAssessorlastName(lastName)
-
     fill_in('assessorLastName', :with=> lastName)
-
   end
 
   def fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
-
     fill_in('assessorPhone', :with=> primaryPhoneNumber)
-
   end
 
   def fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
-
     fill_in('assessorSecondaryPhone', :with=> secondaryPhoneNumber)
-
   end
 
   def fillinAssessoremail(email)
-
     fill_in('assessorEmail', :with=> email)
-
   end
 
   def fillinAssessoraddress(address)
-
     fill_in('assessorAddress', :with=> address)
-
   end
 
   def fillinAssessortown(town)
-
     fill_in('assessorTown', :with=> town)
-
   end
 
   def fillinAssessorpostcode(postcode)
-
     fill_in('assessorPostcode', :with=> postcode)
-
   end
 end
 

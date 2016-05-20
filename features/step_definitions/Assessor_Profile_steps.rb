@@ -39,10 +39,7 @@ end
 
 
 Then(/^I enter firstname value "([^"]*)"$/) do |firstName|
-
-
   @trainers.create_assessor_record_page.fillinAssessorfirstName(firstName)
-
 end
 
 Then(/^I enter lastname value "([^"]*)"$/) do |lastName|
