@@ -1,4 +1,5 @@
-@DR-12 @pass
+@pass
+@DR-12
 Feature: As an assessor,
   I want to be able to view my record,
   so that I can ensure my details are correct and up to date.
@@ -33,7 +34,7 @@ Feature: As an assessor,
       | Town                   |
       | Address                |
       | Postcode               |
-      | Status                 |
+
 
 
 

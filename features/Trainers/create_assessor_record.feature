@@ -1,3 +1,4 @@
+@pass
 @DR-171
 Feature: DR-171
   As an user,
@@ -27,11 +28,10 @@ Feature: DR-171
 
   @create_assessor2
   Scenario Outline: Verify The mandatory fields
-
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
 
     Examples:
-           | Mandatory            | Error Messages                   |
+      | Mandatory            | Error Messages                   |
       | Username             | Please provide a username.       |
       | First Name           | Please provide a first name.     |
       | Last Name            | Please provide a last name.      |
@@ -41,20 +41,22 @@ Feature: DR-171
       | Postcode             | Please provide a postcode.       |
       | Town                 | Please provide a town.           |
 
+
   @create_assessor3
   Scenario Outline: Verify The  optional fields
-
     Then I see the following fields as "<Optional>"
 
     Examples:
       | Optional               |
-     | Assessor Number        |
+      | Assessor Number        |
       | Secondary Phone Number |
       | Force Areas            |
+
 
   @create_assessor4
   Scenario: Verify the Cancel and Create Assessor buttons
     And I see that the page includes "Create Assessor" and "Cancel" buttons
+
 
 
   @create_assessor5
@@ -62,6 +64,7 @@ Feature: DR-171
     Then the system will load the page where I can create a new assessor record
     When I click Cancel button
     Then then unsaved changes will be lost and I will be redirected to my homepage (Assessments Management)
+
 
   @create_assessor6
   Scenario Outline: Verify all validation messages on entering invalid inputs to create assessor form
@@ -80,9 +83,10 @@ Feature: DR-171
     Then I click on create assessor button
     Then I see validation messages for "<username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
 
-  Examples:
-  |username|Assessor Number|First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|Force Areas|
-  |          |11111111| WTGTest| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
+
+    Examples:
+      | username | Assessor Number | First Name | Last Name        | Primary Phone Number | Secondary Phone Number | Email              | Address             | Town   | Postcode | Force Areas              |
+      |          | 11111111        | WTGTest    | Web Technologies | 07987876789          | 07876545654            | test.wtg@wtg.co.uk | 76 Hammersmith road | London | W148UD   | BRITISH TRANSPORT POLICE |
   #| TestWTG  |11111111|    | Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG|                 | 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| |07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|

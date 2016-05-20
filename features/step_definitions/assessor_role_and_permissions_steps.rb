@@ -33,7 +33,7 @@ Then(/^The page will show the list of assessments "([^"]*)" requested$/) do |use
   expect(page).to have_css(".dors-well-other")
   find(:button, "View Details").click
   @trainers.assessor_role_and_permissions_page.verify_assessor_requested_assessments(user)
-  click_link("Sign out")
+
 end
 
 Then(/^I see that I have no access to "([^"]*)","([^"]*)"$/) do |tab1, tab2|

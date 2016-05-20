@@ -36,11 +36,11 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     $actual_date = client.execute("SELECT  tbl_Course.CourseDateTime FROM tbl_Course INNER JOIN tbl_CourseTrainer ON tbl_Course.CourseID = tbl_CourseTrainer.CourseId WHERE (tbl_CourseTrainer.TrainerId = 6)")
 
-    select(outcome1, :from => 'status-111333/001')
+    select(outcome1, :from => 'status-281')
 
-    select(outcome1, :from => 'status-111222/001')
+    select(outcome1, :from => 'status-279')
 
-    select(outcome1, :from => 'status-111555/003')
+    select(outcome1, :from => 'status-392')
 
   end
 
@@ -59,7 +59,7 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
   def visibility_of_trainers
      expect(page).to have_content('111333/001')
      expect(page).to have_content('111222/001')
-     expect(page).to have_content('111555/003')
+     expect(page).to have_content('111999/002')
   end
 
   def verify_license_status_for_actionnote_competent

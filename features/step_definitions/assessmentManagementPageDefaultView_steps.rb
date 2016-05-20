@@ -14,8 +14,8 @@ end
 
 When(/^There are no assessments with status requested$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  click_link_or_button("ASSESSORS")
-  click_link_or_button("ASSESSMENT MANAGEMENT")
+  # click_link_or_button("ASSESSORS")
+  # click_link_or_button("ASSESSMENT MANAGEMENT")
 end
 
 And(/^Each request contains Assessment ID$/)do

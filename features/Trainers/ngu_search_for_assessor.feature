@@ -1,3 +1,4 @@
+@pass
 @DR-193
 Feature: As an NGU,
   I want to be able to search for an Assessor,

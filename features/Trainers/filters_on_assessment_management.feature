@@ -1,4 +1,5 @@
-@DR-175 @pass
+@pass
+@DR-175
 Feature: As a NGU user,
   I want to be able to filter assessment records on Assessment Management page by Status,
   so that I can view filtered list of records I am interested in.
@@ -19,6 +20,7 @@ Feature: As a NGU user,
       | Cancelled               |
       | Completed               |
 
+
   @status_filter2
   Scenario: Verify the default option selected as 'Requested' from the status filter
     When I can see the assessment status filter with these following options
@@ -30,10 +32,12 @@ Feature: As a NGU user,
       | Completed               |
     Then I see that the "Requested" option is selected by default
 
+
   @status_filter3
   Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
     When I select "<Status Filter>"
     Then Only those assessments will be shown with status as "<Status Assertion>"
+
 
     Examples:
       | Status Filter | Status Assertion |
@@ -47,6 +51,7 @@ Feature: As a NGU user,
   Scenario Outline: Verify the visibility of assessments when combination of status filter is selected
     And I select "<Status Filter1>" and "<Status Filter2>"
     Then Only those assessments will be shown with status as "<Status Assertion1>" and "<Status Assertion2>"
+
 
 
     Examples:

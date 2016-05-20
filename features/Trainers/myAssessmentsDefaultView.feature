@@ -1,3 +1,4 @@
+@pass
 @my_assessments_default
 Feature:Default View
   As an assessor,

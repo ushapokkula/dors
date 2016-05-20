@@ -23,7 +23,7 @@ class ComplianceUnitAuthorisesAssessmentReqPage < SitePrism::Page
       actual_trainer_licenses.push(trainer_list)
     end
      expect(actual_trainer_licenses).not_to include("111333/001")
-     expect(actual_trainer_licenses).not_to include("111555/003")
+     expect(actual_trainer_licenses).not_to include("111222/001")
   end
 
 

@@ -1,3 +1,4 @@
+@pass
 @DR-392
 Feature:DR-392
   As a Compliance Manager,

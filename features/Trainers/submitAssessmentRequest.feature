@@ -1,3 +1,4 @@
+@fail
 @submit_assessment_request @fail
 Feature: submit assessment request feature
   As an assessor,

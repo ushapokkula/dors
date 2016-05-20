@@ -1,3 +1,4 @@
+@pass
 Feature: DR-257
 
   @my_assessment_link

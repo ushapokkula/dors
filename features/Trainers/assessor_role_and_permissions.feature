@@ -1,4 +1,5 @@
-@DR-388 @pass
+@pass
+@DR-388
 Feature: Assessor Role and Permissions
 
   @role_permission1

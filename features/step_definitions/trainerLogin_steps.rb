@@ -1,4 +1,5 @@
 Given(/^that I have licence\.ndors\.org\.uk page opened$/) do
+#@trainers.trainer_login_page.load
   visit $Trainers_Link
 end
 

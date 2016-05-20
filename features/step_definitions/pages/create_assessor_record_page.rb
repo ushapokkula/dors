@@ -50,7 +50,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     random_selector(forcearea_list)
     fill_in(optional_field, :with=>'')
     click_link_or_button("Create Assessor")
-    expect(page).not_to have_css(".help-block")
+    expect(page).to have_no_css("p.help-block")
   end
 
   def random_selector(x)

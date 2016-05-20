@@ -1,4 +1,5 @@
-@DR-31 @pass
+@pass
+@DR-31
 Feature: DR-31
   As an NGU,
   I want to be able configure a time window until which the assessors can search trainers and request assessment booking,

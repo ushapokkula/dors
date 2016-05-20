@@ -60,7 +60,7 @@ end
 
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
   expect(page.text).to have_content("My assessment details")
-  click_link_or_button("REQUEST ASSESSMENT")
+  click_link("REQUEST ASSESSMENT")
 
   #within(:css, ".trainer-licenseCode") do
     expect(page).not_to have_css('.trainer-licenseCode', text: '100001/101')

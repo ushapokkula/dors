@@ -1,4 +1,5 @@
-@DR-39 @pass
+@pass
+@DR-39
 Feature: As an NGU,
   I want to be able to manually edit the details of an existing licence held by a trainer,
   so that licence record can be kept upto date.

@@ -1,4 +1,5 @@
-@DR-305  @pass
+@pass
+@DR-305
 Feature:DR-305
 
   Background:
@@ -21,7 +22,7 @@ Feature:DR-305
     And I see a message "has been marked Booked"
     Then The request will be accepted and status of assessment request will be updated to Booked
 
-  @Approve3 @fail
+  @Approve3
   Scenario: Verify trainers visibility on request assessment page after Approving a request
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page

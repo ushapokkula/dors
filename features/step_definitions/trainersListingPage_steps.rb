@@ -1,6 +1,6 @@
 Given(/^that I am logged into the system$/) do
   # @trainers.login_page.login
-  visit $Trainers_Link
+ # visit $Trainers_Link
   @trainers.configure_book_time_window_page.verify_no_user_is_signed_in   #time being kept login code here
   fill_in('txtemail', :with=> "ushag")
   fill_in('txtpassword', :with=> "Password2!")

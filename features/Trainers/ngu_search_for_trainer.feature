@@ -1,3 +1,4 @@
+@pass
 @DR-517
 Feature: As an NGU (TrainingGovernance),
   I want to be able to search a Trainer record,

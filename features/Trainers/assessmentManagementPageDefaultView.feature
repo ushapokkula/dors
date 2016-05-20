@@ -1,4 +1,5 @@
-@DR-285 @pass
+@pass
+@DR-285
 Feature:DR-285
   Assessment Management Default View
 
@@ -7,6 +8,7 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
+    When There are no assessments with status requested
     Then I see a message "There are no assessments to display."
 
   @default2
@@ -14,8 +16,6 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
-    And I logout
-    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
@@ -32,7 +32,6 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
-    And I logout
     And I login as an "Compliance Manager"
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
@@ -44,7 +43,6 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
-    And I logout
     And I login as an "Compliance Manager"
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
@@ -56,7 +54,6 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
-    And I logout
     And I login as an "Compliance Manager"
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested

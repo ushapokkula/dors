@@ -1,3 +1,4 @@
+@pass
 @mileage_calculation
 Feature: Total Mileage calculation
 

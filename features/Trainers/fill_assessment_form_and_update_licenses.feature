@@ -1,4 +1,5 @@
-@DR-253 @pass
+@pass
+@DR-253
 Feature: DR-253
   Fill Assessment Form and Fill their details
 

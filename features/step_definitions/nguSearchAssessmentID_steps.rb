@@ -1,4 +1,5 @@
 And(/^I type the Booked Assessment ID in the Assessment search field$/) do
+   @trainers.trainer_login_page.login_as("Assessor")
    @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
    @trainers.trainer_login_page.login_as("Compliance Manager")
    fill_in('txt-assessment-id', :with => $booked_status)
@@ -21,9 +22,9 @@ Then(/^The page will include Mark Complete and Cancel button$/) do
 end
 
 Then(/^the page include Outcome dropdown$/) do
-  page.has_select?("#status-281", :options => ['Absent','Action Note','Cancelled','Competent','Compliance Note']).should == true
-  page.has_select?('#status-279>option', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
-  page.has_select?('#status-392>option', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
+  page.has_select?('#status-281', :options => ['Absent','Action Note','Cancelled','Competent','Compliance Note'])
+  page.has_select?('#status-279', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
+  page.has_select?('#status-392>', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
 end
 
 And(/^I type the Request Assessment ID in the Assessment search field$/) do

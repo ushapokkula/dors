@@ -1,3 +1,4 @@
+@pass
 @maximum_trainers
 Feature: Maximum 4 trainers allowed per assessment request
 
