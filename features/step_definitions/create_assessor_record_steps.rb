@@ -42,14 +42,11 @@ Then(/^then unsaved changes will be lost and I will be redirected to my homepage
 end
 
 Then(/^I click on create assessor button$/) do
-
   @trainers.create_assessor_record_page.createAssessor()
-
 end
 
 
 Then(/^I enter field1 "([^"]*)"$/) do |username|
-
   @trainers.create_assessor_record_page.fillinUserName(username)
 
 end

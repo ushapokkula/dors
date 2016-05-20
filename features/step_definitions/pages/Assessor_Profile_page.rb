@@ -1,13 +1,13 @@
 class AssessorProfilePage < SitePrism::Page
-  element   :trainer_first_name, "#assessorFirstName"
-  element   :trainer_last_name, "#assessorLastName"
+  element   :first_name, "#assessorFirstName"
+  element   :last_name, "#assessorLastName"
   element   :primary_phone, "#assessorPhone"
   element    :secondary_phone, "#assessorSecondaryPhone"
   element    :email, "#assessorEmail"
   element    :address, "#assessorAddress"
   element    :town, "#assessorTown"
   element    :postcode, "#assessorPostcode"
-  element    :town, "#assessorTown"
+
 
 def profile_details(new_table)
   columns = new_table.map { |x| x['Update Assessor Fields'] }
@@ -28,8 +28,8 @@ end
 
 
   def filling_all_fields_with_allowed_validation
-    trainer_first_name.set Faker::Name.name
-    trainer_last_name.set Faker::Name.name
+    first_name.set Faker::Name.name
+    last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone.set Faker::PhoneNumber.numerify('0##########')
     email.set Faker::Internet.email
@@ -53,12 +53,10 @@ end
       find('Please provide a first name.')
 
     elsif(firstNameLength<1)
-      #TO-DO check with the length validation as it is not yet implemented
-      should have_content('Please provide a first name.')
+      should have_css("p.help-block",'Please provide a first name.')
 
-      #TO-DO check with the length validation as it is not yet implemented
     elsif(firstNameLength>=51)
-      should have_content('Sorry, the first name must not be more than 20 characters long.')
+      page.find('first_name').value.length.should_be 50
     end
 
   end
@@ -69,13 +67,12 @@ end
 
     if (lastName.empty?)
       find('Please provide a last name.')
-    elsif(lastNameLength<=3)
-      #TO-DO check with the length validation as it is not yet implemented
-      should have_content('Sorry, the last name must be at least 4 characters long.')
+    elsif(lastNameLength<1)
+      should have_css("p.help-block",'Please provide a last name.')
 
-      #TO-DO check with the length validation as it is not yet implemented
-    elsif(lastNameLength>=21)
-      should have_content('Sorry, the last name must not be more than 20 characters long.')
+    elsif(lastNameLength>=51)
+      page.find('last_name').value.length.should_be 50
+      puts 'Limit is 50 charachters - pass'
     end
 
   end
@@ -86,19 +83,20 @@ end
 
     if (primaryPhoneNumber.empty?)
 
-      should have_content('Please provide a phone number.')
+      should have_css("p.help-block",'Please provide a phone number.')
 
     elsif(primaryPhoneNumberLength<=9)
 
-      should have_content('Sorry, the phone number must be at least 10 digits long.')
+      should have_css("p.help-block",'Sorry, the phone number must be at least 10 digits long.')
 
     elsif (primaryPhoneNumber[0]!= '0')
-      should have_content('Sorry, the phone number must start with zero')
-    elsif((primaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
-      should have_content('Sorry, only numbers are accepted.')
+      should have_content('Sorry, the phone number must be at least 10 digits long.')
+    elsif(primaryPhoneNumberLength>=51)
+      page.find('last_name').value.length.should_be 50
+      puts 'Limit is 50 charachters - pass'
     end
-
   end
+
 
   def validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
     secondaryPhoneNumberLength = secondaryPhoneNumber.length
@@ -108,37 +106,67 @@ end
     elsif(secondaryPhoneNumberLength<=9)
       should have_content('Sorry, the phone number must be at least 10 digits long.')
     elsif (secondaryPhoneNumber[0]!= '0')
-      should have_content('Sorry, the phone number must start with zero')
-
-    elsif((secondaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
-      should have_content('Sorry, only numbers are accepted.')
+      should have_content('Sorry, the phone number must be at least 10 digits long.')
+    elsif(secondaryPhoneNumberLength>=51)
+    page.find('last_name').value.length.should_be 50
+    puts 'Limit is 50 charachters - pass'
+    end
     end
 
-  end
+
 
   def validateAssessorEmail(email)
-    x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    x= email.match(/^[A-Za-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})\./)
+    #(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    # (/[A-Za-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4}/)
+    /^[A-Za-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$/
     p x
   end
 
 
   def validateAssessorAddress(address)
+    addressLength = address.length
     if (address.empty?)
       should have_content('Please provide an address.')
+    elsif(addressLength>=255)
+      page.find('last_name').value.length.should_be 255
+      puts 'Limit is 255 charachters - pass'
     end
+    page.should have_xpath("//textarea[@rows='3']")  #Verifying default number of rows in Address textarea#
   end
+
+
 
   def validateAssessorTown(town)
+    townLenght = town.length
     if (town.empty?)
       should have_content('Please provide a town.')
+    elsif(townLenght>60)
+      page.find('town').value.length.should_be 60
+      puts 'Limit is 60 charachters - pass'
     end
+    y=town.match(/[ A-Za-z-,.;'&.()]/)
+    p y
   end
 
+
   def validateAssessorPostcode(postcode)
+    postcodeLength = postcode.length
     if (postcode.empty?)
       should have_content('Please provide a postcode.')
-    end
+    elsif(postcodeLength>10)
+      page.find('postcode').value.length.should_be 10
+      puts 'Limit is 10 charachters - pass'
+   elsif
+    z=postcode.match(/[ A-Za-z0-9]/)
   end
+
+  #textarea_text = page.find(:css, 'textarea').text
+  #first_letter = textarea_text[0]
+  #first_letter.should == first_letter.capitalize
+  #end
+
+
 
   def fillinAssessorfirstName(firstName)
     fill_in('assessorFirstName', :with=> firstName)
@@ -171,7 +199,7 @@ end
   def fillinAssessorpostcode(postcode)
     fill_in('assessorPostcode', :with=> postcode)
   end
-end
+    end
 
 
 

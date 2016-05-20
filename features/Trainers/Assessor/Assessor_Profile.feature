@@ -37,7 +37,7 @@ Feature:
 
 
   Scenario Outline: Validation error handling
-    And I have updated my profile data with below validations
+    #And I have updated my profile data with below validations
     Then I enter firstname value "<First Name>"
     And  I enter lastname value "<Last Name>"
     Then I enter primary phone number "<Primary Phone Number>"
@@ -46,8 +46,21 @@ Feature:
     Then I enter address "<Address>"
     Then I enter town "<Town>"
     Then I enter postcode "<Postcode>"
-    Then I click on Update Assessor
-    Then I see validation messages for "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>"
+    #When I request to updated my profile data
+    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>" fields not meet the below validation requirements
+    Then the system will highlight those fields
+    And show validation requirements against those fields
+    And record will not be updated
+    And I will remain on the same page
     Examples:
     |First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|
-    |          |         |123456789           |567890XFFR        |r@)g.com|xz£$$%%|LONdon |ax34tf|
+    |          | WTGTest| 876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|
+    #|fields                       |validation               |
+    #|First Name                   |                         |
+    #|Last Name                    |test@123                 |
+    #|Primary Phone Number         |568942+                  |
+    #|Secondary Phone Number       |                         |
+    #|Email                        |t_jhcbj@test.com         |
+    #|Address                      |@`!#$%&'*+-/=?^_`{ } ~ . |
+    #|Town                         |                         |
+    #|Postcode                     |                         |
