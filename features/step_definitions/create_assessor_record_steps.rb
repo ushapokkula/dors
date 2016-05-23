@@ -61,46 +61,46 @@ end
 Then(/^I enter field3 "([^"]*)"$/) do |firstName|
 
 
-  @trainers.create_assessor_record_page.fillinfirstName(firstName)
+  @trainers.create_assessor_record_page.fillinAssessorfirstName(firstName)
 
 end
 
 Then(/^I enter field4 "([^"]*)"$/) do |lastName|
 
-  @trainers.create_assessor_record_page.fillinlastName(lastName)
+  @trainers.create_assessor_record_page.fillinAssessorlastName(lastName)
 
 end
 
 Then(/^I enter field5 "([^"]*)"$/) do |primaryPhoneNumber|
 
-  @trainers.create_assessor_record_page.fillinprimaryPhoneNumber(primaryPhoneNumber)
+  @trainers.create_assessor_record_page.fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
 
 end
 
 Then(/^I enter field6 "([^"]*)"$/) do |secondaryPhoneNumber|
-  @trainers.create_assessor_record_page.fillinsecondaryPhoneNumber(secondaryPhoneNumber)
+  @trainers.create_assessor_record_page.fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
 
 end
 
 Then(/^I enter field7 "([^"]*)"$/) do |email|
-  @trainers.create_assessor_record_page.fillinemail(email)
+  @trainers.create_assessor_record_page.fillinAssessoremail(email)
 
 
 end
 
 Then(/^I enter field8 "([^"]*)"$/) do |address|
 
-  @trainers.create_assessor_record_page.fillinaddress(address)
+  @trainers.create_assessor_record_page.fillinAssessoraddress(address)
 
 end
 
 Then(/^I enter field9 "([^"]*)"$/) do |town|
-  @trainers.create_assessor_record_page.fillintown(town)
+  @trainers.create_assessor_record_page.fillinAssessortown(town)
 
 end
 
 Then(/^I enter field10 "([^"]*)"$/) do |postcode|
-  @trainers.create_assessor_record_page.fillinpostcode(postcode)
+  @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 
 end
 

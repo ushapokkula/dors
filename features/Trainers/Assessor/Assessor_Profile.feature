@@ -30,31 +30,36 @@ Feature:
     And I will be redirected to "MY ASSESSMENTS" page
     Then unsaved changes will be lost
 
-    #Scenario: Assessor updates their profile data successfully
-     # And I fill all Profile fields to meet their validation rules
-      #And the system will refresh My Profile page to show updated record
-      #And a message "Your profile has been successfully updated." will be displayed.
-
-
   Scenario Outline: Validation error handling
     #And I have updated my profile data with below validations
-    Then I enter firstname value "<First Name>"
-    And  I enter lastname value "<Last Name>"
-    Then I enter primary phone number "<Primary Phone Number>"
-    Then I enter secondary phone number "<Secondary Phone Number>"
-    Then I enter email "<Email>"
-    Then I enter address "<Address>"
-    Then I enter town "<Town>"
-    Then I enter postcode "<Postcode>"
+    #Then I enter field3 "<First Name>"
+    #Then I enter field4 "<Last Name>"
+    #Then I enter field5 "<Primary Phone Number>"
+    #Then I enter field6 "<Secondary Phone Number>"
+    #Then I enter field7 "<Email>"
+    #Then I enter field8 "<Address>"
+    #Then I enter field9 "<Town>"
+    #Then I enter field10 "<Postcode>"
     #When I request to updated my profile data
-    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>" fields not meet the below validation requirements
-    Then the system will highlight those fields
-    And show validation requirements against those fields
-    And record will not be updated
-    And I will remain on the same page
+    #And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Address>" ,"<Email>"fields not meet the below validation requirements
+    And I fill 'Address' and 'Email' fields with '255' chars
+    #And I fill "<Town>" field with "60" chars
+    #Then the system will highlight those fields
+    #And show validation requirements against those fields
+   # And record will not be updated
+    #And I will remain on the same page
     Examples:
-    |First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|
-    |          | WTGTest| 876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|
+    |First Name                                          |Last Name                                              |Primary Phone Number                              |Secondary Phone Number|Postcode|Address|Email|
+    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*%                                       |                |W148UD|               |     |
+    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&*-    | 07987876789                                      |07876545654|W148UD|                    |  |
+    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|0787*+|W148UD|                     |     |
+
+
+
+
+
+
+
     #|fields                       |validation               |
     #|First Name                   |                         |
     #|Last Name                    |test@123                 |

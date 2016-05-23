@@ -59,16 +59,20 @@ When (/^I request to updated my profile data$/)do
   @trainers.assessor_profile_page.update_assessor_profile
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements $/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode|
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,postcode,address,email|
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
-  @trainers.assessor_profile_page.validateAssessorEmail(email)
-  @trainers.assessor_profile_page.validateAssessorAddress(address)
-  @trainers.assessor_profile_page.validateAssessorTown(town)
+  @trainers.assessor_profile_page.validateEmptyAdress(address)
+  @trainers.assessor_profile_page.validateEmptyEmail(email)
   @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
 
+end
+
+And (/^I fill 'Address' and 'Email' fields with '255' chars$/)do
+  @trainers.assessor_profile_page.validateAssessorAddress
+  @trainers.assessor_profile_page.validateAssessorEmail
 end
 
 Then(/^the system will highlight those fields$/)do

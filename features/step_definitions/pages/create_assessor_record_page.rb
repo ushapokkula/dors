@@ -282,54 +282,38 @@ def validateEmail(email)
 
   end
 
-  def fillinfirstName(firstName)
-
+  def fillinAssessorfirstName(firstName)
     fill_in('assessorFirstName', :with=> firstName)
-
   end
 
-  def fillinlastName(lastName)
-
+  def fillinAssessorlastName(lastName)
     fill_in('assessorLastName', :with=> lastName)
-
   end
 
-  def fillinprimaryPhoneNumber(primaryPhoneNumber)
-
+  def fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
     fill_in('assessorPhone', :with=> primaryPhoneNumber)
-
   end
 
-  def fillinsecondaryPhoneNumber(secondaryPhoneNumber)
-
+  def fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
     fill_in('assessorSecondaryPhone', :with=> secondaryPhoneNumber)
-
   end
 
-  def fillinemail(email)
-
+  def fillinAssessoremail(email)
     fill_in('assessorEmail', :with=> email)
-
   end
 
-  def fillinaddress(address)
-
+  def fillinAssessoraddress(address)
     fill_in('assessorAddress', :with=> address)
-
   end
 
-  def fillintown(town)
-
+  def fillinAssessortown(town)
     fill_in('assessorTown', :with=> town)
-
   end
 
-  def fillinpostcode(postcode)
-
+  def fillinAssessorpostcode(postcode)
     fill_in('assessorPostcode', :with=> postcode)
-
   end
 
 
 
-  end
+end
