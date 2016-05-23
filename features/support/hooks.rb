@@ -48,6 +48,16 @@ unless Dir.glob('error_pages/*').empty?
   FileUtils.rm_rf Dir.glob('error_pages/*')
 end
 
+#delete the json reports generated
+unless Dir.glob('reports/*').empty?
+  FileUtils.rm_rf Dir.glob('reports/*')
+end
+
+#delete the junit reports generated
+unless Dir.glob('junit/*').empty?
+  FileUtils.rm_rf Dir.glob('junit/*')
+end
+
 #create reports directory if not present
 # Dir.mkdir("reports") unless File.directory?("reports")
 

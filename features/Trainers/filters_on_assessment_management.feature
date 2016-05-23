@@ -36,7 +36,7 @@ Feature: As a NGU user,
   @status_filter3
   Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
     When I select "<Status Filter>"
-    Then Only those assessments will be shown with status as "<Status Assertion>"
+    Then Only those assessments will be shown with status as "<Status Assertion>" on Assessment management page
 
 
     Examples:
@@ -50,7 +50,7 @@ Feature: As a NGU user,
   @status_filter4
   Scenario Outline: Verify the visibility of assessments when combination of status filter is selected
     And I select "<Status Filter1>" and "<Status Filter2>"
-    Then Only those assessments will be shown with status as "<Status Assertion1>" and "<Status Assertion2>"
+    Then Only those assessments will be shown with status as "<Status Assertion1>" and "<Status Assertion2>" on Assessment management page
 
 
 

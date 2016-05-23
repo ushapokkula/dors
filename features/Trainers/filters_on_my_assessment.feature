@@ -32,7 +32,7 @@ Feature: Filter on My Assessment page
   @my_assessment_status_filter3
   Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
     When I select "<Status Filter>" on My Assessments page
-    Then Only those assessments will be shown with status as "<Status Assertion>"
+    Then Only those assessments will be shown with status as "<Status Assertion>" on My assessments page
 
     Examples:
       | Status Filter | Status Assertion |

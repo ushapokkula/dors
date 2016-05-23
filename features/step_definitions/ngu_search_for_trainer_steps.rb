@@ -11,11 +11,12 @@ When(/^I start typing six digits as "([^"]*)" in the trainer search field$/) do 
 end
 
 Then(/^The system will start autopredicting it and the list of trainer appears$/) do
-
-  if (page.should have_no_css(".text-danger"))
+  WaitUtil.wait_for_condition("waiting for Trainer details", :timeout_sec => 5, :delay_sec => 0.5) do
+    if (page.should have_no_css(".text-danger"))
     expect(page.all("#txt-trainer-name + ul li").count).to be > 0
   end
-end
+  end
+  end
 
 And(/^I start typing atleast three characters as "([^"]*)" in the trainer search field$/) do |chars|
   fill_in('txt-trainer-name', :with => chars)

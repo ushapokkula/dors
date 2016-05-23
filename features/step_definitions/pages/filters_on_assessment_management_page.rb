@@ -51,6 +51,12 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
 
   end
 
+  def verify_assessment_status(status)
+    assessment_status.each do |row|
+     expect(row.text).to be == (status)
+    end
+  end
+
   def completed_assessment
     fill_in("txt-assessment-id",:with=>$booked_status)
     click_button("Search")
@@ -60,7 +66,6 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
   def verify_combination_status(status1,status2)
     status_array= [status1,status2]
     assessment_status.each do |status|
-      expect(page).to have_css(".dors-table", visible: true)
       actual_status = status.text
       expect(status_array).to include(actual_status)
     end
