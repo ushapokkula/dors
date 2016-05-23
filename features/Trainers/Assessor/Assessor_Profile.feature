@@ -41,18 +41,18 @@ Feature:
     #Then I enter field9 "<Town>"
     #Then I enter field10 "<Postcode>"
     #When I request to updated my profile data
-    #And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Address>" ,"<Email>"fields not meet the below validation requirements
-    And I fill 'Address' and 'Email' fields with '255' chars
+    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Address>","<Email>","<Town>" fields not meet the below validation requirements
+    #And I fill 'Address' and 'Email' fields with '255' chars
     #And I fill "<Town>" field with "60" chars
     #Then the system will highlight those fields
     #And show validation requirements against those fields
    # And record will not be updated
     #And I will remain on the same page
     Examples:
-    |First Name                                          |Last Name                                              |Primary Phone Number                              |Secondary Phone Number|Postcode|Address|Email|
-    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*%                                       |                |W148UD|               |     |
-    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&*-    | 07987876789                                      |07876545654|W148UD|                    |  |
-    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|0787*+|W148UD|                     |     |
+    |First Name                                          |Last Name                                              |Primary Phone Number                              |Secondary Phone Number|Postcode|Address |Email              |Town  |
+    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*%                                       |                      |W148UD  |        | Roopa#@wtg{com    |LonDOn|
+    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&*-    | 07987876789                                      |07876545654           |W148U   |WEExxx.bcbhb|rchitt>~mail&&.com|        |
+    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|0787*+            |W148UD  |65byron Road|                  |DV .(ccjcjc|
 
 
 

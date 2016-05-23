@@ -3,10 +3,10 @@ class AssessorProfilePage < SitePrism::Page
   element    :last_name,      "#assessorLastName"
   element    :primary_phone,   "#assessorPhone"
   element    :secondary_phone, "#assessorSecondaryPhone"
-  element    :email,             "#assessorEmail"
-  element    :address,           "#assessorAddress"
-  element    :town,              "#assessorTown"
-  element    :postcode,           "#assessorPostcode"
+  element    :assessor_email,             "#assessorEmail"
+  element    :assessor_address,           "#assessorAddress"
+  element    :assessor_town,              "#assessorTown"
+  element    :assessor_postcode,           "#assessorPostcode"
 
 
 def profile_details(new_table)
@@ -126,30 +126,31 @@ end
 
 
 
-  def validateAssessorAddress
-    address_string = address.set random_string(255)
+  def validateAssessorAddress(address)
+    address_string = (assessor_address).set random_string(256)
     addressLength =  address_string.length
-    if(addressLength>255)
+    if(address.empty?)
+      page.should have_css("p.help-block", text:'Please provide an address.')
+    elsif(address.length<=20)
+      page.should_not have_css("p.help-block", text:'Please provide an address.')
+    elsif(addressLength>255)
       page.find('address').value.length.should_be 255
       puts 'Limit is 255 charachters - pass'
-    end
     page.should have_xpath("//textarea[@rows='3']")  #Verifying default number of rows in Address textarea#
     end
+      end
 
-  def validateAssessorEmail
-    email_string = email.set random_string(255)
+  def validateAssessorEmail(email)
+    email_string = assessor_email.set random_string(256)
     emailLength = email_string.length
-    if(emailLength>255)
+    if(email.empty?)
+      page.should have_css("p.help-block",text:'Please provide an email address.')
+    elsif(emailLength>255)
       page.find('email').value.length.should_be 255
       puts 'Limit is 255 charachters - pass'
     end
   end
 
-  def validateEmptyAdress
-    if(address.empty?)
-      page.should have_css("p.help-block",text:'Please provide an address.')
-    end
-  end
 
   def validateEmptyEmail
     if(email.empty?)
@@ -159,9 +160,10 @@ end
 
 
   def validateAssessorTown(town)
-    townLenght = town.length
+    town_string = assessor_town.set random_string(61)
+    townLenght = town_string.length
     if (town.empty?)
-      page.should have_content('Please provide a town.')
+      page.should have_css("p.help-block",text:'Please provide a town.')
     elsif(townLenght>60)
       page.find('town').value.length.should_be 60
       puts 'Limit is 60 charachters - pass'
