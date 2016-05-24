@@ -50,7 +50,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     random_selector(forcearea_list)
     fill_in(optional_field, :with=>'')
     click_link_or_button("Create Assessor")
-    expect(page).not_to have_css(".help-block")
+    expect(page).to have_no_css("p.help-block")
   end
 
   def random_selector(x)
@@ -270,9 +270,9 @@ def validateEmail(email)
 
   end
 
-  def fillinUserName(username)
-
-    fill_in('assessorUsername', :with=> username)
+  def fillinUserName(username1)
+    username. set random_string(7)
+    #fill_in('assessorUsername', :with=> username)
 
   end
 
@@ -330,6 +330,18 @@ def validateEmail(email)
 
   end
 
+  def email_generation(subject)
+    visit "https://mail.wtg.co.uk/owa"
+    fill_in('username', :with=>'swapna.gopu')
+    fill_in('password', :with=> 'sudiv143!')
+    find(".signinTxt").click
+    find(:xpath,".//span[text()='DORS Test']",match: :first).click
+    expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
+    expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']", text: $email_body)
+    within(".//*[@id='Item.MessageUniqueBody']") do
+      find(:xpath,".//*[@id='Item.MessageUniqueBody']//a",visible: true)
+    end
 
+  end
 
   end

@@ -124,3 +124,8 @@ Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([
   @trainers.create_assessor_record_page.validateTown(town)
   @trainers.create_assessor_record_page.validatePostcode(postcode)
 end
+
+Then(/^The email will be generated with subject "([^"]*)"$/)do|subject|
+  @trainers.create_assessor_record_page.email_generation(subject)
+
+end

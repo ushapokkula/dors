@@ -1,7 +1,6 @@
 class MileageExpenseCalculationPage< SitePrism::Page
 
   def mileage_calculation(expenses_claimed, miles)
-    sleep 5
     actual_expenses = find_field('expenses').value
     expect(actual_expenses).to be == (expenses_claimed)
   end
@@ -25,7 +24,7 @@ class MileageExpenseCalculationPage< SitePrism::Page
 
   def verify_DB_for_mileage_and_expense(expected_mileage, expected_expense)
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
-    client.active?
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select mileage,expenses from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
     result.each do |row|
       actual_mileage = row['mileage'].to_i

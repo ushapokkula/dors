@@ -11,7 +11,8 @@ end
 
 
 Then(/^The confirmation message will be displayed as  "([^"]*)"$/) do |message|
-  expect(page.text).to have_content(message)
+  page.assert_selector('.modal-body>p', message)
+
 end
 
 
@@ -27,12 +28,14 @@ Then(/^I see 'Yes' and 'No' buttons on the confirmation message box$/) do
 end
 
 And(/^the trainer will be available for bookings for assessors$/) do
-  #within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).to include("100001 /101")
-    expect(page.text).to include("100022 /122")
-    #expect(page.text).to include("FSB422")
+  @trainers.ngu_search_assessment_id_page.assessor_availability
+#   within(:css, ".container") do
+#     expect(page.text).to_include("100017 /114")
+#     #expect(page.text).to include("111333 /001")
+#     expect(page.text).to_include("111333 /001")
+#     expect(page.text).to_include("111222 /001")
+# end
 end
-#end
 
 
 And(/^The confirmation message will close$/) do
@@ -42,6 +45,7 @@ end
 And(/^I have assessments with Booked status$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
+  expect(page).to have_selector(".alert.alert-success")
 end
 
 
@@ -56,14 +60,15 @@ end
 
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
   expect(page.text).to have_content("My assessment details")
-  click_link_or_button("REQUEST ASSESSMENT")
-  sleep 2
-  within(:xpath, "html/body/div[1]/div[2]/div") do
-    expect(page.text).not_to include("CIA624")
-    expect(page.text).not_to include("DOA123")
-    expect(page.text).not_to include("FSB422")
+  click_link("REQUEST ASSESSMENT")
+
+  #within(:css, ".trainer-licenseCode") do
+    expect(page).not_to have_css('.trainer-licenseCode', text: '100001/101')
+    #page.should_not have_text(".trainer-licenseCode", count: 2)
+    #expect(page.text).not_to include("100022 /122")
+    #expect(page.text).not_to include("100006 /106")
   end
-end
+#end
 
 And(/^I get the current URL$/)do
   $cuurent_url = URI.parse(current_url)

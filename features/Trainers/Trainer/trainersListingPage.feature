@@ -1,4 +1,6 @@
+@pass
 @DR-113
+
 Feature: DR-113 and DR-118
   As an assessor,
   I want to be able to view trainers whose license is expiring soon,
@@ -12,22 +14,22 @@ Feature: DR-113 and DR-118
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
 
-
   @DR-373
   Scenario: Verify the message on request assessment page when no trainer is available
     And I will be shown a list of trainers who have their license expiring within time window of "365" days
     And I set the time window to "2" days
+    And I login as an "Assessor"
     When I navigate to "REQUEST ASSESSMENT" page
     Then I see a message "No assessments available to book."
 
 
-  @Expiry_Within_30_days
+  @Expiry_Within_365_days
   Scenario: Displaying Trainer license details for which licenses are expiring in configured time window
     Then I will be shown a list of trainers who have their license expiring within time window of "365" days
     And Trainer Name,license number, Expiry Date, Scheme name, course type will be displayed in trainer listing view for each trainer
-    And  the license expiring soon will be shown at top
+    And the license expiring soon will be shown at top
 
-  @Expiry_outof_30_days
+  @Expiry_outof_365_days
   Scenario: NO Trainer License details are displayed for which licenses are expiring out of configured time window and before current date
     Then I will not be shown a list of trainers who have their license expiring outside of configured time window
     And I will not be shown a list of trainers for previous dates already expired

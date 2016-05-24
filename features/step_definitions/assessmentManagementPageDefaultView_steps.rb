@@ -5,7 +5,7 @@ And(/^I request all assessments$/)do
 end
 
 Then(/^I will see  list of all Assessments Requests with status requested$/) do
- @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
+  @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
 end
 
 Then(/^Each assessment request will include following details$/) do |table|
@@ -33,6 +33,8 @@ end
 
 And(/^I see "([^"]*)" button$/) do |button|
   @trainers.assessment_management_default_view_page.verify_approve_button(button)
- end
+end
 
-
+And(/^The assessment list will be sorted by assessment date$/)do
+  @trainers.assessment_management_default_view_page.verify_assessment_list_sorting
+end

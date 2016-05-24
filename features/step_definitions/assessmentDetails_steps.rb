@@ -1,9 +1,12 @@
 When(/^I click one of the items in the list$/) do
+
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
-  click_link_or_button("MY ASSESSMENTS")
-  # sleep 5
-  find(:button, 'View Details',match: :first).click
+  within('.alert.alert-success.ng-binding') do
+    expect(page).to have_content("The assessment has been Booked")
+  end
+  click_link("MY ASSESSMENTS")
+  find(:button, 'View Details', match: :first).click
 end
 
 Then(/^The system will load "([^"]*)" page$/) do |text|

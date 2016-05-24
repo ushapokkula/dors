@@ -7,19 +7,17 @@ class NGURoleAndPermissionsPage < SitePrism::Page
   def verify_assessments_list_with_status_requested
     expect(page.all('.dors-table').count).to be > 0
     assessments.each do |row|
-      expect(row.text).to include("Requested")
-      expect(page).to have_content("Requested")
+      expect(page).to have_css(".assessment-status", text: 'Requested')
     end
     expect(page.all(".assessment-status").count).to be > 0
 
   end
 
-  def verify_all_assessor_requested_assessments
+  def verify_all_assessor_requested_assessments(user1,user2)
     actual_users = ["sudiv p","johnny p"]
-    sleep 2
     assessor_name.each do |row|
       assessor_name = row.text
-      expect(actual_users).to include(assessor_name)
+      expect(actual_users).to match(assessor_name)
     end
   end
 end

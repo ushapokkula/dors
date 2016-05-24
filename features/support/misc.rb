@@ -10,4 +10,9 @@ module Misc
       block.call
     end
   end
+
+  def random_string(length)
+     (0...length).map { (65 + rand(26)).chr }.join
   end
+
+end

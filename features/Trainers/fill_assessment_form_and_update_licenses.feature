@@ -1,9 +1,10 @@
+@pass
 @DR-253
 Feature: DR-253
   Fill Assessment Form and Fill their details
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I have received assessment form from the Assessor with details of their assessment results

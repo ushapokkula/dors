@@ -4,3 +4,4 @@
 *.png
 *.html
 reports/**
+error_pages/**

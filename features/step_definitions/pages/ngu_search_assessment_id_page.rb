@@ -1,6 +1,9 @@
 class NguSearchAssessmentIDPage < SitePrism::Page
   elements :outcome_dropdowns, :css, ".dors-well-other select"
   elements :outcome_dropdowns_primary, ".dors-well select"
+  elements :assessments_list, ".dors-table"
+  elements :trainer_licenses, ".trainer-licenseCode"
+
 
   require 'tiny_tds'
 
@@ -8,6 +11,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_booked_assessmemt_id_in_DB
     book_assessment
+    expect(page).to have_selector(".alert.alert-success", :text => 'The assessment has been Booked')
     verify_booked_assessmemt_id_in_DB
   end
 
@@ -15,6 +19,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_requested_assessmemt_id_in_DB
     request_assessment
+    expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Requested')
     verify_requested_assessmemt_id_in_DB
   end
 
@@ -22,7 +27,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def verify_booked_assessmemt_id_in_DB
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
-    client.active?
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '2'")
     result.each do |row|
       $booked_status=row['TrainingAssessmentId']
@@ -32,44 +37,50 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
   def verify_requested_assessmemt_id_in_DB
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
-    # client.active?
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select TrainingAssessmentId from [DORS_Classified].[dbo].[tbl_TrainingAssessment] where StatusId = '1'")
     result.each do |row|
       $requested_status=row['TrainingAssessmentId']
     end
   end
 
-  def delete_assessments_from_DB
+  def verify_requested_assessment_status_in_DB
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    result.each do |row|
+      $assessment_status = row['StatusId']
+
+    end
+  end
+
+  def delete_assessments_from_DB
+
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainerLicenseAssessment]")
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
   end
 
-  def book_assessment
-    # click_link_or_button("REQUEST ASSESSMENT")
+   def book_assessment
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
-    # sleep 5
-    find(".ng-pristine.ng-valid", match: :first)
-    page.all('.ng-pristine.ng-valid')[1].click
-    find(".ng-pristine.ng-valid", match: :first)
-    all('.ng-pristine.ng-valid')[2].click
-    click_link_or_button("Submit")
-    within('.alert.alert-success.ng-binding') do
-      expect(page).to have_content("The assessment has been Booked")
-    end
+    find(".include-main-trainer-checkbox", match: :first)
+    all('.include-main-trainer-checkbox')[0].click
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
+    click_button("Submit")
+
   end
 
   def request_assessment
     click_link_or_button("REQUEST ASSESSMENT")
-    # sleep 4
-    first(:button, 'Pick a slot').click if find(:button, 'Pick a slot', match: :first)
-    # sleep 5
+    find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
     first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
-    # sleep 5
-    expect(page).to have_selector('.ng-pristine.ng-valid')
-    page.all('.ng-pristine.ng-valid')[1].click
+    expect(page).to have_selector(".include-nearby-trainer-checkbox")
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
     fill_in('mileage', :with => '500')
     click_link_or_button("Submit")
   end
@@ -77,16 +88,29 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   def verify_assessment_outcome_details(new_table)
     columns = new_table.map { |x| x['Details'] }
     for i in 1..columns.size
-      #expect(page.text).to match(/#{columns[i]}/i)
+      expect(page).to have_content(columns[i])
     end
   end
 
   def select_outcome
-    select("Absent", :from => 'status-FSB422')
+    select("Absent", :from => 'status-281')
 
-    select("Absent", :from => 'status-DOA123')
+    select("Absent", :from => 'status-279')
 
-    select("Absent", :from => 'status-CIA624')
+    select("Absent", :from => 'status-392')
+  end
+
+  def assessor_availability
+    actual_licenses=[], licenses=[]
+    trainer_licenses.each do |row|
+      licenses= row.text
+    end
+
+    actual_licenses.push(licenses)
+
+    expect(actual_licenses.to_a).to include("100017 /114")
+    expect(actual_licenses).to include("111333 /001")
+    expect(actual_licenses).to include("111222 /001")
   end
 
 

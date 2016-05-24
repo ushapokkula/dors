@@ -5,12 +5,10 @@ end
 And(/^I have all assessments requested$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.request_assessment
-
 end
 
 When(/^I click "([^"]*)" against one of the items on the list$/) do |button|
-  sleep 2
-  first(:button, button).click
+  find(:button, button, match: :first).click
 end
 
 Then(/^The request will be accepted and status of assessment request will be updated to Booked$/) do
@@ -18,5 +16,6 @@ Then(/^The request will be accepted and status of assessment request will be upd
 end
 
 Then(/^The trainers on this request will not be available for further bookings$/) do
+  expect(page).to have_selector("h1", text:"Request Assessment")
   @trainers.compliance_unit_authorises_assessment_req_page.verify_trainers_after_approve
 end

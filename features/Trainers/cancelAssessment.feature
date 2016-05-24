@@ -1,15 +1,15 @@
+@fail
 @DR-15
 Feature:DR-15
   Assessor Cancels an Assessment Session
 
   Background:
-   # Given that I am logged into the system
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I have assessments with Booked status
     And I navigate to "MY ASSESSMENTS" page
     And I click "View Details"
-    And I see "My assessment details" on the page
+    And I see "Assessment Outcome" on the page
 
   @cancelassessment1
   Scenario: Assessor Cancels an assessment  when clicked 'Yes' on confirmation message

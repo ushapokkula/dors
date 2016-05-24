@@ -5,7 +5,9 @@ class AssessorRoleAndPermissionsPage < SitePrism::Page
 
 
   def verify_assessments_list_with_status
-    expect(page.all('.dors-well-other').count).to be > 0
+
+    expect(page).to have_css(".dors-well-other")
+    (page.all(".dors-well-other").count) > 0
     assessment_status.each do |row|
       expect(row.text).to include("Approved")
       expect(page).to have_content("Approved")
@@ -15,11 +17,11 @@ class AssessorRoleAndPermissionsPage < SitePrism::Page
   end
 
   def verify_assessor_requested_assessments(user)
-    click_link_or_button("View Details")
-    sleep 2
+
     assessor_name.each do |row|
-    assessor_name = row.text
-    expect(assessor_name).to include(user)
+      assessor_name = row.text
+      expect(page).to have_css(".assessor-name",text: user)
+
+    end
   end
-end
 end

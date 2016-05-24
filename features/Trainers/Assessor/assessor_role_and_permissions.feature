@@ -1,3 +1,4 @@
+@pass
 @DR-388
 Feature: Assessor Role and Permissions
 
@@ -32,8 +33,8 @@ Feature: Assessor Role and Permissions
 
     Examples:
       | Username | Password |
-      | sudiv    | P@ssw0rd1 |
-      | johnny   | P@ssw0rd1 |
+      | sudiv    | P@ssw0rd1|
+      | johnny   | P@ssw0rd1|
 
   @role_permission5
   Scenario: Verify the visibility of pages when logged in as Compliance User
