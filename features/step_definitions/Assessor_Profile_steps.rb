@@ -54,19 +54,19 @@ Then(/^I enter postcode "([^"]*)"$/) do |postcode|
   @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,postcode,address,email,town|
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode|
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorEmail(email)
-  @trainers.assessor_profile_page.validateEmailMAXCHARS
+  @trainers.assessor_profile_page.validateEmailMaxCHARS
   @trainers.assessor_profile_page.validateAssessorAddress(address)
-  @trainers.assessor_profile_page.validateAddressMAXCHARS
+  @trainers.assessor_profile_page.validateAddressMaxCHARS
   @trainers.assessor_profile_page.validateTownfield(town)
-  @trainers.assessor_profile_page.validateTownMAXCHARS
+  @trainers.assessor_profile_page.validateTownMaxCHARS
   @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
-  @trainers.assessor_profile_page.validatePostcodeMAXCHARS
+  @trainers.assessor_profile_page.validatePostcodeMaxCHARS
   @trainers.assessor_profile_page.verifyPostcodeAutoCapital
 end
 

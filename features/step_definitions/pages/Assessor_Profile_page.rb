@@ -70,11 +70,11 @@ end
     elsif(primaryPhoneNumberLength<=9) #verify minim length#
       page.find('#assessorPhone').value.length.should.eq '10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
-      puts 'minlength is 10 - pass'
+      puts 'minlength is 10'
     elsif(primaryPhoneNumberLength>=51)
       page.find("#assessorSecondaryPhone").value.length.should.eq '50'
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
-      puts 'maxlength is 50 - pass'
+      puts 'maxlength is 50'
     end
   end
 
@@ -85,22 +85,14 @@ end
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
     elsif(secondaryPhoneNumberLength<=9)
       page.find('#assessorSecondaryPhone').value.length.should.eq '10' #verify minim length#
-      puts 'minlength is 10 - pass'
+      puts 'minlength is 10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
     elsif(secondaryPhoneNumberLength>=51)
       page.find('#assessorSecondaryPhone').value.length.should.eq '50' #verify max length#
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
-      puts 'maxlength is 50 - pass'
+      puts 'maxlength is 50'
     end
     end
-
-
-
- def validateAssessorEmail(email)
-   x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
-   p x
-  end
-
 
   def random_string(length)
   (0...length).map { (65+ rand(26)).chr }.join
@@ -108,7 +100,7 @@ end
 
 
 
-  def validateAddressMAXCHARS
+  def validateAddressMaxCHARS
     address_string = (assessor_address).set random_string(256)
     addressLength =  address_string.length
     if(addressLength>255)
@@ -128,7 +120,7 @@ end
     end
   end
 
-  def validateEmailMAXCHARS
+  def validateEmailMaxCHARS
     email_string = (assessor_email).set random_string(256)
     emailLength = email_string.length
     if(emailLength>=255)
@@ -145,10 +137,12 @@ end
     elsif(emailLength>=1)
       page.should have_css("p.help-block", text:'Please provide a valid email address.')
     end
+    x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    p x
   end
 
 
-  def validateTownMAXCHARS
+  def validateTownMaxCHARS
     town_string = assessor_town.set random_string(61)
     townLenght = town_string.length
     if(townLenght>60)
@@ -181,7 +175,7 @@ end
       p z
   end
 
-  def validatePostcodeMAXCHARS
+  def validatePostcodeMaxCHARS
     postcode_string =(assessor_postcode).set random_string(11)
     postcodeLength =  postcode_string.length
     if(postcodeLength>10)

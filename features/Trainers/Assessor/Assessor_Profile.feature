@@ -40,15 +40,15 @@ Feature:
     Then I enter town "<Town>"
     Then I enter postcode "<Postcode>"
     When I request to updated my profile data
-    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Email>","<Address>","<Town>" fields not meet the below validation requirements
+    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>" fields not meet the below validation requirements
     #And show validation requirements against those fields
    # And record will not be updated
     #And I will remain on the same page
     Examples:
-    |First Name                                          |Last Name                                              |Primary Phone Number                                  |Secondary Phone Number|Postcode|Address     |Email              |Town    |
-    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*                                            | 0787*+               |         |65byron Road| Roopa#@wtg{com    |Lo&%-H |
-    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                   |07876545654           |we1234   |WEExxx.bcbhb|rchitt120>~mail&&.com| Tr , -;|
-    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |ha0 3pb  |             |                    |DV&/.()jc|
+    |First Name                                          |Last Name                                              |Primary Phone Number                                  |Secondary Phone Number|Email                  |Address       |Town    |Postcode |
+    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*                                            | 0787*+               | Roopa#@wtg{com         |65byron Road |Lo&%-H  |         |
+    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                   |07876545654           |rchitt120>~mail&&.com   |WEExxx.bcbhb | Tr , -;| we1234   |
+    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |                        |             |DV&/.()jc| ha0 3pb |
 
 
 
