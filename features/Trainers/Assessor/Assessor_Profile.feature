@@ -31,41 +31,26 @@ Feature:
     Then unsaved changes will be lost
 
   Scenario Outline: Validation error handling
-    #And I have updated my profile data with below validations
-    #Then I enter field3 "<First Name>"
-    #Then I enter field4 "<Last Name>"
-    #Then I enter field5 "<Primary Phone Number>"
-    #Then I enter field6 "<Secondary Phone Number>"
-    #Then I enter field7 "<Email>"
-    #Then I enter field8 "<Address>"
-    #Then I enter field9 "<Town>"
-    #Then I enter field10 "<Postcode>"
-    #When I request to updated my profile data
-    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Address>","<Email>","<Town>" fields not meet the below validation requirements
-    #And I fill 'Address' and 'Email' fields with '255' chars
-    #And I fill "<Town>" field with "60" chars
-    #Then the system will highlight those fields
+    Then I enter firstname value "<First Name>"
+    Then I enter lastname value "<Last Name>"
+    Then I enter primary phone number "<Primary Phone Number>"
+    Then I enter secondary phone number "<Secondary Phone Number>"
+    Then I enter email "<Email>"
+    Then I enter address "<Address>"
+    Then I enter town "<Town>"
+    Then I enter postcode "<Postcode>"
+    When I request to updated my profile data
+    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Postcode>","<Email>","<Address>","<Town>" fields not meet the below validation requirements
     #And show validation requirements against those fields
    # And record will not be updated
     #And I will remain on the same page
     Examples:
-    |First Name                                          |Last Name                                              |Primary Phone Number                              |Secondary Phone Number|Postcode|Address |Email              |Town  |
-    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*%                                       |                      |W148UD  |        | Roopa#@wtg{com    |LonDOn|
-    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&*-    | 07987876789                                      |07876545654           |W148U   |WEExxx.bcbhb|rchitt>~mail&&.com|        |
-    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|0787*+            |W148UD  |65byron Road|                  |DV .(ccjcjc|
+    |First Name                                          |Last Name                                              |Primary Phone Number                                  |Secondary Phone Number|Postcode|Address     |Email              |Town    |
+    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                       | +876789-*                                            | 0787*+               |         |65byron Road| Roopa#@wtg{com    |Lo&%-H |
+    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                   |07876545654           |we1234   |WEExxx.bcbhb|rchitt120>~mail&&.com| Tr , -;|
+    |                                                    | Web Technologies                                      | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |ha0 3pb  |             |                    |DV&/.()jc|
 
 
 
 
 
-
-
-    #|fields                       |validation               |
-    #|First Name                   |                         |
-    #|Last Name                    |test@123                 |
-    #|Primary Phone Number         |568942+                  |
-    #|Secondary Phone Number       |                         |
-    #|Email                        |t_jhcbj@test.com         |
-    #|Address                      |@`!#$%&'*+-/=?^_`{ } ~ . |
-    #|Town                         |                         |
-    #|Postcode                     |                         |

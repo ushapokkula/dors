@@ -276,7 +276,7 @@ def validateEmail(email)
 
   end
 
-  def fillinassessorNumber(assessorNumber)
+  def fillinNumber(assessorNumber)
 
     fill_in('assessorNumber', :with=> assessorNumber)
 

@@ -23,64 +23,59 @@ click_link_or_button('MY PROFILE')
 end
 
 Then(/^I enter firstname value "([^"]*)"$/) do |firstName|
-  @trainers.assessor_profile_page.fillinAssessorfirstName(firstName)
+  @trainers.create_assessor_record_page.fillinAssessorfirstName(firstName)
 end
 
 Then(/^I enter lastname value "([^"]*)"$/) do |lastName|
-  @trainers.assessor_profile_page.fillinAssessorlastName(lastName)
+  @trainers.create_assessor_record_page.fillinAssessorlastName(lastName)
 end
 
 Then(/^I enter primary phone number "([^"]*)"$/) do |primaryPhoneNumber|
-  @trainers.assessor_profile_page.fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
+  @trainers.create_assessor_record_page.fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
 end
 
 Then(/^I enter secondary phone number "([^"]*)"$/) do |secondaryPhoneNumber|
-  @trainers.assessor_profile_page.fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
-
+  @trainers.create_assessor_record_page.fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
 end
 
 Then(/^I enter email "([^"]*)"$/) do |email|
-  @trainers.assessor_profile_page.fillinAssessoremail(email)
+  @trainers.create_assessor_record_page.fillinAssessoremail(email)
 end
 
 Then(/^I enter address "([^"]*)"$/) do |address|
-  @trainers.assessor_profile_page.fillinAssessoraddress(address)
+  @trainers.create_assessor_record_page.fillinAssessoraddress(address)
 end
 
 Then(/^I enter town "([^"]*)"$/) do |town|
-  @trainers.assessor_profile_page.fillinAssessortown(town)
+  @trainers.create_assessor_record_page.fillinAssessortown(town)
 end
 
 Then(/^I enter postcode "([^"]*)"$/) do |postcode|
-  @trainers.assessor_profile_page.fillinAssessorpostcode(postcode)
-end
-
-When (/^I request to updated my profile data$/)do
-  @trainers.assessor_profile_page.update_assessor_profile
+  @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
 And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,postcode,address,email,town|
-  #@trainers.assessor_profile_page.validateAssessorfirstName(firstName)
-  #@trainers.assessor_profile_page.validateAssessorLastName(lastName)
-  #@trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
-  #@trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
+  @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
+  @trainers.assessor_profile_page.validateAssessorLastName(lastName)
+  @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
+  @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
+  @trainers.assessor_profile_page.validateAssessorEmail(email)
+  @trainers.assessor_profile_page.validateEmailMAXCHARS
   @trainers.assessor_profile_page.validateAssessorAddress(address)
-  #@trainers.assessor_profile_page.validateAssessorEmail(email)
-  #@trainers.assessor_profile_page.validateAssessorPostcode(postcode)
-end
-
-And (/^I fill 'Address' and 'Email' fields with '255' chars$/)do
-  @trainers.assessor_profile_page.validateAssessorAddress
-  @trainers.assessor_profile_page.validateAssessorEmail
-end
-
-Then(/^the system will highlight those fields$/)do
-
+  @trainers.assessor_profile_page.validateAddressMAXCHARS
+  @trainers.assessor_profile_page.validateTownfield(town)
+  @trainers.assessor_profile_page.validateTownMAXCHARS
+  @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
+  @trainers.assessor_profile_page.validatePostcodeMAXCHARS
+  @trainers.assessor_profile_page.verifyPostcodeAutoCapital
 end
 
 And(/^show validation requirements against those fields$/)do
 
+end
 
+When (/^I request to updated my profile data$/)do
+  @trainers.assessor_profile_page.update_assessor_profile
 end
 
 And (/^record will not be updated$/)do

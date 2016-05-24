@@ -53,14 +53,12 @@ end
 
 Then(/^I enter field2 "([^"]*)"$/) do |assessorNumber|
 
-  @trainers.create_assessor_record_page.fillinassessorNumber(assessorNumber)
+  @trainers.create_assessor_record_page.fillinNumber(assessorNumber)
 
 
 end
 
 Then(/^I enter field3 "([^"]*)"$/) do |firstName|
-
-
   @trainers.create_assessor_record_page.fillinAssessorfirstName(firstName)
 
 end
