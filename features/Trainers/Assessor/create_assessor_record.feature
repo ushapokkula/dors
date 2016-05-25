@@ -58,7 +58,6 @@ Feature: DR-171
     And I see that the page includes "Create Assessor" and "Cancel" buttons
 
 
-
   @create_assessor5
   Scenario: Verify Cancel button on create assessor page is working
     Then the system will load the page where I can create a new assessor record
@@ -81,8 +80,8 @@ Feature: DR-171
     Then I enter field10 "<Postcode>"
     Then I enter field11 "<Force Areas>"
     Then I click on create assessor button
-    Then The email will be generated with subject "New account created for you on DORS+"
-    #Then I see validation messages for "<username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
+    #Then The email will be generated with subject "New account created for you on DORS+"
+    Then I see validation messages for "<username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
 
 
     Examples:
@@ -95,6 +94,21 @@ Feature: DR-171
  # | TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|               |London|W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road| |W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|   |BRITISH TRANSPORT POLICE|
+
+  @auto_email
+  Scenario Outline: Verify the auto email genereation after creating an assessor
+
+    And I fill all assessor fields on the create assessor form
+    When I click "Create Assessor"
+    Then I see the message "New assessor successfully created" after assessor creation
+    And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+
+    Examples:
+
+      | Subject                              | Email Body |
+      | New account created for you on DORS+ |A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system.|
+
+
 
 
 
