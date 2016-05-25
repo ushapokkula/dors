@@ -89,197 +89,48 @@ class CreateAssessorRecordPage < SitePrism::Page
     should have_content('Assessments')
   end
 
-  def validateUsername(username)
-
-    result = false
+  def validateAssessorUsername(username)
     usernameLength = username.length
-    result = has_content?("Sorry, the username is already taken. Please try a different username.")
      puts "#{username}"
-      # if (username.eql? nil)
-
     if (username.empty?)
-      should have_content("Please provide a username.")
-
-
-         elsif((usernameLength<=3)&&(usernameLength>=1))
-
-           should have_content('Sorry, the username must be at least 4 characters long.')
-
-                elsif(usernameLength>=71)
-
-                  should have_content('Sorry, the username must not be more than 70 characters long.')
-
-                  elsif(result.eql? true)
-
-                       # TO DO - Check this username already there in DB to make sure validation message is correct
-                           puts "The account already exists"
+      page.should have_css("p.help-block",text:'Please provide a username.')
+    elsif(usernameLength<4)
+      page.should have_css("p.help-block",text:'Please provide a username.')
+      page.find("#assessorUsername").value.length.should.eq '4'
+    elsif((usernameLength>=4)&&(usernameLength<=70))
+      page.should_not have_css("p.help-block",text:'Please provide a username.')
+    elsif(usernameLength>=71)
+      page.find("#assessorUsername").value.length.should.eq '70'
       end
   end
 
+
   def validateAssessorNumber(assessorNumber)
-
+    assessorNumberLength = assessorNumber.length
     if (assessorNumber.empty?)
-
       puts "Ok, Assessor number is optional"
-
-      else
-        assessorNumberLength = assessorNumber.length
-
-        if (assessorNumberLength>=9)
-
-          should have_content('Something wrong with the Assessor number input- May be length is more than allowed!!')
-
+    elsif (assessorNumberLength>=20)
+      page.find("#assessorNumber").value.length.should.eq '20'
         end
-
-    end
-
   end
 
-  def validatefirstName(firstName)
-
-    firstNameLength = firstName.length
-
-    if (firstName.empty?)
-
-      find('Please provide a first name.')
-
-      elsif(firstNameLength<=3)
-      #TO-DO check with the length validation as it is not yet implemented
-        should have_content('Sorry, the first name must be at least 4 characters long.')
-
-      #TO-DO check with the length validation as it is not yet implemented
-      elsif(firstNameLength>=21)
-        should have_content('Sorry, the first name must not be more than 20 characters long.')
-    end
-
-  end
-
-def validateLastName(lastName)
-
-  lastNameLength = lastName.length
-
-  if (lastName.empty?)
-    find('Please provide a last name.')
-  elsif(lastNameLength<=3)
-    #TO-DO check with the length validation as it is not yet implemented
-    should have_content('Sorry, the last name must be at least 4 characters long.')
-
-    #TO-DO check with the length validation as it is not yet implemented
-  elsif(lastNameLength>=21)
-    should have_content('Sorry, the last name must not be more than 20 characters long.')
-  end
-
-end
-
-  def validatePrimaryPhoneNumber(primaryPhoneNumber)
-
-    primaryPhoneNumberLength = primaryPhoneNumber.length
-
-       if (primaryPhoneNumber.empty?)
-
-      should have_content('Please provide a phone number.')
-
-    elsif(primaryPhoneNumberLength<=9)
-
-      should have_content('Sorry, the phone number must be at least 10 digits long.')
-
-     elsif (primaryPhoneNumber[0]!= '0')
-
-       should have_content('Sorry, the phone number must start with zero')
-
-       elsif((primaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
-            should have_content('Sorry, only numbers are accepted.')
-    end
-
-  end
-
-  def validatesecondaryPhoneNumber(secondaryPhoneNumber)
-
-    secondaryPhoneNumberLength = secondaryPhoneNumber.length
-
-        if (secondaryPhoneNumber.empty?)
-
-      should have_content('Please provide a phone number.')
-
-    elsif(secondaryPhoneNumberLength<=9)
-
-      should have_content('Sorry, the phone number must be at least 10 digits long.')
-
-    elsif (secondaryPhoneNumber[0]!= '0')
-
-      should have_content('Sorry, the phone number must start with zero')
-
-    elsif((secondaryPhoneNumber.to_i).is_a?(Numeric).eql? false)
-      should have_content('Sorry, only numbers are accepted.')
-    end
-
-  end
-
-def validateEmail(email)
-
-   x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
-
-  p x
-
-  end
-
-
-  def validateAddress(address)
-
-    if (address.empty?)
-
-      should have_content('Please provide an address.')
-
-  end
-
-  end
-
-  def validateTown(town)
-
-    if (town.empty?)
-
-      should have_content('Please provide a town.')
-
-  end
-
-  end
-
-
-  def validatePostcode(postcode)
-
-
-    if (postcode.empty?)
-
-      should have_content('Please provide a postcode.')
-
-    end
-
-
-  end
 
   def selectForceAreas(forceareas)
-
     fill_in('assessorForceAreas', :with=> forceareas)
    # select(forceareas, :from => 'typeahead-512-9634-option-0')
    # select('typeahead-512-9634-option-0', :from => 'assessorForceAreas')
   end
 
   def createAssessor()
-
     click_button('Create Assessor')
-
   end
 
   def fillinUserName(username)
-
     fill_in('assessorUsername', :with=> username)
-
   end
 
   def fillinNumber(assessorNumber)
-
     fill_in('assessorNumber', :with=> assessorNumber)
-
   end
 
   def fillinAssessorfirstName(firstName)

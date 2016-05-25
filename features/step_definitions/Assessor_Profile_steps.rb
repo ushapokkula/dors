@@ -22,39 +22,39 @@ click_link_or_button('MY PROFILE')
   find_field('assessorFirstName').value.should_not eql?("test")   #Verify edited first name value is there or not#
 end
 
-Then(/^I enter firstname value "([^"]*)"$/) do |firstName|
+Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
   @trainers.create_assessor_record_page.fillinAssessorfirstName(firstName)
 end
 
-Then(/^I enter lastname value "([^"]*)"$/) do |lastName|
+Then(/^I enter lastname field value as "([^"]*)"$/) do |lastName|
   @trainers.create_assessor_record_page.fillinAssessorlastName(lastName)
 end
 
-Then(/^I enter primary phone number "([^"]*)"$/) do |primaryPhoneNumber|
+Then(/^I enter primary phone number field value as "([^"]*)"$/) do |primaryPhoneNumber|
   @trainers.create_assessor_record_page.fillinAssessorprimaryPhoneNumber(primaryPhoneNumber)
 end
 
-Then(/^I enter secondary phone number "([^"]*)"$/) do |secondaryPhoneNumber|
+Then(/^I enter secondary phone number field value as "([^"]*)"$/) do |secondaryPhoneNumber|
   @trainers.create_assessor_record_page.fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
 end
 
-Then(/^I enter email "([^"]*)"$/) do |email|
+Then(/^I enter email field value as "([^"]*)"$/) do |email|
   @trainers.create_assessor_record_page.fillinAssessoremail(email)
 end
 
-Then(/^I enter address "([^"]*)"$/) do |address|
+Then(/^I enter address field value as "([^"]*)"$/) do |address|
   @trainers.create_assessor_record_page.fillinAssessoraddress(address)
 end
 
-Then(/^I enter town "([^"]*)"$/) do |town|
+Then(/^I enter town field value as "([^"]*)"$/) do |town|
   @trainers.create_assessor_record_page.fillinAssessortown(town)
 end
 
-Then(/^I enter postcode "([^"]*)"$/) do |postcode|
+Then(/^I enter postcode field value as "([^"]*)"$/) do |postcode|
   @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet the below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode|
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode|
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
@@ -67,11 +67,23 @@ And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^
   @trainers.assessor_profile_page.validateTownMaxCHARS
   @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
   @trainers.assessor_profile_page.validatePostcodeMaxCHARS
-  @trainers.assessor_profile_page.verifyPostcodeAutoCapital
+  @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
 end
 
-And(/^show validation requirements against those fields$/)do
+#And (/^I fill Max characters allowed in 'Email','Address','Town' and 'Postcode' fields$/)do
+  #@trainers.assessor_profile_page.validateEmailMaxCHARS
+  #@trainers.assessor_profile_page.validateAddressMaxCHARS
+  #@trainers.assessor_profile_page.validateTownMaxCHARS
+  #@trainers.assessor_profile_page.validatePostcodeMaxCHARS
+#end
 
+Then (/^the system will highlight those fields$/)do
+  @trainers.assessor_profile_page.verify_highlighted_fields
+end
+
+And(/^show "([^"]*)" against those fields$/)do|validations|
+  validations = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
+  puts validations
 end
 
 When (/^I request to updated my profile data$/)do
@@ -79,9 +91,9 @@ When (/^I request to updated my profile data$/)do
 end
 
 And (/^record will not be updated$/)do
-
+expect(page.should_not have_css(".toast-message",text:'Your profile has been successfully updated.'))
 end
 
 And (/^I will remain on the same page$/)do
-
+@trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
 end

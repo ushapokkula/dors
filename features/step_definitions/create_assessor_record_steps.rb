@@ -107,15 +107,15 @@ Then(/^I enter field11 "([^"]*)"$/) do |forceareas|
 end
 
 Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username,assessorNumber,firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode,forceareas|
-
-  @trainers.create_assessor_record_page.validateUsername(username)
+  @trainers.create_assessor_record_page.validateAssessorUsername(username)
   @trainers.create_assessor_record_page.validateAssessorNumber(assessorNumber)
-  @trainers.create_assessor_record_page.validatefirstName(firstName)
-  @trainers.create_assessor_record_page.validateLastName(lastName)
-  @trainers.create_assessor_record_page.validatePrimaryPhoneNumber(primaryPhoneNumber)
-  @trainers.create_assessor_record_page.validatesecondaryPhoneNumber(secondaryPhoneNumber)
-  @trainers.create_assessor_record_page.validateEmail(email)
-  @trainers.create_assessor_record_page.validateAddress(address)
-  @trainers.create_assessor_record_page.validateTown(town)
-  @trainers.create_assessor_record_page.validatePostcode(postcode)
+  @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
+  @trainers.assessor_profile_page.validateAssessorLastName(lastName)
+  @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
+  @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
+  @trainers.assessor_profile_page.validateAssessorEmail(email)
+  @trainers.assessor_profile_page.validateAssessorAddress(address)
+  @trainers.assessor_profile_page.validateTownfield(town)
+  @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
+  @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
 end

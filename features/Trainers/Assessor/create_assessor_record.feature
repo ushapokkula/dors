@@ -79,9 +79,9 @@ Feature: DR-171
 
   Examples:
   |username|Assessor Number|First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|Force Areas|
-  |          |11111111| WTGTest| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111|    | Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG|                 | 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
+  |          |11111111| WTGTest| Web,. %^&&*&hxbbnologies| 07987876789|07876545654|test_#%$|76 Hammersmith road|London|W14$%UD|BRITISH TRANSPORT POLICE|
+  #| TestWTG  |1111$$%%^(|    |_+gies| 07987876789|07876545654|co.({.com|76 Hammersmith road|London|W148|BRITISH TRANSPORT POLICE|
+  #| TestWTG  |11111111| WTG|                 | 07987876789|078654|@wtg.co.uk|76 Hammersmith road|London|48ud|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| |07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|                  |76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
  # | TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|               |London|W148UD|BRITISH TRANSPORT POLICE|

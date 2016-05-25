@@ -7,6 +7,8 @@ class AssessorProfilePage < SitePrism::Page
   element    :assessor_address,   "#assessorAddress"
   element    :assessor_town,     "#assessorTown"
   element    :assessor_postcode,   "#assessorPostcode"
+  elements   :validation_requirement_messages, "p.help-block"
+  elements   :highlighted_fields,   ".has-error"
 
 
 def profile_details(new_table)
@@ -16,6 +18,10 @@ def profile_details(new_table)
   end
 end
 
+
+def verify_highlighted_fields
+  page.find_all('highlighted_fields', visible:true)
+end
 
 def verify_user_is_on_assessor_profile_page
   expect(page).to have_css("h1", "My profile")
@@ -42,7 +48,7 @@ end
     elsif(firstNameLength>50)
       expect(page).not_to have_css("p.help-block", text:'Please provide a first name.')
       page.find("#assessorFirstName").value.length.should_be 50
-      puts 'firstName Length Limit is 50 charachters - pass'
+      puts 'firstName Length Limit is 50 charachters'
     end
   end
 
@@ -57,7 +63,7 @@ end
     elsif(lastNameLength>50)
       page.should_not have_css("p.help-block",text:'Please provide a last name.')
       page.find("#assessorLastName").value.length.should.eq '50'
-      puts 'lastName Length Limit is 50 charachters - pass'
+      puts 'lastName Length Limit is 50 charachters'
     end
   end
 
@@ -82,7 +88,7 @@ end
   def validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
     secondaryPhoneNumberLength = secondaryPhoneNumber.length
     if (secondaryPhoneNumber.empty?)
-      page.should_not have_css("p.help-block",text:'Please provide a phone number.')
+      puts "Ok, Secondary Phone Number is optional"
     elsif(secondaryPhoneNumberLength<=9)
       page.find('#assessorSecondaryPhone').value.length.should.eq '10' #verify minim length#
       puts 'minlength is 10'
@@ -94,10 +100,15 @@ end
     end
     end
 
-  def random_string(length)
-  (0...length).map { (65+ rand(26)).chr }.join
-  end
+  #def random_string(length)
+  #(0...length).map { (65+ rand(26)).chr }.join
+  #end
 
+  def random_string(x)
+    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
+    string = (0..x).map {chars.sample}.join
+  end
 
 
   def validateAddressMaxCHARS
@@ -105,7 +116,7 @@ end
     addressLength =  address_string.length
     if(addressLength>255)
       page.find("#assessorAddress").value.length.should_be 255
-      puts 'Limit is 255 charachters - pass'
+      puts 'Limit is 255 charachters'
     page.should have_xpath("//textarea[@rows='3']")  #Verifying default number of rows in Address textarea#
     end
   end
@@ -124,8 +135,9 @@ end
     email_string = (assessor_email).set random_string(256)
     emailLength = email_string.length
     if(emailLength>=255)
+      page.should have_css("p.help-block", text:'Please provide a valid email address.')
       page.find("#assessorEmail").value.length.should.eq '255'
-      puts 'Limit is 255 charachters - pass'
+      puts 'Limit is 255 charachters'
     end
   end
 
@@ -135,7 +147,7 @@ end
     if(email.empty?)
       page.should have_css("p.help-block",text:'Please provide an email address.')
     elsif(emailLength>=1)
-      page.should have_css("p.help-block", text:'Please provide a valid email address.')
+      expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
     end
     x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
     p x
@@ -147,7 +159,7 @@ end
     townLenght = town_string.length
     if(townLenght>60)
       page.find("#assessorTown").value.length.should.eq '60'
-      puts 'Limit is 60 charachters - pass'
+      puts 'Limit is 60 charachters'
     end
   end
 
@@ -169,7 +181,7 @@ end
       page.should have_css("p.help-block", text:'Please provide a postcode.')
     elsif((postcodeLength>=1)&&(postcodeLength<=10))
       page.find("#assessorPostcode").value.length.should.eq'10'
-      puts 'Limit is 10 charachters - pass'
+      puts 'Limit is 10 charachters'
    end
     z=postcode.match(/[ A-Za-z0-9]/)
       p z
@@ -179,14 +191,22 @@ end
     postcode_string =(assessor_postcode).set random_string(11)
     postcodeLength =  postcode_string.length
     if(postcodeLength>10)
-      expect(page).to have_css("p.help-block",text: 'Please provide a valid postcode.')
+      page.find("#assessorPostcode").value.length.should.eq'10'
     end
   end
 
-def verifyPostcodeAutoCapital
- "ALL CAPS".should match(/#{Regexp.escape('All Caps')}/i)
-  end
+def verifyPostcodeAutoCapital(postcode)
+  puts page.find("#assessorPostcode").value.capitalize!
+puts is_lower?(postcode)
+end
 
+  def is_lower?(postcode)
+    if(postcode != postcode.upcase)
+      return true
+    else
+      return false
+    end
+  end
 end
 
 
