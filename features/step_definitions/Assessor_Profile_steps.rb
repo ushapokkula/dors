@@ -70,13 +70,6 @@ And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^
   @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
 end
 
-#And (/^I fill Max characters allowed in 'Email','Address','Town' and 'Postcode' fields$/)do
-  #@trainers.assessor_profile_page.validateEmailMaxCHARS
-  #@trainers.assessor_profile_page.validateAddressMaxCHARS
-  #@trainers.assessor_profile_page.validateTownMaxCHARS
-  #@trainers.assessor_profile_page.validatePostcodeMaxCHARS
-#end
-
 Then (/^the system will highlight those fields$/)do
   @trainers.assessor_profile_page.verify_highlighted_fields
 end

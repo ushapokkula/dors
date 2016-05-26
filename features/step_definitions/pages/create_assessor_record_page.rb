@@ -30,11 +30,9 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in(fields, :with=>'')
     click_link_or_button("Create Assessor")
     expect(page).to have_content(error_msgs)
-
   end
 
   def verify_optional_fields(optional_field)
-
     username.set Faker::Name.name
     #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with=>'swapna')
@@ -70,7 +68,6 @@ class CreateAssessorRecordPage < SitePrism::Page
      fields = input_fields.text
      assessor_fields.push(fields)
     end
-
      expect(new_table.map { |x| x['Assessor Input Fields'] }).to match_array(assessor_fields)
   end
 
@@ -104,21 +101,17 @@ class CreateAssessorRecordPage < SitePrism::Page
       end
   end
 
-
   def validateAssessorNumber(assessorNumber)
     assessorNumberLength = assessorNumber.length
     if (assessorNumber.empty?)
       puts "Ok, Assessor number is optional"
     elsif (assessorNumberLength>=20)
       page.find("#assessorNumber").value.length.should.eq '20'
-        end
+    end
   end
-
 
   def selectForceAreas(forceareas)
     fill_in('assessorForceAreas', :with=> forceareas)
-   # select(forceareas, :from => 'typeahead-512-9634-option-0')
-   # select('typeahead-512-9634-option-0', :from => 'assessorForceAreas')
   end
 
   def createAssessor()
@@ -164,7 +157,6 @@ class CreateAssessorRecordPage < SitePrism::Page
   def fillinAssessorpostcode(postcode)
     fill_in('assessorPostcode', :with=> postcode)
   end
-
 
 
 end

@@ -19,7 +19,8 @@ Feature:
       | Last Name              |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      |Primary Email Address   |
+      |Secondary Email Address |
       | Address                |
       | Postcode               |
       | Town                   |
@@ -34,7 +35,7 @@ Feature:
       | First Name           | Please provide a first name.     |
       | Last Name            | Please provide a last name.      |
       | Primary Phone Number | Please provide a phone number.   |
-      | Email                | Please provide an email address. |
+      | Primary Email Address| Please provide an email address. |
       | Address              | Please provide an address.       |
       | Postcode             | Please provide a postcode.       |
       | Town                 | Please provide a town.           |
@@ -76,14 +77,13 @@ Feature:
     Then I enter field11 "<Force Areas>"
     Then I click on create assessor button
     Then I see validation messages for "<username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
-
     Examples:
-   |username|Assessor Number|First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|Force Areas|
-   |          |11111111| WTGTest| Web,. %^&&*&hxbbnologies| 07987876789|07876545654|test_#%$|76 Hammersmith road|London|W14$%UD|BRITISH TRANSPORT POLICE|
-   | TestWTG  |1111$$%%^(|    |_+gies| 07987876789|07876545654|co.^{.com|76 Hammersmith road|London|W148|BRITISH TRANSPORT POLICE|
-   | TestWTG  |11111111| WTG|                 | 07987876789|078654|@wtg.co.uk|76 Hammersmith road|Lo*(on|48ud|BRITISH TRANSPORT POLICE|
-   | TestWTG  |11111111| WTG| Web Technologies|          |07876545654|test.wtg&wtg.co|76 Hammersmith road|London|w148u|BRITISH TRANSPORT POLICE|
-   | TestWTG  |11£%%%""""11| WTG| Web Tec<>:  | 07987876789|07876545654|                  |76 Hammersmith road|London|W14|BRITISH TRANSPORT POLICE|
- # | TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|               |London|W148UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road| |W148UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|   |BRITISH TRANSPORT POLICE|
+      |username|Assessor Number|First Name|Last Name               |Primary Phone Number|Secondary Phone Number|Email   |Address            |Town  |Postcode|Force Areas            |
+      |          |11111111      | WTGTest| Web,. %^&&*&hxbbnologies| 07987876789        |07876545654           |test_#%$|76 Hammersmith road|London|w14$ud |BRITISH TRANSPORT POLICE|
+      | TestWTG  |1111$$%%^(    |        |_+gies                    | 07987876789       |07876545654|co.^{.com |76 Hammersmith road         |London  |W148   |BRITISH TRANSPORT POLICE|
+      | TestWTG  |11111111| WTG|                                    | 07987876789       |078654     |@wtg.co.uk|76 Hammersmith road         |Lo*(on  |48ud   |BRITISH TRANSPORT POLICE|
+      #| TestWTG  |11111111| WTG| Web Technologies|          |07876545654|test.wtg&wtg.co|76 Hammersmith road|London|w148u|BRITISH TRANSPORT POLICE|
+      #| TestWTG  |11£%%%""""11| WTG| Web Tec<>:  | 07987876789|07876545654|                  |76 Hammersmith road|London|W14|BRITISH TRANSPORT POLICE|
+     # | TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|               |London|W148UD|BRITISH TRANSPORT POLICE|
+    #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road| |W148UD|BRITISH TRANSPORT POLICE|
+    #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|   |BRITISH TRANSPORT POLICE|

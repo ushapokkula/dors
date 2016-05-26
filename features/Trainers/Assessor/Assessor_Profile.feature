@@ -18,7 +18,8 @@ Feature:
         | Last Name              |
         | Primary Phone Number   |
         | Secondary Phone Number |
-        | Email                  |
+        | Primary Email Address  |
+        |Secondary Email Address |
         | Address                |
         | Postcode               |
         | Town                   |
@@ -40,7 +41,6 @@ Feature:
     Then I enter town field value as "<Town>"
     Then I enter postcode field value as "<Postcode>"
     When I request to updated my profile data
-    #And I fill Max characters allowed in 'Email','Address','Town' and 'Postcode' fields
     And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>" fields not meet below validation requirements
     Then the system will highlight those fields
     And show "<validation requirements>" against those fields
