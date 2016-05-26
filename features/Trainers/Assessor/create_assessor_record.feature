@@ -1,5 +1,5 @@
 @DR-171
-Feature: DR-171
+Feature:
   As an user,
   I want to be able to create a new Assessor,
   so that they can use the system to manage assessments.
@@ -61,7 +61,7 @@ Feature: DR-171
     Then then unsaved changes will be lost and I will be redirected to my homepage (Assessments Management)
 
   @create_assessor6
-  Scenario Outline: Verify all validation messages on entering invalid inputs to create assessor form
+   Scenario Outline: Verify all validation messages on entering invalid inputs to create assessor form
     Then the system will load the page where I can create a new assessor record
     Then I enter field1 "<username>"
     Then I enter field2 "<Assessor Number>"
@@ -77,13 +77,13 @@ Feature: DR-171
     Then I click on create assessor button
     Then I see validation messages for "<username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
 
-  Examples:
-  |username|Assessor Number|First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|Force Areas|
-  |          |11111111| WTGTest| Web,. %^&&*&hxbbnologies| 07987876789|07876545654|test_#%$|76 Hammersmith road|London|W14$%UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |1111$$%%^(|    |_+gies| 07987876789|07876545654|co.({.com|76 Hammersmith road|London|W148|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG|                 | 07987876789|078654|@wtg.co.uk|76 Hammersmith road|London|48ud|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG| Web Technologies| |07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
-  #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|                  |76 Hammersmith road|London|W148UD|BRITISH TRANSPORT POLICE|
+    Examples:
+   |username|Assessor Number|First Name|Last Name|Primary Phone Number|Secondary Phone Number|Email|Address|Town|Postcode|Force Areas|
+   |          |11111111| WTGTest| Web,. %^&&*&hxbbnologies| 07987876789|07876545654|test_#%$|76 Hammersmith road|London|W14$%UD|BRITISH TRANSPORT POLICE|
+   | TestWTG  |1111$$%%^(|    |_+gies| 07987876789|07876545654|co.^{.com|76 Hammersmith road|London|W148|BRITISH TRANSPORT POLICE|
+   | TestWTG  |11111111| WTG|                 | 07987876789|078654|@wtg.co.uk|76 Hammersmith road|Lo*(on|48ud|BRITISH TRANSPORT POLICE|
+   | TestWTG  |11111111| WTG| Web Technologies|          |07876545654|test.wtg&wtg.co|76 Hammersmith road|London|w148u|BRITISH TRANSPORT POLICE|
+   | TestWTG  |11£%%%""""11| WTG| Web Tec<>:  | 07987876789|07876545654|                  |76 Hammersmith road|London|W14|BRITISH TRANSPORT POLICE|
  # | TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|               |London|W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road| |W148UD|BRITISH TRANSPORT POLICE|
   #| TestWTG  |11111111| WTG| Web Technologies| 07987876789|07876545654|test.wtg@wtg.co.uk|76 Hammersmith road|London|   |BRITISH TRANSPORT POLICE|
