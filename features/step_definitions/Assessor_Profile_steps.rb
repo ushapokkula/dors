@@ -38,8 +38,12 @@ Then(/^I enter secondary phone number field value as "([^"]*)"$/) do |secondaryP
   @trainers.create_assessor_record_page.fillinAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
 end
 
-Then(/^I enter email field value as "([^"]*)"$/) do |email|
-  @trainers.create_assessor_record_page.fillinAssessoremail(email)
+Then(/^I enter primary email address field value as "([^"]*)"$/) do |primaryEmail|
+  @trainers.create_assessor_record_page.fillinAssessorprimaryEmail(primaryEmail)
+end
+
+Then(/^I enter secondary email address field value as "([^"]*)"$/) do |secondaryEmail|
+  @trainers.create_assessor_record_page.fillinAssessorsecondaryEmail(secondaryEmail)
 end
 
 Then(/^I enter address field value as "([^"]*)"$/) do |address|
@@ -54,13 +58,14 @@ Then(/^I enter postcode field value as "([^"]*)"$/) do |postcode|
   @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode|
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode|
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
-  @trainers.assessor_profile_page.validateAssessorEmail(email)
-  @trainers.assessor_profile_page.validateEmailMaxCHARS
+  @trainers.assessor_profile_page.validateAssessorPrimaryEmail(primaryEmail)
+  @trainers.assessor_profile_page.validateAssessorSecondaryEmail(secondaryEmail)
+  @trainers.assessor_profile_page.validatePrimaryEmailMaxCHARS
   @trainers.assessor_profile_page.validateAssessorAddress(address)
   @trainers.assessor_profile_page.validateAddressMaxCHARS
   @trainers.assessor_profile_page.validateTownfield(town)
@@ -70,7 +75,7 @@ And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^
   @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
 end
 
-Then (/^the system will highlight those fields$/)do
+ Then (/^the system will highlight those fields$/)do
   @trainers.assessor_profile_page.verify_highlighted_fields
 end
 

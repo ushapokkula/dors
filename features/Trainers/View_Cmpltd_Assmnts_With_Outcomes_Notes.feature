@@ -1,4 +1,4 @@
-@DR-181
+@DR-181 @DR-827 @pass
 Feature:
   As an 'Assessor' & 'NGU' user
   can view the completed Assessments which includes

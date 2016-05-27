@@ -44,11 +44,12 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorPostcode', :with=>'TW5 7GH')
     fill_in('assessorNumber', :with=>'111111')
     fill_in('assessorSecondaryPhone', :with=>'07811111111')
+    fill_in('assessorSecondaryEmail',:with=>'roopa.ramisetty@wtg.co.uk')
     fill_in('assessorForceAreas', :with=>'pol')
     random_selector(forcearea_list)
     fill_in(optional_field, :with=>'')
     click_link_or_button("Create Assessor")
-    expect(page).not_to have_css(".help-block")
+    expect(page).not_to have_css("p.help-block")
   end
 
   def random_selector(x)
@@ -142,8 +143,12 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorSecondaryPhone', :with=> secondaryPhoneNumber)
   end
 
-  def fillinAssessoremail(email)
-    fill_in('assessorEmail', :with=> email)
+  def fillinAssessorprimaryEmail(primaryEmail)
+    fill_in('assessorEmail', :with=> primaryEmail)
+  end
+
+  def fillinAssessorsecondaryEmail(secondaryEmail)
+    fill_in('assessorSecondaryEmail', :with=> secondaryEmail)
   end
 
   def fillinAssessoraddress(address)
@@ -157,6 +162,5 @@ class CreateAssessorRecordPage < SitePrism::Page
   def fillinAssessorpostcode(postcode)
     fill_in('assessorPostcode', :with=> postcode)
   end
-
 
 end

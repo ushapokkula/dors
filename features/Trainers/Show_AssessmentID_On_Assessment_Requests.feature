@@ -1,4 +1,4 @@
-@DR-261 @pass
+@DR-261 @DR-827 @pass
 Feature:
    As an 'Assessor' or 'NGU' User
    Verify the 'Assessment ID'

@@ -3,7 +3,8 @@ class AssessorProfilePage < SitePrism::Page
   element    :last_name,      "#assessorLastName"
   element    :primary_phone,   "#assessorPhone"
   element    :secondary_phone, "#assessorSecondaryPhone"
-  element    :assessor_email,    "#assessorEmail"
+  element    :primary_email,    "#assessorEmail"
+  element    :secondary_email,   "#assessorSecondaryEmail"
   element    :assessor_address,   "#assessorAddress"
   element    :assessor_town,     "#assessorTown"
   element    :assessor_postcode,   "#assessorPostcode"
@@ -73,7 +74,7 @@ end
     primaryPhoneNumberLength = primaryPhoneNumber.length
     if (primaryPhoneNumber.empty?)
       expect(page).to have_css("p.help-block",text:'Please provide a phone number.')
-    elsif(primaryPhoneNumberLength<=9) #verify minim length#
+    elsif(primaryPhoneNumberLength<=9)                                         #verify minim length#
       page.find('#assessorPhone').value.length.should.eq '10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
       puts 'minlength is 10'
@@ -90,11 +91,11 @@ end
     if (secondaryPhoneNumber.empty?)
       puts "Ok, Secondary Phone Number is optional"
     elsif(secondaryPhoneNumberLength<=9)
-      page.find('#assessorSecondaryPhone').value.length.should.eq '10' #verify minim length#
+      page.find('#assessorSecondaryPhone').value.length.should.eq '10'               #verify minim length#
       puts 'minlength is 10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
     elsif(secondaryPhoneNumberLength>=51)
-      page.find('#assessorSecondaryPhone').value.length.should.eq '50' #verify max length#
+      page.find('#assessorSecondaryPhone').value.length.should.eq '50'                     #verify max length#
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
       puts 'maxlength is 50'
     end
@@ -131,8 +132,8 @@ end
     end
   end
 
-  def validateEmailMaxCHARS
-    email_string = (assessor_email).set random_string(256)
+  def validatePrimaryEmailMaxCHARS
+    email_string = (primary_email).set random_string(256)
     emailLength = email_string.length
     if(emailLength>=255)
       page.should have_css("p.help-block", text:'Please provide a valid email address.')
@@ -142,14 +143,25 @@ end
   end
 
 
-  def validateAssessorEmail(email)
-    emailLength = email.length
-    if(email.empty?)
+  def validateAssessorPrimaryEmail(primaryEmail)
+    emailLength = primaryEmail.length
+    if(primaryEmail.empty?)
       page.should have_css("p.help-block",text:'Please provide an email address.')
     elsif(emailLength>=1)
       expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
     end
-    x= email.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    x= primaryEmail.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    p x
+  end
+
+  def validateAssessorSecondaryEmail(secondaryEmail)
+    emailLength = secondaryEmail.length
+    if(secondaryEmail.empty?)
+      puts "Ok, Secondary Phone Number is optional"
+    elsif( emailLength>=1)
+      expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
+    end
+    x= secondaryEmail.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
     p x
   end
 
@@ -191,12 +203,14 @@ end
     postcode_string =(assessor_postcode).set random_string(11)
     postcodeLength =  postcode_string.length
     if(postcodeLength>10)
+      page.should have_css("p.help-block", text:'Please provide a valid postcode.')
       page.find("#assessorPostcode").value.length.should.eq'10'
     end
   end
 
 def verifyPostcodeAutoCapital(postcode)
-  puts page.find("#assessorPostcode").value.capitalize!
+  fill_in('assessorPostcode',:with=> postcode)
+  puts page.find("#assessorPostcode").value.downcase
 puts is_lower?(postcode)
 end
 
