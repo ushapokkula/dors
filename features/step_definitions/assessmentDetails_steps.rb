@@ -23,7 +23,7 @@ And(/^The mileage and expenses claimed  will be shown$/) do
 end
 
 And(/^The Notes field will be displayed$/) do
-  @trainers.assessment_details_page.verify_notes_field
+  expect(@trainers.assessment_details_page).to have_notes
 end
 
 And(/^I will be re-direct to My Assessments page$/) do
