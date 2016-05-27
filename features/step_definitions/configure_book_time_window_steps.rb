@@ -43,7 +43,6 @@ When(/^I set the assessment time window to  certain "([^"]*)"$/) do |days|
 end
 
 Then(/^The Assessors will only be able to view trainers licenses expiring in "([^"]*)"time window$/) do|count|
-  sleep 4
   @trainers.trainers_listing_page.verify_expiry_dates(count)
 end
 

@@ -74,8 +74,10 @@ class CreateAssessorRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     postcode.set 'W14 8UD'
+    $username_value = find("#assessorUsername").value
     $email_value= find("#assessorEmail").value
     #random_selector(forcearea_list)
+
   end
 
   def random_selector(x)
@@ -359,6 +361,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
+    sleep 10
     find(:button, 'Swapna Gopu').click
     find("._n_F7._n_f7.bidi").text == $email_value
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
@@ -367,4 +370,28 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
   end
 
+  def validate_nonce
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("select Nonce from [DORS_Classified].[dbo].[tbl_SentEmail] where ActiveDirectoryUsername="+"'"+ $username_value+"'")
+    result.each do |row|
+      $nonce = row['Nonce']
+    end
+    #expect($nonce).to include(find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text)
+    puts $nonce
+  end
+
+  def verify_48_hours_validity
+    actual_date = find(:xpath,".//*[@id='ItemHeader.DateReceivedLabel']").text
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("select SentDate,NonceValidUntilDate from [DORS_Classified].[dbo].[tbl_SentEmail] where Nonce ="+"'"+$nonce+"'")
+    result.each do |row|
+      $send_date = row['SentDate']
+      $valid_until_date = row['NonceValidUntilDate']
+    end
+    puts $send_date
+    puts $valid_until_date
+    puts expect($valid_until_date).to be == ($send_date+172800)
+  end
 end

@@ -69,7 +69,7 @@ class TrainersListingPage < SitePrism::Page
         (element.text) != date
       end
     end
-      end
+  end
 
   def verify_previous_expired_dates
     expiry_dates.each do |date|
