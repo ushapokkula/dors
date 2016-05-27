@@ -5,14 +5,15 @@ class AssessorRoleAndPermissionsPage < SitePrism::Page
 
 
   def verify_assessments_list_with_status
-
-    expect(page).to have_css(".dors-well-other")
-    (page.all(".dors-well-other").count) > 0
+    assessment_status
+    # expect(page).to have_css(".dors-well-other")
+    # (page.all(".dors-well-other").count) > 0
     assessment_status.each do |row|
       expect(row.text).to include("Approved")
-      expect(page).to have_content("Approved")
+      # expect(page).to have_content("Approved")
     end
-    expect(page.all(".assessment-status").count).to be > 0
+    # expect(page.all(".assessment-status").count).to be > 0
+    expect(page).to have_css(".assessment-status",:minimum => 1)
 
   end
 

@@ -6,6 +6,7 @@ Then(/^I see that I have access to "([^"]*)","([^"]*)","([^"]*)"$/) do |tab1, ta
 end
 
 And(/^I will be directed to My assessments page$/) do
+  #TODO refactor reusable step
   page.has_content?("My assessments")
 end
 

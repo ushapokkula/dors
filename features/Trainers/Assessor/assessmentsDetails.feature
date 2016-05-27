@@ -16,15 +16,15 @@ Feature:DR-168
   Scenario: Verify the Assessor and trainer details on summary page
 
     And The page will display the Assessor and Trainer details
-      | Details       |
-      | Assessor Name |
-      | Scheme        |
-      | License       |
-      | Expiry Date   |
-      | Date          |
-      | Time          |
-      | Venue         |
-      | Phone         |
+      | Details         |
+      | Assessor Name   |
+      | Scheme          |
+      | License         |
+      | Expiry Date     |
+      | Date            |
+      | Time            |
+      | Venue           |
+      | Phone           |
       | Status Approved |
 
   @AssessmentDetails2
@@ -35,7 +35,7 @@ Feature:DR-168
   @AssessmentDetails3
   Scenario: Verify Back button
     When I click "Back"
-    Then I will be re-direct to My Assessments page
+    Then I will be re-directed to "My assessments" page
 
 
 
