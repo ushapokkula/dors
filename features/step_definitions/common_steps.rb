@@ -51,3 +51,4 @@ And (/^I will remain on the trainer's record page$/) do
   expect(page).to have_selector(:css, "h3.panel-title", match: :'one', text: 'Licences')
   page.should
 end
+

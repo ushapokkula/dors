@@ -26,6 +26,7 @@ And(/^The Notes field will be displayed$/) do
   expect(@trainers.assessment_details_page).to have_notes
 end
 
-And(/^I will be re-direct to My Assessments page$/) do
-  expect(page).to have_content("My assessments")
+
+Then(/^I will be re\-directed to "([^"]*)" page$/) do |text|
+  expect(page).to have_css("h1",text:text)
 end
