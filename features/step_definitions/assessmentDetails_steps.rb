@@ -1,16 +1,13 @@
 When(/^I click one of the items in the list$/) do
-
-  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  @trainers.ngu_search_assessment_id_page.book_assessment
-  within('.alert.alert-success.ng-binding') do
-    expect(page).to have_content("The assessment has been Booked")
-  end
-  click_link("MY ASSESSMENTS")
+  # @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  # @trainers.ngu_search_assessment_id_page.book_assessment
+  # expect(page).to have_css(".alert.alert-success", text:"The assessment has been Booked")
+  # click_link("MY ASSESSMENTS")
   find(:button, 'View Details', match: :first).click
 end
 
 Then(/^The system will load "([^"]*)" page$/) do |text|
-  expect(page).to have_content(text)
+  expect(page).to have_css("#assessment-title-header",text: text)
 end
 
 Then(/^The page will display the Assessor and Trainer details$/) do |table|

@@ -11,7 +11,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_booked_assessmemt_id_in_DB
     book_assessment
-    expect(page).to have_selector(".alert.alert-success", :text => 'The assessment has been Booked')
+    expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Booked')
     verify_booked_assessmemt_id_in_DB
   end
 

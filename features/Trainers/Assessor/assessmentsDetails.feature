@@ -8,6 +8,7 @@ Feature:DR-168
   Background:
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
+    And I request assessment as Booked
     When I navigate to "MY ASSESSMENTS" page
     When I click one of the items in the list
     Then The system will load "Assessment Outcome" page

@@ -2,33 +2,37 @@
 @DR-388
 Feature: Assessor Role and Permissions
 
+  Background:
+    Given that I have licence.ndors.org.uk page opened
+
   @role_permission1
   Scenario: Verify the access to Request Assessment, My assessments and My profile pages
-    Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     Then I see that I have access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE"
 
   @role_permission2
   Scenario: Verify the landing page after logging in as an assessor
-    Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
-    Then I will be directed to My assessments page
+    Then I will be re-directed to "My assessments" page
 
   @role_permission3
   Scenario: Verify the page for requested assessments with status Approved
-    Given that I have licence.ndors.org.uk page opened
-    When I login as an "Assessor"
+    And I login as an "Assessor"
     And I request assessments to be booked
+    And I see the message "The assessment has been Booked" for booked assessment
+    When I click "MY ASSESSMENTS"
     Then The page will show the list of assessments with status Approved
 
   @role_permission4
   Scenario Outline: Verify the ability to display the assessment records which they have requested
-    Given that I have licence.ndors.org.uk page opened
     When I enter username "<Username>"
     And I enter password "<Password>"
     And I click "Sign in"
-    Then I will be directed to My assessments page
+    Then I will be re-directed to "My assessments" page
     And I request assessments to be booked
+    And I see the message "The assessment has been Booked" for booked assessment
+    And I click "MY ASSESSMENTS"
+    When I click View Details button for the assessment
     And The page will show the list of assessments "<Username>" requested
 
     Examples:
@@ -38,7 +42,6 @@ Feature: Assessor Role and Permissions
 
   @role_permission5
   Scenario: Verify the visibility of pages when logged in as Compliance User
-    Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
     Then I see that I have no access to "MY ASSESSMENTS","REQUEST ASSESSMENT"
 
