@@ -5,10 +5,7 @@ And(/^I will be shown my record with below read only "([^"]*)" fields$/)do |fiel
    else
    field_labeled(field_name, :disabled=> true)
   end
-
 end
-
-
 
 And(/^I will be shown my record with below editable "([^"]*)" fields$/)do |field_name|
    field_labeled(field_name, :disabled=> false)

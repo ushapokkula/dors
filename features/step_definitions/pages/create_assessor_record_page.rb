@@ -26,10 +26,8 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect(page.all(".form-group.has-error").count).to be == 8
   end
 
-  def verify_mandatory_field_err_msgs(fields, error_msgs)
-    #username.set Faker::Name.name
+  def verify_mandatory_assessor_field_err_msgs(fields)
     username.set random_string(7)
-    #fill_in('assessorUsername', :with=>'gswapna')
     fill_in('assessorFirstName', :with => 'swapna')
     fill_in('assessorLastName', :with => 'gopu')
     fill_in('assessorPhone', :with => '0753333222')
@@ -39,14 +37,11 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorPostcode', :with => 'TW5 7GH')
     fill_in(fields, :with => '')
     click_link_or_button("Create Assessor")
-    expect(page).to have_content(error_msgs)
-
   end
 
   def verify_optional_fields(optional_field)
 
-    username.set Faker::Name.name
-    #fill_in('assessorUsername', :with=>'gswapna')
+    username.set random_string(7)
     fill_in('assessorFirstName', :with => 'swapna')
     fill_in('assessorLastName', :with => 'gopu')
     fill_in('assessorPhone', :with => '0753333222')
@@ -56,11 +51,11 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorPostcode', :with => 'TW5 7GH')
     fill_in('assessorNumber', :with => '111111')
     fill_in('assessorSecondaryPhone', :with => '07811111111')
+    fill_in('assessorSecondaryEmail', :with => 'swapna@gmail.com')
     fill_in('assessorForceAreas', :with => 'pol')
     random_selector(forcearea_list)
     fill_in(optional_field, :with => '')
     click_link_or_button("Create Assessor")
-    expect(page).to have_no_css("p.help-block")
   end
 
   def fill_create_assessor_fields
@@ -297,8 +292,8 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def fillinUserName(username1)
-    username.set random_string(7)
-    #fill_in('assessorUsername', :with=> username)
+    #username.set random_string(7)
+    fill_in('assessorUsername', :with=> username)
 
   end
 

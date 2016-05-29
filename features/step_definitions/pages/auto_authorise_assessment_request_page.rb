@@ -27,7 +27,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     result.each do |row|
       assessment_status = row['StatusId']
       expect(assessment_status).to be == 2
-     puts  expect(assessment_status).to be == 2
     end
   end
 

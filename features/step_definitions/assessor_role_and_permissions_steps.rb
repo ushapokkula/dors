@@ -8,7 +8,7 @@ And(/^The page will show the list of assessments with status Approved$/) do
   @trainers.assessor_role_and_permissions_page.verify_assessments_list_with_status
 end
 
-And(/^I see the message "([^"]*)" for booked assessment$/)do |message|
+And(/^I see the message "([^"]*)" for assessment requested$/)do |message|
   expect(page).to have_css(".alert.alert-success", text: message)
 end
 

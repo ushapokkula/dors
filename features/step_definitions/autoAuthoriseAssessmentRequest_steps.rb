@@ -15,25 +15,13 @@ And(/^The status of the assessment request will be marked Booked in the database
 @trainers.auto_authorise_assessment_request_page.check_status_in_DB
 end
 
-Then(/^I will be redirected to Request Assessment page$/) do
-  expect(page).to have_content("Request Assessment")
-end
-
-Then(/^A message will be displayed "([^"]*)"$/) do |text|
-  expect(page).to have_content(text)
-end
-
 And(/^I have not included multiple trainers in my request$/) do
-
+  puts "No trainer include in the assessment request"
 end
 
 And(/^I click "([^"]*)" button without entering data$/) do |button|
   click_link_or_button(button)
  end
-
-And(/^I should be redirected to Pick a slot page$/) do
-  expect(page).to have_css("h1",text: 'Request Assessment')
-end
 
 Then(/^I will see only those trainers whose linked Force Areas match to those linked to my record$/) do
   page.find_all(('linked_force_area_name')[0], text: 'GREATER MANCHESTER POLICE')

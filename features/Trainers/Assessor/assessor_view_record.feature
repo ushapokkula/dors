@@ -30,7 +30,8 @@ Feature: As an assessor,
       | Last Name              |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      | Primary Email Address  |
+      |Secondary Email Address |
       | Town                   |
       | Address                |
       | Postcode               |

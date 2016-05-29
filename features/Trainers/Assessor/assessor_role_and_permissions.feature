@@ -19,7 +19,7 @@ Feature: Assessor Role and Permissions
   Scenario: Verify the page for requested assessments with status Approved
     And I login as an "Assessor"
     And I request assessments to be booked
-    And I see the message "The assessment has been Booked" for booked assessment
+    And I see the message "The assessment has been Booked" for assessment requested
     When I click "MY ASSESSMENTS"
     Then The page will show the list of assessments with status Approved
 
@@ -30,7 +30,7 @@ Feature: Assessor Role and Permissions
     And I click "Sign in"
     Then I will be re-directed to "My assessments" page
     And I request assessments to be booked
-    And I see the message "The assessment has been Booked" for booked assessment
+    And I see the message "The assessment has been Booked" for assessment requested
     And I click "MY ASSESSMENTS"
     When I click View Details button for the assessment
     And The page will show the list of assessments "<Username>" requested
