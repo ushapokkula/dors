@@ -22,7 +22,8 @@ Feature: DR-170 ,DR-520
       | Subject                              | Email Body                                                                                                                                                                                                                              |
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |
 
-    Scenario Outline:  Verify the validity of the link generated following assessor account creation
+  @link_validity
+  Scenario Outline:  Verify the validity of the link generated following assessor account creation
       And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
       And The link will include a crypt nonce making it difficult to guess
       And The link will be  valid for 48 hours from the point of email send timestamp

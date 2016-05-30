@@ -353,17 +353,19 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     visit "https://mail.wtg.co.uk/owa"
+    verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
-    sleep 10
-    find(:button, 'Swapna Gopu').click
-    find("._n_F7._n_f7.bidi").text == $email_value
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
-  end
+    find(:button, 'Swapna Gopu').click
+    #find("._n_F7._n_f7.bidi").text == $email_value
+    find(".button._hl_2._hl_e._hl_i").text == $email_value
+    end
+
 
   def validate_nonce
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
@@ -373,7 +375,6 @@ class CreateAssessorRecordPage < SitePrism::Page
       $nonce = row['Nonce']
     end
     #expect($nonce).to include(find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text)
-    puts $nonce
   end
 
   def verify_48_hours_validity
@@ -385,8 +386,13 @@ class CreateAssessorRecordPage < SitePrism::Page
       $send_date = row['SentDate']
       $valid_until_date = row['NonceValidUntilDate']
     end
-    puts $send_date
-    puts $valid_until_date
-    puts expect($valid_until_date).to be == ($send_date+172800)
+     expect($valid_until_date).to be == ($send_date+172800)
+  end
+
+  def verify_no_user_logged_in
+    if (page.has_css?(".button._hl_2._hl_e._hl_i"))
+      find(:button, 'Swapna Gopu').click
+      find(:xpath, ".//span[text()='Sign out']", match: :first).click
+    end
   end
 end
