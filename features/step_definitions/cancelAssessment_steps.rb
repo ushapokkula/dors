@@ -1,5 +1,5 @@
 Given(/^I see "([^"]*)" on the page$/) do |text|
-  expect(page.text).to have_content(text)
+  expect(page).to have_css("#assessment-title-header",text: text)
 end
 
 And(/^I see a message "([^"]*)" if i have booked assessments$/) do |text|
@@ -11,10 +11,12 @@ end
 
 
 Then(/^The confirmation message will be displayed as  "([^"]*)"$/) do |message|
-  page.assert_selector('.modal-body>p', message)
-
+  expect(page).to have_css(".modal-body>p" , text: message)
 end
 
+And(/^I see the message "([^"]*)" after cancelling the assessment$/)do |message|
+  expect(page).to have_css(".alert.alert-success",text: message)
+end
 
 
 And(/^I enter Cancellation Notes$/)do
@@ -39,13 +41,13 @@ end
 
 
 And(/^The confirmation message will close$/) do
-  expect(page.text).not_to have_content("Are you sure you want to cancel this assessment?")
+  expect(page).to have_no_css(".modal-body>p")
 end
 
 And(/^I have assessments with Booked status$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
-  expect(page).to have_selector(".alert.alert-success")
+  expect(page).to have_css(".alert.alert-success", text: "The assessment has been Booked")
 end
 
 
@@ -53,30 +55,27 @@ end
   #fill_in('cancellationNotes', :with => 'This assessment need to cancel')
 #end
 
+And(/^I see the message "([^"]*)" on the cancellation window$/)do |message|
+ expect(page).to have_css(".modal-body>p")
+end
+
 
 And(/^I see Cancellation Notes$/)do
   expect(page).to have_css("#cancellationNotes")
 end
 
 And(/^The assessment will not be cancelled and I will remain on 'My Assessments' section$/) do
-  expect(page.text).to have_content("My assessment details")
+  expect(page).to have_css("#assessment-title-header" , text:"Assessment Outcome")
   click_link("REQUEST ASSESSMENT")
+  expect(page).to have_no_css('.trainer-licenseCode', text: '100001/101')
 
-  #within(:css, ".trainer-licenseCode") do
-    expect(page).not_to have_css('.trainer-licenseCode', text: '100001/101')
-    #page.should_not have_text(".trainer-licenseCode", count: 2)
-    #expect(page.text).not_to include("100022 /122")
-    #expect(page.text).not_to include("100006 /106")
-  end
-#end
+end
 
 And(/^I get the current URL$/)do
   $cuurent_url = URI.parse(current_url)
-  $cuurent_url
 end
 
 Given(/^I see "([^"]*)" button for assessments with status Booked or Requested$/) do |button|
-  sleep 5
   find_button(button).visible?
 end
 

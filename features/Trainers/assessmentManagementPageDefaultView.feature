@@ -44,7 +44,7 @@ Feature:DR-285
     And I login as an "Assessor"
     And I request all assessments
     And I login as an "Compliance Manager"
-    And I click "ASSESSMENT MANAGEMENT"
+    When I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
     And I see "View Details"
     And I see "Approve" button

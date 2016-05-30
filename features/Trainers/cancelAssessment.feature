@@ -6,7 +6,8 @@ Feature:DR-15
   Background:
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
-    And I have assessments with Booked status
+    And I request assessment as Booked
+    #And I have assessments with Booked status
     And I navigate to "MY ASSESSMENTS" page
     And I click "View Details"
     And I see "Assessment Outcome" on the page
@@ -18,7 +19,7 @@ Feature:DR-15
     And I see 'Yes' and 'No' buttons on the confirmation message box
     And I enter Cancellation Notes
     When I click "Yes"
-    And I see a message "The assessment booking has been cancelled"
+    Then I see the message "The assessment booking has been cancelled" after cancelling the assessment
 
   @cancelassessment2
   Scenario: Verify Cancellation Notes as Mandatory
@@ -27,16 +28,16 @@ Feature:DR-15
     And I see 'Yes' and 'No' buttons on the confirmation message box
     And I see Cancellation Notes
     When I click "Yes"
-    Then I see a message "Please provide a reason for cancelling the assessment."
+    Then I see the message "Are you sure you want to cancel this assessment?" on the cancellation window
 
   @cancelassessment3
   Scenario: Availability of trainers on Request Assessment page after cancellation
-    When I click "Cancel Request"
-    Then The confirmation message will be displayed as  "Are you sure you want to cancel this assessment?"
+    And I click "Cancel Request"
+    And The confirmation message will be displayed as  "Are you sure you want to cancel this assessment?"
     And I see 'Yes' and 'No' buttons on the confirmation message box
     And I enter Cancellation Notes
-    When I click "Yes"
-    And I see a message "The assessment booking has been cancelled"
+    And I click "Yes"
+    And I see the message "The assessment booking has been cancelled" after cancelling the assessment
     When I click "REQUEST ASSESSMENT"
     Then the trainer will be available for bookings for assessors
 
@@ -46,8 +47,8 @@ Feature:DR-15
 
   @cancelassessment5
   Scenario: Verify the assessment cancellation  when clicked on 'NO'
-    When I click "Cancel Request"
-    Then The confirmation message will be displayed as  "Are you sure you want to cancel this assessment?"
+    And I click "Cancel Request"
+    And The confirmation message will be displayed as  "Are you sure you want to cancel this assessment?"
     And I see 'Yes' and 'No' buttons on the confirmation message box
     When I click "No"
     Then The confirmation message will close
@@ -61,7 +62,7 @@ Feature:DR-15
     And I see 'Yes' and 'No' buttons on the confirmation message box
     And I enter Cancellation Notes
     When I click "Yes"
-    And I see a message "The assessment booking has been cancelled"
+    And I see the message "The assessment booking has been cancelled" after cancelling the assessment
     And I see that the "Cancel Request" button is not available for Cancelled status
 
 

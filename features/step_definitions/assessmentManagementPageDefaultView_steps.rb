@@ -1,8 +1,10 @@
 And(/^I request all assessments$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  # @trainers.ngu_search_assessment_id_page.request_assessment
-  @trainers.ngu_search_assessment_id_page.request_assessment
-end
+  2.times do
+   @trainers.ngu_search_assessment_id_page.request_assessment
+  #@trainers.ngu_search_assessment_id_page.request_assessment
+  end
+  end
 
 Then(/^I will see  list of all Assessments Requests with status requested$/) do
   @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
@@ -28,7 +30,7 @@ And(/^Maximum trainers included are not more than four$/)do
 end
 
 And(/^I see "([^"]*)"$/)do |link|
-  expect(page).to have_content(link)
+  expect(page).to have_css(".btn.btn-link", text:link)
 end
 
 And(/^I see "([^"]*)" button$/) do |button|
