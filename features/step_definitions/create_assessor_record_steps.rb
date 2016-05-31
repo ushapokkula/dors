@@ -90,7 +90,9 @@ end
 
 Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username, assessorNumber, firstName, lastName, primaryPhoneNumber, secondaryPhoneNumber, primaryEmail, secondaryEmail, address, town, postcode, forceareas|
   @trainers.create_assessor_record_page.validateAssessorUsername(username)
+  @trainers.create_assessor_record_page.validateUserNameMaxCHARS
   @trainers.create_assessor_record_page.validateAssessorNumber(assessorNumber)
+  @trainers.create_assessor_record_page.validateAssessorNumberMaxCHARS
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)

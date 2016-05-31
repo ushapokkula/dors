@@ -77,11 +77,11 @@ end
     elsif(primaryPhoneNumberLength<=9)                                         #verify minim length#
       page.find('#assessorPhone').value.length.should.eq '10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
-      puts 'minlength is 10'
+      puts 'primaryPhoneNumber minlength is 10'
     elsif(primaryPhoneNumberLength>=51)
       page.find("#assessorSecondaryPhone").value.length.should.eq '50'
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
-      puts 'maxlength is 50'
+      puts 'primaryPhoneNumber maxlength is 50'
     end
   end
 
@@ -92,12 +92,12 @@ end
       puts "Ok, Secondary Phone Number is optional"
     elsif(secondaryPhoneNumberLength<=9)
       page.find('#assessorSecondaryPhone').value.length.should.eq '10'               #verify minim length#
-      puts 'minlength is 10'
+      puts 'secondaryPhoneNumber minlength is 10'
       page.should have_css("p.help-block",text:'Sorry, the phone number must be at least 10 digits long.')
     elsif(secondaryPhoneNumberLength>=51)
       page.find('#assessorSecondaryPhone').value.length.should.eq '50'                     #verify max length#
       page.should_not have_css("p.help-block",text:'Please provide a phone number.')
-      puts 'maxlength is 50'
+      puts 'secondaryPhoneNumber maxlength is 50'
     end
     end
 
@@ -117,7 +117,7 @@ end
     addressLength =  address_string.length
     if(addressLength>255)
       page.find("#assessorAddress").value.length.should_be 255
-      puts 'Limit is 255 charachters'
+      puts 'addressLength Limit is 255 charachters'
     page.should have_xpath("//textarea[@rows='3']")  #Verifying default number of rows in Address textarea#
     end
   end
@@ -137,7 +137,7 @@ end
     if(emailLength>=255)
       page.should have_css("p.help-block", text:'Please provide a valid email address.')
       page.find("#assessorEmail").value.length.should.eq '255'
-      puts 'Limit is 255 charachters'
+      puts 'assessorEmail Limit is 255 charachters'
     end
   end
 
@@ -170,7 +170,7 @@ end
     townLenght = town_string.length
     if(townLenght>60)
       page.find("#assessorTown").value.length.should.eq '60'
-      puts 'Limit is 60 charachters'
+      puts 'townLenght Limit is 60 charachters'
     end
   end
 
@@ -192,7 +192,7 @@ end
       page.should have_css("p.help-block", text:'Please provide a postcode.')
     elsif((postcodeLength>=1)&&(postcodeLength<=10))
       page.find("#assessorPostcode").value.length.should.eq'10'
-      puts 'Limit is 10 charachters'
+      puts 'assessorPostcode Limit is 10 charachters'
    end
     z=postcode.match(/[ A-Za-z0-9]/)
       p z

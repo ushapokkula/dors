@@ -1,9 +1,11 @@
 class CreateAssessorRecordPage < SitePrism::Page
   elements :mandatory_fields, ".form-group.has-error"
   element :username, "#assessorUsername"
+  element :assessor_number, "#assessorNumber"
   element :force_area, "#assessorForceAreas"
   elements :forcearea_list, "#assessorForceAreas + ul li "
   elements :assessor_input_fields, "label.control-label"
+
 
   def verify_assessor_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
@@ -62,6 +64,12 @@ class CreateAssessorRecordPage < SitePrism::Page
     string = (0..x).map {chars.sample}.join
   end
 
+  def alpha_numeric(length=21)
+    chars = [*('A'..'Z'), *('a'..'z'), *(0..9)]
+    (0..length).map {chars.sample}.join
+  end
+
+
   def verify_order_of_assessor_input_fields(new_table)
      fields=[], assessor_fields=[]
      assessor_input_fields.each do |input_fields|
@@ -88,27 +96,48 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def validateAssessorUsername(username)
     usernameLength = username.length
-     puts "#{username}"
     if (username.empty?)
       page.should have_css("p.help-block",text:'Please provide a username.')
     elsif(usernameLength<4)
-      page.should have_css("p.help-block",text:'Please provide a username.')
+      page.should have_css("p.help-block",text:'Sorry, the username must be at least 4 characters long.')
       page.find("#assessorUsername").value.length.should.eq '4'
     elsif((usernameLength>=4)&&(usernameLength<=70))
-      page.should_not have_css("p.help-block",text:'Please provide a username.')
+      page.should have_css("p.help-block",text:'Sorry, the username can only contain numbers, letters, dashes and underscores.')
     elsif(usernameLength>=71)
       page.find("#assessorUsername").value.length.should.eq '70'
       end
   end
 
+
+  def validateUserNameMaxCHARS
+    username_string = username.set random_string(71)
+  usernameLenght = username_string.length
+    if(usernameLenght>70)
+      page.find("#assessorUsername").value.length.should.eq '70'
+      puts 'Limit is 70 charachters'
+    end
+  end
+
+
   def validateAssessorNumber(assessorNumber)
     assessorNumberLength = assessorNumber.length
     if (assessorNumber.empty?)
       puts "Ok, Assessor number is optional"
-    elsif (assessorNumberLength>=20)
+    elsif ((assessorNumberLength>=1)&& (assessorNumberLength<=20))
+      page.should_not have_css("p.help-block",text:'Sorry, only numbers and letters are accepted.')
       page.find("#assessorNumber").value.length.should.eq '20'
     end
   end
+
+  def validateAssessorNumberMaxCHARS
+    assessorNumber_string = assessor_number.set alpha_numeric
+    assessorNumberLength = assessorNumber_string.length
+    if(assessorNumberLength>20)
+      page.find("#assessorNumber").value.length.should.eq '20'
+      puts 'Limit is 20 charachters'
+    end
+  end
+
 
   def selectForceAreas(forceareas)
     fill_in('assessorForceAreas', :with=> forceareas)
@@ -161,5 +190,4 @@ class CreateAssessorRecordPage < SitePrism::Page
   def fillinAssessorpostcode(postcode)
     fill_in('assessorPostcode', :with=> postcode)
   end
-
 end
