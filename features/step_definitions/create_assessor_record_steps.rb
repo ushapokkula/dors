@@ -4,11 +4,11 @@ Then(/^the system will load the page where I can create a new assessor record wi
 end
 
 Given(/^I see that the page includes "([^"]*)" and "([^"]*)" buttons$/) do |cancel_button, create_button|
-   find_button(cancel_button).visible?
-   find_button(create_button).visible?
+  find_button(cancel_button).visible?
+  find_button(create_button).visible?
 end
 
-Then(/^I see the following fields as Mandatory$/)do |table|
+Then(/^I see the following fields as Mandatory$/) do |table|
   click_link_or_button("Create Assessor")
   new_table = table.hashes
   @trainers.create_assessor_record_page.verify_assessor_mandatory_fields(new_table)
@@ -27,7 +27,7 @@ Then(/^the system will load the page where I can create a new assessor record$/)
 end
 
 When(/^I click Cancel button$/) do
- @trainers.create_assessor_record_page.clickOnCancelButton()
+  @trainers.create_assessor_record_page.clickOnCancelButton()
 end
 
 Then(/^then unsaved changes will be lost and I will be redirected to my homepage \(Assessments Management\)$/) do
@@ -88,7 +88,7 @@ Then(/^I enter field12 "([^"]*)"$/) do |forceareas|
   @trainers.create_assessor_record_page.selectForceAreas(forceareas)
 end
 
-Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username,assessorNumber,firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode,forceareas|
+Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username, assessorNumber, firstName, lastName, primaryPhoneNumber, secondaryPhoneNumber, primaryEmail, secondaryEmail, address, town, postcode, forceareas|
   @trainers.create_assessor_record_page.validateAssessorUsername(username)
   @trainers.create_assessor_record_page.validateAssessorNumber(assessorNumber)
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
@@ -101,4 +101,15 @@ Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([
   @trainers.assessor_profile_page.validateTownfield(town)
   @trainers.assessor_profile_page.validateAssessorPostcode(postcode)
   @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
+end
+
+
+When(/^I set (.*) to value (.*)$/) do |field, value|
+  el = find('label', text: /\A#{field}\z/, visible: true)
+  # value = '' if value == 'empty'
+  find("##{el[:for]}").set(value)
+end
+
+Then(/^I get the error message as (.*)$/) do |error_message|
+ expect(page).to have_content(error_message)
 end

@@ -26,37 +26,37 @@ Feature:
       | Town                    |
       | Force Areas             |
 
-    @create_assessor2
-    Scenario Outline: Verify The mandatory fields
+  @create_assessor2
+  Scenario Outline: Verify The mandatory fields
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
     Examples:
-      | Mandatory              | Error Messages                   |
-      | Username               | Please provide a username.       |
-      | First Name             | Please provide a first name.     |
-      | Last Name              | Please provide a last name.      |
-      | Primary Phone Number   | Please provide a phone number.   |
-      | Primary Email Address  | Please provide an email address. |
-      | Address                | Please provide an address.       |
-      | Postcode               | Please provide a postcode.       |
-      | Town                   | Please provide a town.           |
+      | Mandatory             | Error Messages                   |
+      | Username              | Please provide a username.       |
+      | First Name            | Please provide a first name.     |
+      | Last Name             | Please provide a last name.      |
+      | Primary Phone Number  | Please provide a phone number.   |
+      | Primary Email Address | Please provide an email address. |
+      | Address               | Please provide an address.       |
+      | Postcode              | Please provide a postcode.       |
+      | Town                  | Please provide a town.           |
 
 
-    @create_assessor3
-    Scenario Outline: ario Outline: Verify The  optional fields
+  @create_assessor3
+  Scenario Outline: ario Outline: Verify The  optional fields
     Then I see the following fields as "<Optional>"
     Examples:
-      | Optional               |
-      | Assessor Number        |
-      | Secondary Phone Number |
-      | Secondary Email Address|
-      | Force Areas            |
+      | Optional                |
+      | Assessor Number         |
+      | Secondary Phone Number  |
+      | Secondary Email Address |
+      | Force Areas             |
 
-   @create_assessor4
-   Scenario: Verify the Cancel and Create Assessor buttons
+  @create_assessor4
+  Scenario: Verify the Cancel and Create Assessor buttons
     And I see that the page includes "Create Assessor" and "Cancel" buttons
 
   @create_assessor5
-   Scenario: Verify Cancel button on create assessor page is working
+  Scenario: Verify Cancel button on create assessor page is working
     Then the system will load the page where I can create a new assessor record
     When I click Cancel button
     Then then unsaved changes will be lost and I will be redirected to my homepage (Assessments Management)
@@ -80,9 +80,21 @@ Feature:
     Then I see validation messages for "<Username>","<Assessor Number>","<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Primary Email>","<Secondary Email>","<Address>","<Town>","<Postcode>","<Force Areas>"
 
     Examples:
-       |Username   |Assessor Number   |First Name                                          |Last Name                                                 |Primary Phone Number                                  |Secondary Phone Number|Primary Email         |Secondary Email     |Address       |Town      |Postcode|
-       |           |1^&*456           |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                          | +876789-*                                            | 0787*+               |{^*Roopa#@wtg&com     |                     |76hammersmith |Lo&,.,-H |         |
-       | Te^&*WTG  |011111111         |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                      |07876545654           |/_rchitt120>~mail&&.com|                     |WEExxx.bcbhb | Tr@' , -;| w14 8ud |
-       |Test(_+    |11111111          |                                                    | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |                       |                      |             |DV&/.()jc| ha03pb |
+      | Username | Assessor Number | First Name                                       | Last Name                                                | Primary Phone Number                                  | Secondary Phone Number | Primary Email           | Secondary Email | Address       | Town      | Postcode | Force Areas              |
+      |          | 1^&*456         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^& |                                                          | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       |                 | 76hammersmith | Lo&,.,-H  |          | BRITISH TRANSPORT POLICE |
+      | Te^&*WTG | 011111111       | TestWTG%78*                                      | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                       | 07876545654            | /_rchitt120>~mail&&.com |                 | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  | BRITISH TRANSPORT POLICE |
+      | Test(_+  | 11111111        |                                                  | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha03pb   | BRITISH TRANSPORT POLICE |
+
+
+
+  Scenario Outline: verify all fields
+    When I set <field> to value <value>
+    Then I click on create assessor button
+    Then I get the error message as <error message>
+    Examples:
+      | field      | value | error message                |
+      | First Name |    empty   | Please provide a first name. |
+
+
 
 
