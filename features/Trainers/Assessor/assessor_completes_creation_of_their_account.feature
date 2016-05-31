@@ -15,8 +15,6 @@ Feature:
     And I click "Create Assessor"
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
-    And The link will include a crypt nonce making it difficult to guess
-    And The link will be  valid for 48 hours from the point of email send timestamp
     When I click the link generated in the email to set password
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
 
@@ -34,8 +32,6 @@ Feature:
     And I click "Create Assessor"
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
-    And The link will include a crypt nonce making it difficult to guess
-    And The link will be  valid for 48 hours from the point of email send timestamp
     And I click the link generated in the email to set password
     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     When I enter Username
@@ -105,8 +101,6 @@ Feature:
     And I click "Create Assessor"
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
-    And The link will include a crypt nonce making it difficult to guess
-    And The link will be  valid for 48 hours from the point of email send timestamp
     And I click the link generated in the email to set password
     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     And I enter Username
@@ -123,8 +117,6 @@ Feature:
     And I click "Create Assessor"
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
-    And The link will include a crypt nonce making it difficult to guess
-    And The link will be  valid for 48 hours from the point of email send timestamp
     And I click the link generated in the email to set password
     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     And I enter Username

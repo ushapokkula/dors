@@ -1,5 +1,5 @@
 And(/^I see that the email is generated and sent to the registered email address$/)do
-  @trainers.create_assessor_record_page.email_generation
+  @trainers.create_assessor_record_page.verify_email_generation
 end
 
 When(/^I click the link generated in the email to set password$/)do
