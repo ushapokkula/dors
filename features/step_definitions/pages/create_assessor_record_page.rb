@@ -362,7 +362,6 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
-    #find("._n_F7._n_f7.bidi").text == $email_value
     find(".button._hl_2._hl_e._hl_i").text == $email_value
     end
 
@@ -395,4 +394,5 @@ class CreateAssessorRecordPage < SitePrism::Page
       find(:xpath, ".//span[text()='Sign out']", match: :first).click
     end
   end
-end
+
+  end
