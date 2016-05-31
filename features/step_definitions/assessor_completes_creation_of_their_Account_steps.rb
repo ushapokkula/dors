@@ -57,3 +57,7 @@ And(/^I enter password and confirm password which does'nt match$/)do
   fill_in('password', :with=> 'P@ssw0rd1')
   fill_in('passwordConfirm', :with=> 'P@ssw0rd2')
 end
+
+When(/^I enter the password which does'nt meet password policy requirements$/)do
+  fill_in('password', :with=> 'password')
+end

@@ -117,6 +117,22 @@ Feature:
 
   @password_does'nt_meet_policy
   Scenario: Verify the validation message when the password  does'nt meet policy requirements
+    And I login as an "Compliance Manager"
+    And I navigate to "ASSESSORS" page
+    And I fill all assessor fields on the create assessor form
+    And I click "Create Assessor"
+    And I see the message "New assessor successfully created" after assessor creation
+    And I see that the email is generated and sent to the registered email address
+    And The link will include a crypt nonce making it difficult to guess
+    And The link will be  valid for 48 hours from the point of email send timestamp
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    When I enter the password which does'nt meet password policy requirements
+    Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+    #And I will be shown password policy requirements to set the password
+
 
 
 
