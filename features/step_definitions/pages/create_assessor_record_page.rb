@@ -353,10 +353,15 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     visit "https://mail.wtg.co.uk/owa"
-    verify_no_user_logged_in
+    if (page.has_css?(".button._n_m2"))
+      find(:button, 'Swapna Gopu').click
+      find(:xpath, ".//span[text()='Sign out']", match: :first).click
+      visit "https://mail.wtg.co.uk/owa"
+    else
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
+    end
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
@@ -367,17 +372,23 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def verify_email_generation
     visit "https://mail.wtg.co.uk/owa"
-    verify_no_user_logged_in
+    #verify_no_user_logged_in
+    if (page.has_css?(".button._n_m2"))
+      find(:button, 'Swapna Gopu').click
+      find(:xpath, ".//span[text()='Sign out']", match: :first).click
+      visit "https://mail.wtg.co.uk/owa"
+    else
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
+    end
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
-    expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
-    expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
+    expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
+    expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
     find(".button._hl_2._hl_e._hl_i").text == $email_value
-  end
+    end
 
   def validate_nonce
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
@@ -401,11 +412,11 @@ class CreateAssessorRecordPage < SitePrism::Page
      expect($valid_until_date).to be == ($send_date+172800)
   end
 
-  def verify_no_user_logged_in
-    if (page.has_css?(".button._hl_2._hl_e._hl_i"))
-      find(:button, 'Swapna Gopu').click
-      find(:xpath, ".//span[text()='Sign out']", match: :first).click
-    end
-  end
+  #def verify_no_user_logged_in
+  #   if find(".button._n_m2").text == "new mail"
+  #     find(:button, 'Swapna Gopu').click
+  #     find(:xpath, ".//span[text()='Sign out']", match: :first).click
+  #   end
+  # end
 
   end

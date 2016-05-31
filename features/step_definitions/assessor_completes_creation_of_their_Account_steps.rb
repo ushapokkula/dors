@@ -22,8 +22,11 @@ And(/^I enter Email$/)do
   fill_in('email', :with=> $email_value)
 end
 
-And(/^Enter Password and Confirm Password$/)do
+And(/^I enter Password$/)do
   fill_in('password', :with=> 'P@ssw0rd1')
+end
+
+And(/^I enter Confirm Password$/)do
   fill_in('passwordConfirm', :with=> 'P@ssw0rd1')
 end
 
@@ -42,22 +45,42 @@ And(/^I enter the Username which does'nt match against the record created$/)do
 end
 
 Then(/^I see a valiadation message displayed as "([^"]*)"$/)do |message|
-  expect(page).to have_css(".form-group.has-error p", text:message)
+ puts  expect(page).to have_css(".form-group.has-error p", text:message)
+  puts message
 end
 
 When(/^I enter the Email which does'nt match against the record created$/)do
-  expect(page).to have_css(".form-group.has-error p", text:message)
+  fill_in('email', :with=> 'test@wtg.co.uk')
 end
 
 And(/^I enter email which has invalid format$/)do
   fill_in('email', :with=> 'invalidemailformat')
 end
 
-And(/^I enter password and confirm password which does'nt match$/)do
-  fill_in('password', :with=> 'P@ssw0rd1')
-  fill_in('passwordConfirm', :with=> 'P@ssw0rd2')
+And(/^I enter confirm password which does'nt match with password$/)do
+   fill_in('passwordConfirm', :with=> 'P@ssw0rd2')
 end
 
 When(/^I enter the password which does'nt meet password policy requirements$/)do
   fill_in('password', :with=> 'password')
+end
+
+And(/^I navigate to outlook web email$/)do
+  page.driver.browser.switch_to.window(page.driver.find_window("https://mail.wtg.co.uk/owa/#path=/mail"))
+  # visit "https://mail.wtg.co.uk/owa/"
+end
+
+And(/^I open the email which i have already used to set the password successfully$/)do
+  find(:xpath, ".//span[text()='DORS Test']", match: :first).click
+end
+
+When(/^I try to access the link again$/)do
+  expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
+  find(:xpath, ".//*[@id='Item.MessageUniqueBody']//a").click
+ end
+
+And(/^I see this message on the page "([^"]*)"$/)do |message|
+  page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
+  expect(page.title)== "DORS Trainer"
+  expect(page).to have_css(".alert.alert-danger", text: message)
 end
