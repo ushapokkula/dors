@@ -1,4 +1,4 @@
-@DR-171 @DR-13 @DR-594
+@DR-171 @DR-13 @DR-594 @pass
 Feature:
   As an user,
   I want to be able to create a new Assessor,
@@ -82,8 +82,8 @@ Feature:
     Examples:
       | Username | Assessor Number | First Name                                       | Last Name                                                | Primary Phone Number                                  | Secondary Phone Number | Primary Email           | Secondary Email | Address       | Town      | Postcode | Force Areas              |
       | +876789-*| 1^&*456         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^& |                                                          | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       | opa+_@wtg&com   | 76hammersmith | Lo&,.,-H  |          | BRITISH TRANSPORT POLICE |
-      #| Te^&*WTG | 011111111       | TestWTG%78*                                      | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                       | 07876545654            | /_rchitt120>~mail&&.com |+876789-*@g.uk   | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  | BRITISH TRANSPORT POLICE |
-     # | Test(_+  | 11111111        |                                                  | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha03pb   | BRITISH TRANSPORT POLICE |
+      | Te^&*WTG | 011111111       | TestWTG%78*                                      | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                       | 07876545654            | /_rchitt120>~mail&&.com |+876789-*@g.uk   | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  | BRITISH TRANSPORT POLICE |
+      | Test(_+  | 11111111        |                                                  | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha03pb   | BRITISH TRANSPORT POLICE |
 
 
 

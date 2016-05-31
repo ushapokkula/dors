@@ -1,4 +1,4 @@
-@DR-13 @DR-817 @DR-549 @DR-594
+@DR-13 @DR-817 @DR-549 @DR-594 @pass
 Feature:
   As an Assessor,
   I want to be able to edit my record on the system,
