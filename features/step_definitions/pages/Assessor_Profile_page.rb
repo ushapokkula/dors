@@ -128,7 +128,6 @@ end
       page.should have_css("p.help-block", text:'Please provide an address.')
     elsif(addressLength>=1)
       page.should_not have_css("p.help-block", text:'Please provide an address.')
-      page.should have_css("p.help-block", text:'Please provide a valid email address.')
     end
   end
 

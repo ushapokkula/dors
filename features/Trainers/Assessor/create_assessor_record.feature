@@ -42,7 +42,7 @@ Feature:
 
 
   @create_assessor3
-  Scenario Outline: ario Outline: Verify The  optional fields
+  Scenario Outline: Verify The  optional fields
     Then I see the following fields as "<Optional>"
     Examples:
       | Optional                |
@@ -81,19 +81,11 @@ Feature:
 
     Examples:
       | Username | Assessor Number | First Name                                       | Last Name                                                | Primary Phone Number                                  | Secondary Phone Number | Primary Email           | Secondary Email | Address       | Town      | Postcode | Force Areas              |
-      |          | 1^&*456         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^& |                                                          | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       |                 | 76hammersmith | Lo&,.,-H  |          | BRITISH TRANSPORT POLICE |
-      | Te^&*WTG | 011111111       | TestWTG%78*                                      | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                       | 07876545654            | /_rchitt120>~mail&&.com |                 | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  | BRITISH TRANSPORT POLICE |
+      | +876789-*| 1^&*456         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^& |                                                          | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       |                 | 76hammersmith | Lo&,.,-H  |          | BRITISH TRANSPORT POLICE |
+      | Te^&*WTG | 011111111       | TestWTG%78*                                      | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                       | 07876545654            | /_rchitt120>~mail&&.com |+876789-*@g.uk   | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  | BRITISH TRANSPORT POLICE |
       | Test(_+  | 11111111        |                                                  | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha03pb   | BRITISH TRANSPORT POLICE |
 
 
-
-  Scenario Outline: verify all fields
-    When I set <field> to value <value>
-    Then I click on create assessor button
-    Then I get the error message as <error message>
-    Examples:
-      | field      | value | error message                |
-      | First Name |    empty   | Please provide a first name. |
 
 
 

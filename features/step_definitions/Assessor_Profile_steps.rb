@@ -95,3 +95,28 @@ end
 And (/^I will remain on the same page$/)do
 @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
 end
+
+
+When(/^I set (.*) to value (.*)$/) do |field, value|
+  el = find('label', text: /\A#{field}\z/, visible: true)
+  # value = '' if value == 'empty'
+  find("##{el[:for]}").set(value)
+end
+
+Then(/^I get the error message as (.*)$/) do |error_message|
+  expect(page).to have_content(error_message)
+end
+
+
+def random_string(x)
+  #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
+    string = (0..x).map {chars.sample}.join
+end
+
+And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, length|
+  el = find('label', text: /\A#{field}\z/, visible: true)
+  find("##{el[:for]}").set random_string(length)
+
+  end
+

@@ -104,12 +104,3 @@ Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([
 end
 
 
-When(/^I set (.*) to value (.*)$/) do |field, value|
-  el = find('label', text: /\A#{field}\z/, visible: true)
-  # value = '' if value == 'empty'
-  find("##{el[:for]}").set(value)
-end
-
-Then(/^I get the error message as (.*)$/) do |error_message|
- expect(page).to have_content(error_message)
-end

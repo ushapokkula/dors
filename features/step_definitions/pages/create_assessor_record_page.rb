@@ -33,8 +33,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields(optional_field)
-    username.set Faker::Name.name
-    #fill_in('assessorUsername', :with=>'gswapna')
+    username.set random_string(70)
     fill_in('assessorFirstName', :with=>'swapna')
     fill_in('assessorLastName', :with=>'gopu')
     fill_in('assessorPhone', :with=>'0753333222')
