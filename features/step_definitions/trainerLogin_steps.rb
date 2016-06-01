@@ -10,6 +10,10 @@ When(/^I login as an "([^"]*)" as accessor$/) do |user|
   @trainers.trainer_login_page.login_as(user)
 end
 
+When(/^I login as a "([^"]*)" user$/)do |user|
+  @trainers.trainer_login_page.login_as(user)
+end
+
 
 When(/^I enter valid username$/) do
 
