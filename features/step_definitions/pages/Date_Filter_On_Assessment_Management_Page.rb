@@ -21,13 +21,6 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     end
 
 
-    def delete_assessments_from_DB
-      client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
-      client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
-      client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainerLicenseAssessment]")
-      client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
-    end
-
 
   def request_assessments_without_nearby_course
     click_link("REQUEST ASSESSMENT")
