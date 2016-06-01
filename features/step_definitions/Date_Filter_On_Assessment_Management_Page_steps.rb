@@ -9,7 +9,7 @@ end
 
 
 And (/^I request assessments$/)do
-  6.times do
+  7.times do
     @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
   end
 end
