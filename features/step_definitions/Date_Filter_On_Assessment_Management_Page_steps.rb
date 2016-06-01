@@ -1,5 +1,5 @@
 And(/^default view of the page is loaded$/) do
-@trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
+  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
 click_link("ASSESSMENT MANAGEMENT")
 page.find("#single-button").click
 find("#assessmentStatusChk0").should be_checked         #Requested option in selected state#

@@ -10,6 +10,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :cancel_yes, "#cancel-assessment-yes"
   element :notes_field, "#notes"
 
+
   def verify_assessment_sorting_by_date
     actual_order = []
     assessment_dates.each do |element|
@@ -20,6 +21,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   expected_order=actual_order.clone
         puts expect(actual_order).to match_array(expected_order)
     end
+
 
   def request_assessments_without_nearby_course
     click_link("REQUEST ASSESSMENT")
@@ -40,8 +42,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
    find('.include-nearby-trainer-checkbox', match: :first).click if find('.include-nearby-trainer-checkbox', match: :first)
    click_link_or_button("Submit")
     within('.alert.alert-success.ng-binding') do
-
-    expect(page).to have_content("The assessment has been Booked")
+      expect(page).to have_content("The assessment has been Booked")
   end
    end
 
