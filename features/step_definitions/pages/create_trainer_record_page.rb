@@ -6,7 +6,8 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :trainer_last_name, "#trainerLastName"
   element :primary_phone, "#trainerPrimaryPhone"
   element :secondary_hone, "#trainerSecondaryPhone"
-  element :email, "#trainerEmail"
+  element :primary_email, "#trainerEmail"
+  element :secondary_email, "#trainerSecondaryEmail"
   element :address, "#trainerAddress"
   element :town, "#trainerTown"
   element :postcode, "#trainerPostcode"
@@ -40,7 +41,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    email.set Faker::Internet.email
+    primary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
@@ -57,7 +58,8 @@ class CreateTrainerRecordPage < SitePrism::Page
     known_as.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone.set Faker::PhoneNumber.numerify('0##########')
-    email.set Faker::Internet.email
+    primary_email.set Faker::Internet.email
+    secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
@@ -76,7 +78,8 @@ class CreateTrainerRecordPage < SitePrism::Page
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    email.set Faker::Internet.email
+    primary_email.set Faker::Internet.email
+    secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
