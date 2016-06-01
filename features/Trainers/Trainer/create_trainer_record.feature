@@ -49,6 +49,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Optional               |
       | Known As               |
       | Secondary Phone Number |
+      |Secondary Email Address |
       #| Is Instructor          |
 
 
