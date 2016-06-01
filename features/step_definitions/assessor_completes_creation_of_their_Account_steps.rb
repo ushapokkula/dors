@@ -84,3 +84,19 @@ And(/^I see this message on the page "([^"]*)"$/)do |message|
   expect(page.title)== "DORS Trainer"
   expect(page).to have_css(".alert.alert-danger", text: message)
 end
+
+And(/^I see the following fields as "([^"]*)" and when the fields are left blank$/)do |fields|
+@trainers.create_assessor_record_page.verify_signup_mandatory_fields(fields)
+  if fields == "Confirm Password"
+    click_button("Create Account")
+  end
+end
+
+When(/^I enter the password having length "([^"]*)"$/)do|length|
+  @trainers.create_assessor_record_page.password_length_validation(7)
+  page.find('#password').native.send_keys(:tab)
+end
+
+And(/^I close browser window at end$/)do
+  page.driver.browser.close
+end

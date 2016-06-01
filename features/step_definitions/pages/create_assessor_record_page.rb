@@ -14,6 +14,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   element :force_area, "#assessorForceAreas"
   elements :forcearea_list, "#assessorForceAreas + ul li "
   elements :assessor_input_fields, "label.control-label"
+  element :password, "#password"
 
   def verify_assessor_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
@@ -75,16 +76,33 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   end
 
+  def verify_signup_mandatory_fields(fields)
+    fill_in('username', :with => $username_value)
+    fill_in('email', :with => $email_value)
+    fill_in('password', :with => 'P@ssw0rd1')
+    fill_in('passwordConfirm', :with => 'P@ssw0rd1')
+    fill_in(fields, :with => '')
+  end
+
   def random_selector(x)
     size = x.count
     x[rand(1...size)].select_option
   end
 
   def random_string(x)
-    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
     string = (0..x).map { chars.sample }.join
   end
+
+  def password_length_validation(length)
+    password.set random_password_string(length)
+  end
+
+  def random_password_string(x)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]-%w(""%^(){}[];:><)+%w(~!@#$%&*_-+=\,.?/|))
+    string = (0..x).map { chars.sample }.join
+  end
+
 
   def verify_order_of_assessor_input_fields(new_table)
     fields=[], assessor_fields=[]
@@ -293,7 +311,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def fillinUserName(username1)
     #username.set random_string(7)
-    fill_in('assessorUsername', :with=> username)
+    fill_in('assessorUsername', :with => username)
 
   end
 
@@ -353,42 +371,31 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     visit "https://mail.wtg.co.uk/owa"
-    if (page.has_css?(".button._n_m2"))
-      find(:button, 'Swapna Gopu').click
-      find(:xpath, ".//span[text()='Sign out']", match: :first).click
-      visit "https://mail.wtg.co.uk/owa"
-    else
+    verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
-    end
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
     find(".button._hl_2._hl_e._hl_i").text == $email_value
-    end
+  end
 
   def verify_email_generation
     visit "https://mail.wtg.co.uk/owa"
-    #verify_no_user_logged_in
-    if (page.has_css?(".button._n_m2"))
-      find(:button, 'Swapna Gopu').click
-      find(:xpath, ".//span[text()='Sign out']", match: :first).click
-      visit "https://mail.wtg.co.uk/owa"
-    else
+    verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143!')
     find(".signinTxt").click
-    end
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
     find(".button._hl_2._hl_e._hl_i").text == $email_value
-    end
+  end
 
   def validate_nonce
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
@@ -401,7 +408,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_48_hours_validity
-    actual_date = find(:xpath,".//*[@id='ItemHeader.DateReceivedLabel']").text
+    actual_date = find(:xpath, ".//*[@id='ItemHeader.DateReceivedLabel']").text
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select SentDate,NonceValidUntilDate from [DORS_Classified].[dbo].[tbl_SentEmail] where Nonce ="+"'"+$nonce+"'")
@@ -409,14 +416,15 @@ class CreateAssessorRecordPage < SitePrism::Page
       $send_date = row['SentDate']
       $valid_until_date = row['NonceValidUntilDate']
     end
-     expect($valid_until_date).to be == ($send_date+172800)
+    expect($valid_until_date).to be == ($send_date+172800)
   end
 
-  #def verify_no_user_logged_in
-  #   if find(".button._n_m2").text == "new mail"
-  #     find(:button, 'Swapna Gopu').click
-  #     find(:xpath, ".//span[text()='Sign out']", match: :first).click
-  #   end
-  # end
+  def verify_no_user_logged_in
+    if (page.has_css?(".button._n_m2"))
+      find(:button, 'Swapna Gopu').click
+      find(:xpath, ".//span[text()='Sign out']", match: :first).click
+    end
 
   end
+
+end
