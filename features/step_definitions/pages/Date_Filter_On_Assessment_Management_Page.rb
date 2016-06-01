@@ -44,8 +44,8 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     expect(page).to have_css("h1", text: 'Request Assessment')
     find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-   page.find_all(".include-main-trainer-checkbox", match: :first)
-   find('.include-main-trainer-checkbox', match: :first).click if find('.include-main-trainer-checkbox', match: :first)
+   page.find_all(".include-nearby-trainer-checkbox", match: :first)
+   find('.include-nearby-trainer-checkbox', match: :first).click if find('.include-nearby-trainer-checkbox', match: :first)
    click_link_or_button("Submit")
     within('.alert.alert-success.ng-binding') do
     expect(page).to have_content("The assessment has been Booked")
