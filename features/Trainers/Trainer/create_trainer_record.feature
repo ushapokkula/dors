@@ -19,7 +19,8 @@ Feature: As an an NGU (TrainingGovernance),
       | Known As               |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      | Primary Email Address  |
+      | Secondary Email Address|
       | Address                |
       | Postcode               |
       | Town                   |
