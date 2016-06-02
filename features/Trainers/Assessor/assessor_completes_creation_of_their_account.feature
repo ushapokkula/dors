@@ -178,8 +178,8 @@ Feature:
       | Confirm Password | Please confirm the password.     |
 
 
-   @password_field_length_validation
-   Scenario Outline:  Verify the password field length validation
+   @password_field_length_negative_validation
+   Scenario:  Verify the password field length validation
      And I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I fill all assessor fields on the create assessor form
@@ -187,14 +187,27 @@ Feature:
      And I see the message "New assessor successfully created" after assessor creation
      And I see that the email is generated and sent to the registered email address
      And I click the link generated in the email to set password
-     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
-     When I enter the password having length "<password-length>"
+     When I enter the password less than minimum limit
+     Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+     And I refresh the page
+     When I enter the password morethan than the maximum limit
+     Then The field is restricted to 26 characters
+
+
+   @password_containing_username
+   Scenario: Verify the validation when the password entered contains morethan 2 consecutive chrs of username
+     And I login as an "Compliance Manager"
+     And I navigate to "ASSESSORS" page
+     And I fill all assessor fields on the create assessor form
+     And I click "Create Assessor"
+     And I see the message "New assessor successfully created" after assessor creation
+     And I see that the email is generated and sent to the registered email address
+     And I click the link generated in the email to set password
+     When I enter the password containing more than 2 consecutive chars of username
      Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
 
-     Examples:
-     |password-length|
-     |7              |
-     |27             |
+
+
 
 
 

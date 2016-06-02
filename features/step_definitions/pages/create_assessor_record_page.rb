@@ -94,13 +94,13 @@ class CreateAssessorRecordPage < SitePrism::Page
     string = (0..x).map { chars.sample }.join
   end
 
-  def password_length_validation(length)
-    password.set random_password_string(length)
+  def password_length_validation(x)
+    password.set random_password_string(x)
   end
 
   def random_password_string(x)
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]-%w(""%^(){}[];:><)+%w(~!@#$%&*_-+=\,.?/|))
-    string = (0..x).map { chars.sample }.join
+    string = (1..x).map { chars.sample }.join
   end
 
 
