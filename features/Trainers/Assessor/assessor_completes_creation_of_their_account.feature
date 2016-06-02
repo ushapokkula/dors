@@ -207,7 +207,7 @@ Feature:
      When I enter the password containing more than two consecutive chars of Username
      Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
 
-   @password_policy
+
 
 
 
