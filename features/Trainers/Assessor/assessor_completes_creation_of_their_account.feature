@@ -203,8 +203,13 @@ Feature:
      And I see the message "New assessor successfully created" after assessor creation
      And I see that the email is generated and sent to the registered email address
      And I click the link generated in the email to set password
-     When I enter the password containing more than 2 consecutive chars of username
+     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+     When I enter the password containing more than two consecutive chars of Username
      Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+
+   @password_policy
+
+
 
 
 

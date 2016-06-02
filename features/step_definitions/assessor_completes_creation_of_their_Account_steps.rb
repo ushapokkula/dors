@@ -105,8 +105,10 @@ Then(/^The field is restricted to 26 characters$/) do
   find('#password').value.length == 26
 end
 
-When(/^I enter the password containing more than 2 consecutive chars of username$/)do
-  fill_in('password', :with=> '')
+When(/^I enter the password containing more than two consecutive chars of Username$/)do
+  @user = $username_value.split(//).first(3).join.to_s
+  fill_in('password', :with =>@user+"1234!")
+  page.find('#password').native.send_keys(:tab)
 end
 
 When(/^I enter the password morethan than the maximum limit$/) do
