@@ -11,6 +11,4 @@ class TrainerLandingPageAndPermissionsPage < SitePrism::Page
 
 
 
-
-
 end

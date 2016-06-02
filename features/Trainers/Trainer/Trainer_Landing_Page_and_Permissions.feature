@@ -1,4 +1,4 @@
-@DR-390
+@DR-390 @pass
 Feature:
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,
