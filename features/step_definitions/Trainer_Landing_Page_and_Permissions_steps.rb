@@ -21,3 +21,7 @@ When (/^I access any system resource that I am not authorized to access$/)do
   puts current_url
   @trainers.trainer_landing_page_and_permissions_page.current_url.should eql "https://auto.trainer.dors.wtg.co.uk/#/my-licenses"
 end
+
+Then(/^I should see "(.*?)" No Licenses Message$/)do |message|
+expect(page).to have_css(".alert.alert-info", text: message, visible:true)
+end
