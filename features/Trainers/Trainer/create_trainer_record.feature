@@ -19,7 +19,8 @@ Feature: As an an NGU (TrainingGovernance),
       | Known As               |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      | Primary Email Address  |
+      | Secondary Email Address|
       | Address                |
       | Postcode               |
       | Town                   |
@@ -36,8 +37,8 @@ Feature: As an an NGU (TrainingGovernance),
       | Trainer Id           | Please provide a trainer id.     |
       | First Name           | Please provide a first name.     |
       | Last Name            | Please provide a last name.      |
-      | Primary Phone Number | Please provide a phone number.   |
-      | Email                | Please provide an email address. |
+      |Primary Phone Number  | Please provide a phone number.   |
+      |Primary Email Address | Please provide an email address. |
       | Address              | Please provide an address.       |
       | Town                 | Please provide a town.           |
       | Postcode             | Please provide a postcode.       |

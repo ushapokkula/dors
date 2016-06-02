@@ -1,24 +1,30 @@
 Assessor:
  username: sudiv
  password: P@ssw0rd1
+
 Compliance Manager:
  username: jane1
  password: P@ssw0rd
+
 Trainer:
  username:
  password: P@ssw0rd
+
 Assessor1:
  username: johnny
  password: P@ssw0rd
+
 Assessor2:
- username: test_forces
- password: P@s5w0rd
+  username: test_forces
+  password: P@s5w0rd
+
 Assessor3:
- username: deena
- password: P@ssw0rd
+  username: deena
+  password: P@ssw0rd1
+
 Assessor4:
- username: chiefd    #No Assessments#
- password: Ch123456
-Assessor2:
- username: varma
- password: P@ssw0rd1
+  username: chiefd    #No Assessments#
+  password: Ch123456
+
+
+
