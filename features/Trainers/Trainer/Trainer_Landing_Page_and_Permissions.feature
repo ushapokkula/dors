@@ -10,7 +10,7 @@ Feature:
 
   Scenario: Trainer landing page and permissions
       Then I will be directed to my landing page (i.e. My Licences)
-       And I will also have access to 'My Profile' page from the navigation menu
+       And I will also have access to "MY PROFILE" page from the navigation menu
 
   Scenario: Trainer landing page and permissions
       When I access any system resource that I am not authorized to access
