@@ -33,7 +33,7 @@ And(/^I check Include this Trainer for a trainer$/)do
   find(".include-nearby-trainer-checkbox", match: :first)
   all('.include-nearby-trainer-checkbox')[1].click
     click_link_or_button("Submit")
-  expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Booked')
+  expect(page).to have_css(".alert.alert-success")
 end
 
 Then(/^The system will include the selected trainer in the booking request$/) do
