@@ -6,7 +6,7 @@ Feature:
 
   Background:
     Given that I have licence.ndors.org.uk page opened
-    When I login as an "Assessor"
+    When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I book assessment with nearby trainer
 
@@ -26,7 +26,7 @@ Feature:
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSMENT MANAGEMENT" page
      And I 'Completed' Approved Assessment
-     Then I login as an "Assessor"
+     Then I login as an "Assessor3"
      And I navigate to "MY ASSESSMENTS" page
      Then I load detailed view of 'Completed' Assessment from 'My Assessments' page
      Then I should see below information in view mode on 'My assessment details' page
