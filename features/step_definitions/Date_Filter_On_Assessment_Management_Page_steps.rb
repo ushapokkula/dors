@@ -58,7 +58,7 @@ Then(/^the 'end date' falls one day more than 'start date'$/) do
   x = find_field('txtStartDate').value
   start_date_value = Time.parse(DateTime.strptime(x, '%d/%m/%Y').strftime("%Y-%m-%d %H:%M:%S"))
   y = find_field('txtEndDate').value
-  end_date_value = Time.parse(DateTime.strptime(y, '%d-%b-%Y').strftime("%Y-%m-%d %H:%M:%S"))
+  end_date_value = Time.parse(DateTime.strptime(y, '%d/%m/%Y').strftime("%Y-%m-%d %H:%M:%S"))
   puts " The start and end dates are #{start_date_value} , #{end_date_value} respectively"
   expect((end_date_value - start_date_value).to_i).to eq 86400
   # 86400 is one day in seconds
@@ -122,7 +122,7 @@ Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/) 
 end
 
 Then (/^assessments that meet all filter criteria in combination will be displayed$/) do
-  page.find_all('.assessment-date')[0].text == '10-Aug-2016'
+  page.find_all('.assessment-date')[0].text == '18-Aug-2016'
   page.find_all('.assessment-status')[0].text == 'Approved'
   page.find_all('.assessment-date')[1].text == '16-Nov-2016'
   page.find_all('.assessment-status')[1].text == 'Requested'
