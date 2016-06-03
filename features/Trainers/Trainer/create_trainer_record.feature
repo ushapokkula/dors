@@ -1,3 +1,4 @@
+@pass
 @DR-169
 Feature: As an an NGU (TrainingGovernance),
   I want to be able to create new Trainer records,

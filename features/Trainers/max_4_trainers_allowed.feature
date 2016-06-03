@@ -12,7 +12,7 @@ Feature: Maximum 4 trainers allowed per assessment request
   Scenario: Verify maximum number of 4 trainers allowed per assessment request for status Booked
     When I include one trainer from each course which include max four trainers in total
     And I click "Submit"
-    And I see a message "The assessment has been Booked"
+    And I see a message "Assessment #{assessment_id} scheduled for #{assessment_date} has been Booked"
     Then I verify that all the four trainers are included in the assessment request
     And I check the status as Booked
 
