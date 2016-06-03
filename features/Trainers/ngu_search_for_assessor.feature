@@ -1,3 +1,4 @@
+@pass
 @DR-193
 Feature: As an NGU,
   I want to be able to search for an Assessor,
@@ -37,7 +38,7 @@ Feature: As an NGU,
   @auto_predict3
   Scenario: Verify the validation message when no record does'nt match the search criteria
     When The search criteria does'nt match any record on the database
-    Then I see a message "No Assessor with this name exists"
+    Then I see the message "No Assessor with this name exists"
 
   @auto_predict4
   Scenario Outline: Verify the default search assessor
@@ -52,7 +53,7 @@ Feature: As an NGU,
       | sud           | sudiv   |
 
   @auto_predict5
-  Scenario Outline: Verify the default search assessor
+  Scenario Outline: Verify the assessor details by moving up and down arrow keys from auto-predict list
     And I start typing atleast three characters as an "<Assessor Name>" in the search field
     And The system will start autopredicting it and the list appears
     When I hit DOWN arrow key from the list

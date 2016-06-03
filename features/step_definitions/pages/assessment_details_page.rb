@@ -16,7 +16,5 @@ class AssessmentDetailsPage < SitePrism::Page
     page.find("#expenses").should be_visible
   end
 
-  def verify_notes_field
-    page.find("#notes").should be_visible
-  end
+
 end

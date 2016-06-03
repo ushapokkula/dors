@@ -1,3 +1,4 @@
+@pass
 @DR-165
 Feature: DR-165
   As an assessor,

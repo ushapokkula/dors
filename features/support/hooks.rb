@@ -18,9 +18,9 @@ Before do
   @trainers=Trainers.new
 end
 
-After do
-  page.execute_script("window.localStorage.clear()")
-end
+# After do
+#   page.execute_script("window.localStorage.clear()")
+# end
 =begin
 After do
   find('#btn-signout').click
@@ -46,6 +46,16 @@ end
 #delete the error reports generated for failures
 unless Dir.glob('error_pages/*').empty?
   FileUtils.rm_rf Dir.glob('error_pages/*')
+end
+
+#delete the json reports generated
+unless Dir.glob('reports/*').empty?
+  FileUtils.rm_rf Dir.glob('reports/*')
+end
+
+#delete the junit reports generated
+unless Dir.glob('junit/*').empty?
+  FileUtils.rm_rf Dir.glob('junit/*')
 end
 
 #create reports directory if not present

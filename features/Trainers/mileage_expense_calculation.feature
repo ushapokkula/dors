@@ -1,7 +1,9 @@
+@pass
+@mileage_calculation
 Feature: Total Mileage calculation
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
@@ -22,7 +24,7 @@ Feature: Total Mileage calculation
 
 @mileage_calculation2
   Scenario: Verify the visibility of mileage fields and text
-    Then I see a message "Enter your mileage below and it will automatically calculate your expenses"
+    Then I see this message "Enter your mileage below and it will automatically calculate your expenses"
     And below the message i see "Total Mileage" and "Expenses Claimed" fields
 
 @mileage_calculation3

@@ -3,19 +3,16 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   elements :assessment_dates, ".assessment-date"
 
 
-
   def verify_assessment_default_view_details(new_table)
+    list_of_assessment_requests.each do |row|
     columns = new_table.map { |x| x['Details'] }
     columns.each do |label|
-      find(".dors-table")
-      within(".dors-table") do
         expect(page).to have_text(label)
       end
     end
   end
 
   def verify_list_of_assessment_requests
-    # sleep 5
     list_of_assessment_requests.each do |row|
       expect(row.text).to include("Status Requested")
     end
@@ -24,7 +21,6 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   def verify_assessment_ID
     expect(page.all(".dors-table-row").count).to be >= 1
   end
-
 
 
   def verify_max_trainers
@@ -36,7 +32,6 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
   def verify_approve_button(button)
     list_of_assessment_requests.each do |row|
       expect(row.text).to include("Approve")
-      expect(page).to have_content("Approve")
     end
     expect(page.all(".btn.btn-sm.btn-primary").count).to be >= 1
   end
@@ -49,11 +44,12 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
     actual_order.push(assessment_dates)
     expected_order = []
     expected_order=actual_order.clone
+    expected_order.sort
     expect(actual_order).to match_array(expected_order)
 
   end
 
-   end
+end
 
 
 

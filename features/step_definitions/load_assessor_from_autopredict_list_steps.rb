@@ -1,7 +1,6 @@
 When(/^I click on the assessor item from the list which i want to edit$/)do
   find("#txt-assessor-name + ul li").click
-  sleep 3
-end
+ end
 
 Then(/^The system will load the assessor record with "([^"]*)"$/)do |username|
   find("#assessorUsername").value == username

@@ -1,37 +1,32 @@
 class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
-  elements :linked_force_area_name, ".selectedForceAreaFilter"
-  elements :expiry_dates, ".license-expiry-date"
+  elements :pick_a_slot, ".btn.btn-primary"
 
-  def navigate_to_request_summary_page
-    click_link_or_button("REQUEST ASSESSMENT")
-
-  end
 
 
   def navigate_assessment_request_summary_page
-    click_link_or_button("REQUEST ASSESSMENT")
-    find(:button, 'Pick a slot', match: :first).click
-    $primary_trianer=page.all('.ng-binding')[0].text
+    find('a', text: "REQUEST ASSESSMENT").click
+    find(:button, 'Pick a slot', match: :first)
+    all(".btn.btn-primary:nth-child(2)")[2].click
     find(:button, 'Request Assessment', match: :first).click
   end
 
-
-
   def validate_and_check_include_box
-    sleep 2
-    page.all('.ng-pristine.ng-valid')[1].click
-    page.all('.ng-pristine.ng-valid')[3].click
+    find(".include-main-trainer-checkbox", match: :first)
+    all('.include-main-trainer-checkbox')[0].click
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all('.include-nearby-trainer-checkbox')[1].click
   end
 
   require 'tiny_tds'
   def check_status_in_DB
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("select StatusId from [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
     result.each do |row|
       assessment_status = row['StatusId']
-     puts  expect(assessment_status).to be == 2
+      expect(assessment_status).to be == 2
     end
   end
 

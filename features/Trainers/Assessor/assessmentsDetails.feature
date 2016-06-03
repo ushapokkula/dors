@@ -1,3 +1,4 @@
+@pass
 @DR-168
 Feature:DR-168
   As an assessor,
@@ -5,37 +6,37 @@ Feature:DR-168
   so that I can read through full details.
 
   Background:
-    #Given that I am logged into the system
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
+    And I request assessment as Booked
     When I navigate to "MY ASSESSMENTS" page
     When I click one of the items in the list
-    Then The system will load "My assessment details" page
+    Then The system will load "Assessment Outcome" page
 
   @AssessmentDetails1
   Scenario: Verify the Assessor and trainer details on summary page
 
     And The page will display the Assessor and Trainer details
-      | Details       |
-      | Assessor Name |
-      | Scheme        |
-      | License       |
-      | Expiry Date   |
-      | Date          |
-      | Time          |
-      | Venue         |
-      | Phone         |
+      | Details         |
+      | Assessor Name   |
+      | Scheme          |
+      | License         |
+      | Expiry Date     |
+      | Date            |
+      | Time            |
+      | Venue           |
+      | Phone           |
       | Status Approved |
 
   @AssessmentDetails2
-  Scenario: Verify the display of mileage, expenses claimed and Noted field
+  Scenario: Verify the display of mileage, expenses claimed and Notes field
     And The mileage and expenses claimed  will be shown
     And The Notes field will be displayed
 
   @AssessmentDetails3
   Scenario: Verify Back button
     When I click "Back"
-    Then I will be re-direct to My Assessments page
+    Then I will be re-directed to "My assessments" page
 
 
 

@@ -1,3 +1,5 @@
+@pass
+@DR-31
 Feature: DR-31
   As an NGU,
   I want to be able configure a time window until which the assessors can search trainers and request assessment booking,
@@ -5,7 +7,7 @@ Feature: DR-31
   encouraged to assess near future expiry trainers.
 
   Background:
-    #Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ADMINISTRATION" page
@@ -22,12 +24,13 @@ Feature: DR-31
     When I enter a value in assessments booking window
     And I click "Save"
     Then The system will save the preferences
-    And I see a message " Assessments booking time window has been successfully set"
+    And I see a message "Assessments booking time window has been successfully set"
 
   @time_window3
   Scenario Outline: Verify the ability to view trainer licenses expiring in selected time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I logout
       And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       Then The Assessors will only be able to view trainers licenses expiring in "<Days>"time window
@@ -51,7 +54,7 @@ Feature: DR-31
       Examples:
       |Days|
       |365 |
-      |120 |
+      #|120 |
 
   @time_window5
     Scenario: Verify the field validation when characters and zero is entered in time window
