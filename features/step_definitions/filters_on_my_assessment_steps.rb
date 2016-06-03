@@ -6,7 +6,7 @@ When(/^The default view of the page of My assessments is loaded$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   click_link("REQUEST ASSESSMENT")
   @trainers.ngu_search_assessment_id_page.book_assessment
-  expect(page).to have_selector(".alert.alert-success", :text => 'The assessment has been Booked')
+  expect(page).to have_selector(".alert.alert-success")
   click_link("MY ASSESSMENTS")
   expect(find(".assessment-status").text).to be == "Approved"
 end
@@ -21,7 +21,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   if (status_filter == "APPROVED")
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
@@ -31,7 +31,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   elsif (status_filter == "REQUESTED")
 
     @trainers.ngu_search_assessment_id_page.request_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+    expect(page).to have_selector(".alert.alert-success")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
@@ -41,7 +41,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   elsif (status_filter == "REJECTED")
 
     @trainers.ngu_search_assessment_id_page.request_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $requested_status)
@@ -59,7 +59,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   elsif (status_filter == "CANCELLED")
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     click_link("MY ASSESSMENTS")
     click_button("View Details")
     click_button("Cancel Request")
@@ -74,7 +74,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
     (status_filter == "COMPLETED")
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $booked_status)
@@ -104,9 +104,9 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   if (status_filter1 == "REQUESTED" && status_filter2 == "APPROVED" )
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.ngu_search_assessment_id_page.request_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+    expect(page).to have_selector(".alert.alert-success")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
@@ -117,9 +117,9 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   elsif (status_filter1 == "APPROVED" && status_filter2 == "REJECTED")
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.ngu_search_assessment_id_page.request_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     @trainers.filters_on_my_assessment_page.reject_assessment_on_myassessments
@@ -135,9 +135,9 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   elsif (status_filter1 == "REJECTED" && status_filter2 == "CANCELLED")
 
     @trainers.ngu_search_assessment_id_page.book_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.ngu_search_assessment_id_page.request_assessment
-    expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+    expect(page).to have_selector(".alert.alert-success")
     @trainers.filters_on_my_assessment_page.cancel_assessment
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
@@ -152,9 +152,9 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   else (status_filter1 == "REJECTED" && status_filter2 == "COMPLETED")
 
   @trainers.ngu_search_assessment_id_page.book_assessment
-  expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Booked')
+  expect(page).to have_selector(".alert.alert-success")
   @trainers.ngu_search_assessment_id_page.request_assessment
-  expect(page).to have_selector(".alert.alert-success" , :text=>'The assessment has been Requested')
+  expect(page).to have_selector(".alert.alert-success")
   @trainers.trainer_login_page.login_as("Compliance Manager")
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
   @trainers.filters_on_my_assessment_page.reject_assessment_on_myassessments
