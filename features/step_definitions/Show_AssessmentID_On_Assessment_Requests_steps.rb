@@ -1,7 +1,6 @@
 And (/^I request assessment$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
-  expect(page).to have_css(".alert.alert-success", text:'The assessment has been Requested')
 end
 
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/)do

@@ -1,5 +1,7 @@
 class DateFilterOnAssessmentManagementPage < SitePrism::Page
   elements :assessment_dates, ".assessment-date"
+  element  :assessment_id, "span#requested-assessment-id"
+  element  :assessment_date, "span#requested-assessment-date"
   elements :approve_btn, ".btn.btn-sm.btn-primary"
   element :booked_text, ".alert.alert-success"
   elements :view_details_link, ".btn.btn-link"
@@ -20,7 +22,8 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     expected_order =[]
   expected_order=actual_order.clone
         puts expect(actual_order).to match_array(expected_order)
-    end
+  end
+
 
 
   def request_assessments_without_nearby_course
@@ -30,7 +33,11 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   fill_in('mileage',:with=>'500')  #adding mileage#
     fill_in('notes',:with=>'Test')
   click_link_or_button("Submit")
+    within('#requested-assessment-info')do
+      expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Requested")
     end
+  end
+
 
 
   def book_assessments_without_milage
@@ -41,13 +48,16 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
    page.find_all(".include-nearby-trainer-checkbox", match: :first)
    find('.include-nearby-trainer-checkbox', match: :first).click if find('.include-nearby-trainer-checkbox', match: :first)
    click_link_or_button("Submit")
-    within('.alert.alert-success.ng-binding') do
-      expect(page).to have_content("The assessment has been Booked")
-  end
-   end
+    within('#requested-assessment-info')do
+      expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Booked")
+    end
+end
+end
 
 
-  end
+
+
+
 
 
 

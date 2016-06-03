@@ -1,6 +1,8 @@
 class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
  element :assessment_outcome_info , ".dors-well-container"
  element :assessmentID, ".assessmentid"
+ element  :assessment_id, "span#requested-assessment-id"
+ element  :assessment_date, "span#requested-assessment-date"
 
 
   def request_Assessment_includes_nearby_trainer
@@ -24,8 +26,8 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
    first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
    fill_in('notes',:with=>'Test')
    click_link_or_button("Submit")
-   within('.alert.alert-success') do
-     expect(page).to have_content("The assessment has been Booked")
+   within('#requested-assessment-info')do
+     expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Booked")
    end
  end
 
@@ -39,9 +41,9 @@ end
     click_link("ASSESSMENT MANAGEMENT")
     find("#single-button").click
     check('assessmentStatusChk1')
-    click_link_or_button("View Details")
-   select('Cancelled', :from=> 'status-281')
-    fill_in('notes-281',:with=> 'TEST TRAINER OUTCOME')
+    click_link_or_button('View Detail')
+   select('Cancelled', :from=> 'status-350')
+    fill_in('notes-350',:with=> 'TEST TRAINER OUTCOME')
     page.find_all('.dors-well-other')[1]
     select('Cancelled', :from=> 'status-279')
     fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')
