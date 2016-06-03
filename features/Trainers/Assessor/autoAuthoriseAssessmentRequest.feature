@@ -18,7 +18,7 @@ Feature: Auto Authorise
     When I click "Submit"
     Then The status of the assessment request will be marked Booked in the database
     And I will be re-directed to "Request Assessment" page
-    And I see the message "The assessment has been Booked" for assessment requested
+    And I see the message The assessment has been Booked for assessment requested
 
   @auto_authorise_assessment_req2
   Scenario: Assessment request status without multiple trainer included and no expenses claimed
