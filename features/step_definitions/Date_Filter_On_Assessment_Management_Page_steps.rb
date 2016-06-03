@@ -21,12 +21,8 @@ end
 
 
 And (/^default Date range filter will have no selection$/)do
-   if find_field("txtStartDate").should have_content(" ")
-     puts find_field('txtStartDate').value.eql?("")
-   end
-  if page.find("#txtEndDate").should have_content(" ")
-    puts find_field('txtStartDate').value.eql?("")
-  end
+  raise "date range filter is not empty" unless find("#txtStartDate").value.empty?
+  raise "date range filter is not empty" unless find("#txtEndDate").value.empty?
 end
 
 When (/^I enter "([^"]*)" in start date field$/)do |date|

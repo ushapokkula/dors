@@ -30,7 +30,7 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def verify_no_user_is_signed_in
-      click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:2)
+      click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:3)
       # click_link_or_button('Sign out') if page.has_content?('Sign out')
     end
   end
