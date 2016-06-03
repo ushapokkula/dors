@@ -34,16 +34,27 @@ Feature: As a NGU user,
       |15/06/2016|
       |23/12/2016|
 
-  Scenario Outline: Won't be able to select an 'end date' which falls before the 'start date'
+  Scenario Outline: 'start date' value auto populates to todays date
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
     And I login as an "Compliance Manager"
     And I enter "<end_date>" in End date field
-    Then the 'start date' field auto populated with date
+    Then the 'start date' field auto populated
+    And the value of the 'start date' will be 'today date'
+    Examples:
+      |end_date|
+      |22/01/2017|
+
+  Scenario Outline: 'end date' value always greater than the 'start date'
+    When I login as an "Assessor3"
+    And I navigate to "REQUEST ASSESSMENT" page
+    Then I request assessments
+    And I login as an "Compliance Manager"
+    And I enter "<end_date>" in End date field
     And the value of the 'start date' will be 'today date'
     When I enter "<start_date>" more than 'end date'
-    Then the "<end_date>" falls one day more than 'start date'
+    Then the 'end date' falls one day more than 'start date'
     Examples:
       |end_date|start_date|
       |22/01/2017|27/04/2017|
