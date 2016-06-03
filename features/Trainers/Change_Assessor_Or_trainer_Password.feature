@@ -11,4 +11,3 @@ Feature:
      And The first section will be labelled 'Change Password' which will be collapsed by default.
      And The other section will be labelled 'Profile details' and it will be expand by default.
 
-    Scenario
