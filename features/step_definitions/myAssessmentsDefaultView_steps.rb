@@ -13,7 +13,7 @@ end
 And(/^I will be shown list of all assessments i requested$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
-  expect(page).to have_css(".alert.alert-success", text: 'The assessment has been Booked')
+  expect(page).to have_css(".alert.alert-success")
   click_link_or_button("MY ASSESSMENTS")
   expect(page).to have_css(".dors-well-other")
   expect(page.all('.dors-well-other').count).to be >0
@@ -36,7 +36,7 @@ end
 Then(/^I can see "([^"]*)" label for trainer count$/) do |label|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.ngu_search_assessment_id_page.book_assessment
-  expect(page).to have_css(".alert.alert-success", text: 'The assessment has been Booked')
+  expect(page).to have_css(".alert.alert-success")
   click_link_or_button("MY ASSESSMENTS")
   expect(page).to have_css(".my-assessments-count-label", text: 'Assessments')
   assessment_label = page.all(".my-assessments-count-label").count

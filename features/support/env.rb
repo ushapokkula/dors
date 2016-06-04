@@ -58,7 +58,7 @@ $email_body = "A new account has been created for you on DORS+ system; the usern
 Capybara.configure do |config|
   config.default_driver = :debug
   config.app_host = "https://auto.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 20
 end
 #
 # After do |scenario|

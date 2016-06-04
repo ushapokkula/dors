@@ -8,6 +8,10 @@ And(/^The page will show the list of assessments with status Approved$/) do
   @trainers.assessor_role_and_permissions_page.verify_assessments_list_with_status
 end
 
+And(/^I see the success message for requested assessment with date and assessment ID$/)do
+  expect(page).to have_css(".alert.alert-success")
+end
+
 And(/^I see the message "([^"]*)" for assessment requested$/)do |message|
   expect(page).to have_css(".alert.alert-success", text: message)
 end
@@ -27,6 +31,7 @@ And(/^I request assessments to be booked$/) do
 end
 
 When(/^I click View Details button for the assessment$/)do
+  expect(page).to have_css("h1", text: "My assessments")
   expect(page).to have_css(".dors-well-other")
   find(:button, "View Details" , match: :first).click
 end

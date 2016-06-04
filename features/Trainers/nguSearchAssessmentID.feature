@@ -44,7 +44,7 @@ Feature:DR-251
     Then The system will load the detailed information for assessment record in view mode
     And The page will include "Reject" button
 
-  @four @fail
+  @four
   Scenario: Verify the visibility of 'Mark Complete' and ' Cancel' when the status is Booked
     And I request assessment as Booked
     And I login as Compliance Manager and click assessment management tab to search booked assessments

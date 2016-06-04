@@ -311,7 +311,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def fillinUserName(username1)
     #username.set random_string(7)
-    fill_in('assessorUsername', :with => username)
+    fill_in('assessorUsername', :with => username1)
 
   end
 

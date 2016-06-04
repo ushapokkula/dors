@@ -1,6 +1,6 @@
 Assessor:
  username: sudiv
- password: P@ssw0rd1
+ password: P@ssw0rd2
 
 Compliance Manager:
  username: jane1
@@ -12,7 +12,7 @@ Trainer:
 
 Assessor1:
  username: johnny
- password: P@ssw0rd
+ password: P@ssw0rd1
 
 Assessor2:
   username: test_forces
