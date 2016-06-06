@@ -45,6 +45,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     # @trainers.filters_on_assessment_management_page.verify_reject_filter_status
     @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.request_assessment
+
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $requested_status)

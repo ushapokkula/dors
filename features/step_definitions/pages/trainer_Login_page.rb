@@ -1,6 +1,6 @@
 class TrainerLoginPage < SitePrism::Page
 
-  set_url Capybara.app_host
+  #set_url Capybara.app_host
 
 
   element :sign_out_link, "#btn-signout"

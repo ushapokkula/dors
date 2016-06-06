@@ -38,7 +38,7 @@ Feature: DR-31
     Examples:
     |Days|
     |365 |
-    |120 |
+    #|120 |
 
   @time_window4
     Scenario Outline: Verify the ability to view trainer lilcenses expiring on summary page within time window

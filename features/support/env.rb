@@ -60,6 +60,7 @@ Capybara.configure do |config|
   config.app_host = "https://auto.trainer.dors.wtg.co.uk"
   config.default_max_wait_time = 20
 end
+
 #
 # After do |scenario|
 #   find('#btn-signout').click
