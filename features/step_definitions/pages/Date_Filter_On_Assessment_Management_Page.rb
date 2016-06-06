@@ -1,5 +1,6 @@
 class DateFilterOnAssessmentManagementPage < SitePrism::Page
   elements :assessment_dates, ".assessment-date"
+  elements :assessment_status, ".assessment-status"
   element  :assessment_id, "span#requested-assessment-id"
   element  :assessment_date, "span#requested-assessment-date"
   elements :approve_btn, ".btn.btn-sm.btn-primary"
@@ -11,6 +12,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :cancel_notes_area, "#cancellationNotes"
   element :cancel_yes, "#cancel-assessment-yes"
   element :notes_field, "#notes"
+  elements :assessment_blocks, ".dors-table"
 
 
   def verify_assessment_sorting_by_date
@@ -53,8 +55,51 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     within('#requested-assessment-info')do
       expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Booked")
     end
+  end
+
+
+    def verify_assessments_combination_filter_criteria
+      assessment_dates.each do |row|
+      date = row.text
+      range = ($start_date..$end_date)
+      range.include?(date)
+      end
+      puts "given course date is in within range"
+       assessment_status.each do |row|
+      status = row.text
+      status_filter = ($status1..$status2)
+      status_filter.include?(status)
+      end
+      puts "Given Assessment is in with in selected status"
 end
+
+
+
+
+
+  def verify_Assessments_falling_in_given_date(start_date, end_date)
+    assessment_dates.each do |row|
+      date= row.text
+      range = (start_date..end_date)
+      range.include?(date)
+      page.all('.assessment-status', text:'Requested')
+    end
+    puts "assessment falls in given date range will get displayed"
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
