@@ -9,9 +9,6 @@ And(/^I see that I have access to "([^"]*)","([^"]*)","([^"]*)" as an assessor$/
   expect(page).to have_link(tab1)
   expect(page).to have_link(tab2)
   expect(page).to have_link(tab3)
-  # page.has_link?(tab1, {}).should == true
-  # page.has_link?(tab2, {}).should == true
-  # page.has_link?(tab3, {}).should == true
 end
 
 Then(/^I will be directed to Assessment Management page$/) do
@@ -44,10 +41,7 @@ Then(/^I see that I have no access to these "([^"]*)","([^"]*)","([^"]*)"$/) do 
   expect(page).to have_no_link(tab1)
   expect(page).to have_no_link(tab2)
   expect(page).to have_no_link(tab3)
-  # page.has_no_link?(tab1, {}).should == true
-  # page.has_no_link?(tab2, {}).should == true
-  # page.has_no_link?(tab3, {}).should == true
-end
+  end
 
 And(/^I login as "([^"]*)" and "([^"]*)" and request assessments as requested$/)do|user1,user2|
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB

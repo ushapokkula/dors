@@ -1,4 +1,4 @@
-@pass
+@fail
 @DR-15
 Feature:DR-15
   Assessor Cancels an Assessment Session
@@ -28,7 +28,7 @@ Feature:DR-15
     And I see 'Yes' and 'No' buttons on the confirmation message box
     And I see Cancellation Notes
     When I click "Yes"
-    Then I see the message "Are you sure you want to cancel this assessment?" on the cancellation window
+#    Then I see the message "Please provide a reason for cancelling the assessment." on the cancellation window
 
   @cancelassessment3
   Scenario: Availability of trainers on Request Assessment page after cancellation

@@ -104,11 +104,11 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     actual_licenses=[]
     trainer_licenses.each do |row|
       licenses= row.text
-      actual_licenses.push(licenses)
+      $actual_licenses.push(licenses)
     end
-    expect(actual_licenses).to include("111333/001")
-    expect(actual_licenses).to include("111222/001")
-    expect(actual_licenses).to include("111999/002")
+    expect($actual_licenses).to include("111333/001")
+    expect($actual_licenses).to include("111222/001")
+    expect($actual_licenses).to include("111999/002")
   end
 
 

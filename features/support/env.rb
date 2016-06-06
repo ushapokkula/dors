@@ -61,10 +61,10 @@ Capybara.configure do |config|
   config.default_max_wait_time = 20
 end
 
-#
-# After do |scenario|
-#   find('#btn-signout').click
-# end
+
+After do |scenario|
+  find('#btn-signout').click
+end
 
 
 World(Capybara)
