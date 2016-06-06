@@ -16,6 +16,7 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
+    And I logout
     And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
@@ -32,6 +33,7 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
@@ -43,6 +45,7 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
+    And I logout
     And I login as an "Compliance Manager"
     When I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
@@ -54,6 +57,7 @@ Feature:DR-285
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested

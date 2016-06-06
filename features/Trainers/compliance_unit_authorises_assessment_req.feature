@@ -7,6 +7,7 @@ Feature:DR-305
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I have all assessments requested
+    And I logout
 
    @Approve1
   Scenario: Verify the visibility of Approve button
@@ -29,6 +30,7 @@ Feature:DR-305
     And I click "Approve" against one of the items on the list
     And I see a message "has been marked Booked"
     And The request will be accepted and status of assessment request will be updated to Booked
+    And I logout
     And I login as an "Assessor"
     When I navigate to "REQUEST ASSESSMENT" page
     Then The trainers on this request will not be available for further bookings

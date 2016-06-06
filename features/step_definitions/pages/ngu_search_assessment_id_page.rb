@@ -101,7 +101,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def assessor_availability
-    actual_licenses=[], licenses=[]
+    actual_licenses=[]
     trainer_licenses.each do |row|
       licenses= row.text
       actual_licenses.push(licenses)
