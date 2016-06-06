@@ -70,15 +70,7 @@ Feature: NGU Edits a trainer(Except Liccenses)
     Then I see message "Trainer record successfully updated" after updating the trainer
     And I see the updated phone number in database
 
-   @negative_field_validation
-    Scenario: Verify negative field validation on editing
-     And I login as an "Compliance Manager"
-     And I click "TRAINERS"
-     And I search for "Bob" and "Thorton_Auto" in the trainer search field
-     And I have trainer record loaded in editable view
-     And I edit primary telephone number
-     And I edit Postcode
-     And I edit the Primary Email Address
+
 
 
 
