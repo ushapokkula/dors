@@ -1,3 +1,4 @@
+@pass
 @DR-26
 Feature: NGU Edits a trainer(Except Liccenses)
   As an NGU,
@@ -40,7 +41,6 @@ Feature: NGU Edits a trainer(Except Liccenses)
 
   @verify_negative_field_validation
   Scenario Outline: Negative field validation
-
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
     And I search for "Bob" and "Thorton_Auto" in the trainer search field
@@ -60,7 +60,6 @@ Feature: NGU Edits a trainer(Except Liccenses)
 
   @saving_changes_to_database
   Scenario: Verify saving changes to database
-
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
     And I search for "Bob" and "Thorton_Auto" in the trainer search field
