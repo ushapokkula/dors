@@ -75,8 +75,12 @@ Feature: As a NGU user,
       |20/04/2017|16/05/2017|
       |15/05/2017|15/05/2017|
 
-  Scenario Outline: In conjunction with existing filters
-    Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
+  Scenario Outline: Verify the assessments that meet 'Date'and 'Status' combination
+    Given I login as an "Assessor3"
+    Then I request assessment to be booked
+    And I request assessment as requested
+    When I login as an "Compliance Manager"
+    And I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments that meet all filter criteria in combination will be displayed
     Examples:
