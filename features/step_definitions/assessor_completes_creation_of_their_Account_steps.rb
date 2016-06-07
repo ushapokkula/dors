@@ -45,8 +45,7 @@ And(/^I enter the Username which does'nt match against the record created$/) do
 end
 
 Then(/^I see a valiadation message displayed as "([^"]*)"$/) do |message|
-  puts expect(page).to have_css(".form-group.has-error p", text: message)
-  puts message
+   expect(page).to have_css(".form-group.has-error p", text: message)
 end
 
 When(/^I enter the Email which does'nt match against the record created$/) do

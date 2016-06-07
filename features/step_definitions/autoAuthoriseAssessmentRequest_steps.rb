@@ -49,7 +49,7 @@ And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/)do |forc
   page.find_all(('linked_force_area_name')[0] , text: forceareaname)
 end
 
-Then(/^I should see message for "([^"]*)"$/) do |message|
+Then(/^I should see the message as "([^"]*)"$/) do |message|
   expect(page).to have_selector(:css, ".alert.alert-info", text: message)
 end
 
