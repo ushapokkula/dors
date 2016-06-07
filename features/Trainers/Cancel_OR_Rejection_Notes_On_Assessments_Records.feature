@@ -18,6 +18,7 @@ Feature:
     And I should see the 'Cancellation Notes' on My Assessment details page
 
   Scenario: As an NGU I can Reject 'Requested' assessment but I should fill in mandatory 'Rejection Notes' field
+    And I logout
     When I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
     Then I see the "Requested" option is in selected status
@@ -26,6 +27,7 @@ Feature:
     And I should see the 'Rejection Notes' on Assessment Outcome page
 
  Scenario: As an NGU I can Cancel any Assessment but should fill in mandatory 'Cancellation Notes' field
+    And I logout
     When I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
     Then I see the "Requested" option is in selected status

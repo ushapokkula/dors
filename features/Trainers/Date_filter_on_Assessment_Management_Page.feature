@@ -9,22 +9,26 @@ Feature: As a NGU user,
     When I login as an "Compliance Manager"
     Then I am on the Assessments Management page
     And default view of the page is loaded
+    And I logout
 
   Scenario: Verify the Assessments sorted by (Date) with nearest Date first
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
+    And I logout
     And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And The assessment list will be sorted by assessment course date
 
   Scenario: Verify default date range filter selection
+     When I login as an "Compliance Manager"
       And default Date range filter will have no selection
 
   Scenario Outline: Verify Start date and End Date fields enable functionality
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I enter "<start_date>" in start date field
     And The assessment list will be sorted by assessment course date
@@ -38,6 +42,7 @@ Feature: As a NGU user,
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I enter "<end_date>" in End date field
     Then the 'start date' field auto populated
@@ -50,6 +55,7 @@ Feature: As a NGU user,
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I enter "<end_date>" in End date field
     And the value of the 'start date' will be 'today date'
@@ -64,6 +70,7 @@ Feature: As a NGU user,
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
+    And I logout
     And I login as an "Compliance Manager"
     And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments falling in "<start_date>" and "<end_date>" range will be displayed
@@ -79,6 +86,7 @@ Feature: As a NGU user,
     Given I login as an "Assessor3"
     Then I request assessment to be booked
     And I request assessment as requested
+    And I logout
     When I login as an "Compliance Manager"
     And I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page

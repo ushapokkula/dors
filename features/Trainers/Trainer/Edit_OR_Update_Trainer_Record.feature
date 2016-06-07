@@ -53,6 +53,7 @@ Feature: As an NGU,
     Examples:
       | trainer first name | trainer last name | Licence status          | date       |
       | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |
+
 @DR_673
   Scenario Outline: Verify warning-message when expiry date more than 730 days
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
