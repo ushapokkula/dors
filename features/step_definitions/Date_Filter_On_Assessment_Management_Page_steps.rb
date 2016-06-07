@@ -82,8 +82,7 @@ end
 Then (/^assessments falling in "([^"]*)" and "([^"]*)" range will be displayed$/) do |start_date, end_date|
     expect(page.all('.dors-table').count).to be>=1
     @trainers.date_filter_on_assessment_management_page.verify_Assessments_falling_in_given_date(start_date, end_date)
-    end
-
+end
 
 Then (/^I request assessment to be booked$/)do
 2.times do
@@ -108,5 +107,4 @@ end
 
 Then (/^assessments that meet all filter criteria in combination will be displayed$/) do
   @trainers.date_filter_on_assessment_management_page.verify_assessments_combination_filter_criteria
-
 end

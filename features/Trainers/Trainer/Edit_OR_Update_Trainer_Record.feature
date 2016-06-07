@@ -1,4 +1,4 @@
-@DR-39 @pass
+@DR-39 @DR-510 @pass
 Feature: As an NGU,
   I want to be able to manually edit the details of an existing licence held by a trainer,
   so that licence record can be kept upto date.
@@ -73,7 +73,7 @@ Feature: As an NGU,
       | trainer first name | trainer last name | Postcode |
       | roopa              | trainer           | HA9 7lm  |
 
-
+    @DR-510
     Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
      Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
