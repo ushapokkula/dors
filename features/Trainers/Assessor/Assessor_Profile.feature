@@ -1,4 +1,4 @@
-@DR-13 @DR-817 @DR-549 @DR-594 @pass
+@DR-13 @DR-817 @pass
 Feature:
   As an Assessor,
   I want to be able to edit my record on the system,
@@ -9,6 +9,7 @@ Feature:
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
 
+  @DR-549 @DR-594
     Scenario: Assessor cancels the profile update operation
       Then I will be shown these fields of my record
         | Update Assessor Fields |
