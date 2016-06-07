@@ -1,5 +1,5 @@
-@pass
-@auto_authoriseFeature: Auto Authorise
+@pass @auto_authoris
+Feature: Auto Authorise
   As an assessor
   I want to be able to have my assessment requests auto authorised/approved which have multiple trainers and no expenses claimed
   So that appropriate requests can be processed quickly avoiding burden on Compliance Unit
