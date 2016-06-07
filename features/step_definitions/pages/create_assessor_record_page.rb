@@ -151,7 +151,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       end
   end
 
-  def validateAssessorNumber(assessorNumber)
+
 
   def validateUserNameMaxCHARS
     username_string = username.set random_string(71)
@@ -163,7 +163,6 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   end
 
-  def validatefirstName(firstName)
 
   def validateAssessorNumber(assessorNumber)
     assessorNumberLength = assessorNumber.length
@@ -185,7 +184,6 @@ class CreateAssessorRecordPage < SitePrism::Page
     end
   end
 
-  def validatesecondaryPhoneNumber(secondaryPhoneNumber)
 
   def selectForceAreas(forceareas)
     fill_in('assessorForceAreas', :with=> forceareas)
@@ -289,6 +287,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect($valid_until_date).to be == ($send_date+172800)
   end
 
+
   def verify_no_user_logged_in
     if (page.has_css?(".button._n_m2"))
       find(:button, 'Swapna Gopu').click
@@ -297,4 +296,4 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   end
 
-  end
+end

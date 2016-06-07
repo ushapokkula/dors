@@ -90,9 +90,9 @@ Then(/^I enter field12 "([^"]*)"$/) do |forceareas|
   @trainers.create_assessor_record_page.selectForceAreas(forceareas)
 end
 
-Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username,assessorNumber,firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,email,address,town,postcode,forceareas|
+Then(/^I see validation messages for "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |username,assessorNumber,firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode,forceareas|
 
-  @trainers.create_assessor_record_page.validateUsername(username)
+  @trainers.create_assessor_record_page.validateAssessorUsername(username)
   @trainers.create_assessor_record_page.validateAssessorNumber(assessorNumber)
   @trainers.create_assessor_record_page.validateAssessorNumberMaxCHARS
   @trainers.assessor_profile_page.validateAssessorfirstName(firstName)

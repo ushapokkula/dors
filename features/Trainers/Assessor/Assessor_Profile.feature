@@ -32,8 +32,6 @@ Feature:
     Then unsaved changes will be lost
 
   Scenario Outline: Validation error handling
-    Then I enter firstname field value as "<First Name>"
-    Then I enter lastname field value as "<Last Name>"
     Then I enter primary phone number field value as "<Primary Phone Number>"
     Then I enter secondary phone number field value as "<Secondary Phone Number>"
     Then I enter primary email address field value as "<Primary Email>"
@@ -42,7 +40,7 @@ Feature:
     Then I enter town field value as "<Town>"
     Then I enter postcode field value as "<Postcode>"
     When I request to updated my profile data
-    And "<First Name>","<Last Name>","<Primary Phone Number>","<Secondary Phone Number>","<Primary Email>","<Secondary Email>","<Address>","<Town>","<Postcode>" fields not meet below validation requirements
+    And "<Primary Phone Number>","<Secondary Phone Number>","<Primary Email>","<Secondary Email>","<Address>","<Town>","<Postcode>" fields not meet below validation requirements
     Then the system will highlight those fields
     And show "<validation requirements>" against those fields
     And record will not be updated

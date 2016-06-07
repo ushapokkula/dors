@@ -10,7 +10,7 @@ expect(page).to have_css('.dors-well')
 end
 
 And (/^I will also have access to "(.*?)" page from the navigation menu$/) do |tab|
-  @trainers.trainer_landing_page_and_permissions_page.should have_myprofile_link
+expect(page).to have_content('MY PROFILE')
   click_link_or_button(tab)
   expect(page).to have_css('h1', text: 'My Profile')
 end

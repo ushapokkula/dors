@@ -42,8 +42,8 @@ end
     find("#single-button").click
     check('assessmentStatusChk1')
     click_link_or_button('View Detail')
-   select('Cancelled', :from=> 'status-350')
-    fill_in('notes-350',:with=> 'TEST TRAINER OUTCOME')
+   select('Cancelled', :from=> 'status-281')
+    fill_in('notes-281',:with=> 'TEST TRAINER OUTCOME')
     page.find_all('.dors-well-other')[1]
     select('Cancelled', :from=> 'status-279')
     fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')

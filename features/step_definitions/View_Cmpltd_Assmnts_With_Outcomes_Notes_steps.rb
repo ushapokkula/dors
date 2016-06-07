@@ -28,7 +28,8 @@ end
 
 
 Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
-  find("#single-button").click                #clicking on  'Assessment status dropdown'
+  find("#single-button").click     #clicking on  'Assessment status dropdown'
+  sleep 1
   check('assessmentStatusChk4')
   expect(page).to have_css(".assessment-status", text:'Completed')
   click_link_or_button("View Detail")

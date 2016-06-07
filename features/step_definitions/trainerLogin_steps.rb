@@ -1,5 +1,5 @@
 Given(/^that I have licence\.ndors\.org\.uk page opened$/) do
-  visit $Trainers_Link
+@trainers.trainer_login_page.load
 end
 
 Given(/^I login as an "([^"]*)"$/) do |user|

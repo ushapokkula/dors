@@ -5,11 +5,10 @@ end
 
 Then (/^the system will load the page where I can update assessor record$/)do
   @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
-  fill_in('assessorFirstName', :with=> 'test')
 end
 
 When (/^I click Cancel button on profile page$/)do
-  fill_in('assessorFirstName', :with=> 'test')
+  fill_in('assessorPhone', :with=> '079999945566')
   click_button('Cancel')
 end
 
@@ -19,7 +18,7 @@ end
 
 Then (/^unsaved changes will be lost$/)do
 click_link_or_button('MY PROFILE')
-  find_field('assessorFirstName').value.should_not eql?("test")   #Verify edited first name value is there or not#
+  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
 end
 
 Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
@@ -58,9 +57,9 @@ Then(/^I enter postcode field value as "([^"]*)"$/) do |postcode|
   @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |firstName,lastName,primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode|
-  @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
-  @trainers.assessor_profile_page.validateAssessorLastName(lastName)
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode|
+  # @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
+  # @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorsecondaryPhoneNumber(secondaryPhoneNumber)
   @trainers.assessor_profile_page.validateAssessorPrimaryEmail(primaryEmail)

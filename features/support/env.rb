@@ -63,7 +63,7 @@ Capybara.configure do |config|
 end
 
 
-After do |scenario|
+After do|scenario|
   find('#btn-signout').click
 end
 
