@@ -15,7 +15,7 @@ And (/^I request assessments$/) do
 end
 
 
-And(/^The assessment list will be sorted by assessment date$/) do
+And(/^The assessment list will be sorted by assessment course date$/) do
   @trainers.date_filter_on_assessment_management_page.verify_assessment_sorting_by_date
 end
 

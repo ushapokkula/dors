@@ -15,8 +15,8 @@ Feature: As a NGU user,
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
     And I login as an "Compliance Manager"
-    Then I will see list of all Assessments Requests with status requested
-    And The assessment list will be sorted by assessment date
+    Then I will see  list of all Assessments Requests with status requested
+    And The assessment list will be sorted by assessment course date
 
   Scenario: Verify default date range filter selection
       And default Date range filter will have no selection
@@ -27,7 +27,7 @@ Feature: As a NGU user,
     Then I request assessments
     And I login as an "Compliance Manager"
     And I enter "<start_date>" in start date field
-    Then The assessment list will be sorted by assessment date
+    And The assessment list will be sorted by assessment course date
     And the end date option will be empty
     Examples:
       |start_date|
@@ -67,7 +67,7 @@ Feature: As a NGU user,
     And I login as an "Compliance Manager"
     And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments falling in "<start_date>" and "<end_date>" range will be displayed
-    And The assessment list will be sorted by assessment date
+    And The assessment list will be sorted by assessment course date
     Examples:
       |start_date|end_date|
       |10/08/2016|16/11/2016|
