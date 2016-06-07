@@ -38,17 +38,97 @@ Feature: Request Password Reset (Forgot Password)
     When I enter valid "Username"
     And I enter Invalid "Email" format
     And I click "Reset Password"
-    Then I see a valiadation message displayed "Please provide a valid email address." against the field
+    Then I see a validation message displayed "Please provide a valid email address." against the field
     And I will remain on the same page
 
-  @record_does'nt_match
-  Scenario: Verify the message when the entered user details does'nt match against the record
+  @username_does'nt_match
+  Scenario Outline: Verify the message when the entered email does'nt match against the record
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
-    When I enter "<field>" which does'nt match
-    And Enter remaining field with valid matching record
-    When I lcick "Reset Password"
+    When I enter "<Matching Username>" as "Username"
+    And I enter "<Non Matching Email>" as "Email"
+    And I click "Reset Password"
+    And I will be re-directed to login page
     Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+
+    Examples:
+      | Matching Username | Non Matching Email |
+      | sudiv             | swapna@gmail.com   |
+
+  @email_does'nt_match
+  Scenario Outline: Verify the message when the entered username  does'nt match against the record
+    And I click "Forgot Your Password?"
+    And I will be directed to "Forgot your password?" page
+    When I enter "<Non Matching Username>" as "Username"
+    And I enter "<Matching Email>" as "Email"
+    And I click "Reset Password"
+    And I will be re-directed to login page
+    Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+
+    Examples:
+      | Non Matching Username | Matching Email        |
+      | swap_xxx              | swapna.gopu@wtg.co.uk |
+
+  @success_reset_pwd
+  Scenario Outline: Verify the message after successfully requesting reset password with valid details
+    And I click "Forgot Your Password?"
+    And I will be directed to "Forgot your password?" page
+    When I enter "<Matching Username>" as "Username"
+    And I enter "<Matching Email>" as "Email"
+    And I click "Reset Password"
+    And I will be re-directed to login page
+    Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+
+    Examples:
+      | Matching Username | Matching Email        |
+      | sudiv             | swapna.gopu@wtg.co.uk |
+
+  @verify_email_subject_body
+  Scenario Outline: Verify the email subject and body after clicking reset password button
+    And I click "Forgot Your Password?"
+    And I will be directed to "Forgot your password?" page
+    When I enter "<Matching Username>" as "Username"
+    And I enter "<Matching Email>" as "Email"
+    When I click "Reset Password"
+    And I will be re-directed to login page
+    And I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+    Then I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+
+    Examples:
+
+      | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                     |
+      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once. |
+
+
+
+
+
+
+
+  @changed_pwd_within_24_hrs
+  Scenario: Verify the message when password is changed within 24 hours
+    And I login as an "Compliance Manager"
+    And I navigate to "ASSESSORS" page
+    And I fill all assessor fields on the create assessor form
+    And I click "Create Assessor"
+    And I see the message "New assessor successfully created" after assessor creation
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    And I enter Password
+    And I enter Confirm Password
+    And When the password and confirm password both match
+    And I click "Create Account"
+    And I see a success message displayed as "Password has been set on your account and you can now login to the system"
+    And I click "Forgot Your Password?"
+    And I enter Username
+    And  I enter Email
+    When I click "Reset Password"
+    Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+
+
 
 
 

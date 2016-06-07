@@ -26,7 +26,11 @@ And(/^I click Logo to come out from that page$/)do
   find('.dors-logo').click
 end
 
-And(/^I see a valiadation message displayed "([^"]*)" against the field$/)do |message|
+And(/^I enter "([^"]*)" as "([^"]*)"$/)do |data,field|
+  fill_in(field, :with=>data)
+end
+
+And(/^I see a validation message displayed "([^"]*)" against the field$/)do |message|
   expect(page).to have_css(".form-group.has-error" , text: message)
 end
 
@@ -40,4 +44,8 @@ end
 
 And(/^I enter Invalid "([^"]*)" format$/)do|field|
   fill_in(field, :with=>'test.com')
+end
+
+And(/^I will be re-directed to login page$/)do
+  expect(page).to have_css("#txtemail")
 end
