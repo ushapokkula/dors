@@ -1,3 +1,4 @@
+@pass
 @DR-251
 Feature:DR-251
   NGU searches for an Assessment by ID
@@ -5,19 +6,23 @@ Feature:DR-251
   Background:
 
     Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
+
 
 
   @one
   Scenario: Verify the visibilty of view mode
-    And I type the Booked Assessment ID in the Assessment search field
+    And I login as an "Assessor"
+    And I request assessment as Booked
+    And I logout
     And I login as Compliance Manager and click assessment management tab to search booked assessments
     When I click "Search"
     Then The system will load the detailed information for assessment record in view mode
 
   @two
   Scenario: Verify the information  of assessment record available in view mode
-    And I type the Booked Assessment ID in the Assessment search field
+    And I login as an "Assessor"
+    And I request assessment as Booked
+    And I logout
     And I login as Compliance Manager and click assessment management tab to search booked assessments
     When I click "Search"
     Then The system will load the following information for assessment record in view mode
@@ -27,7 +32,7 @@ Feature:DR-251
       | Time               |
       | Venue              |
       | Name               |
-      | Assessor Name      |
+      | Assessor           |
       | License            |
       | Expiry Date        |
       | Total Mileage      |
@@ -37,7 +42,9 @@ Feature:DR-251
 
   @three
   Scenario: Verify the visibility of 'Reject' button when the status is Requested
-    And I type the Request Assessment ID in the Assessment search field
+    And I login as an "Assessor"
+    And I request assessment as Requested
+    And I logout
     And I login as Compliance Manager and click assessment management tab to search requested assessments
     When I click "Search"
     Then The system will load the detailed information for assessment record in view mode
@@ -45,12 +52,15 @@ Feature:DR-251
 
   @four
   Scenario: Verify the visibility of 'Mark Complete' and ' Cancel' when the status is Booked
-    And I type the Booked Assessment ID in the Assessment search field
+    And I login as an "Assessor"
+    And I request assessment as Booked
+    And I logout
     And I login as Compliance Manager and click assessment management tab to search booked assessments
     When I click "Search"
+    And the page include Outcome dropdown
     Then The system will load the detailed information for assessment record in view mode
-    And The page will include 'Mark Complete' and 'Cancel'button
-    And 'Outcome' dropdown
+    And The page will include Mark Complete and Cancel button
+
 
   @five
   Scenario: Verify the validation message when Invalid assessment Id is entered to search

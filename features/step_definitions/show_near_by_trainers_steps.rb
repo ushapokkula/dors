@@ -1,21 +1,17 @@
 Given(/^I am on Pick a course page$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  expect(page).to have_content("REQUEST ASSESSMENT")
-  click_link_or_button("REQUEST ASSESSMENT")
-  sleep 5
-  first(:button, 'Pick a slot').click
+  find('a', text: "REQUEST ASSESSMENT").click
+  find(:button, 'Pick a slot', match: :first).click
+
 end
 
 When(/^I click Request assessmet button against trainer I want to book an assessment$/) do
-  sleep 5
-  first(:button, 'Request Assessment').click
+  find(:button, 'Request Assessment', match: :first).click
 end
 
 Then(/^I will be taken to Request Assessment Summary page$/) do
-  sleep 3
-  link = find(".breadcrumb li:last-child > span").text
- expect(link).to be == "Summary"
-end
+  expect(page).to have_selector(".breadcrumb li:last-child > span", text: "Summary")
+ end
 
 Then(/^I will be shown trainers delivering courses nearby with same postcode whose licenses are expirying soon$/) do
   @trainers.show_near_by_trainers_page.verify_trainer_details_in_nearby_courses
@@ -32,10 +28,12 @@ Then(/^I see Trainer Full name and site address$/) do
 end
 
 And(/^I check Include this Trainer for a trainer$/)do
-  page.all('.ng-pristine.ng-valid')[1].click
-  page.all('.ng-pristine.ng-valid')[3].click
-  sleep 4
-  click_link_or_button("Submit")
+  find(".include-main-trainer-checkbox", match: :first)
+  all('.include-main-trainer-checkbox')[0].click
+  find(".include-nearby-trainer-checkbox", match: :first)
+  all('.include-nearby-trainer-checkbox')[1].click
+    click_link_or_button("Submit")
+  expect(page).to have_css(".alert.alert-success")
 end
 
 Then(/^The system will include the selected trainer in the booking request$/) do

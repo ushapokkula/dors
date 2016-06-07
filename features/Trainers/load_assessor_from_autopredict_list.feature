@@ -1,3 +1,4 @@
+@pass
 @DR-513
 Feature: As an NGU user (Compliance Manager/TrainingGovernance),
   I want to be able to load an Assessor record to view or to edit,
@@ -34,7 +35,8 @@ Feature: As an NGU user (Compliance Manager/TrainingGovernance),
       | Last Name              |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      | Primary Email Address  |
+      |Secondary Email Address |
       | Address                |
       | Town                   |
       | Postcode               |
@@ -60,10 +62,12 @@ Feature: As an NGU user (Compliance Manager/TrainingGovernance),
       | Last Name              |
       | Primary Phone Number   |
       | Secondary Phone Number |
-      | Email                  |
+      | Primary Email Address  |
+      |Secondary Email Address |
       | Address                |
       | Town                   |
       | Postcode               |
+      |Status                  |
       | Force Areas            |
 
     Examples:

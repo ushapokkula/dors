@@ -27,7 +27,6 @@ class CreateTrainerRecordPage < SitePrism::Page
 
 
 
-
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -51,6 +50,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
+
     username.set Faker::Name.name[4..70]
     trainer_id.set Faker::Number.number(6)
     trainer_first_name.set Faker::Name.name

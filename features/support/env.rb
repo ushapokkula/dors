@@ -48,14 +48,26 @@ COMPLAINCE_PASSWORD= "P@ssw0rd"
 
 $Trainers_Link="https://auto.trainer.dors.wtg.co.uk"
 
+$email_body = "A new account has been created for you on DORS+ system; the username for which will be communicated to you separately."
+              #   Please use the link below to set a password for your account following which you will be able to use the system.
+              #   <link>
+              # Note that the link is only valid for 48 hours and one time use only. If the link has expired, please contact NDORS Corporate Compliance Team."
+
 
 
 
 Capybara.configure do |config|
   config.default_driver = :debug
   config.app_host = "https://auto.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 20
 end
+
+
+After do |scenario|
+  find('#btn-signout').click
+end
+
+
 World(Capybara)
 
 Capybara.register_driver :selenium do |app|

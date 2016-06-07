@@ -4,11 +4,13 @@ Then(/^the system will load the page where I can create a new trainer record wit
 end
 
 Then(/^I see the following fields as "([^"]*)" with "([^"]*)" on create trainer form$/) do |fields, error_msgs|
-  @trainers.create_trainer_record_page.verify_mandatory_fields_err_msgs(fields, error_msgs)
+  @trainers.create_trainer_record_page.verify_mandatory_field_err_msgs(fields, error_msgs)
+   expect(page).to have_selector(".form-group.has-error", text:error_msgs)
 end
 
 Then(/^I see the following fields as "([^"]*)" on create trainer form$/) do |optional_field|
   @trainers.create_trainer_record_page.verify_optional_fields_on_trainer_form(optional_field)
+   expect(page).to have_selector(".help-block", :visible=> false)
 end
 
 

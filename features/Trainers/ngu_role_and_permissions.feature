@@ -1,3 +1,4 @@
+@pass
 @DR-392
 Feature:DR-392
   As a Compliance Manager,
@@ -21,6 +22,7 @@ Feature:DR-392
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request assessments as requested
+    And I logout
     When I login as an "Compliance Manager"
     Then The page will show the list of assessments with status Requested
 
@@ -29,12 +31,14 @@ Feature:DR-392
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     Then I see that I have no access to these "ASSESSMENT MAANAGEMENT","ADMINISTRATION","ASSESSORS"
+    And I see that I have access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE" as an assessor
 
   @ngu_permission5
   Scenario: Verify the ability to display the assessment records which they have requested
     Given that I have licence.ndors.org.uk page opened
-    And I login as two different assessors and request assessments as requested
+    And I login as "Assessor" and "Assessor1" and request assessments as requested
+    And I logout
     When I login as an "Compliance Manager"
     Then The page will show the list of assessments with status Requested
-    And The page will show the list of requested assessments made by all assessors
+    And The page will show the list of requested assessments made by "Assessor" and "Assessor1"
 

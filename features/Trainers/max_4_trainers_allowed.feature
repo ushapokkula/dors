@@ -1,17 +1,18 @@
+@pass
 @maximum_trainers
 Feature: Maximum 4 trainers allowed per assessment request
 
   Background:
-#    Given that I am logged into the system
+
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I am on Assessment Request Summary page
 
-    @maximum1
+  @maximum1
   Scenario: Verify maximum number of 4 trainers allowed per assessment request for status Booked
     When I include one trainer from each course which include max four trainers in total
     And I click "Submit"
-    And I see a message "The assessment has been Booked"
+    And I see the success message for requested assessment with date and assessment ID
     Then I verify that all the four trainers are included in the assessment request
     And I check the status as Booked
 
@@ -20,7 +21,7 @@ Feature: Maximum 4 trainers allowed per assessment request
     When I include one trainer from each course which include max four trainers in total
     And I enter the mileage
     And I click "Submit"
-    And I see a message "The assessment has been Requested"
+    And I see the success message for requested assessment with date and assessment ID
     Then I verify that all the four trainers are included in the assessment request
     And I check the status as Requested
 
@@ -43,7 +44,7 @@ Feature: Maximum 4 trainers allowed per assessment request
   Scenario: Assessment with 2 courses and 2 trainers within each course
     When I try to include two courses and two trainers within each course
     And I click "Submit"
-    And I see a message "The assessment has been Booked"
+    And I see the success message for requested assessment with date and assessment ID
 
 
 

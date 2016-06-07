@@ -2,41 +2,33 @@ class TrainersListingPage < SitePrism::Page
 
 
   elements :pick_a_slot_aray, :xpath, ".//*[@id='expiring-licenses-view']/section/div/table/tbody/tr/td[6]/button"
+  elements :pick_a_slot_array, ".btn.btn-primary:nth-child(2)"
   elements :course_details, :xpath, ".//*[@id='pick-course-view']/section/div/table/tbody/tr/td"
   elements :course_headers, :xpath, ".//*[@id='pick-course-view']/section/div/table/thead/tr/td"
   elements :primary_trainer_details, :xpath, ".//*[@id='pick-course-view']/section/div/div/div/h3"
 
+
   elements :expiry_dates_order, :xpath, "html/body/div[1]/div[2]/div/div/table/tbody/tr/td[3]"
-  elements :duplicate_trainer, ".col-md-12.row-span"
+  elements :duplicate_trainer, ".trainer-full-name"
   elements :license_details, ".trainer-licenseCode"
 
-  elements :list_of_courses, ".dors-table"
-  elements :pick_a_slot_buttons, :xpath, "html/body/div[1]/div[2]/div/div[2]/div/div[2]/button"
+  elements :list_of_courses, :xpath, "//div[@class='dors-table-row row']"
   elements :course_dates, ".course-date"
-
   elements :expiry_dates, ".license-expiry-date"
 
   def display_list_of_trainers_within_configured_days(count)
-    sleep 10
-    actual_rows = page.all('.dors-table').count
-    expect(actual_rows).to be > 1
+    find(:xpath, "//div[@class='dors-table-row row']", match: :first)
+    expect(list_of_courses.count).to be > 1
     verify_expiry_dates(count)
   end
 
-  def verify_details_on_listing_page
-    actual_rows = page.all('.col-md-3').count
-    expect(actual_rows).to be > 1
-  end
-
   def verify_expiry_dates(count)
-     expiry_dates.each do|date|
+    expiry_dates.each do |date|
       today_date = Date.today.to_s
       configured_date = Date.today + count.to_i
       range = (today_date..configured_date.to_s)
       expected_date=Date.parse(date.text).strftime("%Y-%m-%d")
       range.include?(expected_date)
-      # previous_date=Date.parse(expected_date) < Date.today
-      # expect(previous_date).to be false
     end
 
   end
@@ -68,28 +60,26 @@ class TrainersListingPage < SitePrism::Page
 
   def not_displaying_results_out_of_time
     expiry_date=[]
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
-    client.active?
-    result= client.execute("SELECT ExpiryDate FROM  tbl_TrainerLicense where ExpiryDate > DATEADD(dd, 365, GETDATE())")
-    result.each do |row|
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result= client.execute("SELECT tbl_TrainerLicense.ExpiryDate FROM tbl_TrainerForce INNER JOIN tbl_TrainerLicense ON tbl_TrainerForce.TrainerId = tbl_TrainerLicense.TrainerId  WHERE (tbl_TrainerForce.ForceId = 28) AND (tbl_TrainerLicense.ExpiryDate > DATEADD(dd, 365, GETDATE()))")
+        result.each do |row|
       date = row['ExpiryDate']
       expiry_dates.each do |element|
         (element.text) != date
       end
     end
-    client.close
   end
 
   def verify_previous_expired_dates
-    expiry_dates.each do|date|
+    expiry_dates.each do |date|
       expected_date=Date.parse(date.text).strftime("%Y-%m-%d")
       previous_date=Date.parse(expected_date) < Date.today
       expect(previous_date).to be false
     end
-    end
+  end
 
   def validating_unique_licenses
-    sleep 5
     unique_licenses=[]
     license_details.each do |licenses|
       unique_licenses.push(licenses.text)
@@ -102,55 +92,46 @@ class TrainersListingPage < SitePrism::Page
 
   def multiple_licenses_as_seperate_entry
     duplicate_trainers= []
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
-    client.active?
-    result = client.execute("select Forename + ' ' + surname as 'fullname' from [DORS_Classified].[dbo].[tbl_Trainer]  t1 join tbl_TrainerLicense t2 on t2.TrainerId=t1.TrainerId where (ExpiryDate >= (cast(GetDATE() as Date)) and EXPIRYDATE <= Dateadd(d,30, cast(GetDATE() as Date))) group by Forename, surname having (count(*)>1) order by forename desc")
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT  tbl_Trainer.Forename + ' ' + tbl_Trainer.Surname AS Fullname
+                               FROM  tbl_TrainerForce INNER JOIN
+                               tbl_TrainerLicense ON tbl_TrainerForce.TrainerId = tbl_TrainerLicense.TrainerId
+                               INNER JOIN tbl_Trainer ON tbl_TrainerLicense.TrainerId = tbl_Trainer.TrainerId
+                               WHERE  (tbl_TrainerForce.ForceId = 28) AND (tbl_TrainerLicense.ExpiryDate <= DATEADD(dd, 365, GETDATE()))
+                               GROUP BY tbl_Trainer.Forename, tbl_Trainer.Surname
+                               HAVING (COUNT(tbl_Trainer.Surname) > 1)")
     result.each do |row|
-      duplicate_trainer_details = row['fullname']
+      duplicate_trainer_details = row['Fullname']
       duplicate_trainers.push(duplicate_trainer_details)
     end
     duplicate_names=[]
+    expect(page).to have_css(".trainer-full-name")
     duplicate_trainer.each do |duplicates|
       elements=duplicates.text
       duplicate_names.push(elements)
     end
     duplicate_count=duplicate_names.group_by { |e| e }.select { |k, v| v.size > 1 }.map(&:first)
-     expect(duplicate_count).to match_array(duplicate_trainers)
+    expect(duplicate_count).to match_array(duplicate_trainers)
   end
 
 
   def pick_a_slot
-
-    for i in 2..8
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-        if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-          courses = page.all(".dors-table").count
-          expect(courses).to be > 0
-          page.evaluate_script('window.history.back()')
-        end
-      end
+    pick_a_slot_array.each do |elements|
+      find_all(elements).click
+      courses = page.all(".dors-table").count
+      expect(courses).to be > 0
     end
-  end
+    page.evaluate_script('window.history.back()')
+    end
 
   def verify_details_on_pickaslot(new_table)
-    for i in 2..8
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-        if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-          columns = new_table.map { |x| x['Display_Items'] }
-          for i in 0...columns.size
-            expect(page).to have_content(columns[i])
-          end
 
-        end
-      end
-      page.evaluate_script('window.history.back()')
+    columns = new_table.map { |x| x['Display_Items'] }
+    for i in 0...columns.size
+       expect(page).to have_content(columns[i])
     end
   end
-
 
   def check_course_details
     course_details.each do |element|
@@ -159,26 +140,17 @@ class TrainersListingPage < SitePrism::Page
   end
 
   def pick_a_slot_to_verify_course_dates
-    for i in 2..8
-      if (page.has_xpath?("html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button"))
-        value=find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").text
-        if (value == "Pick a slot")
-          find(:xpath, "html/body/div[1]/div[2]/div/div[#{i}]/div/div[2]/button").click
-
-          course_dates.each do |date|
-           Date.parse(date.text) >= Date.today
-          end
-
-        end
-      end
-      page.evaluate_script('window.history.back()')
+    expect(page).to have_css(".course-date")
+    expect(page.all(".course-date").count).to be > 0
+    course_dates.each do |date|
+      Date.parse(date.text) >= Date.today
     end
+
   end
 
 
   def verify_trianers_fullname
-    first(:button, 'Pick a slot').click
-    expect(page).to have_css(".trainer-fullname")
+    expect(page).to  have_css(".trainer-fullname")
     expect(page).to have_css(".secondary-trainer-full-name")
   end
 
@@ -186,7 +158,7 @@ class TrainersListingPage < SitePrism::Page
   require 'tiny_tds'
 
   def database_connection
-    client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.active?
   end
 
@@ -196,7 +168,7 @@ class TrainersListingPage < SitePrism::Page
     end
   end
 
-    end
+end
 
 
 
