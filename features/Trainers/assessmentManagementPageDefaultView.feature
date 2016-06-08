@@ -1,7 +1,6 @@
 @pass
 @DR-285
-Feature:DR-285
-  Assessment Management Default View
+Feature: Assessment Management Default View
 
   @default1
   Scenario: Verify the message when there are no assessments with status requested
