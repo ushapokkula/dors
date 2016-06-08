@@ -51,7 +51,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
   def verify_optional_fields_on_trainer_form(optional_field)
     username.set random_string(7)
-    trainer_id.set Faker::Number.number(6)
+    trainer_id.set Faker::Number.numerify('16####')
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     known_as.set Faker::Name.name
@@ -73,7 +73,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
   def filling_trainer_details
     username.set Faker::Name.name[4..70]
-    trainer_id.set Faker::Number.number(6)
+    trainer_id.set Faker::Number.numerify('16####')
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')

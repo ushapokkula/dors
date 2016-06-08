@@ -8,6 +8,7 @@ Feature: DR-253
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I have received assessment form from the Assessor with details of their assessment results
+    And I logout
     And I type the Booked Assessment ID in the Assessment search field
     When I click "Search"
     And The system will load the detailed information for assessment record in view mode
