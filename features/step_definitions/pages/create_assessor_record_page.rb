@@ -263,7 +263,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
     find(".button._hl_2._hl_e._hl_i").text == $email_value
-    puts "test"
+    puts " this is for test"
   end
 
   def validate_nonce
