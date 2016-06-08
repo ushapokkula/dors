@@ -1,4 +1,5 @@
 class AssessorProfilePage < SitePrism::Page
+
   element    :first_name,    "#assessorFirstName"
   element    :last_name,      "#assessorLastName"
   element    :primary_phone,   "#assessorPhone"
@@ -43,7 +44,6 @@ end
     if (firstName.empty?)
       page.should have_css("p.help-block",text:'Please provide a first name.')
       puts 'firstName length not in Limit - Error message displayed'
-    elsif((firstNameLength>=1)&& (firstNameLength<=50))
       page.should_not have_css("p.help-block",text:'Please provide a first name.')
     elsif(firstNameLength>50)
       expect(page).not_to have_css("p.help-block", text:'Please provide a first name.')
@@ -58,6 +58,7 @@ end
     if (lastName.empty?)
       expect(page).to have_css("p.help-block",text:'Please provide a last name.',visible: true)
       puts 'lastName length not in Limit - Error message displayed'
+    elsif((firstNameLength>=1)&& (firstNameLength<=50))
     elsif((lastNameLength>=1)&&(lastNameLength<=50))
    page.should_not have_css("p.help-block",text:'Please provide a last name.')
     elsif(lastNameLength>50)
@@ -206,11 +207,11 @@ end
     end
   end
 
-def verifyPostcodeAutoCapital(postcode)
-  fill_in('assessorPostcode',:with=> postcode)
-  puts page.find("#assessorPostcode").value.downcase
-puts is_lower?(postcode)
-end
+                     def verifyPostcodeAutoCapital(postcode)
+                        fill_in('assessorPostcode',:with=> postcode)
+                          puts page.find("#assessorPostcode").value.downcase
+                            puts is_lower?(postcode)
+                               end
 
   def is_lower?(postcode)
     if(postcode != postcode.upcase)
@@ -218,8 +219,10 @@ end
     else
       return false
     end
+    end
+
+
   end
-end
 
 
 
