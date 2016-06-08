@@ -84,6 +84,15 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in('trainerPostcode', :with => "W14 8UD")
   end
 
+  def verify_updated_phone_no_in_db
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT PrimaryTelephone FROM [DORS_Classified].[dbo].[tbl_Trainer] where TrainerRef = '111222'")
+    result. each do |row|
+      $updated_record_in_db = row['PrimaryTelephone']
+    end
+  end
+
 end
 
 
