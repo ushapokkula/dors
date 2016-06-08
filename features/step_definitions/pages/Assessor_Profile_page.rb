@@ -58,7 +58,6 @@ end
     if (lastName.empty?)
       expect(page).to have_css("p.help-block",text:'Please provide a last name.',visible: true)
       puts 'lastName length not in Limit - Error message displayed'
-    elsif((firstNameLength>=1)&& (firstNameLength<=50))
     elsif((lastNameLength>=1)&&(lastNameLength<=50))
    page.should_not have_css("p.help-block",text:'Please provide a last name.')
     elsif(lastNameLength>50)
