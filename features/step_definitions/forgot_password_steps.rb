@@ -34,7 +34,7 @@ And(/^I see a validation message displayed "([^"]*)" against the field$/) do |me
   expect(page).to have_css(".form-group.has-error", text: message)
 end
 
-And(/^I will remain on the same page$/) do
+And(/^I will remain on the same Forgot Password page$/) do
   expect(page).to have_css("h1", text: 'Forgot your password')
 end
 

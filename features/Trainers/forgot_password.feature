@@ -1,3 +1,4 @@
+@pass
 @DR-135
 Feature: Request Password Reset (Forgot Password)
   As a user,
@@ -24,7 +25,7 @@ Feature: Request Password Reset (Forgot Password)
     And Enter remaining field leaving the "<field>"
     When I click "Reset Password"
     Then I see a validation message displayed "<Validation Message>" against the field
-    And I will remain on the same page
+    And I will remain on the same Forgot Password page
 
     Examples:
       | field    | Validation Message               |
@@ -39,7 +40,7 @@ Feature: Request Password Reset (Forgot Password)
     And I enter Invalid "Email" format
     And I click "Reset Password"
     Then I see a validation message displayed "Please provide a valid email address." against the field
-    And I will remain on the same page
+    And I will remain on the same Forgot Password page
 
   @username_does'nt_match
   Scenario Outline: Verify the message when the entered email does'nt match against the record
@@ -105,7 +106,7 @@ Feature: Request Password Reset (Forgot Password)
     And I request the reset password for the same user twice
     And I see that the email is generated and sent to the registered email address
     When I access the latest link
-    #And I will taken the password page to reset
+    And I will taken the password page to reset
     When I access the expired link
     Then I will be taken to the error page displaying the message as "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 
