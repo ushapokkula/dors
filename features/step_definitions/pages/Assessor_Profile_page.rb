@@ -157,7 +157,7 @@ end
     emailLength = secondaryEmail.length
     if(secondaryEmail.empty?)
       puts "Ok, Secondary Phone Number is optional"
-    elsif( emailLength>=1)
+    elsif(emailLength>=1)
       expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
     end
     x= secondaryEmail.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
@@ -215,9 +215,9 @@ end
 
   def is_lower?(postcode)
     if(postcode != postcode.upcase)
-      return true
+      return 'POSTCODE not in lower case'
     else
-      return false
+      return 'POSTCODE in lower case'
     end
     end
 
