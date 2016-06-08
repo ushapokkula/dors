@@ -44,6 +44,7 @@ end
     if (firstName.empty?)
       page.should have_css("p.help-block",text:'Please provide a first name.')
       puts 'firstName length not in Limit - Error message displayed'
+    elsif((firstNameLength>=1)&&(firstNameLength<=50))
       page.should_not have_css("p.help-block",text:'Please provide a first name.')
     elsif(firstNameLength>50)
       expect(page).not_to have_css("p.help-block", text:'Please provide a first name.')
