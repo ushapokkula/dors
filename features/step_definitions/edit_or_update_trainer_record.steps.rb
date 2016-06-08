@@ -21,7 +21,8 @@ end
 
 Then(/^I see the following default Licence status in Licence status dropdown$/) do |table|
   expected_options = table.hashes.map { |x| x['Licence Status'] }
-  actual_options = @trainers.edit_or_update_trainer_record_page.licence_status_options.map { |x| x.text }
+  actual_options = @trainers.edit_or_update_trainer_record_page.licence_status_options.map { |x| x.text}
+  puts actual_options
   expect(actual_options).to match_array(expected_options)
 end
 
@@ -128,6 +129,7 @@ end
 
 And (/^the system will show a success message, "([^"]*)"$/) do |message|
   expect(page).to have_css(".toast-message", text: message)
+
 end
 
 

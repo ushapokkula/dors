@@ -1,5 +1,4 @@
-@pass
-@DR-268, @DR-719
+@DR-268, @DR-719 @pass
 Feature: DR-268 and DR-719
   /*
    Assuming 'Assessor2' linked force area 'Metropolitan police'
@@ -18,11 +17,12 @@ Feature: DR-268 and DR-719
 
     @DR-268 @no_trainers_available
     Scenario: no trainers are available to match this requirement
-    When I login as an "Assessor4"
-    And I click "REQUEST ASSESSMENT"
+      And I logout
+      When I login as an "Assessor4"
+      And I click "REQUEST ASSESSMENT"
       Then I will be re-directed to "Request Assessment" page
-    And I should see the matching Force Area Name in Force Area Filters
-    Then I should see message for "No assessments available to book."
+      And I should see the matching Force Area Name in Force Area Filters
+      Then I should see message for "No assessments available to book."
 
     @DR-719  @trainers_forcearea_not_linked_to_Assessor
     Scenario Outline: Verify trainers force area not linked to assessor

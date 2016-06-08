@@ -1,5 +1,4 @@
-@pass
-@auto_authorise
+@pass @auto_authoris
 Feature: Auto Authorise
   As an assessor
   I want to be able to have my assessment requests auto authorised/approved which have multiple trainers and no expenses claimed

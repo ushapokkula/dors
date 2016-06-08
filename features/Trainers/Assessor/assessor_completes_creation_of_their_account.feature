@@ -1,5 +1,5 @@
 @DR-45
-Feature:
+Feature: Assessor Creates Their Account
   As an Assessor,
   I want to be able to set a password for my new account and complete its creation,
   so that I can login and use the system to perform my day to day operations.

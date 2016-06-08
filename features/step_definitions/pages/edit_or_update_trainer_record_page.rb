@@ -1,11 +1,13 @@
 class EditOrUpdateTrainerRecordPage < SitePrism::Page
-  elements :licence_status_options, "#licenseStatuses > option"
+  elements :licence_status_options, "#licenseStatuses option"
   elements :licence_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
   element :expiry_date, "#licenseExpiryDate_0"
   element :search_trainer_field, '#txt-trainer-name'
   element :trainer_first_name, '#trainerFirstName'
   element :trainer_last_name, '#trainerLastName'
+  element :license_status_drpdwn, "#licenseStatuses"
+
 
   def verify_editable_fields_of_trainer_licences
     find("#licenseStatuses_0").click
@@ -30,6 +32,5 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     page.find("#licenseStatuses_3").set(status)
     page.find("#licenseExpiryDate_3").set(date)
   end
-
 
 end
