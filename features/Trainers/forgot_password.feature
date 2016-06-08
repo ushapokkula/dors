@@ -23,7 +23,7 @@ Feature: Request Password Reset (Forgot Password)
     When I leave the "<field>" blank
     And Enter remaining field leaving the "<field>"
     When I click "Reset Password"
-    Then I see a valiadation message displayed "<Validation Message>" against the field
+    Then I see a validation message displayed "<Validation Message>" against the field
     And I will remain on the same page
 
     Examples:
@@ -100,10 +100,14 @@ Feature: Request Password Reset (Forgot Password)
       | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once. |
 
 
-
-
-
-
+  @verify_expiry_link
+  Scenario: Verifying any existing password reset email tokens
+    And I request the reset password for the same user twice
+    And I see that the email is generated and sent to the registered email address
+    When I access the latest link
+    #And I will taken the password page to reset
+    When I access the expired link
+    Then I will be taken to the error page displaying the message as "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 
   @changed_pwd_within_24_hrs
   Scenario: Verify the message when password is changed within 24 hours
