@@ -1,5 +1,5 @@
 @DR-390 @pass
-Feature:
+Feature: Trainer Landing Page
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,
   so that I can verify the information is correct.

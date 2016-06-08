@@ -1,5 +1,5 @@
 @DR-171 @DR-13 @DR-594 @pass
-Feature:
+Feature: Create Assessor Record
   As an user,
   I want to be able to create a new Assessor,
   so that they can use the system to manage assessments.

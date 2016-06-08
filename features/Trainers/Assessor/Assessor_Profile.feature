@@ -1,5 +1,5 @@
 @DR-13 @DR-817 @pass
-Feature: DR-13 DR-817
+Feature: Assessor Profile
   As an Assessor,
   I want to be able to edit my record on the system,
   so that all my contact details remain updated.

@@ -1,5 +1,5 @@
 @DR-398 @pass
-Feature:
+Feature: Date Filter on Assessment Page
   As an NGU user,
   I want to able to filter records on Assessments Management page by date range,
   so that I can view filtered list of records I am interested in.

@@ -1,5 +1,5 @@
 @DR-181 @DR-827 @DR-645 @pass
-Feature:
+Feature: Completed Assessments Outcome Notes
   As an 'Assessor' & 'NGU' user
   can view the completed Assessments which includes
   Trainer 'Outcomes' and 'Outcome Notes'

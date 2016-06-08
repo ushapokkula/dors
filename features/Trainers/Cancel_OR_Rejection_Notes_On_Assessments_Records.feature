@@ -1,5 +1,5 @@
 @DR-333 @pass
-Feature:
+Feature: Cancel OR Reject Assessment
   As an 'Assessor' can cancel an assessment which they requested but have to fill in a mandatory Cancellation Notes field.
   an 'NGU' can reject any assessment which is awaiting authorisation
   from them but have to fill in a mandatory Rejection Notes field.
