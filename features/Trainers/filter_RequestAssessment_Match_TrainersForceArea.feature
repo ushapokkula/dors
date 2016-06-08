@@ -1,4 +1,5 @@
-Feature: DR-268 and DR-719 @pass
+@DR-268, @DR-719 @pass
+Feature: DR-268 and DR-719
   /*
    Assuming 'Assessor2' linked force area 'Metropolitan police'
    And verifying Search Force Area for default and filter view
@@ -8,7 +9,7 @@ Feature: DR-268 and DR-719 @pass
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor2"
     And I click "REQUEST ASSESSMENT"
-    Then I will be redirected to Request Assessment page
+    Then I will be re-directed to "Request Assessment" page
 
     @DR-268 @Force_Areas_filtering_on_Request_Assessments_page  @pass
     Scenario: default view to show trainers which have matching Force Areas as Assessor's Force Areas
@@ -16,11 +17,12 @@ Feature: DR-268 and DR-719 @pass
 
     @DR-268 @no_trainers_available
     Scenario: no trainers are available to match this requirement
-    When I login as an "Assessor4"
-    And I click "REQUEST ASSESSMENT"
-    Then I will be redirected to Request Assessment page
-    And I should see the matching Force Area Name in Force Area Filters
-    Then I should see message for "No assessments available to book."
+      And I logout
+      When I login as an "Assessor4"
+      And I click "REQUEST ASSESSMENT"
+      Then I will be re-directed to "Request Assessment" page
+      And I should see the matching Force Area Name in Force Area Filters
+      Then I should see message for "No assessments available to book."
 
     @DR-719  @trainers_forcearea_not_linked_to_Assessor
     Scenario Outline: Verify trainers force area not linked to assessor

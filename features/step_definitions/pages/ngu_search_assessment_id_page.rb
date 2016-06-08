@@ -11,7 +11,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_booked_assessmemt_id_in_DB
     book_assessment
-    expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Booked')
+    expect(page).to have_css(".alert.alert-success")
     verify_booked_assessmemt_id_in_DB
   end
 
@@ -19,7 +19,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     delete_assessments_from_DB
     verify_requested_assessmemt_id_in_DB
     request_assessment
-    expect(page).to have_css(".alert.alert-success", :text => 'The assessment has been Requested')
+    expect(page).to have_css(".alert.alert-success")
     verify_requested_assessmemt_id_in_DB
   end
 
@@ -101,14 +101,14 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def assessor_availability
-    actual_licenses=[], licenses=[]
+    actual_licenses=[]
     trainer_licenses.each do |row|
       licenses= row.text
-      actual_licenses.push(licenses)
+      $actual_licenses.push(licenses)
     end
-    expect(actual_licenses).to include("111333/001")
-    expect(actual_licenses).to include("111222/001")
-    expect(actual_licenses).to include("111999/002")
+    expect($actual_licenses).to include("111333/001")
+    expect($actual_licenses).to include("111222/001")
+    expect($actual_licenses).to include("111999/002")
   end
 
 

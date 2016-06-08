@@ -1,5 +1,5 @@
 When(/^I click on the assessor item from the list which i want to edit$/)do
-  find("#txt-assessor-name + ul li").click
+  find("#txt-assessor-name + ul li", match: :first).click
  end
 
 Then(/^The system will load the assessor record with "([^"]*)"$/)do |username|

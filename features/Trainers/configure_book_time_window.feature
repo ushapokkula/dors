@@ -38,12 +38,13 @@ Feature: DR-31
     Examples:
     |Days|
     |365 |
-    |120 |
+    #|120 |
 
   @time_window4
     Scenario Outline: Verify the ability to view trainer lilcenses expiring on summary page within time window
       When I set the assessment time window to  certain "<Days>"
       And I click "Save"
+      And I logout
       And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       And I am on Pick a course page

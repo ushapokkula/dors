@@ -1,5 +1,4 @@
-@pass
-@auto_authorise
+@pass @auto_authoris
 Feature: Auto Authorise
   As an assessor
   I want to be able to have my assessment requests auto authorised/approved which have multiple trainers and no expenses claimed
@@ -18,7 +17,8 @@ Feature: Auto Authorise
     When I click "Submit"
     Then The status of the assessment request will be marked Booked in the database
     And I will be re-directed to "Request Assessment" page
-    And I see the message "The assessment has been Booked" for assessment requested
+    And I see the success message for requested assessment with date and assessment ID
+    #And I see the message The assessment has been Booked for assessment requested
 
   @auto_authorise_assessment_req2
   Scenario: Assessment request status without multiple trainer included and no expenses claimed
@@ -26,7 +26,7 @@ Feature: Auto Authorise
     And no mileage expenses claimed
     When I click "Submit"
     Then I will be re-directed to "Request Assessment" page
-    And I see the message "The assessment has been Requested" for assessment requested
+    And I see the success message for requested assessment with date and assessment ID
 
   @auto_authorise_assessment_req3
   Scenario: Verify the Cancel button without data entered

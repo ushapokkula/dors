@@ -24,8 +24,9 @@ require 'sort'
 #require 'TinyTDS'
 #require 'time_difference'
 require 'pry'
-require 'date'
 require 'waitutil'
+require 'date'
+require 'time'
 
 require_relative 'misc'
 include RSpec:: Matchers
@@ -58,12 +59,13 @@ $email_body = "A new account has been created for you on DORS+ system; the usern
 Capybara.configure do |config|
   config.default_driver = :debug
   config.app_host = "https://auto.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 20
 end
-#
-# After do |scenario|
-#   find('#btn-signout').click
-# end
+
+
+After do|scenario|
+  find('#btn-signout').click
+end
 
 
 World(Capybara)

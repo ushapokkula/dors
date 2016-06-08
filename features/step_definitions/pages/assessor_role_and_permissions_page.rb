@@ -20,4 +20,8 @@ class AssessorRoleAndPermissionsPage < SitePrism::Page
 
     end
   end
+
+  def get_assessment_id_and_date
+
+  end
 end

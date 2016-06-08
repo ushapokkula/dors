@@ -1,5 +1,5 @@
 Given(/^I am on the Assessments Management page$/) do
-  expect(page).to have_content("Assessments")
+  expect(page).to have_css("h1", text: "Assessments")
 end
 
 When(/^The default view of the page is loaded$/) do
@@ -45,6 +45,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     # @trainers.filters_on_assessment_management_page.verify_reject_filter_status
     @trainers.trainer_login_page.login_as("Assessor")
     @trainers.ngu_search_assessment_id_page.request_assessment
+
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $requested_status)
@@ -80,6 +81,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
+    expect(page).to have_css("h1", text: "Assessments")
     fill_in("txt-assessment-id", :with => $booked_status)
     click_button("Search")
     @trainers.assessment_form_for_marking_outcome_page.select_outcome_against_trainer
@@ -98,8 +100,8 @@ When(/^I select "([^"]*)" and "([^"]*)"$/)do |status_filter1,status_filter2|
     @trainers.ngu_search_assessment_id_page.book_assessment
     @trainers.ngu_search_assessment_id_page.request_assessment
     @trainers.trainer_login_page.login_as("Compliance Manager")
-    find("#single-button").click
     expect(page).to have_css("#single-button")
+    find("#single-button").click
     check('assessmentStatusChk0')
     check('assessmentStatusChk1')
 

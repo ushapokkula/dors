@@ -8,8 +8,9 @@ class TrainerLoginPage < SitePrism::Page
   element :password_field, "#txtpassword"
   element :sign_in_button, ".btn.btn-primary.btn"
 
+
   def login_as(user)
-    verify_no_user_is_signed_in
+    #verify_no_user_is_signed_in
     username_field.set($users[user]['username'])
     password_field.set($users[user]['password'])
     sign_in_button.click
@@ -17,7 +18,8 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def verify_no_user_is_signed_in
-      click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:2)
+      click_link_or_button('Sign out') unless page.has_no_selector?('p', text: 'You are logged in as' )
+      #find(:button,'Sign out').click if page.should have_css('p', text: 'You are logged in as' )
     end
   end
 

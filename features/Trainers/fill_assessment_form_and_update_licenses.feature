@@ -26,6 +26,7 @@ Feature: DR-253
     When I select "<Outcomes>" as outcome
     When I click "Mark Complete"
     Then the license of the trainer will not be changed
+    And I logout
     And I login as an "Assessor"
     And The trainer will be available for bookings on Request Assessment page
 

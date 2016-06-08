@@ -34,9 +34,10 @@ class FiltersOnAssessmentManagementPage < SitePrism::Page
   end
 
   def reject_assessment
-
+    expect(page).to have_css("#txt-assessment-id")
     fill_in("txt-assessment-id",:with=>$requested_status)
     click_button("Search")
+    expect(page).to have_css("h1",text: "Assessment Request")
     click_button("Reject")
     fill_in("cancellationNotes", :with=>"Notes for Rejection")
     click_button('Yes')
