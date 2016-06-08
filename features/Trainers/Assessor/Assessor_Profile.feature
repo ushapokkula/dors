@@ -9,7 +9,7 @@ Feature:
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
 
-  @DR-549 @DR-594
+  @DR-549
     Scenario: Assessor cancels the profile update operation
       Then I will be shown these fields of my record
         | Update Assessor Fields |
@@ -32,6 +32,7 @@ Feature:
     And I will be redirected to "MY ASSESSMENTS" page
     Then unsaved changes will be lost
 
+  @DR-594
   Scenario Outline: Validation error handling
     Then I enter primary phone number field value as "<Primary Phone Number>"
     Then I enter secondary phone number field value as "<Secondary Phone Number>"
@@ -47,9 +48,9 @@ Feature:
     And record will not be updated
     And I will remain on the same page
     Examples:
-    |First Name                                          |Last Name                                                 |Primary Phone Number                                  |Secondary Phone Number|Primary Email         |Secondary Email     |Address       |Town      |Postcode|
-    |EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ  415^&    |                                                          | +876789-*                                            | 0787*+               |{^*Roopa#@wtg&com     |                     |76hammersmith |Lo&,.,-H |         |
-    |TestWTG%78*                                         | EGDGDHDgddsggg41515 ...MN M MDDKJKDJIKJIJ123@vb  415^&*- |                                                      |07876545654           |/_rchitt120>~mail&&.com|                     |WEExxx.bcbhb | Tr@' , -;| w14 8ud |
-    |                                                    | Web Technologies                                         | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |                       |                      |             |DV&/.()jc  | ha0  3pb |
+        |Primary Phone Number                                  |Secondary Phone Number|Primary Email         |Secondary Email     |Address       |Town      |Postcode|
+        | +876789-*                                            | 0787*+               |{^*Roopa#@wtg&com     |                     |76hammersmith |Lo&,.,-H |         |
+        |                                                      |07876545654           |/_rchitt120>~mail&&.com|                     |WEExxx.bcbhb | Tr@' , -;| w14 8ud |
+        | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^&|078765456$%&BVH       |                       |                     |             |DV&/.()jc  | ha0  3pb |
 
 
