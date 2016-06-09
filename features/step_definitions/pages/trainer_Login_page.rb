@@ -18,7 +18,7 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def verify_no_user_is_signed_in
-      click_link_or_button('Sign out') unless page.has_no_selector?('p', text: 'You are logged in as' )
+      click_link_or_button('Sign out') unless page.has_no_selector?('' )
       #find(:button,'Sign out').click if page.should have_css('p', text: 'You are logged in as' )
     end
   end

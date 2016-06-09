@@ -64,7 +64,8 @@ end
 
 
 After do|scenario|
-  find('#btn-signout').click
+  click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:2)
+  page.execute_script "window.close();"
 end
 
 
