@@ -44,11 +44,21 @@ Feature: NGU Adds a license to a trainer
     When I enter past date in Expiry Date
     Then The user should get an error as "Sorry, the expiry date cannot be in the past." below "Expiry Date"
 
-#  @verify_deault_days_license_Status
-      Scenario: verify the default no:of days when licence status is selected
-#    When I search for "Bob" and "Thorton" in the trainer search field
-#    And I have trainer record loaded in editable view
-#
+  @verify_deault_days_license_Status
+  Scenario Outline: verify the default no:of days when licence status is selected
+    And I search for "Bob" and "Thorton" in the trainer search field
+    And I have trainer record loaded in editable view
+    And I select "<Course Name>" to add a licence
+    When I select "<Licence Status>" to add a licence
+    Then The Expiry Date will be defaulted to "<Days>"
+
+    Examples:
+      | Course Name     | Licence Status | Days |
+      | Motorway Course | Full           | 730  |
+      | Motorway Course | Provisional    | 183  |
+
+
+
 
 
 

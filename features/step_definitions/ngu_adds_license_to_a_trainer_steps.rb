@@ -38,4 +38,21 @@ end
   And(/^The user should get an error as "([^"]*)" below "([^"]*)"$/)do |message, field|
     error_message = find(:xpath, ".//*[text()='#{field}']/parent::Div//p").text
     expect(error_message).to eq(message)
+  end
+
+And(/^The Expiry Date will be defaulted to "([^"]*)"$/)do |days|
+  actual_date = find("#licenseExpiryDate").text
+  todays_date = Date.today.to_s
+  default_date = todays_date +days.to_i
+  expected_date = Date.parse(default_date).strftime("%d/%m/%Y")
+  expect(actual_date).to eq(expected_date)
 end
+
+And(/^I select "([^"]*)" to add a licence$/)do |data|
+   if data == "Motorway Course"
+  select(data, :from=>'courseNames')
+   else
+     select(data, :from=>'licenseStatuses')
+end
+end
+
