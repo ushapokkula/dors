@@ -2,7 +2,7 @@
 Feature: Status Field on Assessor Record
 
   Background:
-    Given that I have licence.ndors.org.uk page opened
+    #Given that I have licence.ndors.org.uk page opened
 
    Scenario: NGU verifying status field while creating new Assessor
      When I login as an "Compliance Manager"
@@ -41,12 +41,4 @@ Feature: Status Field on Assessor Record
      |user|
      |esx |
 
-   Scenario Outline : When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
-     Given I login as an "<Assessor>"
-      And I click on "forgot Your Password?"
-      Then I
-      Then I
-
-     Examples:
-      |user|
-      |
+   #Scenario Outline : When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
