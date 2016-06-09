@@ -35,6 +35,7 @@ end
 
 And(/^I logout$/) do
   find('#btn-signout').click
+  Capybara.reset_sessions!
 end
 
 

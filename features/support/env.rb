@@ -63,9 +63,10 @@ Capybara.configure do |config|
 end
 
 
-After do|scenario|
-  click_link_or_button('Sign out') if page.has_selector?('#btn-signout',wait:2)
+ After do|scenario|
+ click_link_or_button('Sign out') if page.has_no_selector?('#txtemail',wait:2)
   page.execute_script "window.close();"
+   #Capyabara.reset_session!
 end
 
 

@@ -11,6 +11,7 @@ class TrainerLoginPage < SitePrism::Page
 
   def login_as(user)
     #verify_no_user_is_signed_in
+    visit Capybara.app_host
     username_field.set($users[user]['username'])
     password_field.set($users[user]['password'])
     sign_in_button.click

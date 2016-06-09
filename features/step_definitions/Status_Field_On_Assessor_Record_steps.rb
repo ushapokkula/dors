@@ -36,10 +36,9 @@ end
 And (/^I update Assessor record$/)do
 page.find("#btnCreateUpdateAssessor").click
 expect(page).to have_css(".toast-message", text: 'Assessor record successfully updated.')
-WaitUtil.wait_for_condition("waiting for toast message progressbar to complete", :timeout_sec => 5, :delay_sec => 0.5) do
-  find("#btn-signout").visible?
+expect(page).to have_no_css(".toast-message")
 end
-end
+
 
 Then (/^will get the standard invalid credentials login failure message$/)do
   page.should have_css('.alert.alert-danger', visible: true)
