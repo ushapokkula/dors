@@ -41,7 +41,12 @@ Feature: Status Field on Assessor Record
      |user|
      |esx |
 
-   #Scenario Outline : When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
-     #Given I login as an "<Assessor>"
-    # And I should see an error messages
-    # Then I
+   Scenario Outline : When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
+     Given I login as an "<Assessor>"
+      And I click on "forgot Your Password?"
+      Then I
+      Then I
+
+     Examples:
+      |user|
+      |
