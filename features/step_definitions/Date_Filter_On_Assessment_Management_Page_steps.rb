@@ -1,7 +1,7 @@
 And(/^default view of the page is loaded$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   click_link("ASSESSMENT MANAGEMENT")
-  page.find("#single-button").click
+  page.find("#single-button",visible: true).click
   find("#assessmentStatusChk0").should be_checked #Requested option in selected state#
   find("#assessmentStatusChk1").should_not be_checked #Approved not in selected state#
   expect(page).to have_css(".alert.alert-info", text: 'There are no assessments to display.')

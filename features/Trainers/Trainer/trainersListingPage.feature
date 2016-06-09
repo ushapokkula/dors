@@ -18,6 +18,7 @@ Feature: DR-113 and DR-118
   @DR-373
   Scenario: Verify the message on request assessment page when no trainer is available
     And I will be shown a list of trainers who have their license expiring within time window of "365" days
+    And I logout
     And I set the time window to "2" days
     And I logout
     And I login as an "Assessor"
