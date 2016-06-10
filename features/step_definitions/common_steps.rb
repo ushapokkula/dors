@@ -35,7 +35,9 @@ end
 
 And(/^I logout$/) do
   find('#btn-signout').click
+  url = Capybara.current_url
   Capybara.reset_sessions!
+  visit url
 end
 
 
