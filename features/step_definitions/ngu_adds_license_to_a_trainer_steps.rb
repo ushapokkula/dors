@@ -41,11 +41,7 @@ end
   end
 
 And(/^The Expiry Date will be defaulted to "([^"]*)"$/)do |days|
-  actual_date = find("#licenseExpiryDate").text
-  todays_date = Date.today.to_s
-  default_date = todays_date +days.to_i
-  expected_date = Date.parse(default_date).strftime("%d/%m/%Y")
-  expect(actual_date).to eq(expected_date)
+  @trainers.ngu_adds_licence_to_a_trainer_page.verify_default_expiry_date(days)
 end
 
 And(/^I select "([^"]*)" to add a licence$/)do |data|
@@ -55,4 +51,18 @@ And(/^I select "([^"]*)" to add a licence$/)do |data|
      select(data, :from=>'licenseStatuses')
 end
 end
+
+And(/^I see 'X' button for added new licence which is not saved to dataabase$/)do
+  expect(page).to have_css(".btn.btn-danger", visible: true)
+end
+
+And(/^The licence row will be deleted$/)do
+  expect(page).to have_no_css(".btn.btn-danger", visible: true)
+end
+
+And(/^The X button will not be available for licences persisted in the DB$/)do
+  expect(page).to have_no_css(".btn.btn-danger.ng-hide", visible: true)
+end
+
+
 
