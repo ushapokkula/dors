@@ -43,19 +43,6 @@ Capybara.register_driver :debug do |app|
   Capybara::Selenium::Driver.new app, :profile => profile
 end
 
-Capybara.server_port = 8888 + ENV['TEST_ENV_NUMBER'].to_i
-
-class Capybara::Selenium::Driver < Capybara::Driver::Base
-  def reset!
-    if @browser
-      begin
-      rescue Selenium::WebDriver::Error::UnhandledError => e
-      end
-      @browser.navigate.to('about:blank')
-    end
-  end
-end
-
 SitePrism.configure do |config|
   config.use_implicit_waits = true
 end

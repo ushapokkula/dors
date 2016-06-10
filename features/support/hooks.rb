@@ -7,9 +7,7 @@ at_exit do
     config.report_title = 'Test Results'
     config.compress_images = false
   end
-
   ReportBuilder.build_report
-
 end
 
 
@@ -37,7 +35,6 @@ After do |scenario|
   # end
 end
 
-Dir.mkdir("reports") unless File.directory?("reports")
 
 #delete the images files before every test
 unless Dir.glob('images/*').empty?
