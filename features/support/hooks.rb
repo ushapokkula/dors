@@ -21,11 +21,12 @@ end
 # After do
 #   page.execute_script("window.localStorage.clear()")
 # end
-=begin
+
+
 After do
   find('#btn-signout').click
 end
-=end
+
 
 
 After do |scenario|
