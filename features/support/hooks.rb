@@ -23,10 +23,9 @@ end
 # end
 
 
-After do
+After ('~@nologout') do
   find('#btn-signout').click
 end
-
 
 
 After do |scenario|
