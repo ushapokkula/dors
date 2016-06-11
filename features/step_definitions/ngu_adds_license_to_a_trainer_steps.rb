@@ -64,5 +64,26 @@ And(/^The X button will not be available for licences persisted in the DB$/)do
   expect(page).to have_no_css(".btn.btn-danger.ng-hide", visible: true)
 end
 
+And(/^I click X button$/)do
+  find(".btn.btn-danger").click
+end
 
+And(/^Changes will be reflected on page$/)do
+  find("#courseNames").click
+  #expect(page).to have_select('courseNames', :options[text() => #['Motorway Course']])
+  page.should have_select('#courseNames', :options => 'Motorway Course')
+end
 
+And(/^I click "([^"]*)" without setting the data$/)do|field_name|
+  find_field(field_name).click
+end
+
+Then(/^I see "([^"]*)" against each "([^"]*)"$/)do |message, field|
+  error_message = find(:xpath, ".//*[text()='#{field}']/parent::Div//p").text
+  expect(error_message).to eq(message)
+end
+
+And(/^The "([^"]*)" is not available in the Course dropdown$/)do |course_name|
+  find("#courseNames").click
+  expect(page).to have_select('courseNames', :options => [course_name])
+  end

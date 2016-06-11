@@ -65,11 +65,38 @@ Feature: NGU Adds a license to a trainer
     And I select course name, licence status and expiry date to add a new licence
     When I click "Add licence" button
     And I see 'X' button for added new licence which is not saved to dataabase
-    When I click "X" button
+    When I click X button
     Then The licence row will be deleted
-   # And Changes will be reflected on page
+    And Changes will be reflected on page
     And The X button will not be available for licences persisted in the DB
 
+  @license_validation_fails
+  Scenario Outline: Verify the validation message when the license fields are blank
+    And I search for "Bob" and "Thorton" in the trainer search field
+    And I have trainer record loaded in editable view
+    When I click "<field_name>" without setting the data
+    And I click "Update Trainer"
+    Then I see "<validation_error_message>" against each "<field_name>"
+
+  Examples:
+  |field_name|validation_error_message|
+  |Course name|Please select a course name.|
+  |Licence status|Please select a license status.|
+  |Expiry Date|Please select an expiry date.|
+
+  @verify_duplicate_courses
+  Scenario Outline: Verify adding duplicate courses to licences
+    And I search for "Bob" and "Thorton" in the trainer search field
+    And I have trainer record loaded in editable view
+    And I select "<Course Name>" to add a licence
+    When I select "<Licence Status>" to add a licence
+    And I click "Add licence" button
+    And The system will add another row of licence entry below those already displayed
+    Then The "<Course Name>" is not available in the Course dropdown
+
+  Examples:
+  | Course Name     | Licence Status | Days |
+  | Motorway Course | Full           | 730  |
 
 
 
