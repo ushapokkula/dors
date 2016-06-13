@@ -70,8 +70,8 @@ end
 
 And(/^Changes will be reflected on page$/)do
   find("#courseNames").click
-  #expect(page).to have_select('courseNames', :options[text() => #['Motorway Course']])
-  page.should have_select('#courseNames', :options => 'Motorway Course')
+  expect(page).to have_select('courseNames', :with_options => ['Motorway Course'])
+ # page.should have_select('#courseNames', :options => 'Motorway Course')
 end
 
 And(/^I click "([^"]*)" without setting the data$/)do|field_name|
@@ -83,7 +83,18 @@ Then(/^I see "([^"]*)" against each "([^"]*)"$/)do |message, field|
   expect(error_message).to eq(message)
 end
 
-And(/^The "([^"]*)" is not available in the Course dropdown$/)do |course_name|
+And(/^The "([^"]*)" is not available in the Course dropdown to select for another licence$/)do |course_name|
   find("#courseNames").click
-  expect(page).to have_select('courseNames', :options => [course_name])
-  end
+  expect(page).to have_no_select('courseNames', :with_options => [course_name])
+end
+
+And(/^I search for trainer created$/)do
+  @trainers.edit_or_update_trainer_record_page.search_trainer_field.set($trainer_id)
+end
+
+And(/^I add licences to the trainer$/)do
+fill_in('courseNames',:with=> 'Berks-Scheme')
+fill_in('licenseStatuses', :with=> 'Full')
+fill_in('courseNames',:with=>'Motorway Course')
+fill_in('licenseStatuses', :with=> 'Full')
+end

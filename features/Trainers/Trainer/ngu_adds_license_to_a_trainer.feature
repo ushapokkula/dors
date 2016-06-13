@@ -92,11 +92,52 @@ Feature: NGU Adds a license to a trainer
     When I select "<Licence Status>" to add a licence
     And I click "Add licence" button
     And The system will add another row of licence entry below those already displayed
-    Then The "<Course Name>" is not available in the Course dropdown
+    Then The "<Course Name>" is not available in the Course dropdown to select for another licence
 
   Examples:
-  | Course Name     | Licence Status | Days |
-  | Motorway Course | Full           | 730  |
+  | Course Name     | Licence Status |
+  | Motorway Course | Full           |
+
+
+  @generating_licence
+  Scenario: Generating licence numbers and saving to database and verify the success message
+    And I fill Mandatory fields with required details on create trainer form
+    And I click "Create Trainer"
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    And I enter Password
+    And I enter Confirm Password
+    And I click "Create Account"
+    And I login as an "Compliance Manager"
+    And I click "Trainers"
+    And I search for trainer created
+    And I add licences to the trainer
+    And I click "Add licence"
+    And I see there are no multiple licences for the same page
+    When I click "Update Trainer"
+    Then the system will update the Trainer record in the database and add licenses against it
+    And licence Id will be generated in this format "YYXXXX/CCC"
+    Then I see the success message "Trainer record successfully updated" on the page
+    And I will be redirected to the Updated trainer page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

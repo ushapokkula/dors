@@ -50,3 +50,4 @@ And(/^I see the updated phone number in database$/)do
   @trainers.create_trainer_record_page.verify_updated_phone_no_in_db
   @updated_primary_phone_number == $updated_record_in_db
 end
+
