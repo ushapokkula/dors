@@ -33,7 +33,6 @@ Then (/^status field will be editable$/)do
   if find("#assessor-status-inactive").value == 'false'
     page.find("#assessor-status-active").click
      puts "status changed to 'Active'."
-    page.find("#btnCreateUpdateAssessor").click
   end
   end
 
