@@ -94,8 +94,9 @@ And(/^I search for trainer created$/)do
 end
 
 And(/^I add licences to the trainer$/)do
-fill_in('courseNames',:with=> 'Berks-Scheme')
-fill_in('licenseStatuses', :with=> 'Full')
-fill_in('courseNames',:with=>'Motorway Course')
-fill_in('licenseStatuses', :with=> 'Full')
+  select('Berks-Scheme', :from=>'courseNames')
+  select('Full', :from=>'licenseStatuses')
+  click_button('Add licence')
+  select('Motorway-Course', :from=>'courseNames')
+  select(data, :from=>'licenseStatuses')
 end
