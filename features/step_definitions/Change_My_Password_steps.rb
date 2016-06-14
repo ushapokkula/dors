@@ -31,11 +31,11 @@ And (/^I entered the password change data as "([^"]*)","([^"]*)","([^"]*)"$/)do 
 end
 
 When (/^the current password is incorrect$/)do
-  @current_pwd = find("#currentPassword").value
-  if find("#currentPassword").vlaue.not.eq?(@current_pwd)
-    puts "@current_pwd"
+  @current_pwd = "P@s5w0rd1"
+    if page.find('#currentPassword').value.should_not be_(@current_pwd)
     end
-end
+    end
+
 
 And (/^the system will show validation error message, "([^"]*)"$/)do |current_pwd_invalid_msg|
 expect(page).to have_css("p.help-block", text: current_pwd_invalid_msg)
