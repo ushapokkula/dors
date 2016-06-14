@@ -56,5 +56,5 @@ unless Dir.glob('junit/*').empty?
 end
 
 #create reports directory if not present
-# Dir.mkdir("reports") unless File.directory?("reports")
+Dir.mkdir("reports") unless File.directory?("reports")
 
