@@ -72,7 +72,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
 
   def filling_trainer_details
-    username.set Faker::Name.name[4..70]
+    username.set random_string(7)
     trainer_id.set Faker::Number.numerify('16####')
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
