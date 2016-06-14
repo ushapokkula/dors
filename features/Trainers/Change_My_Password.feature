@@ -21,21 +21,25 @@ so that I can ensure my account security and continued access to the system.
       |Trainer1|
 
   Scenario Outline: Current Password Wrong
-    Given I login as an "<User>"
-    And I entered the password change data
+    When I login as an "<User>"
+    And I navigate to "MY PROFILE" page
+    Then I request to expand the 'Change password' section
+    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
     And I click "Save"
     When the current password is incorrect
-    Then the field will be shown highlighted
+    Then the system will highlight those fields
     And the system will show validation error message, "The password you entered is not correct. Please retry."
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |User|
-      |Assessor|
-      |Trainer1|
+      |User    |current_pwd|password|confirm_pwd|incorrect_password|
+      |Assessor3| test@1234  | test@123  | test@123     |test123@     |
+      #|Trainer1| P@s5w0rd  | test@123  | test@123     |test@123           |
+
 
   Scenario Outline: Password confirmation mismatch validation
     Given I login as an "<User>"
+    And I navigate to "MY PROFILE" page
     And I entered the password change data
     And I click "Save"
     When the new password and the confirmation of new password mismatch
@@ -50,6 +54,7 @@ so that I can ensure my account security and continued access to the system.
 
   Scenario Outline: Password validation business rules fail
     Given I login as an "<User>"
+    And I navigate to "MY PROFILE" page
     And I entered the password change data
     And I click "Save"
     And the current password is correct
@@ -65,6 +70,7 @@ so that I can ensure my account security and continued access to the system.
 
   Scenario Outline: Password changed too recently
     Given I login as an "<User>"
+    And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
     Then I request to expand the Change Password section
     And  I have changed my password within the last 24 hours

@@ -22,3 +22,26 @@ And (/^'Profile details' section will be collapsed$/)do
   expect(page.should_not have_css(".panel-group .panel:nth-child(2).panel-open", visible:false))
   expect(page.should_not have_button("Update", visible: true))
 end
+
+
+And (/^I entered the password change data as "([^"]*)","([^"]*)","([^"]*)"$/)do |current_pwd, password, confirm_pwd|
+   fill_in('currentPassword', :with=> current_pwd)
+   fill_in('password', :with=> password)
+   fill_in('passwordConfirm', :with=> confirm_pwd)
+end
+
+When (/^the current password is incorrect$/)do
+  @current_pwd = find("#currentPassword").value
+  if find("#currentPassword").vlaue.not.eq?(@current_pwd)
+    puts "@current_pwd"
+    end
+end
+
+And (/^the system will show validation error message, "([^"]*)"$/)do |current_pwd_invalid_msg|
+expect(page).to have_css("p.help-block", text: current_pwd_invalid_msg)
+end
+
+And (/^password will not be changed$/)do
+  expect(page).to have_no_css(".toast-message")
+end
+
