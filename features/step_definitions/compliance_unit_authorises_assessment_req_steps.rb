@@ -1,5 +1,5 @@
 Then(/^I see "([^"]*)" button for each assessment request$/) do |button|
-  @trainers.compliance_unit_authorises_assessment_req_page.verify_visibility_of_approve_button
+  @trainers.compliance_unit_authorises_assessment_req_page.verify_visibility_of_approve_button(button)
 end
 
 And(/^I have all assessments requested$/) do
