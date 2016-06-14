@@ -29,12 +29,6 @@ Capybara.configure do |config|
 end
 
 
-After ('~@nologout')  do|scenario|
-  find('#btn-signout').click
-end
-
-
-
 World(Capybara)
 
 Capybara.register_driver :selenium do |app|

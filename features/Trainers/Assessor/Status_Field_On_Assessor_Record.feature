@@ -54,7 +54,7 @@ Feature:Status Field on Assessor Record
      And I click "Reset Password"
      And I will be re-directed to login page
      Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
-     #And I should not see that the email generated and sent to the registered email address  with "<Subject>"
+     And I should not see that the email generated and sent to the registered email address  with "<Subject>"
        Examples:
-       | Matching Username | Matching Email            |
-       |  test738          | roopa.ramisetty@wtg.co.uk |
+       | Matching Username | Matching Email            |Subject                              |
+       |  test738          | roopa.ramisetty@wtg.co.uk |DORS+: Password successfully changed |

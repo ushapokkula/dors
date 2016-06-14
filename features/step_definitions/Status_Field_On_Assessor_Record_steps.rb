@@ -78,3 +78,7 @@ end
 Then (/^I should see the message as "([^"]*)"$/)do |forgotpwd_error|
   expect(page).to have_css(".alert.alert-info", text: forgotpwd_error)
 end
+
+And (/^I should not see that the email generated and sent to the registered email address  with "([^"]*)"$/)do|subject|
+  @trainers.create_assessor_record_page.verify_no_change_password_email_received(subject)
+end
