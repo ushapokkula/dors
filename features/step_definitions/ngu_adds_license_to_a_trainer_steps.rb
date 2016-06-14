@@ -88,15 +88,21 @@ And(/^The "([^"]*)" is not available in the Course dropdown to select for anothe
   expect(page).to have_no_select('courseNames', :with_options => [course_name])
 end
 
-And(/^I search for trainer created$/)do
-  @trainers.edit_or_update_trainer_record_page.search_trainer_field.set($trainer_id)
-  page.find('#txt-trainer-name').native.send_keys(:enter)
+
+And(/^I add two licences to the trainer with "([^"]*)" and "([^"]*)" with status as "([^"]*)"$/)do|course1,course2,status|
+  select(course1, :from=>'courseNames')
+  select(status, :from=>'licenseStatuses')
+  click_button('Add licence')
+  select(course2, :from=>'courseNames')
+  select(status, :from=>'licenseStatuses')
 end
 
-And(/^I add licences to the trainer$/)do
-  select('Berks-Scheme', :from=>'courseNames')
-  select('Full', :from=>'licenseStatuses')
-  click_button('Add licence')
-  select('Motorway-Course', :from=>'courseNames')
-  select(data, :from=>'licenseStatuses')
+And(/^I see there are no multiple licences for "([^"]*)" and "([^"]*)"$/)do |course1,course2|
+  find("#courseNames").click
+  expect(page).to have_no_select('courseNames', :with_options => [course1,course2])
+end
+
+And(/^I will be redirected to the Update trainer page$/)do
+    expect(page).to have_no_css(".toast-message", text: "New trainer successfully created.")
+ expect(page).to have_button('Update Trainer', visible:true)
 end

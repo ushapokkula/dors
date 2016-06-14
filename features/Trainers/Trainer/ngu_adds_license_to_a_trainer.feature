@@ -103,25 +103,16 @@ Feature: NGU Adds a license to a trainer
   Scenario: Generating licence numbers and saving to database and verify the success message
     And I fill Mandatory fields with required details on create trainer form
     And I click "Create Trainer"
-    And I see that the email is generated and sent to the registered email address
-    And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
-    And I enter Username
-    And  I enter Email
-    And I enter Password
-    And I enter Confirm Password
-    And I click "Create Account"
-    And I login as an "Compliance Manager"
-    And I click "TRAINERS"
-    And I search for trainer created
-    And I add licences to the trainer
+    Then a Success message will be displayed for Create Trainer "New trainer successfully created."
+    And I will be redirected to the Update trainer page
+    And I add two licences to the trainer with "Berks-Scheme" and "Motorway Course" with status as "Full"
     And I click "Add licence"
-    #    And I see there are no multiple licences for the same page
-#    When I click "Update Trainer"
-#    Then the system will update the Trainer record in the database and add licenses against it
-#    And licence Id will be generated in this format "YYXXXX/CCC"
-#    Then I see the success message "Trainer record successfully updated" on the page
-#    And I will be redirected to the Updated trainer page
+    And I see there are no multiple licences for "Berks Scheme" and "Motorway Course"
+    When I click "Update Trainer"
+    #Then the system will update the Trainer record in the database and add licenses against it
+    #And licence Id will be generated in this format "YYXXXX/CCC"
+    And the system will show a success message, "Trainer record successfully updated."
+    And I will be redirected to the Update trainer page
 
 
 
