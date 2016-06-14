@@ -83,8 +83,6 @@ class CreateTrainerRecordPage < SitePrism::Page
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
     $trainer_id = trainer_id.value
-    $username_value = username.value
-    $email_value = primary_email.value
   end
 
   def verify_updated_phone_no_in_db
@@ -94,6 +92,15 @@ class CreateTrainerRecordPage < SitePrism::Page
     result. each do |row|
       $updated_record_in_db = row['PrimaryTelephone']
     end
+  end
+
+  def verify_licence_format
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT tbl_TrainerLicense.LicenseCode, tbl_Trainer.TrainerRef, tbl_Trainer.TrainerId
+                            FROM  tbl_Trainer INNER JOIN
+                            tbl_TrainerLicense ON tbl_Trainer.TrainerId = tbl_TrainerLicense.TrainerId
+                            WHERE (tbl_Trainer.TrainerRef = 165853)")
   end
 
 end

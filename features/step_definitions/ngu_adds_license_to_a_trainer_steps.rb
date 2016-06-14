@@ -98,11 +98,14 @@ And(/^I add two licences to the trainer with "([^"]*)" and "([^"]*)" with status
 end
 
 And(/^I see there are no multiple licences for "([^"]*)" and "([^"]*)"$/)do |course1,course2|
-  find("#courseNames").click
   expect(page).to have_no_select('courseNames', :with_options => [course1,course2])
 end
 
 And(/^I will be redirected to the Update trainer page$/)do
     expect(page).to have_no_css(".toast-message", text: "New trainer successfully created.")
  expect(page).to have_button('Update Trainer', visible:true)
+end
+
+And(/^The system will update the Trainer record in the database and add licenses against it$/)do
+  @trainers.create_trainer_record_page.verify_licence_format
 end
