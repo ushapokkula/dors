@@ -109,3 +109,8 @@ end
 And(/^The system will update the Trainer record in the database and add licenses against it$/)do
   @trainers.create_trainer_record_page.verify_licence_format
 end
+
+And(/^licence Id will be generated in this format "([^"]*)"$/)do|format|
+   puts $licence_code
+ puts  $licence_code == '16'####/###'
+end

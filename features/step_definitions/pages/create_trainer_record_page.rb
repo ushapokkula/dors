@@ -26,7 +26,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   elements :error_messages, ".help-block p"
 
 
-
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -63,10 +62,10 @@ class CreateTrainerRecordPage < SitePrism::Page
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
     fill_in(optional_field, :with => '')
-   page.find("#trainerisInstructor").click
+    page.find("#trainerisInstructor").click
     #check('trainerisInstructor')
     expect(page).not_to have_css("p.help-block")
-     click_link_or_button("Create Trainer")
+    click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end
 
@@ -89,7 +88,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("SELECT PrimaryTelephone FROM [DORS_Classified].[dbo].[tbl_Trainer] where TrainerRef = '111222'")
-    result. each do |row|
+    result.each do |row|
       $updated_record_in_db = row['PrimaryTelephone']
     end
   end
@@ -100,7 +99,11 @@ class CreateTrainerRecordPage < SitePrism::Page
     result = client.execute("SELECT tbl_TrainerLicense.LicenseCode, tbl_Trainer.TrainerRef, tbl_Trainer.TrainerId
                             FROM  tbl_Trainer INNER JOIN
                             tbl_TrainerLicense ON tbl_Trainer.TrainerId = tbl_TrainerLicense.TrainerId
-                            WHERE (tbl_Trainer.TrainerRef = 165853)")
+                            WHERE (tbl_Trainer.TrainerRef="+$trainer_id+")")
+    result.each do |row|
+      $licence_code = row['LicenseCode']
+      trainer_ref = row['TrainerRef']
+    end
   end
 
 end
