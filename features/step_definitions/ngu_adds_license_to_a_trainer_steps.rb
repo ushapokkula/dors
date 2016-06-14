@@ -90,6 +90,7 @@ end
 
 And(/^I search for trainer created$/)do
   @trainers.edit_or_update_trainer_record_page.search_trainer_field.set($trainer_id)
+  page.find('#txt-trainer-name').native.send_keys(:enter)
 end
 
 And(/^I add licences to the trainer$/)do

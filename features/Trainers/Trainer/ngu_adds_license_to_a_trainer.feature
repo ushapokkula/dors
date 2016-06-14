@@ -112,16 +112,17 @@ Feature: NGU Adds a license to a trainer
     And I enter Confirm Password
     And I click "Create Account"
     And I login as an "Compliance Manager"
-    And I click "Trainers"
+    And I click "TRAINERS"
     And I search for trainer created
     And I add licences to the trainer
+    #    And I see there are no multiple licences for the same page
     And I click "Add licence"
-    And I see there are no multiple licences for the same page
-    When I click "Update Trainer"
-    Then the system will update the Trainer record in the database and add licenses against it
-    And licence Id will be generated in this format "YYXXXX/CCC"
-    Then I see the success message "Trainer record successfully updated" on the page
-    And I will be redirected to the Updated trainer page
+
+#    When I click "Update Trainer"
+#    Then the system will update the Trainer record in the database and add licenses against it
+#    And licence Id will be generated in this format "YYXXXX/CCC"
+#    Then I see the success message "Trainer record successfully updated" on the page
+#    And I will be redirected to the Updated trainer page
 
 
 

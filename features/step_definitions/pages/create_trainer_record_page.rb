@@ -77,12 +77,14 @@ class CreateTrainerRecordPage < SitePrism::Page
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    primary_email.set Faker::Internet.email
-    secondary_email.set Faker::Internet.email
+    primary_email.set "swapna.gopu@wtg.co.uk"
+    #secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
     $trainer_id = trainer_id.value
+    $username_value = username.value
+    $email_value = primary_email.value
   end
 
   def verify_updated_phone_no_in_db

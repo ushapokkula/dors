@@ -241,7 +241,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
@@ -255,7 +255,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
