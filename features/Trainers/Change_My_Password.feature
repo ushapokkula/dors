@@ -72,7 +72,7 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user    |current_pwd|password    |confirm_pwd|
-      |Assessor3| test@123  |deena@123  |deena@123 |
+      |Assessor3| test@123  |DDEE@123  |DDEE@123 |
       |Trainer2|  test@123 |test@12?    | test@?12  |
 
   @manual
@@ -81,7 +81,9 @@ so that I can ensure my account security and continued access to the system.
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
     Then I request to expand the 'Change password' section
-    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
+    And I enter the current password as "<current_pwd>"
+    And I enter Password as "<password>"
+    And I enter the Confirm password as "<confirm_pwd>"
     And I click "Save"
     And I have changed my password within the last 24 hours
     Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <15-Jun-2016 17:27>"
