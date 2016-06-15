@@ -71,3 +71,15 @@ end
 And (/^I will be shown the password policy requirements$/)do
 
 end
+
+When (/^I am on 'My Profile' page in default view$/)do
+
+end
+
+And (/^I have changed my password within the last 24 hours$/)do
+
+end
+
+Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
+
+end

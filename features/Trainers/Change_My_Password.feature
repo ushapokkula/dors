@@ -52,6 +52,7 @@ so that I can ensure my account security and continued access to the system.
       |Assessor| test@123  |test@12?|test@?12   |
       |Trainer1|  test@123 |test@12?| test@?12  |
 
+
   Scenario Outline: Password validation business rules fail
     Given I login as an "<User>"
     And I navigate to "MY PROFILE" page
@@ -68,14 +69,17 @@ so that I can ensure my account security and continued access to the system.
       |Assessor| test@123  |test@12?    |test@?12   |
       |Trainer1|  test@123 |test@12?    | test@?12  |
 
+
   Scenario Outline: Password changed too recently
     Given I login as an "<User>"
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
-    Then I request to expand the Change Password section
-    And  I have changed my password within the last 24 hours
-    Then I will see the below message in this section
+    Then I request to expand the 'Change password' section
+    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
+    And I click "Save"
+    And I have changed my password within the last 24 hours
+    Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <15-Jun-2016 17:27>"
     Examples:
-      |User|
-      |Assessor|
-      |Trainer1|
+      |User|current_pwd|password    |confirm_pwd|
+      |Assessor| test@123  |test@12? |test@?12   |
+      |Trainer1|  test@123 |test@12? | test@?12  |
