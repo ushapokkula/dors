@@ -3,15 +3,15 @@ Assessor:
  password: P@ssw0rd2
 
 Compliance Manager:
- username: jane1
- password: P@ssw0rd
+ username: NGU_User
+ password: P@ssw0rd1
 
 Trainer1:
  username: newtrainer
  password: P@s5w0rd
 
 Trainer2:
- username: roopa_setty1
+ username: roopa_setty1  #No Licenses Added#
  password: P@s5w0rd
 
 Assessor1:
