@@ -19,30 +19,31 @@ so that I can ensure my account security and continued access to the system.
       |user|
       |Assessor3|
       |Trainer2|
-
-   @wip
-  Scenario Outline: Current Password Wrong
+  @pass
+  Scenario Outline: Enter the incorrect 'Current Password' and verify the validation message
     When I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
-    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
+    And I enter the current password as "<current_pwd>"
+    And I enter Password as "<password>"
+    And I enter the Confirm password as "<confirm_pwd>"
     And I click "Save"
-    When the current password is incorrect
     Then the system will highlight those fields
     And the system will show validation error message, "The password you entered is not correct. Please retry."
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |user     |current_pwd|password|confirm_pwd|incorrect_password|
-      |Assessor3| test@1234 |test@123 | test@123 |test123@          |
-#      |Trainer2 | P@s5w0rd  |test@123| test@123  |test@123          |
+      |user     |current_pwd|password|confirm_pwd|
+      |Assessor3| test@1234 |test@123 | test@123 |
+      |Trainer2 | P@s5w0rd  |test@123| test@123  |
 
-
-
-  Scenario Outline: Password confirmation mismatch validation
+  Scenario Outline: Verify Password and confirm Password mismatch validation
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
-    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
+    Then I request to expand the 'Change password' section
+    And I enter the current password as "<current_pwd>"
+    And I enter Password as "<password>"
+    And I enter the Confirm password as "<confirm_pwd>"
     And I click "Save"
     When the new password and the confirmation of new password mismatch
     Then the system will highlight those fields
@@ -52,13 +53,16 @@ so that I can ensure my account security and continued access to the system.
     Examples:
       |user    |current_pwd|password|confirm_pwd|
       |Assessor3| test@123  |test@12?|test@?12   |
-#      |Trainer2|  test@123 |test@12?| test@?12  |
+      |Trainer2|  test@123 |test@12?| test@?12  |
 
 
-  Scenario Outline: Password validation business rules fail
+  Scenario Outline: enter Password value which not as in business rule and verify the validation when business rules fails
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
-    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
+    Then I request to expand the 'Change password' section
+    And I enter the current password as "<current_pwd>"
+    And I enter Password as "<password>"
+    And I enter the Confirm password as "<confirm_pwd>"
     And I click "Save"
     And the current password is correct
     When the new password does not meet the password policy requirement
@@ -68,7 +72,7 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user    |current_pwd|password    |confirm_pwd|
-      |Assessor3| test@123  |test@12?    |test@?12   |
+      |Assessor3| test@123  |deena@123    |test@?12   |
       |Trainer2|  test@123 |test@12?    | test@?12  |
 
   @manual
