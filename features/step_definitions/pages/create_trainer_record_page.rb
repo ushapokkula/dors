@@ -24,6 +24,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :select_licence_name, "#licenseStatuses > option:nth-child(2)"
   element :expiry_date, "#licenseExpiryDate"
   elements :error_messages, ".help-block p"
+  elements :course_details, ".form-control.selected-license-course"
 
 
   def verify_trainer_record_details(new_table)
@@ -104,6 +105,14 @@ class CreateTrainerRecordPage < SitePrism::Page
       $licence_code = row['LicenseCode']
       trainer_ref = row['TrainerRef']
     end
+  end
+
+  def verify_duplicate_licences_for_same_course
+    unique_courses=[]
+    course_details.each do |courses|
+      unique_courses.push(courses.value)
+    end
+    expect(unique_courses).to match_array(unique_courses.uniq)
   end
 
 end

@@ -1,3 +1,4 @@
+@pass
 @DR-28
 Feature: NGU Adds a license to a trainer
   As an NGU/TrainingGovernance,
@@ -48,8 +49,8 @@ Feature: NGU Adds a license to a trainer
   Scenario Outline: verify the default no:of days when licence status is selected
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
-    And I select "<Course Name>" to add a licence
-    When I select "<Licence Status>" to add a licence
+    And I select Course "<Course Name>" to add a licence
+    When I select licence as "<Licence Status>" to add a licence
     Then The Expiry Date will be defaulted to "<Days>"
 
     Examples:
@@ -78,25 +79,25 @@ Feature: NGU Adds a license to a trainer
     And I click "Update Trainer"
     Then I see "<validation_error_message>" against each "<field_name>"
 
-  Examples:
-  |field_name|validation_error_message|
-  |Course name|Please select a course name.|
-  |Licence status|Please select a license status.|
-  |Expiry Date|Please select an expiry date.|
+    Examples:
+      | field_name     | validation_error_message        |
+      | Course name    | Please select a course name.    |
+      | Licence status | Please select a license status. |
+      | Expiry Date    | Please select an expiry date.   |
 
   @verify_duplicate_courses
   Scenario Outline: Verify adding duplicate courses to licences
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
-    And I select "<Course Name>" to add a licence
-    When I select "<Licence Status>" to add a licence
+    And I select Course "<Course Name>" to add a licence
+    When I select licence as "<Licence Status>" to add a licence
     And I click "Add licence" button
     And The system will add another row of licence entry below those already displayed
     Then The "<Course Name>" is not available in the Course dropdown to select for another licence
 
-  Examples:
-  | Course Name     | Licence Status |
-  | Motorway Course | Full           |
+    Examples:
+      | Course Name     | Licence Status |
+      | Motorway Course | Full           |
 
 
   @generating_licence
@@ -110,9 +111,27 @@ Feature: NGU Adds a license to a trainer
     And I see there are no multiple licences for "Berks Scheme" and "Motorway Course"
     When I click "Update Trainer"
     And The system will update the Trainer record in the database and add licenses against it
-    And licence Id will be generated in this format "YYXXXX/CCC"
+    #And licence Id will be generated in this format "YYXXXX/CCC"
     And the system will show a success message, "Trainer record successfully updated."
     And I will be redirected to the Update trainer page
+
+  @DR-678 @verify_licences_for_same_course
+  Scenario Outline: Verify the licences for the same course
+    And I search for "Bob" and "Thorton" in the trainer search field
+    And I have trainer record loaded in editable view
+    And I select Course "<Course Name1>" to add a licence
+    When I select licence as "<Licence Status1>" to add a licence
+    And I click "Add licence" button
+    And I select Course "<Course Name2>" to add a licence
+    When I select licence as "<Licence Status2>" to add a licence
+    When I click "Add licence" button
+    Then I see that there no licences for the same course
+
+    Examples:
+      | Course Name1     | Licence Status1 |Course Name2| Licence Status2|
+      | Motorway Course | Full           | RiDE        |Full            |
+
+
 
 
 

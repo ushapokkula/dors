@@ -44,12 +44,12 @@ And(/^The Expiry Date will be defaulted to "([^"]*)"$/)do |days|
   @trainers.ngu_adds_licence_to_a_trainer_page.verify_default_expiry_date(days)
 end
 
-And(/^I select "([^"]*)" to add a licence$/)do |data|
-   if data == "Motorway Course"
-  select(data, :from=>'courseNames')
-   else
-     select(data, :from=>'licenseStatuses')
+And(/^I select Course "([^"]*)" to add a licence$/)do |course_name|
+  select(course_name, :from=>'courseNames')
 end
+
+And(/^I select licence as "([^"]*)" to add a licence$/)do|licence|
+  select(licence, :from=>'licenseStatuses')
 end
 
 And(/^I see 'X' button for added new licence which is not saved to dataabase$/)do
@@ -113,4 +113,9 @@ end
 And(/^licence Id will be generated in this format "([^"]*)"$/)do|format|
    puts $licence_code
  puts  $licence_code == '16'####/###'
+end
+
+And(/^I see that there no licences for the same course$/)do
+  @trainers.create_trainer_record_page.verify_duplicate_licences_for_same_course
+
 end
