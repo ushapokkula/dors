@@ -128,10 +128,30 @@ Feature: NGU Adds a license to a trainer
     Then I see that there no licences for the same course
 
     Examples:
-      | Course Name1     | Licence Status1 |Course Name2| Licence Status2|
-      | Motorway Course | Full           | RiDE        |Full            |
+      | Course Name1    | Licence Status1 | Course Name2 | Licence Status2 |
+      | Motorway Course | Full            | RiDE         | Full            |
 
 
+    @DR-584 @default_page_view
+      Scenario: Verify the default page view
+      And The system will load the page where I can create a new trainer record
+      And I will be able to add licences to the trainer record as i create them
+      And Licence section will by default include one licence row with these fields
+       |Licence_section_fields|
+       |Course Name           |
+       |Licence Status        |
+       |Expiry Date           |
+      And the Course Name dropdown will be populated with current active schemes
+      And I see the following default Licence status in Licence status dropdown
+        | Licence Status          |
+        | ---Please select---     |
+        | Provisional/Conditional |
+        | Full                    |
+        | Expired                 |
+        | Suspended               |
+        | Revoked                 |
+        | Surrendered             |
+      And a button 'Add a License' will also be available under the Licenses section
 
 
 

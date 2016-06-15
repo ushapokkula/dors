@@ -119,3 +119,7 @@ And(/^I see that there no licences for the same course$/)do
   @trainers.create_trainer_record_page.verify_duplicate_licences_for_same_course
 
 end
+
+And(/^I will be able to add licences to the trainer record as i create them$/)do
+
+end
