@@ -73,7 +73,10 @@ And (/^I will be shown the password policy requirements$/)do
 end
 
 When (/^I am on 'My Profile' page in default view$/)do
-
+  expect(page.should have_css(".panel-group .panel:nth-child(2).panel-open", visible:true))
+  expect(page.should have_button("Update", visible: true))
+  expect(page.should have_button("Cancel", visible: true))
+  expect(page.should_not have_css(".panel-group .panel:nth-child(1).panel-open", visible:false))
 end
 
 And (/^I have changed my password within the last 24 hours$/)do

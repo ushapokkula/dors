@@ -8,7 +8,7 @@ so that I can ensure my account security and continued access to the system.
     Given that I have licence.ndors.org.uk page opened
 
   Scenario Outline: Collapsible sections
-    When I login as an "<User>"
+    When I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then the system will show user 'Profile details' in expand section
     And the 'Change password' section will be collapsed by default
@@ -16,12 +16,13 @@ so that I can ensure my account security and continued access to the system.
     Then 'Change password' section will be expanded
     And 'Profile details' section will be collapsed
     Examples:
-      |User|
-      |Assessor|
-      |Trainer1|
+      |user|
+      |Assessor3|
+      |Trainer2|
 
+   @wip
   Scenario Outline: Current Password Wrong
-    When I login as an "<User>"
+    When I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
     And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
@@ -32,13 +33,14 @@ so that I can ensure my account security and continued access to the system.
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |User     |current_pwd|password|confirm_pwd|incorrect_password|
+      |user     |current_pwd|password|confirm_pwd|incorrect_password|
       |Assessor3| test@1234 |test@123 | test@123 |test123@          |
-      |Trainer1 | P@s5w0rd  |test@123| test@123  |test@123          |
+#      |Trainer2 | P@s5w0rd  |test@123| test@123  |test@123          |
+
 
 
   Scenario Outline: Password confirmation mismatch validation
-    Given I login as an "<User>"
+    Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
     And I click "Save"
@@ -48,30 +50,30 @@ so that I can ensure my account security and continued access to the system.
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |User    |current_pwd|password|confirm_pwd|
-      |Assessor| test@123  |test@12?|test@?12   |
-      |Trainer1|  test@123 |test@12?| test@?12  |
+      |user    |current_pwd|password|confirm_pwd|
+      |Assessor3| test@123  |test@12?|test@?12   |
+#      |Trainer2|  test@123 |test@12?| test@?12  |
 
 
   Scenario Outline: Password validation business rules fail
-    Given I login as an "<User>"
+    Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
     And I click "Save"
     And the current password is correct
     When the new password does not meet the password policy requirement
-    Then the system will highlight the validation error message on the new password field,"Your new password is invalid. Please ensure it meets the password policy requirements."
+    Then the system will highlight the validation error message on the new password field,"Sorry, the password does not meet the policy requirements."
     And I will be shown the password policy requirements
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |User    |current_pwd|password    |confirm_pwd|
-      |Assessor| test@123  |test@12?    |test@?12   |
-      |Trainer1|  test@123 |test@12?    | test@?12  |
+      |user    |current_pwd|password    |confirm_pwd|
+      |Assessor3| test@123  |test@12?    |test@?12   |
+      |Trainer2|  test@123 |test@12?    | test@?12  |
 
-
+  @manual
   Scenario Outline: Password changed too recently
-    Given I login as an "<User>"
+    Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
     Then I request to expand the 'Change password' section
@@ -80,6 +82,6 @@ so that I can ensure my account security and continued access to the system.
     And I have changed my password within the last 24 hours
     Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <15-Jun-2016 17:27>"
     Examples:
-      |User|current_pwd|password    |confirm_pwd|
-      |Assessor| test@123  |test@12? |test@?12   |
-      |Trainer1|  test@123 |test@12? | test@?12  |
+      |user|current_pwd|password    |confirm_pwd|
+      |Assessor3| test@123  |test@12? |test@?12   |
+      |Trainer2|  test@123 |test@12? | test@?12  |
