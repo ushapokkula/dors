@@ -32,41 +32,41 @@ so that I can ensure my account security and continued access to the system.
     And I will remain on the same page
     And password will not be changed
     Examples:
-      |User    |current_pwd|password|confirm_pwd|incorrect_password|
-      |Assessor3| test@1234  | test@123  | test@123     |test123@     |
-      #|Trainer1| P@s5w0rd  | test@123  | test@123     |test@123           |
+      |User     |current_pwd|password|confirm_pwd|incorrect_password|
+      |Assessor3| test@1234 |test@123 | test@123 |test123@          |
+      |Trainer1 | P@s5w0rd  |test@123| test@123  |test@123          |
 
 
   Scenario Outline: Password confirmation mismatch validation
     Given I login as an "<User>"
     And I navigate to "MY PROFILE" page
-    And I entered the password change data
+    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
     And I click "Save"
     When the new password and the confirmation of new password mismatch
-    Then the system will highlight the validation error on the password confirmation field
-    And I will see a message "The passwords must match."
-    And I will remain on same page
-    And password will not changed
+    Then the system will highlight those fields
+    And I will see a validation error message on the password confirmation field "Sorry, the passwords do not match."
+    And I will remain on the same page
+    And password will not be changed
     Examples:
-      |User|
-      |Assessor|
-      |Trainer1|
+      |User    |current_pwd|password|confirm_pwd|
+      |Assessor| test@123  |test@12?|test@?12   |
+      |Trainer1|  test@123 |test@12?| test@?12  |
 
   Scenario Outline: Password validation business rules fail
     Given I login as an "<User>"
     And I navigate to "MY PROFILE" page
-    And I entered the password change data
+    And I entered the password change data as "<current_pwd>","<password>","<confirm_pwd>"
     And I click "Save"
     And the current password is correct
     When the new password does not meet the password policy requirement
-    Then the system will highlight the validation error on the new password fields and show a message, "Your new password is invalid. Please ensure it meets the password policy requirements."
+    Then the system will highlight the validation error message on the new password field,"Your new password is invalid. Please ensure it meets the password policy requirements."
     And I will be shown the password policy requirements
     And I will remain on the same page
-    And password will not changed
+    And password will not be changed
     Examples:
-      |User|
-      |Assessor|
-      |Trainer1|
+      |User    |current_pwd|password    |confirm_pwd|
+      |Assessor| test@123  |test@12?    |test@?12   |
+      |Trainer1|  test@123 |test@12?    | test@?12  |
 
   Scenario Outline: Password changed too recently
     Given I login as an "<User>"

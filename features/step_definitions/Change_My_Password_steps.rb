@@ -45,3 +45,29 @@ And (/^password will not be changed$/)do
   expect(page).to have_no_css(".toast-message")
 end
 
+
+When (/^the new password and the confirmation of new password mismatch$/)do
+  new_password =find("#password").value
+  confirm_new_password = find("#passwordConfirm").value
+  expect((new_password != confirm_new_password))
+end
+
+And (/^I will see a validation error message on the password confirmation field "([^"]*)"$/)do |password_confirm_mismatch_msg|
+  expect(page).to have_css("p.help-block", text: password_confirm_mismatch_msg )
+end
+
+And (/^the current password is correct$/)do
+
+end
+
+When (/^the new password does not meet the password policy requirement$/)do
+
+end
+
+Then (/^the system will highlight the validation error message on the new password field,"([^"]*)"$/)do|password_ploicy_req_msg|
+
+end
+
+And (/^I will be shown the password policy requirements$/)do
+
+end
