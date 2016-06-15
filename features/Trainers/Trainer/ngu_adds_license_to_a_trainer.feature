@@ -104,7 +104,7 @@ Feature: NGU Adds a license to a trainer
   Scenario: Generating licence numbers and saving to database and verify the success message
     And I fill Mandatory fields with required details on create trainer form
     And I click "Create Trainer"
-    Then a Success message will be displayed for Create Trainer "New trainer successfully created."
+    And a Success message will be displayed for Create Trainer "New trainer successfully created."
     And I will be redirected to the Update trainer page
     And I add two licences to the trainer with "Berks-Scheme" and "Motorway Course" with status as "Full"
     And I click "Add licence"
