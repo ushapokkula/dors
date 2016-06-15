@@ -72,7 +72,7 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user    |current_pwd|password    |confirm_pwd|
-      |Assessor3| test@123  |deena@123    |test@?12   |
+      |Assessor3| test@123  |deena@123  |deena@123 |
       |Trainer2|  test@123 |test@12?    | test@?12  |
 
   @manual

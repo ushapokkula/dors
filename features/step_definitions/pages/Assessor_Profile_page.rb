@@ -106,7 +106,7 @@ end
   #end
 
   def random_string(x)
-    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
+    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).joinr
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
     string = (0..x).map {chars.sample}.join
   end

@@ -16,6 +16,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   elements :forcearea_list, "#assessorForceAreas + ul li "
   elements :assessor_input_fields, "label.control-label"
   element :password, "#password"
+  element :currentpassword, "#currentPassword"
 
 
   def verify_assessor_record_details(new_table)

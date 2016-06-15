@@ -23,18 +23,17 @@ And (/^'Profile details' section will be collapsed$/)do
   expect(page.should_not have_button("Update", visible: true))
 end
 
-
-And (/^I entered the password change data as "([^"]*)","([^"]*)","([^"]*)"$/)do |current_pwd, password, confirm_pwd|
-   fill_in('currentPassword', :with=> current_pwd)
-   fill_in('password', :with=> password)
-   fill_in('passwordConfirm', :with=> confirm_pwd)
+And (/^I enter the current password as "([^"]*)"$/)do |current_pwd|
+  fill_in('currentPassword', :with=> current_pwd)
 end
 
-When (/^the current password is incorrect$/)do
-  @current_pwd = "P@s5w0rd1"
-    if page.find('#currentPassword').value.should_not be_(@current_pwd)
-    end
-    end
+And(/^I enter Password as "([^"]*)"$/)do|password|
+  fill_in('password', :with=> password)
+end
+
+And (/^I enter the Confirm password as "([^"]*)"$/)do|confirm_pwd|
+fill_in('passwordConfirm', :with=> confirm_pwd)
+end
 
 
 And (/^the system will show validation error message, "([^"]*)"$/)do |current_pwd_invalid_msg|
@@ -57,19 +56,25 @@ And (/^I will see a validation error message on the password confirmation field 
 end
 
 And (/^the current password is correct$/)do
-
-end
+  currentPasswordLength = find("#currentPassword").length
+  if (currentPasswordLength>=8)&&(currentPasswordLength<=26)
+    page.find("#currentPassword").value.length.should.eq '8'
+    puts "current password is following business rule"
+  end
+  end
 
 When (/^the new password does not meet the password policy requirement$/)do
-
+  @user = $username_value.split(//).first(3).join.to_s
+  fill_in('password', :with =>@user+"1234!")
+  page.find('#password').native.send_keys(:tab)
 end
 
 Then (/^the system will highlight the validation error message on the new password field,"([^"]*)"$/)do|password_ploicy_req_msg|
-
+  expect(page).to have_css("p.help-block", text: password_ploicy_req_msg )
 end
 
 And (/^I will be shown the password policy requirements$/)do
-
+  page.find('#password').native.send_keys(:tab)
 end
 
 When (/^I am on 'My Profile' page in default view$/)do
