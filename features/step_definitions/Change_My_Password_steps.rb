@@ -31,7 +31,7 @@ And(/^I enter Password as "([^"]*)"$/)do|password|
   fill_in('password', :with=> password)
 end
 
-And (/^I enter the Confirm password as "([^"]*)"$/)do|confirm_pwd|
+And (/^I enter Confirm password as "([^"]*)"$/)do|confirm_pwd|
 fill_in('passwordConfirm', :with=> confirm_pwd)
 end
 
@@ -43,7 +43,6 @@ end
 And (/^password will not be changed$/)do
   expect(page).to have_no_css(".toast-message")
 end
-
 
 When (/^the new password and the confirmation of new password mismatch$/)do
   new_password =find("#password").value
@@ -59,22 +58,24 @@ And (/^the current password is correct$/)do
   currentPasswordLength = find("#currentPassword").value.length
   if (currentPasswordLength>=8)&&(currentPasswordLength<=26)
     page.find("#currentPassword").value.length.should.eq '8'
-    puts "current password is following business rule"
+    puts "current password field value is following business rule"
   end
   end
 
 When (/^the new password does not meet the password policy requirement$/)do
-  @user = $username_value.split(//).first(3).join.to_s
-  fill_in('password', :with =>@user+"1234!")
+  password_field_value= find("#password").value
+  puts password_field_value
+  if password_field_value.split(//).first(2).join.to_s
+  end
   page.find('#password').native.send_keys(:tab)
 end
 
-Then (/^the system will highlight the validation error message on the new password field,"([^"]*)"$/)do|password_ploicy_req_msg|
+Then (/^the system will highlight the validation error message on the password field,"([^"]*)"$/)do|password_ploicy_req_msg|
   expect(page).to have_css("p.help-block", text: password_ploicy_req_msg )
 end
 
 And (/^I will be shown the password policy requirements$/)do
-  page.find('#password').native.send_keys(:tab)
+  #page.find('#password').native.send_keys(:tab)
 end
 
 When (/^I am on 'My Profile' page in default view$/)do
