@@ -56,7 +56,7 @@ And (/^I will see a validation error message on the password confirmation field 
 end
 
 And (/^the current password is correct$/)do
-  currentPasswordLength = find("#currentPassword").length
+  currentPasswordLength = find("#currentPassword").value.length
   if (currentPasswordLength>=8)&&(currentPasswordLength<=26)
     page.find("#currentPassword").value.length.should.eq '8'
     puts "current password is following business rule"
