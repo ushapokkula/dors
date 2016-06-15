@@ -59,7 +59,7 @@ Feature: NGU Adds a license to a trainer
       | Motorway Course | Provisional    | 183  |
 
 
-  @removing_licences
+  @removing_licences  @DR-677
   Scenario: verify the default no:of days when licence status is selected
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
