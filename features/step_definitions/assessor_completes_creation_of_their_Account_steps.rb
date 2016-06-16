@@ -44,9 +44,13 @@ And(/^I enter the Username which does'nt match against the record created$/) do
   fill_in('username', :with => 'AutoUser')
 end
 
-Then(/^I see a valiadation message displayed as "([^"]*)"$/) do |message|
+Then(/^I see a validation message displayed as "([^"]*)"$/) do |message|
   puts expect(page).to have_css(".form-group.has-error p", text: message)
   puts message
+end
+
+And(/^I will be shown password policy requirements to set the password$/)do
+
 end
 
 When(/^I enter the Email which does'nt match against the record created$/) do
@@ -67,7 +71,6 @@ end
 
 And(/^I navigate to outlook web email$/) do
   page.driver.browser.switch_to.window(page.driver.find_window("https://mail.wtg.co.uk/owa/#path=/mail"))
-  # visit "https://mail.wtg.co.uk/owa/"
 end
 
 And(/^I open the email which i have already used to set the password successfully$/) do

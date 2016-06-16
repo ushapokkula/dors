@@ -53,19 +53,19 @@ And(/^I select licence as "([^"]*)" to add a licence$/) do |licence|
 end
 
 And(/^I see 'X' button for added new licence which is not saved to dataabase$/) do
-  expect(page).to have_css(".btn.btn-danger", visible: true)
+  expect(page).to have_css(".btn-remove-license", visible: true)
 end
 
 And(/^The licence row will be deleted$/) do
-  expect(page).to have_no_css(".btn.btn-danger", visible: true)
+  expect(page).to have_no_css(".btn-remove-license", visible: true)
 end
 
 And(/^The X button will not be available for licences persisted in the DB$/) do
-  expect(page).to have_no_css(".btn.btn-danger.ng-hide", visible: true)
+  expect(page).to have_no_css(".btn-remove-license", visible: true)
 end
 
 And(/^I click X button$/) do
-  find(".btn.btn-danger").click
+  find(".btn-remove-license").click
 end
 
 And(/^Changes will be reflected on page$/) do
@@ -111,9 +111,11 @@ And(/^The system will update the Trainer record in the database and add licenses
 end
 
 And(/^licence Id will be generated in this format "([^"]*)"$/) do |format|
-  puts $licence_code
-  puts $licence_code == '16' ####/###'
-end
+  actual_format = $licence_code.split('/')
+  expected_format = format.split('/')
+  expect(expected_format[0].length).to eq(actual_format[0].length)
+  expect(expected_format[1].length).to eq(actual_format[1].length)
+   end
 
 And(/^I see that there no licences for the same course$/) do
   @trainers.create_trainer_record_page.verify_duplicate_licences_for_same_course

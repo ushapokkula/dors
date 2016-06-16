@@ -111,7 +111,7 @@ Feature: NGU Adds a license to a trainer
     And I see there are no multiple licences for "Berks Scheme" and "Motorway Course"
     When I click "Update Trainer"
     And The system will update the Trainer record in the database and add licenses against it
-    #And licence Id will be generated in this format "YYXXXX/CCC"
+    And licence Id will be generated in this format "YYXXXX/CCC"
     And the system will show a success message, "Trainer record successfully updated."
     And I will be redirected to the Update trainer page
 
