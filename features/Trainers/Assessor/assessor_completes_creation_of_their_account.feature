@@ -61,7 +61,7 @@ Feature: Assessor Creates Their Account
     And I enter Confirm Password
     And When the password and confirm password both match
     When I click "Create Account"
-    Then I see a valiadation message displayed as "Sorry, your username or email is incorrect."
+    Then I see a validation message displayed as "Sorry, your username or email is incorrect."
 
 
   @email_does'nt_match
@@ -81,7 +81,7 @@ Feature: Assessor Creates Their Account
     And I enter Confirm Password
     And When the password and confirm password both match
     When I click "Create Account"
-    Then I see a valiadation message displayed as "Sorry, your username or email is incorrect."
+    Then I see a validation message displayed as "Sorry, your username or email is incorrect."
 
   @invalid_email
   Scenario: Verify the validation message when the email format is Invalid
@@ -98,7 +98,7 @@ Feature: Assessor Creates Their Account
     And I enter email which has invalid format
     And I enter Password
     And I enter Confirm Password
-    Then I see a valiadation message displayed as "Please provide a valid email address."
+    Then I see a validation message displayed as "Please provide a valid email address."
 
   @password_mismatch
   Scenario: Verify the validation message when the password and confirm password fields does'nt match
@@ -116,7 +116,7 @@ Feature: Assessor Creates Their Account
     And I enter Password
     When I enter confirm password which does'nt match with password
     And I click "Create Account"
-    Then I see a valiadation message displayed as "Sorry, the passwords do not match. Please retype the password."
+    Then I see a validation message displayed as "Sorry, the passwords do not match. Please retype the password."
 
   @password_does'nt_meet_policy
   Scenario: Verify the validation message when the password  does'nt meet policy requirements
@@ -132,7 +132,7 @@ Feature: Assessor Creates Their Account
     And  I enter Email
     When I enter the password which does'nt meet password policy requirements
     And I enter Confirm Password
-    Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+    Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
     #And I will be shown password policy requirements to set the password
 
   @link_expiry
@@ -188,7 +188,7 @@ Feature: Assessor Creates Their Account
      And I see that the email is generated and sent to the registered email address
      And I click the link generated in the email to set password
      When I enter the password less than minimum limit
-     Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+     Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
      And I refresh the page
      When I enter the password morethan than the maximum limit
      Then The field is restricted to 26 characters
@@ -205,7 +205,7 @@ Feature: Assessor Creates Their Account
      And I click the link generated in the email to set password
      And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
      When I enter the password containing more than two consecutive chars of Username
-     Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+     Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
 
 
 

@@ -1,4 +1,4 @@
-@DR-443 @pass
+@DR-443
 Feature: Change Password of (Assessor || Trainer)
 As a user,
 I want to be able to change my password,
@@ -57,7 +57,7 @@ so that I can ensure my account security and continued access to the system.
       |Trainer2| test@123  |auto_test123|test#!&12|
 
 
-  Scenario Outline: verify Password validation message when Password value not as per business rule
+  Scenario Outline: verify Password  message when Password value not as per business rule
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
@@ -87,7 +87,7 @@ so that I can ensure my account security and continued access to the system.
     And I enter Password as "<password>"
     And I enter Confirm password as "<confirm_pwd>"
     And I click "Save"
-    Then I see a message saying "Your password has been successfully updated."
+    Then I see a message saying "your password successfully updated"
     And I will be re directed to "<home_page>" page
     Examples:
       |user     |current_pwd|password |confirm_pwd|home_page     |
@@ -101,9 +101,7 @@ so that I can ensure my account security and continued access to the system.
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
     Then I request to expand the 'Change password' section
-    When I navigate to "MY PROFILE" page
-    Then I request to expand the 'Change password' section
-    Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <date time>"
+    Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <15-Jun-2016 17:27>"
     Examples:
       |user     |
       |Assessor5|

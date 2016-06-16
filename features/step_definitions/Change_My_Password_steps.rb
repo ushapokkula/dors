@@ -72,13 +72,12 @@ When (/^the new password does not meet the password policy requirement$/)do
   newPasswordLength=find("#password").value.length
   puts password_field_value
   if ((password_field_value).split(//).first(2).join.to_s == (user_name).split(//).first(2).join.to_s)
-    puts "password field first two consecutive chars are same as username"
-    page.find('#password').native.send_keys(:tab)
+    puts "password field first two consecutive chars are same as yourname"
     elsif(newPasswordLength<8)
       newPasswordLength.should.eq '8'
     puts "current password field mini value is not following business rule"
-  elsif(password_field_value == @trainers.create_assessor_record_page.random_new_password_string(8))
-    puts "new password field should accept only ~!@#$%&*_-+=\,.?/|"
+  #elsif(password_field_value == @trainers.create_assessor_record_page.random_new_password_string(8))
+    #puts "new password field should accept only ~!@#$%&*_-+=\,.?/|"
   end
 end
 
@@ -87,10 +86,12 @@ Then (/^the system will highlight the validation error message on the password f
 end
 
 And (/^I will be shown the password policy requirements$/)do
-  find("input#password").set("12@test")
+  user_name=find(".dors-user-fullname").text
+  find("input#password").set((user_name.split(//).first(5).join.to_s)+ "@12334")
+  #find("input#password").popover-trigger('focus')
   expect(page).to have_css('.popover', visible: true)
-
- end
+  expect(page).to have_css('.password-policy-requirement', visible: true)
+end
 
 When (/^I am on 'My Profile' page in default view$/)do
   expect(page.should have_css(".panel-group .panel:nth-child(2).panel-open", visible:true))
@@ -110,5 +111,5 @@ end
 
 Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
   expect(page).to have_css(".panel-heading", text:'Your password was changed recently' , visible:true)
-  expect(page).to have_css(".panel-body", text: password_recently_changed_msg , visible:true)
-end
+  expect(page).to have_css(".next-password-reset-container", text: password_recently_changed_msg , visible:true)
+  end
