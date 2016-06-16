@@ -6,7 +6,7 @@ so that I can ensure my account security and continued access to the system.
 
   Background:
     Given that I have licence.ndors.org.uk page opened
-
+  @pass
   Scenario Outline: Collapsible sections
     When I login as an "<user>"
     And I navigate to "MY PROFILE" page
@@ -75,7 +75,7 @@ so that I can ensure my account security and continued access to the system.
     Examples:
       |user    |current_pwd|password    |confirm_pwd|
       #|Assessor3| test@123  |dee@12334   |dee@12334 |
-      |Trainer2|  test@123 |roopa@123   | roopa@123   |
+      |Trainer2|  test@123 |Roopa@123   | Roopa@123   |
 
 
   @manual

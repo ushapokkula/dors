@@ -69,10 +69,16 @@ When (/^the new password does not meet the password policy requirement$/)do
   user_name=find(".dors-user-fullname").text
   puts user_name
   password_field_value= find("#password").value
+  newPasswordLength=find("#password").value.length
   puts password_field_value
-  if (password_field_value).split(//).first(2).join.to_s == (user_name).split(//).first(2).join.to_s
+  if ((password_field_value).split(//).first(2).join.to_s == (user_name).split(//).first(2).join.to_s)
     puts "password field first two consecutive chars are same as username"
     page.find('#password').native.send_keys(:tab)
+    elsif(newPasswordLength<8)
+      newPasswordLength.should.eq '8'
+    puts "current password field mini value is not following business rule"
+  elsif(password_field_value == @trainers.create_assessor_record_page.random_new_password_string(8))
+    puts "new password field should accept only ~!@#$%&*_-+=\,.?/|"
   end
 end
 
@@ -81,8 +87,10 @@ Then (/^the system will highlight the validation error message on the password f
 end
 
 And (/^I will be shown the password policy requirements$/)do
-  page.find('#password').native.send_keys(:tab)
-end
+  find("input#password").set("12@test")
+  expect(page).to have_css('.popover', visible: true)
+
+ end
 
 When (/^I am on 'My Profile' page in default view$/)do
   expect(page.should have_css(".panel-group .panel:nth-child(2).panel-open", visible:true))

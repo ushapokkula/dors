@@ -113,6 +113,11 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
 
+  def random_new_password_string(x)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(""%^(){}[];:><)-%w(~!@#$%&*_-+=\,.?/|))
+    string = (1..x).map { chars.sample }.join
+  end
+
   def verify_order_of_assessor_input_fields(new_table)
     fields=[], assessor_fields=[]
     assessor_input_fields.each do |input_fields|
