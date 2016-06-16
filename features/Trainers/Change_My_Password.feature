@@ -1,5 +1,5 @@
 @DR-443
-Feature: Change Password of (Assessor)& (Trainer)
+Feature: Change Password of (Assessor || Trainer)
 As a user,
 I want to be able to change my password,
 so that I can ensure my account security and continued access to the system.
@@ -17,10 +17,11 @@ so that I can ensure my account security and continued access to the system.
     And 'Profile details' section will be collapsed
     Examples:
       |user|
-      |Assessor3|
+      |Assessor|
       |Trainer2|
+
   @pass
-  Scenario Outline: Enter the incorrect 'Current Password' and verify the validation message
+  Scenario Outline: Entered incorrect 'Current Password' and verify that field validation message
     When I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
@@ -34,9 +35,10 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user     |current_pwd|password|confirm_pwd|
-      |Assessor3| test@1234 |test@123 | test@123 |
-      |Trainer2 | P@s5w0rd  |test@123| test@123  |
+      |Assessor| test@1234 |test@123 | test@123 |
+      |Trainer2| test!1234  |test@123| test@123 |
 
+   @pass
   Scenario Outline: Verify validation message when Password and confirm Password mismatches
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
@@ -52,11 +54,11 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user    |current_pwd|password|confirm_pwd|
-      |Assessor3| test@123  |test@12?|test@?12   |
+      |Assessor| test@123  |test@12?|test@?12   |
       |Trainer2|  test@123 |test@12?| test@?12  |
 
-
-  Scenario Outline: verify the validation message When Password value not as per business rule
+  @pass
+  Scenario Outline: verify the validation message when Password value not as per business rule
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
@@ -72,11 +74,12 @@ so that I can ensure my account security and continued access to the system.
     And password will not be changed
     Examples:
       |user    |current_pwd|password    |confirm_pwd|
-      |Assessor3| test@123  |dee@12334   |dee@12334 |
-      #|Trainer2|  test@123 |test@12?    | test@?12  |
+      #|Assessor3| test@123  |dee@12334   |dee@12334 |
+      |Trainer2|  test@123 |roopa@123   | roopa@123   |
+
 
   @manual
-  Scenario Outline: Verify Password changed too recently message (every 24 hours)
+  Scenario Outline: Verify Password changed too recently message (within the last 24 hours)
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
@@ -85,13 +88,12 @@ so that I can ensure my account security and continued access to the system.
     And I enter Password as "<password>"
     And I enter Confirm password as "<confirm_pwd>"
     And I click "Save"
-    Then I see a message saying "Successfully updated my Password"
-    And I will be re directed to Licenses page
+    Then I see a message saying "your password successfully updated"
+    And I will be re directed to "<home_page>" page
     When I navigate to "MY PROFILE" page
     Then I request to expand the 'Change password' section
-    #And I have changed my password within the last 24 hours
     Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on <15-Jun-2016 17:27>"
     Examples:
-      |user     |current_pwd|password |confirm_pwd|
-      |Assessor| test@123  |test@12? |test@?12   |
-      |Trainer2 |  test@123 |test@12? | test@?12  |
+      |user     |current_pwd|password |confirm_pwd|home_page     |
+      |Assessor5| test@123  |test@12? |test@?12   |My assessments|
+      |Trainer3 |  test@123 |test@12? | test@?12  |My Licenses   |

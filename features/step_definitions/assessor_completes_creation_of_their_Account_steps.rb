@@ -44,7 +44,7 @@ And(/^I enter the Username which does'nt match against the record created$/) do
   fill_in('username', :with => 'AutoUser')
 end
 
-Then(/^I see a valiadation message displayed as "([^"]*)"$/) do |message|
+Then(/^I see a validation message displayed as "([^"]*)"$/) do |message|
   puts expect(page).to have_css(".form-group.has-error p", text: message)
   puts message
 end

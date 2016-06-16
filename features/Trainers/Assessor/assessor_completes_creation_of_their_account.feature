@@ -168,7 +168,7 @@ Feature: Assessor Creates Their Account
     And I click the link generated in the email to set password
     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     Then I see the following fields as "<Mandatory>" and when the fields are left blank
-    Then I see a valiadation message displayed as "<Error Messages>"
+    Then I see a validation message displayed as "<Error Messages>"
 
     Examples:
       | Mandatory        | Error Messages                   |

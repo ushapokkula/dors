@@ -47,7 +47,7 @@ end
 When (/^the new password and the confirmation of new password mismatch$/)do
   new_password =find("#password").value
   confirm_new_password = find("#passwordConfirm").value
-  expect((new_password != confirm_new_password))
+  expect(new_password) != confirm_new_password
 end
 
 And (/^I will see a validation error message on the password confirmation field "([^"]*)"$/)do |password_confirm_mismatch_msg|
@@ -56,18 +56,24 @@ end
 
 And (/^the current password is correct$/)do
   currentPasswordLength = find("#currentPassword").value.length
-  if (currentPasswordLength>=8)&&(currentPasswordLength<=26)
-    page.find("#currentPassword").value.length.should.eq '8'
+  if(currentPasswordLength<8)
+    currentPasswordLength.should.eq '8'
+    puts "current password field mini value is not following business rule"
+  elsif(currentPasswordLength<=26)
+    currentPasswordLength.should.eq '26'
     puts "current password field value is following business rule"
   end
-  end
+end
 
 When (/^the new password does not meet the password policy requirement$/)do
+  user_name=find(".dors-user-fullname").text
+  puts user_name
   password_field_value= find("#password").value
   puts password_field_value
-  if password_field_value.split(//).first(2).join.to_s
+  if (password_field_value).split(//).first(2).join.to_s == (user_name).split(//).first(2).join.to_s
+    puts "password field first two consecutive chars are same as username"
+    page.find('#password').native.send_keys(:tab)
   end
-  page.find('#password').native.send_keys(:tab)
 end
 
 Then (/^the system will highlight the validation error message on the password field,"([^"]*)"$/)do|password_ploicy_req_msg|
@@ -75,7 +81,7 @@ Then (/^the system will highlight the validation error message on the password f
 end
 
 And (/^I will be shown the password policy requirements$/)do
-  #page.find('#password').native.send_keys(:tab)
+  page.find('#password').native.send_keys(:tab)
 end
 
 When (/^I am on 'My Profile' page in default view$/)do
@@ -85,10 +91,16 @@ When (/^I am on 'My Profile' page in default view$/)do
   expect(page.should_not have_css(".panel-group .panel:nth-child(1).panel-open", visible:false))
 end
 
-And (/^I have changed my password within the last 24 hours$/)do
-
+Then (/^I see a message saying "([^"]*)"$/)do |success_msg_pwd_update|
+  expect(page).to have_css(".toast-message", text: success_msg_pwd_update )
 end
 
-Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
+And (/^I will be re directed to "([^"]*)" page$/)do |home_page|
+  expect(page).to have_css("h1", text: home_page , visible:true)
+end
 
+
+Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
+  expect(page).to have_css(".panel-heading", text:'Your password was changed recently' , visible:true)
+  expect(page).to have_css(".panel-body", text: password_recently_changed_msg , visible:true)
 end
