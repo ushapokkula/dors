@@ -138,10 +138,10 @@ Feature: NGU Adds a license to a trainer
       And I will be able to add licences to the trainer record as i create them
       And Licence section will by default include one licence row with these fields
        |Licence_section_fields|
-       |Course Name           |
-       |Licence Status        |
+       |Course name           |
+       |Licence status        |
        |Expiry Date           |
-      And the Course Name dropdown will be populated with current active schemes
+      And The Course Name dropdown will be populated with current active schemes
       And I see the following default Licence status in Licence status dropdown
         | Licence Status          |
         | ---Please select---     |
@@ -151,9 +151,19 @@ Feature: NGU Adds a license to a trainer
         | Suspended               |
         | Revoked                 |
         | Surrendered             |
-      And a button 'Add a License' will also be available under the Licenses section
+      And I see button "Add licence" available under the licenses section
 
-
+    @DR-672  @add_licence_button_disabled/enabled
+      Scenario: Verify the Add licnece button disbaled/enabled when maximum licneces are reached
+      When I search for "test_button" and "add_licence" in the trainer search field
+      And I have trainer record loaded in editable view
+      And I have not reached the limit of maximum licences possible
+      And I add a new licence with "Speed Awareness" course and licence status as "Full"
+      And I click "Add licence"
+      Then The "Add licence" button  is not visible when maximum licenses are added to a trainer
+      And I see the message "You have reached the maximum number of licences" under licences section
+      When I click X button
+      Then The "Add licence" button is enabled
 
 
 
