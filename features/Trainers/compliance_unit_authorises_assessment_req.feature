@@ -28,7 +28,7 @@ Feature:DR-305
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
     And I click "Approve" against one of the items on the list
-    And I see a message "has been marked Booked"
+    And I see a message displaying that the assessment has been booked with assessment Id and date
     And The request will be accepted and status of assessment request will be updated to Booked
     And I logout
     And I login as an "Assessor"
