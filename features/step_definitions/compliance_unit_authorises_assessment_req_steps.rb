@@ -19,3 +19,9 @@ Then(/^The trainers on this request will not be available for further bookings$/
   expect(page).to have_selector("h1", text:"Request Assessment")
   @trainers.compliance_unit_authorises_assessment_req_page.verify_trainers_after_approve
 end
+
+And(/^I see a message displaying that the assessment has been booked with assessment Id and date$/)do
+  assessment_id = find("#modified-assessment-id").text
+  assessment_date = find("#modified-assessment-date").text
+ puts  expect(page).to have_css(".alert.alert-success", text:"Assessment #{assessment_id} scheduled for #{assessment_date} has been marked Booked")
+end

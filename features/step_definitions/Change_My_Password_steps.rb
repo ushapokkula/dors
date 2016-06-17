@@ -112,4 +112,7 @@ end
 Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
   expect(page).to have_css(".panel-heading", text:'Your password was changed recently' , visible:true)
   expect(page).to have_css(".next-password-reset-container", text: password_recently_changed_msg , visible:true)
+  within('.next-password-reset-container')do
+    expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Requested")
+  end
   end
