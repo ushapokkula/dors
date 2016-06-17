@@ -28,7 +28,7 @@
       And The link will include a crypt nonce making it difficult to guess
       And The link will be  valid for 48 hours from the point of email send timestamp
       And I come back to Trainers portal and I logout
-      #where ActiveDirectoryUsername="+"'"+ $username_value+"'"
+
 
 
       Examples:

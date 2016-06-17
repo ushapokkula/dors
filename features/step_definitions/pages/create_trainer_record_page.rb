@@ -82,6 +82,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
+    $username_value = username.value
   end
 
 end

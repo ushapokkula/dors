@@ -269,7 +269,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   def validate_nonce
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
-    result = client.execute("select Nonce from [DORS_Classified].[dbo].[tbl_SentEmail] where ActiveDirectoryUsername="+"'"+$username_value+"'")
+    result = client.execute("select Nonce from [DORS_Classified].[dbo].[tbl_SentEmail] where ActiveDirectoryUsername ="+"'"+$username_value+"'")
     result.each do |row|
       $nonce = row['Nonce']
     end
