@@ -2,7 +2,6 @@ And(/^I request all assessments$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   2.times do
    @trainers.ngu_search_assessment_id_page.request_assessment
-  #@trainers.ngu_search_assessment_id_page.request_assessment
   end
   end
 

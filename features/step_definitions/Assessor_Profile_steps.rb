@@ -17,7 +17,7 @@ And(/^I will be redirected to "MY ASSESSMENTS" page$/)do
 end
 
 Then (/^unsaved changes will be lost$/)do
-click_link_or_button('MY PROFILE')
+ click_link_or_button('MY PROFILE')
   find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
 end
 
