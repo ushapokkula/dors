@@ -109,10 +109,10 @@ And (/^I will be re directed to "([^"]*)" page$/)do |home_page|
 end
 
 
-Then (/^I will see the your password changed recently message,"([^"]*)"$/)do |password_recently_changed_msg|
+Then (/^I will see the your password changed recently message,"([^"]*)([^"]*)"$/)do |password_recently_changed_msg|
   expect(page).to have_css(".panel-heading", text:'Your password was changed recently' , visible:true)
   expect(page).to have_css(".next-password-reset-container", text: password_recently_changed_msg , visible:true)
   within('.next-password-reset-container')do
-    expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Requested")
+    expect(page).to have_content("You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on #{('.next-password-reset-date').text}")
   end
   end

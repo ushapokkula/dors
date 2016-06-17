@@ -87,11 +87,11 @@ so that I can ensure my account security and continued access to the system.
     And I enter Password as "<password>"
     And I enter Confirm password as "<confirm_pwd>"
     And I click "Save"
-    Then I see a message saying "your password successfully updated"
+    Then I see a message saying "your password has been successfully updated"
     And I will be re directed to "<home_page>" page
     Examples:
       |user     |current_pwd|password |confirm_pwd|home_page     |
-      |Assessor5| P@ssw0rd5  |test@12? |test@12?   |My assessments|
+      |Assessor5| P@ssw0rd6  |P@ssw0rd7 |P@ssw0rd7 |My assessments|
       |Trainer3 | P@s5w0rd3  |test@?12 | test@?12  |My Licenses   |
 
 
@@ -101,11 +101,9 @@ so that I can ensure my account security and continued access to the system.
     And I navigate to "MY PROFILE" page
     When I am on 'My Profile' page in default view
     Then I request to expand the 'Change password' section
-    Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on #{<15-Jun-2016 17:27>}#"
+    Then I will see the your password changed recently message,"You will not be able to change your password at this point in time because it was recently changed. You will be able to change password on "<15-Jun-2016 17:27>""
     Examples:
       |user     |
-      |Assessor5|
+      #|Assessor5|
       |Trainer3 |
 
-    @manual
-    Scenario Outline:
