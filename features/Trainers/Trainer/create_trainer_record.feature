@@ -63,8 +63,8 @@ Feature: As an an NGU (TrainingGovernance),
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
 
 
-     @DR-674 @Update_Trainer_Licences
-     Scenario Outline: Generating Licence Numbers and saving to database
+     @Update_Trainer_Licences
+     Scenario Outline: Generating License and Verifying licenses updating functionality
        Then I fill Mandatory fields with required details on create trainer form
        And I have added licences for the trainer and all mandatory fields for every licence have a value
        And I click Add licence button

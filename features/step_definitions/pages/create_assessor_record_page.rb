@@ -16,6 +16,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   elements :forcearea_list, "#assessorForceAreas + ul li "
   elements :assessor_input_fields, "label.control-label"
   element :password, "#password"
+  element :currentpassword, "#currentPassword"
 
 
   def verify_assessor_record_details(new_table)
@@ -111,6 +112,11 @@ class CreateAssessorRecordPage < SitePrism::Page
     string = (1..x).map { chars.sample }.join
   end
 
+
+  def random_new_password_string(x)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(""%^(){}[];:><)-%w(~!@#$%&*_-+=\,.?/|))
+    string = (1..x).map { chars.sample }.join
+  end
 
   def verify_order_of_assessor_input_fields(new_table)
     fields=[], assessor_fields=[]
@@ -299,5 +305,6 @@ class CreateAssessorRecordPage < SitePrism::Page
     end
 
   end
+
 
 end
