@@ -43,6 +43,7 @@ Feature: Trainer completes the creation of their account
     When I click "Create Account"
     Then I see a success message displayed as "Password has been set on your account and you can now login to the system"
 
+
   @username_does'nt_match @nologout
   Scenario: Verify the validation message when the username does'nt match with trainer record created
 
@@ -61,6 +62,7 @@ Feature: Trainer completes the creation of their account
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a validation message displayed as "Sorry, your username or email is incorrect."
+
 
   @email_does'nt_match @nologout
   Scenario: Verify the validation message when the email does'nt match with trainer record created

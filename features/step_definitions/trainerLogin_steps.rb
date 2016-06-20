@@ -1,6 +1,6 @@
 Given(/^that I have licence\.ndors\.org\.uk page opened$/) do
-#@trainers.trainer_login_page.load
-  visit "https://auto.trainer.dors.wtg.co.uk"
+@trainers.trainer_login_page.load
+  #visit "https://auto.trainer.dors.wtg.co.uk"
 end
 
 Given(/^I login as an "([^"]*)"$/) do |user|

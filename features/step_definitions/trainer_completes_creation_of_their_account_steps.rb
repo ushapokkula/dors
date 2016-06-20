@@ -8,3 +8,6 @@ puts expect(page).to have_css(".popover.ng-isolate-scope.fade.in.bottom", visibl
 puts expect(page).to have_css(".password-policy-requirement",visible:true)
 end
 
+And(/^I close the broswer window$/)do
+  page.execute_script "window.close();"
+end
