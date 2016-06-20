@@ -78,9 +78,9 @@ end
   @trainers.assessor_profile_page.verify_highlighted_fields
 end
 
-And(/^show "([^"]*)" against those fields$/)do|validations|
-  validations = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
-  puts validations
+And(/^show "([^"]*)" against those fields$/)do|validations_requirements|
+  validations_requirements = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
+  puts validations_requirements
 end
 
 When (/^I request to updated my profile data$/)do

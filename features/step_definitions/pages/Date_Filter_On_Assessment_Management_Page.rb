@@ -14,7 +14,6 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   element :notes_field, "#notes"
   elements :assessments_list, ".dors-table"
 
-
   def verify_assessment_sorting_by_date
     assessment_dates
     new_dates = assessment_dates.map { |x| x.text }
