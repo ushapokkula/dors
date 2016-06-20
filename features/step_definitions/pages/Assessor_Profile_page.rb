@@ -111,6 +111,11 @@ end
     string = (0..x).map {chars.sample}.join
   end
 
+  def random_email_string(x)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]-%w(""%^(){}[];:><)+%w(~!@#$%&*_-+=\,.?/|))
+    string = (1..x).map { chars.sample }.join
+  end
+
 
   def validateAddressMaxCHARS
     address_string = (assessor_address).set random_string(256)
@@ -132,7 +137,7 @@ end
   end
 
   def validatePrimaryEmailMaxCHARS
-    email_string = (primary_email).set random_string(256)
+    email_string = (primary_email).set random_email_string(256)
     emailLength = email_string.length
     if(emailLength>=255)
       page.should have_css("p.help-block", text:'Please provide a valid email address.')
