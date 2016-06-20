@@ -241,7 +241,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
@@ -255,7 +255,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
@@ -269,11 +269,14 @@ class CreateAssessorRecordPage < SitePrism::Page
   def validate_nonce
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
-    result = client.execute("select Nonce from [DORS_Classified].[dbo].[tbl_SentEmail] where ActiveDirectoryUsername="+"'"+ $username_value+"'")
+    result = client.execute("select Nonce from [DORS_Classified].[dbo].[tbl_SentEmail] where ActiveDirectoryUsername ="+"'"+$username_value+"'")
     result.each do |row|
       $nonce = row['Nonce']
     end
-    #expect($nonce).to include(find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text)
+    actual_nonce = find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text
+    split_link = actual_nonce.split("/")
+    expected_nonce = split_link[(split_link.length)-1]
+    expect($nonce).to eq(expected_nonce)
   end
 
   def verify_48_hours_validity
@@ -285,7 +288,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       $send_date = row['SentDate']
       $valid_until_date = row['NonceValidUntilDate']
     end
-    expect($valid_until_date).to be == ($send_date+172800)
+   expect($valid_until_date).to be == ($send_date+172800)
   end
 
 

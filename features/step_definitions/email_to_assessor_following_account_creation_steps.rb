@@ -21,3 +21,18 @@ end
 And(/^The link will be  valid for 48 hours from the point of email send timestamp$/) do
   @trainers.create_assessor_record_page.verify_48_hours_validity
 end
+
+And(/^I fill all fields on the "([^"]*)" form$/)do |page|
+  if page == "ASSESSORS"
+    @trainers.create_assessor_record_page.fill_create_assessor_fields
+  else
+    @trainers.create_trainer_record_page.filling_trainer_details
+  end
+end
+
+And(/^I come back to Trainers portal and I logout$/)do
+  visit "https://auto.trainer.dors.wtg.co.uk"
+  # page.driver.browser.switch_to.window(page.driver.browser.window_handles.first)
+  # expect(page.title)== "DORS Trainer"
+  click_link("Sign out")
+end

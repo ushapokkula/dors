@@ -25,3 +25,4 @@ And(/^I see a message displaying that the assessment has been booked with assess
   assessment_date = find("#modified-assessment-date").text
  puts  expect(page).to have_css(".alert.alert-success", text:"Assessment #{assessment_id} scheduled for #{assessment_date} has been marked Booked")
 end
+
