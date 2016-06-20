@@ -47,7 +47,9 @@ And(/^I login as "([^"]*)" and "([^"]*)" and request assessments as requested$/)
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.trainer_login_page.login_as(user1)
   @trainers.ngu_search_assessment_id_page.request_assessment
+  expect(page).to have_css("#requested-assessment-info")
   click_link("Sign out")
   @trainers.trainer_login_page.login_as(user2)
   @trainers.ngu_search_assessment_id_page.request_assessment
+  expect(page).to have_css("#requested-assessment-info")
 end
