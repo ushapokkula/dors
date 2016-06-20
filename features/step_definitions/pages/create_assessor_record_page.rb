@@ -273,7 +273,10 @@ class CreateAssessorRecordPage < SitePrism::Page
     result.each do |row|
       $nonce = row['Nonce']
     end
-    #expect($nonce).to include(find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text)
+    actual_nonce = find(:xpath,".//*[@id='Item.MessageUniqueBody']//a").text
+    split_link = actual_nonce.split("/")
+    expected_nonce = split_link[(split_link.length)-1]
+    expect($nonce).to eq(expected_nonce)
   end
 
   def verify_48_hours_validity
@@ -285,7 +288,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       $send_date = row['SentDate']
       $valid_until_date = row['NonceValidUntilDate']
     end
-  puts  expect($valid_until_date).to be == ($send_date+172800)
+   expect($valid_until_date).to be == ($send_date+172800)
   end
 
 

@@ -29,8 +29,6 @@
       And The link will be  valid for 48 hours from the point of email send timestamp
       And I come back to Trainers portal and I logout
 
-
-
       Examples:
 
         | Subject                              | Email Body                                                                                                                                                                                                                              |
