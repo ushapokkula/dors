@@ -80,3 +80,55 @@ Feature: Trainer completes the creation of their account
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a valiadation message displayed as "Sorry, your username or email is incorrect."
+
+  @invalid_email @nologout
+  Scenario: Verify the validation message when the email format is Invalid
+
+    And I login as an "Compliance Manager"
+    And I navigate to "TRAINERS" page
+    And I fill Mandatory fields with required details on create trainer form
+    And I click "Create Trainer"
+    And I see the message "New trainer successfully created" after creating trainer
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And I enter email which has invalid format
+    And I enter Password
+    And I enter Confirm Password
+    Then I see a valiadation message displayed as "Please provide a valid email address."
+
+  @password_mismatch @nologout
+  Scenario: Verify the validation message when the password and confirm password fields does'nt match
+
+    And I login as an "Compliance Manager"
+    And I navigate to "TRAINERS" page
+    And I fill Mandatory fields with required details on create trainer form
+    And I click "Create Trainer"
+    And I see the message "New trainer successfully created" after creating trainer
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    And I enter Password
+    When I enter confirm password which does'nt match with password
+    And I click "Create Account"
+    Then I see a valiadation message displayed as "Sorry, the passwords do not match. Please retype the password."
+
+  @password_does'nt_meet_policy @nologout
+  Scenario: Verify the validation message when the password  does'nt meet policy requirements
+    And I login as an "Compliance Manager"
+    And I navigate to "TRAINERS" page
+    And I fill Mandatory fields with required details on create trainer form
+    And I click "Create Trainer"
+    And I see the message "New trainer successfully created" after creating trainer
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    When I enter the password which does'nt meet password policy requirements
+    And I enter Confirm Password
+    Then I see a valiadation message displayed as "Sorry, the password does not meet the policy requirements."
+    #And I will be shown password policy requirements to set the password
