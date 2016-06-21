@@ -307,8 +307,8 @@ class CreateAssessorRecordPage < SitePrism::Page
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
-     to_addr = find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").text
-     cc_addr = find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").text
+    # @to_addr = find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").text
+    # @cc_addr = find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").text
   end
 
   end

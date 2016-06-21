@@ -62,6 +62,8 @@ Feature: Assessor Profile
     And I click "Update"
     And Changes have been successfully saved
     Then I will recieve the email notification to new and old email address with "<Subject>" and "<Body>"
+    And I see that email is sent to the old email address
+    #And CCed to the new email address
 
     Examples:
       | Subject                                             | Body                                                                                                                                                                                                                                                                |

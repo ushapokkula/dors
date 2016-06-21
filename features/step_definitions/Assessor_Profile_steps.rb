@@ -119,8 +119,8 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
 end
 
 When(/^I change my primary email address on My Profile page$/)do
-  current_email_addr = find("#assessorEmail").text
-  if current_email_addr == "swapna.gopu@wtg.co.uk"
+  @current_email_addr = find("#assessorEmail").text
+  if @current_email_addr == "swapna.gopu@wtg.co.uk"
     fill_in('assessorEmail',:with=> 'roopa.ramisetty@wtg.co.uk')
    else fill_in('assessorEmail',:with=> 'swapna.gopu@wtg.co.uk')
   end
@@ -133,4 +133,11 @@ end
 
 Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/)do |subject,body|
   @trainers.create_assessor_record_page.verify_email_when_prmary_email_addr(subject, body)
+end
+
+And(/^I see that email is sent to the old email address$/)do
+  @to_addr = find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").text
+  puts @current_email_addr
+  puts @to_addr
+ puts  @current_email_addr == @to_addr
 end
