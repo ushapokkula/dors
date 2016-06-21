@@ -12,8 +12,8 @@ When(/^I set (.*) to value (.*)$/) do |field, value|
   find("##{el[:for]}").set(value)
 end
 
-Then(/^I get the error message as (.*)$/) do |error_message|
-  expect(page).to have_content(error_message)
+Then(/^I should see "([^"]*)" message against that field$/) do |validations|
+  expect(page).to have_content(validations)
 end
 
 

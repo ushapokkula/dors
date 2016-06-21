@@ -31,12 +31,11 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
 
   def request_assessments_without_nearby_course
     click_link("REQUEST ASSESSMENT")
-
-  find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
-  first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-  fill_in('mileage',:with=>'500')  #adding mileage#
+    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+     fill_in('mileage',:with=>'500')  #adding mileage#
     fill_in('notes',:with=>'Test')
-  click_link_or_button("Submit")
+    click_link_or_button("Submit")
     within('#requested-assessment-info')do
       expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Requested")
     end
