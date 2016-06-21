@@ -116,6 +116,21 @@ end
 And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, length|
   el = find('label', text: /\A#{field}\z/, visible: true)
   find("##{el[:for]}").set random_string(length)
+end
 
+When(/^I change my primary email address on My Profile page$/)do
+  current_email_addr = find("#assessorEmail").text
+  if current_email_addr == "swapna.gopu@wtg.co.uk"
+    fill_in('assessorEmail',:with=> 'roopa.ramisetty@wtg.co.uk')
+   else fill_in('assessorEmail',:with=> 'swapna.gopu@wtg.co.uk')
   end
+  @updated_email_addr = find("#assessorEmail").text
+end
 
+And(/^Changes have been successfully saved$/)do
+ puts  find("#assessorEmail").text == @updated_email_addr
+end
+
+Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/)do |subject,body|
+  @trainers.create_assessor_record_page.verify_email_when_prmary_email_addr(subject, body)
+end
