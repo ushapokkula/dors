@@ -3,22 +3,22 @@ Then (/^I will be shown these fields of my record$/) do |table|
   @trainers.assessor_profile_page.profile_details(new_table)
 end
 
-Then (/^the system will load the page where I can update assessor record$/)do
+Then (/^the system will load the page where I can update assessor record$/) do
   @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
 end
 
-When (/^I click Cancel button on profile page$/)do
-  fill_in('assessorPhone', :with=> '079999945566')
+When (/^I click Cancel button on profile page$/) do
+  fill_in('assessorPhone', :with => '079999945566')
   click_button('Cancel')
 end
 
-And(/^I will be redirected to "MY ASSESSMENTS" page$/)do
+And(/^I will be redirected to "MY ASSESSMENTS" page$/) do
   expect(page).to have_css("h1", text: "My assessments")
 end
 
-Then (/^unsaved changes will be lost$/)do
- click_link_or_button('MY PROFILE')
-  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
+Then (/^unsaved changes will be lost$/) do
+  click_link_or_button('MY PROFILE')
+  find_field('assessorPhone').value.should_not eql?("079999945566") #Verify edited first name value is there or not#
 end
 
 Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
@@ -57,7 +57,7 @@ Then(/^I enter postcode field value as "([^"]*)"$/) do |postcode|
   @trainers.create_assessor_record_page.fillinAssessorpostcode(postcode)
 end
 
-And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/)do |primaryPhoneNumber,secondaryPhoneNumber,primaryEmail,secondaryEmail,address,town,postcode|
+And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fields not meet below validation requirements$/) do |primaryPhoneNumber, secondaryPhoneNumber, primaryEmail, secondaryEmail, address, town, postcode|
   # @trainers.assessor_profile_page.validateAssessorfirstName(firstName)
   # @trainers.assessor_profile_page.validateAssessorLastName(lastName)
   @trainers.assessor_profile_page.validateAssessorPrimaryPhoneNumber(primaryPhoneNumber)
@@ -74,25 +74,25 @@ And(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" fiel
   @trainers.assessor_profile_page.verifyPostcodeAutoCapital(postcode)
 end
 
- Then (/^the system will highlight those fields$/)do
+Then (/^the system will highlight those fields$/) do
   @trainers.assessor_profile_page.verify_highlighted_fields
 end
 
-And(/^show "([^"]*)" against those fields$/)do|validations_requirements|
-  validations_requirements = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
+And(/^show "([^"]*)" against those fields$/) do |validations_requirements|
+  validations_requirements = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text }
   puts validations_requirements
 end
 
-When (/^I request to updated my profile data$/)do
+When (/^I request to updated my profile data$/) do
   @trainers.assessor_profile_page.update_assessor_profile
 end
 
-And (/^record will not be updated$/)do
-expect(page.should_not have_css(".toast-message",text:'Your profile has been successfully updated.'))
+And (/^record will not be updated$/) do
+  expect(page.should_not have_css(".toast-message", text: 'Your profile has been successfully updated.'))
 end
 
-And (/^I will remain on the same page$/)do
-@trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
+And (/^I will remain on the same page$/) do
+  @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
 end
 
 
@@ -109,8 +109,8 @@ end
 
 def random_string(x)
   #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
-    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
-    string = (0..x).map {chars.sample}.join
+  chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
+  string = (0..x).map { chars.sample }.join
 end
 
 And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, length|
@@ -118,26 +118,35 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
   find("##{el[:for]}").set random_string(length)
 end
 
-When(/^I change my primary email address on My Profile page$/)do
-  @current_email_addr = find("#assessorEmail").text
-  if @current_email_addr == "swapna.gopu@wtg.co.uk"
-    fill_in('assessorEmail',:with=> 'roopa.ramisetty@wtg.co.uk')
-   else fill_in('assessorEmail',:with=> 'swapna.gopu@wtg.co.uk')
+When(/^I change my primary email address on My Profile page$/) do
+  $current_email_addr = find("#assessorEmail").value
+  if $current_email_addr == "Swapna.Gopu@wtg.co.uk"
+    fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
+  else
+    fill_in('assessorEmail', :with => 'Swapna.Gopu@wtg.co.uk')
   end
-  @updated_email_addr = find("#assessorEmail").text
+  $updated_email_addr = find("#assessorEmail").value
 end
 
-And(/^Changes have been successfully saved$/)do
- puts  find("#assessorEmail").text == @updated_email_addr
+And(/^Changes have been successfully saved$/) do
+  puts find("#assessorEmail").value == @updated_email_addr
 end
 
-Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/)do |subject,body|
+Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/) do |subject, body|
   @trainers.create_assessor_record_page.verify_email_when_prmary_email_addr(subject, body)
 end
 
-And(/^I see that email is sent to the old email address$/)do
-  @to_addr = find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").text
-  puts @current_email_addr
-  puts @to_addr
- puts  @current_email_addr == @to_addr
+And(/^I see that email is sent to the old email address$/) do
+  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
+  find("._o365c_o._o365c_5.scrollContainer").click
+  @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
+  $current_email_addr == @to_addr
+end
+
+And(/^CCed to the new email address$/)do
+  find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
+  find("._o365c_o._o365c_5.scrollContainer").click
+  @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
+  $updated_email_addr == @cc_addr
+
 end
