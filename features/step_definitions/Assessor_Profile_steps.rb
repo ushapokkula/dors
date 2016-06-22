@@ -4,7 +4,8 @@ Then (/^I will be shown these fields of my record$/) do |table|
 end
 
 Then (/^the system will load the page where I can update assessor record$/) do
-  @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
+  expect(page).to have_css("h1", "My profile")
+  page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
 end
 
 When (/^I click Cancel button on profile page$/) do
@@ -118,29 +119,30 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
   find("##{el[:for]}").set random_string(length)
 end
 
-When(/^I change my primary email address on My Profile page$/) do
-  $current_email_addr = find("#assessorEmail").value
-  if $current_email_addr == "Swapna.Gopu@wtg.co.uk"
+When(/^I change my primary email address on my profile page$/) do
+  @current_email_addr = find("#assessorEmail").value
+  if @current_email_addr == "Swapna.Gopu@wtg.co.uk"
     fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
   else
     fill_in('assessorEmail', :with => 'Swapna.Gopu@wtg.co.uk')
   end
-  $updated_email_addr = find("#assessorEmail").value
+  @updated_email_addr = find("#assessorEmail").value
 end
 
-And(/^Changes have been successfully saved$/) do
-  find("#assessorEmail").value == $updated_email_addr
+And(/^changes have been successfully saved$/) do
+  use expect
+  find("#assessorEmail").value == @updated_email_addr
 end
 
-Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/) do |subject, body|
-  @trainers.create_assessor_record_page.verify_email_when_prmary_email_addr(subject, body)
+Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do |subject, body|
+  @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
 And(/^I see that email is sent to the old email address$/) do
   find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect($current_email_addr).to eq(@to_addr)
+  expect(@current_email_addr).to eq(@to_addr)
 end
 
 And(/^CCed to the new email address$/)do
@@ -148,5 +150,14 @@ And(/^CCed to the new email address$/)do
   find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect($updated_email_addr).to eq(@cc_addr)
+  expect(@updated_email_addr).to eq(@cc_addr)
+end
+
+When(/^I change the accessors primary address from "([^"]*)" to "([^"]*)"$/) do |primary, secondary|
+  # assetion that primary is swpna
+  fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
+end
+
+Given(/^I am on accessors details page$/) do
+  pending
 end
