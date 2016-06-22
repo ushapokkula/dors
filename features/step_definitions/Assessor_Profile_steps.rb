@@ -130,8 +130,7 @@ When(/^I change my primary email address on my profile page$/) do
 end
 
 And(/^changes have been successfully saved$/) do
-  use expect
-  find("#assessorEmail").value == @updated_email_addr
+  expect(find("#assessorEmail").value).to eq(@updated_email_addr)
 end
 
 Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do |subject, body|
@@ -153,11 +152,12 @@ And(/^CCed to the new email address$/)do
   expect(@updated_email_addr).to eq(@cc_addr)
 end
 
-When(/^I change the accessors primary address from "([^"]*)" to "([^"]*)"$/) do |primary, secondary|
-  # assetion that primary is swpna
+When(/^I change the accessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
+  if current_email == "Swapna.Gopu@wtg.co.uk"
   fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
+  end
 end
 
 Given(/^I am on accessors details page$/) do
-  pending
+  expect(page).to have_css("h1", "My profile")
 end
