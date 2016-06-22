@@ -5,7 +5,7 @@ end
 
 Then (/^the system will load the page where I can update assessor record$/) do
   expect(page).to have_css("h1", "My profile")
-  page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
+  page.should have_css("#lnk-toggle-profile-details-form", text: 'Profile details')
 end
 
 When (/^I click Cancel button on profile page$/) do
@@ -144,7 +144,7 @@ And(/^I see that email is sent to the old email address$/) do
   expect(@to_addr).to eq("Swapna.Gopu@wtg.co.uk")
 end
 
-And(/^CCed to the new email address$/)do
+And(/^CCed to the new email address$/) do
   find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").click
   find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
@@ -152,12 +152,19 @@ And(/^CCed to the new email address$/)do
   expect(@cc_addr).to eq("Roopa.Ramisetty@wtg.co.uk")
 end
 
-When(/^I change the accessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
+When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
   if current_email == "Swapna.Gopu@wtg.co.uk"
-  fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
+    fill_in('assessorEmail', :with => updated_email)
   end
 end
 
 Given(/^I am on accessors details page$/) do
   expect(page).to have_css("h1", "My profile")
+end
+
+And(/^I revert back assessor primary email address to "([^"]*)"$/) do |email_addr|
+  visit "https://auto.trainer.dors.wtg.co.uk"
+  click_link("MY PROFILE")
+  fill_in('assessorEmail', :with => email_addr)
+  click_button("Update")
 end
