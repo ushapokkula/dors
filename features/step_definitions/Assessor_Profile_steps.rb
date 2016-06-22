@@ -129,7 +129,7 @@ When(/^I change my primary email address on My Profile page$/) do
 end
 
 And(/^Changes have been successfully saved$/) do
-  puts find("#assessorEmail").value == @updated_email_addr
+  find("#assessorEmail").value == $updated_email_addr
 end
 
 Then(/^I will recieve the email notification to new and old email address with "([^"]*)" and "([^"]*)"$/) do |subject, body|
@@ -140,13 +140,13 @@ And(/^I see that email is sent to the old email address$/) do
   find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  $current_email_addr == @to_addr
+  expect($current_email_addr).to eq(@to_addr)
 end
 
 And(/^CCed to the new email address$/)do
+  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").click
   find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  $updated_email_addr == @cc_addr
-
+  expect($updated_email_addr).to eq(@cc_addr)
 end
