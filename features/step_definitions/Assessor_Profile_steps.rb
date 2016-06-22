@@ -119,18 +119,18 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
   find("##{el[:for]}").set random_string(length)
 end
 
-When(/^I change my primary email address on my profile page$/) do
-  @current_email_addr = find("#assessorEmail").value
-  if @current_email_addr == "Swapna.Gopu@wtg.co.uk"
-    fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
-  else
-    fill_in('assessorEmail', :with => 'Swapna.Gopu@wtg.co.uk')
-  end
-  @updated_email_addr = find("#assessorEmail").value
-end
+# When(/^I change my primary email address on my profile page$/) do
+#   @current_email_addr = find("#assessorEmail").value
+#   if @current_email_addr == "Swapna.Gopu@wtg.co.uk"
+#     fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
+#   else
+#     fill_in('assessorEmail', :with => 'Swapna.Gopu@wtg.co.uk')
+#   end
+#   @updated_email_addr = find("#assessorEmail").value
+# end
 
 And(/^changes have been successfully saved$/) do
-  expect(find("#assessorEmail").value).to eq(@updated_email_addr)
+  expect(find("#assessorEmail").value).to eq("Roopa.Ramisetty@wtg.co.uk")
 end
 
 Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do |subject, body|
@@ -141,7 +141,7 @@ And(/^I see that email is sent to the old email address$/) do
   find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect(@current_email_addr).to eq(@to_addr)
+  expect(@to_addr).to eq("Swapna.Gopu@wtg.co.uk")
 end
 
 And(/^CCed to the new email address$/)do
@@ -149,7 +149,7 @@ And(/^CCed to the new email address$/)do
   find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
   find("._o365c_o._o365c_5.scrollContainer").click
   @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect(@updated_email_addr).to eq(@cc_addr)
+  expect(@cc_addr).to eq("Roopa.Ramisetty@wtg.co.uk")
 end
 
 When(/^I change the accessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
