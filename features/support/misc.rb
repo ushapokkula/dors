@@ -11,8 +11,12 @@ module Misc
     end
   end
 
-  def random_string(length)
-     (0...length).map { (65 + rand(26)).chr }.join
+  def random_string(x)
+    x= (0...7).map { (65 + rand(26)).chr }.join
   end
 
+
+
 end
+
+
