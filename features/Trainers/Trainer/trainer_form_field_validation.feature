@@ -34,7 +34,7 @@ Feature: Validation Improvements on Create and Update Trainer Forms
       | Username                 |ngu                  | Sorry, the username must be at least 4 characters long.                        |
       | Username                 |T$%@!                | Sorry, the username can only contain numbers, letters, dashes and underscores. |
       | Trainer Id               |                     | Please provide a trainer id.                                                   |
-      | Trainer Id               |014578              | Sorry, the trainerId cannot start with zero.                                   |
+      | Trainer Id               |014578               | Sorry, the trainerId cannot start with zero.                                   |
       | Trainer Id               | 16789               | Sorry, the trainerId must be 6 numbers long.                                   |
       | Trainer Id               | @#*&%$              | Sorry, the trainerid must be a number.                                         |
       | First Name               |                     | Please provide a first name.                                                   |

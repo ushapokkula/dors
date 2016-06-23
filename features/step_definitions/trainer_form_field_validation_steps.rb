@@ -32,11 +32,8 @@ And(/^I enter the (.*) with (.*) characters$/) do |field, length|
 
 Then(/^I should see maximum allowed characters in for (.*) is (.*)$/) do |field, length|
   el = find('label', text: /\A#{field}\z/, visible: true)
-  if (field =="Primary Email Address")||(field =="Secondary Email Address")
-    #expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
-    find("##{el[:for]}").value.length.should.eq length
-  elsif
-  find("##{el[:for]}").value.length.should.eq length
+  el1 = find("##{el[:for]}")
+  el1.value.length.should.eq length
 end
-end
+
 
