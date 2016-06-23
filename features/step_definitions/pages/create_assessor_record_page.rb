@@ -298,7 +298,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   end
 
-  def verify_email_when_prmary_email_addr(subject, body)
+  def verify_email_notification(subject, body)
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
@@ -307,8 +307,6 @@ class CreateAssessorRecordPage < SitePrism::Page
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
-    # @to_addr = find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").text
-    # @cc_addr = find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").text
   end
 
   end
