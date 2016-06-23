@@ -6,7 +6,7 @@ Then (/^the system will load the trainer form where I can create a new trainer r
   puts "I am On Trainers management Page"
 end
 
-When(/^I set (.*) to value (.*)$/) do |field, value|
+When(/^I set "([^"]*)" to value "([^"]*)"$/) do |field, value|
   el = find('label', text: /\A#{field}\z/, visible: true)
   el1 = find("##{el[:for]}")
   el1.set(value)
@@ -20,26 +20,23 @@ end
 And(/^I enter the (.*) with (.*) characters$/) do |field, length|
   el = find('label', text: /\A#{field}\z/, visible: true)
   el1 = find("##{el[:for]}")
-  if (field == 'Username')
-   el1.set random_username_string(length)
-    end
-    if ((field == 'Primary Email Address')&& (field == 'Secondary Email Address'))
-      el1.set  random_email_string(length)
-    end
-  el = find('label', text: /\A#{field}\z/, visible: true)
-  el1=find("##{el[:for]}")
-  el1.set alpha_numeric_for_trainer_form(length)
-end
+  if (field =="Username")
+   el1.set random_username_string(length.to_i)
+  elsif(field =="Primary Email Address")||(field =="Secondary Email Address")
+      el1.set random_email_string(length.to_i)
+  else
+    el1.set alpha_numeric(length.to_i)
+  end
+  end
 
 
 Then(/^I should see maximum allowed characters in for (.*) is (.*)$/) do |field, length|
   el = find('label', text: /\A#{field}\z/, visible: true)
-  if (field == 'Primary Email Address')
-    expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
+  if (field =="Primary Email Address")||(field =="Secondary Email Address")
+    #expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
     find("##{el[:for]}").value.length.should.eq length
-  end
-  el = find('label', text: /\A#{field}\z/, visible: true)
+  elsif
   find("##{el[:for]}").value.length.should.eq length
 end
-
+end
 

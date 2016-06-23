@@ -20,7 +20,7 @@ module Misc
     (0..length).map {chars.sample}.join
   end
 
-  def alpha_numeric_for_trainer_form(length)
+  def alpha_numeric(length)
     chars = [*('A'..'Z'), *('a'..'z'), *(0..9)]
     (0..length).map {chars.sample}.join
   end
