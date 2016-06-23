@@ -17,26 +17,29 @@ Then(/^I should see "([^"]*)" message against that field$/) do |validations|
   expect(page).to have_css("p.help-block", text: validations)
 end
 
-
 And(/^I enter the (.*) with (.*) characters$/) do |field, length|
-  @trainers.trainer_form_field_validation_page.validateUsernameLength(field,length)
-    if ((field == 'Primary Email Address')&& (field == 'Secondary Email Address'))
-      @trainers.trainer_form_field_validation_page.validateEmailLength(field,length)
-    end
   el = find('label', text: /\A#{field}\z/, visible: true)
   el1 = find("##{el[:for]}")
-  el1.set(random_string(length))
-
+  if (field == 'Username')
+   el1.set random_username_string(length)
+    end
+    if ((field == 'Primary Email Address')&& (field == 'Secondary Email Address'))
+      el1.set  random_email_string(length)
+    end
+  el = find('label', text: /\A#{field}\z/, visible: true)
+  el1=find("##{el[:for]}")
+  el1.set alpha_numeric_for_trainer_form(length)
 end
 
 
 Then(/^I should see maximum allowed characters in for (.*) is (.*)$/) do |field, length|
   el = find('label', text: /\A#{field}\z/, visible: true)
+  if (field == 'Primary Email Address')
+    expect(page).to have_css("p.help-block", text:'Please provide a valid email address.')
+    find("##{el[:for]}").value.length.should.eq length
+  end
+  el = find('label', text: /\A#{field}\z/, visible: true)
   find("##{el[:for]}").value.length.should.eq length
 end
-
-
-
-
 
 

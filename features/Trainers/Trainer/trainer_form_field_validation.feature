@@ -16,13 +16,12 @@ Feature: Validation Improvements on Create and Update Trainer Forms
       | First Name              | 50 |
       | Last Name               | 50 |
       | Known As                | 50 |
-      | primary phone number    | 50 |
-      | secondary phone number  | 10 |
-      | primary email address   | 255|
-      | secondary email address | 255|
-      | Address                 | 256|
+      | Primary Phone Number    | 50 |
+      | Secondary Phone Number  | 10 |
+      | Primary Email Address   | 255|
+      | Secondary Email Address | 255|
+      | Address                 | 255|
       |Town                     | 60 |
-      |Postcode                 | 10 |
 
 
   Scenario Outline: Verify Trainer field validations on create trainers page
