@@ -61,12 +61,11 @@ Feature: Assessor Profile
     And I click "Update"
     And changes have been successfully saved
     Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent to the old email address
-    And CCed to the new email address
-    And I revert back assessor primary email address to "Swapna.Gopu@wtg.co.uk"
+    And I see that email is sent to the <old email> address with <old email address>
+    And I see that email is sent to the <new email> address with <new email address>
 
     Examples:
-      | Subject                                             | Body                                                                                                                                                                                                                                                                |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. |
+      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   | old email address     | new email       | new email address         |
+      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | Swapna Gopu | Swapna.Gopu@wtg.co.uk | Roopa Ramisetty | Roopa.Ramisetty@wtg.co.uk |
 
 
