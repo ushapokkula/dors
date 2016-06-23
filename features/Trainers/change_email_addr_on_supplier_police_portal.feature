@@ -9,4 +9,22 @@
     Scenario: Verify the email notification received when primary email address is changed on supplier portal
       Given I am logged into the Supplier Portal
       And I login as "LSU User"
+      And I click "My Account"
+      And I click "Edit"
+      When I change email address of LSU user from "swapna.gopu@wtg.co.uk" to "roopa.ramisetty@wtg.co.uk"
+      And I click "Save"
+      And I enter Password
+      And I click "Save"
+      And I see the message "User SwapnaLSU successfully edited" on my account page
+      And I click "Finish"
+      Then I will receive the email notification with "<Subject>" and "<Body>"
+      And I see that email is sent to the old email address
+      And CCed to the new email address
+
+
+
+
+
+
+
 
