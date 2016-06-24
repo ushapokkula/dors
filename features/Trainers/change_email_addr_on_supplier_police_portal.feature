@@ -5,11 +5,14 @@ Feature: Email notificaton is recieved when primary email address is changed on 
   I want to receive an email when the primary email address on my account is changed,
   so that I am alerted if this key info is changed by someone else in a fraudulent manner.
 
+  Given I am logged into the "<portal>" Portal
+
 @email_notification @nologout
   Scenario Outline: Verify the email notification received when primary email address is changed on supplier portal
     Given I am logged into the "<portal>" Portal
     And I login as "<user>" user
     And I click "My Account"
+    Given the primary address on "<portal>" is "<old_email>"
     And I click Edit button
     When I change email address of "<user>" user from "<old_email>" to "<new_email>"
     And I click Review button
@@ -21,7 +24,7 @@ Feature: Email notificaton is recieved when primary email address is changed on 
     Then I will receive the email notification with "<subject>" and "<body>"
     And I see that email is sent to the old email address
     And CCed to the new email address
-    And I revert back to "<old_email>" for the "<user>" on "<portal>" portal
+    #And I revert back to "<old_email>" for the "<user>" on "<portal>" portal
 
     Examples:
       | portal   | user | old_email             | new_email                 | success_message                    | subject                                             | body                                                                                                                                                                                                                                                                |

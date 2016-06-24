@@ -25,6 +25,20 @@ And(/^I enter password to authenticate$/)do
 fill_in('ctl00_ctl00_MainContent_Content_MainWizard_PasswordTextBox', :with=> 'P@ssw0rd1')
 end
 
+Given(/^the primary address on "([^"]*)" is "([^"]*)"$/)do |portal,old_email|
+ if (((find(".word-wrap.email-short").text)==(old_email))== false)
+   find("#ctl00_ctl00_MainContent_Content_MainWizard_EditWizardStep1ImageButton").click
+   fill_in('ctl00_ctl00_MainContent_Content_MainWizard_EditUserDetailsControl_EmailTextBox', :with => old_email)
+   find(".button-next").click
+   find(".button-save").click
+   fill_in('ctl00_ctl00_MainContent_Content_MainWizard_PasswordTextBox', :with=> 'P@ssw0rd1')
+   find(".button-save").click
+   find(".button-finish").click
+ else
+   puts "Primary Email address is #{old_email} on #{portal}"
+ end
+end
+
 And(/^I click Finish$/)do
   find(".button-finish").click
 end
