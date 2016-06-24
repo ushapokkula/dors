@@ -26,6 +26,8 @@ Feature: Create Assessor Record
       | Town                    |
       | Force Areas             |
 
+
+   @DR-9
   @create_assessor2
   Scenario Outline: Verify The mandatory fields
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
@@ -40,7 +42,7 @@ Feature: Create Assessor Record
       | Postcode              | Please provide a postcode.       |
       | Town                  | Please provide a town.           |
 
-
+  @DR-9
   @create_assessor3
   Scenario Outline: Verify The  optional fields
     Then I see the following fields as "<Optional>"
