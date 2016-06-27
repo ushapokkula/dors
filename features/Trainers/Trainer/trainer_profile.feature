@@ -37,7 +37,7 @@ Feature: Trainer Profile
 
 
   Scenario Outline: Verify The mandatory fields
-    When I fill "<Mandatory_field>" fields with empty "<value>"
+    When I fill fields with empty "<value>"
     Then I see the following fields as "<Mandatory_field>" with "<Error Messages>" on trainer profile page
      Examples:
       | Mandatory_field      | Error Messages                   |value|

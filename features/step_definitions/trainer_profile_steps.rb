@@ -31,15 +31,15 @@ Then (/^unsaved changes on trainer profile will be lost$/)do
   find_field('trainerPrimaryPhone').value.should_not eql?("07713258468")   #Verify edited primary phone numbver value is there or not#
 end
 
-When (/^I fill "([^"]*)" fields with empty "([^"]*)"$/)do |field, value|
+When (/^I fill fields with empty "([^"]*)"$/)do |value|
   fill_in('trainerPrimaryPhone', :with=>value)
-  fill_in('trainerEmail', :with=> '')
-  fill_in('trainerAddress', :with=> '')
-  fill_in('trainerPostcode', :with=> '')
-  fill_in('trainerTown', :with=> '')
+  fill_in('trainerEmail', :with=> value)
+  fill_in('trainerAddress', :with=> value)
+  fill_in('trainerPostcode', :with=> value)
+  fill_in('trainerTown', :with=> value)
 end
 
-Then (/^I see the following fields as "([^"]*)" with "([^"]*)" on trainer profile page$/)do|fields, error_msg|
-
+Then (/^I see the following fields as "([^"]*)" with "([^"]*)" on trainer profile page$/)do|fields, error_msgs|
+  expect(page).to have_selector(".has-error", text:error_msgs)
 
 end
