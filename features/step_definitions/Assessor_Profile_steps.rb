@@ -137,8 +137,6 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
   @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
-
-
 And(/^CCed to the new email address$/) do
   find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").click
   find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
@@ -148,27 +146,30 @@ And(/^CCed to the new email address$/) do
 end
 
 When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
-  if current_email == "Swapna.Gopu@wtg.co.uk"
     fill_in('assessorEmail', :with => updated_email)
-  end
 end
 
 Given(/^I am on accessors details page$/) do
   expect(page).to have_css("h1", "My profile")
 end
 
-And(/^I revert back assessor primary email address to "([^"]*)"$/) do |email_addr|
-  visit "https://auto.trainer.dors.wtg.co.uk"
-  click_link("MY PROFILE")
-  fill_in('assessorEmail', :with => email_addr)
-  click_button("Update")
-end
-
-
-And(/^I see that email is sent to the (.*) address with (.*)$/) do |name, email_address|
+And(/^I see that email is sent To the (.*) address with (.*)$/) do |name, email_address|
   find(:xpath,".//*[text()='#{name};']").right_click
   find(:xpath,".//span[text()='details']").click
   actual_email = find(:xpath,".//a/span[text()='#{email_address}']").text
   expect(actual_email).to eq(email_address)
   find(:xpath,".//*[text()='#{name};']").click
+end
+
+And(/^I see that email is Cced to the (.*) address with (.*)$/) do |name, email_address|
+  find(:xpath,".//*[text()='#{name};']").right_click
+  find(:xpath,".//span[text()='details']").click
+  actual_email = find(:xpath,".//a/span[text()='#{email_address}']").text
+  expect(actual_email).to eq(email_address)
+  find(:xpath,".//*[text()='#{name};']").click
+end
+
+And(/^I see the primary email address as "([^"]*)"$/)do |old_email_addr|
+  fill_in('assessorEmail', :with => old_email_addr) unless (find("#assessorEmail").value)== old_email_addr
+  expect(find("#assessorEmail").value).to eq(old_email_addr)
 end

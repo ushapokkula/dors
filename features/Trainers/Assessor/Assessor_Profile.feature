@@ -57,12 +57,13 @@ Feature: Assessor Profile
   @DR-860 @nologout
   Scenario Outline: Verify the email notification sent when assessor change their primary email address
     Given I am on accessors details page
-    When I change the assessors primary address from "Swapna.Gopu@wtg.co.uk" to "Roopa.Ramisetty@wtg.co.uk"
+    And I see the primary email address as "<old email address>"
+    When I change the assessors primary address from "<old email address>" to "<new email address>"
     And I click "Update"
     And changes have been successfully saved
     Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent to the <old email> address with <old email address>
-    And I see that email is sent to the <new email> address with <new email address>
+    And I see that email is sent To the <old email> address with <old email address>
+    And I see that email is Cced to the <new email> address with <new email address>
 
     Examples:
       | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   | old email address     | new email       | new email address         |
