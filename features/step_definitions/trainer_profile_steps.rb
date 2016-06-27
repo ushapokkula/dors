@@ -31,11 +31,10 @@ Then (/^unsaved changes on trainer profile will be lost$/)do
   find_field('trainerPrimaryPhone').value.should_not eql?("07713258468")   #Verify edited primary phone numbver value is there or not#
 end
 
-When(/^I set below (.*) fields with empty(.*)$/) do |field, value|
-  el = find('label', text: /\A#{field}\z/, visible: true)
+When(/^I set below Mandatory "([^"]*)" with empty "([^"]*)"$/) do |fields, value|
+  el = find('label', text: /\A#{fields}\z/, visible: true)
   el1=find("##{el[:for]}")
   el1.set(value)
-  el1.native.send_keys(:enter)
 end
 
 
@@ -44,3 +43,14 @@ Then (/^I see the following fields with "([^"]*)" on trainer profile page$/)do|e
 end
 
 
+And (/^I will remain on the trainer's profile page$/)do
+  expect(page).to have_css("h1", text:'My Profile')
+  page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
+  page.should have_css(:button, text: 'Update')
+  page.should have_css(:button, text: 'Cancel')
+  puts "I am On Trainer Profile Page"
+end
+
+Then (/^the system will highlight those trainer profile fields$/)do
+  page.find_all('.has-error', visible:true)
+end

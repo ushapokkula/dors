@@ -50,6 +50,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
+    expect(page).to have_css("#trainerUsername", visible:true)
     username.set random_string(7)
     trainer_id.set Faker::Number.numerify('16####')
     trainer_first_name.set Faker::Name.name
@@ -57,14 +58,15 @@ class CreateTrainerRecordPage < SitePrism::Page
     known_as.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone.set Faker::PhoneNumber.numerify('0##########')
+    page.find('#trainerSecondaryPhone').native.send_keys(:enter)
     primary_email.set Faker::Internet.email
     secondary_email.set Faker::Internet.email
+    page.find('#trainerSecondaryEmail').native.send_keys(:enter)
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
+    page.find("#trainerisInstructor", visible:true).click
     fill_in(optional_field, :with => '')
-   page.find("#trainerisInstructor").click
-    #check('trainerisInstructor')
     expect(page).not_to have_css("p.help-block")
      click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')

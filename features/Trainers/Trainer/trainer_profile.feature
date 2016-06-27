@@ -1,4 +1,4 @@
-@DR-9
+@DR-9 @pass
 Feature: Trainer Profile
   As a Trainer user of Licence Portal,
   I want to be able to update my profile on the system,
@@ -37,15 +37,16 @@ Feature: Trainer Profile
 
 
   Scenario Outline: Verify The mandatory fields
-    When I set below <field> fields with empty <value>
+    When I set below Mandatory "<fields>" with empty "<value>"
+    And I click "Update" button
     Then I see the following fields with "<Error Messages>" on trainer profile page
      Examples:
-      | field                | Error Messages                   |value|
-      |Primary Phone Number  | Please provide a phone number.   |     |
-      |Primary Email Address | Please provide an email address. |     |
-      | Address              | Please provide an address.       |     |
-      | Town                 | Please provide a town.           |     |
-      | Postcode             | Please provide a postcode.       |     |
+      | fields               | Error Messages                    |value|
+      |Primary Phone Number  | Please provide a phone number.    |     |
+      |Primary Email Address | Please provide an email address.  |     |
+      | Address              | Please provide an address.        |     |
+      | Town                 | Please provide a town.            |     |
+      | Postcode             | Please provide a postcode.        |     |
 
 
   Scenario Outline: Verify The optional fields
@@ -63,9 +64,6 @@ Feature: Trainer Profile
     Then I should see maximum allowed characters in for <field> is <length>
     Examples:
       | field                   |length|
-      | Username                | 70 |
-      | First Name              | 50 |
-      | Last Name               | 50 |
       | Known As                | 50 |
       | Primary Phone Number    | 50 |
       | Secondary Phone Number  | 10 |
@@ -77,7 +75,10 @@ Feature: Trainer Profile
 
   Scenario Outline: Verify Trainer field validations on trainer profile page
     When I set "<field>" to value "<value>"
+    Then the system will highlight those trainer profile fields
     Then I should see "<validation requirements>" message against that field
+    And record will not be updated
+    And I will remain on the trainer's profile page
     Examples:
       | field                    | value               | validation requirements                                                        |
       | Primary Phone Number     |                     | Please provide a phone number.                                                 |
