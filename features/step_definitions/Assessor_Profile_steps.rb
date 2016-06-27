@@ -138,6 +138,7 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
 end
 
 When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
+    expect(find("#assessorEmail").value).to eq(current_email)
     fill_in('assessorEmail', :with => updated_email)
 end
 
