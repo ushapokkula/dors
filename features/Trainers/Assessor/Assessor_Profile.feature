@@ -64,7 +64,7 @@ Feature: Assessor Profile
     Then I will receive the email notification with "<Subject>" and "<Body>"
     And I see that email is sent To the <old email> address with <old email address>
     And I see that email is Cced to the <new email> address with <new email address>
-    And I revert back assessor primary email address to "Swapna.Gopu@wtg.co.uk"
+
 
     Examples:
       | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   | old email address     | new email       | new email address         |
