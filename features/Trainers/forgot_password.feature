@@ -14,7 +14,7 @@ Feature: Request Password Reset (Forgot Password)
   Scenario: Verify the Forgot password page and info text when requested for password reset
     When I click "Forgot Your Password?"
     Then I will be directed to "Forgot your password?" page
-    And I should see the message as "Please enter your username and email address linked to your account to request a password reset. If you have any issues with this, please contact your local administrator, Service Desk or the NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I should see the message as "Please enter your username and email address linked to your account to request a password reset. If you have any issues with this, please contact your local administrator, Service Desk or the NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I click Logo to come out from that page
 
   @verify_blank_fields
@@ -98,7 +98,7 @@ Feature: Request Password Reset (Forgot Password)
     Examples:
 
       | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                     |
-      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once. |
+      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.If you have not requested this password reset, please contact your local administrator or ndors.admin@ndors.co.uk immediately. |
 
 
   @verify_expiry_link
@@ -119,7 +119,7 @@ Feature: Request Password Reset (Forgot Password)
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And  I enter Email
     And I enter Password
