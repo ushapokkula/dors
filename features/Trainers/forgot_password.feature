@@ -10,7 +10,7 @@ Feature: Request Password Reset (Forgot Password)
     Given I am on the login page
     And I see "Forgot Your Password" link  on the login page
 
-  @forgot_password_page
+  @forgot_password_page @DR-858 @nologout
   Scenario: Verify the Forgot password page and info text when requested for password reset
     When I click "Forgot Your Password?"
     Then I will be directed to "Forgot your password?" page
@@ -84,7 +84,7 @@ Feature: Request Password Reset (Forgot Password)
       | Matching Username | Matching Email        |
       | sudiv             | swapna.gopu@wtg.co.uk |
 
-  @verify_email_subject_body
+  @verify_email_subject_body @nologout @DR-858
   Scenario Outline: Verify the email subject and body after clicking reset password button
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -94,11 +94,12 @@ Feature: Request Password Reset (Forgot Password)
     And I will be re-directed to login page
     And I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
     Then I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+    And local administrator contact information is displayed in the email body as "If you have not requested this password reset, please contact your local administrator or ndors.admin@ndors.co.uk immediately."
 
     Examples:
 
-      | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                     |
-      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.If you have not requested this password reset, please contact your local administrator or ndors.admin@ndors.co.uk immediately. |
+      | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                                                                                                                                                   |
+      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.|
 
 
   @verify_expiry_link

@@ -81,3 +81,7 @@ Then(/^I will be taken to the error page displaying the message as "([^"]*)"$/) 
   page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
   expect(page).to have_css(".alert.alert-danger", text: message)
 end
+
+And(/^local administrator contact information is displayed in the email body as "([^"]*)"$/)do |local_administrator_information|
+  expect(find(:xpath, "//*[@id='Item.MessageUniqueBody']").text).to include(local_administrator_information)
+end

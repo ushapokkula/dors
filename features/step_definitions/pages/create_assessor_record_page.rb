@@ -241,7 +241,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
@@ -255,7 +255,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     visit "https://mail.wtg.co.uk/owa"
     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143!')
+    fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
@@ -263,7 +263,6 @@ class CreateAssessorRecordPage < SitePrism::Page
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
     find(".button._hl_2._hl_e._hl_i").text == $email_value
-
   end
 
   def validate_nonce
