@@ -50,7 +50,7 @@ Feature: Trainer Profile
 
 
   Scenario Outline: Verify The optional fields
-  Then I see Trainer "<Optional>" field is an optional field
+    Then I see Trainer "<Optional>" field is an optional field
     Examples:
       | Optional               |
       | Known As               |
