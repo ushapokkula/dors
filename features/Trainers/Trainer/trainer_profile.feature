@@ -10,7 +10,7 @@ Feature: Trainer Profile
     And I navigate to "MY PROFILE" page
 
   Scenario: Trainer loads their profile page with pre-populated data
-    Then I will be shown these fields of my record
+    Then I will be shown below fields of trainer record
       | Update Trainer Fields  |
       | Username               |
       | Trainer Id             |
@@ -29,23 +29,23 @@ Feature: Trainer Profile
 
   Scenario: Verify Cancel button functionality on Trainer Profile Page
     Then the system will load the page where I can update trainer record
+    And I change Primary Phone Number details
     When I click Cancel button on trainer profile page
-    And I will be redirected to "Licences" page
-    Then unsaved changes will be lost
+    And I will be redirected to "My Licences" page
+    And I navigate to "MY PROFILE" page
+    Then unsaved changes on trainer profile will be lost
+
 
   Scenario Outline: Verify The mandatory fields
-    Then I see the following fields as "<Mandatory>" with "<Error Messages>" on create trainer form
+    When I fill "<Mandatory_field>" fields with empty "<value>"
+    Then I see the following fields as "<Mandatory_field>" with "<Error Messages>" on trainer profile page
      Examples:
-      | Mandatory            | Error Messages                   |
-      | Username             | Please provide a username.       |
-      | Trainer Id           | Please provide a trainer id.     |
-      | First Name           | Please provide a first name.     |
-      | Last Name            | Please provide a last name.      |
-      |Primary Phone Number  | Please provide a phone number.   |
-      |Primary Email Address | Please provide an email address. |
-      | Address              | Please provide an address.       |
-      | Town                 | Please provide a town.           |
-      | Postcode             | Please provide a postcode.       |
+      | Mandatory_field      | Error Messages                   |value|
+      |Primary Phone Number  | Please provide a phone number.   |     |
+      |Primary Email Address | Please provide an email address. |     |
+      | Address              | Please provide an address.       |     |
+      | Town                 | Please provide a town.           |     |
+      | Postcode             | Please provide a postcode.       |     |
 
 
   Scenario Outline: Verify The optional fields
@@ -58,7 +58,7 @@ Feature: Trainer Profile
       #| Is Instructor          |
 
 
-  Scenario Outline: Verify fields max and min characters allowed on create trainers page
+  Scenario Outline: Verify fields max and min characters allowed on trainer profile page
     When I enter the <field> with <length> characters
     Then I should see maximum allowed characters in for <field> is <length>
     Examples:
@@ -75,7 +75,7 @@ Feature: Trainer Profile
       |Town                     | 60 |
 
 
-  Scenario Outline: Verify Trainer field validations on create trainers page
+  Scenario Outline: Verify Trainer field validations on trainer profile page
     When I set "<field>" to value "<value>"
     Then I should see "<validation requirements>" message against that field
     Examples:

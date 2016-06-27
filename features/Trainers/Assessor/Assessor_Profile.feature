@@ -11,7 +11,7 @@ Feature: Assessor Profile
 
   @DR-549
     Scenario: Assessor cancels the profile update operation
-      Then I will be shown these fields of my record
+      Then I will be shown these fields of assessor record
         | Update Assessor Fields |
         | Username               |
         | Assessor Number        |

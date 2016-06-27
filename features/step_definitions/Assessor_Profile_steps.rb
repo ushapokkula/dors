@@ -1,4 +1,4 @@
-Then (/^I will be shown these fields of my record$/) do |table|
+Then (/^I will be shown these fields of assessor record$/) do |table|
   new_table = table.hashes
   @trainers.assessor_profile_page.profile_details(new_table)
 end
@@ -18,7 +18,7 @@ end
 
 Then (/^unsaved changes will be lost$/)do
  click_link_or_button('MY PROFILE')
-  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
+  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited primary phone number value is there or not#
 end
 
 Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
