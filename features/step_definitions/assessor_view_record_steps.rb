@@ -15,7 +15,7 @@ And(/^I will be shown my record with below editable "([^"]*)" fields$/)do |field
   end
   end
 
-Then (/^I see the following fields are "([^"]*)"$/)do |optional_fields|
+Then (/^I see Assessor "([^"]*)" field is an optional field$/)do |optional_fields|
    if(optional_fields == "Assessor Number")
       field_labeled(optional_fields, :disabled=> true)
    end

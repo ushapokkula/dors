@@ -11,7 +11,7 @@ Then (/^the system will load the page where I can update trainer record$/)do
   page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
   page.should have_css(:button, text: 'Update')
   page.should have_css(:button, text: 'Cancel')
-  puts "I am On Trainer Profile Page"
+  puts "Yes, I am On Trainer Profile Page"
 end
 
 
@@ -48,9 +48,47 @@ And (/^I will remain on the trainer's profile page$/)do
   page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
   page.should have_css(:button, text: 'Update')
   page.should have_css(:button, text: 'Cancel')
-  puts "I am On Trainer Profile Page"
+  puts "Yes, I am On Trainer Profile Page"
 end
 
 Then (/^the system will highlight those trainer profile fields$/)do
   page.find_all('.has-error', visible:true)
+end
+
+
+When (/^I set below "([^"]*)" fields with empty "([^"]*)"$/)do|fields, value|
+  el = find('label', text: /\A#{fields}\z/, visible: true)
+  el1=find("##{el[:for]}")
+  el1.set(value)
+end
+
+Then (/^I see Trainer "([^"]*)" field is an optional field$/)do |optional_fields|
+  if(optional_fields == "Known As")
+    field_labeled(optional_fields, :disabled=> false)
+    click_button('Update')
+    expect(page.should_not have_css(".help-block p"))
+  end
+
+  if((optional_fields == "Secondary Phone Number")&&(optional_fields == "Secondary Email Address"))
+    field_labeled(optional_fields, :disabled=> false)
+    click_button('Update')
+    expect(page.should_not have_css(".help-block p"))
+  end
+
+  if(optional_fields == "Force Areas")
+    page.should have_no_css("#selected-force-areas .close")
+    page.should have_css("#selected-force-areas li")
+    #else
+    # page.should have_content("No force areas have been assigned.")
+  end
+end
+
+
+Then(/^I will be shown trainer "([^"]*)" field as read only field$/)do |trainer_readonly_fields|
+  expect(page).to have_css("h1", text: "My Profile")
+  if (trainer_readonly_fields == "Force Areas")
+    page.should have_no_css("#selected-force-areas .close")
+  else
+    field_labeled(trainer_readonly_fields, :disabled => true)
+  end
 end

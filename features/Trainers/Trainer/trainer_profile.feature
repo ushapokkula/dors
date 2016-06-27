@@ -50,13 +50,25 @@ Feature: Trainer Profile
 
 
   Scenario Outline: Verify The optional fields
-    Then I see the following fields as "<Optional>" on trainer profile page
+  Then I see Trainer "<Optional>" field is an optional field
     Examples:
       | Optional               |
       | Known As               |
       | Secondary Phone Number |
       | Secondary Email Address|
-      | Is Instructor          |
+      | Force Areas            |
+
+
+  Scenario Outline: Verify the read-only and disabled fields on Trainer Profile page
+    Then I will be shown trainer "<Trainer Readonly Fields>" field as read only field
+    Examples:
+      | Trainer Readonly Fields |
+      | Username        |
+      | Trainer Id      |
+      |First Name       |
+      |Last Name        |
+      |Is Instructor    |
+      | Force Areas     |
 
 
   Scenario Outline: Verify fields max and min characters allowed on trainer profile page

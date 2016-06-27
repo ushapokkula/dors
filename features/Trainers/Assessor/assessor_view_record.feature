@@ -1,4 +1,4 @@
-@DR-12
+@DR-12 @pass
 Feature: As an assessor,
   I want to be able to view my record,
   so that I can ensure my details are correct and up to date.
@@ -34,7 +34,7 @@ Feature: As an assessor,
       | Force Areas            |
 
   Scenario Outline: Verify The optional fields
-    Then I see the following fields are "<Optional>"
+    Then I see Assessor "<Optional>" field is an optional field
     Examples:
       | Optional               |
       | Assessor Number        |
