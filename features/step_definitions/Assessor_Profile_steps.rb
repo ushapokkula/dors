@@ -17,7 +17,7 @@ And(/^I will be redirected to "MY ASSESSMENTS" page$/)do
 end
 
 Then (/^unsaved changes will be lost$/)do
-click_link_or_button('MY PROFILE')
+ click_link_or_button('MY PROFILE')
   find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
 end
 
@@ -78,9 +78,9 @@ end
   @trainers.assessor_profile_page.verify_highlighted_fields
 end
 
-And(/^show "([^"]*)" against those fields$/)do|validations|
-  validations = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
-  puts validations
+And(/^show "([^"]*)" against those fields$/)do|validations_requirements|
+  validations_requirements = @trainers.assessor_profile_page.validation_requirement_messages.map { |x| x.text}
+  puts validations_requirements
 end
 
 When (/^I request to updated my profile data$/)do

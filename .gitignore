@@ -1,7 +1,9 @@
 # ignore idea files
-.idea/**
+.idea/*
 *.iml
 *.png
 *.html
-reports/**
-error_pages/**
+junit/*
+reports/*
+error_pages/*
+images/*

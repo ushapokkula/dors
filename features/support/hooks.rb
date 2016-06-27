@@ -7,9 +7,7 @@ at_exit do
     config.report_title = 'Test Results'
     config.compress_images = false
   end
-
   ReportBuilder.build_report
-
 end
 
 
@@ -21,11 +19,11 @@ end
 # After do
 #   page.execute_script("window.localStorage.clear()")
 # end
-=begin
-After do
+
+
+After ('~@nologout') do
   find('#btn-signout').click
 end
-=end
 
 
 After do |scenario|
@@ -37,7 +35,6 @@ After do |scenario|
   # end
 end
 
-Dir.mkdir("reports") unless File.directory?("reports")
 
 #delete the images files before every test
 unless Dir.glob('images/*').empty?
@@ -59,5 +56,5 @@ unless Dir.glob('junit/*').empty?
 end
 
 #create reports directory if not present
-# Dir.mkdir("reports") unless File.directory?("reports")
+Dir.mkdir("reports") unless File.directory?("reports")
 

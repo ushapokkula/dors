@@ -1,9 +1,10 @@
 class ComplianceUnitAuthorisesAssessmentReqPage < SitePrism::Page
   elements :trainer_licenses, ".trainer-licenseCode"
 
-  def verify_visibility_of_approve_button
-    expect(page.all(".btn.btn-sm.btn-primary").count).to be > 0
-    expect(page).to have_selector(".btn.btn-sm.btn-primary", visible: true)
+  def verify_visibility_of_approve_button(button)
+    expect(page.all('.dors-table').count).to be >=1
+    expect(page).to have_button(button, visible: true)
+
 
   end
 

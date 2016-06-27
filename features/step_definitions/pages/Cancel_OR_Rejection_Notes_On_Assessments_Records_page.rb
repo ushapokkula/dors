@@ -8,7 +8,7 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   def cancel_Assessment
     click_link_or_button("View Details")
     expect(page).to have_css("h1",text: 'Assessment Request')
-    click_link_or_button("Cancel Request")
+    click_link_or_button("Cancel Assessment")
     expect(page).to have_css("h4",text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
     click_button('Yes')
