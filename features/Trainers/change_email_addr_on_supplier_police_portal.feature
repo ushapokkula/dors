@@ -1,6 +1,6 @@
 @DR-861
 
-Feature: Email notificaton is recieved when primary email address is changed on supplier and police portal
+Feature: Email notification is received when primary email address is changed on supplier and police portal
   As a Police/Supplier user,
   I want to receive an email when the primary email address on my account is changed,
   so that I am alerted if this key info is changed by someone else in a fraudulent manner.

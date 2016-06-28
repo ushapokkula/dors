@@ -26,7 +26,7 @@ fill_in('ctl00_ctl00_MainContent_Content_MainWizard_PasswordTextBox', :with=> 'P
 end
 
 Given(/^the primary address on "([^"]*)" is "([^"]*)"$/)do |portal,old_email|
- if (((find(".word-wrap.email-short").text)==(old_email))== false)
+ if (((find(".email-short").text)==(old_email))== false)
    find("#ctl00_ctl00_MainContent_Content_MainWizard_EditWizardStep1ImageButton").click
    fill_in('ctl00_ctl00_MainContent_Content_MainWizard_EditUserDetailsControl_EmailTextBox', :with => old_email)
    find(".button-next").click
