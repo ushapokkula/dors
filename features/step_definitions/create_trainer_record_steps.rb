@@ -1,4 +1,4 @@
-Then(/^the system will load the page where I can create a new trainer record with the following fields$/) do |table|
+Then(/^the system will load the page where I can create a new trainer record with required fields$/) do |table|
   new_table = table.hashes
   @trainers.create_trainer_record_page.verify_trainer_record_details(new_table)
 end

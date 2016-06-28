@@ -10,7 +10,7 @@ Feature: As an an NGU (TrainingGovernance),
 
   @create_trainer1
   Scenario: Verify the fields displayed to create a trainer
-    Then the system will load the page where I can create a new trainer record with the following fields
+    Then the system will load the page where I can create a new trainer record with required fields
       | Input Details          |
       | Username               |
       | Trainer Id             |
@@ -25,6 +25,8 @@ Feature: As an an NGU (TrainingGovernance),
       | Postcode               |
       | Town                   |
       | Is Instructor          |
+      |Status                  |
+      |License Agreement       |
 
   @create_trainer2
   Scenario Outline: Verify The mandatory fields
