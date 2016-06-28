@@ -137,9 +137,24 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
   @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
+And(/^I see that email is sent to the old email address$/) do
+  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
+  find("._o365c_o._o365c_5.scrollContainer").click
+  @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
+  expect(@to_addr).to eq("Swapna.Gopu@wtg.co.uk")
+end
+
+And(/^CCed to the new email address$/) do
+  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").click
+  find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
+  find("._o365c_o._o365c_5.scrollContainer").click
+  @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
+  expect(@cc_addr).to eq("Roopa.Ramisetty@wtg.co.uk")
+end
+
 When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
-    expect(find("#assessorEmail").value).to eq(current_email)
     fill_in('assessorEmail', :with => updated_email)
+  end
 end
 
 Given(/^I am on accessors details page$/) do
@@ -165,4 +180,4 @@ end
 And(/^I see the primary email address as "([^"]*)"$/)do |old_email_addr|
   fill_in('assessorEmail', :with => old_email_addr) unless (find("#assessorEmail").value)== old_email_addr
   expect(find("#assessorEmail").value).to eq(old_email_addr)
-  end
+end
