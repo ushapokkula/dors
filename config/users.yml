@@ -30,5 +30,26 @@ Assessor4:
   username: chiefd    #No Assessments#
   password: Ch123456
 
+LFU:
+  username: SwapnaLFU    #LFU user on police portal#
+  password: P@ssw0rd1
+
+LFA:
+  username: SwapnaLFA    #LFA user on police portal#
+  password: P@ssw0rd1
+
+LSU:
+  username: SwapnaLSU    #LSU user on supplier portal#
+  password: P@ssw0rd1
+
+LSA:
+  username: SwapnaLSA    #LSA user on supplier portal#
+  password: P@ssw0rd1
+
+
+
+
+
+
 
 
