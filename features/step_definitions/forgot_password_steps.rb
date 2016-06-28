@@ -83,5 +83,5 @@ Then(/^I will be taken to the error page displaying the message as "([^"]*)"$/) 
 end
 
 And(/^local administrator contact information is displayed in the email body as "([^"]*)"$/)do |local_administrator_information|
-  expect(find(:xpath, "//*[@id='Item.MessageUniqueBody']").text).to include(local_administrator_information)
+puts  expect(find(:xpath, "//*[@id='Item.MessageUniqueBody']").text).to include(local_administrator_information)
 end
