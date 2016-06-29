@@ -39,3 +39,7 @@ And (/^I will not have access to any other system resources$/)do
 
 end
 
+And (/^I will not see 'Licence Agreement' field on my profile page$/)do
+  expect(page).not_to have_css("//label[@for= 'licenseAgreementStatus']", text: 'License Agreement')
+
+end
