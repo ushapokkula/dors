@@ -300,7 +300,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def verify_email_notification(subject, body)
     visit "https://mail.wtg.co.uk/owa"
-    # verify_no_user_logged_in
+     verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click

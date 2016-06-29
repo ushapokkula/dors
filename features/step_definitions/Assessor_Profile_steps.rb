@@ -155,7 +155,6 @@ end
 When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
     fill_in('assessorEmail', :with => updated_email)
   end
-end
 
 Given(/^I am on accessors details page$/) do
   expect(page).to have_css("h1", "My profile")
