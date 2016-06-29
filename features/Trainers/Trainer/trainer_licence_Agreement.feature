@@ -43,11 +43,11 @@
         |Unspecified|
 
 
-#      Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
-#        And its with default values i.e. Status set to Active and Licence Agreement set to Unspecified
-#        When I attempt to login to the Licence Portal and provide valid credentials
-#        Then I will be redirected to Licence Agreement screen showing licence text with option to Accept or Reject it
-#        And I will not have access to any other system resources i.e. nav-bar or access to any URLs directly, doing which should take me back to the same page
-#
+      Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
+        And its with default values i.e. Status set to Active and Licence Agreement set to Unspecified
+        When I attempt to login to the Licence Portal and provide valid credentials
+        Then I will be redirected to Licence Agreement screen showing licence text with option to Accept or Reject it
+        And I will not have access to any other system resources i.e. nav-bar or access to any URLs directly, doing which should take me back to the same page
+
 
 

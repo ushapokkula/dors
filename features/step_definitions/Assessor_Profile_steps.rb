@@ -119,7 +119,6 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
   find("##{el[:for]}").set random_string(length)
 end
 
-
 And(/^changes have been successfully saved$/) do
   expect(find("#assessorEmail").value).to eq("Roopa.Ramisetty@wtg.co.uk")
 end
@@ -128,8 +127,7 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
   @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
-
-When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
+When(/^I change the assessors primary address from 'old email address' to "([^"]*)"$/) do |updated_email|
     fill_in('assessorEmail', :with => updated_email)
   end
 
