@@ -22,3 +22,20 @@ puts default_options
   possible_options = licenseagreement_status.map{ |x| x.text}
   puts possible_options
 end
+
+And (/^I see 'Status' field default value set to 'Active'$/)do
+
+end
+
+Then (/^I will be redirected to Licence Agreement screen$/)do
+
+end
+
+And (/^I see licence text with an option to Accept or Reject$/)do
+
+end
+
+And (/^I will not have access to any other system resources$/)do
+
+end
+
