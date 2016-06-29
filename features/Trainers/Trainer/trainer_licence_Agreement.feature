@@ -31,15 +31,16 @@
       And I see 'Licence Agreement' field will be set to Unspecified by default
       And 'Licence Agreement' field will be disabled or read-only
 
-    Scenario: CCU/NGU creates a trainer record with Licence Agreement as Unspecified by default
+    Scenario: CCU/NGU Verifys Trainer Licence Agreement options
       Then I fill Mandatory fields with required details on create trainer form
       And I click on Create Trainer button
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
       And the 'Licence Agreement' will be shown as Unspecified
       And 'Licence Agreement' field will have three possible options
-      |Accepted   |
-      |Rejected   |
-      |Unspecified|
+        |Licence Agreement|
+        |Accepted   |
+        |Rejected   |
+        |Unspecified|
 
 
 #      Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified

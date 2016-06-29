@@ -119,15 +119,6 @@ And(/^the user enters the "([^"]*)" with "([^"]*)" characters$/) do |field, leng
   find("##{el[:for]}").set random_string(length)
 end
 
-# When(/^I change my primary email address on my profile page$/) do
-#   @current_email_addr = find("#assessorEmail").value
-#   if @current_email_addr == "Swapna.Gopu@wtg.co.uk"
-#     fill_in('assessorEmail', :with => 'Roopa.Ramisetty@wtg.co.uk')
-#   else
-#     fill_in('assessorEmail', :with => 'Swapna.Gopu@wtg.co.uk')
-#   end
-#   @updated_email_addr = find("#assessorEmail").value
-# end
 
 And(/^changes have been successfully saved$/) do
   expect(find("#assessorEmail").value).to eq("Roopa.Ramisetty@wtg.co.uk")
@@ -137,27 +128,13 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
   @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
-And(/^I see that email is sent to the old email address$/) do
-  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").right_click
-  find("._o365c_o._o365c_5.scrollContainer").click
-  @to_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect(@to_addr).to eq("Swapna.Gopu@wtg.co.uk")
-end
-
-And(/^CCed to the new email address$/) do
-  find("#ItemHeader\\2e ToContainer > div > div > div > span > span > div > span").click
-  find("#ItemHeader\\2e CcContainer > div > div > div > span > span > div > span").right_click
-  find("._o365c_o._o365c_5.scrollContainer").click
-  @cc_addr = find(".allowTextSelection._f_Ls._f_3t._f_Ns._f_7t").text
-  expect(@cc_addr).to eq("Roopa.Ramisetty@wtg.co.uk")
-end
 
 When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
     fill_in('assessorEmail', :with => updated_email)
   end
 
 Given(/^I am on accessors details page$/) do
-  expect(page).to have_css("h1", "My profile")
+  expect(page).to have_css("h1", text: 'My profile')
 end
 
 And(/^I see that email is sent To the (.*) address with (.*)$/) do |name, email_address|
