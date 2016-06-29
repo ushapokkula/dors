@@ -127,7 +127,7 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
   @trainers.create_assessor_record_page.verify_email_notification(subject, body)
 end
 
-When(/^I change the assessors primary address from "([^"]*)" to "([^"]*)"$/) do |current_email, updated_email|
+When(/^I change the assessors primary address from 'old email address' to "([^"]*)"$/) do |updated_email|
     fill_in('assessorEmail', :with => updated_email)
   end
 
