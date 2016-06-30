@@ -30,7 +30,11 @@ def verify_user_is_on_assessor_profile_page
   page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
   page.should have_css(:button, text: 'Update')
   page.should have_css(:button, text: 'Cancel')
+<<<<<<< HEAD
   puts "I am On Assessor Profile Page"
+=======
+  puts "Yes, I am On Assessor Profile Page"
+>>>>>>> b3f916ec9aa75d72ef79f91812c6d4168c00c3c8
 end
 
 

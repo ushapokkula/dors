@@ -33,7 +33,6 @@ Feature:DR-251
       | Venue              |
       | Name               |
       | Assessor           |
-      | License            |
       | Expiry Date        |
       | Total Mileage      |
       | Expenses Claimed £ |

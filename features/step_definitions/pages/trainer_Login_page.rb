@@ -21,14 +21,14 @@ class TrainerLoginPage < SitePrism::Page
       click_link_or_button('Sign out') unless page.has_no_selector?('p', text: 'You are logged in as' )
       #find(:button,'Sign out').click if page.should have_css('p', text: 'You are logged in as' )
     end
+
+
+  def enter_valid_username(user)
+    username_field.set($users[user]['username'])
   end
 
-  def enter_valid_username
-    username_field.set "varma"
-  end
-
-  def enter_valid_password
-    password_field.set "P@ssw0rd"
+  def enter_valid_password(user)
+    password_field.set($users[user]['password'])
   end
 
   def enter_invalid_password
@@ -38,4 +38,24 @@ class TrainerLoginPage < SitePrism::Page
   def click_login
     sign_in_button.click
   end
+
+def verify_fullname(user)
+  client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+  client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+  if user == "Assessor"
+  result= client.execute("SELECT  tbl_Assessor.Forename + ' ' + tbl_Assessor.Surname AS Fullname FROM  tbl_Assessor
+                         INNER JOIN tbl_User ON tbl_Assessor.UserId = tbl_User.UserId
+                         WHERE tbl_User.ActiveDirectoryUsername="+"'"+($users[user]['username'])+"'")
+  elsif user == "Trainer2"
+  result= client.execute("SELECT tbl_Trainer.Forename + ' ' + tbl_Trainer.Surname AS Fullname FROM tbl_Trainer
+                          INNER JOIN tbl_User ON tbl_Trainer.UserId = tbl_User.UserId
+                          WHERE tbl_User.ActiveDirectoryUsername ="+"'"+($users[user]['username'])+"'")
+  end
+  result.each do |row|
+   @fullname = row['Fullname']
+  end
+ expect(@fullname.titleize).to eq(find(".dors-user-fullname.text-capitalize").text)
+end
+
+end
 
