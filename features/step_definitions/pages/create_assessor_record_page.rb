@@ -244,32 +244,29 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def email_generation(subject, body)
-    visit "https://mail.wtg.co.uk/owa"
-    verify_no_user_logged_in
-    fill_in('username', :with => 'swapna.gopu')
-    fill_in('password', :with => 'sudiv143?')
-    find(".signinTxt").click
+    login_to_outlook
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
-    find(".button._hl_2._hl_e._hl_i").text == $email_value
+    find(".button._hl_2._hl_e._hl_i").text == fetch("email")
   end
 
-  def verify_email_generation
+  def login_to_outlook
     visit "https://mail.wtg.co.uk/owa"
-    verify_no_user_logged_in
     fill_in('username', :with => 'swapna.gopu')
     fill_in('password', :with => 'sudiv143?')
     find(".signinTxt").click
+  end
+  def verify_email_generation
+    login_to_outlook
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")
     expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
     find(:button, 'Swapna Gopu').click
-    find(".button._hl_2._hl_e._hl_i").text == $email_value
-    puts " this is for test"
+    find(".button._hl_2._hl_e._hl_i").text == fetch("email")
   end
 
   def validate_nonce

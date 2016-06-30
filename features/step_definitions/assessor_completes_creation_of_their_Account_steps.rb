@@ -15,11 +15,11 @@ Then(/^I will be shown a welcome page with the message "([^"]*)"$/) do |message|
 end
 
 And(/^I enter Username$/) do
-  fill_in('username', :with => $username_value)
+  fill_in('username', :with => fetch("username"))
 end
 
 And(/^I enter Email$/) do
-  fill_in('email', :with => $email_value)
+  fill_in('email', :with => fetch("email"))
 end
 
 And(/^I enter Password$/) do
@@ -33,7 +33,7 @@ end
 And(/^When the password and confirm password both match$/) do
   password = find('#password').text
   confirm_password = find('#passwordConfirm').text
-  expect(confirm_password) == password
+  expect(confirm_password).to eq password
 end
 
 Then(/^I see a success message displayed as "([^"]*)"$/) do |message|

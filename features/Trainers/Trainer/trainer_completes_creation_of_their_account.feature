@@ -9,43 +9,43 @@ Feature: Trainer completes the creation of their account
 
   @verify_the_welcome_page @nologout
   Scenario Outline: Verify the welcome page after clicking the password link
-    And I login as an "Compliance Manager"
+    When I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
     And I click "Create Trainer"
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
     When I click the link generated in the email to set password
-    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
-
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
 
     Examples:
-
       | Subject                              | Email Body                                                                                                                                                                                                                              |
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |
 
   @successfully_set_password @nologout
-  Scenario: Trainer sucessfully sets the password
+  Scenario: Trainer successfully sets the password
 
-    And I login as an "Compliance Manager"
+    When I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
     And I click "Create Trainer"
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter Username
+    # change the step to When I enter the Username of the trainer created. same for email
     And  I enter Email
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Password
     And I enter Confirm Password
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a success message displayed as "Password has been set on your account and you can now login to the system"
-
+   # dont you want to confirm by login with the newly created password?
 
   @username_does'nt_match @nologout
-  Scenario: Verify the validation message when the username does'nt match with trainer record created
+  Scenario: Verify the validation message when the username doesn't match with trainer record created
 
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
