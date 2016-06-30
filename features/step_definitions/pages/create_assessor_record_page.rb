@@ -80,8 +80,8 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def verify_signup_mandatory_fields(fields)
-    fill_in('username', :with => $username_value)
-    fill_in('email', :with => $email_value)
+    fill_in('username', :with => fetch("username"))
+    fill_in('email', :with => fetch("email"))
     fill_in('password', :with => 'P@ssw0rd1')
     fill_in('passwordConfirm', :with => 'P@ssw0rd1')
     fill_in(fields, :with => '')

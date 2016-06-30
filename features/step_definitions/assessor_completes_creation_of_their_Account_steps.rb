@@ -85,7 +85,7 @@ And(/^I see this message on the page "([^"]*)"$/) do |message|
   expect(page).to have_css(".alert.alert-danger", text: message)
 end
 
-And(/^I see the following fields as "([^"]*)" and when the fields are left blank$/) do |fields|
+And(/^I set the mandatory field "([^"]*)" as blank$/) do |fields|
   @trainers.create_assessor_record_page.verify_signup_mandatory_fields(fields)
   if fields == "Confirm Password"
     click_button("Create Account")
@@ -98,7 +98,8 @@ When(/^I enter the password less than minimum limit$/) do
 end
 
 And(/^I refresh the page$/) do
-  page.driver.browser.navigate.refresh
+  # page.driver.browser.navigate.refresh
+  visit current_url
 end
 
 Then(/^The field is restricted to 26 characters$/) do
@@ -111,7 +112,7 @@ When(/^I enter the password containing more than two consecutive chars of Userna
   page.find('#password').native.send_keys(:tab)
 end
 
-When(/^I enter the password morethan than the maximum limit$/) do
+When(/^I enter the password more than than the maximum limit$/) do
   @trainers.create_assessor_record_page.password_length_validation(30)
   page.find('#password').native.send_keys(:tab)
 end

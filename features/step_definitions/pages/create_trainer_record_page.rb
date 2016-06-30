@@ -73,7 +73,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
   def filling_trainer_details
     username.set random_string(7)
-    trainer_id.set Faker::Number.numerify('16####')
+    trainer_id.set Faker::Number.numerify('16####') # can you notincrease the digits as it sometimes is creating the same record
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')

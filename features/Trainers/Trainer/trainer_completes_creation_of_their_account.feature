@@ -54,7 +54,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter the Username which does'nt match against the record created
     And I enter Email
     And I enter Password
@@ -65,7 +65,7 @@ Feature: Trainer completes the creation of their account
 
 
   @email_does'nt_match @nologout
-  Scenario: Verify the validation message when the email does'nt match with trainer record created
+  Scenario: Verify the validation message when the email doesn't match with trainer record created
 
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
@@ -74,7 +74,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     When I enter the Email which does'nt match against the record created
     And I enter Password
@@ -93,7 +93,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And I enter email which has invalid format
     And I enter Password
@@ -110,6 +110,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     And I enter Username
     And  I enter Email
@@ -127,7 +128,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And  I enter Email
     When I enter the password which does'nt meet password policy requirements
@@ -144,7 +145,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter Username
     And  I enter Email
     And I enter Password
@@ -158,7 +159,7 @@ Feature: Trainer completes the creation of their account
     Then I see this message on the page "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 
   @blank_fields @nologout
-  Scenario Outline: Verify the validation messages when the fields are blank on signup page
+  Scenario Outline: Verify the validation messages when the fields are blank on sign up page
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -166,7 +167,7 @@ Feature: Trainer completes the creation of their account
     And I see the message "New trainer successfully created" after creating trainer
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     Then I see the following fields as "<Mandatory>" and when the fields are left blank
     Then I see a validation message displayed as "<Error Messages>"
 
