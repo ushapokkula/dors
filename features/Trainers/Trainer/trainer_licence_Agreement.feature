@@ -1,4 +1,4 @@
-@DR-894
+@DR-894 @wip
   Feature:Trainer-NDORS Licence Agreement
 
     Background:
@@ -61,11 +61,19 @@
 
 
     Scenario 4: trainer does not see Licence Agreement on their Profile
-       And I logout
        When I login as an "Trainer1"
        Then I navigate to "MY PROFILE" page
        And I will not see 'Licence Agreement' field on my profile page
 
+
+    @wip
+    Scenario 3: CCU/NGU updates the Licence Agreement on a trainer record
+      When I login as an "Compliance Manager"
+      Then I navigate to "TRAINERS" page
+      When I search for a trainer record
+      Then the system will load for me the trainer record in edit/update mode
+      And I will see a 'Licence Agreement' field on the trainer form in enabled state
+      And with possible options: Accepted, Rejected, Unspecified
 
 
 
