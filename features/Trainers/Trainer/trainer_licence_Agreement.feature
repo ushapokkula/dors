@@ -67,14 +67,21 @@
 
 
     @wip
-    Scenario 3: CCU/NGU updates the Licence Agreement on a trainer record
+    Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
       When I search for a trainer record
-      Then the system will load for me the trainer record in edit/update mode
-      And I will see a 'Licence Agreement' field on the trainer form in enabled state
-      And with possible options: Accepted, Rejected, Unspecified
-
+      Then the system will load trainer record in edit or update mode
+      And I see 'Licence Agreement' field in enabled state
+      When I set trainer 'Licence Agreement' to a "<options>" value
+      And I click on Update Trainer
+      And I will see a confirmation message
+      And the page will be refreshed to show updated trainer record reflecting the changes to fields including Status and Licence Agreement
+      Examples:
+      |options|
+      |Accepted|
+      |Rejected|
+      |Unspecified|
 
 
 
