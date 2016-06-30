@@ -70,7 +70,7 @@ Feature: Trainer Profile
       |Is Instructor    |
       | Force Areas     |
 
-
+   @DR-912
   Scenario Outline: Verify fields max and min characters allowed on trainer profile page
     When I enter the <field> with <length> characters
     Then I should see maximum allowed characters in for <field> is <length>
@@ -84,7 +84,7 @@ Feature: Trainer Profile
       | Address                 | 255|
       |Town                     | 60 |
 
-
+  @DR-912
   Scenario Outline: Verify Trainer field validations on trainer profile page
     When I set "<field>" to value "<value>"
     Then the system will highlight those trainer profile fields
@@ -97,8 +97,8 @@ Feature: Trainer Profile
       | Primary Phone Number     | T$%@!               | Sorry, the phone number must be at least 10 digits long.                       |
       | Secondary Phone Number   | 0788                | Sorry, the phone number must be at least 10 digits long.                       |
       | Primary Email Address    |                     | Please provide an email address.                                               |
-      | Primary Email Address    | test.com            | Please provide a valid email address.                                          |
-      | Secondary Email Address  | test+co&uk          | Please provide a valid email address.                                          |
+      | Primary Email Address    | test!#%&'@t.com      | Please provide a valid email address.                                         |
+      | Secondary Email Address  | test+co&'uk         | Please provide a valid email address.                                          |
       | Address                  |                     | Please provide an address.                                                     |
       | Town                     |                     | Please provide a town.                                                         |
       | Postcode                 |                     | Please provide a postcode.                                                     |
