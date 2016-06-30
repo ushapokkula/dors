@@ -6,7 +6,7 @@ Then (/^the system will load the trainer form where I can create a new trainer r
   puts "I am On Trainers management Page"
 end
 
-When(/^I set "([^"]*)" to value "([^"]*)"$/) do |field, value|
+When(/^I enter "([^"]*)" to value "([^"]*)"$/) do |field, value|
   el = find('label', text: /\A#{field}\z/, visible: true)
   el1 = find("##{el[:for]}")
   el1.set(value)
