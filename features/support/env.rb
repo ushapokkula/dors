@@ -17,13 +17,21 @@ require 'waitutil'
 require 'date'
 require 'time'
 require_relative 'misc'
-include RSpec:: Matchers
+include RSpec::Matchers
 include Misc
 
 $users = load_yaml_file('../config/users')
 
+# choose a driver, if its not given, then default is firefox
+if ENV['DRIVER'] == 'chrome'
+  Capybara.default_driver = :chrome
+elsif ENV['DRIVER'] == 'firefox'
+  Capybara.default_driver = :firefox
+else
+  Capybara.default_driver = :debug
+end
+
 Capybara.configure do |config|
-  config.default_driver = :debug
   config.app_host = "https://auto.trainer.dors.wtg.co.uk"
   config.default_max_wait_time = 20
 end
@@ -41,6 +49,10 @@ Capybara.register_driver :debug do |app|
   profile.add_extension "features/support/firebug.xpi"
   profile.add_extension "features/support/firepath.xpi"
   Capybara::Selenium::Driver.new app, :profile => profile
+end
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
 SitePrism.configure do |config|

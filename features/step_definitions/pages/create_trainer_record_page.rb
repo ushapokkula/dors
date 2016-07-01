@@ -77,7 +77,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    primary_email.set "swapna.gopu@wtg.co.uk"
+    primary_email.set "dors_test@outlook.com"
     secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city

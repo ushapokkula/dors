@@ -168,7 +168,7 @@ Feature: Trainer completes the creation of their account
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
-    Then I see the following fields as "<Mandatory>" and when the fields are left blank
+    Then I set the mandatory field "<Mandatory>" as blank
     Then I see a validation message displayed as "<Error Messages>"
 
     Examples:
@@ -190,7 +190,7 @@ Feature: Trainer completes the creation of their account
     When I enter the password less than minimum limit
     Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
     And I refresh the page
-    When I enter the password morethan than the maximum limit
+    When I enter the password more than than the maximum limit
     Then The field is restricted to 26 characters
 
   @password_containing_username @nologout
