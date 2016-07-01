@@ -260,7 +260,6 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[value='Sign in']").click
     end
     expect(page).to have_css("[aria-label='Open menu']")
-    sleep 3 # sleep for mail to receive
   end
 
   def verify_email_generation
