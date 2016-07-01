@@ -7,9 +7,9 @@ When(/^I click the link generated in the email to set password$/) do
 end
 
 Then(/^I will be shown a welcome page with the message "([^"]*)"$/) do |message|
-  main = page.driver.browser.window_handles.first
-  popup = page.driver.browser.window_handles.last
-  page.driver.browser.switch_to.window(popup)
+  @main = page.driver.browser.window_handles.first
+  @popup = page.driver.browser.window_handles.last
+  page.driver.browser.switch_to.window(@popup)
   expect(page).to have_css("h1", text: "Signup for DORS+ account")
   expect(page).to have_css(".alert.alert-info", text: message)
 end

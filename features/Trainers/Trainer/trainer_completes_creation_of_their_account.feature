@@ -17,7 +17,7 @@ Feature: Trainer completes the creation of their account
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
     When I click the link generated in the email to set password
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
-
+    And I delete all the emails in the user inbox
     Examples:
       | Subject                              | Email Body                                                                                                                                                                                                                              |
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |

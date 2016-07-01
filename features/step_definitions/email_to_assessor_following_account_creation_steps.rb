@@ -36,3 +36,13 @@ And(/^I come back to Trainers portal and I logout$/)do
   # expect(page.title)== "DORS Trainer"
   click_link("Sign out")
 end
+
+And(/^I delete all the emails in the user inbox$/) do
+  page.driver.browser.switch_to.window(@main)
+  all_mail = page.all(:xpath, ".//*[@autoid='_lvv_a']/div")
+  all_mail.each do |x|
+    x.click
+    find("[title='Delete (Del)']").click
+    # expect(page).to have_no_selector(:xpath, "#{x.path}")
+  end
+end
