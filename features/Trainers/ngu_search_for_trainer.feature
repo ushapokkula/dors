@@ -44,7 +44,7 @@ Feature: As an NGU (TrainingGovernance),
 
     Examples:
       | Trainer Name | Format               |
-      | zar          | Zara Turner (666666) |
+      | zar          | Zara Turner (727272) |
 
   @trainer_auto_predict4
   Scenario Outline: Verify the default search Trainer
@@ -74,7 +74,8 @@ Feature: As an NGU (TrainingGovernance),
     Then The first name will be selected from the auto predict list "<UP_Arrow>"
     Examples:
       | Trainer Name | Down_Arrow   | UP_Arrow   |
-      | ani          | AnitaWTGTEST | AnitaTest1 |
+     # | ani          | AnitaWTGTEST | AnitaTest1 |
+      | swa          | Swapna | Swapna |
 
 
 
