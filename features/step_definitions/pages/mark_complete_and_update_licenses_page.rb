@@ -57,9 +57,9 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
 
 
   def visibility_of_trainers
-     expect(page).to have_content('111333/001')
-     expect(page).to have_content('111222/001')
-     expect(page).to have_content('111999/002')
+     expect(page).to have_content('111333')
+     expect(page).to have_content('111222')
+     expect(page).to have_content('111999')
   end
 
   def verify_license_status_for_actionnote_competent
