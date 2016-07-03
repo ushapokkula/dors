@@ -254,7 +254,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   def login_to_outlook
     visit "https://outlook.live.com/owa/"
     # verify_no_user_logged_in
-    unless page.has_css?("[aria-label='Open menu']", wait: 5)
+    unless page.has_css?("[aria-label='Open menu']", wait: 8)
       find("input[type='email']").set("dors_test@outlook.com")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click

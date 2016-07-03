@@ -43,7 +43,6 @@ Feature: Trainer completes the creation of their account
     When I click "Create Account"
     Then I see a success message displayed as "Password has been set on your account and you can now login to the system"
     And I delete all the emails in the user inbox
-   # dont you want to confirm by login with the newly created password?
 
   @username_does'nt_match @nologout
   Scenario: Verify the validation message when the username doesn't match with trainer record created
@@ -101,6 +100,7 @@ Feature: Trainer completes the creation of their account
     And I enter Confirm Password
     Then I see a validation message displayed as "Please provide a valid email address."
     And I delete all the emails in the user inbox
+
   @password_mismatch @nologout
   Scenario: Verify the validation message when the password and confirm password fields does'nt match
 
@@ -112,7 +112,6 @@ Feature: Trainer completes the creation of their account
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
     And I enter Username
     And  I enter Email
     And I enter Password
@@ -120,6 +119,7 @@ Feature: Trainer completes the creation of their account
     And I click "Create Account"
     Then I see a validation message displayed as "Sorry, the passwords do not match. Please retype the password."
     And I delete all the emails in the user inbox
+
   @password_does'nt_meet_policy @nologout
   Scenario: Verify the validation message when the password  does'nt meet policy requirements
     And I login as an "Compliance Manager"
@@ -160,6 +160,7 @@ Feature: Trainer completes the creation of their account
     When I try to access the link again
     Then I see this message on the page "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
     And I delete all the emails in the user inbox
+
   @blank_fields @nologout
   Scenario Outline: Verify the validation messages when the fields are blank on sign up page
     And I login as an "Compliance Manager"

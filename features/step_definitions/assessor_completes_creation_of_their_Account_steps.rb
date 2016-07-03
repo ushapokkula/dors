@@ -66,7 +66,7 @@ When(/^I enter the password which does'nt meet password policy requirements$/) d
 end
 
 And(/^I navigate to outlook web email$/) do
-  page.driver.browser.switch_to.window(page.driver.find_window("https://mail.wtg.co.uk/owa/#path=/mail"))
+  page.driver.browser.switch_to.window(page.driver.find_window("https://outlook.live.com/owa/"))
   # visit "https://mail.wtg.co.uk/owa/"
 end
 
@@ -107,7 +107,7 @@ Then(/^The field is restricted to 26 characters$/) do
 end
 
 When(/^I enter the password containing more than two consecutive chars of Username$/)do
-  @user = $username_value.split(//).first(3).join.to_s
+  @user = fetch("username").split(//).first(3).join.to_s
   fill_in('password', :with =>@user+"1234!")
   page.find('#password').native.send_keys(:tab)
 end
