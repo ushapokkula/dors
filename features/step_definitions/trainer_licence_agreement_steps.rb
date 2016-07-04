@@ -45,23 +45,23 @@ end
 
 When (/^I search for (.*?)in the trainer search field$/)do |trainerid|
   fill_in('txt-trainer-name', :with=>trainerid)
+  sleep 2
   page.find('#txt-trainer-name').native.send_keys(:enter)
 end
 
 Then (/^the system will load trainer record in edit or update mode$/)do
-expect(page).to have_css("#trainer-status-active", value: true)
+expect(page).to have_css("#trainer-status-active", visible: true)
 
 end
 
 And (/^I see 'Licence Agreement' field in enabled state$/)do
-  expect(page).to have_css("#licenseAgreementStatus", value: true)
+  expect(page).to have_css("#licenseAgreementStatus", visible: true)
   page.find("#licenseAgreementStatus").click
-  expect(page).to have_css()
 end
 
 
 When (/^I set trainer 'Licence Agreement' to (.*?) value$/)do |option|
-fill_in('#licenseAgreementStatus', :with=>'Accepted')
+fill_in('licenseAgreementStatus', :with=>'Accepted')
 end
 
 When(/^I will see a (.*?) $/) do |message|
