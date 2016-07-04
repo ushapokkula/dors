@@ -1,4 +1,3 @@
-
 module Misc
   def load_yaml_file(file_name)
     io = File.open(File.dirname(__FILE__) + "/../../config/#{file_name}.yml")
@@ -12,7 +11,20 @@ module Misc
   end
 
   def random_string(length)
-     (0...length).map { (65 + rand(26)).chr }.join
+    (0...length).map { (65 + rand(26)).chr }.join
+  end
+
+  VAR_MAP ||= {}
+
+  def store(name, value)
+    VAR_MAP[name] = value
+  end
+
+  def fetch(name, raise_exception = nil)
+    if raise_exception == true && VAR_MAP.has_key?(name) == false
+      raise "No value set for: " + name
+    end
+    VAR_MAP[name]
   end
 
 end
