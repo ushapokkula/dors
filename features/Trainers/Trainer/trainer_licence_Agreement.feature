@@ -47,27 +47,27 @@
         |Unspecified|
 
 
-#    Scenario Outline: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
-#      When I login as an "Compliance Manager"
-#      Then I navigate to "TRAINERS" page
-#      Then I see 'Status' field default value set to 'Active'
-#      And the 'Licence Agreement' will be shown as Unspecified
-#      And I search for "<trainerid> in the trainer search field
-#      And I change 'Licence Agreement' to <Action>
-#      Then I logout
-#      And I login as an "Trainer1"
-#      Then I will be redirected to Licence Agreement screen
-#      And I see licence text with an option to Accept or Reject
-#      And I will not have access to any other system resources
-#       #(i.e. nav-bar or access to any URLs directly, doing which should take me back to the same page)
-#      When I click on <Action>
-#      Then I should see <System Response> response
-#      Examples:
-#      |trainerid |Action                                    |System Response|
-#      |        |Reject                                    |               |
-#      |        |Accept                                    |               |
-#      |        |close browser window                      |               |
-#      |        |access any other system resource using URL|               |
+    Scenario Outline: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
+      When I login as an "Compliance Manager"
+      Then I navigate to "TRAINERS" page
+      Then I see 'Status' field default value set to 'Active'
+      And the 'Licence Agreement' will be shown as Unspecified
+      And I search for "<trainerid> in the trainer search field
+      And I change 'Licence Agreement' to 'Unspecified'
+      Then I logout
+      And I login as an "Trainer1"
+      Then I will be redirected to Licence Agreement screen
+      And I see licence text with an option to Accept or Reject
+      And I will not have access to any other system resources
+       #(i.e. nav-bar or access to any URLs directly, doing which should take me back to the same page)
+      When I click on <Action>
+      Then I should see <System Response> response
+      Examples:
+      |trainerid |Action                                      |System Response|
+      |989898    |Reject                                      |               |
+      |          |Accept                                      |               |
+      |          |close browser window                        |               |
+      |          |access any other system resource using URL  |               |
 
 
     Scenario: trainer does not see Licence Agreement on their Profile
@@ -82,15 +82,15 @@
       When I search for <trainerid> in the trainer search field
       Then the system will load trainer record in edit or update mode
       And I see 'Licence Agreement' field in enabled state
-      When I set trainer 'Licence Agreement' to a "<options>" value
+      When I set trainer 'Licence Agreement' to <options> value
       And I click on Update Trainer
       And I will see a <confirmation message>
       And the page will be refreshed to show updated trainer record reflecting the changes to fields including Status and Licence Agreement
        Examples:
-       |trainerid|options    |confirmation message|
-       |          |Accepted  |                    |
-       |          |Rejected  |                    |
-       |          |Unspecified|                   |
+       |trainerid |options    |confirmation message|
+       | 123458   |Accepted   |                    |
+       | 123458   |Rejected   |                    |
+       | 123458   |Unspecified|                    |
 
 
 

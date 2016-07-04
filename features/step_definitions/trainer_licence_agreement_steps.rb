@@ -41,5 +41,30 @@ end
 
 And (/^I will not see 'Licence Agreement' field on my profile page$/)do
   expect(page).to have_no_css("#licenseAgreementStatus")
+end
+
+When (/^I search for (.*?)in the trainer search field$/)do |trainerid|
+  fill_in('txt-trainer-name', :with=>trainerid)
+  page.find('#txt-trainer-name').native.send_keys(:enter)
+end
+
+Then (/^the system will load trainer record in edit or update mode$/)do
+expect(page).to have_css("#trainer-status-active", value: true)
 
 end
+
+And (/^I see 'Licence Agreement' field in enabled state$/)do
+  expect(page).to have_css("#licenseAgreementStatus", value: true)
+  page.find("#licenseAgreementStatus").click
+  expect(page).to have_css()
+end
+
+
+When (/^I set trainer 'Licence Agreement' to (.*?) value$/)do |option|
+fill_in('#licenseAgreementStatus', :with=>'Accepted')
+end
+
+When(/^I will see a (.*?) $/) do |message|
+
+end
+
