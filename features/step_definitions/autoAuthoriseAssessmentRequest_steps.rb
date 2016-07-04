@@ -27,7 +27,7 @@ Then(/^I will see only those trainers whose linked Force Areas match to those li
   page.find_all(('linked_force_area_name')[0], text: 'GREATER MANCHESTER POLICE')
     expect(page).to have_css("#assessmentExpiringIntro", text: 'Trainer licenses expiring within the next 365 days:')
     page.find_all('.dors-table', count: 1)
-    expect(page).to have_css(".trainer-licenseCode", text: '268721/001')
+    expect(page).to have_css(".trainer-licenseCode", text: '268721')
     expect(page).to have_css(".license-expiry-date", text: '16-May-2017')
 end
 

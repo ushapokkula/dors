@@ -85,3 +85,8 @@ end
 Then(/^My account will be locked and I will be shown a message, "([^"]*)"$/) do |text|
    expect(page).to have_css(".alert.alert-danger",text: text)
 end
+
+Then(/^I see that the "([^"]*)" full name is displayed as "([^"]*)" and first and last name$/)do |user,message|
+  @trainers.trainer_login_page.verify_fullname(user)
+  expect(page).to have_selector('p', text: message)
+end

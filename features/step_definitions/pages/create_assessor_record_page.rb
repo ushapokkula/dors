@@ -146,22 +146,23 @@ class CreateAssessorRecordPage < SitePrism::Page
   def validateAssessorUsername(username)
     usernameLength = username.length
     if (username.empty?)
-      page.should have_css("p.help-block", text: 'Please provide a username.')
-    elsif (usernameLength<4)
-      page.should have_css("p.help-block", text: 'Sorry, the username must be at least 4 characters long.')
+      page.should have_css("p.help-block",text:'Please provide a username.')
+    elsif(usernameLength<4)
+      page.should have_css("p.help-block",text:'Sorry, the username must be at least 4 characters long.')
       page.find("#assessorUsername").value.length.should.eq '4'
-    elsif ((usernameLength>=4)&&(usernameLength<=70))
-      page.should have_css("p.help-block", text: 'Sorry, the username can only contain numbers, letters, dashes and underscores.')
-    elsif (usernameLength>=71)
+    elsif((usernameLength>=4)&&(usernameLength<=70))
+      page.should have_css("p.help-block",text:'Sorry, the username can only contain numbers, letters, dashes and underscores.')
+    elsif(usernameLength>=71)
       page.find("#assessorUsername").value.length.should.eq '70'
-    end
+      end
   end
+
 
 
   def validateUserNameMaxCHARS
     username_string = username.set random_string(71)
-    usernameLenght = username_string.length
-    if (usernameLenght>70)
+  usernameLenght = username_string.length
+    if(usernameLenght>70)
       page.find("#assessorUsername").value.length.should.eq '70'
       puts 'Limit is 70 charachters'
     end
@@ -174,7 +175,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     if (assessorNumber.empty?)
       puts "Ok, Assessor number is optional"
     elsif ((assessorNumberLength>=1)&& (assessorNumberLength<=20))
-      page.should_not have_css("p.help-block", text: 'Sorry, only numbers and letters are accepted.')
+      page.should_not have_css("p.help-block",text:'Sorry, only numbers and letters are accepted.')
       page.find("#assessorNumber").value.length.should.eq '20'
     end
 
