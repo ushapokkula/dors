@@ -82,7 +82,7 @@
       When I search for <trainerid> in the trainer search field
       Then the system will load trainer record in edit or update mode
       And I see 'Licence Agreement' field in enabled state
-      When I set trainer 'Licence Agreement' to <options> value
+      When I set trainer 'Licence Agreement' to '<options>' value
       And I click on Update Trainer
       And I will see a <confirmation message>
       And the page will be refreshed to show updated trainer record reflecting the changes to fields including Status and Licence Agreement

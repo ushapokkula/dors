@@ -61,10 +61,10 @@ end
 
 
 When (/^I set trainer 'Licence Agreement' to (.*?) value$/)do |option|
-fill_in('licenseAgreementStatus', :with=>'Accepted')
+  page.find("#licenseAgreementStatus").click
+  select(option, :from => 'licenseAgreementStatus')
 end
 
-When(/^I will see a (.*?) $/) do |message|
+When(/^I will see a $/) do
 
 end
-
