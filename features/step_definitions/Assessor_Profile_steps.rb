@@ -124,7 +124,7 @@ And(/^changes have been successfully saved$/) do
 end
 
 Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do |subject, body|
-  @trainers.create_assessor_record_page.verify_email_notification(subject, body)
+  @trainers.create_assessor_record_page.email_generation(subject, body)
 end
 
 When(/^I change the assessors primary address from 'old email address' to "([^"]*)"$/) do |updated_email|

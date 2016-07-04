@@ -248,7 +248,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
-    expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
+    #expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
   end
 
 
