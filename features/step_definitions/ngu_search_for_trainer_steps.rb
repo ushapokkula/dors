@@ -47,17 +47,17 @@ When(/^I hit DOWN arrow key from the trainer auto predict list$/) do
 end
 
 Then(/^The second value will be selected from the auto predict list "([^"]*)"$/) do |selected_trainer|
-  find("#trainerFirstName").value == selected_trainer
+   expect(find("#trainerFirstName").value).to eq(selected_trainer)
 end
 
 When(/^I hit UP arrow key from the trainer auto predict list$/) do
-  fill_in('txt-trainer-name', :with => "ani")
+  fill_in('txt-trainer-name', :with => "swa")
   find("#txt-trainer-name").native.send_keys(:arrow_down)
   find("#txt-trainer-name").native.send_keys(:arrow_up)
   find("#txt-trainer-name").send_keys(:enter)
 end
 
 Then(/^The first name will be selected from the auto predict list "([^"]*)"$/) do |selected_trainer|
-  find("#trainerFirstName").value == selected_trainer
+  expect(find("#trainerFirstName").value).to eq(selected_trainer)
 end
 

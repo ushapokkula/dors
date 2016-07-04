@@ -44,7 +44,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     click_link_or_button('REQUEST ASSESSMENT')
     page.find_all(('linked_force_area_name')[0], text: 'GREATER MANCHESTER POLICE')
     page.all(:css,".dors-table").count == 1
-    page.should have_css(".trainer-licenseCode", text: '268721/001')
+    page.should have_css(".trainer-licenseCode", text: '268721')
     end
   end
 
