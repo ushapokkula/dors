@@ -1,4 +1,4 @@
-@pass
+
 @DR-861
 
 Feature: Email notification is received when primary email address is changed on supplier and police portal

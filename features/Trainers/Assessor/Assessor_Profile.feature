@@ -68,6 +68,6 @@ Feature: Assessor Profile
 
     Examples:
       | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   |old email address    |new email      | new email address         |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | Swapna Gopu |Swapna.Gopu@wtg.co.uk|Roopa Ramisetty| Roopa.Ramisetty@wtg.co.uk |
+      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test |dors_test@outlook.com|Roopa Ramisetty| Roopa.Ramisetty@wtg.co.uk |
 
 
