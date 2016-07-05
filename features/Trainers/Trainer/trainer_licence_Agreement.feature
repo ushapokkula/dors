@@ -52,7 +52,7 @@
       Then I navigate to "TRAINERS" page
       Then I see 'Status' field default value set to 'Active'
       And the 'Licence Agreement' will be shown as Unspecified
-      And I search for "<trainerid>" in the trainer search field
+      And I search for <trainerid> in the trainer search field
       When I see 'Licence Agreement' field
       And I change 'Licence Agreement' to 'Unspecified'
       Then I logout
@@ -82,25 +82,22 @@
       Then I navigate to "TRAINERS" page
       When I search for <trainerid> in the trainer search field
       Then the system will load trainer record in edit or update mode
-      And I see 'Licence Agreement' field in enabled state
-      When I set trainer 'Licence Agreement' to '<options>' value
-      And I set Status to <status> value
+      And I see Licence Agreement field in enabled state
+      When I set trainer Licence Agreement to <options> value
+      And I set Status field to Inactive value
       And I click on Update Trainer
       And I will see a <confirmation message> with Yes or NO buttons
-      When I select <yes> button
-      Then I see a message saying "Trainer record Successfully updated"
-      And the page will be refreshed to show updated trainer record
-      And can see changes to fields including Status and Licence Agreement
+      When I click "<button>"
+      Then I see a message saying "Trainer record successfully updated"
+      And I can see Status field value changes to Inactive
+      And I can see Licence Agreement field value changes to <options>
       And I will see a <confirmation message> with Yes or NO buttons
-      When I select NO
       Then I will remain on Update Trainers form
        Examples:
-       |trainerid |options    |status   |confirmation message                                                   |
-       | 123458   |Accepted   |Active   |Trainer record Successfully updated                                    |
-       | 123458   |Accepted   |InActive |Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
-       | 123458   |Rejected   |Inactive |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
-       | 123458   |Unspecified|Active   |Trainer record Successfully updated              |
-       |123458    |Unspecified|Inactive |Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?              |
+         | button |trainerid |options    | confirmation message                                                   |
+         |Yes     | 123458   |Accepted   |Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
+         |Yes     | 123458   |Rejected   |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
+         |Yes     |123458    |Unspecified|Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?              |
 
 
 

@@ -54,15 +54,19 @@ expect(page).to have_css("#trainer-status-active", visible: true)
 
 end
 
-And (/^I see 'Licence Agreement' field in enabled state$/)do
+And (/^I see Licence Agreement field in enabled state$/)do
   expect(page).to have_css("#licenseAgreementStatus", visible: true)
   page.find("#licenseAgreementStatus").click
 end
 
 
-When (/^I set trainer 'Licence Agreement' to (.*?) value$/)do |option|
+When (/^I set trainer Licence Agreement to (.*?) value$/)do |option|
   page.find("#licenseAgreementStatus").click
   select(option, :from => 'licenseAgreementStatus')
+end
+
+And (/^I set Status field to (.*?)value$/)do
+  find("#trainer-status-inactive").click
 end
 
 When(/^I will see a (.*?)$/) do|action|
