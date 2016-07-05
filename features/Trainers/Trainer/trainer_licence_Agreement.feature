@@ -1,4 +1,4 @@
-@DR-894 @pass
+@DR-894 @DR-788 @DR-893 @DR-892 @pass
   Feature:Trainer NDORS Licence Agreement
 
     Background:
@@ -52,7 +52,7 @@
       Then I navigate to "TRAINERS" page
       Then I see 'Status' field default value set to 'Active'
       And the 'Licence Agreement' will be shown as Unspecified
-      And I search for "<trainerid> in the trainer search field
+      And I search for "<trainerid>" in the trainer search field
       When I see 'Licence Agreement' field
       And I change 'Licence Agreement' to 'Unspecified'
       Then I logout
@@ -67,8 +67,8 @@
       |trainerid |Action                                      |System Response|
       |676767    |Reject                                      |Rejecting this Licence Agreement will invalidate your licences, deactivate your account and you won't be able to access the DORS+ Licence Portal.Are you sure you want to continue?               |
       |676767    |Accept                                      |               |
-      | 676767   |close browser window                        |then my session will be closed and I will have to login again with valid credentials, after which, I will see the same Licence Agreement screen               |
-      |          |access any other system resource using URL  |               |
+      |676767    |close browser window                        |then my session will be closed and I will have to login again with valid credentials, after which, I will see the same Licence Agreement screen               |
+      |676767    |access any other system resource using URL  |               |
 
 
     Scenario: trainer does not see Licence Agreement on their Profile
@@ -87,7 +87,7 @@
       And I set Status to <status> value
       And I click on Update Trainer
       And I will see a <confirmation message> with Yes or NO buttons
-      When I select Yes
+      When I select <yes> button
       Then I see a message saying "Trainer record Successfully updated"
       And the page will be refreshed to show updated trainer record
       And can see changes to fields including Status and Licence Agreement

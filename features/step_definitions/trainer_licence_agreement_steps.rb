@@ -65,6 +65,20 @@ When (/^I set trainer 'Licence Agreement' to (.*?) value$/)do |option|
   select(option, :from => 'licenseAgreementStatus')
 end
 
-When(/^I will see a $/) do
+When(/^I will see a (.*?)$/) do|action|
+page.find("#licenseAgreementStatus")
+end
+
+When (/^I see 'Licence Agreement' field$/)do
+page.find("#licenseAgreementStatus").visible?
+end
+
+And (/^I change 'Licence Agreement' to 'Unspecified'$/)do
+  if page.find("#licenseAgreementStatus").text == 'Accepted'
+    select('Unspecified', :from=> 'licenseAgreementStatus')
+  end
+end
+
+When (/^I click on $/)do
 
 end
