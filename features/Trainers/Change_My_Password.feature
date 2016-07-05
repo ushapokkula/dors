@@ -1,4 +1,4 @@
-@DR-443 @pass
+@DR-443
 Feature: Change Password of (Assessor || Trainer)
 As a user,
 I want to be able to change my password,
