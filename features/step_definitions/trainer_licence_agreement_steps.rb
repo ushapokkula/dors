@@ -65,9 +65,25 @@ When (/^I set trainer Licence Agreement to (.*?) value$/)do |option|
   select(option, :from => 'licenseAgreementStatus')
 end
 
-And (/^I set Status field to (.*?)value$/)do
+And (/^I set Status field to Inactive value$/)do
   find("#trainer-status-inactive").click
 end
+
+And (/^I can see Status field value changes to Inactive$/)do
+page.find("#trainer-status-inactive").value == true
+end
+
+And (/^I can see Licence Agreement field value changes$/)do
+end
+
+And(/^I will see a (.*?) with Yes or NO buttons $/)do|confirmation_message|
+
+end
+
+Then (/^I will remain on Update Trainers form$/)do
+
+end
+
 
 When(/^I will see a (.*?)$/) do|action|
 page.find("#licenseAgreementStatus")

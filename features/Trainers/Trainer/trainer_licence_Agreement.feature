@@ -90,8 +90,7 @@
       When I click "<button>"
       Then I see a message saying "Trainer record successfully updated"
       And I can see Status field value changes to Inactive
-      And I can see Licence Agreement field value changes to <options>
-      And I will see a <confirmation message> with Yes or NO buttons
+      And I can see Licence Agreement field value changes
       Then I will remain on Update Trainers form
        Examples:
          | button |trainerid |options    | confirmation message                                                   |
