@@ -92,8 +92,9 @@ And (/^record will not be updated$/) do
   expect(page.should_not have_css(".toast-message", text: 'Your profile has been successfully updated.'))
 end
 
-And (/^I will remain on the same page$/) do
-  @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
+And (/^I will remain on the same My profile page$/) do
+  expect(page).to have_css("h1", text: 'My profile')
+  page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
 end
 
 

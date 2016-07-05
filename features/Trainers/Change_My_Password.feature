@@ -1,4 +1,4 @@
-@DR-443
+@DR-443 @pass
 Feature: Change Password of (Assessor || Trainer)
 As a user,
 I want to be able to change my password,
@@ -30,7 +30,7 @@ so that I can ensure my account security and continued access to the system.
     And I click "Save"
     Then the system will highlight those fields
     And the system will show validation error message, "The password you entered is not correct. Please retry."
-    And I will remain on the same page
+    And I will remain on the same My profile page
     And password will not be changed
     Examples:
       |user     |current_pwd|password|confirm_pwd|
@@ -49,7 +49,7 @@ so that I can ensure my account security and continued access to the system.
     When the new password and the confirmation of new password mismatch
     Then the system will highlight those fields
     And I will see a validation error message on the password confirmation field "Sorry, the passwords do not match."
-    And I will remain on the same page
+    And I will remain on the same My profile page
     And password will not be changed
     Examples:
       |user    |current_pwd|password|confirm_pwd|
@@ -69,7 +69,7 @@ so that I can ensure my account security and continued access to the system.
     When the new password does not meet the password policy requirement
     Then the system will highlight the validation error message on the password field,"Sorry, the password does not meet the policy requirements."
     And I will be shown the password policy requirements
-    And I will remain on the same page
+    And I will remain on the same My profile page
     And password will not be changed
     Examples:
       |user     |current_pwd|password  |confirm_pwd|
