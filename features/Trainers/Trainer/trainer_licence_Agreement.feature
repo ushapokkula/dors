@@ -1,4 +1,4 @@
-@DR-894
+@DR-894 @pass
   Feature:Trainer NDORS Licence Agreement
 
     Background:
