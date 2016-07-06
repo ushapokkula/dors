@@ -9,6 +9,7 @@ Feature: Email notification is received when primary email address is changed on
 
   @email_notification @nologout
   Scenario Outline: Verify the email notification received when primary email address is changed on supplier portal
+    Given I have deleted all the emails in the test email inbox
     Given I am logged into the "<portal>" Portal
     And I login as "<user>" user
     And I click "My Account"
