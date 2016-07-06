@@ -4,13 +4,11 @@ Feature: Assessor Profile
   I want to be able to edit my record on the system,
   so that all my contact details remain updated.
 
-  Background:
+  @DR-549
+  Scenario: Assessor cancels the profile update operation
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
-
-  @DR-549
-  Scenario: Assessor cancels the profile update operation
     Then I will be shown these fields of my record
       | Update Assessor Fields  |
       | Username                |
@@ -27,6 +25,9 @@ Feature: Assessor Profile
       | Force Areas             |
 
   Scenario: Verify Cancel button functionality on Profile Page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor3"
+    And I navigate to "MY PROFILE" page
     Then the system will load the page where I can update assessor record
     When I click Cancel button on profile page
     And I will be redirected to "MY ASSESSMENTS" page
@@ -34,6 +35,9 @@ Feature: Assessor Profile
 
   @DR-594
   Scenario Outline: Validation error handling
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor3"
+    And I navigate to "MY PROFILE" page
     Then I enter primary phone number field value as "<Primary Phone Number>"
     Then I enter secondary phone number field value as "<Secondary Phone Number>"
     Then I enter primary email address field value as "<Primary Email>"
