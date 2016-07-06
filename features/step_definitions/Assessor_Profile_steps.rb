@@ -155,5 +155,6 @@ end
 And(/^I see the primary email address as "([^"]*)"$/)do |old_email_addr|
   fill_in('assessorEmail', :with => old_email_addr) if (find("#assessorEmail").value)!= old_email_addr
   click_link_or_button("Update")
+  expect(page).to have_no_css(".toast-message")
   expect(find("#assessorEmail").value).to eq(old_email_addr)
 end
