@@ -54,6 +54,11 @@ And (/^I will see a validation error message on the password confirmation field 
   expect(page).to have_css("p.help-block", text: password_confirm_mismatch_msg )
 end
 
+And (/^I will remain on the same My profile page$/)do
+  expect(page).to have_css("h1", text: 'My profile')
+  page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
+end
+
 And (/^the current password is correct$/)do
   currentPasswordLength = find("#currentPassword").value.length
   if(currentPasswordLength<8)

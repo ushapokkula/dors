@@ -56,6 +56,9 @@ Feature: Assessor Profile
 
   @DR-860 @nologout
   Scenario Outline: Verify the email notification sent when assessor change their primary email address
+    Given I have deleted all the emails in the test email inbox
+    Given that I have licence.ndors.org.uk page opened
+    And I navigate to "MY PROFILE" page
     Given I am on accessors details page
     And I see the primary email address as "<old email address>"
     When I change the assessors primary address from 'old email address' to "<new email address>"
