@@ -49,16 +49,5 @@ end
 
 
 Given(/^I have deleted all the emails in the test email inbox$/) do
-  visit "https://outlook.live.com/owa/"
-  unless page.has_css?("[aria-label='Open menu']", wait: 4)
-    find("input[type='email']").set("dors_test@outlook.com")
-    find("[name='passwd']").set("dorstest123")
-    find("[value='Sign in']").click
-  end
-  # page.should have_content("Inbox")
-  all_mail = page.all(:xpath, ".//*[@autoid='_lvv_a']/div")
-  all_mail.each do |x|
-    x.click
-    find("[title='Delete (Del)']").click
-  end
+  @trainers.create_assessor_record_page.delete_outlook_emails
 end
