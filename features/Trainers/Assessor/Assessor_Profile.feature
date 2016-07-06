@@ -56,6 +56,9 @@ Feature: Assessor Profile
 
   @DR-860 @nologout
   Scenario Outline: Verify the email notification sent when assessor change their primary email address
+    Given I have deleted all the emails in the test email inbox
+    Given that I have licence.ndors.org.uk page opened
+    And I navigate to "MY PROFILE" page
     Given I am on accessors details page
     And I see the primary email address as "<old email address>"
     When I change the assessors primary address from 'old email address' to "<new email address>"
@@ -67,7 +70,7 @@ Feature: Assessor Profile
 
 
     Examples:
-      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   |old email address    |new email      | new email address         |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test |dors_test@outlook.com|Roopa Ramisetty| Roopa.Ramisetty@wtg.co.uk |
+      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email | old email address     | new email       | new email address         |
+      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test | dors_test@outlook.com | Roopa Ramisetty | Roopa.Ramisetty@wtg.co.uk |
 
 
