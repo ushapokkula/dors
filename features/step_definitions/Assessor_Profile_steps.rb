@@ -137,19 +137,13 @@ Given(/^I am on accessors details page$/) do
 end
 
 And(/^I see that email is sent To the (.*) address with (.*)$/) do |name, email_address|
-  # find(:xpath,".//*[text()='#{name};']").right_click
   find("[title='Show more']").click
-  actual_email = find(:xpath,".//a/span[text()='#{email_address}']").text
-  expect(actual_email).to eq(email_address)
-  # find(:xpath,".//*[text()='#{name};']").click
+  expect(page).to have_content("To: #{email_address}")
 end
 
 And(/^I see that email is Cced to the (.*) address with (.*)$/) do |name, email_address|
-  # find(:xpath,".//*[text()='#{name};']").right_click
-  # find(:xpath,".//span[text()='details']").click
-  actual_email = find(:xpath,".//a/span[text()='#{email_address}']").text
-  expect(actual_email).to eq(email_address)
-  # find(:xpath,".//*[text()='#{name};']").click
+  # find("[title='Show more']").click
+  expect(page).to have_content("Cc: #{email_address}")
 end
 
 And(/^I see the primary email address as "([^"]*)"$/)do |old_email_addr|
