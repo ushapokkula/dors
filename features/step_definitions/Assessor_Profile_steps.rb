@@ -136,12 +136,12 @@ Given(/^I am on accessors details page$/) do
   expect(page).to have_css("h1", text: 'My profile')
 end
 
-And(/^I see that email is sent To the (.*) address with (.*)$/) do |name, email_address|
+And(/^I see that email is sent To the address with (.*)$/) do |email_address|
   find("[title='Show more']").click
  expect(page).to have_selector(:xpath,".//*[text()='To:']/parent::div",text: "To: #{email_address}")
 end
 
-And(/^I see that email is Cced to the (.*) address with (.*)$/) do |name, email_address|
+And(/^I see that email is Cced to the address with (.*)$/) do |email_address|
  expect(page).to have_selector(:xpath,".//*[text()='Cc:']/parent::div",text: "Cc: #{email_address}")
 end
 
