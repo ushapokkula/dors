@@ -65,12 +65,12 @@ Feature: Assessor Profile
     And I click "Update"
     And changes have been successfully saved
     Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent To the <old email> address with <old email address>
-    And I see that email is Cced to the <new email> address with <new email address>
+    And I see that email is sent To the address with <old email address>
+    And I see that email is Cced to the address with <new email address>
 
 
     Examples:
-      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email | old email address     | new email       | new email address         |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test | dors_test@outlook.com | Roopa Ramisetty | Roopa.Ramisetty@wtg.co.uk |
+      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email address     | new email address         |
+      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test@outlook.com | Roopa.Ramisetty@wtg.co.uk |
 
 

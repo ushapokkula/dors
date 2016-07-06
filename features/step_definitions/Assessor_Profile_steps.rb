@@ -129,24 +129,23 @@ Then(/^I will receive the email notification with "([^"]*)" and "([^"]*)"$/) do 
 end
 
 When(/^I change the assessors primary address from 'old email address' to "([^"]*)"$/) do |updated_email|
-    fill_in('assessorEmail', :with => updated_email)
-  end
+  fill_in('assessorEmail', :with => updated_email)
+end
 
 Given(/^I am on accessors details page$/) do
-  expect(page).to have_css("h1", text:'My profile')
+  expect(page).to have_css("h1", text: 'My profile')
 end
 
-And(/^I see that email is sent To the (.*) address with (.*)$/) do |name, email_address|
+And(/^I see that email is sent To the address with (.*)$/) do |email_address|
   find("[title='Show more']").click
-  expect(page).to have_content("To: #{email_address}")
+ expect(page).to have_selector(:xpath,".//*[text()='To:']/parent::div",text: "To: #{email_address}")
 end
 
-And(/^I see that email is Cced to the (.*) address with (.*)$/) do |name, email_address|
-  # find("[title='Show more']").click
-  expect(page).to have_content("Cc: #{email_address}")
+And(/^I see that email is Cced to the address with (.*)$/) do |email_address|
+ expect(page).to have_selector(:xpath,".//*[text()='Cc:']/parent::div",text: "Cc: #{email_address}")
 end
 
-And(/^I see the primary email address as "([^"]*)"$/)do |old_email_addr|
+And(/^I see the primary email address as "([^"]*)"$/) do |old_email_addr|
   fill_in('assessorEmail', :with => old_email_addr) if (find("#assessorEmail").value)!= old_email_addr
   click_link_or_button("Update")
   expect(page).to have_no_css(".toast-message")

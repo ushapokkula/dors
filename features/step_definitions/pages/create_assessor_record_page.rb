@@ -244,7 +244,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     login_to_outlook
-    sleep 5
+    sleep 8
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
