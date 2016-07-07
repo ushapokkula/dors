@@ -43,7 +43,7 @@ And (/^I will not see 'Licence Agreement' field on my profile page$/)do
   expect(page).to have_no_css("#licenseAgreementStatus")
 end
 
-When (/^I search for (.*?)in the trainer search field$/)do |trainerid|
+When (/^I search for (.*?)in the search trainer field$/)do |trainerid|
   fill_in('txt-trainer-name', :with=>trainerid)
   sleep 2
   page.find('#txt-trainer-name').native.send_keys(:enter)
