@@ -107,7 +107,7 @@ And (/^I can change Expiry Date to any other "([^"]*)" as well not in past$/) do
 end
 
 When (/^I manually set the "([^"]*)" to more than 730 days from system or current date$/) do |date|
-  if find("#licenseStatuses_2").value.to_i == 1
+  if find("#licenseStatuses_2").value.to_i == 3
     find("#licenseExpiryDate_2").click
     find("#licenseExpiryDate_2").set(date)
     find("#licenseExpiryDate_2").send_keys(:enter)

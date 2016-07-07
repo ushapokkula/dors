@@ -4,7 +4,7 @@ Then (/^I will be shown these fields of my record$/) do |table|
 end
 
 Then (/^the system will load the page where I can update assessor record$/) do
-  expect(page).to have_css("h1", "My profile")
+  expect(page).to have_css("h1", text:'My Profile')
   page.should have_css("#lnk-toggle-profile-details-form", text: 'Profile details')
 end
 
@@ -19,7 +19,7 @@ end
 
 Then (/^unsaved changes will be lost$/) do
   click_link_or_button('MY PROFILE')
-  find_field('assessorPhone').value.should_not eql?("079999945566") #Verify edited first name value is there or not#
+  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
 end
 
 Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
