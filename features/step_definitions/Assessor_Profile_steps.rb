@@ -96,10 +96,7 @@ And (/^I will remain on the same page$/) do
   @trainers.assessor_profile_page.verify_user_is_on_assessor_profile_page
 end
 
-When(/^I set (.*) to value (.*)$/) do |field, value|
-  el1 = find_element_by_label(field)
-  el1.set(value)
-end
+
 
 Then(/^I get the error message as (.*)$/) do |error_message|
   expect(page).to have_content(error_message)
