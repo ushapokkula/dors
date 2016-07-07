@@ -57,7 +57,7 @@ Feature: DR-113 and DR-118
     |Display_Items        |
     |Venue                |
     |Date & Time          |
-    |License Expiry date:  |
+    |License Expiry date: |
     |Trainer              |
     |License              |
     |Scheme               |
