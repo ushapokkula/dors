@@ -86,7 +86,7 @@ Feature: Trainer Profile
 
   @DR-912
   Scenario Outline: Verify Trainer field validations on trainer profile page
-    When I enter "<field>" to value "<value>"
+    When I enter <field> to value <value>
     Then the system will highlight those trainer profile fields
     Then I should see "<validation requirements>" message against that field
     And I click "Update" button
