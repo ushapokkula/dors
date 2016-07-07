@@ -26,10 +26,14 @@ end
 And(/^I can see the last changed details with user fullname and updated date$/) do
   expected_text = find(".text-s").text
   @trainers.create_trainer_record_page.verify_fullname_updated_time_stamp
-  actual_text = "Last changed by #{fetch('user_full_name')} (trainer_licence_agreement) on #{fetch('changed_time_stamp')}"
+  actual_text = "Last changed by #{fetch('user_full_name')} (#{fetch('changed_by_username')}) on #{fetch('changed_time_stamp')}"
 puts  expect(actual_text).to eq(expected_text)
 end
 
 Then(/^I will be logged out$/) do
  expect(page).to have_css("#txtemail")
+end
+
+When(/^I select "([^"]*)" as licence agreement$/) do |agreement_status|
+  select(agreement_status, :from=>'licenseAgreementStatus')
 end
