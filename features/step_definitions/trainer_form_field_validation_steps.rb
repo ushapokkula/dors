@@ -32,7 +32,7 @@ And(/^I enter the (.*) with (.*) characters$/) do |field, length|
 Then(/^I should see maximum allowed characters in for (.*) is (.*)$/) do |field, length|
   el1 = find_element_by_label(field)
   expected = el1.value.length
-  expect(length).to eq expected
+  expect(length.to_i).to eq expected
 end
 
 

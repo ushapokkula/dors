@@ -55,7 +55,7 @@ And (/^I will see a validation error message on the password confirmation field 
 end
 
 And (/^I will remain on the same My profile page$/)do
-  expect(page).to have_css("h1", text: 'My profile')
+  expect(page).to have_css("h1", text: 'My Profile')
   page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
 end
 

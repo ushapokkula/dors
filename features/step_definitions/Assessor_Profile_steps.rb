@@ -128,7 +128,7 @@ When(/^I change the assessors primary address from 'old email address' to "([^"]
 end
 
 Given(/^I am on accessors details page$/) do
-  expect(page).to have_css("h1", text: 'My profile')
+  expect(page).to have_css("h1", text: 'My Profile')
 end
 
 And(/^I see that email is sent To the address with (.*)$/) do |email_address|

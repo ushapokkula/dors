@@ -29,7 +29,7 @@ Feature: Validation Improvements on Create Trainer Form
     Then I should see "<validation requirements>" message against that field
     Examples:
       | field                   | value      | validation requirements                                                        |
-#      | Username                |            | Please provide a username.                                                     |
+      | Username                |            | Please provide a username.                                                     |
       | Username                | Test       | Sorry, the username is already taken. Please try a different username.         |
       | Username                | ngu        | Sorry, the username must be at least 4 characters long.                        |
       | Username                | T$%@!      | Sorry, the username can only contain numbers, letters, dashes and underscores. |
