@@ -1,3 +1,4 @@
+@pass
 @DR-44
 Feature: Trainer completes the creation of their account
   As a Trainer,

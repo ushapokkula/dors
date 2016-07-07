@@ -146,23 +146,22 @@ class CreateAssessorRecordPage < SitePrism::Page
   def validateAssessorUsername(username)
     usernameLength = username.length
     if (username.empty?)
-      page.should have_css("p.help-block",text:'Please provide a username.')
-    elsif(usernameLength<4)
-      page.should have_css("p.help-block",text:'Sorry, the username must be at least 4 characters long.')
+      page.should have_css("p.help-block", text: 'Please provide a username.')
+    elsif (usernameLength<4)
+      page.should have_css("p.help-block", text: 'Sorry, the username must be at least 4 characters long.')
       page.find("#assessorUsername").value.length.should.eq '4'
-    elsif((usernameLength>=4)&&(usernameLength<=70))
-      page.should have_css("p.help-block",text:'Sorry, the username can only contain numbers, letters, dashes and underscores.')
-    elsif(usernameLength>=71)
+    elsif ((usernameLength>=4)&&(usernameLength<=70))
+      page.should have_css("p.help-block", text: 'Sorry, the username can only contain numbers, letters, dashes and underscores.')
+    elsif (usernameLength>=71)
       page.find("#assessorUsername").value.length.should.eq '70'
-      end
+    end
   end
-
 
 
   def validateUserNameMaxCHARS
     username_string = username.set random_string(71)
-  usernameLenght = username_string.length
-    if(usernameLenght>70)
+    usernameLenght = username_string.length
+    if (usernameLenght>70)
       page.find("#assessorUsername").value.length.should.eq '70'
       puts 'Limit is 70 charachters'
     end
@@ -175,7 +174,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     if (assessorNumber.empty?)
       puts "Ok, Assessor number is optional"
     elsif ((assessorNumberLength>=1)&& (assessorNumberLength<=20))
-      page.should_not have_css("p.help-block",text:'Sorry, only numbers and letters are accepted.')
+      page.should_not have_css("p.help-block", text: 'Sorry, only numbers and letters are accepted.')
       page.find("#assessorNumber").value.length.should.eq '20'
     end
 
@@ -245,10 +244,33 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     login_to_outlook
+    sleep 8
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
     #expect(page).to have_xpath(".//*[@id='Item.MessageUniqueBody']//a", visible: true)
+  end
+
+  def delete_outlook_emails
+    visit "https://outlook.live.com/owa/"
+    unless page.has_css?("[aria-label='Open menu']", wait: 4)
+      find("input[type='email']").set("dors_test@outlook.com")
+      find("[name='passwd']").set("dorstest123")
+      find("[value='Sign in']").click
+    end
+    expect(page).to have_css("#O365_MainLink_Settings") # settings css
+    size = page.all(:xpath, ".//*[@autoid='_lvv_a']/div").size
+    if size > 10
+      find("[autoid='_n_h']").hover
+      find("[title='Select all items in view']").click
+      find(:xpath, ".//*[text()='Select everything']").click
+      find("[title='Delete (Del)']").click
+      find(:xpath, ".//span[text()='OK']").click
+    elsif size < 10 && size > 0
+      find("[autoid='_n_h']").hover
+      find("[title='Select all items in view']").click
+      find("[title='Delete (Del)']").click
+    end
   end
 
 

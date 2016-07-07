@@ -7,7 +7,7 @@ And(/^I fill all assessor fields on the create assessor form$/) do
 end
 
 And(/^I see that the email is generated and sent to the registered email address  with "([^"]*)" and "([^"]*)"$/) do |subject, body|
-   @trainers.create_assessor_record_page.email_generation(subject, body)
+  @trainers.create_assessor_record_page.email_generation(subject, body)
 end
 
 Then(/^I see the message "([^"]*)" after assessor creation$/) do |text|
@@ -22,7 +22,7 @@ And(/^The link will be  valid for 48 hours from the point of email send timestam
   @trainers.create_assessor_record_page.verify_48_hours_validity
 end
 
-And(/^I fill all fields on the "([^"]*)" form$/)do |page|
+And(/^I fill all fields on the "([^"]*)" form$/) do |page|
   if page == "ASSESSORS"
     @trainers.create_assessor_record_page.fill_create_assessor_fields
   else
@@ -30,7 +30,7 @@ And(/^I fill all fields on the "([^"]*)" form$/)do |page|
   end
 end
 
-And(/^I come back to Trainers portal and I logout$/)do
+And(/^I come back to Trainers portal and I logout$/) do
   visit "https://auto.trainer.dors.wtg.co.uk"
   # page.driver.browser.switch_to.window(page.driver.browser.window_handles.first)
   # expect(page.title)== "DORS Trainer"
@@ -45,4 +45,9 @@ And(/^I delete all the emails in the user inbox$/) do
     find("[title='Delete (Del)']").click
     # expect(page).to have_no_selector(:xpath, "#{x.path}")
   end
+end
+
+
+Given(/^I have deleted all the emails in the test email inbox$/) do
+  @trainers.create_assessor_record_page.delete_outlook_emails
 end

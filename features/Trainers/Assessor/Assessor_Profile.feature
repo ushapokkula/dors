@@ -4,13 +4,11 @@ Feature: Assessor Profile
   I want to be able to edit my record on the system,
   so that all my contact details remain updated.
 
-  Background:
+  @DR-549
+  Scenario: Assessor cancels the profile update operation
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
-
-  @DR-549
-  Scenario: Assessor cancels the profile update operation
     Then I will be shown these fields of my record
       | Update Assessor Fields  |
       | Username                |
@@ -27,6 +25,9 @@ Feature: Assessor Profile
       | Force Areas             |
 
   Scenario: Verify Cancel button functionality on Profile Page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor3"
+    And I navigate to "MY PROFILE" page
     Then the system will load the page where I can update assessor record
     When I click Cancel button on profile page
     And I will be redirected to "MY ASSESSMENTS" page
@@ -34,6 +35,9 @@ Feature: Assessor Profile
 
   @DR-594
   Scenario Outline: Validation error handling
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor3"
+    And I navigate to "MY PROFILE" page
     Then I enter primary phone number field value as "<Primary Phone Number>"
     Then I enter secondary phone number field value as "<Secondary Phone Number>"
     Then I enter primary email address field value as "<Primary Email>"
@@ -56,18 +60,22 @@ Feature: Assessor Profile
 
   @DR-860 @nologout
   Scenario Outline: Verify the email notification sent when assessor change their primary email address
+    Given I have deleted all the emails in the test email inbox
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor3"
+    And I navigate to "MY PROFILE" page
     Given I am on accessors details page
     And I see the primary email address as "<old email address>"
     When I change the assessors primary address from 'old email address' to "<new email address>"
     And I click "Update"
     And changes have been successfully saved
     Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent To the <old email> address with <old email address>
-    And I see that email is Cced to the <new email> address with <new email address>
+    And I see that email is sent To the address with <old email address>
+    And I see that email is Cced to the address with <new email address>
 
 
     Examples:
-      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email   |old email address    |new email      | new email address         |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test |dors_test@outlook.com|Roopa Ramisetty| Roopa.Ramisetty@wtg.co.uk |
+      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email address     | new email address         |
+      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test@outlook.com | Roopa.Ramisetty@wtg.co.uk |
 
 
