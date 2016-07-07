@@ -86,7 +86,29 @@ class CreateTrainerRecordPage < SitePrism::Page
     store("email",primary_email.value)
   end
 
-end
+  def verify_fullname_updated_time_stamp
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT  TOP (1) tbl_UserLicenseAgreementChange.UserId, tbl_UserLicenseAgreementChange.ChangeDate,
+                             tbl_User.Forename + ' ' + tbl_User.Surname AS Fullname, tbl_User.Forename, tbl_User.Surname,
+                             tbl_Trainer.UserId AS Expr2, tbl_Trainer.TrainerRef, tbl_UserLicenseAgreementChange.UserLicenseAgreementChangeId
+                             FROM  tbl_UserLicenseAgreementChange INNER JOIN
+                             tbl_User ON tbl_UserLicenseAgreementChange.UserId = tbl_User.UserId AND tbl_UserLicenseAgreementChange.ChangedByUserId = tbl_User.UserId INNER JOIN
+                             tbl_Trainer ON tbl_User.UserId = tbl_Trainer.UserId
+                              WHERE (tbl_Trainer.TrainerRef = 123987)
+                              ORDER BY tbl_UserLicenseAgreementChange.UserLicenseAgreementChangeId DESC")
+    result.each do |row|
+      fullname = row['Fullname']
+      time_stamp = row['ChangeDate']
+      date = (time_stamp.to_s).split(" ")
+      updated_date = Date.parse(date[0]).strftime("%d-%b-%Y")
+      store("user_full_name",fullname)
+      store("changed_time_stamp",updated_date)
+  end
+
+  end
+
+  end
 
 
 
