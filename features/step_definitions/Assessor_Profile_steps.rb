@@ -97,9 +97,8 @@ And (/^I will remain on the same page$/) do
 end
 
 When(/^I set (.*) to value (.*)$/) do |field, value|
-  el = find('label', text: /\A#{field}\z/, visible: true)
-  # value = '' if value == 'empty'
-  find("##{el[:for]}").set(value)
+  el1 = find_element_by_label(field)
+  el1.set(value)
 end
 
 Then(/^I get the error message as (.*)$/) do |error_message|
