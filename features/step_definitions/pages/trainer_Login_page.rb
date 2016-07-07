@@ -10,7 +10,7 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def login_as(user)
-    #verify_no_user_is_signed_in
+    # verify_no_user_is_signed_in
     username_field.set($users[user]['username'])
     password_field.set($users[user]['password'])
     sign_in_button.click
@@ -43,12 +43,10 @@ def verify_fullname(user)
   client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
   client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
   if user == "Assessor"
-  result= client.execute("SELECT  tbl_Assessor.Forename + ' ' + tbl_Assessor.Surname AS Fullname FROM  tbl_Assessor
-                         INNER JOIN tbl_User ON tbl_Assessor.UserId = tbl_User.UserId
+  result= client.execute("SELECT  tbl_User.Forename + ' ' + tbl_User.Surname AS Fullname FROM  tbl_User
                          WHERE tbl_User.ActiveDirectoryUsername="+"'"+($users[user]['username'])+"'")
   elsif user == "Trainer2"
-  result= client.execute("SELECT tbl_Trainer.Forename + ' ' + tbl_Trainer.Surname AS Fullname FROM tbl_Trainer
-                          INNER JOIN tbl_User ON tbl_Trainer.UserId = tbl_User.UserId
+  result= client.execute("SELECT tbl_User.Forename + ' ' + tbl_User.Surname AS Fullname FROM tbl_User
                           WHERE tbl_User.ActiveDirectoryUsername ="+"'"+($users[user]['username'])+"'")
   end
   result.each do |row|

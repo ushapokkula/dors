@@ -13,16 +13,17 @@ Feature: DR-170 ,DR-520
     When I click "Create Assessor"
     Then I see the message "New assessor successfully created" after assessor creation
 
-  @auto_email
+  @auto_email_assessor @nologout
   Scenario Outline: Verify the auto email genereation after creating an assessor
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+
 
     Examples:
 
       | Subject                              | Email Body                                                                                                                                                                                                                              |
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |
 
-  @link_validity
+  @link_validity_assessor @nologout
   Scenario Outline:  Verify the validity of the link generated following assessor account creation
       And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
       And The link will include a crypt nonce making it difficult to guess

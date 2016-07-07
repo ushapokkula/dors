@@ -12,8 +12,23 @@ module Misc
   end
 
   def random_string(length)
-     (0...length).map { (65 + rand(26)).chr }.join
+    (0...length).map { (65 + rand(26)).chr }.join
   end
+
+  VAR_MAP ||= {}
+
+  def store(name, value)
+    VAR_MAP[name] = value
+  end
+
+  def fetch(name, raise_exception = nil)
+    if raise_exception == true && VAR_MAP.has_key?(name) == false
+      raise "No value set for: " + name
+    end
+    VAR_MAP[name]
+  end
+
+
 
   def random_username_string(length)
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
@@ -40,5 +55,3 @@ module Misc
     find("##{el[:for]}")
   end
 end
-
-

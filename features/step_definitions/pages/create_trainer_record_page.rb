@@ -75,15 +75,17 @@ class CreateTrainerRecordPage < SitePrism::Page
 
   def filling_trainer_details
     username.set random_string(7)
-    trainer_id.set Faker::Number.numerify('16####')
+    trainer_id.set Faker::Number.numerify('16####') # can you notincrease the digits as it sometimes is creating the same record
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    primary_email.set Faker::Internet.email
+    primary_email.set "dors_test@outlook.com"
     secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
+    store("username",username.value)
+    store("email",primary_email.value)
   end
 
 end
