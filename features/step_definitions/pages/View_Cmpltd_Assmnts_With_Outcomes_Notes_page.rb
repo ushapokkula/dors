@@ -39,7 +39,8 @@ end
 
   def complete_Approved_Assessment
     click_link("ASSESSMENT MANAGEMENT")
-    find("#single-button").click
+    find("#single-button",visible:true).click
+    expect(page).to have_css("#assessmentStatusChk1", visible: true)
     check('assessmentStatusChk1')
     click_link_or_button('View Detail')
    select('Cancelled', :from=> 'status-281')

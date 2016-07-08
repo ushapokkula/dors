@@ -35,6 +35,11 @@ After do |scenario|
   # end
 end
 
+After ('~@nologout') do |scenario|
+   if (scenario.failed?)
+     find('#btn-signout').click
+   end
+end
 
 #delete the images files before every test
 unless Dir.glob('images/*').empty?

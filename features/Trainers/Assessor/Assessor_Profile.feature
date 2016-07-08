@@ -9,7 +9,7 @@ Feature: Assessor Profile
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
-    Then I will be shown these fields of my record
+    Then I will be shown these fields of assessor record
       | Update Assessor Fields  |
       | Username                |
       | Assessor Number         |

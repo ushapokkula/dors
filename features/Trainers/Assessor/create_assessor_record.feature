@@ -26,6 +26,8 @@ Feature: Create Assessor Record
       | Town                    |
       | Force Areas             |
 
+
+
   @create_assessor2
   Scenario Outline: Verify The mandatory fields
     Then I see the following fields as "<Mandatory>" with "<Error Messages>"
