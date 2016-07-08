@@ -44,8 +44,9 @@ And (/^I should see "([^"]*)" on summary view of assessment on 'Manage Assessmen
   end
 end
 
-And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|view_details|
-  click_link_or_button(view_details)
+And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|button|
+  expect(page).to have_css(:button, text:button)
+  click_link_or_button('View Details')
 end
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/)do |assessmentID|

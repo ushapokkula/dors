@@ -1,4 +1,4 @@
-@DR-596 @pass
+@DR-596 @DR-9 @pass
 Feature: Validation Improvements on Create Trainer Form
 
   Background:
@@ -17,7 +17,7 @@ Feature: Validation Improvements on Create Trainer Form
       | Last Name               | 50         | 100    |
       | Known As                | 50         | 100    |
       | Primary Phone Number    | 50         | 100    |
-      | Secondary Phone Number  | 10         | 100    |
+      | Secondary Phone Number  | 50         | 100    |
       | Primary Email Address   | 255        | 300    |
       | Secondary Email Address | 255        | 300    |
       | Address                 | 255        | 300    |

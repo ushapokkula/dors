@@ -92,3 +92,11 @@ Then(/^I will be shown trainer "([^"]*)" field as read only field$/)do |trainer_
     field_labeled(trainer_readonly_fields, :disabled => true)
   end
 end
+
+
+When(/^I set ([^"]*) to value ([^"]*)$/) do |field, value|
+  el = find('label', text: /\A#{field}\z/, visible: true)
+  el1 = find("##{el[:for]}")
+  el1.set(value)
+  el.click
+end

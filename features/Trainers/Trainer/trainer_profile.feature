@@ -71,22 +71,22 @@ Feature: Trainer Profile
       | Force Areas     |
 
    @DR-912
-  Scenario Outline: Verify fields max and min characters allowed on trainer profile page
+  Scenario Outline: Verify fields max and min characters allowed on trainer profile page (bug-story)
     When I enter the <field> with <length> characters
-    Then I should see maximum allowed characters in for <field> is <length>
+    Then I should see maximum allowed characters in for <field> is <max length>
     Examples:
-      | field                   |length|
-      | Known As                | 50 |
-      | Primary Phone Number    | 50 |
-      | Secondary Phone Number  | 10 |
-      | Primary Email Address   | 255|
-      | Secondary Email Address | 255|
-      | Address                 | 255|
-      |Town                     | 60 |
+      | field                   |max length|length|
+      | Known As                | 50       |80    |
+      | Primary Phone Number    | 50       |80    |
+      | Secondary Phone Number  | 50       |80    |
+      | Primary Email Address   | 255      |300   |
+      | Secondary Email Address | 255      |300   |
+      | Address                 | 255      |300   |
+      |Town                     | 60       |100   |
 
   @DR-912
-  Scenario Outline: Verify Trainer field validations on trainer profile page
-    When I enter <field> to value <value>
+  Scenario Outline: Verify Trainer field validations on trainer profile page (bug-story)
+    When I set <field> to value <value>
     Then the system will highlight those trainer profile fields
     Then I should see "<validation requirements>" message against that field
     And I click "Update" button
@@ -98,14 +98,14 @@ Feature: Trainer Profile
       | Primary Phone Number     | T$%@!                          | Sorry, the phone number must be at least 10 digits long. |
       | Secondary Phone Number   | 0788                           | Sorry, the phone number must be at least 10 digits long. |
       | Primary Email Address    |                                | Please provide an email address.                         |
-      | Primary Email Address    | test!#%&'@t.com                | Please provide a valid email address.                    |
-      | Primary Email Address    | a!#$%&*+-/=?^_{}~.b@gmail.com | Please provide a valid email address.                     |
-      | Secondary Email Address  | test+co&'uk                   | Please provide a valid email address.                     |
-      | Secondary Email Address  | a!#$%&*+-/=?^_{}~.b@gmail.com| Please provide a valid email address.                      |
-      | Address                  |                              | Please provide an address.                                 |
-      | Town                     |                              | Please provide a town.                                     |
-      | Postcode                 |                              | Please provide a postcode.                                 |
-      | Postcode                 | ha9 445                      | Please provide a valid postcode.                           |
+#      | Primary Email Address    | test!#%&'@t.com                | Please provide a valid email address.                    |
+#      | Primary Email Address    | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
+#      | Secondary Email Address  | test+co&'uk                    | Please provide a valid email address.                    |
+#      | Secondary Email Address  | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
+      | Address                  |                                | Please provide an address.                               |
+      | Town                     |                                | Please provide a town.                                   |
+      | Postcode                 |                                | Please provide a postcode.                               |
+      | Postcode                 | ha9 445                        | Please provide a valid postcode.                         |
 
 
 

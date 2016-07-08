@@ -11,10 +11,6 @@ module Misc
     end
   end
 
-  def random_string(length)
-    (0...length).map { (65 + rand(26)).chr }.join
-  end
-
   VAR_MAP ||= {}
 
   def store(name, value)
@@ -28,6 +24,10 @@ module Misc
     VAR_MAP[name]
   end
 
+
+  def random_string(length)
+    (0...length).map { (65 + rand(26)).chr }.join
+  end
 
 
   def random_username_string(length)
