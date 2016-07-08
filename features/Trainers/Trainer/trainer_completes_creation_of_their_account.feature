@@ -5,12 +5,11 @@ Feature: Trainer completes the creation of their account
   I want to be able to set a password for my newly created account and complete its creation,
   so that I can login and use the system to perform my day to day operations.
 
-  Background:
-    Given that I have licence.ndors.org.uk page opened
-
   @verify_the_welcome_page @nologout
   Scenario Outline: Verify the welcome page after clicking the password link
-    When I login as an "Compliance Manager"
+    Given I delete all the emails in the user inbox
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
     And I click "Create Trainer"
@@ -25,7 +24,7 @@ Feature: Trainer completes the creation of their account
 
   @successfully_set_password @nologout
   Scenario: Trainer successfully sets the password
-
+    Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -47,7 +46,7 @@ Feature: Trainer completes the creation of their account
 
   @username_does'nt_match @nologout
   Scenario: Verify the validation message when the username doesn't match with trainer record created
-
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -67,7 +66,7 @@ Feature: Trainer completes the creation of their account
 
   @email_does'nt_match @nologout
   Scenario: Verify the validation message when the email doesn't match with trainer record created
-
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -86,7 +85,7 @@ Feature: Trainer completes the creation of their account
     And I delete all the emails in the user inbox
   @invalid_email @nologout
   Scenario: Verify the validation message when the email format is Invalid
-
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -104,7 +103,7 @@ Feature: Trainer completes the creation of their account
 
   @password_mismatch @nologout
   Scenario: Verify the validation message when the password and confirm password fields does'nt match
-
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -123,6 +122,7 @@ Feature: Trainer completes the creation of their account
 
   @password_does'nt_meet_policy @nologout
   Scenario: Verify the validation message when the password  does'nt meet policy requirements
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -141,6 +141,7 @@ Feature: Trainer completes the creation of their account
 
   @link_expiry @nologout
   Scenario: Verify the link expiry
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -164,6 +165,7 @@ Feature: Trainer completes the creation of their account
 
   @blank_fields @nologout
   Scenario Outline: Verify the validation messages when the fields are blank on sign up page
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -184,6 +186,7 @@ Feature: Trainer completes the creation of their account
 
   @password_field_length_negative_validation @nologout
   Scenario:  Verify the password field length validation
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
@@ -201,6 +204,7 @@ Feature: Trainer completes the creation of their account
 
   @password_containing_username @nologout
   Scenario: Verify the validation when the password entered contains morethan 2 consecutive chrs of username
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     And I fill Mandatory fields with required details on create trainer form
