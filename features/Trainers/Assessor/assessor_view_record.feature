@@ -11,27 +11,27 @@ Feature: As an assessor,
   Scenario Outline: Verify the read-only fields on My Profile page
     Then I will be shown my record with below read only "<Assessor Readonly Fields>" fields
 
-  Examples:
+    Examples:
       | Assessor Readonly Fields |
-      | Username        |
-      | Assessor Number |
-      | Force Areas     |
-    
+      | Username                 |
+      | Assessor Number          |
+      | Force Areas              |
+      | First Name               |
+      | Last Name                |
+
   Scenario Outline: Verify the editable fields on My Profile page
     Then I will be shown my record with below editable "<Assessor Editable Fields>" fields
 
     Examples:
       | Assessor Editable Fields |
-      | First Name             |
-      | Last Name              |
-      | Primary Phone Number   |
-      | Secondary Phone Number |
-      | Primary Email Address  |
-      |Secondary Email Address |
-      | Town                   |
-      | Address                |
-      | Postcode               |
-      | Force Areas            |
+      | Primary Phone Number     |
+      | Secondary Phone Number   |
+      | Primary Email Address    |
+      | Secondary Email Address  |
+      | Town                     |
+      | Address                  |
+      | Postcode                 |
+      | Force Areas              |
 
   Scenario Outline: Verify The optional fields
     Then I see Assessor "<Optional>" field is an optional field

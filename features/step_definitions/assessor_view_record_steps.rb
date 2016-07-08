@@ -1,5 +1,5 @@
 And(/^I will be shown my record with below read only "([^"]*)" fields$/) do |field_name|
-  expect(page).to have_css("h1", text: "My profile")
+  expect(page).to have_css("h1", text: "My Profile")
   if (field_name == "Force Areas")
     page.should have_no_css("#selected-force-areas .close") #/*need to implement case statement*/
   else
