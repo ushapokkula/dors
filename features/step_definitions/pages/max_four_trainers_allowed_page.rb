@@ -58,7 +58,6 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
   def verify_validation_more_trainers_on_course
     find(".include-main-trainer-checkbox", match: :first)
     all('.include-main-trainer-checkbox')[0].click
-    all('.include-main-trainer-checkbox')[1].click
     find(".include-nearby-trainer-checkbox", match: :first)
     all('.include-nearby-trainer-checkbox')[0].click
     all('.include-nearby-trainer-checkbox')[2].click
