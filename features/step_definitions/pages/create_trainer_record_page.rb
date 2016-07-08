@@ -26,7 +26,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   elements :error_messages, ".help-block p"
 
 
-
   def verify_trainer_record_details(new_table)
     columns = new_table.map { |x| x['Input Details'] }
     for i in 1..columns.size
@@ -50,7 +49,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
-    expect(page).to have_css("#trainerUsername", visible:true)
+    expect(page).to have_css("#trainerUsername", visible: true)
     username.set random_string(7)
     trainer_id.set Faker::Number.numerify('16####')
     trainer_first_name.set Faker::Name.name
@@ -65,17 +64,19 @@ class CreateTrainerRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
-    page.find("#trainerisInstructor", visible:true).click
+    page.find("#trainerisInstructor", visible: true).click
     fill_in(optional_field, :with => '')
     expect(page).not_to have_css("p.help-block")
-     click_link_or_button("Create Trainer")
+    click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end
 
 
   def filling_trainer_details
     username.set random_string(7)
-    trainer_id.set Faker::Number.numerify('16####') # can you notincrease the digits as it sometimes is creating the same record
+    fill_trainer_id
+    #username.set random_string(7)
+    # trainer_id.set Faker::Number.numerify('16####') # can you notincrease the digits as it sometimes is creating the same record
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
@@ -84,10 +85,21 @@ class CreateTrainerRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
-    store("username",username.value)
-    store("email",primary_email.value)
+    store("username", username.value)
+    store("email", primary_email.value)
   end
 
+  def fill_trainer_id # fill with new trainer id if already exists
+    trainer_id.set Faker::Number.numerify('16####')
+    trainer_first_name.click
+    x = false
+    unless x
+      if page.has_css?(".form-group.has-error p", text: 'Sorry, the trainer id already exist. Please try a different trainer id.', wait: 2)
+        trainer_id.set Faker::Number.numerify('16####')
+      end
+      x = true if page.has_content?('Sorry, the trainer id already exist. Please try a different trainer id.',wait: 2)
+    end
+  end
 end
 
 

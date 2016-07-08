@@ -40,6 +40,11 @@ module Misc
     (0...length).map {chars.sample}.join
   end
 
+  def random_number(length)
+    chars = [*(0..9)]
+    (0...length).map {chars.sample}.join
+  end
+
 
   def random_email_string(length)
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]-%w(""()[];:><)+%w(@`!#$%&'*+-/=?^_`{ } ~ .|))
