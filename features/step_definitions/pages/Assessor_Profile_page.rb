@@ -101,16 +101,12 @@ end
     end
     end
 
-  #def random_string(length)
-  #(0...length).map { (65+ rand(26)).chr }.join
-  #end
 
   def random_string(x)
-    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).joinr
+    #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
     string = (0..x).map {chars.sample}.join
   end
-
 
   def validateAddressMaxCHARS
     address_string = (assessor_address).set random_string(256)

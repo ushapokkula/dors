@@ -1,4 +1,4 @@
-Then (/^I will be shown these fields of my record$/) do |table|
+Then (/^I will be shown these fields of assessor record$/) do |table|
   new_table = table.hashes
   @trainers.assessor_profile_page.profile_details(new_table)
 end
@@ -17,9 +17,9 @@ And(/^I will be redirected to "MY ASSESSMENTS" page$/) do
   expect(page).to have_css("h1", text: "My assessments")
 end
 
-Then (/^unsaved changes will be lost$/) do
-  click_link_or_button('MY PROFILE')
-  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited first name value is there or not#
+Then (/^unsaved changes will be lost$/)do
+ click_link_or_button('MY PROFILE')
+  find_field('assessorPhone').value.should_not eql?("079999945566")   #Verify edited primary phone number value is there or not#
 end
 
 Then(/^I enter firstname field value as "([^"]*)"$/) do |firstName|
@@ -97,11 +97,6 @@ And (/^I will remain on the same page$/) do
 end
 
 
-When(/^I set (.*) to value (.*)$/) do |field, value|
-  el = find('label', text: /\A#{field}\z/, visible: true)
-  # value = '' if value == 'empty'
-  find("##{el[:for]}").set(value)
-end
 
 Then(/^I get the error message as (.*)$/) do |error_message|
   expect(page).to have_content(error_message)
@@ -133,7 +128,7 @@ When(/^I change the assessors primary address from 'old email address' to "([^"]
 end
 
 Given(/^I am on accessors details page$/) do
-  expect(page).to have_css("h1", text: 'My profile')
+  expect(page).to have_css("h1", text: 'My Profile')
 end
 
 And(/^I see that email is sent To the address with (.*)$/) do |email_address|

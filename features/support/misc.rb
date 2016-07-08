@@ -1,3 +1,4 @@
+
 module Misc
   def load_yaml_file(file_name)
     io = File.open(File.dirname(__FILE__) + "/../../config/#{file_name}.yml")
@@ -29,4 +30,28 @@ module Misc
 
 
 
+  def random_username_string(length)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
+    (0...length).map {chars.sample}.join
+  end
+
+  def alpha_numeric(length)
+    chars = [*('A'..'Z'), *('a'..'z'), *(0..9)]
+    (0...length).map {chars.sample}.join
+  end
+
+
+  def random_email_string(length)
+    chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]-%w(""()[];:><)+%w(@`!#$%&'*+-/=?^_`{ } ~ .|))
+    (1...length).map { chars.sample }.join
+  end
+
+  def find_id_by_label(label)
+    find('label', text: /\A#{label}\z/, visible: true)[:for]
+  end
+
+  def find_element_by_label(label)
+    el = find('label', text: /\A#{label}\z/, visible: true)
+    find("##{el[:for]}")
+  end
 end
