@@ -98,10 +98,10 @@ Feature: Trainer Profile
       | Primary Phone Number     | T$%@!                          | Sorry, the phone number must be at least 10 digits long. |
       | Secondary Phone Number   | 0788                           | Sorry, the phone number must be at least 10 digits long. |
       | Primary Email Address    |                                | Please provide an email address.                         |
-      | Primary Email Address    | test!#%&'@t.com                | Please provide a valid email address.                    |
-      | Primary Email Address    | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
-      | Secondary Email Address  | test+co&'uk                    | Please provide a valid email address.                    |
-      | Secondary Email Address  | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
+#      | Primary Email Address    | test!#%&'@t.com                | Please provide a valid email address.                    |
+#      | Primary Email Address    | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
+#      | Secondary Email Address  | test+co&'uk                    | Please provide a valid email address.                    |
+#      | Secondary Email Address  | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
       | Address                  |                                | Please provide an address.                               |
       | Town                     |                                | Please provide a town.                                   |
       | Postcode                 |                                | Please provide a postcode.                               |
