@@ -29,7 +29,7 @@ module Misc
     (0...length).map { (65 + rand(26)).chr }.join
   end
 
-  
+
   def random_username_string(length)
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
     (0...length).map {chars.sample}.join
