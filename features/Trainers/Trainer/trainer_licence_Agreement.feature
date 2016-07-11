@@ -47,18 +47,16 @@
         |Unspecified|
 
     @DR-788
-    Scenario Outline: CCU/NGU loads the Licence Agreement on a trainer record
+    Scenario: CCU/NGU loads the Licence Agreement on a trainer record
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      And I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
-      Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+      And search for trainer "123458"
       Then the system will load the trainer record in edit or update mode
       And the 'Licence Agreement' will be shown as Unspecified
-      And 'Licence Agreement' field will have 'Accept', 'Rejected', 'Unspecified' options
-      Examples:
-        | trainer first name | trainer last name |
-        | roopa              | trainer           |
-
+      And 'Licence Agreement' field will have three possible options
+        |Accepted   |
+        |Rejected   |
+        |Unspecified|
 
 
     @DR-892
