@@ -18,6 +18,7 @@ end
 
 Then(/^I see the "([^"]*)" option is in selected status$/)do|status|
   page.find("#single-button").click
+  expect(page).to have_css(".dropdown-menu", visible:true)
   within(".dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == status
     find("#assessmentStatusChk0").should be_checked
