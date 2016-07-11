@@ -102,3 +102,32 @@ end
 
 
 
+  def verify_fullname_updated_time_stamp
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT TOP (1) change.ChangeDate,
+                             changeUser.ActiveDirectoryUsername 'changed by username',
+                             changeUser.Forename + ' ' + changeUser.Surname AS 'Changed by'
+                             FROM tbl_trainer tr
+                             join tbl_user trainerUser on trainerUser.UserId = tr.UserId
+                             join tbl_UserLicenseAgreementChange change on change.UserId = trainerUser.UserId
+                             join tbl_user changeUser on changeUser.UserId = change.ChangedByUserId
+                             WHERE tr.TrainerRef = 123987
+                             ORDER BY change.UserLicenseAgreementChangeId DESC")
+    result.each do |row|
+      fullname = row['Changed by']
+      time_stamp = row['ChangeDate']
+      username = row['changed by username']
+      date = (time_stamp.to_s).split(" ")
+      updated_date = Date.parse(date[0]).strftime("%d-%b-%Y")
+      store("user_full_name",fullname)
+      store("changed_time_stamp",updated_date)
+      store("changed_by_username",username)
+  end
+
+  end
+
+
+
+
+

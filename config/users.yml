@@ -18,6 +18,11 @@ Trainer3:
  username: trainer3
  password: test@?12
 
+TrainerLicence:
+ username: trainer_licence_agreement
+ password: P@ssw0rd1
+
+
 Assessor1:
  username: johnny
  password: P@ssw0rd1
