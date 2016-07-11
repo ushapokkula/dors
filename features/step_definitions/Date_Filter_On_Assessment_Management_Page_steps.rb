@@ -12,7 +12,7 @@ When(/^I click 'Assessment Status' dropdown button$/)do
 end
 
 Then (/^I see 'Requested' status is in selected status$/)do
-  expect(page).to have_css(".dropdown-menu",visible: true)
+  expect(page).to have_css(".dropdown-menu", visible: true)
   find("#assessmentStatusChk0").should be_checked
 end
 

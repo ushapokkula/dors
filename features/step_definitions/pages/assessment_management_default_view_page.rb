@@ -14,7 +14,9 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
 
   def verify_list_of_assessment_requests
     list_of_assessment_requests.each do |row|
-      expect(row.text).to include("Status Requested")
+      #puts expect(row.text).to have_css(".assessment-status", text:'Requested')
+      #puts row.text
+      expect(row.text).to include("Requested")
     end
   end
 
