@@ -85,9 +85,9 @@ Then (/^I will remain on Update Trainers form$/)do
 end
 
 
-When(/^I will see a (.*?)$/) do|action|
-page.find("#licenseAgreementStatus")
-end
+# When(/^I will see a (.*?)$/) do|action|
+# page.find("#licenseAgreementStatus")
+# end
 
 When (/^I see 'Licence Agreement' field$/)do
 page.find("#licenseAgreementStatus").visible?
@@ -100,5 +100,25 @@ And (/^I change 'Licence Agreement' to 'Unspecified'$/)do
 end
 
 When (/^I click on $/)do
+
+end
+
+Then (/^the system will load the trainer record in edit or update mode$/)do
+expect(page).to have_css("h3", text: 'Update Trainer')
+expect(page).to have_css("#btnCreateUpdateTrainer", text: 'Update Trainer')
+end
+
+And (/^'Licence Agreement' field will have 'Accept', 'Rejected', 'Unspecified' options$/)do
+page.find("#licenseAgreementStatus").click
+find_all("#licenseAgreementStatus option", visible: true)
+find_all('#licenseAgreementStatus option'[1], text: 'Accepted', visible: true)
+find_all('#licenseAgreementStatus option'[2], text: 'Rejected', visible: true)
+find_all('#licenseAgreementStatus option'[3], text: 'Unspecified', visible: true)
+
+end
+
+Then(/^I see the Status field will be in enabled$/)do
+expect(page).to have_css("#trainer-status-active", visible: true)
+expect(page).to have_css("#trainer-status-inactive", visible: true)
 
 end
