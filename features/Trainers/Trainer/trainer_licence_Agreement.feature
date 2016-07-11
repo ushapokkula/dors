@@ -113,19 +113,43 @@
          |Yes     | 123458   |Rejected   |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
          |Yes     |123458    |Unspecified|Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?              |
 
+
     @DR-788
     Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record as Accepted or Unspecified
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      And I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
-      When I set trainer Licence Agreement to <options> value
+      And search for trainer "123987"
+      When I set trainer Licence Agreement to <agreement_status> value
       Then I see the Status field will be in enabled
-      And I set trainer Status field to <status> value
-      And I click on Update Trainer
+      And I click "Update Trainer"
       Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
+      And I can see updated Licence Agreement as "<agreement_status>"
+      And I can see the last changed details with user fullname and updated date
       Examples:
-      |options    |trainer first name | trainer last name |status|
-      |Accepted   | roopa             | trainer           |Active|
-      |Unspecified|roopa              |trainer            |Active|
+      |agreement_status|
+      |Accepted   |
+      |Unspecified|
 
+
+      @DR-788
+      Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record as Rejected
+        When I login as an "Compliance Manager"
+        Then I navigate to "TRAINERS" page
+        And search for trainer "821578"
+        When I set trainer Licence Agreement to <agreement_status> value
+        Then the Status field will be set to Inactive and disabled on the UI
+        And I click "Update Trainer"
+        Then I will see a confirmation message with text, "<confirmation_message>"
+        When I click "No"
+        Then the message will close and no further action will be taken
+        And I click "Update Trainer"
+        Then I will see a confirmation message with text, "<confirmation_message>"
+        When I click "Yes"
+        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
+        And I can see updated Licence Agreement as "<agreement_status>"
+        And I can see the last changed details with user fullname and updated date
+
+        Examples:
+         |agreement_status|confirmation_message|
+         |Rejected        |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?|
 

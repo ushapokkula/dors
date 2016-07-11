@@ -60,9 +60,8 @@ And (/^I see Licence Agreement field in enabled state$/)do
 end
 
 
-When (/^I set trainer Licence Agreement to (.*?) value$/)do |option|
-  page.find("#licenseAgreementStatus").click
-  select(option, :from => 'licenseAgreementStatus')
+When (/^I set trainer Licence Agreement to (.*?) value$/)do |agreement_status|
+  select(agreement_status, :from => 'licenseAgreementStatus')
 end
 
 And (/^I set Status field to Inactive value$/)do
@@ -114,11 +113,27 @@ find_all("#licenseAgreementStatus option", visible: true)
 find_all('#licenseAgreementStatus option'[1], text: 'Accepted', visible: true)
 find_all('#licenseAgreementStatus option'[2], text: 'Rejected', visible: true)
 find_all('#licenseAgreementStatus option'[3], text: 'Unspecified', visible: true)
-
 end
 
 Then(/^I see the Status field will be in enabled$/)do
 expect(page).to have_css("#trainer-status-active", visible: true)
 expect(page).to have_css("#trainer-status-inactive", visible: true)
+end
 
+
+And (/^I can see updated Licence Agreement as "([^"]*)"$/)do|agreement_status|
+ puts page.find("#licenseAgreementStatus").value
+  expect(page).to have_css("#licenseAgreementStatus", text: agreement_status, visible: true)
+end
+
+Then (/^the Status field will be set to Inactive and disabled on the UI$/)do
+  page.find("#trainer-status-inactive").value == false
+end
+
+Then (/^I will see a confirmation message with text, "([^"]*)"$/)do|confirmation_message|
+expect(page).to have_css(".modal-content", text: confirmation_message, visible: true)
+end
+
+Then (/^the message will close and no further action will be taken$/)do
+expect(page).to have_no_css(".modal-content", visible: false)
 end

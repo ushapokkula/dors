@@ -98,7 +98,7 @@ class CreateTrainerRecordPage < SitePrism::Page
       x = true if page.has_content?('Sorry, the trainer id already exist. Please try a different trainer id.',wait: 2)
     end
   end
-end
+
 
 
 
@@ -125,6 +125,7 @@ end
       store("changed_by_username",username)
   end
 
+  end
   end
 
 
