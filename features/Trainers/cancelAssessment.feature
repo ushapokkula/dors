@@ -7,7 +7,6 @@ Feature:DR-15
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request assessment as Booked
-    #And I have assessments with Booked status
     And I navigate to "MY ASSESSMENTS" page
     And I click "View Details"
     And I see "Assessment Outcome" on the page
