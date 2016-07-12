@@ -7,7 +7,7 @@ Feature: Trainer completes the creation of their account
 
   @verify_the_welcome_page @nologout
   Scenario Outline: Verify the welcome page after clicking the password link
-    Given I delete all the emails in the user inbox
+    Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
@@ -17,7 +17,7 @@ Feature: Trainer completes the creation of their account
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
     When I click the link generated in the email to set password
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
     Examples:
       | Subject                              | Email Body                                                                                                                                                                                                                              |
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |
@@ -42,7 +42,7 @@ Feature: Trainer completes the creation of their account
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a success message displayed as "Password has been set on your account and you can now login to the system"
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @username_does'nt_match @nologout
   Scenario: Verify the validation message when the username doesn't match with trainer record created
@@ -62,7 +62,7 @@ Feature: Trainer completes the creation of their account
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a validation message displayed as "Sorry, your username or email is incorrect."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @email_does'nt_match @nologout
   Scenario: Verify the validation message when the email doesn't match with trainer record created
@@ -82,7 +82,8 @@ Feature: Trainer completes the creation of their account
     And When the password and confirm password both match
     When I click "Create Account"
     Then I see a validation message displayed as "Sorry, your username or email is incorrect."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
+
   @invalid_email @nologout
   Scenario: Verify the validation message when the email format is Invalid
     Given that I have licence.ndors.org.uk page opened
@@ -99,7 +100,7 @@ Feature: Trainer completes the creation of their account
     And I enter Password
     And I enter Confirm Password
     Then I see a validation message displayed as "Please provide a valid email address."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @password_mismatch @nologout
   Scenario: Verify the validation message when the password and confirm password fields does'nt match
@@ -118,7 +119,7 @@ Feature: Trainer completes the creation of their account
     When I enter confirm password which does'nt match with password
     And I click "Create Account"
     Then I see a validation message displayed as "Sorry, the passwords do not match. Please retype the password."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @password_does'nt_meet_policy @nologout
   Scenario: Verify the validation message when the password  does'nt meet policy requirements
@@ -137,7 +138,7 @@ Feature: Trainer completes the creation of their account
     And I enter Confirm Password
     Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
     #And I will be shown password policy requirements to set the password
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @link_expiry @nologout
   Scenario: Verify the link expiry
@@ -161,7 +162,7 @@ Feature: Trainer completes the creation of their account
     And I open the email which i have already used to set the password successfully
     When I try to access the link again
     Then I see this message on the page "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @blank_fields @nologout
   Scenario Outline: Verify the validation messages when the fields are blank on sign up page
@@ -176,7 +177,7 @@ Feature: Trainer completes the creation of their account
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     Then I set the mandatory field "<Mandatory>" as blank
     Then I see a validation message displayed as "<Error Messages>"
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
     Examples:
       | Mandatory        | Error Messages                   |
       | Username         | Please provide a username.       |
@@ -200,7 +201,7 @@ Feature: Trainer completes the creation of their account
     And I refresh the page
     When I enter the password more than than the maximum limit
     Then The field is restricted to 26 characters
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
 
   @password_containing_username @nologout
   Scenario: Verify the validation when the password entered contains morethan 2 consecutive chrs of username
@@ -215,4 +216,4 @@ Feature: Trainer completes the creation of their account
     Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter the password containing more than two consecutive chars of Username
     Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
-    And I delete all the emails in the user inbox
+    And I have deleted all the emails in the test email inbox
