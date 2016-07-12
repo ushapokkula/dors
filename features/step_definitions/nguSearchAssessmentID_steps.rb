@@ -23,9 +23,9 @@ Then(/^The page will include Mark Complete and Cancel button$/) do
  end
 
 Then(/^the page include Outcome dropdown$/) do
-  page.has_select?('#status-281', :options => ['Absent','Action Note','Cancelled','Competent','Compliance Note'])
-  page.has_select?('#status-279', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
-  page.has_select?('#status-392', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
+ expect(page).to have_select('status-281', :with_options => ['Absent','Action Note','Cancelled','Competent','Compliance Note'])
+ expect(page).to have_select('status-279', :with_options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
+ expect(page).to have_select('status-392', :with_options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
 end
 
 And(/^I type the Request Assessment ID in the Assessment search field$/) do
