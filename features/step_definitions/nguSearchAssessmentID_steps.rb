@@ -18,9 +18,9 @@ end
 
 Then(/^The page will include Mark Complete and Cancel button$/) do
   @trainers.ngu_search_assessment_id_page.select_outcome
-   find_button('Mark Complete').visible?
-   find_button('Cancel').visible?
-end
+  expect(page).to have_button('Mark Complete', visible:true)
+  expect(page).to have_button('Cancel', visible:true)
+ end
 
 Then(/^the page include Outcome dropdown$/) do
   page.has_select?('#status-281', :options => ['Absent','Action Note','Cancelled','Competent','Compliance Note'])
