@@ -147,9 +147,9 @@
       @DR-788
       Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record as Rejected
         When I login as an "Compliance Manager"
-        Given I have licence agreement as "Unspecified" for trainer Id "821578"
-        #Then I navigate to "TRAINERS" page
-        #And search for trainer "821578"
+        #Given I have licence agreement as "Unspecified" for trainer Id "821578"
+        Then I navigate to "TRAINERS" page
+        And search for trainer "821578"
         When I set trainer Licence Agreement to <agreement_status> value
         Then the Status field will be set to Inactive and disabled on the UI
         And I click "Update Trainer"
