@@ -31,13 +31,22 @@ Then (/^I will be redirected to Licence Agreement screen$/)do
 
 end
 
-And (/^I see licence text with an option to Accept or Reject$/)do
+And (/^I see licence agreement text with an option to Accept or Reject$/)do
 
 end
 
 And (/^I will not have access to any other system resources$/)do
 
 end
+
+When (/^I access any other system resource\(using URL\)$/)do
+  @adminURL = "https://auto.trainer.dors.wtg.co.uk/#/admin/"
+  visit @adminURL
+  #puts current_url
+  expected = page.current_url
+  puts expected
+end
+
 
 And (/^I will not see 'Licence Agreement' field on my profile page$/)do
   expect(page).to have_no_css("#licenseAgreementStatus")
@@ -93,10 +102,10 @@ page.find("#licenseAgreementStatus").visible?
 end
 
 And (/^I change 'Licence Agreement' to 'Unspecified'$/)do
-  if page.find("#licenseAgreementStatus").text == 'Accepted'
+  #if page.find("#licenseAgreementStatus").text == 'Accepted'
     select('Unspecified', :from=> 'licenseAgreementStatus')
   end
-end
+
 
 When (/^I click on $/)do
 
@@ -107,13 +116,13 @@ expect(page).to have_css("h3", text: 'Update Trainer')
 expect(page).to have_css("#btnCreateUpdateTrainer", text: 'Update Trainer')
 end
 
-And (/^'Licence Agreement' field will have 'Accept', 'Rejected', 'Unspecified' options$/)do
-page.find("#licenseAgreementStatus").click
-find_all("#licenseAgreementStatus option", visible: true)
-find_all('#licenseAgreementStatus option'[1], text: 'Accepted', visible: true)
-find_all('#licenseAgreementStatus option'[2], text: 'Rejected', visible: true)
-find_all('#licenseAgreementStatus option'[3], text: 'Unspecified', visible: true)
-end
+# And (/^'Licence Agreement' field will have 'Accept', 'Rejected', 'Unspecified' options$/)do
+# page.find("#licenseAgreementStatus").click
+# find_all("#licenseAgreementStatus option", visible: true)
+# find_all('#licenseAgreementStatus option'[1], text: 'Accepted', visible: true)
+# find_all('#licenseAgreementStatus option'[2], text: 'Rejected', visible: true)
+# find_all('#licenseAgreementStatus option'[3], text: 'Unspecified', visible: true)
+# end
 
 Then(/^I see the Status field will be in enabled$/)do
 expect(page).to have_css("#trainer-status-active", visible: true)
@@ -122,7 +131,6 @@ end
 
 
 And (/^I can see updated Licence Agreement as "([^"]*)"$/)do|agreement_status|
- puts page.find("#licenseAgreementStatus").value
   expect(page).to have_css("#licenseAgreementStatus", text: agreement_status, visible: true)
 end
 
@@ -130,10 +138,33 @@ Then (/^the Status field will be set to Inactive and disabled on the UI$/)do
   page.find("#trainer-status-inactive").value == false
 end
 
-Then (/^I will see a confirmation message with text, "([^"]*)"$/)do|confirmation_message|
-expect(page).to have_css(".modal-content", text: confirmation_message, visible: true)
+Then (/^I will see a Inactive Trainer message with text, "([^"]*)"$/)do|confirmation_message|
+expect(page).to have_css(".modal-body", text: confirmation_message, visible: true)
 end
 
 Then (/^the message will close and no further action will be taken$/)do
-expect(page).to have_no_css(".modal-content", visible: false)
+expect(page).to have_no_css(".modal-body", visible: false)
+end
+
+And (/^the status of every "([^"]*)" changed to 'Surrendered'$/)do|licences|
+expect(page). to have_css("#licenseStatuses_0", text: licences)
+end
+
+And (/^the expiry date of every licence changed to 'system date'$/)do
+  t = Time.now()
+  system_date = t.strftime("%d/%m/%Y")
+  page.find("#licenseExpiryDate_0").value== system_date
+end
+
+Then (/^I will be redirected to login page$/)do
+expect(page).to have_css(:button, text:'Sign in', visible: true)
+end
+
+Then (/^I see a Reject Licence Agreement "([^"]*)"$/)do|message|
+  expect(page).to have_css(".modal-body", text:message)
+  end
+
+
+And (/^I close the browser window$/)do
+  page.execute_script "window.close();"
 end

@@ -4,29 +4,13 @@
     Background:
       Given that I have licence.ndors.org.uk page opened
 
+    @DR-894
     Scenario: CCU/NGU Verifys Trainer Licence Agreement default option (Unspecified)
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      Then the system will load the page where I can create a new trainer record with required fields
-        | Input Details          |
-        | Username               |
-        | Trainer Id             |
-        | First Name             |
-        | Last Name              |
-        | Known As               |
-        | Primary Phone Number   |
-        | Secondary Phone Number |
-        | Primary Email Address  |
-        | Secondary Email Address|
-        | Address                |
-        | Postcode               |
-        | Town                   |
-        | Is Instructor          |
-        |Status                  |
-        |License Agreement       |
       And I will see a 'Licence Agreement' field on the trainer form
 
-
+    @DR-894
     Scenario: CCU/NGU Verifys Trainer record 'Licence Agreement' field (Unspecified)readonly status
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -59,57 +43,88 @@
         |Unspecified|
 
 
-    @DR-892
-    Scenario Outline: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
+    @DR-892 @DR-894
+    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
       Then I see 'Status' field default value set to 'Active'
       And the 'Licence Agreement' will be shown as Unspecified
-      And I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+      And search for trainer "888889"
       When I see 'Licence Agreement' field
       And I change 'Licence Agreement' to 'Unspecified'
+      And I click "Update Trainer"
       Then I logout
-      And I login as an "Trainer2"
-      Then I will be redirected to Licence Agreement screen
-      And I see licence text with an option to Accept or Reject
+      And I login as an "Trainer4"
+      Then I see licence agreement text with an option to Accept or Reject
       And I will not have access to any other system resources
-       #(i.e. nav-bar or access to any URLs directly, doing which should take me back to the same page)
-      When I click on <Action>
-      Then I should see <System Response> response
-      Examples:
-      |trainerid |Action                                      |System Response|
-      |676767    |Reject                                      |Rejecting this Licence Agreement will invalidate your licences, deactivate your account and you won't be able to access the DORS+ Licence Portal.Are you sure you want to continue?               |
-      |676767    |Accept                                      |               |
-      |676767    |close browser window                        |then my session will be closed and I will have to login again with valid credentials, after which, I will see the same Licence Agreement screen               |
-      |676767    |access any other system resource using URL  |               |
+      When I click "Accept"
+      Then I will be redirected to My Licences page
 
 
+    @DR-892 @DR-894
+    @nologout
+    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(close the browser)
+      When I login as an "Compliance Manager"
+      Then I navigate to "TRAINERS" page
+      Then I see 'Status' field default value set to 'Active'
+      And the 'Licence Agreement' will be shown as Unspecified
+      And search for trainer "888889"
+      When I see 'Licence Agreement' field
+      And I change 'Licence Agreement' to 'Unspecified'
+      And I click "Update Trainer"
+      Then I logout
+      And I login as an "Trainer4"
+      Then I see licence agreement text with an option to Accept or Reject
+      And I close the browser window
+      Given that I have licence.ndors.org.uk page opened
+      When I login as an "Trainer4"
+      Then I see licence agreement text with an option to Accept or Reject
+
+
+    @DR-892 @DR-894
+    @nologout
+    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified()
+      When I login as an "Compliance Manager"
+      Then I navigate to "TRAINERS" page
+      Then I see 'Status' field default value set to 'Active'
+      And the 'Licence Agreement' will be shown as Unspecified
+      And search for trainer "888889"
+      When I see 'Licence Agreement' field
+      And I change 'Licence Agreement' to 'Unspecified'
+      And I click "Update Trainer"
+      Then I logout
+      And I login as an "Trainer4"
+      Then I see licence agreement text with an option to Accept or Reject
+      When I access any other system resource(using URL)
+      Then I will be redirected to Licence Agreement screen
+
+    @DR-894
     Scenario: trainer does not see Licence Agreement on their Profile
        When I login as an "Trainer1"
        Then I navigate to "MY PROFILE" page
        And I will not see 'Licence Agreement' field on my profile page
 
-
-    Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record
-      When I login as an "Compliance Manager"
-      Then I navigate to "TRAINERS" page
-      When I search for <trainerid> in the trainer search field
-      Then the system will load trainer record in edit or update mode
-      And I see Licence Agreement field in enabled state
-      When I set trainer Licence Agreement to <options> value
-      And I set Status field to Inactive value
-      And I click on Update Trainer
-      And I will see a <confirmation message> with Yes or NO buttons
-      When I click "<button>"
-      Then I see a message saying "Trainer record successfully updated"
-      And I can see Status field value changes to Inactive
-      And I can see Licence Agreement field value changes
-      Then I will remain on Update Trainers form
-       Examples:
-         | button |trainerid |options    | confirmation message                                                   |
-         |Yes     | 123458   |Accepted   |Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
-         |Yes     | 123458   |Rejected   |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
-         |Yes     |123458    |Unspecified|Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?              |
+#    @DR-894
+#    Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record
+#      When I login as an "Compliance Manager"
+#      Then I navigate to "TRAINERS" page
+#      When I search for <trainerid> in the trainer search field
+#      Then the system will load trainer record in edit or update mode
+#      And I see Licence Agreement field in enabled state
+#      When I set trainer Licence Agreement to <options> value
+#      And I set Status field to Inactive value
+#      And I click on Update Trainer
+#      And I will see a <confirmation message> with Yes or NO buttons
+#      When I click "<button>"
+#      Then I see a message saying "Trainer record successfully updated"
+#      And I can see Status field value changes to Inactive
+#      And I can see Licence Agreement field value changes
+#      Then I will remain on Update Trainers form
+#       Examples:
+#         | button |trainerid |options    | confirmation message                                                   |
+#         |Yes     | 123458   |Accepted   |Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
+#         |Yes     | 123458   |Rejected   |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?                                   |
+#         |Yes     |123458    |Unspecified|Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system.Are you sure you want to continue?              |
 
 
     @DR-788
@@ -132,22 +147,70 @@
       @DR-788
       Scenario Outline: CCU/NGU updates the Licence Agreement on a trainer record as Rejected
         When I login as an "Compliance Manager"
-        Then I navigate to "TRAINERS" page
-        And search for trainer "821578"
+        Given I have licence agreement as "Unspecified" for trainer Id "821578"
+        #Then I navigate to "TRAINERS" page
+        #And search for trainer "821578"
         When I set trainer Licence Agreement to <agreement_status> value
         Then the Status field will be set to Inactive and disabled on the UI
         And I click "Update Trainer"
-        Then I will see a confirmation message with text, "<confirmation_message>"
+        Then I will see a Inactive Trainer message with text, "<confirmation_message>"
         When I click "No"
         Then the message will close and no further action will be taken
         And I click "Update Trainer"
-        Then I will see a confirmation message with text, "<confirmation_message>"
+        Then I will see a Inactive Trainer message with text, "<confirmation_message>"
         When I click "Yes"
         Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
         And I can see updated Licence Agreement as "<agreement_status>"
         And I can see the last changed details with user fullname and updated date
-
         Examples:
          |agreement_status|confirmation_message|
          |Rejected        |You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?|
+
+
+      @DR-893
+      Scenario Outline: CCU marks a Trainer's Licence Agreement as Rejected
+        When I login as an "Compliance Manager"
+        Given I have licence agreement as "Unspecified" for trainer Id "888889"
+        Then I navigate to "TRAINERS" page
+        And search for trainer "888889"
+        Then the system will load the trainer record in edit or update mode
+        When I set trainer Licence Agreement to <agreement_status> value
+        Then the Status field will be set to Inactive and disabled on the UI
+        And I click "Update Trainer"
+        Then I will see a Inactive Trainer message with text, "<confirmation_message>"
+        When I click "Yes"
+        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
+        And the status of every "<Licences>" changed to 'Surrendered'
+        And the expiry date of every licence changed to 'system date'
+        Examples:
+        |agreement_status|Licences               |confirmation_message|
+        |Rejected        | Provisional/Conditional|You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?|
+
+
+    @DR-893
+    Scenario Outline: Trainer's rejects licence agreement
+       When I login as an "Compliance Manager"
+       Given I have licence agreement as "Unspecified" for trainer Id "888889"
+      Then I navigate to "TRAINERS" page
+      And search for trainer "888889"
+       Then the system will load the trainer record in edit or update mode
+       And I logout
+       When I login as an "Trainer4"
+       When I see licence agreement text with an option to Accept or Reject
+       Then I click "Reject"
+       Then I see a Reject Licence Agreement "<Message>"
+       When I click "Yes"
+       And I will be logged out
+       Then I will be redirected to login page
+       When I login as an "Compliance Manager"
+       Then I navigate to "TRAINERS" page
+       And search for trainer "888889"
+       Then the Status field will be set to Inactive and disabled on the UI
+       And I can see updated Licence Agreement as "<agreement_status>"
+       And the status of every "<Licences>" changed to 'Surrendered'
+       And the expiry date of every licence changed to 'system date'
+      Examples:
+        |agreement_status|Licences                 |Message|
+        |Rejected        | Provisional/Conditional |Rejecting this Licence Agreement will invalidate your licences, deactivate your account and you won't be able to access the DORS+ Licence Portal. Are you sure you want to continue?|
+
 

@@ -31,7 +31,7 @@ Feature: Trainer Profile
     Then the system will load the page where I can update trainer record
     And I change Primary Phone Number details
     When I click Cancel button on trainer profile page
-    And I will be redirected to "My Licences" page
+    And I will be redirected to My Licences page
     And I navigate to "MY PROFILE" page
     Then unsaved changes on trainer profile will be lost
 

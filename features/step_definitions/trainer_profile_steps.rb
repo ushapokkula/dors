@@ -23,7 +23,7 @@ When (/^I click Cancel button on trainer profile page$/)do
   click_button('Cancel')
 end
 
-And (/^I will be redirected to "My Licences" page$/)do
+And (/^I will be redirected to My Licences page$/)do
   expect(page).to have_css("h1", text: "My Licenses")
 end
 
