@@ -29,12 +29,14 @@ end
 
 
 Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
-  page.find("#single-button",visible: true).click                #clicking on  'Assessment status dropdown'
-  expect(page).to have_css("#assessmentStatusChk4", visible: true)
+  expect(page).to have_css("h1", text: 'My assessments')
+  page.find("#single-button",visible: true).click  #clicking on  'Assessment status dropdown'
+  WaitUtil.wait_for_condition("waiting for drop down to appear", :timeout_sec => 5, :delay_sec => 0.5) do   #wait for dropdown to be visible
+   expect(page).to have_css("#assessmentStatusChk4", visible: true)
   find("#assessmentStatusChk4").click
   expect(page).to have_css(".assessment-status")  # need an id for completed status#
   click_link_or_button("View Detail")
-
+end
 end
 
 Then(/^I should see below information in view mode on 'My assessment details' page$/)do |information|

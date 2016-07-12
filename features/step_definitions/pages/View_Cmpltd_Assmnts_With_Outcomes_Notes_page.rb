@@ -39,7 +39,8 @@ end
 
   def complete_Approved_Assessment
     click_link("ASSESSMENT MANAGEMENT")
-    expect(page).to have_css("#single-button",visible: true)
+    puts expect(page).to have_css(".title-header", text:'Assessments', visible:true)
+    puts expect(page).to have_css("#single-button",visible: true)
     find("#single-button",visible:true).click
     WaitUtil.wait_for_condition("waiting for drop down to appear", :timeout_sec => 5, :delay_sec => 0.5) do
     expect(page).to have_css("#assessmentStatusChk1", visible: true)
