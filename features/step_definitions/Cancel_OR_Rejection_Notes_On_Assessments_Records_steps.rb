@@ -17,7 +17,9 @@ And (/^I should see the 'Cancellation Notes' on My Assessment details page$/)do
 end
 
 Then(/^I see the "([^"]*)" option is in selected status$/)do|status|
+  expect(page).to have_css("#single-button", visible:true)
   page.find("#single-button").click
+
   expect(page).to have_css(".dropdown-menu", visible:true)
   within(".dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == status
