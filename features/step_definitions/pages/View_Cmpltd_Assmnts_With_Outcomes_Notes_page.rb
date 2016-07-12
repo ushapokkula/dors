@@ -39,7 +39,9 @@ end
 
   def complete_Approved_Assessment
     click_link("ASSESSMENT MANAGEMENT")
+    expect(page).to have_css("#single-button",visible: true)
     find("#single-button",visible:true).click
+    WaitUtil.wait_for_condition("waiting for drop down to appear", :timeout_sec => 5, :delay_sec => 0.5) do
     expect(page).to have_css("#assessmentStatusChk1", visible: true)
     check('assessmentStatusChk1')
     click_link_or_button('View Detail')
@@ -50,4 +52,5 @@ end
     fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')
     click_link_or_button("Mark Complete")
   end
-end
+  end
+  end
