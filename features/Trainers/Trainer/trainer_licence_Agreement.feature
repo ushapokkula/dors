@@ -171,8 +171,8 @@
       Scenario Outline: CCU marks a Trainer's Licence Agreement as Rejected
         When I login as an "Compliance Manager"
         Given I have licence agreement as "Unspecified" for trainer Id "888889"
-        Then I navigate to "TRAINERS" page
-        And search for trainer "888889"
+        #Then I navigate to "TRAINERS" page
+        #And search for trainer "888889"
         Then the system will load the trainer record in edit or update mode
         When I set trainer Licence Agreement to <agreement_status> value
         Then the Status field will be set to Inactive and disabled on the UI
@@ -191,8 +191,8 @@
     Scenario Outline: Trainer's rejects licence agreement
        When I login as an "Compliance Manager"
        Given I have licence agreement as "Unspecified" for trainer Id "888889"
-      Then I navigate to "TRAINERS" page
-      And search for trainer "888889"
+      #Then I navigate to "TRAINERS" page
+      #And search for trainer "888889"
        Then the system will load the trainer record in edit or update mode
        And I logout
        When I login as an "Trainer4"
