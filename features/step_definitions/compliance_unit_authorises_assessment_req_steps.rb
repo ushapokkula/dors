@@ -7,8 +7,10 @@ And(/^I have all assessments requested$/) do
   @trainers.ngu_search_assessment_id_page.request_assessment
 end
 
-When(/^I click "([^"]*)" against one of the items on the list$/) do |button|
-  find(:button, button, match: :first).click
+When(/^I click "([^"]*)" against one of the items on the list$/) do |button_name|
+ puts expect(page).to have_css(".title-header", text:'Assessments')
+  puts expect(page).to have_css(".dors-table", minimum: 1)
+  find(:button, button_name, match: :first).click
 end
 
 Then(/^The request will be accepted and status of assessment request will be updated to Booked$/) do
