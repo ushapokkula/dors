@@ -25,7 +25,7 @@ end
 Then(/^the page include Outcome dropdown$/) do
   page.has_select?('#status-281', :options => ['Absent','Action Note','Cancelled','Competent','Compliance Note'])
   page.has_select?('#status-279', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
-  page.has_select?('#status-392>', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
+  page.has_select?('#status-392', :options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
 end
 
 And(/^I type the Request Assessment ID in the Assessment search field$/) do
@@ -43,6 +43,7 @@ end
 And(/^I login as Compliance Manager and click assessment management tab to search booked assessments$/) do
   @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
+  expect(page).to have_css(".title-header", text: 'Assessments')
   fill_in('txt-assessment-id', :with => $booked_status)
 end
 
