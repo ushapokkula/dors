@@ -53,7 +53,7 @@ Feature: Assessor Profile
     And I will remain on the same page
     Examples:
       | Primary Phone Number                                  | Secondary Phone Number | Primary Email           | Secondary Email | Address       | Town      | Postcode |
-      | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       |                 | 76hammersmith | Lo&,.,-H  |          |
+      | +876789-*                                             | 0787*+                 | {^*Roopa#@wtg&com       |                 | 76hammersmith |           |          |
       |                                                       | 07876545654            | /_rchitt120>~mail&&.com |                 | WEExxx.bcbhb  | Tr@' , -; | w14 8ud  |
       | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha0  3pb |
 

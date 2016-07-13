@@ -103,7 +103,7 @@ Feature: Trainer Profile
 #      | Secondary Email Address  | test+co&'uk                    | Please provide a valid email address.                    |
 #      | Secondary Email Address  | a!#$%&*+-/=?^_{}~.b@gmail.com  | Please provide a valid email address.                    |
       | Address                  |                                | Please provide an address.                               |
-      #| Town                     |                                | Please provide a town.                                   |
+      | Town                     |                                | Please provide a town.                                   |
       | Postcode                 |                                | Please provide a postcode.                               |
       | Postcode                 | ha9 445                        | Please provide a valid postcode.                         |
 
