@@ -12,14 +12,6 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
     end
   end
 
-  def verify_list_of_assessment_requests
-    list_of_assessment_requests.each do |row|
-      #puts expect(row.text).to have_css(".assessment-status", text:'Requested')
-      #puts row.text
-      expect(row.text).to include("Requested")
-    end
-  end
-
   def verify_assessment_ID
     expect(page.all(".dors-table-row").count).to be >= 1
   end
