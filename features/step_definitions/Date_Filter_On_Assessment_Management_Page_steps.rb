@@ -26,6 +26,11 @@ And (/^I request assessments$/) do
   end
 end
 
+Then (/^I will see list of all requested assessments$/)do
+expect(page).to have_css("h1", text: 'Assessments')
+  expect(find_all('.assessment-status', text:'Requested'))
+end
+
 
 And(/^The assessment list will be sorted by assessment course date$/) do
   @trainers.date_filter_on_assessment_management_page.verify_assessment_sorting_by_date

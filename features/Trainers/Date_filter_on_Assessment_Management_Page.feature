@@ -21,7 +21,7 @@ Feature: Date Filter on Assessment Page
     Then I request assessments
     And I logout
     And I login as an "Compliance Manager"
-    Then I will see  list of all Assessments Requests with status requested
+    Then I will see list of all requested assessments
     And The assessment list will be sorted by assessment course date
 
   Scenario: Verify default date range filter selection
