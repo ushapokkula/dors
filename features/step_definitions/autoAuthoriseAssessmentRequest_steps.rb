@@ -60,3 +60,18 @@ end
 And (/^the Force Areas filter control on the page will have my linked Force Areas pre-selected as default$/) do
   @trainers.auto_authorise_assessment_request_page.verify_defalut_preselected_forcearea
 end
+
+
+And(/^I can see "([^"]*)" field available on the page$/) do |filter_label|
+  find('label', text: filter_label, visible: true)
+ expect(page).to have_css("#txt-trainer-name",visible:true)
+
+end
+
+When(/^I start typing atleast three characters as "([^"]*)"in the filter by trainer field$/) do |chars|
+  fill_in('txt-trainer-name', :with=> chars)
+end
+
+Then(/^The system will auto\-predict and show possible trainer names and IDs in a dropped down list$/) do
+  expect(page).to have_css(".dropdown-menu li", minimum:1)
+end

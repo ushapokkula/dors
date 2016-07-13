@@ -41,7 +41,7 @@ Feature: DR-268 and DR-719
     Given I logout
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    And I can see filter by trainer field available on the page
+    And I can see "Filter By Trainer:" field available on the page
     When I start typing atleast three characters as "<Trainer Name>"in the filter by trainer field
     Then The system will auto-predict and show possible trainer names and IDs in a dropped down list
 
