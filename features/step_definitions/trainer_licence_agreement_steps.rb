@@ -36,7 +36,7 @@ And (/^I see licence agreement text with an option to Accept or Reject$/)do
 end
 
 And (/^I will not have access to any other system resources$/)do
-
+expect(page)
 end
 
 When (/^I access any other system resource\(using URL\)$/)do

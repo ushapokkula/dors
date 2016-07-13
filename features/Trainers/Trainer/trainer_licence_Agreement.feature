@@ -44,7 +44,7 @@
 
 
     @DR-892 @DR-894
-    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified
+    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(Accepts agreement)
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
       Then I see 'Status' field default value set to 'Active'
