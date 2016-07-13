@@ -244,7 +244,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     login_to_outlook
-    sleep 8
+    sleep 20
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)
@@ -271,6 +271,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[title='Select all items in view']").click
       find("[title='Delete (Del)']").click
     end
+
   end
 
 
