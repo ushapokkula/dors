@@ -1,5 +1,6 @@
 @DR-894 @DR-788 @DR-893 @DR-892 @pass
   Feature:Trainer NDORS Licence Agreement
+
     @DR-894
     Scenario: CCU/NGU Verifys Trainer Licence Agreement default option (Unspecified)
       Given that I have licence.ndors.org.uk page opened
