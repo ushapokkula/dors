@@ -28,21 +28,21 @@ And (/^I see 'Status' field default value set to 'Active'$/)do
 end
 
 Then (/^I will be redirected to Licence Agreement screen$/)do
-
+  expect(page).to have_css("h1", text: 'NDORS License Agreement')
 end
 
 And (/^I see licence agreement text with an option to Accept or Reject$/)do
-
+  expect(page).to have_css(:button, text: 'Reject')
+  expect(page).to have_css(:button, text: 'Accept')
 end
 
 And (/^I will not have access to any other system resources$/)do
-expect(page)
+expect(page).to have_no_css("#btn-signout", text: 'Sign out')
 end
 
 When (/^I access any other system resource\(using URL\)$/)do
   @adminURL = "https://auto.trainer.dors.wtg.co.uk/#/admin/"
   visit @adminURL
-  #puts current_url
   expected = page.current_url
   puts expected
 end
@@ -60,7 +60,6 @@ end
 
 Then (/^the system will load trainer record in edit or update mode$/)do
 expect(page).to have_css("#trainer-status-active", visible: true)
-
 end
 
 And (/^I see Licence Agreement field in enabled state$/)do
@@ -81,34 +80,21 @@ And (/^I can see Status field value changes to Inactive$/)do
 page.find("#trainer-status-inactive").value == true
 end
 
-And (/^I can see Licence Agreement field value changes$/)do
-end
-
-And(/^I will see a (.*?) with Yes or NO buttons $/)do|confirmation_message|
-
-end
-
-Then (/^I will remain on Update Trainers form$/)do
-
-end
-
-
-# When(/^I will see a (.*?)$/) do|action|
-# page.find("#licenseAgreementStatus")
-# end
-
 When (/^I see 'Licence Agreement' field$/)do
 page.find("#licenseAgreementStatus").visible?
 end
 
+Then (/^I will remain on Update Trainers form$/)do
+expect(page).to have_css("h3", text: 'Update Trainer')
+  expect(page).to have_css(:button , text: 'Update Trainer')
+end
+
 And (/^I change 'Licence Agreement' to 'Unspecified'$/)do
-  #if page.find("#licenseAgreementStatus").text == 'Accepted'
     select('Unspecified', :from=> 'licenseAgreementStatus')
-  end
+end
 
-
-When (/^I click on $/)do
-
+And (/^I set Status field to Active value$/)do
+  find("#trainer-status-active").click
 end
 
 Then (/^the system will load the trainer record in edit or update mode$/)do
@@ -116,13 +102,6 @@ expect(page).to have_css("h3", text: 'Update Trainer')
 expect(page).to have_css("#btnCreateUpdateTrainer", text: 'Update Trainer')
 end
 
-# And (/^'Licence Agreement' field will have 'Accept', 'Rejected', 'Unspecified' options$/)do
-# page.find("#licenseAgreementStatus").click
-# find_all("#licenseAgreementStatus option", visible: true)
-# find_all('#licenseAgreementStatus option'[1], text: 'Accepted', visible: true)
-# find_all('#licenseAgreementStatus option'[2], text: 'Rejected', visible: true)
-# find_all('#licenseAgreementStatus option'[3], text: 'Unspecified', visible: true)
-# end
 
 Then(/^I see the Status field will be in enabled$/)do
 expect(page).to have_css("#trainer-status-active", visible: true)
