@@ -265,13 +265,14 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[title='Select all items in view']").click
       find(:xpath, ".//*[text()='Select everything']").click
       find("[title='Delete (Del)']").click
-      find(:xpath, ".//span[text()='OK']").click
+       find(:xpath, ".//span[text()='OK']").click
     elsif size < 10 && size > 0
       find("[autoid='_n_h']").hover
       find("[title='Select all items in view']").click
       find("[title='Delete (Del)']").click
     end
-
+    find("[aria-label='Open menu']").click
+    find(:xpath, ".//*[text()='Sign out']").click
   end
 
 
