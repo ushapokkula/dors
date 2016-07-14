@@ -11,9 +11,9 @@ When(/^I click 'Assessment Status' dropdown button$/)do
   page.find("#single-button", visible: true).click
 end
 
-Then (/^I see 'Requested' status is in selected status$/)do
-  expect(page).to have_css(".filter-dropdown-list", visible: true)
-  find("#assessmentStatusChk0").should be_checked
+Then(/^I see 'Requested' status is in selected status$/)do
+expect(page).to have_css(".filter-dropdown-list",visible:true)
+find("#assessmentStatusChk0").should be_checked
 end
 
 And (/^I should not see 'Approved' status is selected$/)do
