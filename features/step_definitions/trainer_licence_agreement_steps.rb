@@ -1,5 +1,5 @@
 And (/^I will see a 'Licence Agreement' field on the trainer form$/)do
-expect(page).to have_xpath("//label[@for= 'licenseAgreementStatus']", text: 'License Agreement')
+expect(page).to have_css("[for='licenseAgreementStatus']", text: 'License Agreement')
 expect(page).to have_css("#licenseAgreementStatus")
 end
 
@@ -12,15 +12,13 @@ And (/^'Licence Agreement' field will be disabled or read-only$/)do
 end
 
 And (/^the 'Licence Agreement' will be shown as Unspecified$/)do
-  expect(page).to have_css("#licenseAgreementStatus > option:nth-child(3)", text: 'Unspecified')
+  find("#licenseAgreementStatus > option:nth-child(3)").should be_selected
 end
 
 And (/^'Licence Agreement' field will have three possible options$/)do |table|
-default_options = table.hashes.map { |x| x['Unspecified'] }
-puts default_options
-  licenseagreement_status = find_all("#licenseAgreementStatus option")
-  possible_options = licenseagreement_status.map{ |x| x.text}
-  puts possible_options
+  x = table.raw.flatten
+  y = all("#licenseAgreementStatus option").map {|x| x.text}
+  expect(x).to match_array(y)
 end
 
 And (/^I see 'Status' field default value set to 'Active'$/)do

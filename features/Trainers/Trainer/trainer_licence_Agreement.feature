@@ -2,22 +2,22 @@
   Feature:Trainer NDORS Licence Agreement
 
     @DR-894
-    Scenario: CCU/NGU Verifys Trainer Licence Agreement default option (Unspecified)
+    Scenario: CCU/NGU can see Licence Agreement on the trainer form
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
-      Then I navigate to "TRAINERS" page
-      And I will see a 'Licence Agreement' field on the trainer form
+      And I navigate to "TRAINERS" page
+      Then I will see a 'Licence Agreement' field on the trainer form
 
     @DR-894
-    Scenario: CCU/NGU Verifys Trainer record 'Licence Agreement' field (Unspecified)readonly status
+    Scenario: Licence Agreement field is disabled and unspecified by default for CCU/NGU
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
-      Then I navigate to "TRAINERS" page
-      And I see 'Licence Agreement' field will be set to Unspecified by default
+      And I navigate to "TRAINERS" page
+      Then I see 'Licence Agreement' field will be set to Unspecified by default
       And 'Licence Agreement' field will be disabled or read-only
 
     @DR-788
-    Scenario: CCU/NGU Verifys Trainer 'Licence Agreement' options
+    Scenario: CCU/NGU Verifies Trainer 'Licence Agreement' options
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
