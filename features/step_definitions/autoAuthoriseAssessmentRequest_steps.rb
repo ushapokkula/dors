@@ -75,3 +75,34 @@ end
 Then(/^The system will auto\-predict and show possible trainer names and IDs in a dropped down list$/) do
   expect(page).to have_css(".dropdown-menu li", minimum:1)
 end
+
+When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the filter by trainer field$/) do |trainer_id|
+  fill_in('txt-trainer-name', :with=> trainer_id)
+end
+
+When(/^The search criteria "([^"]*)" does'nt match any trainer record$/) do |search_criteria|
+  fill_in('txt-trainer-name', :with=> search_criteria)
+end
+
+Then(/^The second value will be selected from the auto predict list of trainer filter "([^"]*)"$/) do |trainer_id|
+  expect(page).to have_content(trainer_id)
+end
+
+Then(/^The first name will be selected from the auto predict list of trainer filter "([^"]*)"$/) do |trainer_id|
+  expect(page).to have_content(trainer_id)
+end
+
+When(/^I hit UP arrow key from the trainer filter auto predict list$/) do
+  fill_in('txt-trainer-name', :with => "_auto")
+  find("#txt-trainer-name").native.send_keys(:arrow_down)
+  find("#txt-trainer-name").native.send_keys(:arrow_up)
+  find("#txt-trainer-name").send_keys(:enter)
+end
+
+Then(/^The first trainer name will be selected from the drop down list by default$/) do
+  expect(page).to have_css(".trainer-licenseCode", count:2, text:'111222')
+end
+
+When(/^I hit enter after typing first three characters of trainer name$/) do
+  find("#txt-trainer-name").send_keys(:enter)
+end

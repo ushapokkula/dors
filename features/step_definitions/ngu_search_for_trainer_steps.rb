@@ -26,7 +26,7 @@ end
 
 When(/^I hit enter after typing first three characters of trainer name as "([^"]*)"$/) do |chars|
   expect(page).to have_css("#txt-trainer-name + ul")
-  find('#txt-trainer-name').send_keys(:enter)
+  find('#txt-trainer-name + ul').send_keys(:enter)
 end
 
 Then(/^The first trainer name will be selected from the drop down list by default "([^"]*)"$/) do |trainer_name|

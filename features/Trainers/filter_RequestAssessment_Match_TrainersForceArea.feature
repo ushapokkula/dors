@@ -56,7 +56,7 @@ Feature: DR-268 and DR-719
     Given I logout
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    When I enter a valid and existing trainer ID of 6 digits as "<Trainer ID>" in the filter by trainer field
+    When I enter a valid and existing trainer ID of six digits as "<Trainer ID>" in the filter by trainer field
     Then The system will auto-predict and show possible trainer names and IDs in a dropped down list
 
     Examples:
@@ -65,32 +65,43 @@ Feature: DR-268 and DR-719
       | 333333     |
       | 555555     |
 
-    @DR-115 @search_criteria_fail
-  Scenario: Verify the validation message when no record does'nt match the search criteria
+  @DR-115 @search_criteria_fail
+  Scenario Outline: Verify the validation message when no record does'nt match the search criteria
     Given I logout
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    When The search criteria does'nt match any trainer record
+    When The search criteria "<Criteria>" does'nt match any trainer record
     Then I see the message "No such trainer exists."
 
-      @DR-115 @navigate_list_using_keyboard_controls
+    Examples:
+      | Criteria |
+      | jnb      |
+      | 068712   |
+
+  @DR-115 @navigate_list_using_keyboard_controls
   Scenario Outline: Verify the trainer details by navigating the trainer list using keyboard control keys
+    Given I logout
+    And I login as an "Assessor"
+    And I click "REQUEST ASSESSMENT"
     And I start typing atleast three characters as "<Trainer Name>"in the filter by trainer field
     And The system will auto-predict and show possible trainer names and IDs in a dropped down list
-    When I hit DOWN arrow key from the trainer filter auto predict list
-    Then The second value will be selected from the auto predict list "<Down_Arrow>"
+    When I hit DOWN arrow key from the trainer auto predict list
+    Then The second value will be selected from the auto predict list of trainer filter "<Down_Arrow>"
     When I hit UP arrow key from the trainer filter auto predict list
-    Then The first name will be selected from the auto predict list "<UP_Arrow>"
+    Then The first name will be selected from the auto predict list of trainer filter "<UP_Arrow>"
     Examples:
       | Trainer Name | Down_Arrow | UP_Arrow |
-      | swa          | Swapna     | Swapna   |
+      | _auto        | 111333     | 111222   |
 
-    @DR-115 @default_select
-    Scenario: Verify the default search Trainer from the result set
-      And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
-      And The system will start autopredicting it and the list of trainer appears
-      When I hit enter after typing first three characters of trainer name as "<Trainer Name>"
-      Then The first trainer name will be selected from the drop down list by default "<First Name>"
+  @DR-115 @default_select
+  Scenario: Verify the default search Trainer from the result set
+    Given I logout
+    And I login as an "Assessor"
+    And I click "REQUEST ASSESSMENT"
+    And I start typing atleast three characters as "_auto" in the trainer search field
+    And The system will auto-predict and show possible trainer names and IDs in a dropped down list
+    When I hit enter after typing first three characters of trainer name
+    Then The first trainer name will be selected from the drop down list by default
 
 
 
