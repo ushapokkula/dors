@@ -28,7 +28,7 @@ if ENV['DRIVER'] == 'chrome'
 elsif ENV['DRIVER'] == 'firefox'
   Capybara.default_driver = :firefox
 else
-  Capybara.default_driver = :debug
+  Capybara.default_driver = :selenium_with_long_timeout
 end
 
 Capybara.configure do |config|
@@ -39,9 +39,15 @@ end
 
 World(Capybara)
 
-Capybara.register_driver :selenium do |app|
-  Selenium::WebDriver::Remote::Http::Default.new
-  Capybara::Selenium::Driver.new(app, :browser => :firefox)
+# Capybara.register_driver :selenium do |app|
+#   Selenium::WebDriver::Remote::Http::Default.new
+#   Capybara::Selenium::Driver.new(app, :browser => :firefox)
+# end
+
+Capybara.register_driver :selenium_with_long_timeout do |app|
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 120
+  Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
 end
 
 Capybara.register_driver :debug do |app|
