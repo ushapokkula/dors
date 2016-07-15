@@ -45,7 +45,7 @@
 
 
     @DR-892 @DR-894
-    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(Accepts agreement)
+    Scenario: Trainer's first logon to Licence Portal,keep Licence Agreement as Unspecified and Accepts agreement
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -65,7 +65,7 @@
 
     @DR-892 @DR-894
     @nologout
-    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(close the browser)
+    Scenario:  Trainer's first logon to Licence Portal,keep Licence Agreement as Unspecified and close the browser
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -86,7 +86,7 @@
 
     @DR-892 @DR-894
     @nologout
-    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(access any URL)
+    Scenario:  Trainer's first logon to Licence Portal,keep Licence Agreement as Unspecified and access any URL
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -103,7 +103,7 @@
       Then I will be redirected to Licence Agreement screen
 
     @DR-894
-    Scenario: trainer does not see Licence Agreement on their Profile
+    Scenario: Trainer does not see Licence Agreement on their Trainer Profile
       Given that I have licence.ndors.org.uk page opened
        When I login as an "Trainer1"
        Then I navigate to "MY PROFILE" page
