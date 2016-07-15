@@ -55,8 +55,7 @@ And (/^I click on Update Trainer$/)do
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
-  page.find(".toast-message").should be_visible
-  expect(page).to have_selector(:css, ".toast-message", text: message)
+  expect(page).to have_css(".toast-message", text: message)
 end
 
 

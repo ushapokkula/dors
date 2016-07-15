@@ -103,9 +103,9 @@ Then (/^the system will load the trainer record in edit or update mode$/) do
 end
 
 
-Then(/^I see the Status field will be in enabled$/) do
-  expect(page).to have_css("#trainer-status-active", visible: true)
-  expect(page).to have_css("#trainer-status-inactive", visible: true)
+Then(/^I see the Status field will be enabled$/) do
+  expect(page).to have_css("#trainer-status-active")
+  expect(page).to have_css("#trainer-status-inactive")
 end
 
 
