@@ -28,7 +28,7 @@ if ENV['DRIVER'] == 'chrome'
 elsif ENV['DRIVER'] == 'firefox'
   Capybara.default_driver = :firefox
 else
-  Capybara.default_driver = :selenium_with_long_timeout
+  Capybara.default_driver = :debug
 end
 
 Capybara.configure do |config|

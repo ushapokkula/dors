@@ -17,7 +17,8 @@
       And 'Licence Agreement' field will be disabled or read-only
 
     @DR-788
-    Scenario: CCU/NGU Verifies Trainer 'Licence Agreement' options
+    Scenario: Newly created trainer's license agreement is enabled and has 3 options to select and default is unspecified
+
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -31,7 +32,7 @@
         |Unspecified|
 
     @DR-788
-    Scenario: CCU/NGU loads the Licence Agreement on a trainer record
+    Scenario: Search an existing trainer and verify it is editable by CCU/NGU user
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
@@ -45,11 +46,11 @@
 
 
     @DR-892 @DR-894
-    Scenario: Trainer's first logon to Licence Portal with Licence Agreement as Unspecified(Accepts agreement)
+    Scenario: Accept a trainer's license agreement
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      Then I see 'Status' field default value set to 'Active'
+      Then I see the "Status" field is set to "Active"
       And the 'Licence Agreement' will be shown as Unspecified
       And search for trainer "888889"
       When I see 'Licence Agreement' field
@@ -69,7 +70,7 @@
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      Then I see 'Status' field default value set to 'Active'
+      Then I see the "Status" field is set to "Active"
       And the 'Licence Agreement' will be shown as Unspecified
       And search for trainer "888889"
       When I see 'Licence Agreement' field
@@ -78,7 +79,7 @@
       Then I logout
       And I login as an "Trainer4"
       Then I see licence agreement text with an option to Accept or Reject
-      And I close the browser window
+      And I reset cookies
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Trainer4"
       Then I see licence agreement text with an option to Accept or Reject
@@ -90,7 +91,7 @@
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      Then I see 'Status' field default value set to 'Active'
+      Then I see the "Status" field is set to "Active"
       And the 'Licence Agreement' will be shown as Unspecified
       And search for trainer "888889"
       When I see 'Licence Agreement' field
