@@ -50,7 +50,7 @@ Feature: DR-268 and DR-719
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     And I can see "Filter By Trainer:" field available on the page
-    When I start typing atleast three characters as "<Trainer Name>"in the filter by trainer field
+    When I start typing atleast three characters as "<Trainer Name>"in the 'filter by trainer' field
     Then The system will auto-predict and show possible trainer names and IDs in a dropped down list
 
     Examples:
@@ -112,11 +112,33 @@ Feature: DR-268 and DR-719
     Then The first trainer name will be selected from the drop down list by default
 
   @DR-115 @verify_reset_button
-    Scenario: Verify the reset button functionality
+    Scenario: Verify the reset button visibility
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     When I click "REQUEST ASSESSMENT"
     Then I see "Reset" button is visible within filters section
+
+  @DR-115 @verify_reset_functionality1
+    Scenario: Verify the reset button functionality after filtering the trainer
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I click "REQUEST ASSESSMENT"
+    When I select a trainer from auto predict list of trainer filter
+    Then the system will show the trainer licence records they hold on the "Request Assessment" page
+    When I click X to remove trainer in filter by trainer field
+    Then the list of all licence records matching 'Essex Police'  force will be displayed
+
+  @DR-115 @verify_reset_functionality2
+  Scenario: Verify the reset button functionality when force filter added new forces
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I click "REQUEST ASSESSMENT"
+    And I see "ESSEX POLICE" as the default force
+    And add "BRITISH TRANSPORT POLICE" in the force filter
+    When I select a trainer from auto predict list of trainer filter
+    Then the system will show the trainer licence records they hold on the "Request Assessment" page
+    When I click X to remove trainer in filter by trainer field
+    Then the list of all licence records matching 'Essex Police'  force will be displayed
 
   @DR-115 @trainer_record_listing_fields
     Scenario: Verify Trainer record listing fields
@@ -131,6 +153,8 @@ Feature: DR-268 and DR-719
     |Trainer ID    |
     |Expiry Date   |
     And the listing will also include Trainer Name and course name
+
+
 
 
 

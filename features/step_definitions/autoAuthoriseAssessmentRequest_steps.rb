@@ -115,12 +115,13 @@ end
 
 When(/^I select a trainer from auto predict list of trainer filter$/) do
   fill_in('txt-trainer-name', :with => "_auto")
+  expect(page).to have_css(".dropdown-menu li", minimum: 1)
   find("#txt-trainer-name").send_keys(:enter)
 end
 
 Then(/^the system will show the trainer licence records they hold on the "([^"]*)" page$/) do |request_page|
   expect(page).to have_css("h1", text: request_page)
- # expect(page).to have_css(".dors-table", count:2, visible: true)
+  expect(page).to have_css(".dors-table", count:2, visible: true)
 end
 
 And(/^the listing will include the fields as below$/) do |table|
@@ -131,4 +132,12 @@ end
 And(/^the listing will also include Trainer Name and course name$/) do
 expect(page).to have_css(".primary-color.trainer-full-name", visible:true)
 expect(page).to have_css(".license-scheme-name", visible:true)
+end
+
+When(/^I click X to remove trainer in filter by trainer field$/) do
+  find(".glyphicon.glyphicon-remove").click
+end
+
+Then(/^the list of all licence records matching 'Essex Police'  force will be displayed$/) do
+  expect(page).to have_css(".dors-table",visible:true , count:8)
 end
