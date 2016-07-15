@@ -23,8 +23,8 @@ Feature: Assessment Management Default View
       | Assessor Name |
       | Date          |
       | Expenses      |
-      | Name          |
-      | Expiry Date   |
+      | Trainer(s)    |
+      | Exp:          |
       | Status        |
 
 
