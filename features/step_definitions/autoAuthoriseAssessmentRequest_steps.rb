@@ -109,7 +109,7 @@ end
 
 Then(/^I see "([^"]*)" button is visible within filters section$/) do |button_name|
   within(".well") do
-     expect(page).to have_button(button_name, visible:true)
+    expect(page).to have_button(button_name, visible: true)
   end
 end
 
@@ -121,7 +121,7 @@ end
 
 Then(/^the system will show the trainer licence records they hold on the "([^"]*)" page$/) do |request_page|
   expect(page).to have_css("h1", text: request_page)
-  expect(page).to have_css(".dors-table", count:2, visible: true)
+  expect(page).to have_css(".dors-table", count: 2, visible: true)
 end
 
 And(/^the listing will include the fields as below$/) do |table|
@@ -130,14 +130,38 @@ And(/^the listing will include the fields as below$/) do |table|
 end
 
 And(/^the listing will also include Trainer Name and course name$/) do
-expect(page).to have_css(".primary-color.trainer-full-name", visible:true)
-expect(page).to have_css(".license-scheme-name", visible:true)
+  expect(page).to have_css(".primary-color.trainer-full-name", visible: true)
+  expect(page).to have_css(".license-scheme-name", visible: true)
 end
 
 When(/^I click X to remove trainer in filter by trainer field$/) do
   find(".glyphicon.glyphicon-remove").click
 end
 
-Then(/^the list of all licence records matching 'Essex Police'  force will be displayed$/) do
-  expect(page).to have_css(".dors-table",visible:true , count:8)
+Then(/^the list of all trainer licence records matching "([^"]*)"  force will be displayed$/) do |default_force|
+  expect(page).to have_css(".ui-select-container", text: default_force)
+  expect(page).to have_css(".dors-table", visible: true, count: 8)
+end
+
+And(/^I see "([^"]*)" as the default force$/) do |default_force|
+  expect(page).to have_css(".ui-select-container", text: default_force)
+end
+
+And(/^I include "([^"]*)" force$/) do |force|
+  if force == "BRITISH TRANSPORT POLICE"
+    find('.ui-select-search').set(force)
+    find('.ui-select-search').send_keys(:enter)
+  else
+    force = "All"
+    find(".btn.btn-primary",text: 'Yes').click
+  end
+  find("#txt-trainer-name").click             #to focus out from force filter field
+end
+
+Then(/^the force filter will default to "([^"]*)"$/) do |default_force|
+  expect(page).to have_css(".ui-select-container", text: default_force)
+end
+
+And(/^clears the selected trainer record in 'Filter by trainer' field$/) do
+  expect(page).to have_css("#txt-trainer-name", text: '')
 end

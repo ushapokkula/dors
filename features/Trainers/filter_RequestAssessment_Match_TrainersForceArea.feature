@@ -119,26 +119,33 @@ Feature: DR-268 and DR-719
     Then I see "Reset" button is visible within filters section
 
   @DR-115 @verify_reset_functionality1
-    Scenario: Verify the reset button functionality after filtering the trainer
+    Scenario: Verify the X button functionality after filtering the trainer
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     When I select a trainer from auto predict list of trainer filter
     Then the system will show the trainer licence records they hold on the "Request Assessment" page
     When I click X to remove trainer in filter by trainer field
-    Then the list of all licence records matching 'Essex Police'  force will be displayed
+    Then the list of all trainer licence records matching "ESSEX POLICE"  force will be displayed
 
   @DR-115 @verify_reset_functionality2
-  Scenario: Verify the reset button functionality when force filter added new forces
+  Scenario Outline: Verify the reset button functionality when force filter added new forces
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     And I see "ESSEX POLICE" as the default force
-    And add "BRITISH TRANSPORT POLICE" in the force filter
+    And I include "<Force>" force
     When I select a trainer from auto predict list of trainer filter
     Then the system will show the trainer licence records they hold on the "Request Assessment" page
-    When I click X to remove trainer in filter by trainer field
-    Then the list of all licence records matching 'Essex Police'  force will be displayed
+    When I click "Reset"
+    Then the force filter will default to "ESSEX POLICE"
+    And clears the selected trainer record in 'Filter by trainer' field
+    And the list of all trainer licence records matching "ESSEX POLICE"  force will be displayed
+
+    Examples:
+    |Force|
+    |BRITISH TRANSPORT POLICE|
+    |All|
 
   @DR-115 @trainer_record_listing_fields
     Scenario: Verify Trainer record listing fields
