@@ -127,11 +127,10 @@ Feature: DR-268 and DR-719
     Then the system will show the trainer licence records they hold on the "Request Assessment" page
     And the listing will include the fields as below
     |Listing_Fields|
-   # |Trainer Name  |
-    #|Course Name   |
     |course Type   |
     |Trainer ID    |
     |Expiry Date   |
+    And the listing will also include Trainer Name and course name
 
 
 

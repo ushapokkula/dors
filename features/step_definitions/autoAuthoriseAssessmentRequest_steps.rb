@@ -127,3 +127,8 @@ And(/^the listing will include the fields as below$/) do |table|
   new_table = table.hashes
   @trainers.auto_authorise_assessment_request_page.verify_trainer_licence_records_listing(new_table)
 end
+
+And(/^the listing will also include Trainer Name and course name$/) do
+expect(page).to have_css(".primary-color.trainer-full-name", visible:true)
+expect(page).to have_css(".license-scheme-name", visible:true)
+end
