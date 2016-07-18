@@ -30,7 +30,7 @@ Feature: Assessor Profile
     And I navigate to "MY PROFILE" page
     Then the system will load the page where I can update assessor record
     When I click Cancel button on profile page
-    And I will be redirected to "MY ASSESSMENTS" page
+    And I will be redirected to 'MY ASSESSMENTS' page
     Then unsaved changes will be lost
 
   @DR-594
