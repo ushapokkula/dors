@@ -57,7 +57,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorSecondaryPhone', :with => '07811111111')
     fill_in('assessorSecondaryEmail', :with => 'swapna@gmail.com')
     fill_in('assessorForceAreas', :with => 'pol')
-    random_selector(forcearea_list)
+    #random_selector(forcearea_list)
     fill_in(optional_field, :with => '')
     click_link_or_button("Create Assessor")
   end
