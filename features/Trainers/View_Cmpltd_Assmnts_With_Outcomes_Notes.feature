@@ -19,7 +19,6 @@ Feature: Completed Assessments Outcome Notes
       Then I should see below information in view mode on 'Assessment Outcome' page
        |information              |
        |Trainer Name             |
-       #|Licence                  |
        |Outcome                  |
        |Compliance Notes         |
 
@@ -35,7 +34,6 @@ Feature: Completed Assessments Outcome Notes
      Then I should see below information in view mode on 'My assessment details' page
      |information             |
      |Trainer Name            |
-     #|Trainer Licence         |
      |Trainer Outcome         |
      |Compliance Notes        |
 

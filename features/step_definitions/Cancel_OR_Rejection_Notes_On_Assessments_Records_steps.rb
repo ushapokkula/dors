@@ -18,10 +18,10 @@ end
 
 Then(/^I see the "([^"]*)" option is in selected status$/)do|status|
   expect(page).to have_css("#single-button", visible:true)
-  page.find("#single-button").click
+  page.find("#single-button", visible:true).click
 
-  expect(page).to have_css(".dropdown-menu", visible:true)
-  within(".dropdown-menu") do
+  expect(page).to have_css("#single-button + .dropdown-menu", visible:true)
+  within("#single-button + .dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == status
     find("#assessmentStatusChk0").should be_checked
   end
@@ -36,7 +36,7 @@ And (/^I 'Reject' the 'Requested' Assessment$/)do
 end
 
 Then (/^I select 'Rejected' status from 'Assessments Status' dropdown$/)do
-  page.find("#single-button").click
+  page.find("#single-button", visible: true).click
   check('assessmentStatusChk2')
 end
 
@@ -49,7 +49,7 @@ And (/^I should see the 'Rejection Notes' on Assessment Outcome page$/)do
 end
 
 And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
-  page.find("#single-button").click
+  page.find("#single-button", visible:true).click
   check('assessmentStatusChk1')
   expect(page).to have_css(".assessment-status", text: 'Approved')
 end
