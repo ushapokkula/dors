@@ -48,7 +48,7 @@ When(/^I hit DOWN arrow key from the trainer auto predict list$/) do
 end
 
 Then(/^The second value will be selected from the auto predict list "([^"]*)"$/) do |selected_trainer|
-   expect(find("#trainerFirstName").value).to eq(selected_trainer)
+  expect(find("#trainerFirstName").value).to eq(selected_trainer)
 end
 
 When(/^I hit UP arrow key from the trainer auto predict list$/) do

@@ -18,6 +18,7 @@ And(/^search for trainer "([^"]*)"$/) do |trainer_id|
 end
 
 And(/^I can see "([^"]*)" as Licence Agreement$/) do |agreement_status|
+  expect(page).to have_css("#trainerFirstName",visible:true)
   expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
 end
 
