@@ -56,10 +56,9 @@ Feature: DR-113 and DR-118
     And The system will display the following details on Pick slot page
     |Display_Items        |
     |Venue                |
-    |Date & Time          |
-    |License Expiry date: |
+    |Licence Expiry Date |
     |Trainer              |
-    |License              |
+    |Trainer ID               |
     |Scheme               |
     And The page will also show primary trainers Full Name,secondary trainer fullname
 
