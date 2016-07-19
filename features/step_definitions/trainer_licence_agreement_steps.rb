@@ -85,7 +85,7 @@ When (/^I see 'Licence Agreement' field$/) do
 end
 
 Then (/^I will remain on Update Trainers form$/) do
-  expect(page).to have_css("h3", text: 'Update Trainer')
+  expect(page.find_all('h3'[0], text: 'Update Trainer'))
   expect(page).to have_css(:button, text: 'Update Trainer')
 end
 
