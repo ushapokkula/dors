@@ -1,3 +1,4 @@
+@pass
 @DR-900
 
 Feature: Record User's identity and date-time stamp when licence agreement is set/updated by trainer or CCU
