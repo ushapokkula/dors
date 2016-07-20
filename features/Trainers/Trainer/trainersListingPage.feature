@@ -60,7 +60,7 @@ Feature: DR-113 and DR-118
       | Trainer             |
       | Trainer ID          |
       | Scheme              |
-      | On Assesssment       |
+      | On Assesssment      |
     And The page will also show primary trainers Full Name,secondary trainer fullname
     And the term "Secondary Trainer" is not shown against trainers on pick a course page
 
@@ -77,11 +77,25 @@ Feature: DR-113 and DR-118
     And I see that licence code is replaced by "Trainer ID"
 
   @DR-799 @show_assessment_id_requested
-    Scenario:  Verify the display of assessment id against a trainer if the trainer is in requested assessment
+  Scenario:  Verify the display of assessment id against a trainer if the trainer is in requested assessment
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
-    And I request assessment as Requested
+    And I click "Submit"
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    Then the assessment id is shown against the trainer
+
+  @DR-799  @show_assessment_id_approved
+  Scenario:  Verify the display of assessment id against a trainer if the trainer is in approved assessment
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I click Request assessment button against trainer I want to book an assessment
+    And I include trainer in near by course
+    And I click "Submit"
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    Then the assessment id is shown against the trainer
+
+
 
 
 

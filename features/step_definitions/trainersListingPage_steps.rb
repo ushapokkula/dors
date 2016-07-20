@@ -109,3 +109,12 @@ end
 And(/^the term "([^"]*)" is not shown against trainers on pick a course page$/) do |secondary_trainer|
   expect(page).to have_no_content(secondary_trainer)
 end
+
+When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in assessment$/) do
+  all(".btn.btn-primary:nth-child(2)")[5].click
+end
+
+Then(/^the assessment id is shown against the trainer$/) do
+@trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
+  expect(page).to have_css("", text:$requested_status)
+end
