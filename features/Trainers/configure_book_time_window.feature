@@ -48,7 +48,7 @@ Feature: DR-31
       And I login as an "Assessor"
       And I navigate to "REQUEST ASSESSMENT" page
       And I am on Pick a course page
-      And I click Request assessmet button against trainer I want to book an assessment
+      And I click Request assessment button against trainer I want to book an assessment
       And I will be taken to Request Assessment Summary page
       Then I will able to view only those trainer licenses expiring in "<Days>" time window on summary page
 

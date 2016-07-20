@@ -9,7 +9,7 @@ Feature: DR-165
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I am on Pick a course page
-    When I click Request assessmet button against trainer I want to book an assessment
+    When I click Request assessment button against trainer I want to book an assessment
     Then I will be taken to Request Assessment Summary page
 
   @near_by_trainers1
