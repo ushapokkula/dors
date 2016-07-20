@@ -8,11 +8,11 @@ And(/^I 'Completed' Approved Assessment$/)do
 end
 
 Then (/^I load detailed view of 'Completed' Assessment$/)do
-  page.find("#single-button", visible:true).click                #clicking on  'Assessment status dropdown'
+  page.find("#single-button", visible:true).click                    #clicking on  'Assessment status dropdown'
   expect(page).to have_css("#assessmentStatusChk4", visible: true)
-  check('assessmentStatusChk4')                                  #selecting Completed status#
+  check('assessmentStatusChk4')                                      #selecting Completed status#
   expect(page).to have_css(".assessment-status", text:'Completed')
-  click_link_or_button("View Detail")                                 #clicking on 'View detail' link'
+  click_link_or_button("View Details")                                 #clicking on 'View detail' link'
 end
 
 
@@ -34,7 +34,7 @@ Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' pag
    expect(page).to have_css("#assessmentStatusChk4", visible: true)
   find("#assessmentStatusChk4").click
   expect(page).to have_css(".assessment-status")  # need an id for completed status#
-  click_link_or_button("View Detail")
+  click_link_or_button("View Details")
 end
 end
 
