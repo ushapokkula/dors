@@ -19,7 +19,8 @@ end
 
 And(/^I can see "([^"]*)" as Licence Agreement$/) do |agreement_status|
   expect(page).to have_css("#trainerFirstName",visible:true)
-  expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
+  expect(page).to have_css('#licenseAgreementStatus', text: agreement_status)
+  #expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
 end
 
 And(/^I can see the last changed details with user fullname and updated date$/) do
