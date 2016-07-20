@@ -59,4 +59,9 @@ module Misc
     el = find('label', text: /\A#{label}\z/, visible: true)
     find("##{el[:for]}")
   end
+
+  def convert_table_hash(table)
+    x = table.raw
+    y = Hash[x.map { |v| [v[0], v[1]] }]
+  end
 end
