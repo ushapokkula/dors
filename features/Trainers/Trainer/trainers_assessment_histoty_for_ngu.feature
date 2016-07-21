@@ -8,7 +8,7 @@ Feature: As an NGU (TrainingGovernance)
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     When I navigate to "ASSESSMENT MANAGEMENT" page
-    And I deleted the assessments from Database
+    #And I deleted the assessments from Database
 
   Scenario Outline: search for assessments  by trainer name
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
@@ -22,15 +22,14 @@ Feature: As an NGU (TrainingGovernance)
   Scenario Outline: Verify the auto-predict search for trainer when searched with Trainer ID
     When I start typing six digits as "<Trainer ID>" in the trainer search field
     Then The system will start autopredicting it and the list of trainer appears
-
     Examples:
       | Trainer ID |
       | 111111     |
       | 333333     |
       | 555555     |
 
- Scenario Outline:  Verify the validation message for no trainer exists when searched with Trainer ID
-   When I start typing invalid "<Trainer ID>" in the trainer search field
+ Scenario Outline: Verify the validation message for 'no trainer exists' for invalid Trainer ID
+   When I start typing invalid trainer id as "<Trainer ID>" in the trainer search field
    Then I see the message "No such trainer exists."
    Examples:
    |Trainer ID|
@@ -43,14 +42,13 @@ Feature: As an NGU (TrainingGovernance)
     When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     Then The system will start autopredicting it and the list of trainer appears
     When I hit enter after typing first three characters of trainer name as "<Trainer Name>"
-    And searched "<format>" trainers name includes trainer full name and trainer ID
-
+    Then searched trainer "<Name>" name includes trainer full name and trainer ID
     Examples:
-      | Trainer Name |format       |
+      | Trainer Name |Name                   |
       | ali          | Ali Mashhadi (160001) |
 
 
-  Scenario: Verify the validation message when no trainer exists for the search criteria entered
+  Scenario: Verify validation message 'no trainer exists' when searched trainer record not in database
     When The search criteria does'nt match any trainer record on the database
     Then I see the message "No such trainer exists."
 

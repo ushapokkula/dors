@@ -1,8 +1,8 @@
-And (/^searched "([^"]*)" trainers name includes trainer full name and trainer ID$/)do|format|
-  expect(find("#txt-trainer-name").value).to be == format
+And (/^searched trainer "([^"]*)" name includes trainer full name and trainer ID$/)do|name|
+  expect(find("#txt-trainer-name").value).to be == name
 end
 
-When (/^I start typing invalid "([^"]*)" in the trainer search field$/)do|trainerid|
+When (/^I start typing invalid trainer id as "([^"]*)" in the trainer search field$/)do|trainerid|
 fill_in("txt-trainer-name", :with=> trainerid)
 end
 
