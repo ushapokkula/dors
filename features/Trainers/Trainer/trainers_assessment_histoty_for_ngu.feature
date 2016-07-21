@@ -95,7 +95,7 @@ Feature: As an NGU (TrainingGovernance)
     |Trainer First Name|Trainer Last Name|start date|end date|
     | auto1            |Trainer           |5/08/2016|5/09/2016|
 
-  Scenario Outline: In combination with other filter
+  Scenario Outline: Verify assessment records, When I set values in other filters on the page: Status, Start Date, End Date
     When I login as an "Assessor3"
     Then I navigate to "REQUEST ASSESSMENT" page
     And I deleted the assessments from Database
@@ -110,11 +110,34 @@ Feature: As an NGU (TrainingGovernance)
     And I enter "<start date>" in start date field
     And I enter "<end date>" in End date field
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
-    When I set values in other filters on the page: Status, Start Date, End Date
-    And select a Trainer in Trainer filter control
-    Then the system will filter assessment records on the page considering values in all filters in combination
+    Then the system will filter assessment records in all filters combination on assessment management page
     Examples:
-    |  |
+    |Trainer First Name  |Trainer Last Name|start date|end date|
+    |  auto7             |Trainer          |25/07/2016|5/08/2016|
+    |  auto1             |Trainer          |5/08/2016 |10/10/2016|
 
-
-
+  Scenario Outline: Verify assessments data by removing selected trainer from trainer search field
+    When I login as an "Assessor3"
+    Then I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    Then I request assessment
+    And I book assessment with nearby trainer
+    And I logout
+    And I login as an "Compliance Manager"
+    Then I navigate to "ASSESSMENT MANAGEMENT" page
+    Then I am on the Assessments Management page
+    When I click "Assessment Status"
+    Then I see 'Requested' status is in selected status
+    And I select 'Approved' status from 'Assessment Status' dropdown
+    And I enter "<start date>" in start date field
+    And I enter "<end date>" in End date field
+    And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
+    Then I should see "<selected trainer>" from the drop down list
+    When I click X against the selected trainer as shown in trainer search field
+    Then "<selected trainer>" will be removed from trainer search field
+    And assessments list on the Assessments page will be refreshed to show updated data
+    And other filters, if set, will be remain same
+    Examples:
+      |Trainer First Name  |Trainer Last Name|start date|end date|selected trainer|
+      |  auto7             |Trainer          |25/07/2016|5/08/2016|auto7 Trainer |
+      |  auto1             |Trainer          |5/08/2016 |10/10/2016|auto1 Trainer |
