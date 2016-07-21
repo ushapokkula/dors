@@ -86,8 +86,8 @@ When(/^The system will display the following details on Pick slot page$/) do |ta
 end
 
 When(/^The page will also show primary trainers Full Name,secondary trainer fullname$/) do
-  expect(page).to  have_css(".trainer-fullname")
-  #expect(page).to have_css(".secondary-trainer-full-name")
+  expect(page).to  have_css(".trainer-fullname", visible:true)
+  expect(page).to have_css(".auto-other-trainer-fullname", visible:true)
 end
 
 And(/^I set the time window to "([^"]*)" days$/)do |days|
@@ -99,7 +99,8 @@ And(/^I set the time window to "([^"]*)" days$/)do |days|
 end
 
 And(/^I see that licence code is replaced by "([^"]*)"$/) do|trainer_id|
- expect(page).to have_css("", text: trainer_id)
+ expect(page).to have_css(".auto-main-trainerid-label", text: trainer_id)
+ expect(page).to have_css(".auto-other-trainer-trainerid-label", text: trainer_id)
 end
 
 Then(/^I will be taken to "([^"]*)" page$/) do |course_page|
@@ -111,10 +112,19 @@ And(/^the term "([^"]*)" is not shown against trainers on pick a course page$/) 
 end
 
 When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in assessment$/) do
-  all(".btn.btn-primary:nth-child(2)")[5].click
+  all(".btn.btn-primary:nth-child(2)")[4].click
 end
 
-Then(/^the assessment id is shown against the trainer$/) do
-@trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
-  expect(page).to have_css("", text:$requested_status)
+Then(/^the requested assessment id is shown against the trainer$/) do
+  @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
+  puts expect(page).to have_css(".auto-other-trainer-on-assessment", text:$requested_status)
+end
+
+Then(/^the booked assessment id is shown against the trainer$/) do
+  @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
+  expect(page).to have_css(".auto-other-trainer-on-assessment", text:$booked_status)
+end
+
+And(/^I include trainer in near by course$/) do
+  page.find_all('.include-nearby-trainer-checkbox',visible:true)[6].click
 end

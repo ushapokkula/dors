@@ -13,6 +13,7 @@ Feature: DR-113 and DR-118
     When I configure the assessment time window to "365" days
     And I logout
     And I login as an "Assessor"
+    And I deleted the assessments from Database
     And I navigate to "REQUEST ASSESSMENT" page
 
   @DR-373
@@ -82,18 +83,21 @@ Feature: DR-113 and DR-118
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
     And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
     When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
-    Then the assessment id is shown against the trainer
+    Then the requested assessment id is shown against the trainer
 
   @DR-799  @show_assessment_id_approved
   Scenario:  Verify the display of assessment id against a trainer if the trainer is in approved assessment
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
+    And I will be taken to "Summary" page
     And I include trainer in near by course
     And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
     When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
-    Then the assessment id is shown against the trainer
+    Then the booked assessment id is shown against the trainer
 
 
 
