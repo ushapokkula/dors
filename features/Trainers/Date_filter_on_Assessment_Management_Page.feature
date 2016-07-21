@@ -9,6 +9,7 @@ Feature: Date Filter on Assessment Page
     When I login as an "Compliance Manager"
     Then I am on the Assessments Management page
     And I deleted the assessments from Database
+    And I click "ASSESSMENT MANAGEMENT"
     Then I should see a message "There are no assessments to display."
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status

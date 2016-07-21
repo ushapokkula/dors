@@ -8,7 +8,8 @@ Feature: Show Assessment ID
     Given that I have licence.ndors.org.uk page opened
        When I login as an "Assessor3"
        And I navigate to "REQUEST ASSESSMENT" page
-       Then I request assessment
+       And I deleted the assessments from Database
+       And I request assessment
 
   Scenario: The summary view of assessment requests on My Assessments page should show the Assessment ID.
     And I navigate to "MY ASSESSMENTS" page

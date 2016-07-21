@@ -1,5 +1,4 @@
 Then (/^I book assessment with nearby trainer$/)do
-  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.view_cmpltd_assmnts_with_outcomes_notes_page.book_Assessment_includes_nearby_trainer
 end
 
