@@ -48,15 +48,6 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     end
   end
 
-
-  def primary_trainer_include_bydefault
-    trainer_details1=[]
-    trainer_details.each do |x|
-      puts (x[0].text)
-    end
-    puts trainer_details
-  end
-
   def verify_trainer_and_course_details
     for i in 1..5
       puts page.has_xpath?("html/body/div[1]/div[2]/div/div[1]/div[6]/div/div[#{i}]")
