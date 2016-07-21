@@ -1,4 +1,4 @@
-@fail
+@pass
 @DR-167
 Feature: Filter on My Assessment page
 

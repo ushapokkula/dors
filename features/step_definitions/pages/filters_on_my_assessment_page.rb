@@ -9,7 +9,7 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   page.has_css?("#single-button")
   find("#single-button").text == "Assessment Status"
   find("#single-button").click
-  expect(page).to have_css(".dropdown-menu")
+  expect(page).to have_css("#single-button + .dropdown-menu")
   status_values.each do |values|
     status = values.text
     actual_status_values.push(status)
@@ -20,7 +20,7 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   def cancel_assessment
     click_link("MY ASSESSMENTS")
     click_button("View Details")
-    click_button("Cancel Request")
+    click_button("Cancel Assessment")
     fill_in("cancellationNotes", :with => "Notes for cancellation")
     click_button('Yes')
   end
@@ -28,6 +28,7 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   def reject_assessment_on_myassessments
     fill_in("txt-assessment-id", :with => $requested_status)
     click_button("Search")
+    expect(page).to have_css("h1", text: "Assessment Request")
     click_button("Reject")
     fill_in("cancellationNotes", :with => "Notes for Rejection")
     click_button('Yes')
