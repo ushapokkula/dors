@@ -51,7 +51,7 @@ end
 
 Then(/^the system will default the Expiry Date to today's date$/) do
   t = Time.now()
-  expiry_date = '(t.strftime("%d/%m/%Y")'
+  expiry_date = t.strftime("%d/%m/%Y")
   page.find("#licenseExpiryDate_2").value== expiry_date
 end
 
@@ -106,14 +106,15 @@ And (/^I can change Expiry Date to any other "([^"]*)" as well not in past$/) do
 end
 
 When (/^I manually set the "([^"]*)" to more than 730 days from system or current date$/) do |date|
-  if find("#licenseStatuses_2").value.to_i == 1
+  if find("#licenseStatuses_2").value.to_i == 3
     find("#licenseExpiryDate_2").click
     find("#licenseExpiryDate_2").set(date)
     find("#licenseExpiryDate_2").send_keys(:enter)
     expiry_date = '((Date.today)+ 730).to_s'
     page.find("#licenseExpiryDate_2").value > expiry_date
   end
-end
+  end
+
 
 Then(/^the system will show a soft warning message, "([^"]*)"$/) do |message|
   page.should have_css(".text-danger", text: message)

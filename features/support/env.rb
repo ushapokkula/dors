@@ -9,17 +9,8 @@ require 'rspec/matchers'
 require 'capybara/rspec'
 require 'cucumber'
 require 'report_builder'
-#require 'json'
-# require 'gmail'
-# require 'orderly'
-# require 'net/imap.rb'
 require 'faker'
 require 'active_support/core_ext/string/inflections'
-# require 'httparty'
-# require 'capybara-screenshot/cucumber'
-# require 'capybara/poltergeist'
-# require 'mysql2'
-# require 'pg'
 require 'sort'
 require 'tiny_tds'
 #require 'time_difference'
@@ -27,52 +18,38 @@ require 'pry'
 require 'waitutil'
 require 'date'
 require 'time'
-
 require_relative 'misc'
-include RSpec:: Matchers
+include RSpec::Matchers
 include Misc
+
 $users = load_yaml_file('../config/users')
 
-TRAINER_USERNAME =
-TRAINER_PASSWORD =
-
-ASSESSOR_USERNAME= "sudiv"
-ASSESSOR_PASSWORD= "P@ssw0rd1"
-
-
-ASSESSOR_USERNAME1= "johnny"
-ASSESSOR_PASSWORD1= "P@ssw0rd"
-
-COMPLAINCE_USERNAME= "jane1"
-COMPLAINCE_PASSWORD= "P@ssw0rd"
-
-$Trainers_Link="https://auto.trainer.dors.wtg.co.uk"
-
-$email_body = "A new account has been created for you on DORS+ system; the username for which will be communicated to you separately."
-              #   Please use the link below to set a password for your account following which you will be able to use the system.
-              #   <link>
-              # Note that the link is only valid for 48 hours and one time use only. If the link has expired, please contact NDORS Corporate Compliance Team."
-
-
-
-
-Capybara.configure do |config|
-  config.default_driver = :debug
-  config.app_host = "https://auto.trainer.dors.wtg.co.uk"
-  config.default_max_wait_time = 20
+# choose a driver, if its not given, then default is firefox
+if ENV['DRIVER'] == 'chrome'
+  Capybara.default_driver = :chrome
+elsif ENV['DRIVER'] == 'firefox'
+  Capybara.default_driver = :firefox
+else
+  Capybara.default_driver = :debug
 end
 
-
-After do|scenario|
-  find('#btn-signout').click
+Capybara.configure do |config|
+  config.app_host = "https://auto.trainer.dors.wtg.co.uk"
+  config.default_max_wait_time = 25
 end
 
 
 World(Capybara)
 
-Capybara.register_driver :selenium do |app|
-  http_client = Selenium::WebDriver::Remote::Http::Default.new
-  Capybara::Selenium::Driver.new(app, :browser => :firefox)
+# Capybara.register_driver :selenium do |app|
+#   Selenium::WebDriver::Remote::Http::Default.new
+#   Capybara::Selenium::Driver.new(app, :browser => :firefox)
+# end
+
+Capybara.register_driver :selenium_with_long_timeout do |app|
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 120
+  Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
 end
 
 Capybara.register_driver :debug do |app|
@@ -81,17 +58,9 @@ Capybara.register_driver :debug do |app|
   profile.add_extension "features/support/firepath.xpi"
   Capybara::Selenium::Driver.new app, :profile => profile
 end
-Capybara.server_port = 8888 + ENV['TEST_ENV_NUMBER'].to_i
 
-class Capybara::Selenium::Driver < Capybara::Driver::Base
-  def reset!
-    if @browser
-      begin
-      rescue Selenium::WebDriver::Error::UnhandledError => e
-      end
-      @browser.navigate.to('about:blank')
-    end
-  end
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
 SitePrism.configure do |config|

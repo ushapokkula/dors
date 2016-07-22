@@ -10,7 +10,7 @@ Feature: Assessment Management Default View
     When There are no assessments with status requested
     Then I see a message "There are no assessments to display."
 
-  @default2
+  @test
   Scenario: Verify the default view of Assessment management
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
@@ -23,8 +23,8 @@ Feature: Assessment Management Default View
       | Assessor Name |
       | Date          |
       | Expenses      |
-      | Name          |
-      | Expiry Date   |
+      | Trainer(s)    |
+      | Exp:          |
       | Status        |
 
 

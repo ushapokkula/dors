@@ -21,7 +21,7 @@ end
 
 Then(/^I see the following fields as "([^"]*)"$/) do |optional_field|
   @trainers.create_assessor_record_page.verify_optional_fields(optional_field)
-  expect(page).to have_no_css(".form-group.has-error p")
+  expect(page).to have_no_css(".has-error p")
 end
 
 Then(/^the system will load the page where I can create a new assessor record$/) do

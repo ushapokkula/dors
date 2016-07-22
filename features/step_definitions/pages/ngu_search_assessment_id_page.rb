@@ -66,10 +66,8 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
-    find(".include-main-trainer-checkbox", match: :first)
-    all('.include-main-trainer-checkbox')[0].click
-    find(".include-nearby-trainer-checkbox", match: :first)
-    all('.include-nearby-trainer-checkbox')[1].click
+    find(".include-main-trainer-checkbox", match: :first).click
+    all('.include-nearby-trainer-checkbox',visible:true)[1].click
     click_button("Submit")
 
   end
@@ -104,12 +102,12 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     actual_licenses=[]
     trainer_licenses.each do |row|
       licenses= row.text
-      $actual_licenses.push(licenses)
-    end
-    expect($actual_licenses).to include("111333/001")
-    expect($actual_licenses).to include("111222/001")
-    expect($actual_licenses).to include("111999/002")
+      actual_licenses.push(licenses)
+
+    puts expect(actual_licenses).to include("111333")
+    puts expect(actual_licenses).to include("111222")
+    puts expect(actual_licenses).to include("111999")
   end
 
-
+end
 end

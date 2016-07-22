@@ -8,7 +8,11 @@ Feature: Date Filter on Assessment Page
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
     Then I am on the Assessments Management page
-    And default view of the page is loaded
+    And I deleted the assessments from Database
+    Then I should see a message "There are no assessments to display."
+    When I click 'Assessment Status' dropdown button
+    Then I see 'Requested' status is in selected status
+    And I should not see 'Approved' status is selected
     And I logout
 
   Scenario: Verify the Assessments sorted by (Date) with nearest Date first
@@ -17,7 +21,7 @@ Feature: Date Filter on Assessment Page
     Then I request assessments
     And I logout
     And I login as an "Compliance Manager"
-    Then I will see  list of all Assessments Requests with status requested
+    Then I will see list of all requested assessments
     And The assessment list will be sorted by assessment course date
 
   Scenario: Verify default date range filter selection

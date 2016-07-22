@@ -19,10 +19,10 @@ Feature: Completed Assessments Outcome Notes
       Then I should see below information in view mode on 'Assessment Outcome' page
        |information              |
        |Trainer Name             |
-       |Licence                  |
        |Outcome                  |
        |Compliance Notes         |
 
+  @DR-866
   Scenario: When an 'Assessor' loads detailed view of the 'Completed' Assessment, they should be able to see:
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSMENT MANAGEMENT" page
@@ -34,7 +34,6 @@ Feature: Completed Assessments Outcome Notes
      Then I should see below information in view mode on 'My assessment details' page
      |information             |
      |Trainer Name            |
-     |Trainer Licence         |
      |Trainer Outcome         |
      |Compliance Notes        |
 

@@ -30,7 +30,7 @@ And(/^I fill Optional mileage and Notes fields$/)do
 end
 
 And(/^The assessment request will be submitted and saved in the database$/)do
-  expect(page).to have_css(".alert.alert-success", text: "The assessment has been Requested")
+  expect(page).to have_css(".alert.alert-success",visible:true)
   @trainers.ngu_search_assessment_id_page.verify_requested_assessment_status_in_DB
   expect($assessment_status).to equal(1)
 end
@@ -53,7 +53,7 @@ click_button("Cancel")
 end
 
 And(/^I will be redirected back to the Pick a Slot page$/)do
-  expect(page).to have_css("h1", "Request Assessment")
+  expect(page).to have_css('h1', text: "Request Assessment")
 end
 
 And(/^I enter data into mileage and notes field$/)do
@@ -64,34 +64,50 @@ end
 
 
 Then(/^The system will load Assessment Request Summary page with following Assessor details$/) do
-  page.has_xpath?("html/body/div[1]/div[2]/div/div[1]/div[4]/div[5]/div[1]")
-  page.has_xpath?("html/body/div[1]/div[2]/div/div[1]/div[4]/div[5]/div[2]")
-
+  expect(page).to have_css(".assessor-full-name-label", visible:true)
+  expect(page).to have_css(".assessor-full-name", visible:true)
+  expect(page).to have_css(".assessor-full-address", visible:true)
 end
 
+And(/^I see a message displaying that the assessment has been requested with assessment Id and date$/)do
+  expect(page).to have_css(".alert.alert-success")
+  assessment_id = find("#requested-assessment-id").text
+  assessment_date = find("#requested-assessment-date").text
+  expect(page).to have_css(".alert.alert-success", text:"Assessment #{assessment_id} scheduled for #{assessment_date} has been Requested")
+end
+
+
 Then(/^The page will display with the following Trainer Details$/) do |table|
-  @trainers.auto_authorise_assessment_request_page.verify_trainer_and_course_details
- end
+  new_table = table.hashes
+  columns = new_table.map { |x| x['Trainer Details'] }
+  for i in 1..columns.size
+    expect(page).to have_content(columns[i])
+  end
+  end
 
 
 Then(/^I see that the primary trainer is included by default$/) do
-  @trainers.auto_authorise_assessment_request_page.primary_trainer_include_bydefault
+  all("input.include-main-trainer-checkbox[type='checkbox']")[1].should be_visible == false
+  #@trainers.auto_authorise_assessment_request_page.primary_trainer_include_bydefault
 end
 
 Then(/^I will be able to Include or Exclude other trainer$/) do
+  expect(page).to have_css(".include-main-trainer-checkbox", visible:true)
 
 end
 
-When(/^I check "([^"]*)" for second trainer$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I check "([^"]*)" for second trainer$/) do |checkbox_label|
+   # puts expect(page).to have_css(".include-main-trainer-checkbox", text:checkbox_label)
+    (page.find_all(".include-main-trainer-checkbox")[1]).click
+
 end
 
 
 
-Then(/^I uncheck "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I uncheck "([^"]*)" for second trainer$/) do |checkbox_label|
+  page.find_all(".include-main-trainer-checkbox")[1].click
 end
 
 Then(/^The system will not include the secondary trainer in the booking request$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+ find_all(".include-main-trainer-checkbox")[1].should_not be_checked == true
 end
