@@ -57,7 +57,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     fill_in('assessorSecondaryPhone', :with => '07811111111')
     fill_in('assessorSecondaryEmail', :with => 'swapna@gmail.com')
     fill_in('assessorForceAreas', :with => 'pol')
-    random_selector(forcearea_list)
+    #random_selector(forcearea_list)
     fill_in(optional_field, :with => '')
     click_link_or_button("Create Assessor")
   end
@@ -244,7 +244,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def email_generation(subject, body)
     login_to_outlook
-    sleep 20
+    sleep 30
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']", :text => body)

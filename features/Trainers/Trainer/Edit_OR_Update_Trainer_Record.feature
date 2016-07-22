@@ -54,7 +54,7 @@ Feature: As an NGU,
       | trainer first name | trainer last name | Licence status          | date       |
       | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |
 
-@DR_673
+  @DR_673
   Scenario Outline: Verify warning-message when expiry date more than 730 days
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
@@ -75,7 +75,7 @@ Feature: As an NGU,
       | roopa              | trainer           | HA9 7lm  |
 
     
-@DR-675 @DR-510
+    @DR-675 @DR-510
     Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
      Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details

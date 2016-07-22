@@ -152,7 +152,7 @@ class TrainersListingPage < SitePrism::Page
 
   def verify_trianers_fullname
     expect(page).to  have_css(".trainer-fullname")
-    expect(page).to have_css(".secondary-trainer-full-name")
+    #expect(page).to have_css(".secondary-trainer-full-name")
   end
 
 

@@ -13,7 +13,7 @@ When (/^I click Cancel button on profile page$/) do
   click_button('Cancel')
 end
 
-And(/^I will be redirected to "MY ASSESSMENTS" page$/) do
+And(/^I will be redirected to 'MY ASSESSMENTS' page$/) do
   expect(page).to have_css("h1", text: "My assessments")
 end
 

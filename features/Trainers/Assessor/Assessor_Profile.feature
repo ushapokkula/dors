@@ -1,10 +1,10 @@
-@DR-13 @DR-817 @pass
+@DR-13 @DR-817
 Feature: Assessor Profile
   As an Assessor,
   I want to be able to edit my record on the system,
   so that all my contact details remain updated.
 
-  @DR-549
+  @DR-549 @pass
   Scenario: Assessor cancels the profile update operation
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
@@ -23,17 +23,17 @@ Feature: Assessor Profile
       | Postcode                |
       | Town                    |
       | Force Areas             |
-
+  @pass
   Scenario: Verify Cancel button functionality on Profile Page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
     And I navigate to "MY PROFILE" page
     Then the system will load the page where I can update assessor record
     When I click Cancel button on profile page
-    And I will be redirected to "MY ASSESSMENTS" page
+    And I will be redirected to 'MY ASSESSMENTS' page
     Then unsaved changes will be lost
 
-  @DR-594
+  @DR-594 @pass
   Scenario Outline: Validation error handling
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
@@ -58,7 +58,7 @@ Feature: Assessor Profile
       | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha0  3pb |
 
 
-  @DR-860 @nologout
+  @DR-860 @nologout @manual
   Scenario Outline: Verify the email notification sent when assessor change their primary email address
     Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened

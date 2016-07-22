@@ -7,7 +7,7 @@ Compliance Manager:
  password: P@ssw0rd1
 
 Trainer1:
- username: newtrainer
+ username: newtrainer  #989797#
  password: P@s5w0rd1
 
 Trainer2:
@@ -17,6 +17,15 @@ Trainer2:
 Trainer3:
  username: trainer3
  password: test@?12
+
+TrainerLicence:
+ username: trainer_licence_agreement
+ password: P@ssw0rd1
+
+Trainer4:
+ username: fabTrainer9
+ password: P@s5w0rd1
+
 
 Assessor1:
  username: johnny

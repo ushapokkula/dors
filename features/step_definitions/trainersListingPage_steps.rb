@@ -63,8 +63,8 @@ Then(/^The page will also show Primary Trainers Full Name, License Number, Schem
 end
 
 Then(/^The system will display a list of courses the selected trainer is delivering in future$/) do
-  expect(page).to have_css(".dors-table")
-  expect(page.all(".dors-table").count).to be > 0
+  expect(page).to have_css(".dors-well-other")
+  expect(page.all(".dors-well-other").count).to be > 0
 
  # @trainers.trainers_listing_page.pick_a_slot
 end

@@ -9,7 +9,7 @@ And (/^the 'Change password' section will be collapsed by default$/)do
 end
 
 When (/^I request to expand the 'Change password' section$/)do
-  find("#lnk-toggle-change-password-form").click
+  find("#lnk-toggle-change-password-form", visible:true).click
 end
 
 Then (/^'Change password' section will be expanded$/)do

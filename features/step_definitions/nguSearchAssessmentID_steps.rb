@@ -50,11 +50,12 @@ end
 And(/^I login as Compliance Manager and click assessment management tab to search requested assessments$/) do
   @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
+  expect(page).to have_css("#txt-assessment-id", visible:true)
   fill_in('txt-assessment-id', :with => $requested_status)
 end
 
 And(/^The page will include "([^"]*)" button$/) do |button|
-   find_button(button).visible?
+   expect(page).to have_button(button, visible:true)
 end
 
 When(/^I enter the assessment Id which does'nt exists$/) do
