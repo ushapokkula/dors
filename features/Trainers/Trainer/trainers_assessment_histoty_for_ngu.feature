@@ -48,6 +48,7 @@ Feature: As an NGU (TrainingGovernance)
     Then The system will start autopredicting it and the list of trainer appears
     When I hit enter after typing first three characters of trainer name as "<Trainer Name>"
     Then searched trainer "<Name>" name includes trainer full name and trainer ID
+    Then The first name "<Name>" will be selected from the auto predict list
     Examples:
       | Trainer Name |Name                   |
       | ali          | Ali Mashhadi (160001) |
@@ -66,17 +67,15 @@ Feature: As an NGU (TrainingGovernance)
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     And The system will start autopredicting it and the list of trainer appears
     When I hit DOWN arrow key from the trainer auto predict list
-    Then The second value will be selected from the auto predict list "<Down_Arrow>"
     And I start typing atleast three characters as "<Trainer Name>" in the trainer search field
     And The system will start autopredicting it and the list of trainer appears
     When I hit UP arrow key from the trainer auto predict list
-    Then The first name will be selected from the auto predict list "<UP_Arrow>"
     Examples:
-      | Trainer Name | Down_Arrow                  | UP_Arrow |
-      | ali          | Ali Mashhadi (512141)       | Ali Mashhadi (160001)   |
+      | Trainer Name |
+      | ali          |
 
 
-  Scenario Outline: When no assessment records are found in the database for selected filter criteria on assessment management page
+  Scenario Outline: Verify 'no assessment records' are found in the database for selected filter criteria on assessment management page
     When I login as an "Assessor3"
     Then I navigate to "REQUEST ASSESSMENT" page
     And I deleted the assessments from Database
@@ -103,18 +102,20 @@ Feature: As an NGU (TrainingGovernance)
     And I book assessment with nearby trainer
     And I logout
     And I login as an "Compliance Manager"
-    Then I navigate to "ASSESSMENT MANAGEMENT" page
+    When I navigate to "ASSESSMENT MANAGEMENT" page
     Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
-    And I select 'Approved' status from 'Assessment Status' dropdown
-    And I enter "<start date>" in start date field
-    And I enter "<end date>" in End date field
+    Then I see 'Requested' status is in selected status
+    Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
+    And I set "<start_date>" and "<end_date>" filter on assessment page
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
-    Then the system will filter assessment records in all filters combination on assessment management page
+    Then the system will filter assessment records in all "<end_date>","<Status_filter1>","<Status_filter2>","<selected_trainer_name>"combination on assessment management page
     Examples:
-    |Trainer First Name  |Trainer Last Name|start date|end date|
-    |  auto7             |Trainer          |25/07/2016|5/08/2016|
-    |  auto1             |Trainer          |5/08/2016 |10/10/2016|
+      |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
+      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|10/09/2016|auto7 Trainer |
+      |  auto1             |Trainer          |Requested    | Approved      |5/08/2016 |22/01/2017|auto1 Trainer |
+
+
 
   Scenario Outline: Verify assessments data by removing selected trainer from trainer search field
     When I login as an "Assessor3"
@@ -126,18 +127,17 @@ Feature: As an NGU (TrainingGovernance)
     And I login as an "Compliance Manager"
     Then I navigate to "ASSESSMENT MANAGEMENT" page
     Then I am on the Assessments Management page
-    When I click "Assessment Status"
+    When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
-    And I select 'Approved' status from 'Assessment Status' dropdown
-    And I enter "<start date>" in start date field
-    And I enter "<end date>" in End date field
+    Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
+    And I set "<start_date>" and "<end_date>" filter on assessment page
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
-    Then I should see "<selected trainer>" from the drop down list
     When I click X against the selected trainer as shown in trainer search field
-    Then "<selected trainer>" will be removed from trainer search field
+    Then "<selected_trainer_name>" will be removed from trainer search field
     And assessments list on the Assessments page will be refreshed to show updated data
-    And other filters, if set, will be remain same
+    When I click "Assessment Status"
+    Then other filters "<Status_filter1>","<Status_filter2>","<start_date>","<end_date>" , if set, will be remain same
     Examples:
-      |Trainer First Name  |Trainer Last Name|start date|end date|selected trainer|
-      |  auto7             |Trainer          |25/07/2016|5/08/2016|auto7 Trainer |
-      |  auto1             |Trainer          |5/08/2016 |10/10/2016|auto1 Trainer |
+      |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
+      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|10/09/2016|auto7 Trainer |
+      |  auto1             |Trainer          |Requested    | Approved      |5/08/2016 |22/01/2017|auto1 Trainer |

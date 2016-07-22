@@ -12,7 +12,7 @@ end
 
 Then(/^I see 'Requested' status is in selected status$/)do
 expect(page).to have_css("#single-button + .dropdown-menu",visible: true)
-expect(page).to have_css("#assessmentStatusChk0", visible: true)
+find("#assessmentStatusChk0").should be_checked
 end
 
 And (/^I should not see 'Approved' status is selected$/)do
@@ -114,7 +114,6 @@ end
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/) do |status1, status2|
   if (status1 == "Requested" && status2 == "Approved")
-    page.find("#single-button", visible: true).click
     expect(page).to have_css("#assessmentStatusChk1")
     page.find("#assessmentStatusChk1", visible: true).click
     #check('assessmentStatusChk1')

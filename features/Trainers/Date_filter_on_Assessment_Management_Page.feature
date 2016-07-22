@@ -93,6 +93,7 @@ Feature: Date Filter on Assessment Page
     And I request assessment as requested
     And I logout
     When I login as an "Compliance Manager"
+    And I click "Assessment Status"
     And I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     Then assessments that meet all filter criteria in combination will be displayed
