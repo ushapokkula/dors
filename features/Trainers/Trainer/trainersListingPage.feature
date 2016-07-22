@@ -99,8 +99,7 @@ Feature: DR-113 and DR-118
     When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
     Then the booked assessment id is shown against the trainer
 
-#  @DR-927 @assessment_id_on_summary_page
-#    Scenario:
+
 
 
 
