@@ -50,14 +50,13 @@ Feature: submit assessment request feature
     When I click "Submit"
     Then The assessment request will be submitted and saved in the database
     And An assessment ID will be generated in the format 100xxx
-    #And This ID will be assigned to the assessment request just created and saved in the database as its identifier
     And The status of the assessment request will be marked as Requested
 
   @assessment_status_message
   Scenario: Verify the Assessment request status message
     And I fill Optional mileage and Notes fields
     When I click "Submit"
-    And I will be redirected to Request Assessment page
+    And I will be re-directed to "Request Assessment" page
     And I see the success message "Your assessment request has been successfully submitted." on the page
 
   @cancel

@@ -117,7 +117,7 @@ end
 
 Then(/^the requested assessment id is shown against the trainer$/) do
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
-  puts expect(page).to have_css(".auto-other-trainer-on-assessment", text:$requested_status)
+  expect(page).to have_css(".auto-other-trainer-on-assessment", text:$requested_status)
 end
 
 Then(/^the booked assessment id is shown against the trainer$/) do
