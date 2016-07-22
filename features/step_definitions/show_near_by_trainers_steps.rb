@@ -37,7 +37,8 @@ And(/^I check Include this Trainer for a trainer$/)do
 end
 
 Then(/^The system will include the selected trainer in the booking request$/) do
-  @trainers.show_near_by_trainers_page.verify_trainer_inlcuded_booking_request
+ find_all('.include-main-trainer-checkbox')[1].should be_checked == true
+  #@trainers.show_near_by_trainers_page.verify_trainer_inlcuded_booking_request
 end
 
 And(/^I see that the courses displaying near by have same postcode as Primary one$/)do
