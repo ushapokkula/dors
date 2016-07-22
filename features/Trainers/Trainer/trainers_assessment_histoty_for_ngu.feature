@@ -36,9 +36,9 @@ Feature: As an NGU (TrainingGovernance)
    Then I see the message "No such trainer exists."
    Examples:
    |Trainer ID|
-   |123122222|
-   |5487469221254|
-   |00000000000  |
+   |120112012010|
+   |111111111111111|
+   |00000000000000|
 
 
   Scenario Outline: Verify the format of displaying the list of names when trainer name is searched
