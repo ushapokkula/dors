@@ -111,3 +111,8 @@ end
 Then(/^The system will not include the secondary trainer in the booking request$/) do
  find_all(".include-main-trainer-checkbox")[1].should_not be_checked == true
 end
+
+And(/^I see that licence code is replaced by "([^"]*)" on summary page$/) do |label_name|
+ expect(page).to have_css(".trainer-id-label", text: label_name)
+ expect(page).to have_css(".nearby-trainer-id-label", text: label_name)
+end

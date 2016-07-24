@@ -65,6 +65,29 @@ Feature: submit assessment request feature
     And I click "Cancel"
     Then I will be redirected back to the Pick a Slot page
 
+  @DR-927 @replace_licence_code_trainerid
+  Scenario: licence code is replaced by trainer id
+    Then I see that the primary trainer is included by default
+    And I see that licence code is replaced by "Trainer ID" on summary page
+
+  @DR-927  @primary_trainer_chcekbox_ticked
+    Scenario: Verify the primary trainer checkbox is ticked and disbaled on summary page
+    Then the primary trainer will be shown with "Include this trainer" checkbox on summary page
+    And the primary trainer by default it will be checked and disabled
+
+  @DR-927 @show_assessment_id_under_main_trainer
+    Scenario: Verify the display of assessment id against the trainer when the trainer is in request assessment
+    And the primary trainer will be shown with "Include this trainer" checkbox on summary page
+    And the primary trainer by default it will be checked and disabled
+    And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+
+
+
+
+
+
 
 
 
