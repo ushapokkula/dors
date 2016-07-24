@@ -9,7 +9,8 @@ end
 
 And(/^The system will start autopredicting it and the list appears$/) do
   if (page.should have_no_css(".text-danger"))
-    expect(page.all("#txt-assessor-name + ul li").count).to be > 0
+    expect(page).to have_css(".dropdown-menu", visible:true)
+    expect(page.all("#txt-assessor-name + ul li").count).to be >= 1
   end
 end
 

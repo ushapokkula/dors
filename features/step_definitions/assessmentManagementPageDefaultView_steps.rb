@@ -2,12 +2,12 @@ And(/^I request all assessments$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   2.times do
    @trainers.ngu_search_assessment_id_page.request_assessment
-  #@trainers.ngu_search_assessment_id_page.request_assessment
   end
   end
 
 Then(/^I will see  list of all Assessments Requests with status requested$/) do
-  @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
+ expect(page).to have_css(".title-header", text: 'Assessments')
+  expect(page).to have_css(".assessment-status", text:'Requested', count:2)
 end
 
 Then(/^Each assessment request will include following details$/) do |table|

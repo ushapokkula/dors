@@ -15,18 +15,15 @@ Feature:DR-168
 
   @AssessmentDetails1
   Scenario: Verify the Assessor and trainer details on summary page
-
     And The page will display the Assessor and Trainer details
       | Details         |
-      | Assessor Name   |
+      | Assessor        |
       | Scheme          |
-      | License         |
-      | Expiry Date     |
-      | Date            |
+      | Assessment Date |
       | Time            |
       | Venue           |
-      | Phone           |
-      | Status Approved |
+      |Trainer ID       |
+      | Status          |
 
   @AssessmentDetails2
   Scenario: Verify the display of mileage, expenses claimed and Notes field

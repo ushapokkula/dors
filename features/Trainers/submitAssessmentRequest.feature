@@ -1,39 +1,37 @@
-@fail
-@submit_assessment_request @fail
+@pass
+@submit_assessment_request
+
 Feature: submit assessment request feature
   As an assessor,
   I want to be able to view a summary of my assessment request with all details before I submit it,
   so that I can ensure all details are correct.
-
 
   Background:
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I am on Assessment Request Summary page
 
-  @assessor_trainer_details @fsil
+  @assessor_trainer_details
   Scenario: Verifying the Assessor and Trainer Details on Assessment Request Summary page
     Then The system will load Assessment Request Summary page with following Assessor details
     And The page will display with the following Trainer Details
-      | Trainer Details  |
-      | Trainer FullName |
-      | Course Name      |
-      | License          |
-      | Expiry Date      |
-      | Course Date      |
-      | Course Time      |
-      | Site ID          |
-      | Site Address     |
-      | Site Postcode    |
-      | Phone            |
+      | Trainer Details |
+      | Trainer(s)      |
+      | License         |
+      | Expiry Date     |
+      | Date            |
+      | Time            |
+      | Venue           |
+      | Scheme          |
+      | Phone           |
 
-  @include_trainer  @fail
+  @include_trainer
   Scenario: Verify the Include checkbox functionality
     Then I see that the primary trainer is included by default
     And I will be able to Include or Exclude other trainer
-    When I check "Include this Trainer" for second trainer
+    When I check "Include this trainer" for second trainer
     Then The system will include the selected trainer in the booking request
-    And I uncheck "Include this Trainer"
+    And I uncheck "Include this trainer" for second trainer
     Then The system will not include the secondary trainer in the booking request
 
   @notes_mileage @pass
@@ -50,15 +48,14 @@ Feature: submit assessment request feature
     When I click "Submit"
     Then The assessment request will be submitted and saved in the database
     And An assessment ID will be generated in the format 100xxx
-    #And This ID will be assigned to the assessment request just created and saved in the database as its identifier
     And The status of the assessment request will be marked as Requested
 
   @assessment_status_message
   Scenario: Verify the Assessment request status message
     And I fill Optional mileage and Notes fields
     When I click "Submit"
-    And I will be redirected to Request Assessment page
-    And I see the success message "Your assessment request has been successfully submitted." on the page
+    And I will be re-directed to "Request Assessment" page
+    Then I see a message displaying that the assessment has been requested with assessment Id and date
 
   @cancel
   Scenario: Verify the Cancel functionality on Request Assessment Summary page
@@ -67,6 +64,9 @@ Feature: submit assessment request feature
     When I enter data into mileage and notes field
     And I click "Cancel"
     Then I will be redirected back to the Pick a Slot page
+
+
+
 
 
 

@@ -8,10 +8,10 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   def cancel_Assessment
     click_link_or_button("View Details")
     expect(page).to have_css("h1",text: 'Assessment Request')
-    click_link_or_button("Cancel Assessment")
+    click_link_or_button('Cancel Assessment')
     expect(page).to have_css("h4",text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
-    click_button('Yes')
+    click_link_or_button('Yes')
   end
 
   def verify_cancel_or_reject_filed_readonly
@@ -34,31 +34,27 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   end
 
   def reject_Assessment
-    click_link_or_button("View Details")
   expect(page).to have_css("h1",text: 'Assessment Request')
-  click_link_or_button("Reject")
+  click_link_or_button('Reject')
   expect(page).to have_css("h4",text: 'Reject Assessment')
   fill_in("cancellationNotes", :with => $reject_notes)
-  click_button('Yes')
+    click_link_or_button('Yes')
   end
 
 
   def cancel_Approved_Assessment
-    click_link_or_button("View Details")
     expect(page).to have_css("h1",text: 'Assessment Outcome')
-    click_link_or_button("Cancel")
+    click_link_or_button('Cancel')
     expect(page).to have_css("h4",text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
-    click_button('Yes')
+    click_link_or_button('Yes')
   end
 
   def verify_cancel_label
-    expect(page.find(:css,"label[for='actionNotes']"))
   expect(page).to have_css("label[for='actionNotes']", text: 'Cancellation Notes')
   end
 
   def verify_reject_label
-    expect(page.find(:css,"label[for='actionNotes']"))
     expect(page).to have_css("label[for='actionNotes']", text: 'Rejection Notes')
   end
 end

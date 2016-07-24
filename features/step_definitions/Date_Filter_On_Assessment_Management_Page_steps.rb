@@ -1,17 +1,34 @@
-And(/^default view of the page is loaded$/) do
+And(/^I deleted the assessments from Database$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
-  click_link("ASSESSMENT MANAGEMENT")
-  page.find("#single-button",visible: true).click
-  find("#assessmentStatusChk0").should be_checked #Requested option in selected state#
-  find("#assessmentStatusChk1").should_not be_checked #Approved not in selected state#
-  expect(page).to have_css(".alert.alert-info", text: 'There are no assessments to display.')
 end
 
+Then (/^I should see a message "([^"]*)"$/)do |no_assessments_msg|
+  click_link("ASSESSMENT MANAGEMENT")
+  expect(page).to have_css(".alert.alert-info", text: no_assessments_msg)
+end
+
+When(/^I click 'Assessment Status' dropdown button$/)do
+  page.find("#single-button", visible: true).click
+end
+
+Then(/^I see 'Requested' status is in selected status$/)do
+expect(page).to have_css("#single-button + .dropdown-menu",visible:true)
+find("#assessmentStatusChk0").should be_checked
+end
+
+And (/^I should not see 'Approved' status is selected$/)do
+  find("#assessmentStatusChk1").should_not be_checked
+end
 
 And (/^I request assessments$/) do
   7.times do
     @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
   end
+end
+
+Then (/^I will see list of all requested assessments$/)do
+expect(page).to have_css("h1", text: 'Assessments')
+  expect(find_all('.assessment-status', text:'Requested'))
 end
 
 
@@ -98,8 +115,10 @@ end
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/) do |status1, status2|
   if (status1 == "Requested" && status2 == "Approved")
-    find("#single-button").click
-    check('assessmentStatusChk1')
+    page.find("#single-button", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk1")
+    page.find("#assessmentStatusChk1", visible: true).click
+    #check('assessmentStatusChk1')
     $status1 = 'Requested'
     $status2 = 'Approved'
   end

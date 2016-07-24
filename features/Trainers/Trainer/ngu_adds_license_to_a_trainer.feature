@@ -6,7 +6,6 @@ Feature: NGU Adds a license to a trainer
   so that they can continue delivering courses.
 
   Background:
-
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
