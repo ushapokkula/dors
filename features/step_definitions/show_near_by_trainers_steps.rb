@@ -23,8 +23,8 @@ Then(/^The following information will be shown for each of these trainers$/) do 
 end
 
 Then(/^I see Trainer Full name and site address$/) do
-   expect(page).to have_css(".col-md-3.vertical-center.text-md")
-   expect(page).to have_css("body > div.container >div:last-child  div >div:nth-child(3) > h5")
+   expect(page).to have_css(".nearby-trainer-fullname")
+   expect(page).to have_css(".col-md-5")
 end
 
 And(/^I check Include this Trainer for a trainer$/)do
