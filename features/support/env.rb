@@ -58,8 +58,12 @@ Capybara.register_driver :debug do |app|
 end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking  --disable-extensions])
 end
+
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 
 SitePrism.configure do |config|
   config.use_implicit_waits = true

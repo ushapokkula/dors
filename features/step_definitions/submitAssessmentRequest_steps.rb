@@ -117,10 +117,18 @@ And(/^I see that licence code is replaced by "([^"]*)" on summary page$/) do |la
  expect(page).to have_css(".nearby-trainer-id-label", text: label_name)
 end
 
-Then(/^the primary trainer will be shown with "([^"]*)" checkbox on summary page$/) do |arg|
-
+Then(/^the primary trainer will be shown with "([^"]*)" checkbox on summary page$/) do |checkbox_label|
+  expect(page).to have_css(".include-main-trainer-checkbox[disabled='disabled']:nth-child(1)", visible:true)
 end
 
 And(/^the primary trainer by default it will be checked and disabled$/) do
+   expect(page).to have_css(".include-main-trainer-checkbox[disabled='disabled']:nth-child(1)", visible:true)
+   find_all(".include-main-trainer-checkbox[type='checkbox']")[1].should be_checked
+end
 
+
+Then(/^the assessment id is displayed under main trainer details against the trainer who is already in assessment$/) do
+  @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
+  find(:button, 'Request Assessment', match: :first).click
+  expect(page).to have_css(".auto-main-trainer-on-assessment", text:$booked_status)
 end
