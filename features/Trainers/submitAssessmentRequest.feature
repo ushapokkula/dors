@@ -83,6 +83,14 @@ Feature: submit assessment request feature
     And I see the success message for requested assessment with date and assessment ID
     When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
 
+  @DR-927 @show_assessment_id_under_nearby_trainers
+  Scenario: Verify the display of assessment id against the trainer when the trainer is in request assessment
+    And the primary trainer will be shown with "Include this trainer" checkbox on summary page
+    And the primary trainer by default it will be checked and disabled
+    And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+
 
 
 

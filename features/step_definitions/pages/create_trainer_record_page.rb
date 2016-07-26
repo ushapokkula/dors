@@ -49,7 +49,6 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
-    expect(page).to have_css("#trainerUsername", visible: true)
     username.set random_string(7)
     fill_trainer_id
     trainer_first_name.set Faker::Name.name

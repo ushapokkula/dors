@@ -116,3 +116,11 @@ And(/^I see that licence code is replaced by "([^"]*)" on summary page$/) do |la
  expect(page).to have_css(".trainer-id-label", text: label_name)
  expect(page).to have_css(".nearby-trainer-id-label", text: label_name)
 end
+
+Then(/^the primary trainer will be shown with "([^"]*)" checkbox on summary page$/) do |arg|
+
+end
+
+And(/^the primary trainer by default it will be checked and disabled$/) do
+
+end
