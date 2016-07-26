@@ -47,12 +47,11 @@ Feature: DR-268 and DR-719
   @DR-115 @trainer_search_by_name
   Scenario Outline: Verify the auto-predict search when trainer is filtered with Firstname or lastname
     Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
+    When I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    And I can see "Filter By Trainer:" field available on the page
+    Then I can see "Filter By Trainer:" field available on the page
     When I start typing atleast three characters as "<Trainer Name>"in the 'filter by trainer' field
-    Then The system will auto-predict and show possible trainer names and IDs in a dropped down list
-
+    Then The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     Examples:
       | Trainer Name |
       | bob          |
@@ -63,10 +62,9 @@ Feature: DR-268 and DR-719
   Scenario Outline: Verify the auto-predict search when trainer is filtered with Trainer ID
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
-    And I click "REQUEST ASSESSMENT"
-    When I enter a valid and existing trainer ID of six digits as "<Trainer ID>" in the filter by trainer field
-    Then The system will auto-predict and show possible trainer names and IDs in a dropped down list
-
+    When I click "REQUEST ASSESSMENT"
+    And I enter a valid and existing trainer ID of six digits as "<Trainer ID>" in the filter by trainer field
+    Then The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     Examples:
       | Trainer ID |
       | 111111     |
@@ -92,7 +90,7 @@ Feature: DR-268 and DR-719
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     And I start typing atleast three characters as "<Trainer Name>"in the 'filter by trainer' field
-    And The system will auto-predict and show possible trainer names and IDs in a dropped down list
+    And The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     When I hit DOWN arrow key from the trainer auto predict list
     Then The second value will be selected from the auto predict list of trainer filter "<Down_Arrow>"
     When I hit UP arrow key from the trainer filter auto predict list
@@ -107,7 +105,7 @@ Feature: DR-268 and DR-719
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     And I start typing atleast three characters as "_auto" in the trainer search field
-    And The system will auto-predict and show possible trainer names and IDs in a dropped down list
+    And The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     When I hit enter after typing first three characters of trainer name
     Then The first trainer name will be selected from the drop down list by default
 

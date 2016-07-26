@@ -72,8 +72,8 @@ When(/^I start typing atleast three characters as "([^"]*)"in the 'filter by tra
   fill_in('txt-trainer-name', :with => chars)
 end
 
-Then(/^The system will auto\-predict and show possible trainer names and IDs in a dropped down list$/) do
-  expect(page).to have_css(".dropdown-menu li", minimum: 1)
+Then(/^The system will auto\-predict and shows possible trainer names and IDs in a dropped down list$/) do
+  expect(page).to have_css("#txt-trainer-name + .dropdown-menu li", minimum: 1)
 end
 
 When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the filter by trainer field$/) do |trainer_id|
@@ -108,14 +108,12 @@ When(/^I hit enter after typing first three characters of trainer name$/) do
 end
 
 Then(/^I see "([^"]*)" button is visible within filters section$/) do |button_name|
-  within(".well") do
-    expect(page).to have_button(button_name, visible: true)
+    expect(page).to have_css("#btnResetForceAreas", text:button_name, visible: true)
   end
-end
 
 When(/^I select a trainer from auto predict list of trainer filter$/) do
   fill_in('txt-trainer-name', :with => "_auto")
-  expect(page).to have_css(".dropdown-menu li", minimum: 1)
+  expect(page).to have_css("#txt-trainer-name + .dropdown-menu li", minimum: 1)
   find("#txt-trainer-name").send_keys(:enter)
 end
 
