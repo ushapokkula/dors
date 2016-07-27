@@ -1,4 +1,4 @@
-@DR-268, @DR-719 @pass
+@DR-268 @DR-719 @DR-115 @pass
 Feature: DR-268 and DR-719
   /*
   Assuming 'Assessor2' linked force area 'Metropolitan police'
