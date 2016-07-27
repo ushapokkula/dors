@@ -1,10 +1,8 @@
-@DR-738 @pass
+@DR-738
 Feature:Status Field on Assessor Record
 
-  Background:
-    Given that I have licence.ndors.org.uk page opened
-
-   Scenario: NGU verifying status field while creating new Assessor
+  Scenario: NGU verifying status field while creating new Assessor
+     Given that I have licence.ndors.org.uk page opened
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I fill all assessor fields on the create assessor form
@@ -12,6 +10,7 @@ Feature:Status Field on Assessor Record
      And status fields will be disabled
 
    Scenario: NGU can not create Assessor with 'Inactive' status
+     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I fill all assessor fields on the create assessor form
@@ -19,6 +18,7 @@ Feature:Status Field on Assessor Record
      And 'Inactive' status field will be disabled
 
   Scenario Outline: When an NGU/CCU loads an existing Assessor record and verifying status field
+    Given that I have licence.ndors.org.uk page opened
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I loads an existing "<Assessor>" record
@@ -31,6 +31,7 @@ Feature:Status Field on Assessor Record
 
   @nologout
   Scenario Outline: When set to inactive by NGU/CCU; the Assessors cannot login to the system.
+    Given that I have licence.ndors.org.uk page opened
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I loads an existing "<Assessor>" record
@@ -46,6 +47,8 @@ Feature:Status Field on Assessor Record
 
   @nologout
    Scenario Outline: When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
+     Given I have deleted all the emails in the test email inbox
+    Given that I have licence.ndors.org.uk page opened
      Given I login as an "Assessor5"
      And I click "Forgot Your Password?"
      Then I will be re-directed to "Forgot your password?" page
@@ -56,5 +59,5 @@ Feature:Status Field on Assessor Record
      Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
      And I should not see that the email generated and sent to the registered email address  with "<Subject>"
        Examples:
-       | Matching Username | Matching Email            |Subject                              |
-       |  test738          | roopa.ramisetty@wtg.co.uk |DORS+: Password successfully changed |
+       | Matching Username | Matching Email            |Subject             |
+       |  test738          | dors_test@outlook.com     |DORS+: Reset Password  |

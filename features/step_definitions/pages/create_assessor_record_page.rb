@@ -69,7 +69,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     lastname.set Faker::Name.name
     primary_phone_number.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone_number.set Faker::PhoneNumber.numerify('0##########')
-    email.set 'Swapna.Gopu@wtg.co.uk'
+    email.set 'dors_test@outlook.com'
     address.set Faker::Address.city
     town.set Faker::Address.city
     postcode.set 'W14 8UD'
@@ -332,13 +332,9 @@ class CreateAssessorRecordPage < SitePrism::Page
 
    #@DR-738#
   def verify_no_change_password_email_received(subject)
-  visit "https://mail.wtg.co.uk/owa"
-  verify_no_user_logged_in
-  fill_in('username', :with => 'swapna.gopu')
-  fill_in('password', :with => 'sudiv143?')
-  find(".signinTxt").click
-  find(:xpath, ".//span[text()='DORS Test']", match: :first).click
-  expect(page.should_not have_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject))
+    login_to_outlook
+    #sleep 30
+    expect(page).to have_no_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
   end
 
 
