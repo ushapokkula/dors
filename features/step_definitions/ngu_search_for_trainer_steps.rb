@@ -53,7 +53,6 @@ Then(/^The second value will be selected from the auto predict list "([^"]*)"$/)
 end
 
 When(/^I hit UP arrow key from the trainer auto predict list$/) do
-  fill_in('txt-trainer-name', :with => "swa")
   find("#txt-trainer-name").native.send_keys(:arrow_down)
   find("#txt-trainer-name").native.send_keys(:arrow_up)
   find("#txt-trainer-name").send_keys(:enter)

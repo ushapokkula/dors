@@ -41,7 +41,7 @@ Feature: Assessment Management Default View
 
   @DR-173
   Scenario: Verify 'View Details' and 'Approve' button
-    Given that I have licence.ndors.org.uk page opened
+   Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
     And I logout

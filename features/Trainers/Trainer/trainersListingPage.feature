@@ -13,6 +13,7 @@ Feature: DR-113 and DR-118
     When I configure the assessment time window to "365" days
     And I logout
     And I login as an "Assessor"
+    And I deleted the assessments from Database
     And I navigate to "REQUEST ASSESSMENT" page
 
   @DR-373
@@ -46,26 +47,61 @@ Feature: DR-113 and DR-118
     And I will see that the licenses are unique to the scheme
 
   @verify_date_format
-    Scenario: Verify the Expiry Date format in dd-mmm-yyyy
-     Then I see the Expiry Date is in dd-Mmm-YYYY format
+  Scenario: Verify the Expiry Date format in dd-mmm-yyyy
+    Then I see the Expiry Date is in dd-Mmm-YYYY format
 
-  @Pick_A_Slot1
+  @Pick_A_Slot1 @DR-799
   Scenario: Display list of courses delivering in future
     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
     Then The system will display a list of courses the selected trainer is delivering in future
     And The system will display the following details on Pick slot page
-    |Display_Items        |
-    |Venue                |
-    |Licence Expiry Date |
-    |Trainer              |
-    |Trainer ID               |
-    |Scheme               |
+      | Display_Items       |
+      | Venue               |
+      | Licence Expiry Date |
+      | Trainer             |
+      | Trainer ID          |
+      | Scheme              |
+      | On Assesssment      |
     And The page will also show primary trainers Full Name,secondary trainer fullname
+    And the term "Secondary Trainer" is not shown against trainers on pick a course page
 
   @Pick_A_Slot2
   Scenario: Verify the course dates are of future dates only
     When I click 'Pick a slot' on Request Assessment Page
     Then I validate the course dates delivered by trainer are of future dates only
+
+
+  @DR-799 @replace_licence_code
+  Scenario: Verify trainer id is replaced by licence code
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I see that licence code is replaced by "Trainer ID"
+
+  @DR-799 @show_assessment_id_requested
+  Scenario:  Verify the display of assessment id against a trainer if the trainer is in requested assessment
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I click Request assessment button against trainer I want to book an assessment
+    And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    Then the requested assessment id is shown against the trainer
+
+  @DR-799  @show_assessment_id_approved
+  Scenario:  Verify the display of assessment id against a trainer if the trainer is in approved assessment
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I click Request assessment button against trainer I want to book an assessment
+    And I will be taken to "Summary" page
+    And I include trainer in near by course
+    And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    Then the booked assessment id is shown against the trainer
+
+
+
+
 
 
 

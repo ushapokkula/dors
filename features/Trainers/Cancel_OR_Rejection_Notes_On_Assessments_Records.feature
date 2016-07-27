@@ -8,6 +8,7 @@ Feature: Cancel OR Reject Assessment
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
     Then I request assessment
 
   Scenario: As an Assessor can Cancel 'Requested' assessment but have to fill in mandatory 'Cancellation Notes' field
@@ -39,6 +40,7 @@ Feature: Cancel OR Reject Assessment
    When I click 'Assessment Status' dropdown button
    Then I see 'Requested' status is in selected status
     And I click "Approve" button
+   And I click "Assessment Status"
     And I select 'Approved' status from 'Assessment Status' dropdown
    And I click "View Details" link
     And I 'Cancel' the 'Approved' Assessment

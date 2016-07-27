@@ -8,6 +8,7 @@ Feature: Completed Assessments Outcome Notes
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
     Then I book assessment with nearby trainer
     And I logout
 

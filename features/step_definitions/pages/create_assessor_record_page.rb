@@ -124,6 +124,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       fields = input_fields.text
       assessor_fields.push(fields)
     end
+     expect(new_table.map { |x| x['Assessor Input Fields'] }).to match_array(assessor_fields)
     expect(new_table.map { |x| x['Assessor Input Fields'] }).to match_array(assessor_fields)
     expect(new_table.map { |x| x['Assessor Input Fields'] }).to match_array(assessor_fields)
   end
@@ -327,6 +328,13 @@ class CreateAssessorRecordPage < SitePrism::Page
       find(:xpath, ".//span[text()='Sign out']", match: :first).click
     end
 
+  end
+
+   #@DR-738#
+  def verify_no_change_password_email_received(subject)
+    login_to_outlook
+    #sleep 30
+    expect(page).to have_no_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject)
   end
 
 

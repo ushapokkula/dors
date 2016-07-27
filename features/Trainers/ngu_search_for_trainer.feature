@@ -70,7 +70,9 @@ Feature: As an NGU (TrainingGovernance),
     And The system will start autopredicting it and the list of trainer appears
     When I hit DOWN arrow key from the trainer auto predict list
     Then The second value will be selected from the auto predict list "<Down_Arrow>"
-    When I hit UP arrow key from the trainer auto predict list
+    When I start typing atleast three characters as "<Trainer Name>" in the trainer search field
+    Then The system will start autopredicting it and the list of trainer appears
+    And I hit UP arrow key from the trainer auto predict list
     Then The first name will be selected from the auto predict list "<UP_Arrow>"
     Examples:
       | Trainer Name | Down_Arrow | UP_Arrow |

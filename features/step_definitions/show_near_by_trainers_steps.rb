@@ -5,7 +5,7 @@ Given(/^I am on Pick a course page$/) do
 
 end
 
-When(/^I click Request assessmet button against trainer I want to book an assessment$/) do
+When(/^I click Request assessment button against trainer I want to book an assessment$/) do
   find(:button, 'Request Assessment', match: :first).click
 end
 

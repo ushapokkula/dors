@@ -47,7 +47,7 @@ And (/^I should see the 'Rejection Notes' on Assessment Outcome page$/)do
 end
 
 And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
-  page.find("#single-button", visible:true).click
+  expect(page).to have_css("#single-button + .dropdown-menu", visible:true)
   check('assessmentStatusChk1')
   expect(page).to have_css(".assessment-status", text: 'Approved')
 end

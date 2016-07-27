@@ -3,7 +3,6 @@ And(/^I deleted the assessments from Database$/) do
 end
 
 Then (/^I should see a message "([^"]*)"$/)do |no_assessments_msg|
-  click_link("ASSESSMENT MANAGEMENT")
   expect(page).to have_css(".alert.alert-info", text: no_assessments_msg)
 end
 
@@ -12,7 +11,7 @@ When(/^I click 'Assessment Status' dropdown button$/)do
 end
 
 Then(/^I see 'Requested' status is in selected status$/)do
-expect(page).to have_css("#single-button + .dropdown-menu",visible:true)
+expect(page).to have_css("#single-button + .dropdown-menu",visible: true)
 find("#assessmentStatusChk0").should be_checked
 end
 
@@ -115,7 +114,6 @@ end
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/) do |status1, status2|
   if (status1 == "Requested" && status2 == "Approved")
-    page.find("#single-button", visible: true).click
     expect(page).to have_css("#assessmentStatusChk1")
     page.find("#assessmentStatusChk1", visible: true).click
     #check('assessmentStatusChk1')

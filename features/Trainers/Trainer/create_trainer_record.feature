@@ -79,18 +79,33 @@ Feature: As an an NGU (TrainingGovernance),
        Examples:
        |Licence status|
        |Full          |
+  
+  @DR-674 @Create_Trainer_Licences
+  Scenario Outline: Licence Validation fails
+    When I started searching existing "<Trainer Name>" in the trainer search field
+    Then I should not see added course name in the course dropdown-menu
+    And the Licence Status, Course Name or Expiry Date is not set
+    And I click Add licence button
+    And I click on Update Trainer
+    Then I should see an error messages on trainers page
+    Examples:
+      | Trainer Name  |
+      | roopa trainer |
 
-     @DR-674 @Create_Trainer_Licences
-       Scenario Outline: Licence Validation fails
-       When I started searching existing "<Trainer Name>" in the trainer search field
-       Then I should not see added course name in the course dropdown-menu
-       And the Licence Status, Course Name or Expiry Date is not set
-       And I click Add licence button
-       And I click on Update Trainer
-       Then I should see an error messages on trainers page
-       Examples:
-         |Trainer Name|
-         |roopa trainer|
+
+  @DR-584 @cancel_creation1
+    Scenario: Verify the cancel button without filling any details on the create trainer form
+    And The system will load the page where I can create a new trainer record
+    When I click "Cancel"
+    And I will be re-directed to "Assessments" page
+
+  @DR-584 @cancel_creation2
+  Scenario: Verify the cancel button with filling any details on the create trainer form
+    And The system will load the page where I can create a new trainer record
+    And I fill Mandatory fields with required details on create trainer form
+    When I click "Cancel"
+    And I will be re-directed to "Assessments" page
+    Then Any unsaved changes will be lost
 
 
 
