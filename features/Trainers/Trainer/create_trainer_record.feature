@@ -53,7 +53,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Known As               |
       | Secondary Phone Number |
       | Secondary Email Address|
-      #| Is Instructor          |
+
 
 
   @DR-674 @Create_Trainer_Licences

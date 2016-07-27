@@ -17,7 +17,7 @@ Feature: submit assessment request feature
     And The page will display with the following Trainer Details
       | Trainer Details |
       | Trainer(s)      |
-      | License         |
+      | Trainer ID      |
       | Expiry Date     |
       | Date            |
       | Time            |
