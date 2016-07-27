@@ -64,7 +64,7 @@ end
 
 
 Then(/^The system will load Assessment Request Summary page with following Assessor details$/) do
-  expect(page).to have_css(".assessor-full-name-label", visible:true)
+  expect(page).to have_css(".assessor-details-label", visible:true)
   expect(page).to have_css(".assessor-full-name", visible:true)
   expect(page).to have_css(".assessor-full-address", visible:true)
 end

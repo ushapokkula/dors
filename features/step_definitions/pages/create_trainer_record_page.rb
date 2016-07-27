@@ -24,6 +24,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :select_licence_name, "#licenseStatuses > option:nth-child(2)"
   element :expiry_date, "#licenseExpiryDate"
   elements :error_messages, ".help-block p"
+  elements :course_details, ".form-control.selected-license-course"
 
 
   def verify_trainer_record_details(new_table)
@@ -85,6 +86,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     fill_in('trainerPostcode', :with => "W14 8UD")
     store("username", username.value)
     store("email", primary_email.value)
+    store("trainer_id", trainer_id.value)
   end
 
   def fill_trainer_id      # fill with new trainer id if already exists
@@ -136,7 +138,32 @@ class CreateTrainerRecordPage < SitePrism::Page
       @updated_record_in_db = row['PrimaryTelephone']
     end
   end
+
+  def verify_licence_format
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT tbl_TrainerLicense.LicenseCode, tbl_Trainer.TrainerRef, tbl_Trainer.TrainerId
+                            FROM  [DORS_Classified].[dbo].tbl_Trainer INNER JOIN
+                            tbl_TrainerLicense ON tbl_Trainer.TrainerId = tbl_TrainerLicense.TrainerId
+                            WHERE tbl_Trainer.TrainerRef="+fetch("trainer_id"))
+    #WHERE (tbl_Trainer.TrainerRef="+$trainer_id+")")
+    result.each do |row|
+      $licence_code = row['LicenseCode']
+      trainer_ref = row['TrainerRef']
+    end
   end
+
+
+  def verify_duplicate_licences_for_same_course
+    unique_courses=[]
+    course_details.each do |courses|
+      unique_courses.push(courses.value)
+    end
+    expect(unique_courses).to match_array(unique_courses.uniq)
+  end
+
+
+end
 
 
 

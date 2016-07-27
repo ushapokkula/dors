@@ -67,7 +67,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
     find(".include-main-trainer-checkbox", match: :first).click
-    all('.include-nearby-trainer-checkbox',visible:true)[1].click
+    all('.include-nearby-trainer-checkbox',visible:true)[3].click
     click_button("Submit")
 
   end

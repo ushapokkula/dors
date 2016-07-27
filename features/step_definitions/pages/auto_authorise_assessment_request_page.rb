@@ -2,6 +2,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   element :include_checkbox, "#include-other-trainer"
   elements :trainer_details, ".dors-well-container.ng-scope"
   elements :pick_a_slot, ".btn.btn-primary"
+  elements :trainer_licence_records, ".dors-table"
 
 
 
@@ -20,6 +21,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
   end
 
   require 'tiny_tds'
+
   def check_status_in_DB
     client = TinyTds::Client.new username:'swapna.gopu', password:'Password1', host:'10.100.8.64', port:'1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
@@ -48,9 +50,21 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
     end
   end
 
+
   def verify_trainer_and_course_details
     for i in 1..5
       puts page.has_xpath?("html/body/div[1]/div[2]/div/div[1]/div[6]/div/div[#{i}]")
+    end
+  end
+
+  def verify_trainer_licence_records_listing(new_table)
+    columns = new_table.map { |x| x['Listing_Fields'] }
+    trainer_licence_records.each do |row|
+      within(row) do
+        for i in 1..columns.size
+          expect(page).to have_content(columns[i])
+        end
+      end
     end
   end
 end

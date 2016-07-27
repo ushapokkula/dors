@@ -3,7 +3,9 @@ Given(/^I have licence agreement as "([^"]*)" for trainer Id "([^"]*)"$/) do |ag
   fill_in('txt-trainer-name', :with => trainer_id)
   find("#txt-trainer-name + ul li", match: :first).click
   select(agreement_status, :from => 'licenseAgreementStatus')
+  expect(page).to have_css('#licenseAgreementStatus',text:agreement_status)
   click_button("Update Trainer")
+  sleep 2
   expect(page).to have_no_css(".toast-success",visible: false) # wait until the loader diss-appears
 end
 
@@ -36,4 +38,8 @@ end
 
 When(/^I select "([^"]*)" as licence agreement$/) do |agreement_status|
   select(agreement_status, :from => 'licenseAgreementStatus')
+end
+
+And(/^I see the popup with 'Yes' or 'No'$/) do
+ expect(page).to have_css(".modal-content", visible:true)
 end

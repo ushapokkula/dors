@@ -12,6 +12,8 @@ require 'report_builder'
 require 'faker'
 require 'active_support/core_ext/string/inflections'
 require 'sort'
+require 'tiny_tds'
+#require 'time_difference'
 require 'pry'
 require 'waitutil'
 require 'date'
@@ -58,8 +60,12 @@ Capybara.register_driver :debug do |app|
 end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking  --disable-extensions])
 end
+
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 
 SitePrism.configure do |config|
   config.use_implicit_waits = true
