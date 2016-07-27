@@ -73,8 +73,8 @@ class CreateAssessorRecordPage < SitePrism::Page
     address.set Faker::Address.city
     town.set Faker::Address.city
     postcode.set 'W14 8UD'
-    $username_value = find("#assessorUsername").value
-    $email_value= find("#assessorEmail").value
+    store("username", username.value)
+    store("email", email.value)
     #random_selector(forcearea_list)
 
   end
