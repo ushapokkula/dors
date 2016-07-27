@@ -64,7 +64,7 @@ end
 
 
 Then(/^The system will load Assessment Request Summary page with following Assessor details$/) do
-  expect(page).to have_css(".assessor-full-name-label", visible:true)
+  expect(page).to have_css(".assessor-details-label", visible:true)
   expect(page).to have_css(".assessor-full-name", visible:true)
   expect(page).to have_css(".assessor-full-address", visible:true)
 end
@@ -137,4 +137,17 @@ Then(/^the assessment id is displayed under nearby trainer details against the t
   @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
   find(:button, 'Request Assessment', match: :first).click
   expect(page).to have_css(".auto-trainer-on-assessment", text:$booked_status)
+end
+
+And(/^I Pick first slot$/) do
+  find(:button, 'Pick a slot', match: :first).click
+end
+
+And(/^I include all the trainers from "([^"]*)" scheme as the trainer who is in assessment$/) do |scheme_name|
+  expect(page).to have_css(".breadcrumb .active>span", text:'Summary')
+ find_all(".include-nearby-trainer-checkbox",visible: true)[0].click
+end
+
+Then(/^the "([^"]*)" scheme courses are hidden as all the trainers from that scheme are in assessment$/) do |scheme_name|
+    expect(page).to have_no_content(scheme_name)
 end

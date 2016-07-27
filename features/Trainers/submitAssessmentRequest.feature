@@ -6,11 +6,6 @@ Feature: submit assessment request feature
   I want to be able to view a summary of my assessment request with all details before I submit it,
   so that I can ensure all details are correct.
 
-#  Background:
-#    Given that I have licence.ndors.org.uk page opened
-#    And I login as an "Assessor"
-#    And I am on Assessment Request Summary page
-
   @assessor_trainer_details
   Scenario: Verifying the Assessor and Trainer Details on Assessment Request Summary page
     Given that I have licence.ndors.org.uk page opened
@@ -20,7 +15,7 @@ Feature: submit assessment request feature
     And The page will display with the following Trainer Details
       | Trainer Details |
       | Trainer(s)      |
-      | License         |
+      | Trainer ID      |
       | Expiry Date     |
       | Date            |
       | Time            |
@@ -148,7 +143,7 @@ Feature: submit assessment request feature
     And I Pick first slot
     And I click Request assessment button against trainer I want to book an assessment
     And I include all the trainers from "Speed Control" scheme as the trainer who is in assessment
-    And I click "submit"
+    And I click "Submit"
     When I Pick first slot
     And I click Request assessment button against trainer I want to book an assessment
     Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
