@@ -17,7 +17,7 @@ Feature: Request Password Reset (Forgot Password)
     And I should see the message as "Please enter your username and email address linked to your account to request a password reset. If you have any issues with this, please contact your local administrator, Service Desk or the NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I click Logo to come out from that page
 
-  @verify_blank_fields
+  @verify_blank_fields @nologout
   Scenario Outline: Verify the validation messages when the fields are blank one at a time
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -32,7 +32,7 @@ Feature: Request Password Reset (Forgot Password)
       | Username | Please provide a username.       |
       | Email    | Please provide an email address. |
 
-  @invalid_email_format
+  @invalid_email_format @nologout
   Scenario: Verify the validation message when invalid email address is entered
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -42,7 +42,7 @@ Feature: Request Password Reset (Forgot Password)
     Then I see a validation message displayed "Please provide a valid email address." against the field
     And I will remain on the same Forgot Password page
 
-  @username_does'nt_match
+  @username_does'nt_match @nologout
   Scenario Outline: Verify the message when the entered email does'nt match against the record
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -56,7 +56,7 @@ Feature: Request Password Reset (Forgot Password)
       | Matching Username | Non Matching Email |
       | sudiv             | swapna@gmail.com   |
 
-  @email_does'nt_match
+  @email_does'nt_match @nologout
   Scenario Outline: Verify the message when the entered username  does'nt match against the record
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -70,7 +70,7 @@ Feature: Request Password Reset (Forgot Password)
       | Non Matching Username | Matching Email        |
       | swap_xxx              | swapna.gopu@wtg.co.uk |
 
-  @success_reset_pwd
+  @success_reset_pwd @nologout
   Scenario Outline: Verify the message after successfully requesting reset password with valid details
     And I click "Forgot Your Password?"
     And I will be directed to "Forgot your password?" page
@@ -102,7 +102,7 @@ Feature: Request Password Reset (Forgot Password)
       | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.|
 
 
-  @verify_expiry_link
+  @verify_expiry_link  @nologout
   Scenario: Verifying any existing password reset email tokens
     And I request the reset password for the same user twice
     And I see that the email is generated and sent to the registered email address
@@ -111,7 +111,7 @@ Feature: Request Password Reset (Forgot Password)
     When I access the expired link
     Then I will be taken to the error page displaying the message as "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 
-  @changed_pwd_within_24_hrs
+  @changed_pwd_within_24_hrs @nologout
   Scenario: Verify the message when password is changed within 24 hours
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
