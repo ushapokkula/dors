@@ -130,6 +130,7 @@ Feature: DR-268 and DR-719
   Scenario Outline: Verify the reset button functionality when force filter added new forces
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
+    And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
     And I see "ESSEX POLICE" as the default force
     And I include "<Force>" force

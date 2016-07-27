@@ -150,7 +150,7 @@ And(/^I include "([^"]*)" force$/) do |force|
     find('.ui-select-search').set(force)
     find('.ui-select-search').send_keys(:enter)
   else
-    force = "All"
+    force == "All"
     find(".btn.btn-primary",text: 'Yes').click
   end
   find("#txt-trainer-name").click             #to focus out from force filter field
