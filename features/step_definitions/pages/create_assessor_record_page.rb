@@ -69,7 +69,7 @@ class CreateAssessorRecordPage < SitePrism::Page
     lastname.set Faker::Name.name
     primary_phone_number.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone_number.set Faker::PhoneNumber.numerify('0##########')
-    email.set 'Swapna.Gopu@wtg.co.uk'
+    email.set 'dors_test@outlook.com'
     address.set Faker::Address.city
     town.set Faker::Address.city
     postcode.set 'W14 8UD'
@@ -278,7 +278,6 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def login_to_outlook
     visit "https://outlook.live.com/owa/"
-    # verify_no_user_logged_in
     unless page.has_css?("[aria-label='Open menu']", wait: 8)
       find("input[type='email']").set("dors_test@outlook.com")
       find("[name='passwd']").set("dorstest123")
@@ -289,6 +288,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def verify_email_generation
     login_to_outlook
+    sleep 30
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")

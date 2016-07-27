@@ -5,6 +5,7 @@ Feature: Request Password Reset (Forgot Password)
   so that I can gain access to system when I have forgotten my password.
 
   Background:
+    Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened
     Given I am on the login page
     And I see "Forgot Your Password" link  on the login page
@@ -98,7 +99,7 @@ Feature: Request Password Reset (Forgot Password)
     Examples:
 
       | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                                                                                                                                                   |
-      | sudiv             | swapna.gopu@wtg.co.uk | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.|
+      | sudiv             | dors_test@outlook.com | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.|
 
 
   @verify_expiry_link  @nologout
@@ -106,7 +107,7 @@ Feature: Request Password Reset (Forgot Password)
     And I request the reset password for the same user twice
     And I see that the email is generated and sent to the registered email address
     When I access the latest link
-    And I will taken the password page to reset
+    And I will be taken to the password page to reset
     When I access the expired link
     Then I will be taken to the error page displaying the message as "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 

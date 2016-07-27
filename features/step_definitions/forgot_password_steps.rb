@@ -55,7 +55,7 @@ And(/^I request the reset password for the same user twice$/) do
     click_link("Forgot Your Password?")
     expect(page).to have_css("h1", text: "Forgot your password?")
     fill_in('username', :with => 'sudiv')
-    fill_in('email', :with => 'swapna.gopu@wtg.co.uk')
+    fill_in('email', :with => 'dors_test@outlook.com')
     click_button("Reset Password")
     expect(page).to have_css(".alert.alert-info")
     find(".dors-logo").click
@@ -66,13 +66,13 @@ And(/^I access the latest link$/) do
   find(:xpath, ".//*[@id='Item.MessageUniqueBody']//a").click
 end
 
-And(/^I will taken the password page to reset$/) do
+And(/^I will be taken to the password page to reset$/) do
   page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
   expect(page).to have_css("h1", text: 'Reset your password')
 end
 
 And(/^I access the expired link$/) do
-  page.driver.browser.switch_to.window(page.driver.find_window("https://mail.wtg.co.uk/owa/#path=/mail"))
+  page.driver.browser.switch_to.window(page.driver.find_window("https://outlook.live.com/owa/"))
   all(:xpath, ".//span[text()='DORS Test']")[1].click
   find(:xpath, ".//*[@id='Item.MessageUniqueBody']//a").click
 end
