@@ -39,9 +39,13 @@ end
 
   def complete_Approved_Assessment
     click_link("ASSESSMENT MANAGEMENT")
-    find("#single-button").click
+    puts expect(page).to have_css(".title-header", text:'Assessments', visible:true)
+    puts expect(page).to have_css("#single-button",visible: true)
+    find("#single-button",visible:true).click
+    WaitUtil.wait_for_condition("waiting for drop down to appear", :timeout_sec => 5, :delay_sec => 0.5) do
+    expect(page).to have_css("#assessmentStatusChk1", visible: true)
     check('assessmentStatusChk1')
-    click_link_or_button('View Detail')
+    click_link_or_button('View Details')
    select('Cancelled', :from=> 'status-281')
     fill_in('notes-281',:with=> 'TEST TRAINER OUTCOME')
     page.find_all('.dors-well-other')[1]
@@ -49,4 +53,5 @@ end
     fill_in('notes-279',:with=> 'TEST TRAINER OUTCOME')
     click_link_or_button("Mark Complete")
   end
-end
+  end
+  end

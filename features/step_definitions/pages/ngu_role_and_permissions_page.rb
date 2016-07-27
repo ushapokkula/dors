@@ -7,9 +7,9 @@ class NGURoleAndPermissionsPage < SitePrism::Page
   def verify_assessments_list_with_status_requested
     expect(page.all('.dors-table').count).to be > 0
     assessments.each do |row|
-      expect(page).to have_css(".assessment-status", text: 'Requested')
+      expect(page).to have_css(".btn.btn-sm.btn-primary", text:'Approve')
     end
-    expect(page.all(".assessment-status").count).to be > 0
+    expect(page.all(".btn.btn-sm.btn-primary").count).to be > 0
 
   end
 

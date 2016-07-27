@@ -2,12 +2,12 @@ And(/^I request all assessments$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   2.times do
    @trainers.ngu_search_assessment_id_page.request_assessment
-  #@trainers.ngu_search_assessment_id_page.request_assessment
   end
   end
 
 Then(/^I will see  list of all Assessments Requests with status requested$/) do
-  @trainers.assessment_management_default_view_page.verify_list_of_assessment_requests
+ expect(page).to have_css(".title-header", text: 'Assessments')
+  expect(page).to have_css(".btn.btn-sm.btn-primary", text:'Approve', count:2)
 end
 
 Then(/^Each assessment request will include following details$/) do |table|
@@ -30,7 +30,7 @@ And(/^Maximum trainers included are not more than four$/)do
 end
 
 And(/^I see "([^"]*)"$/)do |link|
-  expect(page).to have_css(".btn.btn-link", text:link)
+  expect(page).to have_css(".dors-table-header > div.col-md-3 > a ", text:link)
 end
 
 And(/^I see "([^"]*)" button$/) do |button|
@@ -39,4 +39,10 @@ end
 
 And(/^The assessment list will be sorted by assessment date$/)do
   @trainers.assessment_management_default_view_page.verify_assessment_list_sorting
+end
+
+
+And(/^assessor name and date are also displayed in the default view$/) do
+  expect(page).to have_css(".assessor-name", visible:true)
+  expect(page).to have_css(".assessment-date", visible:true)
 end

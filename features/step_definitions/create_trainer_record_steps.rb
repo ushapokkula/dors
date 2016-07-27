@@ -1,4 +1,4 @@
-Then(/^the system will load the page where I can create a new trainer record with the following fields$/) do |table|
+Then(/^the system will load the page where I can create a new trainer record with required fields$/) do |table|
   new_table = table.hashes
   @trainers.create_trainer_record_page.verify_trainer_record_details(new_table)
 end
@@ -55,8 +55,8 @@ And (/^I click on Update Trainer$/)do
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
-  page.find(".toast-message").should be_visible
-  expect(page).to have_selector(:css, ".toast-message", text: message)
+ # expect(page).to have_css(".toast-message", text: message)
+  expect(page).to have_no_css(".toast-success",text: message,visible: false)
 end
 
 
@@ -86,4 +86,15 @@ end
 
 Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)
+end
+
+And(/^The system will load the page where I can create a new trainer record$/)do
+  expect(page).to have_css('h1',text: 'Trainers management')
+  expect((all('.panel-title')[0]).text).to eq("Create Trainer")
+end
+
+And(/^Any unsaved changes will be lost$/)do
+  click_link("TRAINERS")
+  fill_in('txt-trainer-name', :with=>$trainer_id)
+  expect(page).to have_css(".text-danger", text:'No Trainers with this id exist.')
 end

@@ -31,12 +31,6 @@ end
 
 And(/^the trainer will be available for bookings for assessors$/) do
   @trainers.ngu_search_assessment_id_page.assessor_availability
-#   within(:css, ".container") do
-#     expect(page.text).to_include("100017 /114")
-#     #expect(page.text).to include("111333 /001")
-#     expect(page.text).to_include("111333 /001")
-#     expect(page.text).to_include("111222 /001")
-# end
 end
 
 
@@ -56,7 +50,7 @@ end
 #end
 
 And(/^I see the message "([^"]*)" on the cancellation window$/)do |message|
- expect(page).to have_css(".modal-body>p")
+ expect(page).to have_css(".help-block p", text: message)
 end
 
 

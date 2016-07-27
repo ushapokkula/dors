@@ -1,4 +1,4 @@
 default: --format pretty --tags ~@wip --format json --out reports/dors_report<%= ENV['TEST_ENV_NUMBER'] %>.json -x --no-source DRIVER=debug
-parallel:  scenarios --format pretty -t @pass -x --format json --out reports/dors_report<%= ENV['TEST_ENV_NUMBER'] %>.json --format junit --out junit
+parallel:  scenarios --format pretty -t @pass -t @wip -x --format json --out reports/dors_report<%= ENV['TEST_ENV_NUMBER'] %>.json --format junit --out junit
 ci: --format pretty -t @pass -t ~@wip -t ~@fail -x --format json --out reports/dors_report.json --format junit --out junit
 

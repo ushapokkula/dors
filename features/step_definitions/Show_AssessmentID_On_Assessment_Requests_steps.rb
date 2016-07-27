@@ -1,11 +1,10 @@
 And (/^I request assessment$/)do
-  @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
 end
 
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/)do
   expect(page).to have_css("h1", text: 'My assessments')      #verifying header#
-  page.find("#single-button").click
+  page.find("#single-button", visible: true).click
   check('assessmentStatusChk0')
 end
 
@@ -44,8 +43,9 @@ And (/^I should see "([^"]*)" on summary view of assessment on 'Manage Assessmen
   end
 end
 
-And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|view_details|
-  click_link_or_button(view_details)
+And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|button|
+  expect(page).to have_css(:button, text:button)
+  click_link_or_button('View Details')
 end
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/)do |assessmentID|

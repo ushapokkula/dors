@@ -24,7 +24,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   element :select_licence_name, "#licenseStatuses > option:nth-child(2)"
   element :expiry_date, "#licenseExpiryDate"
   elements :error_messages, ".help-block p"
-
+  elements :course_details, ".form-control.selected-license-course"
 
 
   def verify_trainer_record_details(new_table)
@@ -50,41 +50,122 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def verify_optional_fields_on_trainer_form(optional_field)
+    expect(page).to have_css("#trainerUsername", visible: true)
     username.set random_string(7)
-    trainer_id.set Faker::Number.numerify('16####')
+    fill_trainer_id
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     known_as.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
     secondary_phone.set Faker::PhoneNumber.numerify('0##########')
+    page.find('#trainerSecondaryPhone').native.send_keys(:enter)
     primary_email.set Faker::Internet.email
     secondary_email.set Faker::Internet.email
+    page.find('#trainerSecondaryEmail').native.send_keys(:enter)
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => 'W14 8UD')
+    page.find("#trainerisInstructor", visible: true).click
     fill_in(optional_field, :with => '')
-   page.find("#trainerisInstructor").click
-    #check('trainerisInstructor')
     expect(page).not_to have_css("p.help-block")
-     click_link_or_button("Create Trainer")
+    click_link_or_button("Create Trainer")
     expect(page).to have_css(".toast.toast-success", text: 'New trainer successfully created.')
   end
 
 
   def filling_trainer_details
     username.set random_string(7)
-    trainer_id.set Faker::Number.numerify('16####')
+    fill_trainer_id
     trainer_first_name.set Faker::Name.name
     trainer_last_name.set Faker::Name.name
     primary_phone.set Faker::PhoneNumber.numerify('0##########')
-    primary_email.set Faker::Internet.email
+    primary_email.set "dors_test@outlook.com"
     secondary_email.set Faker::Internet.email
     address.set Faker::Address.city
     town.set Faker::Address.city
     fill_in('trainerPostcode', :with => "W14 8UD")
+    store("username", username.value)
+    store("email", primary_email.value)
+    store("trainer_id", trainer_id.value)
   end
 
+  def fill_trainer_id      # fill with new trainer id if already exists
+    trainer_id.set Faker::Number.numerify('16####')
+    first(".panel-body").click
+    # trainer_first_name.click
+    x = false
+    unless x
+      if page.has_css?(".form-group.has-error p", text: 'Sorry, the trainer id already exist. Please try a different trainer id.', wait: 2)
+        trainer_id.set Faker::Number.numerify('16####')
+      end
+      x = true if page.has_content?('Sorry, the trainer id already exist. Please try a different trainer id.',wait: 2)
+    end
+  end
+
+
+
+
+  def verify_fullname_updated_time_stamp
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT TOP (1) change.ChangeDate,
+                             changeUser.ActiveDirectoryUsername 'changed by username',
+                             changeUser.Forename + ' ' + changeUser.Surname AS 'Changed by'
+                             FROM tbl_trainer tr
+                             join tbl_user trainerUser on trainerUser.UserId = tr.UserId
+                             join tbl_UserLicenseAgreementChange change on change.UserId = trainerUser.UserId
+                             join tbl_user changeUser on changeUser.UserId = change.ChangedByUserId
+                             WHERE tr.TrainerRef = 123987
+                             ORDER BY change.UserLicenseAgreementChangeId DESC")
+    result.each do |row|
+      fullname = row['Changed by']
+      time_stamp = row['ChangeDate']
+      username = row['changed by username']
+      date = (time_stamp.to_s).split(" ")
+      updated_date = Date.parse(date[0]).strftime("%d-%b-%Y")
+      store("user_full_name",fullname)
+      store("changed_time_stamp",updated_date)
+      store("changed_by_username",username)
+  end
+
+  end
+
+  def verify_updated_phone_no_in_db
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT PrimaryTelephone FROM [DORS_Classified].[dbo].[tbl_Trainer] where TrainerRef = '111222'")
+    result. each do |row|
+      @updated_record_in_db = row['PrimaryTelephone']
+    end
+  end
+
+  def verify_licence_format
+    client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
+    client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
+    result = client.execute("SELECT tbl_TrainerLicense.LicenseCode, tbl_Trainer.TrainerRef, tbl_Trainer.TrainerId
+                            FROM  [DORS_Classified].[dbo].tbl_Trainer INNER JOIN
+                            tbl_TrainerLicense ON tbl_Trainer.TrainerId = tbl_TrainerLicense.TrainerId
+                            WHERE tbl_Trainer.TrainerRef="+fetch("trainer_id"))
+    #WHERE (tbl_Trainer.TrainerRef="+$trainer_id+")")
+    result.each do |row|
+      $licence_code = row['LicenseCode']
+      trainer_ref = row['TrainerRef']
+    end
+  end
+
+
+  def verify_duplicate_licences_for_same_course
+    unique_courses=[]
+    course_details.each do |courses|
+      unique_courses.push(courses.value)
+    end
+    expect(unique_courses).to match_array(unique_courses.uniq)
+  end
+
+
 end
+
+
 
 
 

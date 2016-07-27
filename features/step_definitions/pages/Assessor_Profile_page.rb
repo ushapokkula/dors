@@ -26,11 +26,11 @@ def verify_highlighted_fields
 end
 
 def verify_user_is_on_assessor_profile_page
-  expect(page).to have_css("h1", "My profile")
+  expect(page).to have_css("h1", text: 'My Profile')
   page.should have_css("#lnk-toggle-profile-details-form", text:'Profile details')
-  page.should have_css(:button,'Update')
-  page.should have_css(:button, 'Cancel')
-  puts "I am On Assessor Profile Page"
+  page.should have_css(:button, text: 'Update')
+  page.should have_css(:button, text: 'Cancel')
+  puts "Yes, I am On Assessor Profile Page"
 end
 
 
@@ -101,16 +101,12 @@ end
     end
     end
 
-  #def random_string(length)
-  #(0...length).map { (65+ rand(26)).chr }.join
-  #end
 
   def random_string(x)
     #string = ([*('A'..'Z'),*('0'..'9'),]+ %w(- _ )).sample(x).join
     chars = ([*('A'..'Z'), *('a'..'z'), *(0..9)]+%w(- _ ))
     string = (0..x).map {chars.sample}.join
   end
-
 
   def validateAddressMaxCHARS
     address_string = (assessor_address).set random_string(256)

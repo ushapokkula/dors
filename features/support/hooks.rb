@@ -25,16 +25,22 @@ After ('~@nologout') do
   find('#btn-signout').click
 end
 
-
-After do |scenario|
-  # if (scenario.failed?)
+# Takes screenshot after scenario failure and then click logout link
+After ('~@nologout') do |scenario|
+   if (scenario.failed?)
   Dir.mkdir("images") unless File.directory?("images")
   image_name = "images/#{scenario.__id__}.png"
   save_screenshot(image_name, :full => true)
   embed(image_name, "image/png", "SCREENSHOT")
-  # end
+  find('#btn-signout').click
+   end
 end
 
+# After ('~@nologout') do |scenario|
+#    if (scenario.failed?)
+#      find('#btn-signout').click
+#    end
+# end
 
 #delete the images files before every test
 unless Dir.glob('images/*').empty?
