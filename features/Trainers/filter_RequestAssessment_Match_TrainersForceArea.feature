@@ -26,7 +26,7 @@ Feature: DR-268 and DR-719
     And I click "REQUEST ASSESSMENT"
     Then I will be re-directed to "Request Assessment" page
     And I should see the matching Force Area Name in Force Area Filters
-    Then I should see message for "No assessments available to book."
+    Then I should see the message as "No assessments available to book."
 
   @DR-719  @trainers_forcearea_not_linked_to_Assessor
   Scenario Outline: Verify trainers force area not linked to assessor

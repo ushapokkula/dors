@@ -1,4 +1,3 @@
-@pass
 @DR-135
 Feature: Request Password Reset (Forgot Password)
   As a user,
