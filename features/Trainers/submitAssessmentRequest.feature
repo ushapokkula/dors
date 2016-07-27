@@ -130,7 +130,28 @@ Feature: submit assessment request feature
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
     When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    Then the assessment id is displayed under nearby trainer details against the trainer who is already in assessment
 
+  @DR-927 @hide_course
+    Scenario: Hide courses on summary page when all the trainers in the course are in assessment
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I deleted the assessments from Database
+    And I navigate to "REQUEST ASSESSMENT" page
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I click Request assessment button against trainer I want to book an assessment
+    And the primary trainer will be shown with "Include this trainer" checkbox on summary page
+    And the primary trainer by default it will be checked and disabled
+    And I click "Submit"
+    And I see the success message for requested assessment with date and assessment ID
+    And I Pick first slot
+    And I click Request assessment button against trainer I want to book an assessment
+    And I include all the trainers from "Speed Control" scheme as the trainer who is in assessment
+    And I click "submit"
+    When I Pick first slot
+    And I click Request assessment button against trainer I want to book an assessment
+    Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
 
 
 

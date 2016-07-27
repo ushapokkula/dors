@@ -130,5 +130,11 @@ end
 Then(/^the assessment id is displayed under main trainer details against the trainer who is already in assessment$/) do
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
   find(:button, 'Request Assessment', match: :first).click
-  expect(page).to have_css(".auto-main-trainer-on-assessment", text:$booked_status)
+  expect(page).to have_css(".auto-main-trainer-on-assessment", text:$requested_status)
+end
+
+Then(/^the assessment id is displayed under nearby trainer details against the trainer who is already in assessment$/) do
+  @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
+  find(:button, 'Request Assessment', match: :first).click
+  expect(page).to have_css(".auto-trainer-on-assessment", text:$booked_status)
 end
