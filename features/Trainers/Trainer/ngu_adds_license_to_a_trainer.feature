@@ -1,4 +1,3 @@
-@pass
 @DR-28
 Feature: NGU Adds a license to a trainer
   As an NGU/TrainingGovernance,
