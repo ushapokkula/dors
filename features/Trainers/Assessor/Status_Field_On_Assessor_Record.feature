@@ -52,8 +52,8 @@ Feature:Status Field on Assessor Record
      Given I login as an "Assessor5"
      And I click "Forgot Your Password?"
      Then I will be re-directed to "Forgot your password?" page
-     When I enter "<Matching Username>" as "Username"
-     Then I enter "<Matching Email>" as "Email"
+     When I enter "<Matching Username>" as 'Username'
+     Then I enter "<Matching Email>" as 'Email'
      And I click "Reset Password"
      And I will be re-directed to login page
      Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."

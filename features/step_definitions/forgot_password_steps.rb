@@ -46,9 +46,9 @@ And(/^I enter Invalid "([^"]*)" format$/) do |field|
   fill_in(field, :with => 'test.com')
 end
 
-And(/^I will be re-directed to login page$/) do
-  expect(page).to have_css("#txtemail")
-end
+# And(/^I will be re-directed to login page$/) do
+#   expect(page).to have_css("#txtemail")
+# end
 
 And(/^I request the reset password for the same user twice$/) do
   2.times do

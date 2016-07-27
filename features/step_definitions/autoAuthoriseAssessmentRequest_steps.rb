@@ -49,9 +49,9 @@ And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/) do |for
   page.find_all(('linked_force_area_name')[0], text: forceareaname)
 end
 
-Then(/^I should see the message as "([^"]*)"$/) do |message|
-  expect(page).to have_selector(:css, ".alert.alert-info", text: message)
-end
+# Then(/^I should see the message as "([^"]*)"$/) do |message|
+#   expect(page).to have_selector(:css, ".alert.alert-info", text: message)
+# end
 
 And (/^I won't see trainers who have a Force Area assigned which I am not linked to$/) do
   @trainers.auto_authorise_assessment_request_page.verify_list_of_trainers_not_related_to_assessor

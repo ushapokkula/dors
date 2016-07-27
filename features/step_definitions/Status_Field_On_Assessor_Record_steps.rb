@@ -62,11 +62,11 @@ And(/^I will be directed to "Forgot your password?" page$/)do
   expect(page).to have_xpath("//button[@type='submit']", text: 'Reset Password')
 end
 
-When (/^I enter "([^"]*)" as "Username"$/)do |matchingusername|
+When (/^I enter "([^"]*)" as 'Username'$/)do |matchingusername|
   fill_in('username', :with=> matchingusername)
 end
 
-Then (/^I enter "([^"]*)" as "Email"$/)do |matchingemail|
+Then (/^I enter "([^"]*)" as 'Email'$/)do |matchingemail|
   fill_in('email', :with=>matchingemail)
 end
 
@@ -75,8 +75,8 @@ And (/^I will be re-directed to login page$/)do
   expect(page).to have_xpath("//button[@type='submit']", text: 'Sign in')
 end
 
-Then (/^I should see the message as "([^"]*)"$/)do |forgotpwd_error|
-  expect(page).to have_css(".alert.alert-info", text: forgotpwd_error)
+Then (/^I should see the message as "([^"]*)"$/)do |message|
+  expect(page).to have_css(".alert.alert-info", text: message)
 end
 
 And (/^I should not see that the email generated and sent to the registered email address  with "([^"]*)"$/)do|subject|
