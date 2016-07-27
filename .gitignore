@@ -7,4 +7,4 @@ junit/*
 reports/*
 error_pages/*
 images/*
-/chromedriver.exe
+chromedriver.exe/*
