@@ -5,6 +5,7 @@ Given(/^I have licence agreement as "([^"]*)" for trainer Id "([^"]*)"$/) do |ag
   select(agreement_status, :from => 'licenseAgreementStatus')
   expect(page).to have_css('#licenseAgreementStatus',text:agreement_status)
   click_button("Update Trainer")
+  sleep 2
   expect(page).to have_no_css(".toast-success",visible: false) # wait until the loader diss-appears
 end
 
