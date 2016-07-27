@@ -1,4 +1,4 @@
-@DR-12
+@DR-12 @pass
 Feature: As an assessor,
   I want to be able to view my record,
   so that I can ensure my details are correct and up to date.
@@ -11,30 +11,30 @@ Feature: As an assessor,
   Scenario Outline: Verify the read-only fields on My Profile page
     Then I will be shown my record with below read only "<Assessor Readonly Fields>" fields
 
-  Examples:
+    Examples:
       | Assessor Readonly Fields |
-      | Username        |
-      | Assessor Number |
-      | Force Areas     |
-    
+      | Username                 |
+      | Assessor Number          |
+      | Force Areas              |
+      | First Name               |
+      | Last Name                |
+
   Scenario Outline: Verify the editable fields on My Profile page
     Then I will be shown my record with below editable "<Assessor Editable Fields>" fields
 
     Examples:
       | Assessor Editable Fields |
-      | First Name             |
-      | Last Name              |
-      | Primary Phone Number   |
-      | Secondary Phone Number |
-      | Primary Email Address  |
-      |Secondary Email Address |
-      | Town                   |
-      | Address                |
-      | Postcode               |
-      | Force Areas            |
+      | Primary Phone Number     |
+      | Secondary Phone Number   |
+      | Primary Email Address    |
+      | Secondary Email Address  |
+      | Town                     |
+      | Address                  |
+      | Postcode                 |
+      | Force Areas              |
 
   Scenario Outline: Verify The optional fields
-    Then I see the following fields are "<Optional>"
+    Then I see Assessor "<Optional>" field is an optional field
     Examples:
       | Optional               |
       | Assessor Number        |

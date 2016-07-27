@@ -7,12 +7,25 @@ Compliance Manager:
  password: P@ssw0rd1
 
 Trainer1:
- username: newtrainer
+ username: newtrainer  #989797#
  password: P@s5w0rd1
 
 Trainer2:
- username: roopa_setty1  #No Licenses Added#
+ username: roopa_setty1  #No Licences Added#
  password: P@s5w0rd2
+
+Trainer3:
+ username: trainer3
+ password: test@?12
+
+TrainerLicence:
+ username: trainer_licence_agreement
+ password: P@ssw0rd1
+
+Trainer4:
+ username: fabTrainer9  #888889#
+ password: P@s5w0rd1
+
 
 Assessor1:
  username: johnny
@@ -20,15 +33,45 @@ Assessor1:
 
 Assessor2:
   username: test_forces
-  password: P@s5w0rd1
+  password: P@ssw0rd1
 
 Assessor3:
   username: deena
-  password: P@ssw0rd1
+  password: P@s5w0rd
 
 Assessor4:
   username: chiefd    #No Assessments#
   password: Ch123456
+
+Assessor5:
+  username: test2auto
+  password: P@s6w0rd
+
+
+
+
+
+
+LFU:
+  username: SwapnaLFU    #LFU user on police portal#
+  password: P@ssw0rd1
+
+LFA:
+  username: SwapnaLFA    #LFA user on police portal#
+  password: P@ssw0rd1
+
+LSU:
+  username: SwapnaLSU    #LSU user on supplier portal#
+  password: P@ssw0rd1
+
+LSA:
+  username: SwapnaLSA    #LSA user on supplier portal#
+  password: P@ssw0rd1
+
+
+
+
+
 
 
 

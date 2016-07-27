@@ -33,7 +33,6 @@ Feature:DR-251
       | Venue              |
       | Name               |
       | Assessor           |
-      | License            |
       | Expiry Date        |
       | Total Mileage      |
       | Expenses Claimed £ |
@@ -57,8 +56,8 @@ Feature:DR-251
     And I logout
     And I login as Compliance Manager and click assessment management tab to search booked assessments
     When I click "Search"
-    And the page include Outcome dropdown
     Then The system will load the detailed information for assessment record in view mode
+    And the page include Outcome dropdown
     And The page will include Mark Complete and Cancel button
 
 

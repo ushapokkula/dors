@@ -11,9 +11,9 @@ When(/^I click 'Assessment Status' dropdown button$/)do
   page.find("#single-button", visible: true).click
 end
 
-Then (/^I see 'Requested' status is in selected status$/)do
-  expect(page).to have_css(".dropdown-menu",visible: true)
-  find("#assessmentStatusChk0").should be_checked
+Then(/^I see 'Requested' status is in selected status$/)do
+expect(page).to have_css("#single-button + .dropdown-menu",visible:true)
+find("#assessmentStatusChk0").should be_checked
 end
 
 And (/^I should not see 'Approved' status is selected$/)do
@@ -24,6 +24,11 @@ And (/^I request assessments$/) do
   7.times do
     @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course
   end
+end
+
+Then (/^I will see list of all requested assessments$/)do
+expect(page).to have_css("h1", text: 'Assessments')
+  expect(find_all('.assessment-status', text:'Requested'))
 end
 
 

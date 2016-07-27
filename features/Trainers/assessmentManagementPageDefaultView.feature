@@ -10,7 +10,7 @@ Feature: Assessment Management Default View
     When There are no assessments with status requested
     Then I see a message "There are no assessments to display."
 
-  @default2
+  @default2 @DR-973
   Scenario: Verify the default view of Assessment management
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
@@ -19,15 +19,15 @@ Feature: Assessment Management Default View
     And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
-      | Details       |
-      | Assessor Name |
-      | Date          |
-      | Expenses      |
-      | Name          |
-      | Expiry Date   |
-      | Status        |
+      | Details        |
+      | Trainer ID     |
+      | Expenses       |
+      | Trainer        |
+      | Licence Exp.   |
+      | Licence Status |
+    And assessor name and date are also displayed in the default view
 
-
+  @default3
   Scenario: Verify Assessment ID, maximum count of trainers
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"

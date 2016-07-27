@@ -10,7 +10,7 @@ Feature: As an an NGU (TrainingGovernance),
 
   @create_trainer1
   Scenario: Verify the fields displayed to create a trainer
-    Then the system will load the page where I can create a new trainer record with the following fields
+    Then the system will load the page where I can create a new trainer record with required fields
       | Input Details          |
       | Username               |
       | Trainer Id             |
@@ -25,6 +25,8 @@ Feature: As an an NGU (TrainingGovernance),
       | Postcode               |
       | Town                   |
       | Is Instructor          |
+      |Status                  |
+      |License Agreement       |
 
   @create_trainer2
   Scenario Outline: Verify The mandatory fields
@@ -51,7 +53,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Known As               |
       | Secondary Phone Number |
       | Secondary Email Address|
-      #| Is Instructor          |
+
 
 
   @DR-674 @Create_Trainer_Licences
@@ -63,8 +65,8 @@ Feature: As an an NGU (TrainingGovernance),
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
 
 
-     @DR-674 @Update_Trainer_Licences
-     Scenario Outline: Generating Licence Numbers and saving to database
+     @Update_Trainer_Licences
+     Scenario Outline: Generating License and Verifying licenses updating functionality
        Then I fill Mandatory fields with required details on create trainer form
        And I have added licences for the trainer and all mandatory fields for every licence have a value
        And I click Add licence button

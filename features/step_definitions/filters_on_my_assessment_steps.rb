@@ -25,7 +25,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk1')
 
   elsif (status_filter == "REQUESTED")
@@ -35,13 +35,14 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk0')
 
   elsif (status_filter == "REJECTED")
 
     @trainers.ngu_search_assessment_id_page.request_assessment
     expect(page).to have_selector(".alert.alert-success")
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $requested_status)
@@ -49,11 +50,12 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
     click_button("Reject")
     fill_in("cancellationNotes", :with => "Notes for Rejection")
     click_button('Yes')
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Assessor")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk2')
 
   elsif (status_filter == "CANCELLED")
@@ -62,12 +64,12 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
     expect(page).to have_selector(".alert.alert-success")
     click_link("MY ASSESSMENTS")
     click_button("View Details")
-    click_button("Cancel Request")
+    click_button("Cancel Assessment")
     fill_in("cancellationNotes", :with => "Notes for cancellation")
     click_button('Yes')
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk3')
 
   else
@@ -75,17 +77,19 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
 
     @trainers.ngu_search_assessment_id_page.book_assessment
     expect(page).to have_selector(".alert.alert-success")
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
     fill_in("txt-assessment-id", :with => $booked_status)
     click_button("Search")
     @trainers.assessment_form_for_marking_outcome_page.select_outcome_against_trainer
     click_button('Mark Complete')
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Assessor")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk4')
   end
 end
@@ -110,7 +114,7 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk0')
     check('assessmentStatusChk1')
 
@@ -120,14 +124,16 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
     expect(page).to have_selector(".alert.alert-success")
     @trainers.ngu_search_assessment_id_page.request_assessment
     expect(page).to have_selector(".alert.alert-success")
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     @trainers.filters_on_my_assessment_page.reject_assessment_on_myassessments
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Assessor")
     click_link("MY ASSESSMENTS")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk1')
     check('assessmentStatusChk2')
 
@@ -139,13 +145,15 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
     @trainers.ngu_search_assessment_id_page.request_assessment
     expect(page).to have_selector(".alert.alert-success")
     @trainers.filters_on_my_assessment_page.cancel_assessment
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Compliance Manager")
     @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
     @trainers.filters_on_my_assessment_page.reject_assessment_on_myassessments
+    click_link("Sign out")
     @trainers.trainer_login_page.login_as("Assessor")
     expect(page).to have_css("#single-button")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu")
+    expect(page).to have_css("#single-button + .dropdown-menu")
     check('assessmentStatusChk2')
     check('assessmentStatusChk3')
 
@@ -155,6 +163,7 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   expect(page).to have_selector(".alert.alert-success")
   @trainers.ngu_search_assessment_id_page.request_assessment
   expect(page).to have_selector(".alert.alert-success")
+  click_link("Sign out")
   @trainers.trainer_login_page.login_as("Compliance Manager")
   @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
   @trainers.filters_on_my_assessment_page.reject_assessment_on_myassessments
@@ -163,10 +172,11 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   @trainers.assessment_form_for_marking_outcome_page.select_outcome_against_trainer
   click_button('Mark Complete')
   expect(page).to have_selector(".alert.alert-success")
+  click_link("Sign out")
   @trainers.trainer_login_page.login_as("Assessor")
   click_link("MY ASSESSMENTS")
   find("#single-button").click
-  expect(page).to have_css(".dropdown-menu")
+  expect(page).to have_css("#single-button + .dropdown-menu")
   check('assessmentStatusChk3')
   check('assessmentStatusChk4')
 

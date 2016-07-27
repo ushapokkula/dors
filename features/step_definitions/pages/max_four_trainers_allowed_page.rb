@@ -52,13 +52,12 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
     find(".include-nearby-trainer-checkbox", match: :first)
     all('.include-nearby-trainer-checkbox')[0].click
     all('.include-nearby-trainer-checkbox')[1].click
-    all('.include-nearby-trainer-checkbox')[2].click
+    all('.include-nearby-trainer-checkbox')[7].click
   end
 
   def verify_validation_more_trainers_on_course
     find(".include-main-trainer-checkbox", match: :first)
     all('.include-main-trainer-checkbox')[0].click
-    all('.include-main-trainer-checkbox')[1].click
     find(".include-nearby-trainer-checkbox", match: :first)
     all('.include-nearby-trainer-checkbox')[0].click
     all('.include-nearby-trainer-checkbox')[2].click
@@ -70,7 +69,7 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
     all('.include-main-trainer-checkbox')[0].click
     find(".include-nearby-trainer-checkbox", match: :first)
     all('.include-nearby-trainer-checkbox')[1].click
-    all('.include-nearby-trainer-checkbox')[2].click
+    all('.include-nearby-trainer-checkbox')[3].click
 
   end
 
