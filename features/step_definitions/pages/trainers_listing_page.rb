@@ -149,13 +149,6 @@ class TrainersListingPage < SitePrism::Page
 
   end
 
-
-  def verify_trianers_fullname
-    expect(page).to  have_css(".trainer-fullname")
-    #expect(page).to have_css(".secondary-trainer-full-name")
-  end
-
-
   require 'tiny_tds'
 
   def database_connection

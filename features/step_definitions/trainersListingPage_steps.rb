@@ -65,8 +65,6 @@ end
 Then(/^The system will display a list of courses the selected trainer is delivering in future$/) do
   expect(page).to have_css(".dors-well-other")
   expect(page.all(".dors-well-other").count).to be > 0
-
- # @trainers.trainers_listing_page.pick_a_slot
 end
 
 When(/^I click 'Pick a slot' on Request Assessment Page$/) do
@@ -88,7 +86,8 @@ When(/^The system will display the following details on Pick slot page$/) do |ta
 end
 
 When(/^The page will also show primary trainers Full Name,secondary trainer fullname$/) do
-  @trainers.trainers_listing_page.verify_trianers_fullname
+  expect(page).to  have_css(".trainer-fullname", visible:true)
+  expect(page).to have_css(".auto-other-trainer-fullname", visible:true)
 end
 
 And(/^I set the time window to "([^"]*)" days$/)do |days|
@@ -97,4 +96,35 @@ And(/^I set the time window to "([^"]*)" days$/)do |days|
   fill_in('assessmentsWindow', :with=> days)
   click_button("Save")
   # @trainers.trainer_login_page.login_as("Assessor")
+end
+
+And(/^I see that licence code is replaced by "([^"]*)"$/) do|trainer_id|
+ expect(page).to have_css(".auto-main-trainerid-label", text: trainer_id)
+ expect(page).to have_css(".auto-other-trainer-trainerid-label", text: trainer_id)
+end
+
+Then(/^I will be taken to "([^"]*)" page$/) do |course_page|
+  expect(page).to have_css(".breadcrumb .active>span", text: course_page)
+end
+
+And(/^the term "([^"]*)" is not shown against trainers on pick a course page$/) do |secondary_trainer|
+  expect(page).to have_no_content(secondary_trainer)
+end
+
+When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in assessment$/) do
+  all(".btn.btn-primary:nth-child(2)")[4].click
+end
+
+Then(/^the requested assessment id is shown against the trainer$/) do
+  @trainers.ngu_search_assessment_id_page.verify_requested_assessmemt_id_in_DB
+  expect(page).to have_css(".auto-other-trainer-on-assessment", text:$requested_status)
+end
+
+Then(/^the booked assessment id is shown against the trainer$/) do
+  @trainers.ngu_search_assessment_id_page.verify_booked_assessmemt_id_in_DB
+  expect(page).to have_css(".auto-other-trainer-on-assessment", text:$booked_status)
+end
+
+And(/^I include trainer in near by course$/) do
+  page.find_all('.include-nearby-trainer-checkbox',visible:true)[6].click
 end
