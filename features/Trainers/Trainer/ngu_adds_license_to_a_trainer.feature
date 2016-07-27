@@ -24,7 +24,7 @@ Feature: NGU Adds a license to a trainer
 
   @add_new_license
   Scenario: Add new license to a trainer
-    And I search for "bhavani" and "m" in the trainer search field
+    And I search for "licence" and "auto" in the trainer search field
     And I have trainer record loaded in editable view
     And I see button "Add licence" available under the licenses section
     And I select course name, licence status and expiry date to add a new licence
