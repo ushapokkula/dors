@@ -80,7 +80,7 @@ Feature: As an NGU,
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
      Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
      When I change "<Expiry date>" in past for trainer which has Licence state of 'Full' or 'Provisional'
-     Then the system will trigger the user with an error message "Sorry, the license has expired, please amend the status accordingly" on trainer page
+     Then the system will trigger the user with an error message "Sorry, the licence has expired, please amend the status accordingly" on trainer page
      Examples:
       | trainer first name | trainer last name | Expiry date |
       | roopa              | trainer           | 04/04/2016  |

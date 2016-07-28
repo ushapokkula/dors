@@ -80,7 +80,7 @@ Feature: NGU Adds a license to a trainer
     Examples:
       | field_name     | validation_error_message        |
       | Course name    | Please select a course name.    |
-      | Licence status | Please select a license status. |
+      | Licence status | Please select a licence status. |
       | Expiry Date    | Please select an expiry date.   |
 
   @verify_duplicate_courses

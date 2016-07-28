@@ -1,6 +1,6 @@
 Then (/^I will be directed to my landing page \(i.e. My Licences\)$/)do
 @trainers.trainer_landing_page_and_permissions_page.should have_page_title
-@trainers.trainer_landing_page_and_permissions_page.page_title.text.should eql "My Licenses"
+@trainers.trainer_landing_page_and_permissions_page.page_title.text.should eql "My Licences"
 expect(page).to have_css('.dors-well')
 @trainers.trainer_landing_page_and_permissions_page.should have_trainer_name
 @trainers.trainer_landing_page_and_permissions_page.should have_trainer_id

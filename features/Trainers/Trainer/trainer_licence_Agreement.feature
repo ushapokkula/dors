@@ -17,7 +17,7 @@ Feature:Trainer NDORS Licence Agreement
     And 'Licence Agreement' field will be disabled or read-only
 
   @DR-788
-  Scenario: Newly created trainer's license agreement is enabled and has 3 options to select and default is unspecified
+  Scenario: Newly created trainer's licence agreement is enabled and has 3 options to select and default is unspecified
 
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
@@ -46,7 +46,7 @@ Feature:Trainer NDORS Licence Agreement
 
 
   @DR-892 @DR-894
-  Scenario: Accept a trainer's license agreement
+  Scenario: Accept a trainer's licence agreement
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
     Then I navigate to "TRAINERS" page
@@ -86,7 +86,7 @@ Feature:Trainer NDORS Licence Agreement
 
 
   @DR-892 @DR-894 @nologout
-  Scenario:  Trainer is redirected to the same license agreement screen when he tries to access any other
+  Scenario:  Trainer is redirected to the same licence agreement screen when he tries to access any other
   system resource url with out accepting or reject the agreement
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
@@ -133,7 +133,7 @@ Feature:Trainer NDORS Licence Agreement
 
 
   @DR-788
-  Scenario Outline: Verify the status of trainer is active by default when License agreement is set to Accepted
+  Scenario Outline: Verify the status of trainer is active by default when Licence agreement is set to Accepted
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
@@ -170,7 +170,7 @@ Feature:Trainer NDORS Licence Agreement
 
 
   @DR-893
-  Scenario Outline: When a trainer's license is changed to rejected by NGU, all the licenses under the trainer
+  Scenario Outline: When a trainer's licence is changed to rejected by NGU, all the licences under the trainer
   are changed to surrendered and expiry date is changed to today's date
 
     Given that I have licence.ndors.org.uk page opened
@@ -192,7 +192,7 @@ Feature:Trainer NDORS Licence Agreement
 
 
   @DR-893
-  Scenario Outline: When a trainer himself rejects a license agreement, all the licenses under the trainer are
+  Scenario Outline: When a trainer himself rejects a licence agreement, all the licences under the trainer are
   set to surrendered status and the expiry date is set to today's date
 
     Given that I have licence.ndors.org.uk page opened
@@ -207,8 +207,8 @@ Feature:Trainer NDORS Licence Agreement
     And I logout
     When I login as an "Trainer4"
     When I see licence agreement text with an option to Accept or Reject
-    Then I click "Reject"
-    Then I see a Reject Licence Agreement "<Message>"
+    And I click "Reject"
+    Then Reject Licence Agreement "<Licence text>" will display
     When I click "Yes"
     And I will be logged out
     Then I will be redirected to login page
@@ -220,7 +220,6 @@ Feature:Trainer NDORS Licence Agreement
     And the status of every "<Licences>" changed to 'Surrendered'
     And the expiry date of every licence changed to 'system date'
     Examples:
-      | agreement_status | Licences                | Message                                                                                                                                                                              |
-      | Rejected         | Provisional/Conditional | Rejecting this Licence Agreement will invalidate your licences, deactivate your account and you won't be able to access the DORS+ Licence Portal. Are you sure you want to continue? |
-
+      | agreement_status | Licences                | Licence text                                                                                      |
+      | Rejected         | Provisional/Conditional |Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you want to continue?|
 

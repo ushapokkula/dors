@@ -1,5 +1,5 @@
 And (/^I will see a 'Licence Agreement' field on the trainer form$/) do
-  expect(page).to have_css("[for='licenseAgreementStatus']", text: 'License Agreement')
+  expect(page).to have_css("[for='licenseAgreementStatus']", text: 'Licence Agreement')
   expect(page).to have_css("#licenseAgreementStatus")
 end
 
@@ -8,7 +8,7 @@ And (/^I see 'Licence Agreement' field will be set to Unspecified by default$/) 
 end
 
 And (/^'Licence Agreement' field will be disabled or read-only$/) do
-  field_labeled('License Agreement', :disabled => true)
+  field_labeled('Licence Agreement', :disabled => true)
 end
 
 And (/^the 'Licence Agreement' will be shown as Unspecified$/) do
@@ -17,7 +17,7 @@ And (/^the 'Licence Agreement' will be shown as Unspecified$/) do
 end
 
 And (/^'Licence Agreement' field will have three possible options$/) do |table|
-  field_labeled('License Agreement', :disabled => false)
+  field_labeled('Licence Agreement', :disabled => false)
   actual = table.raw.flatten
   expected = all("#licenseAgreementStatus option").map { |x| x.text }
   expect(actual).to match_array(expected)
@@ -28,7 +28,7 @@ Then(/^I see the "([^"]*)" field is set to "([^"]*)"$/) do |arg1, arg2|
 end
 
 Then (/^I will be redirected to Licence Agreement screen$/) do
-  expect(page).to have_css("h1", text: 'NDORS License Agreement')
+  expect(page).to have_css("h1", text: 'NDORS Licence Agreement')
 end
 
 And (/^I see licence agreement text with an option to Accept or Reject$/) do
@@ -81,7 +81,7 @@ And (/^I can see Status field value changes to Inactive$/) do
 end
 
 When (/^I see 'Licence Agreement' field$/) do
-  field_labeled('License Agreement', :disabled => false)
+  field_labeled('Licence Agreement', :disabled => false)
 end
 
 Then (/^I will remain on Update Trainers form$/) do
@@ -140,8 +140,8 @@ Then (/^I will be redirected to login page$/) do
   expect(page).to have_css(:button, text: 'Sign in', visible: true)
 end
 
-Then (/^I see a Reject Licence Agreement "([^"]*)"$/) do |message|
-  expect(page).to have_css(".modal-body", text: message)
+Then(/^Reject Licence Agreement "([^"]*)" will display$/) do |licence_text|
+  expect(page).to have_css(".modal-body", text: licence_text)
 end
 
 

@@ -26,7 +26,7 @@ Feature: As an an NGU (TrainingGovernance),
       | Town                   |
       | Is Instructor          |
       |Status                  |
-      |License Agreement       |
+      |Licence Agreement       |
 
   @create_trainer2
   Scenario Outline: Verify The mandatory fields
@@ -66,7 +66,7 @@ Feature: As an an NGU (TrainingGovernance),
 
 
      @Update_Trainer_Licences
-     Scenario Outline: Generating License and Verifying licenses updating functionality
+     Scenario Outline: Generating Licence and Verifying licenses updating functionality
        Then I fill Mandatory fields with required details on create trainer form
        And I have added licences for the trainer and all mandatory fields for every licence have a value
        And I click Add licence button
