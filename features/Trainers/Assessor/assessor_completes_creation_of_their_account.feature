@@ -5,6 +5,7 @@ Feature: Assessor Creates Their Account
   so that I can login and use the system to perform my day to day operations.
 
   Background:
+    Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened
 
   @verify_the_welcome_page @nologout
@@ -83,7 +84,7 @@ Feature: Assessor Creates Their Account
     When I click "Create Account"
     Then I see a validation message displayed as "Sorry, your username or email is incorrect."
 
-  @invalid_email
+  @invalid_email @nologout
   Scenario: Verify the validation message when the email format is Invalid
 
     And I login as an "Compliance Manager"
@@ -100,7 +101,7 @@ Feature: Assessor Creates Their Account
     And I enter Confirm Password
     Then I see a validation message displayed as "Please provide a valid email address."
 
-  @password_mismatch
+  @password_mismatch @nologout
   Scenario: Verify the validation message when the password and confirm password fields does'nt match
 
     And I login as an "Compliance Manager"

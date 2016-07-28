@@ -93,13 +93,14 @@ And(/^I set the mandatory field "([^"]*)" as blank$/) do |fields|
 end
 
 When(/^I enter the password less than minimum limit$/) do
+  page.driver.browser.switch_to.window(page.driver.browser.window_handles.last)
   @trainers.create_assessor_record_page.password_length_validation(7)
   page.find('#password').native.send_keys(:tab)
 end
 
 And(/^I refresh the page$/) do
-  # page.driver.browser.navigate.refresh
-  visit current_url
+   page.driver.browser.navigate.refresh
+  #visit current_url
 end
 
 Then(/^The field is restricted to 26 characters$/) do
