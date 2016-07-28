@@ -16,7 +16,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
     When I click the link generated in the email to set password
-    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    Then I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
 
 
     Examples:
@@ -34,7 +34,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter Username
     And  I enter Email
     And I enter Password
@@ -54,7 +54,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter the Username which does'nt match against the record created
     And I enter Email
     And I enter Password
@@ -74,7 +74,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     When I enter the Email which does'nt match against the record created
     And I enter Password
@@ -93,7 +93,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And I enter email which has invalid format
     And I enter Password
@@ -110,7 +110,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And  I enter Email
     And I enter Password
@@ -127,7 +127,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     And I enter Username
     And  I enter Email
     When I enter the password which does'nt meet password policy requirements
@@ -144,7 +144,7 @@ Feature: Assessor Creates Their Account
     And I see the message "New assessor successfully created" after assessor creation
     And I see that the email is generated and sent to the registered email address
     And I click the link generated in the email to set password
-    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
     When I enter Username
     And  I enter Email
     And I enter Password
@@ -203,7 +203,7 @@ Feature: Assessor Creates Their Account
      And I see the message "New assessor successfully created" after assessor creation
      And I see that the email is generated and sent to the registered email address
      And I click the link generated in the email to set password
-     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing corporate.compliance@ndors.co.uk."
+     And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
      When I enter the password containing more than two consecutive chars of Username
      Then I see a validation message displayed as "Sorry, the password does not meet the policy requirements."
 

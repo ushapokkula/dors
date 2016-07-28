@@ -111,8 +111,12 @@ And(/^the term "([^"]*)" is not shown against trainers on pick a course page$/) 
   expect(page).to have_no_content(secondary_trainer)
 end
 
-When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in assessment$/) do
+When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in requested assessment$/) do
   all(".btn.btn-primary:nth-child(2)")[4].click
+end
+
+When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in booked assessment$/) do
+  all(".btn.btn-primary:nth-child(2)")[3].click
 end
 
 Then(/^the requested assessment id is shown against the trainer$/) do

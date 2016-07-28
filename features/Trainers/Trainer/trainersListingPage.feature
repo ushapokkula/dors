@@ -84,7 +84,7 @@ Feature: DR-113 and DR-118
     And I click Request assessment button against trainer I want to book an assessment
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in requested assessment
     Then the requested assessment id is shown against the trainer
 
   @DR-799  @show_assessment_id_approved
@@ -96,7 +96,7 @@ Feature: DR-113 and DR-118
     And I include trainer in near by course
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in booked assessment
     Then the booked assessment id is shown against the trainer
 
 
