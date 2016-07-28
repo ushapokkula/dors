@@ -44,7 +44,7 @@ Feature: Maximum 4 trainers allowed per assessment request
   Scenario: Assessment with 2 courses and 2 trainers within each course
     When I try to include two courses and two trainers within each course
     And I click "Submit"
-    And I see a message "The assessment has been Booked"
+    And I see the success message for requested assessment with date and assessment ID
 
 
 
