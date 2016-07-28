@@ -95,6 +95,6 @@ end
 
 And(/^Any unsaved changes will be lost$/)do
   click_link("TRAINERS")
-  fill_in('txt-trainer-name', :with=>$trainer_id)
+  fill_in('txt-trainer-name', :with=>fetch("trainer_id"))
   expect(page).to have_css(".text-danger", text:'No Trainers with this id exist.')
 end
