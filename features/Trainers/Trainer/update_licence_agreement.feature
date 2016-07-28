@@ -12,7 +12,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     And I logout
     And I login as an "TrainerLicence"
     When I click "Accept"
-    And I will be redirected to "My Licenses" page
+    And I will be redirected to "My Licences" page
     And I logout
     When I login as an "Compliance Manager"
     And I click "TRAINERS"

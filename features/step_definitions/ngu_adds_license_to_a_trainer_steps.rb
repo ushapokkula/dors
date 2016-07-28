@@ -1,4 +1,4 @@
-And(/^I see button "([^"]*)" available under the licenses section$/) do |button|
+And(/^I see button "([^"]*)" available under the licences section$/) do |button|
   within(all(".panel-body")[1]) do
     expect(page).to have_button(button, visible: true)
   end

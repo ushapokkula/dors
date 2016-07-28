@@ -13,7 +13,7 @@ Feature: NGU Adds a license to a trainer
   Scenario: Verify the Add license button visibility
     When I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
-    Then I see button "Add licence" available under the licenses section
+    Then I see button "Add licence" available under the licences section
 
   @add_license_button_notvisible
   Scenario: Add license button is not visible when maximum licenses added to a trainer
@@ -25,7 +25,7 @@ Feature: NGU Adds a license to a trainer
   Scenario: Add new license to a trainer
     And I search for "licence" and "auto" in the trainer search field
     And I have trainer record loaded in editable view
-    And I see button "Add licence" available under the licenses section
+    And I see button "Add licence" available under the licences section
     And I select course name, licence status and expiry date to add a new licence
     When I click "Add licence" button
     Then The system will add another row of licence entry below those already displayed
@@ -149,10 +149,10 @@ Feature: NGU Adds a license to a trainer
         | Suspended               |
         | Revoked                 |
         | Surrendered             |
-      And I see button "Add licence" available under the licenses section
+      And I see button "Add licence" available under the licences section
 
     @DR-672  @add_licence_button_disabled/enabled
-      Scenario: Verify the Add licnece button disbaled/enabled when maximum licneces are reached
+      Scenario: Verify the Add licence button disabled/enabled when maximum licences are reached
       When I search for "test_button" and "add_licence" in the trainer search field
       And I have trainer record loaded in editable view
       And I have not reached the limit of maximum licences possible
