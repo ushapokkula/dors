@@ -5,6 +5,7 @@
     so that I can set a password and complete creation of their account.
 
     Background:
+      Given I have deleted all the emails in the test email inbox
       Given that I have licence.ndors.org.uk page opened
       And I login as an "Compliance Manager"
       And I navigate to "TRAINERS" page

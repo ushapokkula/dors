@@ -107,7 +107,7 @@ Feature: submit assessment request feature
     And the primary trainer by default it will be checked and disabled
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in requested assessment
     Then the assessment id is displayed under main trainer details against the trainer who is already in assessment
 
   @DR-927 @show_assessment_id_under_nearby_trainers
@@ -124,7 +124,7 @@ Feature: submit assessment request feature
     And I include trainer in near by course
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in assessment
+    When I Pick a slot against the trainer which has same scheme as the trainer who is in booked assessment
     Then the assessment id is displayed under nearby trainer details against the trainer who is already in assessment
 
   @DR-927 @hide_course
