@@ -30,11 +30,14 @@ Then (/^I should see the Assessor details$/)do
 end
 
 Then (/^status field will be editable$/)do
-  if find("#assessor-status-inactive").value == 'false'
-    page.find("#assessor-status-active").click
-     puts "status changed to 'Active'."
+  # if find("#assessor-status-inactive").value == 'true'
+  #   page.find("#assessor-status-active").click
+  #    puts "status changed to 'Active'."
+  # else
+  find("#assessor-status-active").click
   end
-  end
+  #
+  # end
 
 Then (/^I set status as 'Inactive'$/)do
   page.find("#assessor-status-inactive").click
