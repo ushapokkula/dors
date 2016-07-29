@@ -23,11 +23,11 @@ Feature: Show Assessment ID
     And I click on "View Details" button on 'My assessments' page
     And I should see "Assessment ID" on detailed view of assessment request
 
-  Scenario: The summary view of assessment requests on Manage Assessments page should show the Assessment ID.
+  Scenario: The summary view of assessment requests on Manage Assessments page should show the Assessment ID1.
     And I logout
     Then I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I should see "Assessment ID" on summary view of assessment on 'Manage Assessments' page
+    Then I should see Assessment ID on summary view of assessment on 'Manage Assessments' page
 
   Scenario: The detailed view of an assessment request should show Assessment ID.
     And I logout

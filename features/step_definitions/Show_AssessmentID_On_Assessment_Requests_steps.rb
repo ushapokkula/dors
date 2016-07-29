@@ -34,17 +34,17 @@ And (/^I should see "([^"]*)" on detailed view of assessment request$/)do |asses
   end
 end
 
-And (/^I should see "([^"]*)" on summary view of assessment on 'Manage Assessments' page$/)do |assessmentID|
+And (/^I should see Assessment ID on summary view of assessment on 'Manage Assessments' page$/)do
   expect(page).to have_css("h1", text:'Assessments')    #Verifying header#
   page.find_all(".dors-table")
   within(".dors-table") do
-    expect(page).to have_css(".text-md", text: assessmentID, visible:true)
-    expect(page).to have_css(".assessment-status",text: 'Requested')
+    expect(page).to have_css(".dors-table-row.row.dors-table-header > div.col-md-1 > a", visible:true)
+
   end
 end
 
 And (/^I click on "([^"]*)" button on 'Assessment management' page$/)do|button|
-  expect(page).to have_css(:button, text:button)
+  expect(page).to have_css(".dors-table-header > div.col-md-3 > a", text:button)
   click_link_or_button('View Details')
 end
 

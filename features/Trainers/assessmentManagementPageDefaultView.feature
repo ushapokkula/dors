@@ -19,12 +19,12 @@ Feature: Assessment Management Default View
     And I login as an "Compliance Manager"
     Then I will see  list of all Assessments Requests with status requested
     And Each assessment request will include following details
-      | Details        |
-      | Trainer ID     |
-      | Expenses       |
-      | Trainer        |
-      | Licence Exp.   |
-      | Licence Status |
+      | Details      |
+      | Trainer ID   |
+      | Expenses     |
+      | Trainer      |
+      | Licence Exp. |
+      | Status       |
     And assessor name and date are also displayed in the default view
 
   @default3
@@ -41,7 +41,7 @@ Feature: Assessment Management Default View
 
   @DR-173
   Scenario: Verify 'View Details' and 'Approve' button
-   Given that I have licence.ndors.org.uk page opened
+    Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I request all assessments
     And I logout
