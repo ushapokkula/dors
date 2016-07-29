@@ -110,9 +110,9 @@ And(/^The system will update the Trainer record in the database and add licenses
   @trainers.create_trainer_record_page.verify_licence_format
 end
 
-And(/^licence Id will be generated in this format "([^"]*)"$/) do |format|
+And(/^licence Id will be generated in this format "([^"]*)"$/) do |licence_format|
   actual_format = $licence_code.split('/')
-  expected_format = format.split('/')
+  expected_format = licence_format.split('/')
   expect(expected_format[0].length).to eq(actual_format[0].length)
   expect(expected_format[1].length).to eq(actual_format[1].length)
    end

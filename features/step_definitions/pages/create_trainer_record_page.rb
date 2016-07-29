@@ -95,7 +95,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     # trainer_first_name.click
     x = false
     unless x
-      if page.has_css?(".form-group.has-error p", text: 'Sorry, the trainer id already exist. Please try a different trainer id.', wait: 2)
+      if page.has_css?(".form-group.has-error p", text: 'Sorry, the trainer id already exist. Please try a different trainer id.', wait: 5)
         trainer_id.set Faker::Number.numerify('16####')
       end
       x = true if page.has_content?('Sorry, the trainer id already exist. Please try a different trainer id.',wait: 2)
@@ -146,7 +146,6 @@ class CreateTrainerRecordPage < SitePrism::Page
                             FROM  [DORS_Classified].[dbo].tbl_Trainer INNER JOIN
                             tbl_TrainerLicense ON tbl_Trainer.TrainerId = tbl_TrainerLicense.TrainerId
                             WHERE tbl_Trainer.TrainerRef="+fetch("trainer_id"))
-    #WHERE (tbl_Trainer.TrainerRef="+$trainer_id+")")
     result.each do |row|
       $licence_code = row['LicenseCode']
       trainer_ref = row['TrainerRef']

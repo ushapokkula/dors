@@ -119,7 +119,7 @@ end
 
 Then(/^the system will show the trainer licence records they hold on the "([^"]*)" page$/) do |request_page|
   expect(page).to have_css("h1", text: request_page)
-  expect(page).to have_css(".dors-table", count: 2, visible: true)
+  expect(page).to have_css(".dors-table", count: 2, visible: true, wait:4)
 end
 
 And(/^the listing will include the fields as below$/) do |table|
