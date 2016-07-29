@@ -1,4 +1,4 @@
-@fail
+
 @DR-175
 Feature: As a NGU user,
   I want to be able to filter assessment records on Assessment Management page by Status,
