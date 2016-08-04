@@ -15,7 +15,7 @@ Feature: DR-268 and DR-719
     And I will see only those trainers whose linked Force Areas match to those linked to my record
 
 
-  @DR-268 @no_trainers_available
+  @DR-268 @no_trainers_available @pass
   Scenario: no trainers are available to match this requirement
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor2"
@@ -28,7 +28,7 @@ Feature: DR-268 and DR-719
     And I should see the matching Force Area Name in Force Area Filters
     Then I should see the message as "No assessments available to book."
 
-  @DR-719  @trainers_forcearea_not_linked_to_Assessor
+  @DR-719  @trainers_forcearea_not_linked_to_Assessor @pass
   Scenario Outline: Verify trainers force area not linked to assessor
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor2"
