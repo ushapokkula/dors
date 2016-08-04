@@ -33,4 +33,15 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     page.find("#licenseExpiryDate_3").set(date)
   end
 
+  def update_filling_welsh_details(welshChar)
+    page.fill_in('trainerFirstName', :with => welshChar)
+    page.fill_in('trainerLastName', :with => welshChar)
+    page.fill_in('trainerAddress', :with => welshChar)
+    page.fill_in('trainerTown', :with => welshChar)
+    sleep 5
+  end
+
+
+
+
 end
