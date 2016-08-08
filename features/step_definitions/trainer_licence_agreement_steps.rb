@@ -133,7 +133,8 @@ end
 And (/^the expiry date of every licence changed to 'system date'$/) do
   t = Time.now()
   system_date = t.strftime("%d/%m/%Y")
-  page.find("#licenseExpiryDate_0").value== system_date
+  expect(find("#licenseExpiryDate_0").value).to eq(system_date)
+  # page.find("#licenseExpiryDate_0").value== system_date  #changed as the assertion is not proper
 end
 
 Then (/^I will be redirected to login page$/) do
