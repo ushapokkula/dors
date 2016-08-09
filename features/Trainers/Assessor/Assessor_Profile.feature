@@ -58,8 +58,8 @@ Feature: Assessor Profile
       | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha0  3pb |
 
 
-  @DR-860 @nologout @manual
-  Scenario Outline: Verify the email notification sent when assessor change their primary email address
+  @DR-860 @nologout @manual @pass
+   Scenario Outline: Verify the email notification sent when assessor change their primary email address
     Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor3"
