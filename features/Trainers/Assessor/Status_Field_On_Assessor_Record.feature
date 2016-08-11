@@ -1,6 +1,7 @@
 @DR-738
 Feature:Status Field on Assessor Record
 
+
   Scenario: NGU verifying status field while creating new Assessor
      Given that I have licence.ndors.org.uk page opened
      When I login as an "Compliance Manager"
