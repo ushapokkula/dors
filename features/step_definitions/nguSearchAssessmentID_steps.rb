@@ -62,8 +62,8 @@ When(/^I enter the assessment Id which does'nt exists$/) do
   fill_in('txt-assessment-id', :with => '999999')
 end
 
-Then(/^I will see "([^"]*)"$/) do |text|
-  expect(page).to have_content(text)
+Then(/^I will see "([^"]*)"$/) do |error_text|
+  expect(page).to have_css(".text-danger", text:error_text)
 end
 
 And(/^I do not enter any assessment Id$/) do

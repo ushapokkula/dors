@@ -20,6 +20,7 @@ Then(/^The system will start autopredicting it and the list of trainer appears$/
  # end
 
 And(/^I start typing atleast three characters as "([^"]*)" in the trainer search field$/) do |chars|
+  expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in('txt-trainer-name', :with => chars)
 
 end

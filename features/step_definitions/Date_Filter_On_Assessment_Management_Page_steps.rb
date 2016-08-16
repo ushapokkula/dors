@@ -11,8 +11,10 @@ When(/^I click 'Assessment Status' dropdown button$/)do
 end
 
 Then(/^I see 'Requested' status is in selected status$/)do
+WaitUtil.wait_for_condition("#single-button + .dropdown-menu", :timeout_sec => 8, :delay_sec => 0.5) do   #wait for dropdown to be visible
 expect(page).to have_css("#single-button + .dropdown-menu",visible: true)
 find("#assessmentStatusChk0").should be_checked
+  end
 end
 
 And (/^I should not see 'Approved' status is selected$/)do

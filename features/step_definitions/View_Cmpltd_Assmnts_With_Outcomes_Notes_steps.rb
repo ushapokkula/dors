@@ -29,7 +29,7 @@ end
 Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
   expect(page).to have_css("h1", text: 'My assessments')
   page.find("#single-button",visible: true).click  #clicking on  'Assessment status dropdown'
-  WaitUtil.wait_for_condition("#single-button + .dropdown-menu", :timeout_sec => 5, :delay_sec => 0.5) do   #wait for dropdown to be visible
+  WaitUtil.wait_for_condition("#single-button + .dropdown-menu", :timeout_sec => 8, :delay_sec => 0.5) do   #wait for dropdown to be visible
    expect(page).to have_css("#assessmentStatusChk4", visible: true)
   find("#assessmentStatusChk4").click
   expect(page).to have_css(".assessment-status")  # need an id for completed status#
