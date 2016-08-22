@@ -2,22 +2,22 @@ And(/^I deleted the assessments from Database$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
 end
 
-Then (/^I should see a message "([^"]*)"$/)do |no_assessments_msg|
+Then (/^I should see a message "([^"]*)"$/) do |no_assessments_msg|
   expect(page).to have_css(".alert.alert-info", text: no_assessments_msg)
 end
 
-When(/^I click 'Assessment Status' dropdown button$/)do
+When(/^I click 'Assessment Status' dropdown button$/) do
   page.find("#single-button", visible: true).click
 end
 
-Then(/^I see 'Requested' status is in selected status$/)do
-WaitUtil.wait_for_condition("#single-button + .dropdown-menu", :timeout_sec => 8, :delay_sec => 0.5) do   #wait for dropdown to be visible
-expect(page).to have_css("#single-button + .dropdown-menu",visible: true)
-find("#assessmentStatusChk0").should be_checked
-  end
+Then(/^I see 'Requested' status is in selected status$/) do
+  sleep 3   #added recently bcoz of CI failures
+  expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+  find("#assessmentStatusChk0").should be_checked
 end
 
-And (/^I should not see 'Approved' status is selected$/)do
+
+And (/^I should not see 'Approved' status is selected$/) do
   find("#assessmentStatusChk1").should_not be_checked
 end
 
@@ -27,9 +27,9 @@ And (/^I request assessments$/) do
   end
 end
 
-Then (/^I will see list of all requested assessments$/)do
-expect(page).to have_css("h1", text: 'Assessments')
-  expect(find_all('.assessment-status', text:'Requested'))
+Then (/^I will see list of all requested assessments$/) do
+  expect(page).to have_css("h1", text: 'Assessments')
+  expect(find_all('.assessment-status', text: 'Requested'))
 end
 
 
@@ -85,7 +85,7 @@ end
 
 
 And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/) do |start_date, end_date|
-  expect(page.find_all('.assessment-status', text: 'Requested'))      #Verifying requested assessments get displayed#
+  expect(page.find_all('.assessment-status', text: 'Requested')) #Verifying requested assessments get displayed#
   find("#txtStartDate").click
   find("#txtStartDate").set(start_date)
   find("#txtStartDate").send_keys(:enter)
@@ -98,20 +98,20 @@ And(/^I set "([^"]*)" and "([^"]*)" filter on assessment page$/) do |start_date,
 end
 
 Then (/^assessments falling in "([^"]*)" and "([^"]*)" range will be displayed$/) do |start_date, end_date|
-    expect(page.all('.dors-table').count).to be>=1
-    @trainers.date_filter_on_assessment_management_page.verify_Assessments_falling_in_given_date(start_date, end_date)
+  expect(page.all('.dors-table').count).to be>=1
+  @trainers.date_filter_on_assessment_management_page.verify_Assessments_falling_in_given_date(start_date, end_date)
 end
 
-Then (/^I request assessment to be booked$/)do
-2.times do
-  @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage  # booking 2 assessments#
-end
+Then (/^I request assessment to be booked$/) do
+  2.times do
+    @trainers.date_filter_on_assessment_management_page.book_assessments_without_milage # booking 2 assessments#
+  end
 end
 
-And (/^I request assessment as requested$/)do
-2.times do
-  @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course  #requesting 2 assessments#
-end
+And (/^I request assessment as requested$/) do
+  2.times do
+    @trainers.date_filter_on_assessment_management_page.request_assessments_without_nearby_course #requesting 2 assessments#
+  end
 end
 
 Then(/^I set status "([^"]*)" and "([^"]*)" available on the assessment page$/) do |status1, status2|

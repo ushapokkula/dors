@@ -3,7 +3,8 @@ And (/^searched trainer "([^"]*)" name includes trainer full name and trainer ID
 end
 
 When (/^I start typing invalid trainer id as "([^"]*)" in the trainer search field$/)do|trainerid|
-fill_in("txt-trainer-name", :with=> trainerid)
+  expect(page).to have_css("#txt-trainer-name", visible:true)
+  fill_in("txt-trainer-name", :with=> trainerid)
 end
 
 Then(/^"([^"]*)" will be selected from the drop down list by default$/)do|first_trainer_name|

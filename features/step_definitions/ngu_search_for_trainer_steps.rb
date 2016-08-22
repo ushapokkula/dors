@@ -7,6 +7,7 @@ Then(/^The input field will include a placeholder info text$/) do
 end
 
 When(/^I start typing six digits as "([^"]*)" in the trainer search field$/) do |chars|
+  expect(page).to have_css('#txt-trainer-name', visible:true)
   fill_in('txt-trainer-name', :with => chars)
 end
 
