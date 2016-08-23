@@ -11,7 +11,7 @@ When(/^I click 'Assessment Status' dropdown button$/) do
 end
 
 Then(/^I see 'Requested' status is in selected status$/) do
-  sleep 3   #added recently bcoz of CI failures
+  sleep 2   #added recently bcoz of CI failures
   expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
   find("#assessmentStatusChk0").should be_checked
 end

@@ -3,6 +3,7 @@ And (/^searched trainer "([^"]*)" name includes trainer full name and trainer ID
 end
 
 When (/^I start typing invalid trainer id as "([^"]*)" in the trainer search field$/)do|trainerid|
+  expect(page).to have_css(".title-header", text:'Assessments', visible:true)
   expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in("txt-trainer-name", :with=> trainerid)
 end

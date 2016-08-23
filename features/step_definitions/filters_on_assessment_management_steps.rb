@@ -1,5 +1,5 @@
 Given(/^I am on the Assessments Management page$/) do
-  expect(page).to have_css("h1", text: "Assessments")
+  expect(page).to have_css(".title-header", text: "Assessments")
 end
 
 When(/^The default view of the page is loaded$/) do

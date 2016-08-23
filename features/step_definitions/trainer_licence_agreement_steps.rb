@@ -78,6 +78,7 @@ end
 
 And (/^I can see Status field value changes to Inactive$/) do
   page.find("#trainer-status-inactive").value == true
+ # puts expect(find_field("Inactive")).to be_checked
 end
 
 When (/^I see 'Licence Agreement' field$/) do
@@ -110,8 +111,8 @@ end
 
 
 And (/^I can see updated Licence Agreement as "([^"]*)"$/) do |agreement_status|
-  #expect(page).to have_css("#licenseAgreementStatus", text: agreement_status, visible: true)
-  expect(page).to have_no_css(".toast-success",text: agreement_status, visible: false)
+  expect(page).to have_css("#licenseAgreementStatus", text: agreement_status, visible: true)
+ # expect(page).to have_no_css(".toast-success",text: agreement_status, visible: false)
 end
 
 Then (/^the Status field will be set to Inactive and disabled on the UI$/) do
