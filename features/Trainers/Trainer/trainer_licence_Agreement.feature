@@ -209,7 +209,7 @@ Feature:Trainer NDORS Licence Agreement
     When I see licence agreement text with an option to Accept or Reject
     And I click "Reject"
     Then Reject Licence Agreement "<Licence text>" will display
-    When I click "Yes"
+    When I click "Reject" button from popup menu
     And I will be logged out
     Then I will be redirected to login page
     When I login as an "Compliance Manager"
@@ -221,5 +221,5 @@ Feature:Trainer NDORS Licence Agreement
     And the expiry date of every licence changed to 'system date'
     Examples:
       | agreement_status | Licences                | Licence text                                                                                      |
-      | Rejected         | Provisional/Conditional |Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you want to continue?|
+      | Rejected         | Provisional/Conditional |Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement?|
 
