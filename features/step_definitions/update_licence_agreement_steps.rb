@@ -3,10 +3,10 @@ Given(/^I have licence agreement as "([^"]*)" for trainer Id "([^"]*)"$/) do |ag
   fill_in('txt-trainer-name', :with => trainer_id)
   find("#txt-trainer-name + ul li", match: :first).click
   select(agreement_status, :from => 'licenseAgreementStatus')
-  expect(page).to have_css('#licenseAgreementStatus',text:agreement_status)
+  expect(page).to have_css('#licenseAgreementStatus', text: agreement_status)
   click_button("Update Trainer")
   # sleep 5
-  expect(page).to have_css(".toast-success",visible: false) # wait until the loader diss-appears
+  expect(page).to have_css(".toast-success", visible: false) # wait until the loader diss-appears
 end
 
 
@@ -20,7 +20,7 @@ And(/^search for trainer "([^"]*)"$/) do |trainer_id|
 end
 
 And(/^I can see "([^"]*)" as Licence Agreement$/) do |agreement_status|
-  expect(page).to have_css("#trainerFirstName",visible:true)
+  expect(page).to have_css("#trainerFirstName", visible: true)
   expect(page).to have_css('#licenseAgreementStatus', visible: true, text: agreement_status)
   #expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
 end
@@ -40,6 +40,18 @@ When(/^I select "([^"]*)" as licence agreement$/) do |agreement_status|
   select(agreement_status, :from => 'licenseAgreementStatus')
 end
 
+And(/^I see the popup with "([^"]*)" and "([^"]*)"$/) do |reject_button, cancel_button|
+  expect(page).to have_css(".modal-content", visible: true)
+  expect(page).to have_css("#cancel-assessment-yes", text: reject_button, visible: true)
+  expect(page).to have_css("#cancel-assessment-no", text: cancel_button, visible: true)
+end
+
+And(/^I click "([^"]*)" button from popup menu$/) do |reject_button|
+  within(".modal-content") do
+    click_link_or_button(reject_button)
+  end
+end
+
 And(/^I see the popup with 'Yes' or 'No'$/) do
- expect(page).to have_css(".modal-content", visible:true)
+  pending
 end

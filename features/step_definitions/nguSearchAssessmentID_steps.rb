@@ -44,7 +44,8 @@ And(/^I login as Compliance Manager and click assessment management tab to searc
   @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
   expect(page).to have_css(".title-header", text: 'Assessments')
-  fill_in('txt-assessment-id', :with => $booked_status)
+  expect(page).to have_css("#txt-assessment-id"), visible:true
+  fill_in('txt-assessment-id', :with =>$booked_status)
 end
 
 And(/^I login as Compliance Manager and click assessment management tab to search requested assessments$/) do
