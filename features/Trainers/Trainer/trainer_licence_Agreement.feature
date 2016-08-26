@@ -121,7 +121,7 @@ Feature:Trainer NDORS Licence Agreement
     And I set Status field to Inactive value
     And I click "Update Trainer"
     Then I will see a Inactive Trainer message with text, "<confirmation_message>"
-    When I click "Yes"
+    When I click "Reject"
     Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see Status field value changes to Inactive
     And I can see updated Licence Agreement as "<agreement_status>"
@@ -159,11 +159,11 @@ Feature:Trainer NDORS Licence Agreement
     Then the Status field will be set to Inactive and disabled on the UI
     And I click "Update Trainer"
     Then I will see a Inactive Trainer message with text, "You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?"
-    When I click "No"
+    When I click "Cancel" button on confirmation message box
     Then the message will close and no further action will be taken
     And I click "Update Trainer"
     Then I will see a Inactive Trainer message with text, "You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?"
-    When I click "Yes"
+    When I click "Reject" button on confirmation message box
     Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see updated Licence Agreement as "Rejected"
     And I can see the last changed details with user fullname and updated date
@@ -182,7 +182,7 @@ Feature:Trainer NDORS Licence Agreement
     Then the Status field will be set to Inactive and disabled on the UI
     And I click "Update Trainer"
     Then I will see a Inactive Trainer message with text, "<confirmation_message>"
-    When I click "Yes"
+    When I click "Reject" button on confirmation message box
     Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And the status of every "<Licences>" changed to 'Surrendered'
     And the expiry date of every licence changed to 'system date'

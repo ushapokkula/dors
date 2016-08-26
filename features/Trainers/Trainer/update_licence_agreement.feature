@@ -52,8 +52,8 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     Given I have licence agreement as "Unspecified" for trainer Id "123987"
     When I select "Rejected" as licence agreement
     And I click "Update Trainer"
-    And I see the popup with "Yes" and "No"
-    And I click "Yes"
+    And I see the popup with "Reject" and "Cancel"
+    And I click "Reject" button on confirmation message box
     And a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see "Rejected" as Licence Agreement
     And I can see the last changed details with user fullname and updated date
