@@ -7,25 +7,27 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
 
   def cancel_Assessment
     click_link_or_button("View Details")
-    expect(page).to have_css("h1",text: 'Assessment Request')
+    expect(page).to have_css("h1", text: 'Assessment Request')
     click_link_or_button('Cancel Assessment')
-    expect(page).to have_css("h4",text: 'Cancel Assessment')
+    expect(page).to have_css("h4", text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
-    click_link_or_button('Yes')
+    within(".modal-content") do
+      click_link_or_button('Cancel Assessment')
+    end
   end
 
   def verify_cancel_or_reject_filed_readonly
-    page.should have_css("#actionNotes[readonly]")  #Verify readonly field#
-   if  page.has_content?($cancel_notes)
-        puts ($cancel_notes)
-   end
+    page.should have_css("#actionNotes[readonly]") #Verify readonly field#
+    if page.has_content?($cancel_notes)
+      puts ($cancel_notes)
+    end
     if page.has_content?($reject_notes)
       puts ($reject_notes)
     end
     puts "Cancel or Reject Notes verified"
-    end
+  end
 
-    def verify_rejection_field_value
+  def verify_rejection_field_value
     page.find("#actionNotes").value == $reject_notes
   end
 
@@ -34,24 +36,28 @@ class CancelORRejectionNotesOnAssessmentsRecordsPage < SitePrism::Page
   end
 
   def reject_Assessment
-  expect(page).to have_css("h1",text: 'Assessment Request')
-  click_link_or_button('Reject')
-  expect(page).to have_css("h4",text: 'Reject Assessment')
-  fill_in("cancellationNotes", :with => $reject_notes)
-    click_link_or_button('Yes')
+    expect(page).to have_css("h1", text: 'Assessment Request')
+    click_link_or_button('Reject')
+    expect(page).to have_css("h4", text: 'Reject Assessment')
+    fill_in("cancellationNotes", :with => $reject_notes)
+    within(".modal-content") do
+      click_link_or_button('Reject')
+    end
   end
 
 
   def cancel_Approved_Assessment
-    expect(page).to have_css("h1",text: 'Assessment Outcome')
+    expect(page).to have_css("h1", text: 'Assessment Outcome')
     click_link_or_button('Cancel')
-    expect(page).to have_css("h4",text: 'Cancel Assessment')
+    expect(page).to have_css("h4", text: 'Cancel Assessment')
     fill_in("cancellationNotes", :with => $cancel_notes)
-    click_link_or_button('Yes')
+    within(".modal-content") do
+      click_link_or_button('Cancel Assessment')
+    end
   end
 
   def verify_cancel_label
-  expect(page).to have_css("label[for='actionNotes']", text: 'Cancellation Notes')
+    expect(page).to have_css("label[for='actionNotes']", text: 'Cancellation Notes')
   end
 
   def verify_reject_label
