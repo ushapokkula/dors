@@ -7,7 +7,6 @@ Then(/^The input field will include a placeholder info text$/) do
 end
 
 When(/^I start typing six digits as "([^"]*)" in the trainer search field$/) do |chars|
-  expect(page).to have_css(".title-header", text:'Assessments', visible:true)
   expect(page).to have_css('#txt-trainer-name', visible:true)
   fill_in('txt-trainer-name', :with => chars)
 end
@@ -38,7 +37,6 @@ Then(/^The first trainer name will be selected from the drop down list by defaul
 end
 
 And(/^The search criteria does'nt match any trainer record on the database$/) do
-  expect(page).to have_css(".title-header", text:'Assessments', visible:true)
   expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in('txt-trainer-name', :with => "IOP")
 end
