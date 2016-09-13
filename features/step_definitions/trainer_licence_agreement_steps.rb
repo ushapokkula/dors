@@ -32,6 +32,7 @@ Then (/^I will be redirected to Licence Agreement screen$/) do
 end
 
 And (/^I see licence agreement text with an option to Accept or Reject$/) do
+  expect(page).to have_css(".license-agreement-container>ul>li")
   expect(page).to have_css(:button, text: 'Reject')
   expect(page).to have_css(:button, text: 'Accept')
 end

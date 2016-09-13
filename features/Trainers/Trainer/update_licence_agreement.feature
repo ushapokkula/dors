@@ -1,6 +1,4 @@
-@pass
-@DR-900
-
+@DR-900 @pass
 Feature: Record User's identity and date-time stamp when licence agreement is set/updated by trainer or CCU
 
   @trainer_accept
@@ -45,7 +43,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     And I can see "Accepted" as Licence Agreement
     And I can see the last changed details with user fullname and updated date
 
-  @ccu_reject
+  @ccu_reject @DR-905
   Scenario: Verify user's identity and date-time stamp when licence agreement is set to rejected by CCU
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
