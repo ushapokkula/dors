@@ -238,7 +238,7 @@ Feature:Trainer NDORS Licence Agreement
       When I login as an "Trainer2"
       Then I see licence agreement text with an option to Accept or Reject
       And I click "Reject"
-      Then 
+      Then
 
 
 
