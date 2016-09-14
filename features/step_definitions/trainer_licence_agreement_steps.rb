@@ -147,9 +147,9 @@ Then(/^Reject Licence Agreement "([^"]*)" will display$/) do |licence_text|
   expect(page).to have_css(".modal-body", text: licence_text)
 end
 
-
 And (/^I reset cookies$/) do
   # page.execute_script "window.close();"
   Capybara.reset_sessions!
 end
+
 
