@@ -17,7 +17,7 @@ Feature: Status Field On Trainer Record
       Given that I have licence.ndors.org.uk page opened
       And I login as an "Compliance Manager"
       And I navigate to "TRAINERS" page
-      And I search for "Roopa" and "setty1" in the trainer search field
+      And I search for "roopa" and "ramisetty" in the trainer search field
       Then the system will load the trainer form where I can edit or update
       And the Status fields will be shown enabled now i.e. I can set to inactive
       When I set the status to "Inactive"
@@ -40,7 +40,7 @@ Feature: Status Field On Trainer Record
   @nologout
   Scenario: Inactive trainer attempts login
     Given that I have licence.ndors.org.uk page opened
-    And I login as an "Trainer2"
+    And I login as an "Trainer5"
     Then will get the standard invalid credentials login failure message
     And message will appear as: "Your login credentials are invalid. Please try again with correct login credentials."
 

@@ -26,6 +26,10 @@ Trainer4:
  username: fabTrainer9  #888889#
  password: P@s5w0rd1
 
+Trainer5:
+ username: trainer_status
+ password: P@ssw0rd
+
 
 Assessor1:
  username: johnny
