@@ -7,7 +7,7 @@ Feature:Status Field on Assessor Record
      When I login as an "Compliance Manager"
      And I navigate to "ASSESSORS" page
      And I fill all assessor fields on the create assessor form
-     Then I see status set as 'Active' by default
+     Then I see Assessor status set as 'Active' by default
      And status fields will be disabled
 
    Scenario: NGU can not create Assessor with 'Inactive' status
