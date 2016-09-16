@@ -47,7 +47,6 @@ And(/^I click on Create Trainer button$/)do
 Then (/^a Success message will be displayed for Create Trainer "([^"]*)"$/)do |message|
   page.find(".toast.toast-success").should be_visible
  expect(page).to have_selector(:css, ".toast.toast-success", text: message)
-
 end
 
 And (/^I click on Update Trainer$/)do
