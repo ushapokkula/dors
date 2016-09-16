@@ -178,7 +178,7 @@ Feature: Trainer receives email when licence(s) added or upadted
     And I login as an "Compliance Manager"
     And I search for Booked assessment
     And I click "Search"
-    And I see "Assessment Outcome" page
+    And the "Assessment Outcome" page will be displayed
     And I select "Competent" as outcome for both the trainers in the assessment
     And I click "Mark Complete"
     Then I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>" once assessment is completed

@@ -48,7 +48,7 @@ And(/^I search for Booked assessment$/) do
   fill_in('txt-assessment-id', :with => $booked_status)
 end
 
-And(/^I see "([^"]*)" page$/) do |header_text|
+And(/^the "([^"]*)" page will be displayed$/) do |header_text|
   expect(page).to have_css("#assessment-title-header", text: header_text)
 end
 
