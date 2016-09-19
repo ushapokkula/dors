@@ -137,7 +137,7 @@ Feature:Trainer NDORS Licence Agreement
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
-    And search for trainer "123987"
+    And search for trainer "757575"
     When I set trainer Licence Agreement to <agreement_status> value
     Then I see the Status field will be enabled
     When I click "Update Trainer"
