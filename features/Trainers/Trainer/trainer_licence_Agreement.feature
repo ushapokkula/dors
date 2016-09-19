@@ -154,7 +154,7 @@ Feature:Trainer NDORS Licence Agreement
   Scenario: CCU/NGU updates the Licence Agreement on a trainer record as Rejected
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
-    And I have licence agreement as "Unspecified" for trainer Id "123987"
+    And I have licence agreement as "Unspecified" for trainer Id "757575"
     When I set trainer Licence Agreement to Rejected value
     Then the Status field will be set to Inactive and disabled on the UI
     And I click "Update Trainer"
@@ -228,14 +228,14 @@ Feature:Trainer NDORS Licence Agreement
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
       Then I navigate to "TRAINERS" page
-      And search for trainer "676767"
+      And search for trainer "757575"
       Then the system will load the trainer record in edit or update mode
       When I see 'Licence Agreement' field
       And I change 'Licence Agreement' to 'Unspecified'
       And I set Status field to Active value
       And I click "Update Trainer"
       And I logout
-      When I login as an "Trainer2"
+      When I login as an "Trainer6"
       Then I see licence agreement text with an option to Accept or Reject
       And I click "Reject"
       Then Reject Licence Agreement "<Licence text>" will display
