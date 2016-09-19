@@ -30,6 +30,11 @@ Trainer5:
  username: trainer_status
  password: P@ssw0rd
 
+Trainer6:
+ username: trainer6
+ password: P@s5w0rd6
+
+
 
 Assessor1:
  username: johnny
