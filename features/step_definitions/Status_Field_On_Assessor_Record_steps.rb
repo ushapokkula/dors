@@ -35,13 +35,18 @@ Then (/^status field will be editable$/)do
   #    puts "status changed to 'Active'."
   # else
   find("#assessor-status-active").click
-  end
-  #
   # end
+
+  end
 
 Then (/^I set status as 'Inactive'$/)do
   page.find("#assessor-status-inactive").click
 end
+
+Then (/^I set status as 'Active'$/)do
+page.find("#assessor-status-active").click
+end
+
 
 And (/^I update Assessor record$/)do
 page.find("#btnCreateUpdateAssessor").click
