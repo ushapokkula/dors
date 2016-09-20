@@ -25,9 +25,9 @@ And(/^I can see "([^"]*)" as Licence Agreement$/) do |agreement_status|
   #expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
 end
 
-And(/^I can see the last changed details with user fullname and updated date$/) do
+And(/^I can see the last changed details with user fullname and updated date for trainer id "([^"]*)"$/) do |trainer_id|
   expected_text = find(".text-s").text
-  @trainers.create_trainer_record_page.verify_fullname_updated_time_stamp
+  @trainers.create_trainer_record_page.verify_fullname_updated_time_stamp(trainer_id)
   actual_text = "Last changed by #{fetch('user_full_name')} (#{fetch('changed_by_username')}) on #{fetch('changed_time_stamp')}"
   expect(actual_text).to eq(expected_text)
 end

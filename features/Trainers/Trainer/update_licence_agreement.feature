@@ -15,7 +15,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     And I click "TRAINERS"
     And search for trainer "123987"
     And I can see "Accepted" as Licence Agreement
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "123987"
 
   @trainer_reject
   Scenario: Verify user's identity and date-time stamp when licence agreement is set to rejected by trainer
@@ -31,7 +31,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     And I click "TRAINERS"
     And search for trainer "123987"
     And I can see "Rejected" as Licence Agreement
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "123987"
 
   @ccu_accept
   Scenario: Verify user's identity and date-time stamp when licence agreement is set to accepted by CCU
@@ -41,7 +41,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     When I select "Accepted" as licence agreement
     And I click "Update Trainer"
     And I can see "Accepted" as Licence Agreement
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "123987"
 
   @ccu_reject @DR-905
   Scenario: Verify user's identity and date-time stamp when licence agreement is set to rejected by CCU
@@ -54,7 +54,7 @@ Feature: Record User's identity and date-time stamp when licence agreement is se
     And I click "Reject" button on confirmation message box
     And a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see "Rejected" as Licence Agreement
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "123987"
 
 
 
