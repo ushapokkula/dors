@@ -25,6 +25,7 @@ end
 
 Then(/^I see the "([^"]*)" field is set to "([^"]*)"$/) do |arg1, arg2|
   expect(find("#trainer-status-active").checked?).to be true
+ # page.find("#trainer-status-active").click
 end
 
 Then (/^I will be redirected to Licence Agreement screen$/) do
