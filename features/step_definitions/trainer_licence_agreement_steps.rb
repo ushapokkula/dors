@@ -73,6 +73,7 @@ When (/^I set trainer Licence Agreement to (.*?) value$/) do |agreement_status|
 end
 
 And (/^I set Status field to Inactive value$/) do
+  expect(page).to have_css("#trainer-status", text:'Status')
   find("#trainer-status-inactive").click
 end
 
