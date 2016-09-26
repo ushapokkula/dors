@@ -137,24 +137,25 @@ Feature:Trainer NDORS Licence Agreement
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
-    And search for trainer "123987"
+    And search for trainer "757575"
+    #And I have licence agreement as "Unspecified" for trainer Id "757575"
     When I set trainer Licence Agreement to <agreement_status> value
     Then I see the Status field will be enabled
     When I click "Update Trainer"
     Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see updated Licence Agreement as "<agreement_status>"
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "757575"
     Examples:
       | agreement_status |
-      | Accepted         |
       | Unspecified      |
+      | Accepted         |
 
 
   @DR-788 @nologout
   Scenario: CCU/NGU updates the Licence Agreement on a trainer record as Rejected
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
-    And I have licence agreement as "Unspecified" for trainer Id "123987"
+    And I have licence agreement as "Unspecified" for trainer Id "757575"
     When I set trainer Licence Agreement to Rejected value
     Then the Status field will be set to Inactive and disabled on the UI
     And I click "Update Trainer"
@@ -166,7 +167,7 @@ Feature:Trainer NDORS Licence Agreement
     When I click "Reject" button on confirmation message box
     Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
     And I can see updated Licence Agreement as "Rejected"
-    And I can see the last changed details with user fullname and updated date
+    And I can see the last changed details with user fullname and updated date for trainer id "757575"
 
 
   @DR-893
@@ -220,28 +221,28 @@ Feature:Trainer NDORS Licence Agreement
     And the status of every "<Licences>" changed to 'Surrendered'
     And the expiry date of every licence changed to 'system date'
     Examples:
-      | agreement_status | Licences                | Licence text                                                                                      |
-      | Rejected         | Provisional/Conditional |Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement?|
+      | agreement_status | Licences                | Licence text                                                                                                                                                                                                                                                                                                                                                                                             |
+      | Rejected         | Provisional/Conditional | Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement? |
 
-    @DR-925 @nologout
-    Scenario Outline: Change the text on NDORS-Trainers Licence Agreement page
-      Given that I have licence.ndors.org.uk page opened
-      When I login as an "Compliance Manager"
-      Then I navigate to "TRAINERS" page
-      And search for trainer "757575"
-      Then the system will load the trainer record in edit or update mode
-      When I see 'Licence Agreement' field
-      And I change 'Licence Agreement' to 'Unspecified'
-      And I set Status field to Active value
-      And I click "Update Trainer"
-      And I logout
-      When I login as an "Trainer6"
-      Then I see licence agreement text with an option to Accept or Reject
-      And I click "Reject"
-      Then Reject Licence Agreement "<Licence text>" will display
-      Examples:
-        | Licence text  |
-        |Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement?|
+  @DR-925 @nologout
+  Scenario Outline: Change the text on NDORS-Trainers Licence Agreement page
+    Given that I have licence.ndors.org.uk page opened
+    When I login as an "Compliance Manager"
+    Then I navigate to "TRAINERS" page
+    And search for trainer "757575"
+    Then the system will load the trainer record in edit or update mode
+    When I see 'Licence Agreement' field
+    And I change 'Licence Agreement' to 'Unspecified'
+    And I set Status field to Active value
+    And I click "Update Trainer"
+    And I logout
+    When I login as an "Trainer6"
+    Then I see licence agreement text with an option to Accept or Reject
+    And I click "Reject"
+    Then Reject Licence Agreement "<Licence text>" will display
+    Examples:
+      | Licence text                                                                                                                                                                                                                                                                                                                                                                                             |
+      | Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement? |
 
 
 
