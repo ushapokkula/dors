@@ -260,16 +260,17 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[value='Sign in']").click
     end
     expect(page).to have_css("#O365_MainLink_Settings") # settings css
-    size = page.all(:xpath, ".//*[@autoid='_lvv_a']/div").size
+    size = page.all(:xpath, ".//*[@autoid='_lvv2_9']/div").size
     if size > 10
       find("[autoid='_n_h']").hover
       find("[title='Select everything in this folder']").click
       find("[title='Delete (Del)']").click
-       #find(:xpath, ".//span[text()='OK']").click
+       find(:xpath, ".//span[text()='OK']").click
     elsif size < 10 && size > 0
       find("[autoid='_n_h']").hover
       find("[title='Select everything in this folder']").click
       find("[title='Delete (Del)']").click
+      find(:xpath, ".//span[text()='OK']").click
     end
     find("[aria-label='Open menu']").click
     find(:xpath, ".//*[text()='Sign out']").click
