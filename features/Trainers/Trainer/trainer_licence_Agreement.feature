@@ -128,7 +128,7 @@ Feature:Trainer NDORS Licence Agreement
     And I will remain on Update Trainers form
     Examples:
       | agreement_status | confirmation_message                                                                                                     |
-      | Accepted         | Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system. |
+      #| Accepted         | Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system. |
       | Unspecified      | Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system. |
 
 
