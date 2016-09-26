@@ -265,7 +265,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[autoid='_n_h']").hover
       find("[title='Select everything in this folder']").click
       find("[title='Delete (Del)']").click
-       find(:xpath, ".//span[text()='OK']").click
+       #find(:xpath, ".//span[text()='OK']").click
     elsif size < 10 && size > 0
       find("[autoid='_n_h']").hover
       find("[title='Select everything in this folder']").click

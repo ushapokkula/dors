@@ -19,9 +19,11 @@ And(/^'Inactive' status field will be disabled$/)do
 end
 
 And (/^I loads an existing "([^"]*)" record$/)do |assessor|
+  expect(page).to have_css("#txt-assessor-name")
   page.find("#txt-assessor-name").click
   fill_in('txt-assessor-name', :with=> assessor)
   find("#txt-assessor-name").send_keys(:enter)
+  sleep 1
 end
 
 Then (/^I should see the Assessor details$/)do
@@ -35,13 +37,18 @@ Then (/^status field will be editable$/)do
   #    puts "status changed to 'Active'."
   # else
   find("#assessor-status-active").click
-  end
-  #
   # end
+
+  end
 
 Then (/^I set status as 'Inactive'$/)do
   page.find("#assessor-status-inactive").click
 end
+
+Then (/^I set status as 'Active'$/)do
+page.find("#assessor-status-active").click
+end
+
 
 And (/^I update Assessor record$/)do
 page.find("#btnCreateUpdateAssessor").click

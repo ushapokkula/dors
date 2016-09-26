@@ -1,6 +1,4 @@
-@pass
 @DR-797
-
 
 Feature: Trainer receives email when licence(s) added or upadted
 

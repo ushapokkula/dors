@@ -1,4 +1,4 @@
-@DR-398 @pass
+@DR-398  @DR-395 @pass
 Feature: Date Filter on Assessment Page
   As an NGU user,
   I want to able to filter records on Assessments Management page by date range,

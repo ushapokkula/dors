@@ -1,4 +1,4 @@
-@DR-738
+@DR-738 @pass
 Feature:Status Field on Assessor Record
 
 
@@ -62,3 +62,16 @@ Feature:Status Field on Assessor Record
        Examples:
        | Matching Username | Matching Email            |Subject             |
        |  test738          | dors_test@outlook.com     |DORS+: Reset Password  |
+
+  @nologout
+    Scenario Outline: Edit assessor status
+      Given that I have licence.ndors.org.uk page opened
+      When I login as an "Compliance Manager"
+      And I navigate to "ASSESSORS" page
+      And I loads an existing "<Assessor>" record
+      Then I set status as 'Active'
+      And I update Assessor record
+      And I logout
+      Examples:
+      |Assessor|
+      |esx     |

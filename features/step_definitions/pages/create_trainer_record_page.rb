@@ -105,7 +105,7 @@ class CreateTrainerRecordPage < SitePrism::Page
 
 
 
-  def verify_fullname_updated_time_stamp
+  def verify_fullname_updated_time_stamp(trainer_id)
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     result = client.execute("SELECT TOP (1) change.ChangeDate,
@@ -115,8 +115,8 @@ class CreateTrainerRecordPage < SitePrism::Page
                              join tbl_user trainerUser on trainerUser.UserId = tr.UserId
                              join tbl_UserLicenseAgreementChange change on change.UserId = trainerUser.UserId
                              join tbl_user changeUser on changeUser.UserId = change.ChangedByUserId
-                             WHERE tr.TrainerRef = 123987
-                             ORDER BY change.UserLicenseAgreementChangeId DESC")
+                             WHERE tr.TrainerRef =" + trainer_id +
+                             "ORDER BY change.UserLicenseAgreementChangeId DESC")
     result.each do |row|
       fullname = row['Changed by']
       time_stamp = row['ChangeDate']
