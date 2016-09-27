@@ -1,5 +1,7 @@
 @DR-1110
 Feature: In order to specify whether the license I have is a Theory or Practical License
+  #2 practical
+  #1 theory
 
 
     Background:
@@ -7,20 +9,23 @@ Feature: In order to specify whether the license I have is a Theory or Practical
       And I login as an "Compliance Manager"
       And I click "TRAINERS"
 
-      Scenario Outline: Select a Licence Type
+      Scenario: Select a Licence Type
         When I am on create Trainers page
-        Then I can see a Course Name Label
+        Then I can see a Course Name label
         And The Course Name dropdown will be populated with current active schemes
         And the icon shown before the Course Name in dropdown
+
+  Scenario Outline: Course Types
         And the Course Type shown in the table after the Course Name in dropdown
         Examples:
-         |Course Name                                                            | Course Type|
-         |National Speed Awareness Course (NSAC)                                  | Theory     |
+         |Course Name                                                             |Course Type|
+         |National Speed Awareness Course (NSAC)                                  |Theory      |
          |National Speed Awareness Course 20 (NSAC20)                             |Theory      |
-        |RIDE (Rider Intervention & Developing Experience) What’s Driving Us? (WDU)|Theory       |
-        |Driving For Change (D4C)                                                  |Practical    |
-        |National Driver Alertness Course (NDAC)                                   |Theory       |
-        |National Driver Alertness Course (NDAC)                                   |Practical    |
+         |RIDE (Rider Intervention & Developing Experience)                       |            |
+         |What’s Driving Us? (WDU)                                                |Theory      |
+         |Driving For Change (D4C)                                                |Practical   |
+         |National Driver Alertness Course (NDAC)                                 |Theory      |
+         |National Driver Alertness Course (NDAC)                                 |Practical   |
 
 
       Scenario:
