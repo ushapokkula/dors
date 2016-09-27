@@ -270,7 +270,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       find("[autoid='_n_h']").hover
       find("[title='Select everything in this folder']").click
       find("[title='Delete (Del)']").click
-      find(:xpath, ".//span[text()='OK']").click
+      #find(:xpath, ".//span[text()='OK']").click
     end
     find("[aria-label='Open menu']").click
     find(:xpath, ".//*[text()='Sign out']").click
