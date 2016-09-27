@@ -4,13 +4,9 @@ Then(/^I see Trainer status set as 'Active' by default$/) do
   find_all('label.radio-inline')[0].text == 'Active'
 end
 
-Then(/^the Status fields will be shown enabled now i\.e\. I can set to active$/) do
+Then(/^the Status fields will be shown enabled now$/) do
   field_labeled('Active', :disabled => false)
   field_labeled('Inactive', :disabled => false)
-  page.find("#trainer-status-active").click
-  page.all("h3", text: 'Update Trainer')
-  page.find("#btnCreateUpdateTrainer").click
-
 end
 
 Then (/^I will not see 'Status' field on my profile page$/)do
@@ -19,7 +15,9 @@ Then (/^I will not see 'Status' field on my profile page$/)do
 end
 
 Then(/^the system will load the trainer form where I can edit or update$/) do
-page.all("h3", text: 'Update Trainer')
+  page.find("#trainer-status-active").click
+  page.all("h3", text: 'Update Trainer')
+  page.find("#btnCreateUpdateTrainer").click
 
 end
 

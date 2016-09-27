@@ -10,16 +10,16 @@ Feature: Status Field On Trainer Record
     Then I fill Mandatory fields with required details on create trainer form
     And I click on Create Trainer button
     Then a Success message will be displayed for Create Trainer "New trainer successfully created."
-    And the Status fields will be shown enabled now i.e. I can set to active
+    And the Status fields will be shown enabled now
 
-
+    @nologout
     Scenario: CCU/NGU sets a trainer record to inactive
       Given that I have licence.ndors.org.uk page opened
       And I login as an "Compliance Manager"
       And I navigate to "TRAINERS" page
       And I search for "roopa" and "ramisetty" in the trainer search field
       Then the system will load the trainer form where I can edit or update
-      And the Status fields will be shown enabled now i.e. I can set to active
+      And the Status fields will be shown enabled now
       When I set the status to "Inactive"
       And I click on Update Trainer
       Then I will see a Inactive Trainer message with text, "Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?"
