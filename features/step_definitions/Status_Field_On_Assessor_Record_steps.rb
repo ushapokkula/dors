@@ -1,4 +1,4 @@
-Then (/^I see status set as 'Active' by default$/)do
+Then (/^I see Assessor status set as 'Active' by default$/)do
   expect(page).to have_css("#asssessor-status", text:'Status')
   page.should have_selector "input[type='radio'][disabled='disabled'][value='true']"
   find_all('label.radio-inline')[0].text == 'Active'
