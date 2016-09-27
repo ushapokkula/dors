@@ -98,8 +98,8 @@ Feature: Request Password Reset (Forgot Password)
 
     Examples:
 
-      | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                                                                                                                                                   |
-      | sudiv             | dors_test@outlook.com | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once.|
+      | Matching Username | Matching Email        | Subject               | Email Body                                                                                                                                                                                                                                     |
+      | sudiv             | dors_test@outlook.com | DORS+: Reset Password | You requested to reset the password for your account on the DORS+ system. Please follow the link below to set a new password and gain access to the system. Please note that this link is only valid for 60 minutes and can only be used once. |
 
 
   @verify_expiry_link  @nologout
@@ -133,6 +133,41 @@ Feature: Request Password Reset (Forgot Password)
     And  I enter Email
     When I click "Reset Password"
     Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+
+
+  @reset_password_not_allowed
+  Scenario Outline: Verify the email notification when password is reset in last 24 hours
+
+    And I login as an "Compliance Manager"
+    And I navigate to "ASSESSORS" page
+    And I fill all assessor fields on the create assessor form
+    And I click "Create Assessor"
+    And I see the message "New assessor successfully created" after assessor creation
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    And I enter Password
+    And I enter Confirm Password
+    And When the password and confirm password both match
+    And I click "Create Account"
+    And I see a success message displayed as "Password has been set on your account and you can now login to the system"
+    And I click "Forgot Your Password?"
+    And I enter Username
+    And  I enter Email
+    When I click "Reset Password"
+    Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+    And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+
+    Examples:
+
+
+      | Subject               | Email Body                                                                                                                                                                                                                                     |
+      | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the last 24 hours,it is not possible to reset your password at this time.If you have not requested this password reset;please contact your employer,local administrator or Service Desk immediately |
+
+
+
 
 
 
