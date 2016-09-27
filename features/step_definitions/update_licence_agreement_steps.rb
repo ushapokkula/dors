@@ -1,5 +1,6 @@
 Given(/^I have licence agreement as "([^"]*)" for trainer Id "([^"]*)"$/) do |agreement_status, trainer_id|
   click_link("TRAINERS")
+  expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in('txt-trainer-name', :with => trainer_id)
   find("#txt-trainer-name + ul li", match: :first).click
   select(agreement_status, :from => 'licenseAgreementStatus')
@@ -15,13 +16,14 @@ And(/^I will be redirected to "([^"]*)" page$/) do |page_title|
 end
 
 And(/^search for trainer "([^"]*)"$/) do |trainer_id|
+  expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in('txt-trainer-name', :with => trainer_id)
   find("#txt-trainer-name + ul li", match: :first).click
 end
 
 And(/^I can see "([^"]*)" as Licence Agreement$/) do |agreement_status|
-  expect(page).to have_css("#trainerFirstName", visible: true)
-  expect(page).to have_css('#licenseAgreementStatus', visible: true, text: agreement_status)
+   expect(page).to have_css("#trainerFirstName", visible: true)
+   expect(page).to have_css('#licenseAgreementStatus', visible: true, text: agreement_status)
   #expect(page).to have_select('licenseAgreementStatus', :selected => agreement_status)
 end
 
