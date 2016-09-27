@@ -1,4 +1,4 @@
-@DR-897
+@DR-897 @pass
 Feature: Status Field On Trainer Record
 
   Scenario: Verify the fields displayed on create a trainer
