@@ -95,6 +95,11 @@ And (/^I change 'Licence Agreement' to 'Unspecified'$/) do
   select('Unspecified', :from => 'licenseAgreementStatus')
 end
 
+And (/^I change 'Licence Agreement' to 'Accepted'$/) do
+  select('Accepted', :from => 'licenseAgreementStatus')
+end
+
+
 And (/^I set Status field to Active value$/) do
   find("#trainer-status-active").click
 end
