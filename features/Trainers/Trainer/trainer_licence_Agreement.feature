@@ -245,6 +245,18 @@ Feature:Trainer NDORS Licence Agreement
       | Please be aware that if you Reject the licence agreement terms: You will not be granted a licence certificate If you already hold a licence to deliver NDORS courses, such licence will terminate with immediate effect You will have no right to deliver the NDORS courses Your login to the DORS+ system will be disabled with immediate effect Are you sure you wish to reject the licence agreement? |
 
 
+    @nologout
+    Scenario: set up Trainer4 status to Active
+     Given that I have licence.ndors.org.uk page opened
+     When I login as an "Compliance Manager"
+     Then I navigate to "TRAINERS" page
+     And search for trainer "888889"
+     Then the system will load the trainer record in edit or update mode
+      And I set Status field to Active value
+      And I change 'Licence Agreement' to 'Accepted'
+      And I click "Update Trainer"
+      And I logout
+
 
 
 

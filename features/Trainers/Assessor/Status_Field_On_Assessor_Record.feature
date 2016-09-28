@@ -1,4 +1,4 @@
-@DR-738 @pass
+@DR-738
 Feature:Status Field on Assessor Record
 
 
