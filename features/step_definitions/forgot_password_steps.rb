@@ -52,6 +52,7 @@ end
 
 And(/^I request the reset password for the same user twice$/) do
   2.times do
+    expect(page).to have_link('Forgot Your Password?')
     click_link("Forgot Your Password?")
     expect(page).to have_css("h1", text: "Forgot your password?")
     fill_in('username', :with => 'sudiv')
@@ -59,6 +60,7 @@ And(/^I request the reset password for the same user twice$/) do
     click_button("Reset Password")
     expect(page).to have_css(".alert.alert-info")
     find(".dors-logo").click
+    sleep 10   #to have time gap in between old email and latest email
   end
 end
 

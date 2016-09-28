@@ -111,8 +111,8 @@ Feature: Request Password Reset (Forgot Password)
     When I access the expired link
     Then I will be taken to the error page displaying the message as "This link has now expired and is not available. You can try to reset the password following the 'Forgot your password?' feature. If you are unable to access your account, please contact your Administrator or Service Desk for support."
 
-  @changed_pwd_within_24_hrs @nologout
-  Scenario Outline: Verify the message when password is changed within 24 hours
+  @changed_assessor_pwd_within_24_hrs @nologout
+  Scenario Outline: Verify the message when assessor password is changed within 24 hours
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
     And I fill all assessor fields on the create assessor form
@@ -139,7 +139,40 @@ Feature: Request Password Reset (Forgot Password)
 
 
   | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
-  | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the last 24 hours,it is not possible to reset your password at this time.If you have not requested this password reset;please contact your employer,local administrator or Service Desk immediately |
+  | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
+
+
+  @changed_trainer_pwd_within_24_hrs @nologout
+  Scenario Outline: Verify the message when trainer password is changed within 24 hours
+    And I login as an "Compliance Manager"
+    And I navigate to "TRAINERS" page
+    And I fill Mandatory fields with required details on create trainer form
+     And I click "Create Trainer"
+    And I see the message "New trainer successfully created" after assessor creation
+    And I see that the email is generated and sent to the registered email address
+    And I click the link generated in the email to set password
+    And I will be shown a welcome page with the message "Please enter the username provided to you, the email address linked to your account and set a password to complete your profile. If you have any issues with this, please contact NDORS Compliance Unit by emailing ndors.admin@ndors.co.uk."
+    And I enter Username
+    And  I enter Email
+    And I enter Password
+    And I enter Confirm Password
+    And When the password and confirm password both match
+    And I click "Create Account"
+    And I see a success message displayed as "Password has been set on your account and you can now login to the system"
+    And I click "Forgot Your Password?"
+    And I enter Username
+    And  I enter Email
+    When I click "Reset Password"
+    Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
+    And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
+
+    Examples:
+
+
+      | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
+      | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
+
+
 
 
 
