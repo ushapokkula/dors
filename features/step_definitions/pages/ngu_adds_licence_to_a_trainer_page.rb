@@ -26,7 +26,7 @@ class NGUAddsLicenceToATrainerPage < SitePrism::Page
         @schemes = row.text
         actual_schemes1.push(@schemes)
     end
-    actual_schemes1.shift
+   puts  actual_schemes1
   expect(actual_schemes1).to match_array(expected_schemes)
   end
 

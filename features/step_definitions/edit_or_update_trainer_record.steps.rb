@@ -120,7 +120,7 @@ Then(/^the system will show a soft warning message, "([^"]*)"$/) do |message|
   page.should have_css(".text-danger", text: message)
 end
 
-When (/^I have made desired changes for "([^"]*)" and click 'Save'$/) do |postcode|
+When (/^I have made desired changes for "([^"]*)" and click 'Update Trainer'$/) do |postcode|
   page.find("#trainerPostcode").click
   page.find("#trainerPostcode").set(postcode)
   @trainers.edit_or_update_trainer_record_page.updateTrainer_button.click

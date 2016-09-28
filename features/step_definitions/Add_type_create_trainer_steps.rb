@@ -7,7 +7,12 @@ Then (/^I can see a Course Name label$/)do
 expect(page).to have_xpath("//label[@for='courseNames']", text:'Course name', visible: true)
 end
 
-And (/^the icon shown before the Course Name in dropdown$/)do
+And (/^the Icon shown before the Course Name in dropdown$/)do
   find(".ui-select-container").click
-page.all(".glyphicon-book")
+page.all(".glyphicon-book")      #verifying Theory Course icon
+  page.find(".glyphicon-road")  #verifying Practical Course icon
 end
+
+
+
+
