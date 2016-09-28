@@ -87,3 +87,8 @@ end
 And(/^local administrator contact information is displayed in the email body as "([^"]*)"$/)do |local_administrator_information|
 puts  expect(find(:xpath, "//*[@id='Item.MessageUniqueBody']").text).to include(local_administrator_information)
 end
+
+And(/^I can see two emails with "([^"]*)"$/) do |subject|
+  @trainers.create_assessor_record_page.login_to_outlook
+  expect(page).to have_xpath(".//span[text()='#{subject}']", count:2)
+end
