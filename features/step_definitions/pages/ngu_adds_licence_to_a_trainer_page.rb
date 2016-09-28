@@ -21,7 +21,6 @@ class NGUAddsLicenceToATrainerPage < SitePrism::Page
          expected_schemes.push(@db_active_schemes)
     end
    actual_schemes1 = []
-   find(".ui-select-container").click
     course_options.each do |row|
         @schemes = row.text
         actual_schemes1.push(@schemes)

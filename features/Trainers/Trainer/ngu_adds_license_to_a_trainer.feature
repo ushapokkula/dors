@@ -63,7 +63,7 @@ Feature: NGU Adds a license to a trainer
     And I have trainer record loaded in editable view
     And I select course name, licence status and expiry date to add a new licence
     When I click "Add licence" button
-    And I see 'X' button for added new licence which is not saved to dataabase
+    And I see 'X' button for added new licence which is not saved to database
     When I click X button
     Then The licence row will be deleted
     And Changes will be reflected on page
