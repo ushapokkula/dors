@@ -28,31 +28,21 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I am in Licences section
     Then I click on Course Name field
     And The Course Name dropdown will be populated with current active schemes
-#          Examples:
-#         |Course Name                                                             |Course Type|
-#         |National Speed Awareness Course (NSAC)                                  |Theory      |
-#         |National Speed Awareness Course 20 (NSAC20)                             |Theory      |
-#         |RIDE (Rider Intervention & Developing Experience)                       |            |
-#         |What’s Driving Us? (WDU)                                                |Theory      |
-#         |Driving For Change (D4C)                                                |Practical   |
-#         |National Driver Alertness Course (NDAC)                                 |Theory      |
-#         |National Driver Alertness Course (NDAC)                                 |Practical   |
-#
 
 
   Scenario Outline: Verify the theory and Practical Courses
-              Given that I have licence.ndors.org.uk page opened
-               And I login as an "Compliance Manager"
-               And I navigate to "Trainers" page
-               Then I click on Course Name field
-               And I select a "<Course Name>" from Course Name field
-               Then I can see "<Type>" of the Course
-        Examples:
-        |Course Name                       |Type            |
-        | Driving 4 Change                 |Practical Course|
-        |What's Driving Us?                |Theory Course   |
-        |National Driver Alertness Course  | Theory Course   |
-        |National Driver Alertness Course  | Practical Course |
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
+    And I navigate to "TRAINERS" page
+    Then I click on Course Name field
+    And I select a "<Course Name>" from Course Name field
+    Then I can see "<Type>" of the Course
+     Examples:
+      |Course Name                       |Type            |
+      | Driving 4 Change                 |Practical Course|
+      |What's Driving Us?                |Theory Course   |
+      |National Driver Alertness Course  | Theory Course   |
+      |National Driver Alertness Course  | Practical Course |
 
 
 

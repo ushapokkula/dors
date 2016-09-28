@@ -33,9 +33,15 @@ page.find(".ui-select-container").click
 end
 
 And (/^I select a "([^"]*)" from Course Name field$/)do|course_name|
-
+page.find(".ui-select-search").set(course_name)
+page.find(".ui-select-search").send_keys(:enter)
 end
 
 Then(/^I can see "([^"]*)" of the Course$/)do|type|
-
+ icon = page.find(".ui-select-match-text .glyphicon")
+ icon_class_attributes = icon.attribute("class")
+expect(page).to have_css(".ui-select-match-text .glyphicon")
+  if(icon_class_attributes? ("glyphicon-book"))
+    #theory
+  end
 end
