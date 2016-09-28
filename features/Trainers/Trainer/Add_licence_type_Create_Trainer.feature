@@ -3,21 +3,29 @@ Feature: In order to specify whether the license I have is a Theory or Practical
   #2 practical
   #1 theory
 
-  Scenario: Verify Course Names and Iocns in Course Name Dropdown
+  Scenario Outline: Verify Course Names and Iocns in Course Name Dropdown
         Given that I have licence.ndors.org.uk page opened
         And I login as an "Compliance Manager"
         And I click "TRAINERS"
         When I am on create Trainers page
+        And I am in Licences section
+        Then I can see Legend stating as "<Icon>"
         Then I can see a Course Name label
-        And The Course Name dropdown will be populated with current active schemes
         And the Icon shown before the Course Name in dropdown
+        Examples:
+        |Icon|
+        |Practical Course Trainer [glyphicon-roadicon]|
+        |Theory Course Trainer [glyphicon-roadicon]   |
+
 
 
   Scenario Outline: Course Types
              Given that I have licence.ndors.org.uk page opened
               And I login as an "Compliance Manager"
               And I click "TRAINERS"
-              And the Course Type shown in the table after the Course Name in dropdown
+              And I am in Licences section
+              Then I click on Course Name field
+              And The Course Name dropdown will be populated with current active schemes
         Examples:
          |Course Name                                                             |Course Type|
          |National Speed Awareness Course (NSAC)                                  |Theory      |
@@ -36,7 +44,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
                And I navigate to "Trainers" page
                Then I click on Course Name field
                When I select a "<Course Name>" from Course Name field
-               Then I can see "<Type>" of the Course
+               Then I can see "<Type>" of the Course  # if its a  Practical verify icon , if its theory verify icon
         Examples:
         |Course Name|Type|
         |           |    |
@@ -72,23 +80,53 @@ Feature: In order to specify whether the license I have is a Theory or Practical
             Then the system will default the Expiry Date to 183 days from current date
             And I click "Add licence"
             Then I click on Course Name field
-            Then I can't see a selected Course Name in Course Name field
+            And  added Scheme no longer available in the dropdown for selection
             Examples:
             |Course Name|Licence status|
 
 
   Scenario Outline: successfully added licence type can be removed
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
+    And I navigate to "Trainers" page
+    Then I click on Course Name field
+    And I select a "<Course Name>" from Course Name field
+    And I select the "<Licence status>" as 'Provisional/Conditional'
+    And I click "Add licence"
+    Then I should see added licence type with "<Course Name>", "<Licence Status>", "<Expiry Date>"
+    And I click remove licence button
+    Then I should not see added licence type with "<Course Name>", "<Licence Status>", "<Expiry Date>"
     Examples:
+      |Course Name|Licence status|Expiry Date|
+      |           |              |           |
+      |           |              |           |
+
+
+
 
   Scenario Outline:  removed licence type can be visible in the Course Name list
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
+    And I navigate to "Trainers" page
+    Then I click on Course Name field
+    And I select a "<Course Name>" from Course Name field
+    And I select the "<Licence status>" as 'Provisional/Conditional'
+    And I click "Add licence"
+    Then I should see added licence type with "<Course Name>", "<Licence Status>", "<Expiry Date>"
+    And I click remove licence button
+    Then I should not see added licence type with "<Course Name>", "<Licence Status>", "<Expiry Date>"
+    And I click on Course Name field
+    Then I should see added "<Course Name>" will be available in the Course Name List
    Examples:
+     |Course Name|Licence status|Expiry Date|
+     |           |              |           |
+     |           |              |           |
 
 
 
 
-        And i can see a Legend
 
-        Scenario: Select a Licence Type
+
 
 
 
