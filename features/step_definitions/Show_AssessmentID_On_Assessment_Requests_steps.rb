@@ -56,3 +56,24 @@ Then (/^I should see "([^"]*)" on detailed view of an assessment request$/)do |a
     expect(page).to have_css(".assessmentStatus",text: 'Requested')
   end
 end
+
+
+Then(/^I see assessor address is replaced by assessor number$/) do
+  expect(page).to have_css("", visible:true)
+end
+
+And(/^I search for "([^"]*)" and "([^"]*)"$/) do |arg1, arg2|
+  pending
+end
+
+And(/^I edit the assessor number to be blank$/) do
+  pending
+end
+
+Then(/^I see in assessor section there is no assessor number displayed\.$/) do
+
+end
+
+Then(/^I revert back the assessor number to "([^"]*)"$/) do |assessor_number|
+ fill_in('assessorNumber' , :with=> assessor_number)
+end
