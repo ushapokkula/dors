@@ -36,3 +36,38 @@ Feature: Show Assessment ID
     And I click on "View Details" button on 'Assessment management' page
     Then I should see "Assessment ID" on detailed view of an assessment request
 
+  @DR-898
+  Scenario: Assessor address is replaced by assessor number on view details of assessment management page
+    And I logout
+    Then I login as an "Compliance Manager"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see assessor address is replaced by assessor number
+
+  @DR-898
+  Scenario: Assessor address is replaced by assessor number on view details of My Assessments page
+    And I navigate to "MY ASSESSMENTS" page
+    Then I select 'Requested' status from 'Assessment Status' dropdown
+    When I click on "View Details" button on 'My assessments' page
+    Then I see assessor address is replaced by assessor number
+
+   @DR-898
+   Scenario: Verify assessor section on both view details page when the assessor number is blank
+     And I logout
+     And I login as an "Compliance Manager"
+     And I click "ASSESSORS"
+     And I search for "deena" and "grit"
+     And I edit the assessor number to be blank
+     And I click "Update Assessor"
+     And I see the success message "Assessor record successfully updated" on the page
+     And I click "ASSESSMENT MANAGEMENT"
+     When I click on "View Details" button on 'Assessment management' page
+     Then I see in assessor section there is no assessor number displayed.
+
+     
+
+
+
+
+
+
