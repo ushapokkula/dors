@@ -37,6 +37,7 @@ page.find(".ui-select-search").set(course_name)
 page.find(".ui-select-search").send_keys(:enter)
 end
 
+
 And (/I select the licences status as "([^"]*)"$/)do|status|
   select(status, :from => 'licenseStatuses')
 end
@@ -56,11 +57,16 @@ Then(/^added Scheme "([^"]*)" available in the dropdown for selection$/) do|cour
 end
 
 
-Then(/^I can see "([^"]*)" of the Course$/)do|type|
- icon = page.find(".ui-select-match-text .glyphicon")
- icon_class_attributes = icon.attribute("class")
-expect(page).to have_css(".ui-select-match-text .glyphicon")
-  if(icon_class_attributes? ("glyphicon-book"))
-    #theory
+Then(/^I can verify selected "([^"]*)" type is "([^"]*)"$/) do |course_name, type|
+  if(course_name == 'Driving For Change' && type == 'Practical Course' )
+    expect(page).to have_css("span[data-scheme-id='136']")
+    expect(page).to have_css(".glyphicon-road")
   end
+  if(course_name == 'National Driver Alertness Course' && type == 'Practical Course')
+    expect(page).to have_css("span[data-scheme-id='135']")
+    expect(page).to have_css(".glyphicon-road")
+  end
+  if(type == 'Theory Course')
+  expect(page).to have_css(".glyphicon-book")
+end
 end

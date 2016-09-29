@@ -4,6 +4,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
          I want to select a license type when adding a license to a trainer
   #2 practical
   #1 theory
+
   Scenario Outline: Verify Course Names and Iocns in Course Name Dropdown
         Given that I have licence.ndors.org.uk page opened
         And I login as an "Compliance Manager"
@@ -27,19 +28,25 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Then I click on Course Name field
     And The Course Name dropdown will be populated with current active schemes
 
+
   Scenario Outline: Verify the theory and Practical Courses
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
     Then I click on Course Name field
     And I select a "<Course Name>" from Course Name field
-    Then I can see "<Type>" of the Course
+    Then I can verify selected "<Course Name>" type is "<Course Type>"
     Examples:
-      |Course Name                       |Type            |
-      | Driving 4 Change                 |Practical Course|
-      |What's Driving Us?                |Theory Course   |
-      |National Driver Alertness Course  | Theory Course   |
-      |National Driver Alertness Course  | Practical Course |
+      |Course Name                       |Course Type       |
+      |Driving For Change                |Practical Course  |
+      |What's Driving Us?                |Theory Course     |
+      |National Driver Alertness Course  | Theory Course    |
+      |National Driver Alertness Course  |Practical Course  |
+      |Speed Awareness                   |Theory Course     |
+      |National Speed Awareness          |Theory Course     |
+      |RiDE                              |Theory Course     |
+      |Motorway Course                   |Theory Course     |
+
 
   Scenario Outline: successfully added licence type shown as an added new entry
     Given that I have licence.ndors.org.uk page opened
@@ -85,7 +92,6 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       |Course Name    |Licence status|Expiry Date|
       |Motorway Course|Expired       |29/09/2016 |
-      #|               |              |
 
   Scenario Outline: removed licence type can be visible in the Course Name list
     Given that I have licence.ndors.org.uk page opened
@@ -103,8 +109,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
    Examples:
      |Course Name|Licence status|Expiry Date|
      | BRYLKOW   |  Full        |  29/09/2018 |
-     #|           |              |           |
 
+  
   Scenario Outline: Create a Trainer by Adding licences
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
