@@ -4,12 +4,6 @@ Feature: Show Assessment ID
   Verify the 'Assessment ID'
   On Summary View and Detailed View of Assessment Requests
 
-#  Background:
-#    Given that I have licence.ndors.org.uk page opened
-#    When I login as an "Assessor3"
-#    And I navigate to "REQUEST ASSESSMENT" page
-#    And I deleted the assessments from Database
-
 
   Scenario: The summary view of assessment requests on My Assessments page should show the Assessment ID.
     Given that I have licence.ndors.org.uk page opened
