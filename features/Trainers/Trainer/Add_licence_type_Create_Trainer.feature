@@ -107,10 +107,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I click on Course Name field
     And added Scheme "<Course Name>" available in the dropdown for selection
    Examples:
-     |Course Name|Licence status|Expiry Date|
-     | BRYLKOW   |  Full        |  29/09/2018 |
+     |Course Name                 |Licence status|Expiry Date|
+     | National Speed Awareness   |  Full        |  29/09/2018 |
 
-  
+
   Scenario Outline: Create a Trainer by Adding licences
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
@@ -124,8 +124,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I click on Create Trainer button
     Then I should see a message saying "New trainer successfully created."
     Examples:
-      |Course Name|Licence status|Expiry Date|
-      | BRYLKOW   |  Full        |  29/09/2018 |
+      |Course Name        |Licence status|Expiry Date|
+      | Speed Awareness   |  Full        |  29/09/2018 |
 
 
 
