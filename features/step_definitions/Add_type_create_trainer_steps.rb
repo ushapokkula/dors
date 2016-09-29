@@ -37,6 +37,25 @@ page.find(".ui-select-search").set(course_name)
 page.find(".ui-select-search").send_keys(:enter)
 end
 
+And (/I select the licences status as "([^"]*)"$/)do|status|
+  select(status, :from => 'licenseStatuses')
+end
+
+Then(/^I should see added licence type shown with "([^"]*)", "([^"]*)", "([^"]*)"$/) do |coursename, status, expirydate|
+  page.find(".selected-license-course").value == coursename
+  page.find("#licenseStatuses_0").value == status
+  page.find("#licenseExpiryDate_0").value == expirydate
+end
+
+Then(/^added Scheme "([^"]*)" no longer available in the dropdown for selection$/) do|coursename|
+  find('#ui-select-choices-row-0-0').value.should_not eql? coursename
+end
+
+Then(/^added Scheme "([^"]*)" available in the dropdown for selection$/) do|coursename|
+  find('#ui-select-choices-row-0-1').value.should eql? coursename
+end
+
+
 Then(/^I can see "([^"]*)" of the Course$/)do|type|
  icon = page.find(".ui-select-match-text .glyphicon")
  icon_class_attributes = icon.attribute("class")
