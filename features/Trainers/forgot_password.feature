@@ -127,19 +127,18 @@ Feature: Request Password Reset (Forgot Password)
     And I enter Confirm Password
     And When the password and confirm password both match
     And I click "Create Account"
+    #sometimes getting "something went wrong message -> try to keep a condition to catch that message and click create button agian"
     And I see a success message displayed as "Password has been set on your account and you can now login to the system"
     And I click "Forgot Your Password?"
     And I enter Username
-    And  I enter Email
+    And I enter Email
     When I click "Reset Password"
     Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
 
   Examples:
-
-
-  | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
-  | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
+    | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
+    | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
 
 
   @changed_trainer_pwd_within_24_hrs @nologout @DR-1126
@@ -167,8 +166,6 @@ Feature: Request Password Reset (Forgot Password)
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
 
     Examples:
-
-
       | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
       | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
 
