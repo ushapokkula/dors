@@ -167,8 +167,6 @@ Feature: Request Password Reset (Forgot Password)
     And I see that the email is generated and sent to the registered email address  with "<Subject>" and "<Email Body>"
 
     Examples:
-
-
       | Subject                           | Email Body                                                                                                                                                                                                                                                                                                                       |
       | DORS+: Reset Password not allowed | You requested to reset the password for your account on the DORS+ system. Since you have successfully reset your password in the past 24 hours, it is not possible to reset your password at this time. If you have not requested this password reset; please contact your employer, local administrator or Service Desk immediately.|
 
