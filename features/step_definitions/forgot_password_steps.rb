@@ -52,6 +52,7 @@ end
 
 And(/^I request the reset password for the same user twice$/) do
   2.times do
+    expect(page).to have_link('Forgot Your Password?')
     click_link("Forgot Your Password?")
     expect(page).to have_css("h1", text: "Forgot your password?")
     fill_in('username', :with => 'sudiv')
@@ -59,6 +60,7 @@ And(/^I request the reset password for the same user twice$/) do
     click_button("Reset Password")
     expect(page).to have_css(".alert.alert-info")
     find(".dors-logo").click
+    sleep 10   #to have time gap in between old email and latest email
   end
 end
 
@@ -84,4 +86,24 @@ end
 
 And(/^local administrator contact information is displayed in the email body as "([^"]*)"$/)do |local_administrator_information|
 puts  expect(find(:xpath, "//*[@id='Item.MessageUniqueBody']").text).to include(local_administrator_information)
+end
+
+And(/^I can see two emails with "([^"]*)"$/) do |subject|
+  @trainers.create_assessor_record_page.login_to_outlook
+  expect(page).to have_no_css(".rpHighlightAllClass.rpHighlightSubjectClass", text: subject, count:2)
+#  expect(page).to have_xpath(".//span[text()='#{subject}']", count:2)
+end
+
+And(/^I request the forgot password for the same user twice after account creation$/) do
+  2.times do
+    expect(page).to have_link('Forgot Your Password?')
+    click_link("Forgot Your Password?")
+    expect(page).to have_css("h1", text: "Forgot your password?")
+    fill_in('username', :with => fetch("username"))
+    fill_in('email', :with => 'dors_test@outlook.com')
+    click_button("Reset Password")
+    expect(page).to have_css(".alert.alert-info")
+    find(".dors-logo").click
+    sleep 10   #to have time gap in between old email and latest email
+  end
 end
