@@ -8,7 +8,8 @@ end
 Then(/^I see "Trainers management" page$/) do
   expect(page).to have_content("Trainers management")
   expect(page).to have_content("Licences")
-  @trainers.edit_or_update_trainer_record_page.verify_default_trainer_licence_details
+  expect(page).to have_css(".ui-select-container", visible: true)
+  expect(page).to have_css("#licenseStatuses", visible: true)
 end
 
 

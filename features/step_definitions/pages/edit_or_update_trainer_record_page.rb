@@ -1,6 +1,6 @@
 class EditOrUpdateTrainerRecordPage < SitePrism::Page
   elements :licence_status_options, "#licenseStatuses option"
-  elements :licence_label, ".control-label"
+  elements :course_name_label, ".control-label"
   element :updateTrainer_button, "#btnCreateUpdateTrainer"
   element :expiry_date, "#licenseExpiryDate_0"
   element :search_trainer_field, '#txt-trainer-name'
@@ -16,13 +16,6 @@ class EditOrUpdateTrainerRecordPage < SitePrism::Page
     find("#licenseExpiryDate_0").set("23/10/20")
   end
 
-
-
-  def verify_default_trainer_licence_details
-    find("#courseNames").text == "Course name"
-    find("#licenseStatuses").text == "Licence status"
-    find("#licenseExpiryDate").text == "Expiry Date"
-  end
 
   def update_diff_licence_status_with_expiry_date(status, date)
     page.find("#licenseStatuses_2").click

@@ -1,4 +1,4 @@
-@DR-39 @DR-510 @pass
+@DR-39 @DR-510 @DR-1150 @pass
 Feature: As an NGU,
   I want to be able to manually edit the details of an existing licence held by a trainer,
   so that licence record can be kept upto date.
@@ -8,6 +8,9 @@ Feature: As an NGU,
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
     Then I see "Trainers management" page
+    And I can see Legend with "Practical Course Trainer" and "Theory Course Trainer"
+
+
 
   Scenario: Verify the license status options
     Given I see "Trainers management" page
@@ -74,7 +77,7 @@ Feature: As an NGU,
       | trainer first name | trainer last name | Postcode |
       | roopa              | trainer           | HA9 7lm  |
 
-    
+
     @DR-675 @DR-510
     Scenario Outline: Display error message when existing licences Full or Provisional status have expiry date in past
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
@@ -85,4 +88,31 @@ Feature: As an NGU,
       | trainer first name | trainer last name | Expiry date |
       | roopa              | trainer           | 04/04/2016  |
 
+
+
+  @DR-1150
+  Scenario Outline:
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+    Then I should see added licence type with "<Course Name>", "<Licence status>", "<Expiry Date>"
+    And I should see added course name field will be disabled
+    
+
+
+    Examples:
+     | trainer first name | trainer last name | Licence status          | Expiry Date|Course Name|
+     | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |           |
+
+
+
+
+  @DR_1150
+  Scenario Outline:
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+    And I select the "<Licence status>" as 'Provisional or Conditional'
+
+    Examples:
+      | trainer first name | trainer last name | Licence status          | date       |
+      | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |
 
