@@ -1,4 +1,4 @@
-@DR-261 @DR-827 @DR-645 @pass
+@DR-261 @DR-827 @DR-645 @DR-898 @pass
 Feature: Show Assessment ID
   As an 'Assessor' or 'NGU' User
   Verify the 'Assessment ID'
