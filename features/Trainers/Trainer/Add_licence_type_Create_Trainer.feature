@@ -113,9 +113,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I select a "<Course Name>" from Course Name field for "<Course Type>"
     And I select the licences status as "<Licence status>"
     And I click "Add licence"
-    Then I should see added licence type shown with "<Course Name>", "<Lice nce status>", "<Expiry Date>"
+    Then I should see added licence type shown with "<Course Name>", "<Licence status>", "<Expiry Date>"
     When I click on Create Trainer button
     Then I should see a message saying "New trainer successfully created."
+    Then I should see selected Course
     Examples:
       |Course Name        |Licence status|Expiry Date|Course Type|
       | RiDE              |  Full         |  29/09/2018|RiDE     |

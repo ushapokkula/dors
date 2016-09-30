@@ -82,3 +82,8 @@ Then(/^I can verify selected "([^"]*)" type is "([^"]*)"$/) do |course_name, typ
   #expect(page).to have_css("span[data-scheme-type-id='1']")
 end
 end
+
+Then (/^I should see selected Course$/)do
+  expect(page).to have_css(".selected-license-course")
+end
+
