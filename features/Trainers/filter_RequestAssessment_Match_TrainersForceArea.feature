@@ -160,65 +160,6 @@ Feature: DR-268 and DR-719
       | Expiry Date    |
     And the listing will also include Trainer Name and course name
 
-  @DR-116 @course_filter_visibility
-  Scenario: Verify the visibility of course filter and no courses selected on Request assessment page
-    Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
-    And I deleted the assessments from Database
-    When I click "REQUEST ASSESSMENT"
-    Then the option to filter the list by courses is displayed
-    And no course filters are selected
-    And no course filters are applied
-
-  @DR-116  @apply_one_course
-  Scenario Outline: Verify the results after applying single course from the filter without other filters
-    Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
-    And I deleted the assessments from Database
-    When I click "REQUEST ASSESSMENT"
-    Then the option to filter the list by courses is displayed
-    And no course filters are applied
-    When I select only one "<Course>" from the dropdown
-    And no other filters are applied
-    Then the results are displayed showing only those trainers who fall under the selected course "<Course>"
-
-    Examples:
-    |Course|
-    |Berks-Scheme|
-
-  @DR-116 @apply_multiple_course
-  Scenario: Verify the results after applying multiple courses from the filter without other filters
-  iven that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
-    And I deleted the assessments from Database
-    When I click "REQUEST ASSESSMENT"
-    Then the option to filter the list by courses is displayed
-    And no course filters are applied
-    When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
-    And no other filters are applied
-    Then the results are displayed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
