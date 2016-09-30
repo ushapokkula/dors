@@ -191,6 +191,7 @@ Feature: Request Password Reset (Forgot Password)
     And I click "Create Account" on signup page
     And I see a success message displayed as "Password has been set on your account and you can now login to the system"
     And I request the forgot password for the same user twice after account creation
+    #Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
     And I can see two emails with "DORS+: Reset Password not allowed "
 
 
