@@ -34,21 +34,23 @@ And(/^also apply trainer filter for trainer id "([^"]*)"$/) do |trainer_id|
   @trainers.course_filter_on_request_assessment_page.filter_by_trainer_id(trainer_id)
 end
 
-Then(/^the results are displayed based on filters applied for courses "([^"]*)", "([^"]*)","([^"]*)" and trainer "([^"]*)"$/) do |course1, course2, course3, trainer_id|
+Then(/^the results are displayed based on filters applied for courses "([^"]*)", "([^"]*)" and trainer "([^"]*)"$/) do |course1, course2, trainer_id|
+  @trainers.course_filter_on_request_assessment_page.verify_list_on_course_and_trainer_filter(course1, course2)
+  @trainers.course_filter_on_request_assessment_page.verify_result_on_trainer_id_filter(trainer_id)
+end
+
+And(/^also apply force filter for force "([^"]*)" and "([^"]*)"$/) do |force1, force2|
+  @trainers.course_filter_on_request_assessment_page.apply_force_filter(force1, force2)
+end
+
+Then(/^the results are displayed based on filters applied for courses "([^"]*)", "([^"]*)","([^"]*)" and forces "([^"]*)","([^"]*)"$/) do |course1, course2, course3, force1, force2|
   @trainers.course_filter_on_request_assessment_page.verify_trainer_list_multiple_courses(course1, course2, course3)
-  @trainres.course_filter_on_request_assessment_page.verify_result_on_trainer_id_filter(trainer_id)
+  @trainers.course_filter_on_request_assessment_page.verify_list_based_on_forcefilter(force1,force2)
 end
 
-And(/^also apply force filter for force "([^"]*)"$/) do |arg|
-  pending
-end
+Then(/^the results are displayed based on filters applied for course "([^"]*)" ,forces "([^"]*)","([^"]*)" and trainer "([^"]*)"$/) do |course_name,force1,force2,trainer_id|
+  @trainers.course_filter_on_request_assessment_page.verify_combination_filter(force1, force2,course_name,trainer_id)
 
-Then(/^the results are dispalyed based on filters applied for course and force$/) do
-  pending
-end
-
-Then(/^the results are displayed based on filters applied for course ,force and trainer$/) do
-  pending
 end
 
 Then(/^all the filters should be cleared$/) do
@@ -58,3 +60,4 @@ end
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)", "([^"]*)","([^"]*)"$/) do |course1, course2, course3|
   @trainers.course_filter_on_request_assessment_page.verify_trainer_list_multiple_courses(course1, course2, course3)
 end
+

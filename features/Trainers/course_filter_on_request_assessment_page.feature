@@ -54,12 +54,12 @@ Feature: Filter Trainers by course on Request assessment page
     And the option to filter the list by courses is displayed
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And also apply trainer filter for trainer id "<Trainer_ID>"
-    Then the results are displayed based on filters applied for courses "<Course1>", "<Course2>","<Course3>" and trainer "<Trainer_ID>"
+    Then the results are displayed based on filters applied for courses "<Course1>", "<Course2>" and trainer "<Trainer_ID>"
 
 
     Examples:
       | Course1      | Course2 | Course3                          | Trainer_ID |
-      | Berks-Scheme | Ride    | National Driver Alertness Scheme | 111555     |
+      | Berks-Scheme | RiDE    | National Driver Alertness Course | 111555     |
 
   @apply_course_and_force_filter
   Scenario Outline: Verify the results after applying course and force filter
@@ -69,12 +69,12 @@ Feature: Filter Trainers by course on Request assessment page
     And I click "REQUEST ASSESSMENT"
     And the option to filter the list by courses is displayed
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
-    And also apply force filter for force "<Force_Name>"
-    Then the results are dispalyed based on filters applied for course and force
+    And also apply force filter for force "<Force1>" and "<Force2>"
+    Then the results are displayed based on filters applied for courses "<Course1>", "<Course2>","<Course3>" and forces "<Force1>","<Force2>"
 
     Examples:
-      | Course1      | Course2 | Course3                          | Force_Name |
-      | Berks-Scheme | Ride    | National Driver Alertness Scheme |            |
+      | Course1      | Course2 | Course3                          | Force1   | Force2              |
+      | Berks-Scheme | RiDE    | National Driver Alertness Course | CHESHIRE | BEDFORDSHIRE POLICE |
 
   @apply_all_3_filters
   Scenario Outline: Verify the results after applying all three filters
@@ -84,13 +84,13 @@ Feature: Filter Trainers by course on Request assessment page
     And I click "REQUEST ASSESSMENT"
     And the option to filter the list by courses is displayed
     When I select one "<Course>" from the dropdown
-    And also apply force filter for force "<Force_Name>"
+    And also apply force filter for force "<Force1>" and "<Force2>"
     And also apply trainer filter for trainer id "<Trainer_ID>"
-    Then the results are displayed based on filters applied for course ,force and trainer
+    Then the results are displayed based on filters applied for course "<Course>" ,forces "<Force1>","<Force2>" and trainer "<Trainer_ID>"
 
     Examples:
-      | Course       | Force_Name | Trainer_ID |
-      | Berks-Scheme |            |            |
+      | Course       | Force1   | Force2              | Trainer_ID |
+      | Berks-Scheme | CHESHIRE | BEDFORDSHIRE POLICE | 989898     |
 
   @reset
   Scenario: Verify the reset button when all the filters are applied
