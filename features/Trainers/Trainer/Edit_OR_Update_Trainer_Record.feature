@@ -70,7 +70,7 @@ Feature: As an NGU,
   Scenario Outline: Verify the 'updated message' after few changes
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
-    And I have made desired changes for "<Postcode>" and click 'Save'
+    And I have made desired changes for "<Postcode>" and click 'Update Trainer'
     And the system will show a success message, "Trainer record successfully updated."
     And I will remain on the trainer's record page
     Examples:
@@ -87,6 +87,7 @@ Feature: As an NGU,
      Examples:
       | trainer first name | trainer last name | Expiry date |
       | roopa              | trainer           | 04/04/2016  |
+
 
 
 
@@ -115,4 +116,5 @@ Feature: As an NGU,
     Examples:
       | trainer first name | trainer last name | Licence status          | date       |
       | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |
+
 

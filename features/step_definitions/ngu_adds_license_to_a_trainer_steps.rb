@@ -52,7 +52,7 @@ And(/^I select licence as "([^"]*)" to add a licence$/) do |licence|
   select(licence, :from => 'licenseStatuses')
 end
 
-And(/^I see 'X' button for added new licence which is not saved to dataabase$/) do
+And(/^I see 'X' button for added new licence which is not saved to database$/) do
   expect(page).to have_css(".btn-remove-license", visible: true)
 end
 
