@@ -85,6 +85,7 @@ end
 
 Then (/^I should see a message saying "([^"]*)"$/)do |message|
   expect(page).to have_selector(:css,".toast-message", text: message)
+
 end
 
 And(/^The system will load the page where I can create a new trainer record$/)do
