@@ -97,13 +97,15 @@ Feature: As an NGU,
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
     Then I should see added licence type with "<Course Name>", "<Licence status>", "<Expiry Date>"
     And I should see added course name field will be disabled
+  #form[name="TrainersVm.frmLicenses"] .glyphicon
+
 
 
 
     Examples:
-     | trainer first name | trainer last name | Licence status          | Expiry Date|Course Name|
-     | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |           |
-
+     | trainer first name | trainer last name | Licence status     | Expiry Date|Course Name|
+     | test             | test                | Full                | 06/04/2018       |Speed Control           |
+     | test             | test                 | Provisional/Conditional | 01/04/2017 |mictest           |
 
 
 
