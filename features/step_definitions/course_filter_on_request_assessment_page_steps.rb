@@ -8,14 +8,12 @@ And(/^no course filters are selected$/) do
 end
 
 And(/^no course filters are applied$/) do
-  expect(page).to have_no_content("New Trend")
+  expect(find("#scheme-filter-container > div> input").value).to eql('')
 end
 
 When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|
-  find("#scheme-filter-container > div> input").set(course_name)
-  puts expect(page).to have_css(".ui-select-choices", visible:true)
-  find("#scheme-filter-container > div> input").send_keys(:enter)
-  find("#scheme-filter-container > div> input").click   #to collpase the filter
+  @trainers.course_filter_on_request_assessment_page.verify_filter_for_one_course(course_name)
+
 end
 
 And(/^no other filters are applied$/) do
@@ -24,21 +22,21 @@ And(/^no other filters are applied$/) do
 end
 
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)"$/) do |course_name|
-  expect(page).to have_content(course_name)
-  expect(page).to have_no_content("Speed Control")
+  @trainers.course_filter_on_request_assessment_page.verify_trainers_list_single_course(course_name)
 end
 
-When(/^I select  multiple courses "([^"]*)", "([^"]*)","([^"]*)" from the dropdown$/) do |arg1, arg2, arg3|
-  pending
+When(/^I select  multiple courses "([^"]*)", "([^"]*)","([^"]*)" from the dropdown$/) do |course1, course2, course3|
+  @trainers.course_filter_on_request_assessment_page.verify_filter_for_multiple_course(course1, course2, course3)
 end
 
 
-And(/^also apply trainer filter for trainer id "([^"]*)"$/) do |arg|
-  pending
+And(/^also apply trainer filter for trainer id "([^"]*)"$/) do |trainer_id|
+  @trainers.course_filter_on_request_assessment_page.filter_by_trainer_id(trainer_id)
 end
 
-Then(/^the results are displayed based on filters applied for course and trainer$/) do
-  pending
+Then(/^the results are displayed based on filters applied for courses "([^"]*)", "([^"]*)","([^"]*)" and trainer "([^"]*)"$/) do |course1, course2, course3, trainer_id|
+  @trainers.course_filter_on_request_assessment_page.verify_trainer_list_multiple_courses(course1, course2, course3)
+  @trainres.course_filter_on_request_assessment_page.verify_result_on_trainer_id_filter(trainer_id)
 end
 
 And(/^also apply force filter for force "([^"]*)"$/) do |arg|
@@ -58,5 +56,5 @@ Then(/^all the filters should be cleared$/) do
 end
 
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)", "([^"]*)","([^"]*)"$/) do |course1, course2, course3|
-  pending
+  @trainers.course_filter_on_request_assessment_page.verify_trainer_list_multiple_courses(course1, course2, course3)
 end
