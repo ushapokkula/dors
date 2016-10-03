@@ -96,7 +96,7 @@ Feature: As an NGU,
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
     Then I should see added licence type with "<Course Name>", "<Licence status>", "<Expiry Date>"
     And I should see added course name field will be disabled
-    
+
 
 
     Examples:
