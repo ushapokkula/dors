@@ -93,20 +93,22 @@ Feature: Filter Trainers by course on Request assessment page
       | Berks-Scheme | CHESHIRE | BEDFORDSHIRE POLICE | 989898     |
 
   @reset
-  Scenario: Verify the reset button when all the filters are applied
+  Scenario Outline: Verify the reset button when all the filters are applied
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
     And the option to filter the list by courses is displayed
     When I select one "<Course>" from the dropdown
-    And also apply force filter for force "<Force_Name>"
+    And also apply force filter for force "<Force1>" and "<Force2>"
     And also apply trainer filter for trainer id "<Trainer_ID>"
-    Then the results are displayed based on filters applied for course ,force and trainer
+    Then the results are displayed based on filters applied for course "<Course>" ,forces "<Force1>","<Force2>" and trainer "<Trainer_ID>"
     When I click "Reset"
     Then all the filters should be cleared
 
-
+  Examples:
+  | Course       | Force1   | Force2              | Trainer_ID |
+  | Berks-Scheme | CHESHIRE | BEDFORDSHIRE POLICE | 989898     |
 
 
 

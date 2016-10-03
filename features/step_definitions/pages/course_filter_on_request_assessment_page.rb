@@ -85,10 +85,17 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
     expect(actual_trainer_list).to include("auto2 trainer", "auto1 trainer")
   end
 
-  def verify_combination_filter(force1, force2,course_name,trainer_id)
-  puts expect(force_filter_container.text).to include(force1, force2)
- puts  expect(page).to have_css(".dors-table", visible: true, count: 1)
-  verify_trainers_list_single_course(course_name)
-  verify_result_on_trainer_id_filter(trainer_id)
+  def verify_combination_filter(force1, force2, course_name, trainer_id)
+    expect(force_filter_container.text).to include(force1, force2)
+    expect(page).to have_css(".dors-table", visible: true, count: 1)
+    verify_trainers_list_single_course(course_name)
+    verify_result_on_trainer_id_filter(trainer_id)
+  end
+
+  def verify_reset
+    expect(force_filter_container.text).to include("ESSEX POLICE")
+    expect(force_filter_container.text).not_to include("CHESHIRE","BEDFORDSHIRE")
+    expect(scheme_filter.value).to eq('')
+    expect(trainer_filter.value).to eq('')
   end
 end

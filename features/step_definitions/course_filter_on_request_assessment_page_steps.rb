@@ -1,5 +1,5 @@
 And(/^the option to filter the list by courses is displayed$/) do
-  #expect(page).to have_css("")
+  expect(page).to have_css(".well .row >div:nth-child(2) >label" ,visible: true, text: 'Filter By Course')
   expect(page).to have_css("#scheme-filter-container", visible: true)
 end
 
@@ -50,11 +50,10 @@ end
 
 Then(/^the results are displayed based on filters applied for course "([^"]*)" ,forces "([^"]*)","([^"]*)" and trainer "([^"]*)"$/) do |course_name,force1,force2,trainer_id|
   @trainers.course_filter_on_request_assessment_page.verify_combination_filter(force1, force2,course_name,trainer_id)
-
 end
 
 Then(/^all the filters should be cleared$/) do
-  pending
+  @trainers.course_filter_on_request_assessment_page.verify_reset
 end
 
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)", "([^"]*)","([^"]*)"$/) do |course1, course2, course3|
