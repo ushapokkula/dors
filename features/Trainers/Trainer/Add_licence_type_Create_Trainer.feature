@@ -67,9 +67,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
     Examples:
       |Course Name                        |Licence status |Course Type|
-      #|Speed Awareness                    |Full            |Theory Course|
-      |National Driver Alertness Course   | Full            |Practical Course|
-
+      |Speed Awareness                    |Full            |Theory Course|
 
   Scenario Outline: successfully added licence type can be removed
     Given that I have licence.ndors.org.uk page opened
@@ -86,6 +84,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       |Course Name    |Licence status|Expiry Date|Course Type|
       |Motorway Course|Expired       |29/09/2016 |Theory Course|
+
 
   Scenario Outline: removed licence type can be visible in the Course Name list
     Given that I have licence.ndors.org.uk page opened

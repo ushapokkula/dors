@@ -64,15 +64,17 @@ Then(/^I should see added licence type shown with "([^"]*)", "([^"]*)", "([^"]*)
 end
 
 Then(/^I see added Scheme "([^"]*)" no longer available in the dropdown for selection$/) do|course_name|
-  #if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
-  find('.ui-select-choices-row').value.should_not eql? course_name
-
-
+  find_all("a.ui-select-choices-row-inner > span").each do |row|
+    row.text != course_name
 end
+end
+
 
 Then(/^I see added Scheme "([^"]*)" available in the dropdown for selection$/) do|course_name|
-  find('#ui-select-choices-row-0-1').value.should eql? course_name
-end
+  find_all("a.ui-select-choices-row-inner > span").each do |row|
+    row.text == course_name
+  end
+  end
 
 
 Then(/^I can verify selected "([^"]*)" type is "([^"]*)"$/) do |course_name, type|
