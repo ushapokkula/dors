@@ -66,8 +66,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     When I click on Course Name field
     Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
     Examples:
-      |Course Name    |Licence status |Course Type|
-      |Speed Awareness|Full            |Theory Course|
+      |Course Name                        |Licence status |Course Type|
+      #|Speed Awareness                    |Full            |Theory Course|
+      |National Driver Alertness Course   | Full            |Practical Course|
+
 
   Scenario Outline: successfully added licence type can be removed
     Given that I have licence.ndors.org.uk page opened
@@ -121,6 +123,21 @@ Feature: In order to specify whether the license I have is a Theory or Practical
       |Course Name        |Licence status|Expiry Date|Course Type|
       | RiDE              |  Full         |  29/09/2018|RiDE     |
 
+
+  Scenario Outline: add National Driver Alertness practical scheme and verify scheme type availability in the licence type dropdown
+    Given that I have licence.ndors.org.uk page opened
+    When I login as an "Compliance Manager"
+    Then I navigate to "TRAINERS" page
+    And I click on Course Name field
+    And I select a "<Course Name>" from Course Name field for "<Course Type>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
+    When I click on Course Name field
+    And I enter "National Driver Alertness Course" name in Course Name field
+    Then I should see available "National Driver Alertness Course" Courses
+    Examples:
+      |Course Name                        |Licence status |Course Type|
+      |National Driver Alertness Course   | Full          |Practical Course|
 
 
 

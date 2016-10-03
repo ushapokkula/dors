@@ -37,11 +37,21 @@ And (/^I select a "([^"]*)" from Course Name field for "([^"]*)"$/)do|course_nam
   if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
     find('#ui-select-choices-row-0-1').click
     else
-  page.find(".ui-select-search").set(course_name)
   page.find(".ui-select-search").send_keys(:enter)
   end
-  end
+end
 
+And (/^I enter "([^"]*)" name in Course Name field$/)do|coursename|
+  page.find(".ui-select-search").set(coursename)
+end
+
+Then (/^I should see available "([^"]*)" Courses$/)do|coursename|
+expect(page).to have_css(".ui-select-choices-row-inner", :count=>1)
+find(".ui-select-choices-row-inner").value == coursename
+page.find(".ui-select-search").send_keys(:enter)
+expect(page).to have_css(".ui-select-match-text")
+expect(page).to have_css("span.glyphicon-book")
+end
 
 And (/I select the licences status as "([^"]*)"$/)do|status|
   select(status, :from => 'licenseStatuses')
@@ -54,7 +64,10 @@ Then(/^I should see added licence type shown with "([^"]*)", "([^"]*)", "([^"]*)
 end
 
 Then(/^I see added Scheme "([^"]*)" no longer available in the dropdown for selection$/) do|course_name|
-  find('#ui-select-choices-row-0-0').value.should_not eql? course_name
+  #if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
+  find('.ui-select-choices-row').value.should_not eql? course_name
+
+
 end
 
 Then(/^I see added Scheme "([^"]*)" available in the dropdown for selection$/) do|course_name|
