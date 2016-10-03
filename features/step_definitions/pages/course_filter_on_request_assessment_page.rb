@@ -11,7 +11,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   def verify_trainers_list_single_course(course_name)
     scheme_list.each do |element|
       actual_scheme = element.text
-      puts expect(actual_scheme).to eql(course_name)
+      expect(actual_scheme).to eql(course_name)
     end
   end
 
@@ -94,7 +94,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
 
   def verify_reset
     expect(force_filter_container.text).to include("ESSEX POLICE")
-    expect(force_filter_container.text).not_to include("CHESHIRE","BEDFORDSHIRE")
+    expect(force_filter_container.text).not_to include("CHESHIRE", "BEDFORDSHIRE")
     expect(scheme_filter.value).to eq('')
     expect(trainer_filter.value).to eq('')
   end

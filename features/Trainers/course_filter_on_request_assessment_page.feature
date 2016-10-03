@@ -17,8 +17,8 @@ Feature: Filter Trainers by course on Request assessment page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I deleted the assessments from Database
-    When I click "REQUEST ASSESSMENT"
-    Then the option to filter the list by courses is displayed
+    And I click "REQUEST ASSESSMENT"
+    And the option to filter the list by courses is displayed
     And no course filters are applied
     When I select one "<Course>" from the dropdown
     And no other filters are applied
