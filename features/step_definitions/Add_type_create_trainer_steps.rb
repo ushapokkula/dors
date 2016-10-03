@@ -45,7 +45,7 @@ And (/^I enter "([^"]*)" name in Course Name field$/)do|coursename|
   page.find(".ui-select-search").set(coursename)
 end
 
-Then (/^I should see available "([^"]*)" Courses$/)do|coursename|
+Then (/^I should see available number of "([^"]*)" Courses$/)do|coursename|
 expect(page).to have_css(".ui-select-choices-row-inner", :count=>1)
 find(".ui-select-choices-row-inner").value == coursename
 page.find(".ui-select-search").send_keys(:enter)
