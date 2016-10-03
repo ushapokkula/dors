@@ -72,12 +72,12 @@ Feature: Show Assessment ID
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of My Assessments page
     Given that I have licence.ndors.org.uk page opened
-    And I login as an "<User>"
+    When I login as an "<User>"
     And I navigate to "REQUEST ASSESSMENT" page
-    And I request assessment as "<Type>"
+    Then I request assessment as "<Type>"
     And I navigate to "MY ASSESSMENTS" page
-    And I select assessment status depending on "<User>" and "<Type>"
-    When I click on "View Details" button on 'My assessments' page
+    Then I select assessment status depending on "<User>" and "<Type>"
+    And I click on "View Details" button on 'My assessments' page
     Then I see assessor address is replaced by assessor number
 
     Examples:

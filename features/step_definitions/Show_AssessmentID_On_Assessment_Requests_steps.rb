@@ -38,13 +38,12 @@ And (/^I should see Assessment ID on summary view of assessment on 'Manage Asses
   expect(page).to have_css("h1", text: 'Assessments') #Verifying header#
   page.find_all(".dors-table")
   within(".dors-table") do
-    expect(page).to have_css(".dors-table-row.row.dors-table-header > div.col-md-1 > a", visible: true)
-
+    expect(page).to have_css(".link-assessment-id", visible: true)
   end
 end
 
 And (/^I click on "([^"]*)" button on 'Assessment management' page$/) do |button|
-  expect(page).to have_css(".dors-table-header > div.col-md-3 > a", text: button)
+  expect(page).to have_css(".lnk-assessment-details", text: button)
   click_link_or_button('View Details')
 end
 
@@ -59,7 +58,7 @@ end
 
 
 Then(/^I see assessor address is replaced by assessor number$/) do
- puts expect(page).to have_css(".assessorNumber", visible: true)
+ expect(page).to have_css(".assessorNumber", visible: true)
 end
 
 And(/^I search for "([^"]*)"$/) do |first_name|
@@ -79,13 +78,13 @@ Then(/^I see in assessor section there is no assessor number displayed$/) do
 end
 
 Then(/^I revert back the assessor number to "([^"]*)"$/) do |assessor_number|
-  unless find("#assessorNumber").value != ''
+ unless find("#assessorNumber").value != ''
     fill_in('assessorNumber', :with => assessor_number)
   end
 end
 
 And(/^I see the success message "([^"]*)" on the assessor page$/) do |message|
-  expect(page).to have_no_css(".toast-message", message)
+  expect(page).to have_css(".toast-message", text: message)
 end
 
 And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
@@ -102,11 +101,11 @@ And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |use
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk1", visible: true).click
-  elsif (user == "Assessor3" && type == "Requested")
+    end
+  if (user == "Assessor3" && type == "Requested")
   find("#single-button").click
   expect(page).to have_css(".dropdown-menu", visible: true)
   find("#assessmentStatusChk0", visible: true).click
-  else
-    puts "Skipping this step"
   end
+
 end
