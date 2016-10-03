@@ -110,7 +110,7 @@ end
 
 And(/^I click "([^"]*)" on signup page$/) do |button_name|
   click_button(button_name)
-  unless page.has_no_selector?('.alert.alert-danger')
+  if page.has_css?('.alert.alert-danger')
   click_button(button_name)
   end
 end
