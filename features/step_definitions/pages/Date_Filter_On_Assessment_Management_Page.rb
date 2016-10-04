@@ -42,6 +42,12 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   end
 
 
+  def navigate_to_request_summary_page
+    click_link("REQUEST ASSESSMENT")
+    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+    end
+
   def book_assessments_without_milage
     click_link("REQUEST ASSESSMENT")
     expect(page).to have_css("h1", text: 'Request Assessment')

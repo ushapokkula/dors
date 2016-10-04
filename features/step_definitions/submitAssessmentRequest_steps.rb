@@ -151,3 +151,13 @@ end
 Then(/^the "([^"]*)" scheme courses are hidden as all the trainers from that scheme are in assessment$/) do |scheme_name|
     expect(page).to have_no_content(scheme_name)
 end
+
+
+Then(/^I can see the Scheme Name$/)do
+expect(page).to have_css("")
+end
+
+And (/^for each trainer can see the License Type$/)do
+ expect(page).to have_css("")   #verify Licence type text
+  expect(page).to have_css("")   #verify Licence type(theory/ practical)
+end

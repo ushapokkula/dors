@@ -148,6 +148,15 @@ Feature: submit assessment request feature
     And I click Request assessment button against trainer I want to book an assessment
     Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
 
+   @DR_1136
+   Scenario: Request Assessment Summary Page Shows Licence Types
+     Given that I have licence.ndors.org.uk page opened
+     And I login as an "Assessor"
+     And I am on Assessment Request Summary page
+     Then I can see the Scheme Name
+     And for each trainer can see the License Type
+
+
 
 
 
