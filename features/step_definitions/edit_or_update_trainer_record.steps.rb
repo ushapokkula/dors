@@ -130,8 +130,24 @@ end
 
 And (/^the system will show a success message, "([^"]*)"$/) do |message|
   expect(page).to have_css(".toast-message", text: message)
-
 end
 
+Then(/^I can see Legend with "([^"]*)" and "([^"]*)"$/) do |practical, theory|
+  expect(page).to have_css(".legend-practical > i", text: '')
+  expect(page).to have_css(".legend-practical-label", text: practical)
+  expect(page).to have_css(".legend-theory > i", text: '')
+  expect(page).to have_css(".legend-theory-label", text: theory)
+end
 
+Then(/^I should see added course name field will be disabled$/) do
+  find_all(".selected-license-course[disabled='']", visible: true)
+end
 
+And(/^And I can not see 'X' button to delete the added Course$/) do
+  expect(page).to have_no_css(".btn-remove-license")
+end
+
+And (/^I can see added course Icon next to the Course Name$/)do
+#expect(page).to have_css(".form-group i.glyphicon-road")
+expect(page).to have_css(".form-group")
+end

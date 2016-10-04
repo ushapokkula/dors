@@ -88,23 +88,18 @@ Feature: As an NGU,
       | trainer first name | trainer last name | Expiry date |
       | roopa              | trainer           | 04/04/2016  |
 
-
-
-
   @DR-1150
-  Scenario Outline:
+  Scenario Outline: Verify added Course dettails can't be deleted
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
     And I am in Licences section
     Then I should see added licence type shown with "<Course Name>", "<Licence status>", "<Expiry Date>"
     And I should see added course name field will be disabled
-    And I can not delete the added Courses
-  #form[name="TrainersVm.frmLicenses"] .glyphicon
+    And And I can not see 'X' button to delete the added Course
     Examples:
-     | trainer first name | trainer last name | Licence status     | Expiry Date|Course Name|
-     | test             | test                | Full                | 06/04/2018       |Speed Control           |
-     | test             | test                 | Provisional/Conditional | 01/04/2017 |mictest           |
-
+     | trainer first name|trainer last name | Licence status          | Expiry Date|Course Name  |
+     | tes              | test             | Full                    | 06/04/2018 |Speed Control|
+     | test              | test             | Provisional/Conditional | 01/04/2017 |mictest      |
 
 
   @DR_1150
@@ -114,36 +109,36 @@ Feature: As an NGU,
     And I am in Licences section
     And I click on Course Name field
     And I select a "<Course Name>" from Course Name field for "<Course Type>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
+    And I can see added course Icon next to the Course Name
     And I should see added course name field will be disabled
-    And I can not delete the added courses
-    And I can see added "<Course Name>" Icon
+    And I click on Update Trainer
+    Then I should see a message saying "Trainer record successfully updated."
+
     Examples:
-      |Course Name                       |Course Type       | trainer first name | trainer last name|
-      |Driving For Change                |Practical Course  | roopa              | trainer          |
-      |What's Driving Us?                |Theory Course     | roopa              | trainer          |
-      |National Driver Alertness Course  |Theory Course     | roopa              | trainer          |
-      |National Driver Alertness Course  |Practical Course  | roopa              | trainer          |
-      |Speed Awareness                   |Theory Course     | roopa              | trainer          |
-      |National Speed Awareness          |Theory Course     | roopa               | trainer           |
-      |RiDE                              |Theory Course     | roopa               | trainer           |
-      |Motorway Course                   |Theory Course     | roopa               | trainer           |
+      |Course Name                       |Course Type       | trainer first name | trainer last name|Licence status|
+      |Driving For Change                |Practical Course  | roopa2               | trainer2       |  Full           |
+      |What's Driving Us?                |Theory Course     | roopa2               | trainer2       |   Full          |
+      |National Driver Alertness Course  |Theory Course     | roopa2              | trainer2          ||
+      |National Driver Alertness Course  |Practical Course  | roopa2             | trainer2          ||
+      |Speed Awareness                   |Theory Course     | roopa2              | trainer2          ||
+      |National Speed Awareness          |Theory Course     | roopa2              | trainer2          ||
+      |RiDE                              |Theory Course     | roopa2              | trainer2          ||
+      |Motorway Course                   |Theory Course     | roopa2              | trainer2          ||
 
 
-  Scenario Outline: Verify loaded trainer can select a course and can verify course type
+  Scenario Outline: Verify loaded trainer has selected course and added courses no loger available in course name field
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
     And I am in Licences section
     And I click on Course Name field
     And I select a "<Course Name>" from Course Name field for "<Course Type>"
-    And I select the licences status as "<Licence status>"
-    And I click "Add licence" button
     When I click on Course Name field
     Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
-    And I click on Update Trainer
-    Then I should see a message saying "Trainer Record Successfully Updated."
     Examples:
-    |trainer first name | trainer last name|Course Name                        |Licence status |Course Type|
-    |roopa              |test              |Speed Awareness                    |Full            |Theory Course|
-    |roopa              |test              |National Driver Alertness Course   |Full            |Practical Course|
-    |roopa              |test              |Driving For Change                 |Full            |Practical Course|
+    |trainer first name | trainer last name|Course Name                        |Course Type|
+    |roopa2              |trainer2             |Speed Awareness                    |Theory Course|
+    #|test1              |test1             |National Driver Alertness Course   |Practical Course|
+    #|test1              |test1             |Driving For Change                 |Practical Course|
 
