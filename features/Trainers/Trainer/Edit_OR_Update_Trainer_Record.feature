@@ -8,7 +8,7 @@ Feature: As an NGU,
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
     Then I see "Trainers management" page
-    And I can see Legend with "Practical Course Trainer" and "Theory Course Trainer"
+    And I can see Legend with "Practical Course" and "Theory Course"
 
 
 
@@ -95,13 +95,11 @@ Feature: As an NGU,
   Scenario Outline:
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
-    Then I should see added licence type with "<Course Name>", "<Licence status>", "<Expiry Date>"
+    And I am in Licences section
+    Then I should see added licence type shown with "<Course Name>", "<Licence status>", "<Expiry Date>"
     And I should see added course name field will be disabled
+    And I can not delete the added Courses
   #form[name="TrainersVm.frmLicenses"] .glyphicon
-
-
-
-
     Examples:
      | trainer first name | trainer last name | Licence status     | Expiry Date|Course Name|
      | test             | test                | Full                | 06/04/2018       |Speed Control           |
@@ -110,13 +108,42 @@ Feature: As an NGU,
 
 
   @DR_1150
-  Scenario Outline:
+  Scenario Outline: Verify loaded trainer can select a course and can verify course type
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
-    And I select the "<Licence status>" as 'Provisional or Conditional'
-
+    And I am in Licences section
+    And I click on Course Name field
+    And I select a "<Course Name>" from Course Name field for "<Course Type>"
+    And I should see added course name field will be disabled
+    And I can not delete the added courses
+    And I can see added "<Course Name>" Icon
     Examples:
-      | trainer first name | trainer last name | Licence status          | date       |
-      | roopa              | trainer           | Provisional/Conditional | 22/04/2017 |
+      |Course Name                       |Course Type       | trainer first name | trainer last name|
+      |Driving For Change                |Practical Course  | roopa              | trainer          |
+      |What's Driving Us?                |Theory Course     | roopa              | trainer          |
+      |National Driver Alertness Course  |Theory Course     | roopa              | trainer          |
+      |National Driver Alertness Course  |Practical Course  | roopa              | trainer          |
+      |Speed Awareness                   |Theory Course     | roopa              | trainer          |
+      |National Speed Awareness          |Theory Course     | roopa               | trainer           |
+      |RiDE                              |Theory Course     | roopa               | trainer           |
+      |Motorway Course                   |Theory Course     | roopa               | trainer           |
 
+
+  Scenario Outline: Verify loaded trainer can select a course and can verify course type
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+    And I am in Licences section
+    And I click on Course Name field
+    And I select a "<Course Name>" from Course Name field for "<Course Type>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
+    When I click on Course Name field
+    Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
+    And I click on Update Trainer
+    Then I should see a message saying "Trainer Record Successfully Updated."
+    Examples:
+    |trainer first name | trainer last name|Course Name                        |Licence status |Course Type|
+    |roopa              |test              |Speed Awareness                    |Full            |Theory Course|
+    |roopa              |test              |National Driver Alertness Course   |Full            |Practical Course|
+    |roopa              |test              |Driving For Change                 |Full            |Practical Course|
 

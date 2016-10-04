@@ -82,9 +82,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     When I click X button
     Then The licence row will be deleted
     Examples:
-      |Course Name    |Licence status|Expiry Date|Course Type|
-      |Motorway Course|Expired       |29/09/2016 |Theory Course|
-
+      |Course Name                     |Licence status|Expiry Date|Course Type|
+      |Motorway Course                 |Expired       |29/09/2016 |Theory Course|
+      |Driving For Change              |Full          |04/10/2018 |Practical Course|
+      |National Driver Alertness Course|Full          |04/10/2018 |Practical Course|
 
   Scenario Outline: removed licence type can be visible in the Course Name list
     Given that I have licence.ndors.org.uk page opened
@@ -102,6 +103,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
    Examples:
      |Course Name                 |Licence status|Expiry Date|Course Type|
      | National Speed Awareness   |  Full        |  29/09/2018 |Theory Course|
+     |Driving For Change              |Full          |04/10/2018 |Practical Course|
+     |National Driver Alertness Course|Full          |04/10/2018 |Practica        |
 
 
   Scenario Outline: Verify create trainer functionality by Adding licences
