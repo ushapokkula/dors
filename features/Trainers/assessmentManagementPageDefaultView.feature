@@ -62,6 +62,28 @@ Feature: Assessment Management Default View
     Then I will see  list of all Assessments Requests with status requested
     And The assessment list will be sorted by assessment date
 
+  @DR-1139
+  Scenario Outline: Verify the licence type for requested/booked assessments in the assessment management page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I see the success message "<string>" on the page
+    And I logout
+    When I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+
+
+    Examples:
+      | Assessment_Type | User               | Type      |
+      | Requested       | Compliance Manager | Theory    |
+      | Booked          | Compliance Manager | Practical |
+
+    @
+
+
+
 
 
 
