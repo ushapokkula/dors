@@ -152,10 +152,28 @@ Feature: submit assessment request feature
    Scenario: Request Assessment Summary Page Shows Licence Types
      Given that I have licence.ndors.org.uk page opened
      And I login as an "Assessor"
-     And I am on Assessment Request Summary page
+     And I deleted the assessments from Database
+     And I navigate to "REQUEST ASSESSMENT" page
+     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+     Then I will be taken to "Pick a Course" page
+     And I click Request assessment button against trainer I want to book an assessment
      Then I can see the Scheme Name
      And for each trainer can see the License Type
 
+  @DR_1136
+  Scenario: Booked Assessment Summary Page Shows Licence Types
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I deleted the assessments from Database
+    And I navigate to "REQUEST ASSESSMENT" page
+    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    Then I will be taken to "Pick a Course" page
+    And I click Request assessment button against trainer I want to book an assessment
+    And the primary trainer will be shown with "Include this trainer" checkbox on summary page
+    Then I can see the Scheme Name
+    And for each trainer can see the License Type
+    And I include trainer in near by course
+    And I click "Submit"
 
 
 
