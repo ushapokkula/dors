@@ -68,9 +68,9 @@ Feature: Assessment Management Default View
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
-    And I see the success message "<string>" on the page
+   # And I see the success message "<string>" on the page
     And I logout
-    And I login as "<User>"
+    And I login as an "<User>"
     When I navigate to "ASSESSMENT MANAGEMENT" page
     And I select assessment status depending on "<User>" and "<Assessment_Type>"
     Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
@@ -89,7 +89,7 @@ Feature: Assessment Management Default View
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
-    And I see the success message "<string>" on the page
+    #And I see the success message "<string>" on the page
     And I logout
     And I login as an "<User>"
     And I navigate to "ASSESSMENT MANAGEMENT" page

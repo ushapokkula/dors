@@ -62,13 +62,13 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
   end
 
-   def book_assessment
+  def book_assessment
     find('a', text: "REQUEST ASSESSMENT").click
     find(:button, 'Pick a slot', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
     find(".include-main-trainer-checkbox", match: :first).click
-    expect(page).to have_css(".include-nearby-trainer-checkbox", visible:true)
-    all('.include-nearby-trainer-checkbox',visible:true)[2].click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[2].click
     click_button("Submit")
 
   end
@@ -105,10 +105,10 @@ class NguSearchAssessmentIDPage < SitePrism::Page
       licenses= row.text
       actual_licenses.push(licenses)
 
-    puts expect(actual_licenses).to include("111333")
-    puts expect(actual_licenses).to include("111222")
-    puts expect(actual_licenses).to include("111999")
-  end
+      expect(actual_licenses).to include("111333")
+      expect(actual_licenses).to include("111222")
+      expect(actual_licenses).to include("111999")
+    end
 
-end
+  end
 end
