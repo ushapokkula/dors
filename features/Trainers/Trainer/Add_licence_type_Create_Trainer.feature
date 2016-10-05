@@ -53,7 +53,9 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       |Course Name|Licence status           |Expiry Date|Course Type|
       |drive well | Provisional/Conditional |31/03/2017 | Theory Course|
-
+      |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
+      |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
+      |Driving For Change                 |Full          |5/10/2018  |Practical Course|
 
   Scenario Outline: added scheme can't be available in the licence type dropdown
     Given that I have licence.ndors.org.uk page opened
@@ -68,6 +70,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       |Course Name                        |Licence status |Course Type|
       |Speed Awareness                    |Full            |Theory Course|
+      |National Driver Alertness Course   | Full           |Practical Course|
+      |National Driver Alertness Course   | Full           |Theory Course|
 
   Scenario Outline: successfully added licence type can be removed
     Given that I have licence.ndors.org.uk page opened
@@ -82,9 +86,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     When I click X button
     Then The licence row will be deleted
     Examples:
-      |Course Name    |Licence status|Expiry Date|Course Type|
-      |Motorway Course|Expired       |29/09/2016 |Theory Course|
-
+      |Course Name                       |Licence status|Expiry Date|Course Type|
+      |Motorway Course                    |Expired       |29/09/2016 |Theory Course|
+      |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
+      |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
 
   Scenario Outline: removed licence type can be visible in the Course Name list
     Given that I have licence.ndors.org.uk page opened
@@ -100,9 +105,10 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     When I click on Course Name field
     Then I see added Scheme "<Course Name>" available in the dropdown for selection
    Examples:
-     |Course Name                 |Licence status|Expiry Date|Course Type|
-     | National Speed Awareness   |  Full        |  29/09/2018 |Theory Course|
-
+     |Course Name                      |Licence status|Expiry Date|Course Type|
+     | National Speed Awareness         |  Full        |  29/09/2018 |Theory Course|
+     |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
+     |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
 
   Scenario Outline: Verify create trainer functionality by Adding licences
     Given that I have licence.ndors.org.uk page opened
