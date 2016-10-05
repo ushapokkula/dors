@@ -127,6 +127,59 @@ Feature: Assessment Management Default View
       | Booked          | Approved     | Completed    | Theory    |
       | Booked          | Approved     | Completed    | Practical |
 
+  @DR-1146
+  Scenario Outline: Verify the licence type for requested/booked assessments in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And "<Type>" under licence type column
+
+
+
+    Examples:
+      | Assessment_Type | User               | Type      |
+      | Requested       | Compliance Manager | Theory    |
+      | Requested       | Compliance Manager | Practical |
+      | Booked          | Compliance Manager | Theory    |
+      | Booked          | Compliance Manager | Practical |
+
+
+  @DR-1146
+  Scenario Outline: Verify the licence type for rejected/cancelled assessments in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I click on "View Details" button on 'Assessment management' page
+    And I reject/cancel the Assessment depending on "<Assessment_Type>"
+    And I select assessment status depending on "<Cancellation_Type>"
+    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And "<Type>" under licence type column
+
+
+    Examples:
+      | Assessment_Type | User               | Type      | Cancellation_Type |
+      | Requested       | Compliance Manager | Theory    | Rejected          |
+      | Requested       | Compliance Manager | Practical | Rejected          |
+      | Booked          | Compliance Manager | Theory    | Cancelled         |
+      | Booked          | Compliance Manager | Practical | Cancelled         |
+
+
+
 
 
 

@@ -44,7 +44,7 @@ end
 
 And (/^I click on "([^"]*)" button on 'Assessment management' page$/) do |button|
   expect(page).to have_css(".lnk-assessment-details", text: button)
-  click_link_or_button('View Details')
+  click_link_or_button(button)
 end
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/) do |assessmentID|
