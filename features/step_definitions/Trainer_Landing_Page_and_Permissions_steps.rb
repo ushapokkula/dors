@@ -25,3 +25,17 @@ end
 Then(/^I should see "(.*?)" No Licenses Message$/)do |message|
 expect(page).to have_css(".alert.alert-info", text: message, visible:true)
 end
+
+
+Then(/^I can see added licences$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I can see table has below "([^"]*)", "([^"]*)", "([^"]*)" details provided via Trainer Portal$/) do |arg1, arg2, arg3|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I can see below "([^"]*)" details provided via Trainer's Trainer Portal$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+

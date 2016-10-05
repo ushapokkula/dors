@@ -69,6 +69,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
       |Course Name                        |Licence status |Course Type|
       |Speed Awareness                    |Full            |Theory Course|
 
+
   Scenario Outline: successfully added licence type can be removed
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
