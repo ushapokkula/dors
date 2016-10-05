@@ -110,7 +110,7 @@ Feature: As an an NGU (TrainingGovernance),
     And The system will load the page where I can create a new trainer record
     When I click "Cancel"
     And I will be re-directed to "Assessments" page
-    
+
 
   @DR-584 @cancel_creation2
   Scenario: Verify the cancel button with filling any details on the create trainer form
