@@ -36,6 +36,7 @@ And (/^I select a "([^"]*)" from Course Name field for "([^"]*)"$/) do |course_n
   page.find(".ui-select-search").set(course_name)
   if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
     #find('#ui-select-choices-row-0-1').click
+    find(".ui-select-choices-row-inner").click
   else
     page.find(".ui-select-search").send_keys(:enter)
   end
@@ -116,11 +117,20 @@ When(/^I remove the licence having "([^"]*)" course$/) do |course_type|
   end
 end
 
-Then(/^I should see that the course name dropdown contains "([^"]*)" of type "([^"]*)"$/) do |course_name, arg2|
+Then(/^I should see that the course name dropdown contains "([^"]*)" of type "([^"]*)"$/) do |course_name, course_type|
   find(".ui-select-container").click
-   within(".ui-select-dropdown.dropdown-menu")do
-    #within(all(".ui-select-choices-row-inner")[8])do
-      expect(page).to have_css(".glyphicon.glyphicon-book", visible:true)
-      expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible:true, text:course_name)
+  within(".ui-select-dropdown.dropdown-menu") do
+    within("#ui-select-choices-row-0-7") do
+      if course_type == "Theory Course"
+        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name)
+        expect(page).to have_css(".glyphicon.glyphicon-book", visible: true, count: 1)
+        expect(page).to have_no_css(".glyphicon.glyphicon-road", visible: true)
+      else
+        course_type == "Practical Course"
+        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name)
+        expect(page).to have_css(".glyphicon.glyphicon-road", visible: true, count: 1)
+        expect(page).to have_no_css(".glyphicon.glyphicon-book", visible: true)
+      end
+    end
   end
-  end
+end

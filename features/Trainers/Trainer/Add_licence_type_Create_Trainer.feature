@@ -151,7 +151,6 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I select the licences status as "<Licence status>"
     And I click "Add licence" button
     And  I click on Course Name field
-    #And I enter "National Driver Alertness Course" name in Course Name field
     And  I should see that the course name dropdown doesn't contain "<Course Name>"
     When I remove the licence having "<Remove Course Type>" course
     Then I should see that the course name dropdown contains "<Course Name>" of type "<Remove Course Type>"
@@ -159,7 +158,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       | Course Name                      | Licence status | Course Type1  | Course Type2     | Remove Course Type |
       | National Driver Alertness Course | Full           | Theory Course | Practical Course | Theory Course      |
-      #| National Driver Alertness Course | Full           | Theory Course | Practical Course |Practical Course    |
+      | National Driver Alertness Course | Full           | Theory Course | Practical Course |Practical Course    |
 
 
 
