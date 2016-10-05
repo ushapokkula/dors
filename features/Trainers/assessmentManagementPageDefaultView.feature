@@ -107,7 +107,7 @@ Feature: Assessment Management Default View
 
 
   @DR-1139
-  Scenario Outline: Verify the licence type for completed assessment in the assessment managemrnt page
+  Scenario Outline: Verify the licence type for completed assessment in the assessment management page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
@@ -140,7 +140,7 @@ Feature: Assessment Management Default View
     And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
     Then I see "Licence Type" as column name
-    And "<Type>" under licence type column
+    And I see "<Type>" under licence type column
 
 
 
@@ -168,7 +168,7 @@ Feature: Assessment Management Default View
     And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
     Then I see "Licence Type" as column name
-    And "<Type>" under licence type column
+    And I see "<Type>" under licence type column
 
 
     Examples:
@@ -177,6 +177,31 @@ Feature: Assessment Management Default View
       | Requested       | Compliance Manager | Practical | Rejected          |
       | Booked          | Compliance Manager | Theory    | Cancelled         |
       | Booked          | Compliance Manager | Practical | Cancelled         |
+
+
+  @DR-1146
+  Scenario Outline: Verify the licence type for completed assessment in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "Compliance Manager"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select "<Status_Type1>" from assessment status dropdown
+    And I click on "View Details" button on 'Assessment management' page
+    And I select possible outcome against each trainer depending on "<Type>"
+    And I click "Mark Complete"
+    And I select "<Status_Type2>" from assessment status dropdown
+    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And I see "<Type>" under licence type column
+
+    Examples:
+      | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
+      | Booked          | Approved     | Completed    | Theory    |
+      | Booked          | Approved     | Completed    | Practical |
 
 
 

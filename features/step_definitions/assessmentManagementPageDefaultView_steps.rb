@@ -117,7 +117,7 @@ Then(/^I see "([^"]*)" as column name$/) do |column_name|
   #expect(page).to have_css("", text: column_name)
 end
 
-And(/^"([^"]*)" under licence type column$/) do |type|
+And(/^I see "([^"]*)" under licence type column$/) do |type|
   puts "Need to implement DR-1146"
   #expect(page).to have_css("", text: type)
 end
