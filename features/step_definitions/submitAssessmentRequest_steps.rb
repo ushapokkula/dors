@@ -154,10 +154,11 @@ end
 
 
 Then(/^I can see the Scheme Name$/)do
-expect(page).to have_css("")
+expect(page).to have_css("h4")
 end
 
 And (/^for each trainer can see the License Type$/)do
- expect(page).to have_css("")   #verify Licence type text
-  expect(page).to have_css("")   #verify Licence type(theory/ practical)
+  expect(page).to have_css(".trainer-license-type-label")   #verify Licence type(theory/ practical)
+  expect(page).to have_css(".trainer-license-type")   #verify Licence type text
 end
+
