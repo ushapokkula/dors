@@ -143,11 +143,30 @@ Then(/^I should see added course name field will be disabled$/) do
   find_all(".selected-license-course[disabled='']", visible: true)
 end
 
-And(/^And I can not see 'X' button to delete the added Course$/) do
+And(/^I can not see 'X' button to delete the added Course$/) do
   expect(page).to have_no_css(".btn-remove-license")
 end
 
 And (/^I can see added course Icon next to the Course Name$/)do
-#expect(page).to have_css(".form-group i.glyphicon-road")
-expect(page).to have_css(".form-group")
+  page.find_all(".form-group i.glyphicon") #verifying all added schemes type icons
+end
+
+Then (/^I should see selected licence type shown with "([^"]*)", "([^"]*)", "([^"]*)"$/)do|coursename, status,date|
+  if coursename == 'Driving For Change'
+find_all(('input.selected-license-course')[0], text: coursename, visible: false)   #these are predefined data not sure how this data will appears in auto env ? need to check once its merged
+page.find("#licenseStatuses_0", text: status)
+page.find("#licenseExpiryDate_0").value == date
+  end
+  if coursename == "What's Driving Us?"
+find_all(('input.selected-license-course')[1], text: coursename, visible: false)
+  page.find("#licenseStatuses_1", text: status)
+  page.find("#licenseExpiryDate_1").value == date
+  end
+  if coursename == "National Driver Alertness Course"
+    find_all(('input.selected-license-course')[2], text: coursename, visible: false)
+    page.find("#licenseStatuses_2", text: status)
+    page.find("#licenseExpiryDate_2").value == date
+  end
+
+
 end
