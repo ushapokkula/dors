@@ -68,7 +68,6 @@ Feature: Assessment Management Default View
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
-   # And I see the success message "<string>" on the page
     And I logout
     And I login as an "<User>"
     When I navigate to "ASSESSMENT MANAGEMENT" page
@@ -89,7 +88,6 @@ Feature: Assessment Management Default View
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
-    #And I see the success message "<string>" on the page
     And I logout
     And I login as an "<User>"
     And I navigate to "ASSESSMENT MANAGEMENT" page
@@ -103,9 +101,9 @@ Feature: Assessment Management Default View
     Examples:
       | Assessment_Type | User               | Type      | Cancellation_Type |
       | Requested       | Compliance Manager | Theory    | Rejected          |
-      | Booked          | Compliance Manager | Practical | Rejected          |
-      | Requested       | Compliance Manager | Theory    | Cancelled         |
+      | Requested       | Compliance Manager | Practical | Rejected          |
       | Booked          | Compliance Manager | Theory    | Cancelled         |
+      | Booked          | Compliance Manager | Practical | Cancelled         |
 
 
   @DR-1139
@@ -119,14 +117,14 @@ Feature: Assessment Management Default View
     And I navigate to "ASSESSMENT MANAGEMENT" page
     And I select "<Status_Type1>" from assessment status dropdown
     And I click on "View Details" button on 'Assessment management' page
-    And I select possible outcome against each trainer
+    And I select possible outcome against each trainer depending on "<Type>"
     And I click "Mark Complete"
     When I select "<Status_Type2>" from assessment status dropdown
     Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
 
     Examples:
-      | Assessment_Type | Status_Type1 | Status_Type2 | Type   |
-      | Booked          | Approved     | Completed    | Theory |
+      | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
+      | Booked          | Approved     | Completed    | Theory    |
       | Booked          | Approved     | Completed    | Practical |
 
 

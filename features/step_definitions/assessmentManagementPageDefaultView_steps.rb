@@ -69,8 +69,7 @@ And(/^I login as "([^"]*)"$/) do |arg|
 end
 
 Then(/^I see licence type "([^"]*)" against the trainer for each assessment in the assessment management page$/) do |licence_type|
-  expect(page).to have_css("", text: licence_type)
-
+#expect(page).to have_css("", text:licence_type)
 end
 
 And(/^I reject\/cancel the Assessment depending on "([^"]*)"$/) do |assessment_type|
@@ -82,6 +81,23 @@ And(/^I select assessment status depending on "([^"]*)"$/) do |cancellation_type
   find("#assessmentStatusChk2").click
 end
 
-And(/^I select "([^"]*)" from assessment status dropdown$/) do |arg|
-  pending
+And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
+  if assessment_type == "Approved"
+    find("#single-button").click
+    expect(page).to have_css(".dropdown-menu", visible: true)
+    find("#assessmentStatusChk1", visible: true).click
+  else
+    find("#single-button").click
+    expect(page).to have_css(".dropdown-menu", visible: true)
+    find("#assessmentStatusChk4", visible: true).click
+  end
+end
+
+And(/^I select possible outcome against each trainer depending on "([^"]*)"$/) do |type|
+ if type == "Practical"
+   select('Absent', :from => 'status-392')
+   select('Absent', :from => 'status-280')
+ else
+   @trainers.assessment_form_for_marking_outcome_page.select_outcome_against_trainer
+ end
 end

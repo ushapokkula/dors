@@ -34,6 +34,4 @@ class AssessmentFormForMarkingOutcomePage < SitePrism::Page
     select('Absent', :from => 'status-279')
     select('Absent', :from => 'status-392')
   end
-
-
 end

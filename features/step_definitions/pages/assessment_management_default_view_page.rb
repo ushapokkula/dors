@@ -44,7 +44,9 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
 
   def request_assessment_with_practical
     click_link_or_button("REQUEST ASSESSMENT")
-    all(".btn.btn-primary")[3].click
+    expect(page).to have_css("h1", text: 'Request Assessment')
+    all(".btn.btn-primary:nth-child(2)")[2].click
+    #all(".btn.btn-primary")[3].click
     first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
     fill_in('mileage', :with => '500')
     click_link_or_button("Submit")
@@ -52,7 +54,8 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
 
   def book_assessment_with_practical
     click_link_or_button("REQUEST ASSESSMENT")
-    all(".btn.btn-primary")[3].click
+    expect(page).to have_css("h1", text: 'Request Assessment')
+    all(".btn.btn-primary:nth-child(2)")[2].click
     first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
     find(".include-main-trainer-checkbox", match: :first).click
     click_link_or_button("Submit")
@@ -67,7 +70,7 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
       click_button("Reject")
       end
     else
-      expect(page).to have_css("h1", text:"Assessments")
+      expect(page).to have_css("h1", text:"Assessment Outcome")
       click_button("Cancel")
       fill_in("cancellationNotes", :with=>"Notes for Cancellation")
       within(".modal-content") do
