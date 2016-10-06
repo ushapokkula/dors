@@ -155,7 +155,7 @@ end
 
 Then(/^I can see the Scheme Name for main trainer$/)do
   within('.dors-well')do
- find_all('.dors-well h4:nth-child(1)')          #verify main trainer scheme name
+    find_all(:css,'.col-lg-offset-3 h4', match: :first)          #verify main trainer scheme name
   end
 end
 
@@ -178,7 +178,6 @@ Then(/^I should see License Type for nearBy trainer$/) do
     expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'License Type')   #verify nearBy trainer Licence name label
     expect(page).to have_css('.dors-well-other .trainer-license-type')                                 #verify nearBy trainer Licence name
   end
-
 
 
 Then(/^I should see Expiry Date for main trainer$/) do
