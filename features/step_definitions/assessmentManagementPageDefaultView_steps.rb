@@ -113,11 +113,18 @@ And(/^I select possible outcome against each trainer depending on "([^"]*)"$/) d
 end
 
 Then(/^I see "([^"]*)" as column name$/) do |column_name|
-  puts "Need to implement DR-1146"
-  #expect(page).to have_css("", text: column_name)
-end
+  find_all(".dors-well-container").each do |row|
+    #within(row.text)
+    #find_all(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)").each do |element|
+      expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)", text:column_name, visible:true)
+    end
+  end
+
 
 And(/^I see "([^"]*)" under licence type column$/) do |type|
-  puts "Need to implement DR-1146"
-  #expect(page).to have_css("", text: type)
+  find_all(".dors-well-container").each do |row|
+    #within(row.text)
+    #find_all(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)").each do |element|
+    expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(2)", text:type, visible:true)
+  end
 end
