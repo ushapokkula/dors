@@ -106,9 +106,42 @@ Feature: Filter Trainers by course on Request assessment page
     When I click "Reset"
     Then all the filters should be cleared
 
-  Examples:
-  | Course       | Force1   | Force2              | Trainer_ID |
-  | Berks-Scheme | CHESHIRE | BEDFORDSHIRE POLICE | 989898     |
+    Examples:
+      | Course       | Force1   | Force2              | Trainer_ID |
+      | Berks-Scheme | CHESHIRE | BEDFORDSHIRE POLICE | 989898     |
+
+
+  @Verify_message_with_trainer_filter
+  Scenario Outline: Verify the message after applying course which doesn't have any data related to the course
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I deleted the assessments from Database
+    And I click "REQUEST ASSESSMENT"
+    And the option to filter the list by courses is displayed
+    And no course filters are applied
+    When I select one "<Course>" from the dropdown
+    And no other filters are applied
+    Then I see message "No assessments available to book" on request assessment page
+
+    Examples:
+      | Course    |
+      | New Trend |
+
+  @verify_message_on_course_and_trainer_filter
+  Scenario Outline: Verify the message after applying courseand trainer filter which doesn't have any data related
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I deleted the assessments from Database
+    And I click "REQUEST ASSESSMENT"
+    And the option to filter the list by courses is displayed
+    When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
+    And also apply trainer filter for trainer id "<Trainer_ID>"
+    Then I see message "No assessments available to book" on request assessment page
+
+
+    Examples:
+      | Course1      | Course2 | Course3                          | Trainer_ID |
+      | Berks-Scheme | RiDE    | National Driver Alertness Course | 654321     |
 
 
 

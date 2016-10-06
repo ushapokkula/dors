@@ -60,3 +60,7 @@ Then(/^the results are displayed showing only those trainers who fall under the 
   @trainers.course_filter_on_request_assessment_page.verify_trainer_list_multiple_courses(course1, course2, course3)
 end
 
+
+Then(/^I see message "([^"]*)" on request assessment page$/) do |message|
+ expect(page).to have_css(".alert.alert-info", text: message)
+end
