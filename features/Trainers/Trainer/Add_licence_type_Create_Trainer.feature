@@ -155,7 +155,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I select the licences status as "<Licence status>"
     And I click "Add licence" button
     And I click on Course Name field
-    And I select a "<Course Name>" from Course Name field for "<Course Type2>"
+    And I select a "<Course Name>" from Course Name field of course type "<Course Type2>"
     And I select the licences status as "<Licence status>"
     And I click "Add licence" button
     And  I click on Course Name field
