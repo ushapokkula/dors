@@ -168,29 +168,29 @@ Then(/^I can see the Scheme Name for nearBy trainer$/)do
 
 Then(/^I should see License Type for main trainer$/) do
   within('.dors-well')do
-expect(page).to have_css('.trainer-license-type-label', text: 'License Type')    #verify main trainer Licence name
-expect(page).to have_css('.trainer-license-type')
+expect(page).to have_css('.trainer-license-type-label', text: 'License Type')    #verify main trainer Licence name label
+expect(page).to have_css('.trainer-license-type')                                 #verify main trainer Licence name
 end
 end
 
 
 Then(/^I should see License Type for nearBy trainer$/) do
-    expect(page).to have_css('.dors-well-other .trainer-license-type-label', match: :first, text: 'License Type')   #verify nearBy trainer Licence name
-    expect(page).to have_css('.dors-well-other .trainer-license-type', match: :first)
+    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'License Type')   #verify nearBy trainer Licence name label
+    expect(page).to have_css('.dors-well-other .trainer-license-type')                                 #verify nearBy trainer Licence name
   end
 
 
 
 Then(/^I should see Expiry Date for main trainer$/) do
   within('.dors-well')do
-  expect(page).to have_css(".main-license-expirydate-label", text: 'Expiry Date')    #verify main trainer Expiry date
-expect(page).to have_css(".main-license-expirydate")
+  expect(page).to have_css(".main-license-expirydate-label", text: 'Expiry Date')    #verify main trainer Expiry date label
+ expect(page).to have_css(".main-license-expirydate")                                  #verify main trainer Expiry date value
   end
   end
 
 Then(/^I should see Expiry Date for nearBy trainer$/) do
-  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate-label", match: :first, text: 'Expiry Date')     #verify nearBy trainer Expiry date
-  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate", match: :first)
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate-label", text: 'Expiry Date')     #verify nearBy trainer Expiry date label
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate")                                 #verify nearBy trainer Expiry date value
 
   end
 
