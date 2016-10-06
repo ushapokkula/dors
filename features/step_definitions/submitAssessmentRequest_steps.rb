@@ -153,12 +153,46 @@ Then(/^the "([^"]*)" scheme courses are hidden as all the trainers from that sch
 end
 
 
-Then(/^I can see the Scheme Name$/)do
-expect(page).to have_css("h4")
+Then(/^I can see the Scheme Name for main trainer$/)do
+  within('.dors-well')do
+ find_all('.dors-well h4:nth-child(1)')          #verify main trainer scheme name
+  end
 end
 
-And (/^for each trainer can see the License Type$/)do
-  expect(page).to have_css(".trainer-license-type-label")   #verify Licence type(theory/ practical)
-  expect(page).to have_css(".trainer-license-type")   #verify Licence type text
+Then(/^I can see the Scheme Name for nearBy trainer$/)do
+  within('.dors-well-other', match: :first)do
+    find_all(:css,'.col-md-offset-3 h4', match: :first)   #verify nearBy trainer scheme name
+    end
+  end
+
+
+Then(/^I should see License Type for main trainer$/) do
+  within('.dors-well')do
+expect(page).to have_css('.trainer-license-type-label', text: 'License Type')    #verify main trainer Licence name
+expect(page).to have_css('.trainer-license-type')
 end
+end
+
+
+Then(/^I should see License Type for nearBy trainer$/) do
+    expect(page).to have_css('.dors-well-other .trainer-license-type-label', match: :first, text: 'License Type')   #verify nearBy trainer Licence name
+    expect(page).to have_css('.dors-well-other .trainer-license-type', match: :first)
+  end
+
+
+
+Then(/^I should see Expiry Date for main trainer$/) do
+  within('.dors-well')do
+  expect(page).to have_css(".main-license-expirydate-label", text: 'Expiry Date')    #verify main trainer Expiry date
+expect(page).to have_css(".main-license-expirydate")
+  end
+  end
+
+Then(/^I should see Expiry Date for nearBy trainer$/) do
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate-label", match: :first, text: 'Expiry Date')     #verify nearBy trainer Expiry date
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate", match: :first)
+
+  end
+
+
 
