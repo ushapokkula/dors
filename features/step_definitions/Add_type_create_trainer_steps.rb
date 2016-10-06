@@ -122,12 +122,12 @@ Then(/^I should see that the course name dropdown contains "([^"]*)" of type "([
   within(".ui-select-dropdown.dropdown-menu") do
     within("#ui-select-choices-row-0-7") do
       if course_type == "Theory Course"
-        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name)
+        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name, count:1)
         expect(page).to have_css(".glyphicon.glyphicon-book", visible: true, count: 1)
         expect(page).to have_no_css(".glyphicon.glyphicon-road", visible: true)
       else
         course_type == "Practical Course"
-        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name)
+        expect(page).to have_xpath(".//span[text()='National Driver Alertness Course']", visible: true, text: course_name,count:1)
         expect(page).to have_css(".glyphicon.glyphicon-road", visible: true, count: 1)
         expect(page).to have_no_css(".glyphicon.glyphicon-book", visible: true)
       end
