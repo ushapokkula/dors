@@ -35,11 +35,11 @@ end
 And (/^I select a "([^"]*)" from Course Name field for "([^"]*)"$/) do |course_name, course_type|
   page.find(".ui-select-search").set(course_name)
   if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
-    #find('#ui-select-choices-row-0-1').click
-    find(".ui-select-choices-row-inner").click
-  else
+    find('#ui-select-choices-row-0-1').click
+    else
     page.find(".ui-select-search").send_keys(:enter)
   end
+
 end
 
 And (/^I enter "([^"]*)" name in Course Name field$/) do |coursename|
@@ -132,5 +132,12 @@ Then(/^I should see that the course name dropdown contains "([^"]*)" of type "([
         expect(page).to have_no_css(".glyphicon.glyphicon-book", visible: true)
       end
     end
+  end
+end
+
+And(/^I select a "([^"]*)" from Course Name field of course type "([^"]*)"$/)do |course_name,course_type|
+  page.find(".ui-select-search").set(course_name)
+  if (course_name == 'National Driver Alertness Course' && course_type == "Practical Course")
+    find(".ui-select-choices-row-inner").click
   end
 end
