@@ -129,7 +129,7 @@ Feature: Filter Trainers by course on Request assessment page
 
 
   @verify_message_on_combination_filter
-  Scenario Outline: Verify the message after applying courseand trainer filter which doesn't have any data related
+  Scenario Outline: Verify the message after applying combination of all  filters which doesn't have any data related
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I deleted the assessments from Database
