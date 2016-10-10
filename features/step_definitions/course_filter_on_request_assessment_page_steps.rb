@@ -1,5 +1,5 @@
 And(/^the option to filter the list by courses is displayed$/) do
-  expect(page).to have_css(".well .row >div:nth-child(2) >label" ,visible: true, text: 'Filter By Course')
+  expect(page).to have_css(".col-md-4.has-feedback>label" ,visible: true, text: 'Filter By Course')
   expect(page).to have_css("#scheme-filter-container", visible: true)
 end
 
@@ -8,7 +8,7 @@ And(/^no course filters are selected$/) do
 end
 
 And(/^no course filters are applied$/) do
-  expect(find("#scheme-filter-container > div> input").value).to eql('')
+  expect(find("#scheme-filter-container input").value).to eql('')
 end
 
 When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|
