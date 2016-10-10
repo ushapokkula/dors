@@ -17,8 +17,8 @@ When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|
 end
 
 And(/^no other filters are applied$/) do
-  expect(find("#txt-trainer-name").value).to eq("")
-  expect(find("#force-areas-filter-container").value).to eq(nil)
+  @trainers.course_filter_on_request_assessment_page.trainer_filter.text == nil
+  @trainers.course_filter_on_request_assessment_page.force_filter.text == nil
 end
 
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)"$/) do |course_name|
