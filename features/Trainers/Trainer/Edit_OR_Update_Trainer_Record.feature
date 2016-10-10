@@ -147,11 +147,10 @@ Feature: As an NGU,
     And I select a "<Course Name>" from Course Name field for "<Course Type>"
     Then I can verify selected "<Course Name>" type is "<Course Type>"
     When I click on Course Name field
-    And I enter "National Driver Alertness Course" name in Course Name field
+    And I enter "<Course Name>" name in Course Name field
+    Then I should see available number of "<Course Name>" Courses
     Examples:
       |Course Name                       |Course Type       |trainer first name | trainer last name|
-      |Driving For Change                |Practical Course  |roopa1              |test1|
-      |National Driver Alertness Course  |Theory Course     |roopa1              |test1|
       |National Driver Alertness Course  |Practical Course  |roopa1              |test1|
 
 
