@@ -145,13 +145,14 @@ Feature: As an NGU,
     And I am in Licences section
     Then I click on Course Name field
     And I select a "<Course Name>" from Course Name field for "<Course Type>"
-    Then I can verify selected "<Course Name>" type is "<Course Type>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
     When I click on Course Name field
     And I enter "<Course Name>" name in Course Name field
     Then I should see available number of "<Course Name>" Courses
     Examples:
-      |Course Name                       |Course Type       |trainer first name | trainer last name|
-      |National Driver Alertness Course  |Practical Course  |roopa1              |test1|
+      |Course Name                       |Course Type       |trainer first name | trainer last name|Licence status|
+      |National Driver Alertness Course  |Practical Course  |roopa1              |test1            |  Full        |
 
 
 @DR_1150
