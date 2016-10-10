@@ -1,9 +1,9 @@
 class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   elements :scheme_list, ".license-scheme-name"
-  element :scheme_filter, "#scheme-filter-container > div> input"
+  element :scheme_filter, "#scheme-filter-container input"
   element :trainer_filter, "#txt-trainer-name"
   elements :trainer_id_list, ".trainer-licenseCode"
-  element :force_filter, "#force-areas-filter-container > div> input"
+  element :force_filter, "#force-areas-filter-container input"
   element :force_filter_container, "#force-areas-filter-container"
   elements :trainer_fullname, ".trainer-full-name"
 
