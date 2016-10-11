@@ -182,6 +182,32 @@ Feature: As an NGU,
       |Motorway Course                   |Theory Course     | Full       |
 
 
+  @DR_1150
+  Scenario Outline: Verify the course visibility in course dropdown after adding and removing the course on Update Trainer page
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+    And I am in Licences section
+    And I click on Course Name field
+    And I select a "<Course Name>" from Course Name field for "<Course Type1>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
+    And I click on Course Name field
+    And I select a "<Course Name>" from Course Name field of course type "<Course Type2>"
+    And I select the licences status as "<Licence status>"
+    And I click "Add licence" button
+    And  I click on Course Name field
+    And  I should see that the course name dropdown doesn't contain "<Course Name>"
+    When I remove the licence having "<Remove Course Type>" course
+    Then I should see that the course name dropdown contains "<Course Name>" of type "<Remove Course Type>"
+    And I click on Update Trainer
+    Then I should see a message saying "Trainer record successfully updated."
+
+  Examples:
+    | Course Name                      | Licence status | Course Type1  | Course Type2     | Remove Course Type |trainer first name | trainer last name|
+    | National Driver Alertness Course | Full           | Theory Course | Practical Course | Theory Course      |roopa1              |trainer1              |
+    | National Driver Alertness Course | Full           | Theory Course | Practical Course |Practical Course    |roopa1              |trainer1              |
+
+
 
 
 

@@ -66,16 +66,19 @@ end
 
 Then(/^I see added Scheme "([^"]*)" no longer available in the dropdown for selection$/) do |course_name|
   find_all("a.ui-select-choices-row-inner > span").each do |row|
-    row.text != course_name
+    within(row) do
+    expect(row.text).not_to have_content(course_name)
   end
-end
+  end
+  end
 
 Then(/^I see added Scheme "([^"]*)" available in the dropdown for selection$/) do |course_name|
   find_all("a.ui-select-choices-row-inner > span").each do |row|
-    row.text == course_name
+    within(row) do
+      expect(row.text).to have_content(course_name)
   end
 end
-
+end
 
 Then(/^I can verify selected "([^"]*)" type is "([^"]*)"$/) do |course_name, type|
   if (course_name == 'Driving For Change' && type == 'Practical Course')
