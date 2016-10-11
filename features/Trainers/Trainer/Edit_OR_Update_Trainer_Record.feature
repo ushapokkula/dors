@@ -198,14 +198,14 @@ Feature: As an NGU,
     And  I click on Course Name field
     And  I should see that the course name dropdown doesn't contain "<Course Name>"
     When I remove the licence having "<Remove Course Type>" course
-    Then I should see that the course name dropdown contains "<Course Name>" of type "<Remove Course Type>"
-    And I click on Update Trainer
-    Then I should see a message saying "Trainer record successfully updated."
+    And I click on Course Name field
+    And I enter "<Course Name>" name in Course Name field
+    Then I should see number of "<Remove Course Type>" of type "<Course Name>"
 
   Examples:
     | Course Name                      | Licence status | Course Type1  | Course Type2     | Remove Course Type |trainer first name | trainer last name|
-    | National Driver Alertness Course | Full           | Theory Course | Practical Course | Theory Course      |roopa1              |trainer1              |
-    | National Driver Alertness Course | Full           | Theory Course | Practical Course |Practical Course    |roopa1              |trainer1              |
+    | National Driver Alertness Course | Full           | Theory Course | Practical Course | Theory Course      |roopa1              |test1              |
+    | National Driver Alertness Course | Full           | Theory Course | Practical Course |Practical Course    |roopa1              |test1              |
 
 
 
