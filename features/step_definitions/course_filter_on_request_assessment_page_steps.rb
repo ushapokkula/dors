@@ -17,8 +17,10 @@ When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|
 end
 
 And(/^no other filters are applied$/) do
-  @trainers.course_filter_on_request_assessment_page.trainer_filter.text == nil
-  @trainers.course_filter_on_request_assessment_page.force_filter.text == nil
+  expect(page).to have_css(".dors-table", visible:true, count:4)
+  @trainers.course_filter_on_request_assessment_page.verify_no_trainer_filter_have_applied
+  @trainers.course_filter_on_request_assessment_page.verify_no_force_filter_have_applied
+
 end
 
 Then(/^the results are displayed showing only those trainers who fall under the selected course "([^"]*)"$/) do |course_name|

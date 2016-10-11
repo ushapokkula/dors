@@ -55,6 +55,23 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
     end
   end
 
+  def verify_no_force_filter_have_applied
+    trainer_id_list.each do |element|
+      actual_trainer_id = element.text
+      expect(actual_trainer_id).not_to eql("252009")
+    end
+  end
+
+  def verify_no_trainer_filter_have_applied
+    expected_trainer_list = ["111999","111555","111222"],actual_trainer_list=[]
+    trainer_id_list.each do |element|
+      actual_trainer_id = element.text
+      actual_trainer_list.push(actual_trainer_id)
+    end
+
+    expect(actual_trainer_list.uniq).to eq(expected_trainer_list)
+  end
+
   def verify_list_on_course_and_trainer_filter(course1, course2)
     actual_scheme_list =[course1, course2]
     expected_scheme_list = []
