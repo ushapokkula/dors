@@ -44,7 +44,7 @@ end
 
 And (/^I click on "([^"]*)" button on 'Assessment management' page$/) do |button|
   expect(page).to have_css(".lnk-assessment-details", text: button)
-  click_link_or_button('View Details')
+  click_link_or_button(button)
 end
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/) do |assessmentID|
@@ -99,13 +99,15 @@ end
 And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |user, type|
   if (user == "Compliance Manager" && type == "Booked")
     find("#single-button").click
-    expect(page).to have_css(".dropdown-menu", visible: true)
-    find("#assessmentStatusChk1", visible: true).click
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").should be_checked
+    expect(page).to have_css("#assessmentStatusChk1")
+    page.find("#assessmentStatusChk1", visible: true).click
     end
-  if (user == "Assessor3" && type == "Requested")
+  if (user == "Compliance Manager" && type == "Requested")
   find("#single-button").click
-  expect(page).to have_css(".dropdown-menu", visible: true)
-  find("#assessmentStatusChk0", visible: true).click
+  expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+  find("#assessmentStatusChk0").should be_checked
   end
 
 end

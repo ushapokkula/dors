@@ -1,5 +1,5 @@
 @pass
-@DR-285
+@DR-285 @DR_1139 @DR_1146
 Feature: Assessment Management Default View
 
   @default1
@@ -61,6 +61,161 @@ Feature: Assessment Management Default View
     And I click "ASSESSMENT MANAGEMENT"
     Then I will see  list of all Assessments Requests with status requested
     And The assessment list will be sorted by assessment date
+
+  @DR_1139
+  Scenario Outline: Verify the licence type for Requested/Booked assessments in the assessment management page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    When I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I can see the label "Licence Type"
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+
+
+    Examples:
+      | Assessment_Type | User               | Type      |
+      | Requested       | Compliance Manager | Theory    |
+      | Requested       | Compliance Manager | Practical |
+      | Booked          | Compliance Manager | Theory    |
+      | Booked          | Compliance Manager | Practical |
+
+  @DR_1139
+  Scenario Outline: Verify the licence type for Rejected/Cancelled assessments in the assessment management page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I click on "View Details" button on 'Assessment management' page
+    And I reject/cancel the Assessment depending on "<Assessment_Type>"
+    And I select assessment status depending on "<Cancellation_Type>"
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+
+    Examples:
+      | Assessment_Type | User               | Type      | Cancellation_Type |
+      | Requested       | Compliance Manager | Theory    | Rejected          |
+      | Requested       | Compliance Manager | Practical | Rejected          |
+      | Booked          | Compliance Manager | Theory    | Cancelled         |
+      | Booked          | Compliance Manager | Practical | Cancelled         |
+
+
+  @DR_1139  #unable to complete the review due to the bugs
+  Scenario Outline: Verify the licence type for completed assessment in the assessment management page
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "Compliance Manager"
+    Then I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select "<Status_Type1>" from assessment status dropdown
+    And I click on "View Details" button on 'Assessment management' page
+    And I select possible outcome against each trainer depending on "<Type>"
+    And I click "Mark Complete"
+    When I select "<Status_Type2>" from assessment status dropdown
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+
+    Examples:
+      | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
+      | Booked          | Approved     | Completed    | Theory    |
+      | Booked          | Approved     | Completed    | Practical |
+
+  @DR_1146
+  Scenario Outline: Verify the licence type for Requested/Booked assessments in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And I see "<Type>" under licence type column
+
+    Examples:
+      | Assessment_Type | User               | Type      |
+      | Requested       | Compliance Manager | Theory    |
+      | Requested       | Compliance Manager | Practical |
+      | Booked          | Compliance Manager | Theory    |
+      | Booked          | Compliance Manager | Practical |
+
+
+  @DR_1146
+  Scenario Outline: Verify the licence type for Rejected/Cancelled assessments in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "<User>"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select assessment status depending on "<User>" and "<Assessment_Type>"
+    And I click on "View Details" button on 'Assessment management' page
+    And I reject/cancel the Assessment depending on "<Assessment_Type>"
+    And I select assessment status depending on "<Cancellation_Type>"
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And I see "<Type>" under licence type column
+
+
+    Examples:
+      | Assessment_Type | User               | Type      | Cancellation_Type |
+      | Requested       | Compliance Manager | Theory    | Rejected          |
+      | Requested       | Compliance Manager | Practical | Rejected          |
+      | Booked          | Compliance Manager | Theory    | Cancelled         |
+      | Booked          | Compliance Manager | Practical | Cancelled         |
+
+
+  @DR_1146  #review not completed for this due to bugs
+  Scenario Outline: Verify the licence type for Completed assessment in the assessment detailed view
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Assessor"
+    And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
+    And I request assessment as "<Assessment_Type>" of course type "<Type>"
+    And I logout
+    And I login as an "Compliance Manager"
+    And I navigate to "ASSESSMENT MANAGEMENT" page
+    And I select "<Status_Type1>" from assessment status dropdown
+    And I click on "View Details" button on 'Assessment management' page
+    And I select possible outcome against each trainer depending on "<Type>"
+    And I click "Mark Complete"
+    And I select "<Status_Type2>" from assessment status dropdown
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
+    When I click on "View Details" button on 'Assessment management' page
+    Then I see "Licence Type" as column name
+    And I see "<Type>" under licence type column
+
+    Examples:
+      | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
+      | Booked          | Approved     | Completed    | Theory    |
+      | Booked          | Approved     | Completed    | Practical |
+
+
+
+
+
+
+
+
+
+
 
 
 
