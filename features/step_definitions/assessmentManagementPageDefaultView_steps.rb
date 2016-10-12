@@ -79,13 +79,16 @@ end
 And(/^I select assessment status depending on "([^"]*)"$/) do |cancellation_type|
   find("#single-button").click
   if cancellation_type == "Rejected"
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").should be_checked
     find("#assessmentStatusChk2", visible: true).click
   elsif cancellation_type == "Cancelled"
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").should be_checked
     find("#assessmentStatusChk3", visible: true).click
   else
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").should be_checked
     find("#assessmentStatusChk4", visible: true).click
   end
 end
@@ -94,11 +97,13 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
   if assessment_type == "Approved"
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
-    find("#assessmentStatusChk1", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk1")
+    page.find("#assessmentStatusChk1", visible: true).click
   else
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
-    find("#assessmentStatusChk4", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk4")
+    page.find("#assessmentStatusChk4", visible: true).click
   end
 end
 
