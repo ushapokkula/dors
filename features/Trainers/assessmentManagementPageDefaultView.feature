@@ -140,7 +140,7 @@ Feature: Assessment Management Default View
     And I select assessment status depending on "<User>" and "<Assessment_Type>"
     And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
-    Then I see "License Type" as column name
+    Then I see "Licence Type" as column name
     And I see "<Type>" under licence type column
 
 
@@ -168,7 +168,7 @@ Feature: Assessment Management Default View
     And I select assessment status depending on "<Cancellation_Type>"
     And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
-    Then I see "License Type" as column name
+    Then I see "Licence Type" as column name
     And I see "<Type>" under licence type column
 
 
