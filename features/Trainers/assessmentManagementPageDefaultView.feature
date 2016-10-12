@@ -73,7 +73,7 @@ Feature: Assessment Management Default View
     When I navigate to "ASSESSMENT MANAGEMENT" page
     And I select assessment status depending on "<User>" and "<Assessment_Type>"
     And I can see the label "Licence Type"
-    Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
 
 
     Examples:
@@ -96,7 +96,7 @@ Feature: Assessment Management Default View
     And I click on "View Details" button on 'Assessment management' page
     And I reject/cancel the Assessment depending on "<Assessment_Type>"
     And I select assessment status depending on "<Cancellation_Type>"
-    Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
 
 
     Examples:
@@ -121,7 +121,7 @@ Feature: Assessment Management Default View
     And I select possible outcome against each trainer depending on "<Type>"
     And I click "Mark Complete"
     When I select "<Status_Type2>" from assessment status dropdown
-    Then I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
 
     Examples:
       | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
@@ -138,7 +138,7 @@ Feature: Assessment Management Default View
     And I login as an "<User>"
     And I navigate to "ASSESSMENT MANAGEMENT" page
     And I select assessment status depending on "<User>" and "<Assessment_Type>"
-    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
     Then I see "License Type" as column name
     And I see "<Type>" under licence type column
@@ -166,7 +166,7 @@ Feature: Assessment Management Default View
     And I click on "View Details" button on 'Assessment management' page
     And I reject/cancel the Assessment depending on "<Assessment_Type>"
     And I select assessment status depending on "<Cancellation_Type>"
-    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
     Then I see "License Type" as column name
     And I see "<Type>" under licence type column
@@ -194,7 +194,7 @@ Feature: Assessment Management Default View
     And I select possible outcome against each trainer depending on "<Type>"
     And I click "Mark Complete"
     And I select "<Status_Type2>" from assessment status dropdown
-    And I see licence type "<Type>" against the trainer for each assessment in the assessment management page
+    And I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
     When I click on "View Details" button on 'Assessment management' page
     Then I see "Licence Type" as column name
     And I see "<Type>" under licence type column

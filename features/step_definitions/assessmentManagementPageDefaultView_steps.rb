@@ -68,7 +68,10 @@ And(/^I login as "([^"]*)"$/) do |arg|
   pending
 end
 
-Then(/^I see licence type "([^"]*)" against the trainer for each assessment in the assessment management page$/) do |licence_type|
+Then(/^I see licence type "([^"]*)" against the trainer for each "([^"]*)" assessment in the assessment management page$/) do |licence_type, assessment_type|
+  if (assessment_type == "Requested" and "Practical")
+    expect(page).to have_css(".trainer-licences-tyoe",count:1, text:licence_type)
+  end
  expect(page).to have_css(".trainer-licences-tyoe",count:2, text:licence_type)
 end
 
