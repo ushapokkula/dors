@@ -49,17 +49,13 @@ end
 
 And(/^I request assessment as "([^"]*)" of course type "([^"]*)"$/) do |assessment_type, licence_type|
   if (assessment_type == "Requested" && licence_type == "Theory")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.ngu_search_assessment_id_page.request_assessment
   elsif (assessment_type == "Requested" && licence_type == "Practical")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.assessment_management_default_view_page.request_assessment_with_practical
   elsif (assessment_type == "Booked" && licence_type == "Theory")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.ngu_search_assessment_id_page.book_assessment
   else
     (assessment_type == "Booked" && licence_type == "Practical")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.assessment_management_default_view_page.book_assessment_with_practical
   end
 end

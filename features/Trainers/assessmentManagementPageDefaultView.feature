@@ -63,10 +63,11 @@ Feature: Assessment Management Default View
     And The assessment list will be sorted by assessment date
 
   @DR-1139
-  Scenario Outline: Verify the licence type for requested/booked assessments in the assessment management page
+  Scenario Outline: Verify the licence type for Requested/Booked assessments in the assessment management page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
     And I logout
     And I login as an "<User>"
@@ -84,10 +85,11 @@ Feature: Assessment Management Default View
       | Booked          | Compliance Manager | Practical |
 
   @DR-1139
-  Scenario Outline: Verify the licence type for rejected/cancelled assessments in the assessment management page
+  Scenario Outline: Verify the licence type for Rejected/Cancelled assessments in the assessment management page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
+    And I deleted the assessments from Database
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
     And I logout
     And I login as an "<User>"
