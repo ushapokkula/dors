@@ -5,8 +5,8 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
 
   def verify_assessment_default_view_details(new_table)
     list_of_assessment_requests.each do |row|
-    columns = new_table.map { |x| x['Details'] }
-    columns.each do |label|
+      columns = new_table.map { |x| x['Details'] }
+      columns.each do |label|
         expect(page).to have_text(label)
       end
     end
@@ -57,26 +57,27 @@ class AssessmentManagementDefaultViewPage < SitePrism::Page
     expect(page).to have_css("h1", text: 'Request Assessment')
     all(".btn.btn-primary:nth-child(2)")[2].click
     first(:button, 'Request Assessment').click if find(:button, 'Request Assessment', match: :first)
-    find(".include-main-trainer-checkbox", match: :first).click
+    find(".include-nearby-trainer-checkbox", match: :first)
+    all(".include-main-trainer-checkbox")[1].click
     click_link_or_button("Submit")
   end
 
   def cancel_or_reject_assessment(assessment_type)
     if (assessment_type == "Requested")
-      expect(page).to have_css("#assessment-title-header", text:"Assessment Request")
+      expect(page).to have_css("#assessment-title-header", text: "Assessment Request")
       click_button("Reject")
-      fill_in("cancellationNotes", :with=>"Notes for Rejection")
+      fill_in("cancellationNotes", :with => "Notes for Rejection")
       within(".modal-content") do
-      click_button("Reject")
+        click_button("Reject")
       end
     else
-      expect(page).to have_css("h1", text:"Assessment Outcome")
+      expect(page).to have_css("h1", text: "Assessment Outcome")
       click_button("Cancel")
-      fill_in("cancellationNotes", :with=>"Notes for Cancellation")
+      fill_in("cancellationNotes", :with => "Notes for Cancellation")
       within(".modal-content") do
-      click_button("Cancel")
+        click_button("Cancel")
+      end
     end
-end
   end
 
 end

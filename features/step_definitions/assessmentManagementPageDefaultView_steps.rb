@@ -69,8 +69,7 @@ And(/^I login as "([^"]*)"$/) do |arg|
 end
 
 Then(/^I see licence type "([^"]*)" against the trainer for each assessment in the assessment management page$/) do |licence_type|
-  puts "DR-1139 not implemented"
-#expect(page).to have_css("", text:licence_type)
+ expect(page).to have_css(".trainer-licences-tyoe",count:2, text:licence_type)
 end
 
 And(/^I reject\/cancel the Assessment depending on "([^"]*)"$/) do |assessment_type|
@@ -127,4 +126,8 @@ And(/^I see "([^"]*)" under licence type column$/) do |type|
     #find_all(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)").each do |element|
     expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(2)", text:type, visible:true)
   end
+end
+
+And(/^I can see the label "([^"]*)"$/) do |label_name|
+ expect(page).to have_css(".trainer-licence-label", visible:true, text:label_name)
 end
