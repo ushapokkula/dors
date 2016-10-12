@@ -69,10 +69,11 @@ And(/^I login as "([^"]*)"$/) do |arg|
 end
 
 Then(/^I see licence type "([^"]*)" against the trainer for each "([^"]*)" assessment in the assessment management page$/) do |licence_type, assessment_type|
-  if (assessment_type == "Requested" and "Practical")
-    expect(page).to have_css(".trainer-licences-tyoe",count:1, text:licence_type)
+  if (licence_type == "Practical" and assessment_type == "Requested")
+    expect(page).to have_css(".trainer-licences-tyoe", count: 1, text: licence_type)
+  else
+    expect(page).to have_css(".trainer-licences-tyoe", count: 2, text: licence_type)
   end
- expect(page).to have_css(".trainer-licences-tyoe",count:2, text:licence_type)
 end
 
 And(/^I reject\/cancel the Assessment depending on "([^"]*)"$/) do |assessment_type|
@@ -118,19 +119,19 @@ Then(/^I see "([^"]*)" as column name$/) do |column_name|
   find_all(".dors-well-container").each do |row|
     #within(row.text)
     #find_all(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)").each do |element|
-      expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)", text:column_name, visible:true)
-    end
+    expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)", text: column_name, visible: true)
   end
+end
 
 
 And(/^I see "([^"]*)" under licence type column$/) do |type|
   find_all(".dors-well-container").each do |row|
     #within(row.text)
     #find_all(".dors-well-container > div >div:nth-child(3) > div:nth-child(1)").each do |element|
-    expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(2)", text:type, visible:true)
+    expect(page).to have_css(".dors-well-container > div >div:nth-child(3) > div:nth-child(2)", text: type, visible: true)
   end
 end
 
 And(/^I can see the label "([^"]*)"$/) do |label_name|
- expect(page).to have_css(".trainer-licence-label", visible:true, text:label_name)
+  expect(page).to have_css(".trainer-licence-label", visible: true, text: label_name)
 end
