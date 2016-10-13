@@ -140,8 +140,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I select the licences status as "<Licence status>"
     And I click "Add licence" button
     When I click on Course Name field
-    And I enter "National Driver Alertness Course" name in Course Name field
-    Then I should see available number of "National Driver Alertness Course" Courses
+    And I enter "<Course Name>" name in Course Name field
+    Then I should see available number of "<Course Name>" Courses
     Examples:
       | Course Name                      | Licence status | Course Type      |
       | National Driver Alertness Course | Full           | Practical Course |
