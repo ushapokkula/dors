@@ -1,4 +1,4 @@
-@pass
+
 @submit_assessment_request
 
 Feature: submit assessment request feature

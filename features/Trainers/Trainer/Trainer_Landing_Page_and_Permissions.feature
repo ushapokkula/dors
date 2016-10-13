@@ -1,4 +1,4 @@
-@DR-390 @DR-11 @pass
+@DR-390 @DR-11
 Feature: Trainer Landing Page
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,

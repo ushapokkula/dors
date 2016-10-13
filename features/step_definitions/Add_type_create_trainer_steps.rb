@@ -48,10 +48,11 @@ end
 
 Then (/^I should see available number of "([^"]*)" Courses$/) do |coursename|
   expect(page).to have_css(".ui-select-choices-row-inner span", :count => 1)
-  find(".ui-select-choices-row-inner span").value == coursename
+  find(".ui-select-choices-row-inner span").text == coursename
+  expect(page).to have_css(".ui-select-choices-row-inner span", text: coursename, visible:true)
   page.find(".ui-select-search").send_keys(:enter)
-  expect(page).to have_css(".ui-select-match-text")
-  expect(page).to have_css("span.glyphicon-book")
+  expect(page).to have_css(".ui-select-match-text", text: coursename, visible: true)
+  expect(page).to have_css("span.glyphicon-book", count:1, visible: true)
 end
 
 And (/I select the licences status as "([^"]*)"$/) do |status|

@@ -1,4 +1,4 @@
-@DR-181 @DR-827 @DR-645 @pass
+@DR-181 @DR-827 @DR-645
 Feature: Completed Assessments Outcome Notes
   As an 'Assessor' & 'NGU' user
   can view the completed Assessments which includes
