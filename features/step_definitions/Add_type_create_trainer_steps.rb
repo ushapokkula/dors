@@ -48,7 +48,7 @@ end
 
 Then (/^I should see available number of "([^"]*)" Courses$/) do |coursename|
   expect(page).to have_css(".ui-select-choices-row-inner", :count => 1)
-  find(".ui-select-choices-row-inner").value == coursename
+  expect(page).to have_css(".ui-select-choices-row-inner", text:coursename)
   page.find(".ui-select-search").send_keys(:enter)
   expect(page).to have_css(".ui-select-match-text")
   expect(page).to have_css("span.glyphicon-book")
