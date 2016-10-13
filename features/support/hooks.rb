@@ -3,7 +3,7 @@ at_exit do
     config.json_path = 'reports'
     config.report_path = 'report'
     config.report_types = [:html]
-    config.report_tabs = [:overview, :features, :scenarios, :errors]
+    config.report_tabs = [:overview, :Trainers, :scenarios, :errors]
     config.report_title = 'Test Results'
     config.compress_images = false
   end
