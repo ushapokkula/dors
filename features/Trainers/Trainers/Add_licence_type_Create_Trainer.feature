@@ -1,24 +1,24 @@
 @DR-1110 @pass
 Feature: In order to specify whether the license I have is a Theory or Practical License
-  As a Trainer administrator
-  I want to select a license type when adding a license to a trainer
+         As a Trainer administrator
+         I want to select a license type when adding a license to a trainer
   #2 practical
   #1 theory
 
   Scenario Outline: Verify Course Names and Icons in Course Name Dropdown
-    Given that I have licence.ndors.org.uk page opened
-    And I login as an "Compliance Manager"
-    And I click "TRAINERS"
-    Then I am on create Trainers page
-    And I am in Licences section
-    Then I can see Legend shown with "<Icon>" Icon
-    And I can see a Course Name label
-    When I click on Course Name field
-    Then the Icon shown before the Course Name in dropdown
-    Examples:
-      |Icon|
-      |Practical Course |
-      |Theory Course |
+        Given that I have licence.ndors.org.uk page opened
+        And I login as an "Compliance Manager"
+        And I click "TRAINERS"
+        Then I am on create Trainers page
+        And I am in Licences section
+        Then I can see Legend shown with "<Icon>" Icon
+        And I can see a Course Name label
+        When I click on Course Name field
+        Then the Icon shown before the Course Name in dropdown
+        Examples:
+        |Icon|
+        |Practical Course |
+        |Theory Course |
 
 
   Scenario Outline: Verify the theory and Practical Courses
@@ -92,7 +92,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
       |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
       |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
 
-
+    
   Scenario Outline: removed licence type can be visible in the Course Name list
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
