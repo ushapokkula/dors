@@ -8,7 +8,8 @@ end
 Then(/^I see "Trainers management" page$/) do
   expect(page).to have_content("Trainers management")
   expect(page).to have_content("Licences")
-  @trainers.edit_or_update_trainer_record_page.verify_default_trainer_licence_details
+  expect(page).to have_css(".ui-select-container", visible: true)
+  expect(page).to have_css("#licenseStatuses", visible: true)
 end
 
 
@@ -129,8 +130,61 @@ end
 
 And (/^the system will show a success message, "([^"]*)"$/) do |message|
   expect(page).to have_css(".toast-message", text: message)
+end
+
+Then(/^I can see Legend with "([^"]*)" and "([^"]*)"$/) do |practical, theory|
+  expect(page).to have_css(".legend-practical > i", text: '')
+  expect(page).to have_css(".legend-practical-label", text: practical)
+  expect(page).to have_css(".legend-theory > i", text: '')
+  expect(page).to have_css(".legend-theory-label", text: theory)
+end
+
+Then(/^I should see added course name field will be disabled$/) do
+  find_all(".selected-license-course[disabled='']", visible: true)
+end
+
+And(/^I can not see 'X' button to delete the added Course$/) do
+  expect(page).to have_no_css(".btn-remove-license")
+end
+
+And (/^I can see added course Icon next to the Course Name$/)do
+  page.find_all(".form-group i.glyphicon") #verifying all added schemes type icons
+end
+
+Then (/^I should see selected licence type shown with "([^"]*)", "([^"]*)", "([^"]*)"$/)do|coursename, status,date|
+  if coursename == 'Driving For Change'
+find_all(('input.selected-license-course')[0], text: coursename, visible: false)   #these are predefined data not sure how this data will appears in auto env ? need to check once its merged
+page.find("#licenseStatuses_0", text: status)
+page.find("#licenseExpiryDate_0").value == date
+  end
+  if coursename == "What's Driving Us?"
+find_all(('input.selected-license-course')[1], text: coursename, visible: false)
+  page.find("#licenseStatuses_1", text: status)
+  page.find("#licenseExpiryDate_1").value == date
+  end
+  if coursename == "National Driver Alertness Course"
+    find_all(('input.selected-license-course')[2], text: coursename, visible: false)
+    page.find("#licenseStatuses_2", text: status)
+    page.find("#licenseExpiryDate_2").value == date
+  end
+
 
 end
 
-
+Then (/I should see number of "([^"]*)" of type "([^"]*)"$/)do|course_name, course_type|
+      if course_type == "Theory Course"
+        expect(page).to have_css(".ui-select-choices-row-inner", :count => 1)
+        find(".ui-select-choices-row-inner").value == course_name
+        page.find(".ui-select-search").send_keys(:enter)
+        expect(page).to have_css(".ui-select-match-text")
+        expect(page).to have_css("span.glyphicon-book")
+      end
+        if course_type == "Practical Course"
+        expect(page).to have_css(".ui-select-choices-row-inner", :count => 1)
+        find(".ui-select-choices-row-inner").value == course_name
+        page.find(".ui-select-search").send_keys(:enter)
+        expect(page).to have_css(".ui-select-match-text")
+        expect(page).to have_css("span.glyphicon-road")
+      end
+    end
 

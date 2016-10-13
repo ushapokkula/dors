@@ -57,18 +57,26 @@ Feature: As an an NGU (TrainingGovernance),
 
 
   @DR-674 @Create_Trainer_Licences
-    Scenario: Add Licences and Verify the Success message
+    Scenario Outline: Add Licences and Verify the Success message
       Then I fill Mandatory fields with required details on create trainer form
-      And I have added licences for the trainer and all mandatory fields for every licence have a value
+      And I click on Course Name field
+      And I select a "<Course Name>" from Course Name field for "<Course Type>"
+      Then I can verify selected "<Course Name>" type is "<Course Type>"
+      And I select the licences status as "<Licence status>"
       And I click Add licence button
       And I click on Create Trainer button
       Then a Success message will be displayed for Create Trainer "New trainer successfully created."
-
+      Examples:
+        |Course Name|Course Type|Licence status|
+        |drive well |Theory Course|Full        |
 
      @Update_Trainer_Licences
      Scenario Outline: Generating Licence and Verifying licenses updating functionality
        Then I fill Mandatory fields with required details on create trainer form
-       And I have added licences for the trainer and all mandatory fields for every licence have a value
+       And I click on Course Name field
+       And I select a "<Course Name>" from Course Name field for "<Course Type>"
+       Then I can verify selected "<Course Name>" type is "<Course Type>"
+       And I select the licences status as "<Licence status>"
        And I click Add licence button
        And I click on Create Trainer button
        Then a Success message will be displayed for Create Trainer "New trainer successfully created."
@@ -77,20 +85,24 @@ Feature: As an an NGU (TrainingGovernance),
        And I click on Update Trainer
        Then a Success message will be displayed for Update Trainer "Trainer record successfully updated."
        Examples:
-       |Licence status|
-       |Full          |
+       |Licence status|Course Name|Course Type|
+       |Full          |RiDE       |Theory Course|
   
   @DR-674 @Create_Trainer_Licences
   Scenario Outline: Licence Validation fails
-    When I started searching existing "<Trainer Name>" in the trainer search field
-    Then I should not see added course name in the course dropdown-menu
+    Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
+    Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
+    And I am in Licences section
+    Then I should see selected licence type shown with "<Course Name>", "<Licence status>", "<Expiry Date>"
+    And I click on Course Name field
+    Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
     And the Licence Status, Course Name or Expiry Date is not set
     And I click Add licence button
     And I click on Update Trainer
     Then I should see an error messages on trainers page
     Examples:
-      | Trainer Name  |
-      | roopa trainer |
+      |trainer first name | trainer last name|Course Name           |Licence status|Expiry Date|
+      |roopa2              |trainer2          |Driving For Change   |    Full      |04/10/2018 |
 
 
   @DR-584 @cancel_creation1
@@ -98,6 +110,7 @@ Feature: As an an NGU (TrainingGovernance),
     And The system will load the page where I can create a new trainer record
     When I click "Cancel"
     And I will be re-directed to "Assessments" page
+
 
   @DR-584 @cancel_creation2
   Scenario: Verify the cancel button with filling any details on the create trainer form

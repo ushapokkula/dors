@@ -1,24 +1,24 @@
 @DR-1110 @pass
 Feature: In order to specify whether the license I have is a Theory or Practical License
-         As a Trainer administrator
-         I want to select a license type when adding a license to a trainer
+  As a Trainer administrator
+  I want to select a license type when adding a license to a trainer
   #2 practical
   #1 theory
 
   Scenario Outline: Verify Course Names and Icons in Course Name Dropdown
-        Given that I have licence.ndors.org.uk page opened
-        And I login as an "Compliance Manager"
-        And I click "TRAINERS"
-        Then I am on create Trainers page
-        And I am in Licences section
-        Then I can see Legend shown with "<Icon>" Icon
-        And I can see a Course Name label
-        When I click on Course Name field
-        Then the Icon shown before the Course Name in dropdown
-        Examples:
-        |Icon|
-        |Practical Course |
-        |Theory Course |
+    Given that I have licence.ndors.org.uk page opened
+    And I login as an "Compliance Manager"
+    And I click "TRAINERS"
+    Then I am on create Trainers page
+    And I am in Licences section
+    Then I can see Legend shown with "<Icon>" Icon
+    And I can see a Course Name label
+    When I click on Course Name field
+    Then the Icon shown before the Course Name in dropdown
+    Examples:
+      |Icon|
+      |Practical Course |
+      |Theory Course |
 
 
   Scenario Outline: Verify the theory and Practical Courses
@@ -106,11 +106,11 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Then The licence row will be deleted
     When I click on Course Name field
     Then I see added Scheme "<Course Name>" available in the dropdown for selection
-   Examples:
-     |Course Name                      |Licence status|Expiry Date|Course Type|
-     | National Speed Awareness         |  Full        |  29/09/2018 |Theory Course|
-     |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
-     |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
+    Examples:
+      |Course Name                      |Licence status|Expiry Date|Course Type|
+      | National Speed Awareness         |  Full        |  29/09/2018 |Theory Course|
+      |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
+      |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
 
   Scenario Outline: Verify create trainer functionality by Adding licences
     Given that I have licence.ndors.org.uk page opened
@@ -140,8 +140,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I select the licences status as "<Licence status>"
     And I click "Add licence" button
     When I click on Course Name field
-    And I enter "National Driver Alertness Course" name in Course Name field
-    Then I should see available number of "National Driver Alertness Course" Courses
+    And I enter "<Course Name>" name in Course Name field
+    Then I should see available number of "<Course Name>" Courses
     Examples:
       | Course Name                      | Licence status | Course Type      |
       | National Driver Alertness Course | Full           | Practical Course |
