@@ -21,7 +21,6 @@ Feature: Filter Trainers by course on Request assessment page
     And the option to filter the list by courses is displayed
     And no course filters are applied
     When I select one "<Course>" from the dropdown
-    And no other filters are applied
     Then the results are displayed showing only those trainers who fall under the selected course "<Course>"
 
     Examples:
@@ -120,7 +119,6 @@ Feature: Filter Trainers by course on Request assessment page
     And the option to filter the list by courses is displayed
     And no course filters are applied
     When I select one "<Course>" from the dropdown
-    And no other filters are applied
     Then I see message "No assessments available to book" on request assessment page
 
     Examples:
