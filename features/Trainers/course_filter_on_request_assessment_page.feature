@@ -1,4 +1,4 @@
-@DR-116
+@DR-116 @pass
 Feature: Filter Trainers by course on Request assessment page
 
 
@@ -18,7 +18,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     And no course filters are applied
     When I select one "<Course>" from the dropdown
     Then the results are displayed showing only those trainers who fall under the selected course "<Course>"
@@ -33,7 +33,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     And no course filters are applied
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And no other filters are applied
@@ -50,7 +50,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And also apply trainer filter for trainer id "<Trainer_ID>"
     Then the results are displayed based on filters applied for courses "<Course1>", "<Course2>" and trainer "<Trainer_ID>"
@@ -66,7 +66,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And also apply force filter for force "<Force1>" and "<Force2>"
     Then the results are displayed based on filters applied for courses "<Course1>", "<Course2>","<Course3>" and forces "<Force1>","<Force2>"
@@ -81,7 +81,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     When I select one "<Course>" from the dropdown
     And also apply force filter for force "<Force1>" and "<Force2>"
     And also apply trainer filter for trainer id "<Trainer_ID>"
@@ -97,7 +97,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     When I select one "<Course>" from the dropdown
     And also apply force filter for force "<Force1>" and "<Force2>"
     And also apply trainer filter for trainer id "<Trainer_ID>"
@@ -116,7 +116,7 @@ Feature: Filter Trainers by course on Request assessment page
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
-    And the option to filter the list by courses is displayed
+    Then the option to filter the list by courses is displayed
     And no course filters are applied
     When I select one "<Course>" from the dropdown
     Then I see message "No assessments available to book" on request assessment page
