@@ -5,6 +5,6 @@
     so that I can focus on items of interest.
 
   Scenario Outline:
-    
+
 
     Examples:
