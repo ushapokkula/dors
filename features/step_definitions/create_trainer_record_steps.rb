@@ -64,11 +64,12 @@ Then (/^I should not see added course name in the course dropdown-menu$/)do
 end
 
 And (/^the Licence Status, Course Name or Expiry Date is not set$/)do
-  page.find(".ui-select-search").click
+  page.find(".ui-select-container").click
   page.all(:css,('error_messages')[0],text:'Please select a course name.')
   page.find("#licenseStatuses").click
-  page.find("#licenseStatuses").send_keys(:enter)
   page.all(:css,('error_messages')[1],text:'Please select a license status.')
+  page.find("#licenseExpiryDate").click
+  page.all(:css,('error_messages')[2],text:'Please select an expiry date.')
 end
 
 Then(/^I should see an error messages on trainers page$/)do
