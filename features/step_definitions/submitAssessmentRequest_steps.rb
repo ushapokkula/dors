@@ -163,14 +163,14 @@ end
 
 Then(/^I should see License Type for main trainer$/) do
   within('.dors-well')do
-expect(page).to have_css('.trainer-license-type-label', text: 'License Type')    #verify main trainer Licence name label
+expect(page).to have_css('.trainer-license-type-label', text: 'Licence Type')    #verify main trainer Licence name label
 expect(page).to have_css('.trainer-license-type')                                 #verify main trainer Licence name
 end
 end
 
 
 Then(/^I should see License Type for nearBy trainer$/) do
-    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'License Type')   #verify nearBy trainer Licence name label
+    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'Licence Type')   #verify nearBy trainer Licence name label
     expect(page).to have_css('.dors-well-other .trainer-license-type')                                 #verify nearBy trainer Licence name
   end
 
