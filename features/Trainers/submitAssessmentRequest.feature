@@ -171,15 +171,16 @@ Feature: submit assessment request feature
        When I login as an "Assessor"
        Then I deleted the assessments from Database
        And I navigate to "REQUEST ASSESSMENT" page
-       Then I 'Pick a slot' on Request Assessment Page for "<trainer_name>"
+       Then I can see "<trainer_name>" has "<Course_name>" course type of "<Licence Type>" on request assessment page
+       When I select 'Pick a slot' on Request Assessment Page for "<trainer_name>"
        And I will be taken to "Pick a Course" page
        And I click Request assessment button against trainer I want to book an assessment
-       Then I can see "<trainer_name>" has "<Course_name>" course on summary page
-       And I can see "<trainer_name>" has "<Licence Type>" type licence on summary page
+       Then I can see selected "<trainer_name>" has "<Course_name>" course on summary page
+       And I can see selected "<trainer_name>" has "<Licence Type>" type licence on summary page
        Examples:
-       |Licence Type|trainer_name          |Course_name|
-       |Theory      | Heather Mcqueen_Auto |Speed Control|
-       |Practical   | Chris_Auto           |National Driver Alertness Course|
+       |trainer_name          |Course_name                      |Licence Type|
+       | Heather Mcqueen_Auto |Speed Control                    |Theory      |
+       | Chris _Auto          |National Driver Alertness Course |Practical   |
 
 
 

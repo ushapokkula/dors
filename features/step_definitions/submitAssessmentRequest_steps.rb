@@ -188,23 +188,30 @@ Then(/^I should see Expiry Date for nearBy trainer$/) do
 end
 
 
-Then(/^I can see "([^"]*)" has "([^"]*)" type licence on summary page$/)do |name, licence_type|
+Then(/^I can see selected "([^"]*)" has "([^"]*)" type licence on summary page$/)do |name, licence_type|
   find_all(".main-trainer-fullname", match: :first, text: name)
 expect(page).to have_css(".dors-well .trainer-license-type", match: :first, text: licence_type)
 end
 
-And (/^I can see "([^"]*)" has "([^"]*)" course on summary page$/)do|name, course|
+And (/^I can see selected "([^"]*)" has "([^"]*)" course on summary page$/)do|name, course|
  find_all(".main-trainer-fullname", match: :first, text: name)
   expect(page).to have_css(".dors-well .col-lg-offset-3 h4", text: course)
 end
 
-When (/^I 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |name|
-if (name == 'Heather Mcqueen_Auto')
+When (/^I select 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |trainer_name|
+if (trainer_name == 'Heather Mcqueen_Auto')
   expect(page).to have_css("h1", text:'Request Assessment')
   find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
 end
-  if(name == 'Chris_Auto')
+  if(trainer_name == 'Chris _Auto')
     expect(page).to have_css("h1", text:'Request Assessment')
     find_all(".dors-table-row.row .btn",visible: true)[1].click
   end
+  end
+
+
+Then (/^I can see "([^"]*)" has "([^"]*)" course type of "([^"]*)" on request assessment page$/)do|trainer_name,course,licence|
+  expect(page).to have_css(".trainer-full-name",match: :first, text: trainer_name)
+  expect(page).to have_css(".license-scheme-name",match: :first, text: course)
+  expect(page).to have_css(".license-scheme-type", match: :first, text: licence)
   end
