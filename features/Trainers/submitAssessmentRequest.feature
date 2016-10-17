@@ -149,11 +149,11 @@ Feature: submit assessment request feature
     Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
 
    @DR_1136
-   Scenario: Request Assessment Summary Page Shows Licence Types
+   Scenario: Request Assessment Summary Page Shows Licence Types and Expiry date for diff trainers
      Given that I have licence.ndors.org.uk page opened
-     And I login as an "Assessor"
+     When I login as an "Assessor"
      And I deleted the assessments from Database
-     And I navigate to "REQUEST ASSESSMENT" page
+     Then I navigate to "REQUEST ASSESSMENT" page
      When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
      Then I will be taken to "Pick a Course" page
      And I click Request assessment button against trainer I want to book an assessment
@@ -168,19 +168,17 @@ Feature: submit assessment request feature
      @DR_1136
      Scenario Outline: Request Assessment Summary Page Shows Practical and Theory Licence Types
        Given that I have licence.ndors.org.uk page opened
-       And I login as an "Assessor"
-       And I deleted the assessments from Database
+       When I login as an "Assessor"
+       Then I deleted the assessments from Database
        And I navigate to "REQUEST ASSESSMENT" page
-       #Then I should see "<trainer_name>" with "<Course_name>" and <Licence Type>"
-       When I 'Pick a slot' on Request Assessment Page for "<trainer_name>"
-       Then I will be taken to "Pick a Course" page
+       Then I 'Pick a slot' on Request Assessment Page for "<trainer_name>"
+       And I will be taken to "Pick a Course" page
        And I click Request assessment button against trainer I want to book an assessment
-       And I can see "<trainer_name>" has "<Course_name>" course on summary page
-       Then I can see "<trainer_name>" has "<Licence Type>" type licence on summary page
-
+       Then I can see "<trainer_name>" has "<Course_name>" course on summary page
+       And I can see "<trainer_name>" has "<Licence Type>" type licence on summary page
        Examples:
        |Licence Type|trainer_name          |Course_name|
-      #|Theory      | Heather Mcqueen_Auto |Speed Control|
+       |Theory      | Heather Mcqueen_Auto |Speed Control|
        |Practical   | Chris_Auto           |National Driver Alertness Course|
 
 
