@@ -154,28 +154,25 @@ end
 
 
 Then(/^I can see the Scheme Name for main trainer$/)do
-  within('.dors-well')do
-    find_all(:css,'.col-lg-offset-3 h4', match: :first)          #verify main trainer scheme name
-  end
+  expect(page).to have_css(".dors-well.col-lg-offset-3 h4")  #verify main trainer scheme name
 end
 
+
 Then(/^I can see the Scheme Name for nearBy trainer$/)do
-  within('.dors-well-other', match: :first)do
-    find_all(:css,'.col-md-offset-3 h4', match: :first)   #verify nearBy trainer scheme name
-    end
+   expect(page).to have_css('.dors-well-other .col-md-offset-3 h4', match: :first, text: "Speed Control")  #Verify near By trainer scheme name
   end
 
 
 Then(/^I should see License Type for main trainer$/) do
   within('.dors-well')do
-expect(page).to have_css('.trainer-license-type-label', text: 'License Type')    #verify main trainer Licence name label
+expect(page).to have_css('.trainer-license-type-label', text: 'Licence Type')    #verify main trainer Licence name label
 expect(page).to have_css('.trainer-license-type')                                 #verify main trainer Licence name
 end
 end
 
 
 Then(/^I should see License Type for nearBy trainer$/) do
-    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'License Type')   #verify nearBy trainer Licence name label
+    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'Licence Type')   #verify nearBy trainer Licence name label
     expect(page).to have_css('.dors-well-other .trainer-license-type')                                 #verify nearBy trainer Licence name
   end
 
@@ -190,8 +187,29 @@ Then(/^I should see Expiry Date for main trainer$/) do
 Then(/^I should see Expiry Date for nearBy trainer$/) do
   expect(page).to have_css(".dors-well-other .nearBy-license-expirydate-label", text: 'Expiry Date')     #verify nearBy trainer Expiry date label
   expect(page).to have_css(".dors-well-other .nearBy-license-expirydate")                                 #verify nearBy trainer Expiry date value
+end
 
+
+Then(/^I can see "([^"]*)" has "([^"]*)" type licence on summary page$/)do |name, licence_type|
+  find_all(".main-trainer-fullname", match: :first, text: name)
+expect(page).to have_css(".dors-well .trainer-license-type", match: :first, text: licence_type)
+end
+
+And (/^I can see "([^"]*)" has "([^"]*)" course on summary page$/)do|name, course|
+ find_all(".main-trainer-fullname", match: :first, text: name)
+  expect(page).to have_css(".dors-well .col-lg-offset-3 h4", text: course)
+end
+
+
+When (/^I 'Pick a slot' on Request Assessment Page for "([^"]*)"course on summary page$/)do|trainer_name|
+
+end
+
+When (/^I 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |name|
+if (name == 'Heather Mcqueen_Auto')
+  find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
+end
+  if(name == 'Chris_Auto')
+    find_all(:button, 'Pick a slot')[1].click if find_all(:button, 'Pick a slot')[1]
   end
-
-
-
+  end
