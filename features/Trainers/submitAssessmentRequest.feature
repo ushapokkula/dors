@@ -175,8 +175,7 @@ Feature: submit assessment request feature
        When I select 'Pick a slot' on Request Assessment Page for "<trainer_name>"
        And I will be taken to "Pick a Course" page
        And I click Request assessment button against trainer I want to book an assessment
-       Then I can see selected "<trainer_name>" has "<Course_name>" course on summary page
-       And I can see selected "<trainer_name>" has "<Licence Type>" type licence on summary page
+       Then I can see selected "<trainer_name>" has same "<Course_name>" course type of "<Licence Type>" on summary page
        Examples:
        |trainer_name          |Course_name                      |Licence Type|
        | Heather Mcqueen_Auto |Speed Control                    |Theory      |
