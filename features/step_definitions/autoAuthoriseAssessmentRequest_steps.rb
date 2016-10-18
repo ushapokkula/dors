@@ -36,7 +36,7 @@ And (/^I should see the matching Force Area Name in Force Area Filters$/) do
 end
 
 When(/^I start typing three letters as "([^"]*)" in the trainer search force areas$/) do |chars|
-  find('.ui-select-search').set(chars)
+  find('#force-areas-filter-container input').set(chars)
 end
 
 Then(/^The system will start autopredicting it and the list of highlight "([^"]*)" appear$/) do |forceareaname|
@@ -45,7 +45,7 @@ Then(/^The system will start autopredicting it and the list of highlight "([^"]*
 end
 
 And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/) do |forceareaname|
-  find('.ui-select-search').send_keys(:enter)
+  find('#force-areas-filter-container input').send_keys(:enter)
   page.find_all(('linked_force_area_name')[0], text: forceareaname)
 end
 
@@ -147,8 +147,8 @@ end
 
 And(/^I include "([^"]*)" force$/) do |force|
   if force == "BRITISH TRANSPORT POLICE"
-    find('.ui-select-search').set(force)
-    find('.ui-select-search').send_keys(:enter)
+    find('#force-areas-filter-container input').set(force)
+    find('#force-areas-filter-container input').send_keys(:enter)
   else
     force == "All"
     find(".btn.btn-primary",text: 'Yes').click

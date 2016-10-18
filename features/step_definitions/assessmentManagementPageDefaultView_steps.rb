@@ -49,17 +49,13 @@ end
 
 And(/^I request assessment as "([^"]*)" of course type "([^"]*)"$/) do |assessment_type, licence_type|
   if (assessment_type == "Requested" && licence_type == "Theory")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.ngu_search_assessment_id_page.request_assessment
   elsif (assessment_type == "Requested" && licence_type == "Practical")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.assessment_management_default_view_page.request_assessment_with_practical
   elsif (assessment_type == "Booked" && licence_type == "Theory")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.ngu_search_assessment_id_page.book_assessment
   else
     (assessment_type == "Booked" && licence_type == "Practical")
-    @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
     @trainers.assessment_management_default_view_page.book_assessment_with_practical
   end
 end
@@ -90,13 +86,16 @@ end
 And(/^I select assessment status depending on "([^"]*)"$/) do |cancellation_type|
   find("#single-button").click
   if cancellation_type == "Rejected"
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").click
     find("#assessmentStatusChk2", visible: true).click
   elsif cancellation_type == "Cancelled"
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").click
     find("#assessmentStatusChk3", visible: true).click
   else
-    expect(page).to have_css(".dropdown-menu", visible: true)
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk0").click
     find("#assessmentStatusChk4", visible: true).click
   end
 end
@@ -105,11 +104,17 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
   if assessment_type == "Approved"
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
-    find("#assessmentStatusChk1", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk0")
+    page.find("#assessmentStatusChk0", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk1")
+    page.find("#assessmentStatusChk1", visible: true).click
   else
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
-    find("#assessmentStatusChk4", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk0")
+    page.find("#assessmentStatusChk0", visible: true).click
+    expect(page).to have_css("#assessmentStatusChk4")
+    page.find("#assessmentStatusChk4", visible: true).click
   end
 end
 
