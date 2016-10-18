@@ -156,7 +156,7 @@ Feature: Assessment Management Default View
   @DR-1146
   Scenario Outline: Verify the licence type for rejected/cancelled assessments in the assessment detailed view
     Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor"
+    And I i willlogin as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
     And I logout
