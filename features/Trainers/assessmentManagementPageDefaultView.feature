@@ -182,11 +182,11 @@ Feature: Assessment Management Default View
       | Booked          | Compliance Manager | Practical | Cancelled         |
 
 
-  @DR_1146  #review not completed for this due to bugs
+  @DR_1146
   Scenario Outline: Verify the licence type for Completed assessment in the assessment detailed view
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
-    #And I navigate to "REQUEST ASSESSMENT" page
+    And I navigate to "REQUEST ASSESSMENT" page
     And I deleted the assessments from Database
     And I request assessment as "<Assessment_Type>" of course type "<Type>"
     And I logout
