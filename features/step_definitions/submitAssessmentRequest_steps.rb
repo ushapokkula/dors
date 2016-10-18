@@ -157,7 +157,7 @@ end
 
 Then(/^I can see the Scheme Name for nearBy trainer$/)do
   expect(page).to have_css('.dors-well-other .col-md-offset-3 h4', match: :first, visible: true)  #Verify near By trainer scheme name
-  find_all('.dors-well-other .col-md-offset-3 h4', match: :first, text: "Speed Control")
+  find_all('.dors-well-other .col-md-offset-3 h4', match: :first, text: 'Speed Control')
 end
 
 
