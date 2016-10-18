@@ -123,8 +123,6 @@ And(/^I select possible outcome against each trainer depending on "([^"]*)"$/) d
     select('Absent', :from => 'status-392')
     select('Absent', :from => 'status-280')
   else
-    # select('Absent', :from => 'status-281')
-    # select('Absent', :from => 'status-280')
     @trainers.assessment_form_for_marking_outcome_page.select_outcome_against_trainer
   end
 end
