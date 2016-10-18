@@ -34,7 +34,7 @@ else
 end
 
 Capybara.configure do |config|
-  config.app_host = "https://auto.trainer.dors.wtg.co.uk"
+  config.app_host = "https://test1.trainer.dor"
 
   config.default_max_wait_time = 25
 end

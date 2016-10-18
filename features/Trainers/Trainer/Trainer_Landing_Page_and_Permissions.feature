@@ -1,4 +1,4 @@
-@DR-390 @DR-11 @pass
+@DR-390 @DR-11 @DR_1133 @pass
 Feature: Trainer Landing Page
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,
@@ -23,27 +23,32 @@ Feature: Trainer Landing Page
 
   @DR_1133
   Scenario Outline: Trainer Views My Licences Including Licence Types
-    When I login as a "Trainer1" user
+    When I login as a "Trainer7" user
     Then I will be directed to my landing page (i.e. My Licences)
-    And I can see Legend shown with "<Icon>" Icon
-    And I can see added licences
-    And I can see table has below "<Scheme Name>", "<Scheme Type>", "<Expiry Date>" details provided via Trainer Portal
-    And I can see below "<Scheme Type>" details provided via Trainer's Trainer Portal
+    And I can see added licences table
+    And I can see table has below "<Scheme Name>","<Status>","<Licence Type>","<Expiry Date>" details provided via Trainer Portal
     Examples:
-    |Scheme Name|Scheme Type|Expiry Date|Icon|
-    |           |           |           |    |
-    |           |           |           |    |
+    |Scheme Name                             |Status  |Licence Type |Expiry Date|
+    |Driving For Change                      |Full    | Practical   | 18-Oct-2018|
+    |National Driver Alertness Course        |Full    | Theory      | 18-Oct-2018|
+    |Motorway Course                         |Full    | Theory      | 18-Oct-2018|
+    |National Driver Alertness Course        |Full    | Practical   | 18-Oct-2018|
+    |National Speed Awareness                |Full    | Theory      | 18-Oct-2018|
+    |Speed Awareness                         |Full    | Theory      | 18-Oct-2018|
+    |RiDE                                    |Full    | Theory      | 18-Oct-2018|
+    |What's Driving Us?                      |Full    | Theory      | 18-Oct-2018|
 
 
-#    And scheme type will show "Theory" or "Practical"
-#    Then I can see a table with '4' columns
-#    And I can see Scheme Name
-#    And I can see Scheme Type
-#    And I can see Expiry Date
-
-
-
-
+   @DR_1133
+   Scenario Outline: Verify practical Licences Type on My Licences page
+     When I login as a "Trainer7" user
+     Then I will be directed to my landing page (i.e. My Licences)
+     And I can see added licences table
+     Then I can see "<Scheme Name>" course "<Licence Type>" type details on My Licences
+     Examples:
+     |Scheme Name                     |Licence Type|
+     |Driving For Change              | Practical   |
+     |National Driver Alertness Course| Practical   |
 
 
 
