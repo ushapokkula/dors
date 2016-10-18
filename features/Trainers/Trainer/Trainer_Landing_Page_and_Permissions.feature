@@ -41,7 +41,7 @@ Feature: Trainer Landing Page
 
    @DR_1133
    Scenario Outline: Verify practical Licences Type on My Licences page
-     When I login as a "Trainer7" user
+     When I login as a "Trainer8" user
      Then I will be directed to my landing page (i.e. My Licences)
      And I can see added licences table
      Then I can see "<Scheme Name>" course "<Licence Type>" type details on My Licences
