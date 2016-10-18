@@ -67,8 +67,14 @@ end
 Then(/^I see licence type "([^"]*)" against the trainer for each "([^"]*)" assessment in the assessment management page$/) do |licence_type, assessment_type|
   if (licence_type == "Practical" and assessment_type == "Requested")
     expect(page).to have_css(".trainer-licences-tyoe", count: 1, text: licence_type)
-  else
+  elsif (licence_type == "Theory" and assessment_type == "Booked")
+    expect(page).to have_css(".trainer-licences-tyoe", count: 3, text: licence_type)
+  elsif (licence_type == "Theory" and assessment_type == "Requested")
     expect(page).to have_css(".trainer-licences-tyoe", count: 2, text: licence_type)
+  else
+    puts expect(page).to have_css(".trainer-licences-tyoe", count: 2)
+    expect(all(".row.trainer-info-row .trainer-licences-tyoe")[0].text).to eql(licence_type)
+    expect(all(".row.trainer-info-row .trainer-licences-tyoe")[1].text).to eql("Theory")
   end
 end
 

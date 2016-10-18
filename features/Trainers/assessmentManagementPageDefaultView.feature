@@ -108,7 +108,7 @@ Feature: Assessment Management Default View
       | Booked          | Compliance Manager | Practical | Cancelled         |
 
 
-  @DR_1139  #unable to complete the review due to the bugs
+  @DR_1139
   Scenario Outline: Verify the licence type for completed assessment in the assessment management page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
