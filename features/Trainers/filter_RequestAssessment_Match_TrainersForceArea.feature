@@ -110,14 +110,14 @@ Feature: DR-268 and DR-719
     Then The first trainer name will be selected from the drop down list by default
 
   @DR-115 @verify_reset_button
-    Scenario: Verify the reset button visibility
+  Scenario: Verify the reset button visibility
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     When I click "REQUEST ASSESSMENT"
     Then I see "Reset" button is visible within filters section
 
   @DR-115 @verify_reset_functionality1
-    Scenario: Verify the X button functionality after filtering the trainer
+  Scenario: Verify the X button functionality after filtering the trainer
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
@@ -142,42 +142,23 @@ Feature: DR-268 and DR-719
     And the list of all trainer licence records matching "ESSEX POLICE"  force will be displayed
 
     Examples:
-    |Force|
-    |BRITISH TRANSPORT POLICE|
-    |All|
+      | Force                    |
+      | BRITISH TRANSPORT POLICE |
+      | All                      |
 
   @DR-115 @trainer_record_listing_fields
-    Scenario: Verify Trainer record listing fields
+  Scenario: Verify Trainer record listing fields
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
     When I select a trainer from auto predict list of trainer filter
     Then the system will show the trainer licence records they hold on the "Request Assessment" page
     And the listing will include the fields as below
-    |Listing_Fields|
-    |course Type   |
-    |Trainer ID    |
-    |Expiry Date   |
+      | Listing_Fields |
+      | course Type    |
+      | Trainer ID     |
+      | Expiry Date    |
     And the listing will also include Trainer Name and course name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
