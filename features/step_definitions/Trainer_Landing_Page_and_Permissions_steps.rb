@@ -34,7 +34,7 @@ expect(page).to have_css(".auto-trainer-id-label", text:'Trainer Id', visible: t
 expect(page).to have_css(".auto-trainer-id",  visible: true)
 end
 
-Then(/^I can see table has below "([^"]*)","([^"]*)","([^"]*)","([^"]*)" details provided via Trainer Portal$/) do |scheme_name, status, licence_type, expiry_date|
+Then(/^I can see table Licences details provided via Trainer Portal are displayed as "([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |scheme_name, status, licence_type, expiry_date|
 find_all(".auto-scheme-name", text: scheme_name, visible: true)
 find_all(".auto-license-status-label", text: 'Status', visible: true)
 find_all(".auto-license-status", text: status)

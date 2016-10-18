@@ -26,7 +26,7 @@ Feature: Trainer Landing Page
     When I login as a "Trainer7" user
     Then I will be directed to my landing page (i.e. My Licences)
     And I can see added licences table
-    And I can see table has below "<Scheme Name>","<Status>","<Licence Type>","<Expiry Date>" details provided via Trainer Portal
+    And I can see table Licences details provided via Trainer Portal are displayed as "<Scheme Name>","<Status>","<Licence Type>","<Expiry Date>"
     Examples:
     |Scheme Name                             |Status  |Licence Type |Expiry Date|
     |Driving For Change                      |Full    | Practical   | 18-Oct-2018|
