@@ -26,17 +26,17 @@ Feature: Trainer Landing Page
     When I login as a "Trainer7" user
     Then I will be directed to my landing page (i.e. My Licences)
     And I can see added licences table
-    And I can see table Licences details provided via Trainer Portal are displayed as "<Scheme Name>","<Status>","<Licence Type>","<Expiry Date>"
+    And I can see table Licences details provided via Trainer Portal are displayed as "<Scheme Name>","<Licence Type>","<Status>","<Expiry Date>"
     Examples:
-    |Scheme Name                             |Status  |Licence Type |Expiry Date|
-    |Driving For Change                      |Full    | Practical   | 18-Oct-2018|
-    |National Driver Alertness Course        |Full    | Theory      | 18-Oct-2018|
-    |Motorway Course                         |Full    | Theory      | 18-Oct-2018|
-    |National Driver Alertness Course        |Full    | Practical   | 18-Oct-2018|
-    |National Speed Awareness                |Full    | Theory      | 18-Oct-2018|
-    |Speed Awareness                         |Full    | Theory      | 18-Oct-2018|
-    |RiDE                                    |Full    | Theory      | 18-Oct-2018|
-    |What's Driving Us?                      |Full    | Theory      | 18-Oct-2018|
+    |Scheme Name                             |Licence Type |Status|  Expiry Date|
+    |Driving For Change                      | Practical   |Full  |  18-Oct-2018|
+    |National Driver Alertness Course        | Practical   |Full  |  18-Oct-2018|
+    |Motorway Course                         | Practical   |Full  |  18-Oct-2018|
+    |National Driver Alertness Course        | Practical   |Full  |  18-Oct-2018|
+    |National Speed Awareness                | Practical   |Full  |  18-Oct-2018|
+    |Speed Awareness                         | Practical   |Full  |  18-Oct-2018|
+    |RiDE                                    | Practical   |Full  |  18-Oct-2018|
+    |What's Driving Us?                      | Practical   |Full  |  18-Oct-2018|
 
 
    @DR_1133
