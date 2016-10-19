@@ -30,13 +30,13 @@ Feature: Trainer Landing Page
     Examples:
     |Scheme Name                             |Status  |Licence Type |Expiry Date|
     |Driving For Change                      |Full    | Practical   | 18-Oct-2018|
-    |National Driver Alertness Course        |Full    | Theory      | 18-Oct-2018|
-    |Motorway Course                         |Full    | Theory      | 18-Oct-2018|
-    |National Driver Alertness Course        |Full    | Practical   | 18-Oct-2018|
-    |National Speed Awareness                |Full    | Theory      | 18-Oct-2018|
-    |Speed Awareness                         |Full    | Theory      | 18-Oct-2018|
-    |RiDE                                    |Full    | Theory      | 18-Oct-2018|
-    |What's Driving Us?                      |Full    | Theory      | 18-Oct-2018|
+#    |National Driver Alertness Course        |Full    | Theory      | 18-Oct-2018|
+#    |Motorway Course                         |Full    | Theory      | 18-Oct-2018|
+#    |National Driver Alertness Course        |Full    | Practical   | 18-Oct-2018|
+#    |National Speed Awareness                |Full    | Theory      | 18-Oct-2018|
+#    |Speed Awareness                         |Full    | Theory      | 18-Oct-2018|
+#    |RiDE                                    |Full    | Theory      | 18-Oct-2018|
+#    |What's Driving Us?                      |Full    | Theory      | 18-Oct-2018|
 
 
    @DR_1133
