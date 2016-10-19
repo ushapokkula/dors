@@ -1,4 +1,4 @@
-@DR-390 @DR-11 @DR_1133 @pass
+@DR-390 @DR-11 @DR_1133
 Feature: Trainer Landing Page
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,
@@ -21,7 +21,7 @@ Feature: Trainer Landing Page
     When I login as a "Trainer2" user
     Then I should see "There are no licence records for you on the DORS+ system. If you believe this is incorrect, please contact your employer or NDORS Corporate Compliance Unit." No Licenses Message
 
-  @DR_1133
+  @DR_1133 @pass
   Scenario Outline: Trainer Views My Licences Including Licence Types
     When I login as a "Trainer7" user
     Then I will be directed to my landing page (i.e. My Licences)
@@ -39,7 +39,7 @@ Feature: Trainer Landing Page
     |What's Driving Us?                      | Theory      |Full  |  18-Oct-2018|
 
 
-   @DR_1133
+   @DR_1133  @pass
    Scenario Outline: Verify practical only Licences Type on My Licences page
      When I login as a "Trainer8" user
      Then I will be directed to my landing page (i.e. My Licences)
