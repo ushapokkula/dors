@@ -53,14 +53,8 @@ expect(page).to have_css(".auto-license-expirydate", text:expiry_date)
 end
 
 Then(/^I can see "([^"]*)" type "([^"]*)" course details in the table$/) do |licence_type,scheme_name|
-  if scheme_name == 'Driving For Change'
     expect(page).to have_css(".auto-scheme-name", text: scheme_name, visible: true)
     expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
     expect(page).to have_css(".auto-license-type",text: licence_type, visible: true)
-  else
-    expect(page).to have_css('.auto-scheme-name', text:scheme_name, visible: true)
-    expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
-    expect(page).to have_css('.auto-license-type', text:licence_type, visible: true)
-  end
   end
 
