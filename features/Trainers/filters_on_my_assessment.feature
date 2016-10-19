@@ -54,3 +54,21 @@ Feature: Filter on My Assessment page
       | APPROVED       | REJECTED       | Approved          | Rejected          |
       | REJECTED       | CANCELLED      | Rejected          | Cancelled         |
       | REJECTED       | COMPLETED      | Rejected          | Completed         |
+
+  @DR_385
+  Scenario: Verify the scheme filter visibility on my assessements page
+    Given the option to filter the list by courses is displayed
+    And no course filters are selected
+    And  no course filters are applied
+
+  @DR_385
+  Scenario Outline: Verify the trainers list after applying single course from course filter
+    Given the option to filter the list by courses is displayed
+    And no course filters are selected
+    And  no course filters are applied
+    When I select one "<string>" from the dropdown
+    Then the results are displayed showing only those trainers who fall under the selected course "<Course>"
+
+    Examples:
+      | Course       |
+      | Berks-Scheme |
