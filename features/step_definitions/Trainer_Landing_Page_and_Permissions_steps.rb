@@ -35,22 +35,22 @@ expect(page).to have_css(".auto-trainer-id",  visible: true)
 end
 
 Then(/^I can see table Licences details provided via Trainer Portal are displayed as "([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |scheme_name, status, licence_type, expiry_date|
-find_all(".auto-scheme-name", text: scheme_name, visible: true)
-find_all(".auto-license-status-label", text: 'Status', visible: true)
-find_all(".auto-license-status", text: status)
-find_all(".auto-license-type-label", text:'Licence Type', visible: true)
-find_all(".auto-license-type", text:licence_type, visible: true)
-find_all(".auto-license-expirydate-label", text:'Expiry Date', visible: true)
-find_all(".auto-license-expirydate", text:expiry_date)
+expect(page).to have_css(".auto-scheme-name", text: scheme_name, visible: true)
+expect(page).to have_css(".auto-license-status-label", text: 'Status', visible: true)
+expect(page).to have_css(".auto-license-status", text: status)
+expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
+expect(page).to have_css(".auto-license-type", text:licence_type, visible: true)
+expect(page).to have_css(".auto-license-expirydate-label", text:'Expiry Date', visible: true)
+expect(page).to have_css(".auto-license-expirydate", text:expiry_date)
 end
 
 Then(/^I can see "([^"]*)" course "([^"]*)" type details on My Licences$/) do |scheme_name,licence_type|
   if scheme_name == 'Driving For Change'
-    expect(page).to have_css(".auto-scheme-name", match: :first, text: scheme_name)
-    find_all(".auto-license-type", match: :first, text: licence_type)
+    expect(page).to have_css(".auto-scheme-name", text: scheme_name)
+    expect(page).to have_css(".auto-license-type",text: licence_type)
   else
-  find_all(('.auto-scheme-name')[1], text:scheme_name)
-  find_all(('.auto-license-type')[1], text:licence_type)
+    expect(page).to have_css(('.auto-scheme-name')[1], text:scheme_name)
+  expect(page).to have_css(('.auto-license-type')[1], text:licence_type)
   end
   end
 
