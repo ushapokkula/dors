@@ -26,31 +26,41 @@ Then(/^I should see "(.*?)" No Licenses Message$/)do |message|
 expect(page).to have_css(".alert.alert-info", text: message, visible:true)
 end
 
-Then(/^I can see added licences table$/) do
+Then(/^I can see a table with 4 columns$/) do
 expect(page).to have_css(".dors-well")
 expect(page).to have_css(".auto-trainer-full-name-label", text:'Trainer Name', visible: true)
 expect(page).to have_css(".auto-trainer-full-name", visible: true)
 expect(page).to have_css(".auto-trainer-id-label", text:'Trainer Id', visible: true)
 expect(page).to have_css(".auto-trainer-id",  visible: true)
+expect(page).to have_css(".auto-scheme-name", visible: true)
+expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
+expect(page).to have_css(".auto-license-type",  visible: true)
+expect(page).to have_css(".auto-license-status-label", text: 'Status', visible: true)
+expect(page).to have_css(".auto-license-status", visible: true)
+expect(page).to have_css(".auto-license-expirydate-label", text:'Expiry Date', visible: true)
+expect(page).to have_css(".auto-license-expirydate",visible: true)
+
 end
 
-Then(/^I can see table Licences details provided via Trainer Portal are displayed as "([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |scheme_name, status, licence_type, expiry_date|
+Then(/^I can see table details provided via Trainer Portal are displayed as "([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/) do |scheme_name, licence_type, status, expiry_date|
 expect(page).to have_css(".auto-scheme-name", text: scheme_name, visible: true)
+expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
+expect(page).to have_css(".auto-license-type", text: licence_type, visible: true)
 expect(page).to have_css(".auto-license-status-label", text: 'Status', visible: true)
 expect(page).to have_css(".auto-license-status", text: status)
-expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
-expect(page).to have_css(".auto-license-type", text:licence_type, visible: true)
 expect(page).to have_css(".auto-license-expirydate-label", text:'Expiry Date', visible: true)
 expect(page).to have_css(".auto-license-expirydate", text:expiry_date)
 end
 
-Then(/^I can see "([^"]*)" course "([^"]*)" type details on My Licences$/) do |scheme_name,licence_type|
+Then(/^I can see "([^"]*)" type "([^"]*)" course details in the table$/) do |licence_type,scheme_name|
   if scheme_name == 'Driving For Change'
-    expect(page).to have_css(".auto-scheme-name", text: scheme_name)
-    expect(page).to have_css(".auto-license-type",text: licence_type)
+    expect(page).to have_css(".auto-scheme-name", text: scheme_name, visible: true)
+    expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
+    expect(page).to have_css(".auto-license-type",text: licence_type, visible: true)
   else
-    expect(page).to have_css(('.auto-scheme-name')[1], text:scheme_name)
-  expect(page).to have_css(('.auto-license-type')[1], text:licence_type)
+    expect(page).to have_css('.auto-scheme-name', text:scheme_name, visible: true)
+    expect(page).to have_css(".auto-license-type-label", text:'Licence Type', visible: true)
+    expect(page).to have_css('.auto-license-type', text:licence_type, visible: true)
   end
   end
 

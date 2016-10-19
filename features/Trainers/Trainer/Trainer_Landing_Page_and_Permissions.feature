@@ -1,4 +1,5 @@
 @DR-390 @DR-11 @DR_1133 @pass
+
 Feature: Trainer Landing Page
   As a trainer user of the Licence Portal,
   I want to be able to have access to my licence page and my profile page after logging in,
@@ -25,26 +26,26 @@ Feature: Trainer Landing Page
   Scenario Outline: Trainer Views My Licences Including Licence Types
     When I login as a "Trainer7" user
     Then I will be directed to my landing page (i.e. My Licences)
-    And I can see added licences table
-    And I can see table Licences details provided via Trainer Portal are displayed as "<Scheme Name>","<Licence Type>","<Status>","<Expiry Date>"
+    And I can see a table with 4 columns
+    And I can see table details provided via Trainer Portal are displayed as "<Scheme Name>","<Licence Type>","<Status>","<Expiry Date>"
     Examples:
     |Scheme Name                             |Licence Type |Status|  Expiry Date|
     |Driving For Change                      | Practical   |Full  |  18-Oct-2018|
-    |National Driver Alertness Course        | Practical   |Full  |  18-Oct-2018|
-    |Motorway Course                         | Practical   |Full  |  18-Oct-2018|
-    |National Driver Alertness Course        | Practical   |Full  |  18-Oct-2018|
-    |National Speed Awareness                | Practical   |Full  |  18-Oct-2018|
-    |Speed Awareness                         | Practical   |Full  |  18-Oct-2018|
-    |RiDE                                    | Practical   |Full  |  18-Oct-2018|
-    |What's Driving Us?                      | Practical   |Full  |  18-Oct-2018|
+    |National Driver Alertness Course        | Theory      |Full  |  18-Oct-2018|
+    |Motorway Course                         | Theory      |Full  |  18-Oct-2018|
+    |National Driver Alertness Course        | Theory      |Full  |  18-Oct-2018|
+    |National Speed Awareness                | Theory      |Full  |  18-Oct-2018|
+    |Speed Awareness                         | Theory      |Full  |  18-Oct-2018|
+    |RiDE                                    | Theory      |Full  |  18-Oct-2018|
+    |What's Driving Us?                      | Theory      |Full  |  18-Oct-2018|
 
 
    @DR_1133
-   Scenario Outline: Verify practical Licences Type on My Licences page
+   Scenario Outline: Verify practical only Licences Type on My Licences page
      When I login as a "Trainer8" user
      Then I will be directed to my landing page (i.e. My Licences)
-     And I can see added licences table
-     Then I can see "<Scheme Name>" course "<Licence Type>" type details on My Licences
+     And I can see a table with 4 columns
+     Then I can see "<Licence Type>" type "<Scheme Name>" course details in the table
      Examples:
      |Scheme Name                     |Licence Type|
      |Driving For Change              | Practical   |
