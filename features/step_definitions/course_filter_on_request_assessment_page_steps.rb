@@ -4,11 +4,12 @@ And(/^the option to filter the list by courses is displayed$/) do
 end
 
 And(/^no course filters are selected$/) do
-  expect(find("#scheme-filter-container").value).to eq(nil)
+  #expect(find("#scheme-filter-container").value).to eq(nil)
+  expect(find("#txt-scheme-filter-search").value).to eq('')
 end
 
 And(/^no course filters are applied$/) do
-  expect(find("#scheme-filter-container input").value).to eql('')
+  expect(find("#txt-scheme-filter-search").value).to eql('')
 end
 
 When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|

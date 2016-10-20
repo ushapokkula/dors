@@ -183,3 +183,28 @@ When(/^I select "([^"]*)" and "([^"]*)" on My Assessments page$/)do |status_filt
   end
 
 end
+
+And(/^I can see "([^"]*)" section on My assessments page$/) do |section_header|
+ expect(page).to have_css(".panel-title.panel-title-adj-btn strong", visible:true, text:section_header)
+end
+
+And(/^I can see course filter under "([^"]*)" section with label "([^"]*)"$/) do |section_header, course_label|
+within(".panel.panel-default")do
+  expect(page).to have_css(".panel-title.panel-title-adj-btn strong", visible:true, text: section_header)
+  expect(page).to have_css(".col-md-3.has-feedback>label", visible:true, text: course_label)
+end
+end
+
+
+Then(/^I see that the assessments are displayed which belong to the selected "([^"]*)"$/) do |course_name|
+expect(page.all(".col-md-offset-3.col-md-3 h4")[0].text).to eq(course_name)
+end
+
+Then(/^I see assessments matching with that course filter are displayed$/) do
+expect(page).to have_css(".dors-well-other", visible:true,minimum:1)
+end
+
+Then(/^I see that the assessments are displayed which belong to the selected "([^"]*)","([^"]*)" and "([^"]*)"$/) do |course1, course2, course3|
+  expect(page.all(".col-md-offset-3.col-md-3 h4")[0].text).to eq(course1)
+  expect(page.all(".col-md-offset-3.col-md-3 h4")[1].text).to eq(course3)
+end
