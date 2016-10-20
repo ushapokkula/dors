@@ -69,53 +69,59 @@ Feature: Filter on My Assessment page
 
   @DR_385
   Scenario Outline: Verify the assessments list after applying single course from course filter
-    Given I request assessment as Booked
+    Given I request assessment as "<Type>"
     When I navigate to "MY ASSESSMENTS" page
     And I can see "Filters" section on My assessments page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
+    And I select assessment status depending on "<Type>"
     When I select one "<Course>" from the dropdown
     And I click "Apply"
     Then I see assessments matching with that course filter are displayed
     And I click "View Details"
-    Then I see that the assessments are displayed which belong to the selected "<Course>"
+    Then I see that the "<Type>" assessments are displayed which belong to the selected "<Course>"
 
     Examples:
-      | Course        |
-      | Speed Control |
+      | Type      | Course        |
+      | Requested | Speed Control |
+      | Booked    | Speed Control |
 
   @DR_385
   Scenario Outline: Verify the results after applying multiple courses from the filter without other filters
-    Given I request assessment as Booked
+    Given I request assessment as "<Type>"
     When I navigate to "MY ASSESSMENTS" page
     And I can see "Filters" section on My assessments page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
+    And I select assessment status depending on "<Type>"
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And I click "Apply"
     Then I see assessments matching with that course filter are displayed
     And I click "View Details"
-    Then I see that the assessments are displayed which belong to the selected "<Course1>","<Course2>" and "<Course3>"
+    Then I see that the "<Type>" assessments are displayed which belong to the selected "<Course1>","<Course2>" and "<Course3>"
 
 
     Examples:
-      | Course1       | Course2 | Course3                          |
-      | Speed Control | RiDE    | National Driver Alertness Course |
+      | Type      | Course1       | Course2 | Course3                          |
+      | Requested | Speed Control | RiDE    | National Driver Alertness Course |
+      | Booked    | Speed Control | RiDE    | National Driver Alertness Course |
 
   @DR_385
   Scenario Outline: Verify the message when there are no assessments matching course filter
-    Given I request assessment as Booked
+    Given I request assessment as "<Type>"
     When I navigate to "MY ASSESSMENTS" page
     And I can see "Filters" section on My assessments page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
+    And I select assessment status depending on "<Type>"
     When I select one "<Course>" from the dropdown
     And I click "Apply"
     Then I see the message "There are no assessments to display" on my assessments page
 
     Examples:
-      | Course |
-      | RiDE   |
+      | Type      | Course |
+      | Requested | RiDE   |
+      | Booked    | RiDE   |

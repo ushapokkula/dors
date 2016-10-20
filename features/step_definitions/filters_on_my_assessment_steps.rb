@@ -197,21 +197,44 @@ And(/^I can see course filter under "([^"]*)" section with label "([^"]*)"$/) do
 end
 
 
-Then(/^I see that the assessments are displayed which belong to the selected "([^"]*)"$/) do |course_name|
-  expect(page).to have_css("#assessment-title-header", visible:true, text: 'Assessment Outcome')
-  expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course_name)
+Then(/^I see that the "([^"]*)" assessments are displayed which belong to the selected "([^"]*)"$/) do |type, course_name|
+  if (type == "Requested")
+    expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Request')
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course_name)
+  else
+    expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Outcome')
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course_name)
+  end
 end
+
 
 Then(/^I see assessments matching with that course filter are displayed$/) do
   expect(page).to have_css(".dors-well-other", visible: true, minimum: 1)
 end
 
-Then(/^I see that the assessments are displayed which belong to the selected "([^"]*)","([^"]*)" and "([^"]*)"$/) do |course1, course2, course3|
-  expect(page).to have_css("#assessment-title-header", visible:true, text: 'Assessment Outcome')
-  expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
-  expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course3)
+Then(/^I see that the "([^"]*)" assessments are displayed which belong to the selected "([^"]*)","([^"]*)" and "([^"]*)"$/) do |type, course1, course2, course3|
+  if (type == "Requested")
+    expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Request')
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course1)
+  else
+    expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Outcome')
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course3)
+  end
 end
+
 
 Then(/^I see the message "([^"]*)" on my assessments page$/) do |message|
   expect(page).to have_css(".alert.alert-info", visible: true, text: message)
+end
+
+
+And(/^I select assessment status depending on "([^"]*)"$/) do |type|
+  if type == "Requested"
+    find("#single-button").click
+    expect(page).to have_css(".dropdown-menu", visible: true)
+    find("#assessmentStatusChk0", visible: true).click
+    find("#assessmentStatusChk1", visible: true).click
+  end
 end
