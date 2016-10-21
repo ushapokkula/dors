@@ -12,9 +12,9 @@
 
     Examples:
       | Assessor Name|
-      | bob         |
+      | dee         |
       | tes         |
-      | roo         |
+      | ani         |
 
 
     Scenario Outline: Verify the validation message for 'no assessor exists' for invalid Trainer ID
@@ -24,7 +24,7 @@
       Then I see the message "No such assessor exists."
       Examples:
         |Assessor Name|
-        |120112012010|
+        |0123456sfvdbd|
         |111111111111111|
         |00000000000000|
 
