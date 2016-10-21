@@ -19,8 +19,7 @@
     And I can see default Assessor filter on Assessment Management Page
     And default Assessor filter will have no selection
 
-
-  Scenario Outline: search for assessors by Assessor name
+    Scenario Outline: search for assessors by Assessor name
     And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
     Then The system will start autopredicting it and the list of assessor appears
     Examples:
@@ -29,16 +28,14 @@
       | tes         |
       | ani         |
 
-
-    Scenario Outline: Verify the validation message for 'no assessor exists' for invalid Trainer ID
+    Scenario Outline: Verify the validation message for 'no assessor exists' for invalid Assessor name
       When I start typing invalid assessor name as "<Assessor Name>" in the assessor search field
       Then I see the message "No such assessor exists."
       Examples:
         |Assessor Name|
         |0123456sfvdbd|
         |111111testtest34|
-        |00000000000000|
-
+        |0_0"Tes00000_u000|
 
     Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
       When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
@@ -51,7 +48,7 @@
         | dee          | deena grit (0123456)   |
 
 
-    Scenario Outline: Verify trainer details by moving up and down arrow keys from auto-predict list
+    Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
       And The system will start autopredicting it and the list of assessor appears
       When I hit DOWN arrow key from the assessor auto predict list
@@ -62,30 +59,50 @@
         | Assessor Name |
         | roo           |
 
-    Scenario Outline: Verify 'no assessment records' are found in the database for selected filter criteria on assessment management page
-      When I login as an "<Assessor1>"
-      Then I navigate to "REQUEST ASSESSMENT" page
-      And I deleted the assessments from Database
-      Then I request assessment
+    Scenario Outline: Verify 'no assessment records' are found in the database for selected assessor filter criteria on assessment management page
       And I logout
-      And I login as an "<Assessor2>"
+      When I login as an "<Assessor1>"
       Then I navigate to "REQUEST ASSESSMENT" page
       And I deleted the assessments from Database
       Then I request assessment
       And I logout
       And I login as an "Compliance Manager"
       Then I navigate to "ASSESSMENT MANAGEMENT" page
-      Then I am on the Assessments Management page
-      When I click 'Assessment Status' dropdown button
-      Then I see 'Requested' status is in selected status
-      And I enter "<start date>" in start date field
-      And I enter "<end date>" in End date field
-      And I search with assessor "<First Name>" and "<Last Name>" in the assessor search field
+      When I am on the Assessment Management page
+      Then I click 'Assessment Status' dropdown button
+      And I see 'Requested' status is in selected status
+      And I search with assessor "<Assessor Name>" in the assessor search field
+      And I click "Apply" button
       Then I should see a message "There are no assessments to display."
       Examples:
-        |First Name          | Last Name      |start date|end date|Assessor1|Assessor2|
-        | deena               |grit           |5/08/2016|09/11/2016| Assessor3|Assessor|
-        |sudiv                |p              |5/08/2016|09/11/2016| Assessor3|Assessor|
+        |Assessor Name|Assessor1|
+        |ali mashadi  | Assessor|
+        |david abiom   | Assessor|
+
+    Scenario Outline: Verify assessment records for selected assessor in assessor filter on assessment management page
+      And I logout
+      When I login as an "<Assessor1>"
+      Then I navigate to "REQUEST ASSESSMENT" page
+      And I deleted the assessments from Database
+      Then I request assessment
+      And I logout
+      When I login as an "<Assessor2>"
+      Then I navigate to "REQUEST ASSESSMENT" page
+      Then I request assessment
+      And I logout
+      And I login as an "Compliance Manager"
+      Then I navigate to "ASSESSMENT MANAGEMENT" page
+      When I am on the Assessment Management page
+      Then I click 'Assessment Status' dropdown button
+      And I see 'Requested' status is in selected status
+      And I search with assessor "<Assessor Name>" in the assessor search field
+      And I click "Apply" button
+      Then assessments will be shown which fall under selected Assessor "<Assessor Name>"
+
+      Examples:
+        |Assessor Name  |Assessor1|Assessor2|
+        |deena grit     |Assessor3|Assessor |
+        |sudiv p        | Assessor3|Assessor|
 
       
 

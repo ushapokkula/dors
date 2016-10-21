@@ -51,3 +51,18 @@ end
 And (/^default Assessor filter will have no selection$/)do
   expect(find("#txt-assessor-name").value).to eq('')
 end
+
+And (/^I search with assessor "([^"]*)" in the assessor search field$/)do|assessor_name|
+find("#txt-assessor-name").set(assessor_name)
+expect(page).to have_css("#txt-assessor-name + ul li")
+if (page.should have_no_css(".text-danger"))
+  expect(page.all("#txt-assessor-name + ul li").count).to be > 0
+end
+find('#txt-assessor-name').send_keys(:enter)
+end
+
+Then(/^assessments will be shown which fall under selected Assessor "([^"]*)"$/) do |assessor_name|
+  expect(page).to have_css(".dors-table", :count=>1, visible: true)
+  expect(page).to have_css(".assessor-name", text: assessor_name, visible: true)
+  expect(page).to have_css(".trainer-outcomeStatus", visible: true)
+end
