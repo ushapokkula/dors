@@ -84,6 +84,7 @@ Then(/^I revert back the assessor number to "([^"]*)"$/) do |assessor_number|
 end
 
 And(/^I see the success message "([^"]*)" on the assessor page$/) do |message|
+  sleep 3
   expect(page).to have_css(".toast-message", text: message)
 end
 
