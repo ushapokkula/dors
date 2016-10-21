@@ -4,12 +4,25 @@
     I want to able to filter records on Assessments Management page,
     so that I can focus on items of interest.
 
-  Scenario Outline: search for assessments  by Assessor name
-    And I login as an "Compliance Manager"
-    When I navigate to "ASSESSMENT MANAGEMENT" page
+    Background:
+      Given that I have licence.ndors.org.uk page opened
+      When I login as an "Compliance Manager"
+      Then I am on the Assessment Management page
+      And I deleted the assessments from Database
+      And I click "ASSESSMENT MANAGEMENT"
+      Then I should see a message "There are no assessments to display."
+      When I click 'Assessment Status' dropdown button
+      Then I see 'Requested' status is in selected status
+      And default Date range filter will have no selection
+
+  Scenario: Verify defalut view of the Assessment Management page
+    And I can see default Assessor filter on Assessment Management Page
+    And default Assessor filter will have no selection
+
+
+  Scenario Outline: search for assessors by Assessor name
     And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
     Then The system will start autopredicting it and the list of assessor appears
-
     Examples:
       | Assessor Name|
       | dee         |
@@ -18,33 +31,27 @@
 
 
     Scenario Outline: Verify the validation message for 'no assessor exists' for invalid Trainer ID
-      And I login as an "Compliance Manager"
-      When I navigate to "ASSESSMENT MANAGEMENT" page
-      When I start typing invalid trainer id as "<Assessor Name>" in the assessor search field
+      When I start typing invalid assessor name as "<Assessor Name>" in the assessor search field
       Then I see the message "No such assessor exists."
       Examples:
         |Assessor Name|
         |0123456sfvdbd|
-        |111111111111111|
+        |111111testtest34|
         |00000000000000|
 
 
     Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
-      And I login as an "Compliance Manager"
-      When I navigate to "ASSESSMENT MANAGEMENT" page
-      When I start typing atleast three characters as "<assessor Name>" in the assessor search field
+      When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
       Then The system will start autopredicting it and the list of assessor appears
       When I hit enter after typing first three characters of assessor name as "<Assessor Name>"
-      Then searched trainer "<Name>" name includes assessor full name and assessor ID
-      Then The first name "<Name>" will be selected from the auto predict list
+      Then searched assessor "<Name>" name includes assessor full name and assessor ID
+      Then Assessor first name "<Name>" will be selected from the auto predict list
       Examples:
         | Assessor Name |Name                   |
         | dee          | deena grit (0123456)   |
 
 
     Scenario Outline: Verify trainer details by moving up and down arrow keys from auto-predict list
-      And I login as an "Compliance Manager"
-      When I navigate to "ASSESSMENT MANAGEMENT" page
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
       And The system will start autopredicting it and the list of assessor appears
       When I hit DOWN arrow key from the assessor auto predict list
