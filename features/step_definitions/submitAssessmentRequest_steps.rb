@@ -123,7 +123,7 @@ end
 
 And(/^the primary trainer by default it will be checked and disabled$/) do
    expect(page).to have_css(".include-main-trainer-checkbox[disabled='disabled']:nth-child(1)", visible:true)
-   find_all(".include-main-trainer-checkbox[type='checkbox']")[1].should be_checked
+   find_all(".include-main-trainer-checkbox[type='checkbox']")[0].should be_checked
 end
 
 
