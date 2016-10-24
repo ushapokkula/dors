@@ -20,7 +20,7 @@
     And default Assessor filter will have no selection
 
     Scenario Outline: search for assessors by Assessor name
-    And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
+    When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
     Then The system will start autopredicting it and the list of assessor appears
     Examples:
       | Assessor Name|
@@ -44,9 +44,9 @@
       Then searched assessor "<Name>" name includes assessor full name and assessor ID
       Then Assessor first name "<Name>" will be selected from the auto predict list
       Examples:
-        | Assessor Name |Name                   |
-        | dee          | deena grit (0123456)   |
-
+        | Assessor Name |Name                 |
+        |dee            |deena grit (0123456) |
+        |sud            |sudiv p (11111)      |
 
     Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
@@ -61,7 +61,7 @@
 
     Scenario Outline: Verify 'no assessment records' are found in the database for selected assessor filter criteria on assessment management page
       And I logout
-      When I login as an "<Assessor1>"
+      When I login as an "Assessor"
       Then I navigate to "REQUEST ASSESSMENT" page
       And I deleted the assessments from Database
       Then I request assessment
@@ -75,18 +75,18 @@
       And I click "Apply" button
       Then I should see a message "There are no assessments to display."
       Examples:
-        |Assessor Name|Assessor1|
-        |ali mashadi  | Assessor|
-        |david abiom   | Assessor|
+        |Assessor Name|
+        |ali mashadi  |
+        |david abiom  |
 
     Scenario Outline: Verify assessment records for selected assessor in assessor filter on assessment management page
       And I logout
-      When I login as an "<Assessor1>"
+      When I login as an "Assessor"
       Then I navigate to "REQUEST ASSESSMENT" page
       And I deleted the assessments from Database
       Then I request assessment
       And I logout
-      When I login as an "<Assessor2>"
+      When I login as an "Assessor3"
       Then I navigate to "REQUEST ASSESSMENT" page
       Then I request assessment
       And I logout
@@ -100,9 +100,9 @@
       Then assessments will be shown which fall under selected Assessor "<Assessor Name>"
 
       Examples:
-        |Assessor Name  |Assessor1|Assessor2|
-        |deena grit     |Assessor3|Assessor |
-        |sudiv p        | Assessor3|Assessor|
+        |Assessor Name  |
+        |deena grit     |
+        |sudiv p        |
 
       
 
