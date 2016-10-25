@@ -44,7 +44,7 @@ Feature: submit assessment request feature
     And The notes field will take free text upto 1000 characters
     When I enter characters in the mileage field apart from numbers
     And more than 1000 characters in notes field
-    Then I should not be able to enter Invalid or morethan 1000 characters in mileage and notes field respectively
+    Then I should not be able to enter Invalid or more than 1000 characters in mileage and notes field respectively
 
   @submit_request_status
   Scenario: Verify the Submit request and its status in database
@@ -73,10 +73,10 @@ Feature: submit assessment request feature
     And I login as an "Assessor"
     And I am on Assessment Request Summary page
     When I click Cancel on this page without entering any data into mileage and notes field
-    And I will be redirected back to the Pick a Slot page
+    And I will be redirected back to the Pick a course page
     When I enter data into mileage and notes field
     And I click "Cancel"
-    Then I will be redirected back to the Pick a Slot page
+    Then I will be redirected back to the Pick a course page
 
   @DR-927 @replace_licence_code_trainerid
   Scenario: licence code is replaced by trainer id
@@ -100,14 +100,14 @@ Feature: submit assessment request feature
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I navigate to "REQUEST ASSESSMENT" page
-    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    When I click 'Pick a course' on Request Assessment Page against a Trainer i want to assess
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
     And the primary trainer will be shown with "Include this trainer" checkbox on summary page
     And the primary trainer by default it will be checked and disabled
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in requested assessment
+    When I Pick a course against the trainer which has same scheme as the trainer who is in requested assessment
     Then the assessment id is displayed under main trainer details against the trainer who is already in assessment
 
   @DR-927 @show_assessment_id_under_nearby_trainers
@@ -116,7 +116,7 @@ Feature: submit assessment request feature
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I navigate to "REQUEST ASSESSMENT" page
-    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    When I click 'Pick a course' on Request Assessment Page against a Trainer i want to assess
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
     And the primary trainer will be shown with "Include this trainer" checkbox on summary page
@@ -124,7 +124,7 @@ Feature: submit assessment request feature
     And I include trainer in near by course
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    When I Pick a slot against the trainer which has same scheme as the trainer who is in booked assessment
+    When I Pick a course against the trainer which has same scheme as the trainer who is in booked assessment
     Then the assessment id is displayed under nearby trainer details against the trainer who is already in assessment
 
   @DR-927 @hide_course
@@ -133,18 +133,18 @@ Feature: submit assessment request feature
     And I login as an "Assessor"
     And I deleted the assessments from Database
     And I navigate to "REQUEST ASSESSMENT" page
-    When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+    When I click 'Pick a course' on Request Assessment Page against a Trainer i want to assess
     Then I will be taken to "Pick a Course" page
     And I click Request assessment button against trainer I want to book an assessment
     And the primary trainer will be shown with "Include this trainer" checkbox on summary page
     And the primary trainer by default it will be checked and disabled
     And I click "Submit"
     And I see the success message for requested assessment with date and assessment ID
-    And I Pick first slot
+    And I Pick first course
     And I click Request assessment button against trainer I want to book an assessment
     And I include all the trainers from "Speed Control" scheme as the trainer who is in assessment
     And I click "Submit"
-    When I Pick first slot
+    When I Pick first course
     And I click Request assessment button against trainer I want to book an assessment
     Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
 

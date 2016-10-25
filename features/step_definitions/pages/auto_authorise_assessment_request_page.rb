@@ -8,7 +8,7 @@ class AutoAuthoriseAssessmentRequestPage < SitePrism::Page
 
   def navigate_assessment_request_summary_page
     find('a', text: "REQUEST ASSESSMENT").click
-    find(:button, 'Pick a slot', match: :first)
+    find(:button, 'Pick a course', match: :first)
     all(".btn.btn-primary:nth-child(2)")[2].click
     find(:button, 'Request Assessment', match: :first).click
   end

@@ -65,7 +65,7 @@ end
 And(/^I request assessment to be Booked$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   find('a', text: "REQUEST ASSESSMENT").click
-  find(:button, 'Pick a slot', match: :first).click
+  find(:button, 'Pick a course', match: :first).click
   find(:button, 'Request Assessment', match: :first).click
   find(".include-nearby-trainer-checkbox", match: :first).click
   #all('.include-main-trainer-checkbox')[0].click

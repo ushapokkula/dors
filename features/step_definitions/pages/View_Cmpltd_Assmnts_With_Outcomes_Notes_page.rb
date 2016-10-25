@@ -7,7 +7,7 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
 
   def request_Assessment_includes_nearby_trainer
     click_link("REQUEST ASSESSMENT")
-    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+    find(:button,'Pick a course',match: :first).click if find(:button,'Pick a course', match: :first)
     first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
     page.find_all('.dors-well-other')[1]
     first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)
@@ -20,7 +20,7 @@ class ViewCmpltdAssmntsWithOutcomesNotesPage < SitePrism::Page
 
  def book_Assessment_includes_nearby_trainer
    click_link("REQUEST ASSESSMENT")
-   find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+   find(:button,'Pick a course',match: :first).click if find(:button,'Pick a course', match: :first)
    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
    page.find_all('.dors-well-other')[1]
    first('.include-nearby-trainer-checkbox').click if find('.include-nearby-trainer-checkbox',match: :first)

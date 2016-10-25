@@ -53,8 +53,8 @@ And(/^I will see that the licenses are unique to the scheme$/)do
 end
 
 
-When(/^I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess$/) do
-  find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
+When(/^I click 'Pick a course' on Request Assessment Page against a Trainer i want to assess$/) do
+  find(:button, 'Pick a course', match: :first).click if find(:button, 'Pick a course', match: :first)
   #@trainers.trainers_listing_page.pick_a_slot
 end
 
@@ -67,8 +67,8 @@ Then(/^The system will display a list of courses the selected trainer is deliver
   expect(page.all(".dors-well-other").count).to be > 0
 end
 
-When(/^I click 'Pick a slot' on Request Assessment Page$/) do
-  find(:button, 'Pick a slot', match: :first).click
+When(/^I click 'Pick a course' on Request Assessment Page$/) do
+  find(:button, 'Pick a course', match: :first).click
 end
 
 And(/^I see the Expiry Date is in dd-Mmm-YYYY format$/)do
@@ -80,9 +80,9 @@ Then(/^I validate the course dates delivered by trainer are of future dates only
   @trainers.trainers_listing_page.pick_a_slot_to_verify_course_dates
 end
 
-When(/^The system will display the following details on Pick slot page$/) do |table|
+When(/^The system will display the following details on Pick a course page$/) do |table|
   new_table =table.hashes
-  @trainers.trainers_listing_page.verify_details_on_pickaslot(new_table)
+  @trainers.trainers_listing_page.verify_details_on_pickacourse(new_table)
 end
 
 When(/^The page will also show primary trainers Full Name,secondary trainer fullname$/) do
@@ -111,11 +111,11 @@ And(/^the term "([^"]*)" is not shown against trainers on pick a course page$/) 
   expect(page).to have_no_content(secondary_trainer)
 end
 
-When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in requested assessment$/) do
+When(/^I Pick a course against the trainer which has same scheme as the trainer who is in requested assessment$/) do
   all(".btn.btn-primary:nth-child(2)")[4].click
 end
 
-When(/^I Pick a slot against the trainer which has same scheme as the trainer who is in booked assessment$/) do
+When(/^I Pick a course against the trainer which has same scheme as the trainer who is in booked assessment$/) do
   all(".btn.btn-primary:nth-child(2)")[3].click
 end
 

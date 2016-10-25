@@ -1,4 +1,4 @@
-Given(/^I am on Pick a Slot Page$/) do
+Given(/^I am on Pick a course Page$/) do
 
 end
 
@@ -19,7 +19,7 @@ And(/^more than 1000 characters in notes field$/)do
   @trainers.submit_assessment_request_page.verify_notes_field_limit(1500)
 end
 
-Then(/^I should not be able to enter Invalid or morethan 1000 characters in mileage and notes field respectively$/)do
+Then(/^I should not be able to enter Invalid or more than 1000 characters in mileage and notes field respectively$/)do
   find("#mileage").value == ''
   find("#notes").value.length
   find("#notes").value.length == 1000
@@ -52,7 +52,7 @@ And(/^I click Cancel on this page without entering any data into mileage and not
 click_button("Cancel")
 end
 
-And(/^I will be redirected back to the Pick a Slot page$/)do
+And(/^I will be redirected back to the Pick a course page$/)do
   expect(page).to have_css('h1', text: "Request Assessment")
 end
 
@@ -139,8 +139,8 @@ Then(/^the assessment id is displayed under nearby trainer details against the t
   expect(page).to have_css(".auto-trainer-on-assessment", text:$booked_status)
 end
 
-And(/^I Pick first slot$/) do
-  find(:button, 'Pick a slot', match: :first).click
+And(/^I Pick first course$/) do
+  find(:button, 'Pick a course', match: :first).click
 end
 
 And(/^I include all the trainers from "([^"]*)" scheme as the trainer who is in assessment$/) do |scheme_name|

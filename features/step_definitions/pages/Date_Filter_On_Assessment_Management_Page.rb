@@ -31,7 +31,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
 
   def request_assessments_without_nearby_course
     click_link("REQUEST ASSESSMENT")
-    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+    find(:button,'Pick a course',match: :first).click if find(:button,'Pick a course', match: :first)
     first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
      fill_in('mileage',:with=>'500')  #adding mileage#
     fill_in('notes',:with=>'Test')
@@ -45,7 +45,7 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   def book_assessments_without_milage
     click_link("REQUEST ASSESSMENT")
     expect(page).to have_css("h1", text: 'Request Assessment')
-    find(:button,'Pick a slot',match: :first).click if find(:button,'Pick a slot', match: :first)
+    find(:button,'Pick a course',match: :first).click if find(:button,'Pick a course', match: :first)
    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
    page.find_all(".include-nearby-trainer-checkbox", match: :first)
    find('.include-nearby-trainer-checkbox', match: :first).click if find('.include-nearby-trainer-checkbox', match: :first)

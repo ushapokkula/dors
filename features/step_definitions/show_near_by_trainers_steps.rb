@@ -1,7 +1,7 @@
 Given(/^I am on Pick a course page$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   find('a', text: "REQUEST ASSESSMENT").click
-  find(:button, 'Pick a slot', match: :first).click
+  find(:button, 'Pick a course', match: :first).click
 
 end
 

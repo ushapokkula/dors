@@ -126,7 +126,7 @@ class TrainersListingPage < SitePrism::Page
     page.evaluate_script('window.history.back()')
     end
 
-  def verify_details_on_pickaslot(new_table)
+  def verify_details_on_pickacourse(new_table)
 
     columns = new_table.map { |x| x['Display_Items'] }
     for i in 0...columns.size
