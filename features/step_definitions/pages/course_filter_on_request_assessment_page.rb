@@ -1,11 +1,12 @@
 class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   elements :scheme_list, ".license-scheme-name"
-  element :scheme_filter, "#scheme-filter-container input"
+  element :scheme_filter, "#txt-scheme-filter-search"
   element :trainer_filter, "#txt-trainer-name"
   elements :trainer_id_list, ".trainer-licenseCode"
   element :force_filter, "#force-areas-filter-container input"
   element :force_filter_container, "#force-areas-filter-container"
   elements :trainer_fullname, ".trainer-full-name"
+  element  :filter_section, ".panel-heading.clearfix"
 
 
   def verify_trainers_list_single_course(course_name)
@@ -19,7 +20,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
     scheme_filter.set(course_name)
     expect(page).to have_css(".ui-select-choices", visible: true)
     scheme_filter.send_keys(:enter)
-    trainer_filter.click #to collpase the filter
+    filter_section.click #to collpase the filter
   end
 
   def verify_filter_for_multiple_course(course1, course2, course3)
@@ -29,7 +30,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
     scheme_filter.send_keys(:enter)
     scheme_filter.set(course3)
     scheme_filter.send_keys(:enter)
-    trainer_filter.click
+    filter_section.click
   end
 
   def verify_trainer_list_multiple_courses(course1, course2, course3)
