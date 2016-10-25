@@ -3,7 +3,7 @@ And (/^I request assessment$/) do
 end
 
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/) do
-  expect(page).to have_css("h1", text: 'My assessments') #verifying header#
+  expect(page).to have_css("h1", text: 'My Assessments') #verifying header#
   page.find("#single-button", visible: true).click
   check('assessmentStatusChk0')
 end
