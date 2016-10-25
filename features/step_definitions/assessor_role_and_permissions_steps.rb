@@ -31,7 +31,7 @@ And(/^I request assessments to be booked$/) do
 end
 
 When(/^I click View Details button for the assessment$/)do
-  expect(page).to have_css("h1", text: "My assessments")
+  expect(page).to have_css("h1", text: "My Assessments")
   expect(page).to have_css(".dors-well-other")
   find(:button, "View Details" , match: :first).click
 end
