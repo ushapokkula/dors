@@ -10,7 +10,7 @@ Feature: Filter on My Assessment page
   @my_assessment_status_filter1
   Scenario: Verify the assessment status filter visibility on My Assessments page and default view
     And I am on the My Assessments page
-    When The default view of the page of My assessments is loaded
+    When The default view of the page of My Assessments is loaded
     Then I can see the assessment status filter with these following options on My Assessments page
       | Expected Status Filters |
       | Requested               |
@@ -29,13 +29,13 @@ Feature: Filter on My Assessment page
       | Rejected                |
       | Cancelled               |
       | Completed               |
-    Then I see that the "Approved" option is selected by default on my assessments page
+    Then I see that the "Approved" option is selected by default on My Assessments page
 
   @my_assessment_status_filter3
   Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
     And I am on the My Assessments page
     When I select "<Status Filter>" on My Assessments page
-    Then Only those assessments will be shown with status as "<Status Assertion>" on My assessments page
+    Then Only those assessments will be shown with status as "<Status Assertion>" on My Assessments page
 
     Examples:
       | Status Filter | Status Assertion |
@@ -59,7 +59,7 @@ Feature: Filter on My Assessment page
       | REJECTED       | CANCELLED      | Rejected          | Cancelled         |
       | REJECTED       | COMPLETED      | Rejected          | Completed         |
 
-  @DR_385
+  @DR_385 @pass
   Scenario: Verify the scheme filter visibility on my assessements page
     Given I am on the My Assessments page
     And I can see "Filters" section on My assessments page
@@ -67,7 +67,7 @@ Feature: Filter on My Assessment page
     And no course filters are selected
     And  no course filters are applied
 
-  @DR_385
+  @DR_385   @pass
   Scenario Outline: Verify the assessments list after applying single course from course filter
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -88,7 +88,7 @@ Feature: Filter on My Assessment page
       | Requested | Speed Control |
       | Booked    | Speed Control |
 
-  @DR_385
+  @DR_385   @pass
   Scenario Outline: Verify the results after applying multiple courses from the filter without other filters
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -110,7 +110,7 @@ Feature: Filter on My Assessment page
       | Requested | Speed Control | RiDE    | National Driver Alertness Course |
       | Booked    | Speed Control | RiDE    | National Driver Alertness Course |
 
-  @DR_385
+  @DR_385  @pass
   Scenario Outline: Verify the message when there are no assessments matching course filter
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
