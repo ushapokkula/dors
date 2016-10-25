@@ -93,7 +93,7 @@ so that I can ensure my account security and continued access to the system.
     And I will be re directed to "<home_page>" page
     Examples:
       |user     |current_pwd|password |confirm_pwd|home_page     |
-      |Assessor5| P@ssw0rd2  |P@ssw0rd7 |P@ssw0rd7 |My assessments|
+      |Assessor5| P@ssw0rd2  |P@ssw0rd7 |P@ssw0rd7 |My Assessments|
       |Trainer3 | test@?12   |P@ssw0rd3 |P@ssw0rd3 |My Licenses   |
 
 

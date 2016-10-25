@@ -24,7 +24,7 @@ Feature: Show Assessment ID
     And I request assessment
     And I navigate to "MY ASSESSMENTS" page
     Then I select 'Requested' status from 'Assessment Status' dropdown
-    And I click on "View Details" button on 'My assessments' page
+    And I click on "View Details" button on 'My Assessments' page
     And I should see "Assessment ID" on detailed view of assessment request
 
   Scenario: The summary view of assessment requests on Manage Assessments page should show the Assessment ID1.
@@ -77,7 +77,7 @@ Feature: Show Assessment ID
     Then I request assessment as "<Type>"
     And I navigate to "MY ASSESSMENTS" page
     Then I select assessment status depending on "<User>" and "<Type>"
-    And I click on "View Details" button on 'My assessments' page
+    And I click on "View Details" button on 'My Assessments' page
     Then I see assessor address is replaced by assessor number
 
     Examples:
@@ -108,7 +108,7 @@ Feature: Show Assessment ID
     And I login as an "Assessor3"
     And I click "MY ASSESSMENTS"
     And I select 'Requested' status from 'Assessment Status' dropdown
-    When I click on "View Details" button on 'My assessments' page
+    When I click on "View Details" button on 'My Assessments' page
     Then I see in assessor section there is no assessor number displayed
 
 

@@ -27,7 +27,7 @@ end
 
 
 Then (/^I load detailed view of 'Completed' Assessment from 'My Assessments' page$/)do
-  expect(page).to have_css("h1", text: 'My assessments')
+  expect(page).to have_css("h1", text: 'My Assessments')
   page.find("#single-button",visible: true).click  #clicking on  'Assessment status dropdown'
   WaitUtil.wait_for_condition("#single-button + .dropdown-menu", :timeout_sec => 8, :delay_sec => 0.5) do   #wait for dropdown to be visible
    expect(page).to have_css("#assessmentStatusChk4", visible: true)

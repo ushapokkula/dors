@@ -188,7 +188,7 @@ Then(/^Only those assessments will be shown with status as "([^"]*)" and "([^"]*
   @trainers.filters_on_assessment_management_page.verify_combination_status(status1, status2)
 end
 
-Then(/^Only those assessments will be shown with status as "([^"]*)" on My assessments page$/) do |status|
+Then(/^Only those assessments will be shown with status as "([^"]*)" on My Assessments page$/) do |status|
   expect(page).to have_css(".dors-well-other")
   expect(page.all(".dors-well-other").count).to be > 0
   @trainers.filters_on_assessment_management_page.verify_assessment_status(status)

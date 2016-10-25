@@ -14,7 +14,7 @@ When (/^I click Cancel button on profile page$/) do
 end
 
 And(/^I will be redirected to 'MY ASSESSMENTS' page$/) do
-  expect(page).to have_css("h1", text: "My assessments")
+  expect(page).to have_css("h1", text: "My Assessments")
 end
 
 Then (/^unsaved changes will be lost$/)do

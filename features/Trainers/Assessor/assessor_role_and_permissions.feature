@@ -6,14 +6,14 @@ Feature: Assessor Role and Permissions
     Given that I have licence.ndors.org.uk page opened
 
   @role_permission1
-  Scenario: Verify the access to Request Assessment, My assessments and My profile pages
+  Scenario: Verify the access to Request Assessment, My Assessments and My profile pages
     When I login as an "Assessor"
     Then I see that I have access to "MY ASSESSMENTS","REQUEST ASSESSMENT","MY PROFILE"
 
   @role_permission2
   Scenario: Verify the landing page after logging in as an assessor
     When I login as an "Assessor"
-    Then I will be re-directed to "My assessments" page
+    Then I will be re-directed to "My Assessments" page
 
   @role_permission3
   Scenario: Verify the page for requested assessments with status Approved
@@ -29,7 +29,7 @@ Feature: Assessor Role and Permissions
     When I enter username "<Username>"
     And I enter password "<Password>"
     And I click "Sign in"
-    Then I will be re-directed to "My assessments" page
+    Then I will be re-directed to "My Assessments" page
     And I request assessments to be booked
     And I see the success message for requested assessment with date and assessment ID
     #And I see the message "The assessment has been Booked" for assessment requested

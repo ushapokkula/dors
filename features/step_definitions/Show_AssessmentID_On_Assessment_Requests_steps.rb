@@ -21,7 +21,7 @@ Then (/^I should see the "([^"]*)" on summary view of assessment on 'My assessme
   end
 end
 
-And (/^I click on "([^"]*)" button on 'My assessments' page$/) do |view_details|
+And (/^I click on "([^"]*)" button on 'My Assessments' page$/) do |view_details|
   click_link_or_button(view_details)
 end
 

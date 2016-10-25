@@ -25,5 +25,5 @@ end
 
 
 Then(/^I will be re\-directed to "([^"]*)" page$/) do |text|
-  expect(page).to have_css("h1",text:text)
+  expect(page).to have_css("h1", text:text)
 end

@@ -33,7 +33,7 @@ Feature:DR-168
   @AssessmentDetails3
   Scenario: Verify Back button
     When I click "Back"
-    Then I will be re-directed to "My assessments" page
+    Then I will be re-directed to "My Assessments" page
 
 
 

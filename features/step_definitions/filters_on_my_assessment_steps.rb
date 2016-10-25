@@ -1,8 +1,8 @@
 And(/^I am on the My Assessments page$/)do
-  expect(page).to have_content("My assessments")
+  expect(page).to have_content("My Assessments")
 end
 
-When(/^The default view of the page of My assessments is loaded$/)do
+When(/^The default view of the page of My Assessments is loaded$/)do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   click_link("REQUEST ASSESSMENT")
   @trainers.ngu_search_assessment_id_page.book_assessment
@@ -94,7 +94,7 @@ When(/^I select "([^"]*)" on My Assessments page$/)do |status_filter|
   end
 end
 
-Then(/^I see that the "([^"]*)" option is selected by default on my assessments page$/)do|default_status|
+Then(/^I see that the "([^"]*)" option is selected by default on My Assessments page$/)do|default_status|
   within(".dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == default_status
     find("#assessmentStatusChk1").should be_checked
