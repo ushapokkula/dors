@@ -19,17 +19,19 @@ Feature: Apply/Reset on Assessments Management page
     Then I should see "Apply" button should be disabled
     And I should see "Reset" buton should be disabled
 
-  Scenario Outline: Apply Filters on Assessments Management page
+  Scenario Outline: Apply Default Filters on Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
+    And I enter "<Start_Date>" in start date field
+    And I enter "<End_Date>" in End date field
     When I searched "<Assessor Name>" in assessor search field
     And I click "Apply" button
-    Then I should see a message saying "<string>"
+    Then I should see a message saying "No Assessments to display"
 
     Examples:
-    |Assessor Name|
-    | deena       |
-    | Sudiv       |
+    |Assessor Name|Start_Date|End_Date|
+    | deena       |          |        |
+    | Sudiv       |          |        |
 
 
   Scenario Outline: Apply Filter with date ,status and Assessor on Assessments Management page
@@ -89,14 +91,12 @@ Feature: Apply/Reset on Assessments Management page
         |             |             |          |        |Assessor3|
 
 
-
-      Scenario Outline:  Filter persistence on Assessments Management page
+    Scenario Outline: Filter persistence on Assessments Management page
         When I click 'Assessment Status' dropdown button
         Then I see 'Requested' status is in selected status
         And I logout
         And I login as a "<ASSESSOR>" user
         Then I request assessment
-        Then I request assessment to be booked
         And I logout
         And I login as a "<Compliance Manager>" user
         Then I am on the Assessments Management page
@@ -109,9 +109,39 @@ Feature: Apply/Reset on Assessments Management page
         Then I should see "Apply" button will be enable
         And I click "Apply" button
         Then I see that assessments will be displayed under that criteria
-        And when I navigate to another page and return to the Assessment Management page, the filters set above will still be applied
+        And I navigate to another page
+        And return to the Assessment Management page
+        Then the filters set above will still be applied
+
       Examples:
       |Assessor Name|Status_filter|Start_Date|End_Date|ASSESSOR|
       |             |             |          |        |Assessor|
       |             |             |          |        |Assessor3|
-    
+
+  Scenario Outline: Filter persistence on Assessments Management page
+    When I click 'Assessment Status' dropdown button
+    Then I see 'Requested' status is in selected status
+    And I logout
+    And I login as a "<ASSESSOR>" user
+    Then I request assessment
+    And I logout
+    And I login as a "<Compliance Manager>" user
+    Then I am on the Assessments Management page
+    When I click 'Assessment Status' dropdown button
+    Then I see 'Requested' status is in selected status
+    And I set status filter with "<Status_filter>"
+    And I enter "<Start_Date>" in start date field
+    And I enter "<End_Date>" in End date field
+    When I searched "<Assessor Name>" in assessor search field
+    Then I should see "Apply" button will be enable
+    And I click "Apply" button
+    Then I see that assessments will be displayed under that criteria
+    And I logout
+    And I login as a "<Compliance Manager>" user
+    Then I navigate to "ASSESSMENT MANAGEMENT" page
+    And I see there is no Filters applied
+
+    Examples:
+      |Assessor Name|Status_filter|Start_Date|End_Date|ASSESSOR|
+      |             |             |          |        |Assessor|
+      |             |             |          |        |Assessor3|
