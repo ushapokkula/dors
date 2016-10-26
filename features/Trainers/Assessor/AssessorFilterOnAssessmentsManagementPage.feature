@@ -1,5 +1,5 @@
 @DR_400 @pass
-  Feature:
+  Feature: Assessor Filter on Assessment Management feature
     As an NGU,
     I want to able to filter records on Assessments Management page,
     so that I can focus on items of interest.
