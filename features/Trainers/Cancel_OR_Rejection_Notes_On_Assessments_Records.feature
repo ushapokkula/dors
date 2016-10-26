@@ -23,7 +23,7 @@ Feature: Cancel OR Reject Assessment
     And I logout
     Then I login as an "Compliance Manager"
     When I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click "View Details" link
@@ -36,7 +36,7 @@ Feature: Cancel OR Reject Assessment
     And I logout
     When I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
    When I click 'Assessment Status' dropdown button
    Then I see 'Requested' status is in selected status
     And I click "Approve" button
