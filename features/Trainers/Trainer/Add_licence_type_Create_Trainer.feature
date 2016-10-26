@@ -1,4 +1,4 @@
-@DR-1110
+@DR-1110 @pass
 Feature: In order to specify whether the license I have is a Theory or Practical License
          As a Trainer administrator
          I want to select a license type when adding a license to a trainer

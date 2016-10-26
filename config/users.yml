@@ -23,16 +23,24 @@ TrainerLicence:
  password: P@ssw0rd1
 
 Trainer4:
- username: fabTrainer9  #888889#
+ username: fabTrainer9  #888889# (P+T)
  password: P@s5w0rd1
 
 Trainer5:
- username: trainer_status
+ username: trainer_status #123896 (trainer login attempt failure)
  password: P@ssw0rd
 
 Trainer6:
- username: trainer6
+ username: trainer6  #to verify licence agree
  password: P@s5w0rd6
+
+Trainer7:
+ username: roopa_licences  #131275
+ password: P@s5w0rd7
+
+Trainer8:
+ username: test_prac_licences  #141386 only practical Licences
+ password: P@s5w0rd8
 
 
 
