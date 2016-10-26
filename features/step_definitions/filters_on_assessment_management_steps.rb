@@ -1,4 +1,4 @@
-Given(/^I am on the Assessments Management page$/) do
+Given(/^I am on the Assessment Management page$/) do
   expect(page).to have_css(".title-header", text: "Assessments")
 end
 

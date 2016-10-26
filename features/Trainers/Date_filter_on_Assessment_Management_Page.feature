@@ -7,7 +7,7 @@ Feature: Date Filter on Assessment Page
   Background:
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
     And I deleted the assessments from Database
     And I click "ASSESSMENT MANAGEMENT"
     Then I should see a message "There are no assessments to display."
