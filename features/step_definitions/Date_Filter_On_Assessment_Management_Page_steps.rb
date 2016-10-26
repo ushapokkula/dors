@@ -14,6 +14,7 @@ Then(/^I see 'Requested' status is in selected status$/) do
   sleep 5   #added recently bcoz of CI failures
   expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
   find("#assessmentStatusChk0").should be_checked
+  page.find("#txt-assessment-id", visible: true).click
 end
 
 
@@ -39,7 +40,7 @@ end
 
 
 And (/^default Date range filter will have no selection$/) do
-  raise "date range filter is not empty" unless find("#txtStartDate").value.empty?
+  raise "date range filter is not empty" if page.find('#txtStartDate').value.should_not be_empty
   raise "date range filter is not empty" unless find("#txtEndDate").value.empty?
 end
 
