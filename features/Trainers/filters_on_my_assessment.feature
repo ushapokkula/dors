@@ -76,7 +76,7 @@ Feature: Filter on My Assessment page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
-    And I select assessment status depending on "<Type>"
+    And I select assessment status depending on "<Type>" on my assessments page
     When I select one "<Course>" from the dropdown
     And I click "Apply"
     Then I see assessments matching with that course filter are displayed
@@ -97,7 +97,7 @@ Feature: Filter on My Assessment page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
-    And I select assessment status depending on "<Type>"
+    And I select assessment status depending on "<Type>" on my assessments page
     When I select  multiple courses "<Course1>", "<Course2>","<Course3>" from the dropdown
     And I click "Apply"
     Then I see assessments matching with that course filter are displayed
@@ -119,7 +119,7 @@ Feature: Filter on My Assessment page
     And I can see course filter under "Filters" section with label "Courses"
     And no course filters are selected
     And  no course filters are applied
-    And I select assessment status depending on "<Type>"
+    And I select assessment status depending on "<Type>" on my assessments page
     When I select one "<Course>" from the dropdown
     And I click "Apply"
     Then I see the message "There are no assessments to display" on my assessments page

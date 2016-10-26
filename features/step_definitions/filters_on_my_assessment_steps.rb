@@ -230,7 +230,7 @@ Then(/^I see the message "([^"]*)" on my assessments page$/) do |message|
 end
 
 
-And(/^I select assessment status depending on "([^"]*)"$/) do |type|
+And(/^I select assessment status depending on "([^"]*)" on my assessments page$/) do |type|
   if type == "Requested"
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)

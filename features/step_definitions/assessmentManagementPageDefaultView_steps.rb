@@ -72,12 +72,11 @@ Then(/^I see licence type "([^"]*)" against the trainer for each "([^"]*)" asses
   elsif (licence_type == "Theory" and assessment_type == "Requested")
     expect(page).to have_css(".trainer-licences-tyoe", count: 2, text: licence_type)
   else
-    puts expect(page).to have_css(".trainer-licences-tyoe", count: 2)
+     expect(page).to have_css(".trainer-licences-tyoe", count: 2)
     expect(all(".row.trainer-info-row .trainer-licences-tyoe")[0].text).to eql(licence_type)
     expect(all(".row.trainer-info-row .trainer-licences-tyoe")[1].text).to eql("Theory")
   end
 end
-
 
 And(/^I reject\/cancel the Assessment depending on "([^"]*)"$/) do |assessment_type|
   @trainers.assessment_management_default_view_page.cancel_or_reject_assessment(assessment_type)
