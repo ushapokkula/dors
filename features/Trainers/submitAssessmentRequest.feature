@@ -148,6 +148,42 @@ Feature: submit assessment request feature
     And I click Request assessment button against trainer I want to book an assessment
     Then the "Speed Control" scheme courses are hidden as all the trainers from that scheme are in assessment
 
+   @DR_1136
+   Scenario: Request Assessment Summary Page Shows Licence Types and Expiry date for diff trainers
+     Given that I have licence.ndors.org.uk page opened
+     When I login as an "Assessor"
+     And I deleted the assessments from Database
+     Then I navigate to "REQUEST ASSESSMENT" page
+     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+     Then I will be taken to "Pick a Course" page
+     And I click Request assessment button against trainer I want to book an assessment
+     Then I can see the Scheme Name for main trainer
+     And I can see the Scheme Name for nearBy trainer
+     And I should see License Type for main trainer
+     And I should see License Type for nearBy trainer
+     And I should see Expiry Date for main trainer
+     And I should see Expiry Date for nearBy trainer
+
+
+     @DR_1136
+     Scenario Outline: Request Assessment Summary Page Shows Practical and Theory Licence Types
+       Given that I have licence.ndors.org.uk page opened
+       When I login as an "Assessor"
+       Then I deleted the assessments from Database
+       And I navigate to "REQUEST ASSESSMENT" page
+       Then I can see "<trainer_name>" has "<Course_name>" course type of "<Licence Type>" on request assessment page
+       When I select 'Pick a slot' on Request Assessment Page for "<trainer_name>"
+       And I will be taken to "Pick a Course" page
+       And I click Request assessment button against trainer I want to book an assessment
+       Then I can see selected "<trainer_name>" has same "<Course_name>" course type of "<Licence Type>" on summary page
+       Examples:
+       |trainer_name          |Course_name                      |Licence Type|
+       | Heather Mcqueen_Auto |Speed Control                    |Theory      |
+       | Chris _Auto          |National Driver Alertness Course |Practical   |
+
+
+
+
 
 
 
