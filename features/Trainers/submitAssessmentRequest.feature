@@ -154,7 +154,7 @@ Feature: submit assessment request feature
      When I login as an "Assessor"
      And I deleted the assessments from Database
      Then I navigate to "REQUEST ASSESSMENT" page
-     When I click 'Pick a slot' on Request Assessment Page against a Trainer i want to assess
+     When I click 'Pick a course' on Request Assessment Page against a Trainer i want to assess
      Then I will be taken to "Pick a Course" page
      And I click Request assessment button against trainer I want to book an assessment
      Then I can see the Scheme Name for main trainer

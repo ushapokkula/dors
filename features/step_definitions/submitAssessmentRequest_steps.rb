@@ -200,7 +200,7 @@ end
 When (/^I select 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |trainer_name|
 if (trainer_name == 'Heather Mcqueen_Auto')
   expect(page).to have_css("h1", text:'Request Assessment')
-  find(:button, 'Pick a slot', match: :first).click if find(:button, 'Pick a slot', match: :first)
+  find(:button, 'Pick a course', match: :first).click if find(:button, 'Pick a course', match: :first)
 end
   if(trainer_name == 'Chris _Auto')
     expect(page).to have_css("h1", text:'Request Assessment')
@@ -210,7 +210,7 @@ end
 
 
 Then (/^I can see "([^"]*)" has "([^"]*)" course type of "([^"]*)" on request assessment page$/)do|trainer_name,course,licence|
-  expect(page).to have_css(".trainer-full-name",match: :first, text: trainer_name)
-  expect(page).to have_css(".license-scheme-name",match: :first, text: course)
-  expect(page).to have_css(".license-scheme-type", match: :first, text: licence)
+  expect(page).to have_css(".trainer-full-name", match: :first, text: trainer_name)
+  expect(page).to have_css(".license-scheme-name", match: :first, text: course)
+  expect(page).to have_css(".license-type", match: :first, text: licence)
   end
