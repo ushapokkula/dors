@@ -35,7 +35,7 @@
         |Assessor Name|
         |0123456sfvdbd|
         |111111testtest34|
-        |0_0"Tes00000_u000|
+        |0_0Tes00000_u000|
 
     Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
       When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
