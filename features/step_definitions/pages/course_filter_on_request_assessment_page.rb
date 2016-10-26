@@ -6,6 +6,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   element :force_filter, "#force-areas-filter-container input"
   element :force_filter_container, "#force-areas-filter-container"
   elements :trainer_fullname, ".trainer-full-name"
+  elements :licence_scheme_type, ".license-type"
   element  :filter_section, ".panel-heading.clearfix"
 
 
@@ -64,13 +65,13 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   end
 
   def verify_no_trainer_filter_have_applied
-    expected_trainer_list = ["111999", "111555", "111222"]
+    expected_trainer_list = ["111333", "111555", "111222"]
     actual_trainer_list=[]
     trainer_id_list.each do |element|
       actual_trainer_id = element.text
       actual_trainer_list.push(actual_trainer_id)
     end
-    expect(actual_trainer_list.uniq).to eq(expected_trainer_list)
+    expect(actual_trainer_list.uniq).to match_array(expected_trainer_list)
   end
 
   def verify_list_on_course_and_trainer_filter(course1, course2)
@@ -94,13 +95,13 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
 
   def verify_list_based_on_forcefilter(force1, force2)
     expect(force_filter_container.text).to include(force1, force2)
-    expect(page).to have_css(".dors-table", visible: true, count: 6)
+    expect(page).to have_css(".dors-table", visible: true)
     actual_trainer_list =[]
     trainer_fullname.each do |element|
       trainer_names= element.text
       actual_trainer_list.push(trainer_names)
     end
-    expect(actual_trainer_list).to include("auto2 trainer", "auto1 trainer")
+    expect(actual_trainer_list).to include("auto1 trainer")
   end
 
   def verify_combination_filter(force1, force2, course_name, trainer_id)
@@ -115,5 +116,11 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
     expect(force_filter_container.text).not_to include("CHESHIRE", "BEDFORDSHIRE")
     expect(scheme_filter.value).to eq('')
     expect(trainer_filter.value).to eq('')
+  end
+
+  def verify_type(course_type)
+    licence_scheme_type.each do |row|
+     expect(row.text).to eq(course_type)
+    end
   end
 end
