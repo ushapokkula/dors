@@ -1,4 +1,4 @@
-@DR_400 @pass
+@DR_400
   Feature: Assessor Filter on Assessment Management feature
     As an NGU,
     I want to able to filter records on Assessments Management page,

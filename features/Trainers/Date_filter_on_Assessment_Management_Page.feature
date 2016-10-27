@@ -13,7 +13,6 @@ Feature: Date Filter on Assessment Page
     Then I should see a message "There are no assessments to display."
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
-    And I should not see 'Approved' status is selected
     And I logout
 
   Scenario: Verify the Assessments sorted by (Date) with nearest Date first
