@@ -14,6 +14,7 @@
       When I click 'Assessment Status' dropdown button
       Then I see 'Requested' status is in selected status
       And default Date range filter will have no selection
+      And the value of the 'start date' will be 'today date'
 
   Scenario: Verify defalut view of the Assessment Management page
     And I can see default Assessor filter on Assessment Management Page
