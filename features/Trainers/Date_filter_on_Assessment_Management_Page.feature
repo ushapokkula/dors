@@ -28,7 +28,7 @@ Feature: Date Filter on Assessment Page
   Scenario: Verify default date range filter selection
      When I login as an "Compliance Manager"
       And default Date range filter will have no selection
-      And the value of the 'start date' will be 'today date'
+      And the value of the 'start date' will be today's date
 
   Scenario Outline: Verify Start date and End Date fields enable functionality
     When I login as an "Assessor3"
@@ -38,7 +38,7 @@ Feature: Date Filter on Assessment Page
     And I login as an "Compliance Manager"
     And I enter "<start_date>" in start date field
     And The assessment list will be sorted by assessment course date
-    And the end date option will be empty
+    And the end date field value will be empty
     Examples:
       |start_date|
       |15/06/2016|
@@ -52,7 +52,7 @@ Feature: Date Filter on Assessment Page
     And I login as an "Compliance Manager"
     And I enter "<end_date>" in End date field
     Then the 'start date' field auto populated
-    And the value of the 'start date' will be 'today date'
+    And the value of the 'start date' will be today's date
     Examples:
       |end_date|
       |22/01/2017|
@@ -64,7 +64,7 @@ Feature: Date Filter on Assessment Page
     And I logout
     And I login as an "Compliance Manager"
     And I enter "<end_date>" in End date field
-    And the value of the 'start date' will be 'today date'
+    And the value of the 'start date' will be today's date
     When I enter "<start_date>" more than 'end date'
     Then the 'end date' falls one day more than 'start date'
     Examples:

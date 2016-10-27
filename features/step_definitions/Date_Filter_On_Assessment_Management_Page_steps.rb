@@ -51,8 +51,8 @@ When (/^I enter "([^"]*)" in start date field$/) do |date|
 end
 
 
-Then(/^the end date option will be empty$/) do
-  find_field('txtEndDate').value.eql?("")
+Then(/^the end date field value will be empty$/) do
+  raise "date range filter is not empty" if page.find('#txtStartDate').value.empty?
 end
 
 
@@ -65,7 +65,7 @@ Then(/^the 'start date' field auto populated$/) do
   raise "date range filter is not empty" if page.find('#txtStartDate').value.should_not be_empty
 end
 
-And (/^the value of the 'start date' will be 'today date'$/) do
+And (/^the value of the 'start date' will be today's date$/) do
   today_date = (Date.today.strftime('%d/%m/%Y'))
   expect(find_field('txtStartDate').value).to eq(today_date)
 end

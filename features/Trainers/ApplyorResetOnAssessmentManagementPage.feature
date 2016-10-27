@@ -4,7 +4,7 @@ Feature: Apply/Reset on Assessments Management page
   Background:
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
     And I deleted the assessments from Database
     And I click "ASSESSMENT MANAGEMENT"
     Then I should see a message "There are no assessments to display."
@@ -12,29 +12,38 @@ Feature: Apply/Reset on Assessments Management page
   Scenario: Default view of Assessments Management page is loaded
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
-    And "Start Date" filter default value should be today's date
-    And "End Date" filter default value should be empty
+    Then I see "Apply" button should be disabled
+    And I see "Reset" button should be disabled
+    And the value of the 'start date' will be today's date
+    And the end date field value will be empty
     And "Trainer" filter default value should be empty
     And "Assessor" filter default value should be empty
-    Then I should see "Apply" button should be disabled
-    And I should see "Reset" buton should be disabled
 
-  Scenario Outline: Apply Default Filters on Assessments Management page
+  Scenario Outline: Verify Default Filters functionality on Assessments Management page
+    And I logout
+    And I login as a "<ASSESSOR>" user
+    And I book assessment with nearby trainer
+    And I logout
+    And I login as a "Compliance Manager" user
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
-    And I enter "<Start_Date>" in start date field
-    And I enter "<End_Date>" in End date field
-    When I searched "<Assessor Name>" in assessor search field
+    And I select 'Approved' status from 'Assessment Status' dropdown
+    And the value of the 'start date' will be today's date
+    When I search with assessor "<Assessor Name>" in the assessor search field
     And I click "Apply" button
-    Then I should see a message saying "No Assessments to display"
-
+    Then assessments will be shown which fall under selected Assessor "<Assessor Name>"
+    And I click "Reset" button
+    When I click 'Assessment Status' dropdown button
+    Then I should not see 'Approved' status is selected
+    And I should not see Assessor "<Assessor Name>" in assessor search field
+    Then I should see a message "There are no assessments to display."
     Examples:
-    |Assessor Name|Start_Date|End_Date|
-    | deena       |          |        |
-    | Sudiv       |          |        |
+      |Assessor Name|ASSESSOR|
+      | deena grit  |Assessor3|
+      | sudiv p     |Assessor |
 
 
-  Scenario Outline: Apply Filter with date ,status and Assessor on Assessments Management page
+  Scenario Outline: Apply Filter with Date ,Status and Assessor on Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I logout
@@ -43,19 +52,25 @@ Feature: Apply/Reset on Assessments Management page
     Then I request assessment to be booked
     And I logout
     And I login as a "<Compliance Manager>" user
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I set status filter with "<Status_filter>"
     And I enter "<Start_Date>" in start date field
     And I enter "<End_Date>" in End date field
-    When I searched "<Assessor Name>" in assessor search field
-    Then I should see "Apply" button will be enable
+    When I search with assessor "<Assessor Name>" in the assessor search field
     And I click "Apply" button
-    Then I see that assessments will be displayed under that criteria
+    Then I see assessments will be displayed under that applied filters
+    And I click "Reset"
+    When I click 'Assessment Status' dropdown button
+    Then I see 'Requested' status is in selected status
+    And the value of the 'start date' will be today's date
+    And the end date field value will be empty
+    And "Assessor" filter default value should be empty
+    And I should see default requested assessments on assessment management page
     Examples:
       |Assessor Name|Status_filter|Start_Date|End_Date|ASSESSOR|
-      |             |             |          |        |Assessor|
+      | Deena grit  |             |          |        |Assessor|
       |             |             |          |        |Assessor3|
 
 
@@ -68,7 +83,7 @@ Feature: Apply/Reset on Assessments Management page
       Then I request assessment to be booked
       And I logout
       And I login as a "<Compliance Manager>" user
-      Then I am on the Assessments Management page
+      Then I am on the Assessment Management page
       Then I see 'Requested' status is in selected status
       And I set status filter with "<Status_filter>"
       And I enter "<Start_Date>" in start date field
@@ -99,19 +114,20 @@ Feature: Apply/Reset on Assessments Management page
         Then I request assessment
         And I logout
         And I login as a "<Compliance Manager>" user
-        Then I am on the Assessments Management page
+        Then I am on the Assessment Management page
         When I click 'Assessment Status' dropdown button
         Then I see 'Requested' status is in selected status
         And I set status filter with "<Status_filter>"
         And I enter "<Start_Date>" in start date field
         And I enter "<End_Date>" in End date field
-        When I searched "<Assessor Name>" in assessor search field
+        When I search with assessor "<Assessor Name>" in the assessor search field
         Then I should see "Apply" button will be enable
         And I click "Apply" button
         Then I see that assessments will be displayed under that criteria
-        And I navigate to another page
-        And return to the Assessment Management page
-        Then the filters set above will still be applied
+        And I navigate to "Book Assessment" page
+        Then I will be redirected to "Book Assessment" page
+        And I navigate to "ASSESSMENT MANAGEMENT" page
+        Then the filters set as  above will still be applied
 
       Examples:
       |Assessor Name|Status_filter|Start_Date|End_Date|ASSESSOR|
@@ -126,13 +142,13 @@ Feature: Apply/Reset on Assessments Management page
     Then I request assessment
     And I logout
     And I login as a "<Compliance Manager>" user
-    Then I am on the Assessments Management page
+    Then I am on the Assessment Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I set status filter with "<Status_filter>"
     And I enter "<Start_Date>" in start date field
     And I enter "<End_Date>" in End date field
-    When I searched "<Assessor Name>" in assessor search field
+    When I search with assessor "<Assessor Name>" in the assessor search field
     Then I should see "Apply" button will be enable
     And I click "Apply" button
     Then I see that assessments will be displayed under that criteria
