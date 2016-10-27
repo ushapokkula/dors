@@ -130,5 +130,6 @@ Then(/^the booked assessment id is shown against the trainer$/) do
 end
 
 And(/^I include trainer in near by course$/) do
-  page.find_all('.include-nearby-trainer-checkbox',visible:true)[6].click
+  all(('.include-nearby-trainer-checkbox:nth-child(1)')[1], visible:true)
+  all('.include-nearby-trainer-checkbox:nth-child(1)')[1].click
 end

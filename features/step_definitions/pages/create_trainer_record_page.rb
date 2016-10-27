@@ -20,7 +20,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   #element :course_dropdown, "#courseNames"
   #element :licence_status, "#licenseStatuses"
   #element :licence_expiry_date, "#licenseExpiryDate"
-  element :select_course_name, "#courseNames > option:nth-child(2)"
+  elements :select_course_name, ".ui-select-choices-row-inner"
   element :select_licence_name, "#licenseStatuses > option:nth-child(2)"
   element :expiry_date, "#licenseExpiryDate"
   elements :error_messages, ".help-block p"

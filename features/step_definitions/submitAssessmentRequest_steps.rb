@@ -102,8 +102,6 @@ When(/^I check "([^"]*)" for second trainer$/) do |checkbox_label|
 
 end
 
-
-
 Then(/^I uncheck "([^"]*)" for second trainer$/) do |checkbox_label|
   page.find_all(".include-main-trainer-checkbox")[1].click
 end
@@ -123,7 +121,11 @@ end
 
 And(/^the primary trainer by default it will be checked and disabled$/) do
    expect(page).to have_css(".include-main-trainer-checkbox[disabled='disabled']:nth-child(1)", visible:true)
+
    find_all(".include-main-trainer-checkbox[type='checkbox']")[0].should be_checked
+
+   find_all((".include-main-trainer-checkbox[type='checkbox']:nth-child(1)")).should be_checked
+
 end
 
 
@@ -151,3 +153,64 @@ end
 Then(/^the "([^"]*)" scheme courses are hidden as all the trainers from that scheme are in assessment$/) do |scheme_name|
     expect(page).to have_no_content(scheme_name)
 end
+
+Then(/^I can see the Scheme Name for main trainer$/)do
+  expect(page).to have_css(".dors-well .col-lg-offset-3 h4")  #verify main trainer scheme name
+end
+
+
+Then(/^I can see the Scheme Name for nearBy trainer$/)do
+  expect(page).to have_css('.dors-well-other .col-md-offset-3 h4', match: :first, visible: true)  #Verify near By trainer scheme name
+  find_all('.dors-well-other .col-md-offset-3 h4', match: :first, text: 'Speed Control')
+end
+
+
+Then(/^I should see License Type for main trainer$/) do
+  within('.dors-well')do
+expect(page).to have_css('.trainer-license-type-label', text: 'Licence Type')    #verify main trainer Licence name label
+expect(page).to have_css('.trainer-license-type')                                 #verify main trainer Licence name
+end
+end
+
+
+Then(/^I should see License Type for nearBy trainer$/) do
+    expect(page).to have_css('.dors-well-other .trainer-license-type-label',text: 'Licence Type')   #verify nearBy trainer Licence name label
+    expect(page).to have_css('.dors-well-other .trainer-license-type')                                 #verify nearBy trainer Licence name
+  end
+
+
+Then(/^I should see Expiry Date for main trainer$/) do
+  within('.dors-well')do
+  expect(page).to have_css(".main-license-expirydate-label", text: 'Expiry Date')      #verify main trainer Expiry date label
+ expect(page).to have_css(".main-license-expirydate")                                  #verify main trainer Expiry date value
+  end
+  end
+
+Then(/^I should see Expiry Date for nearBy trainer$/) do
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate-label", text: 'Expiry Date')     #verify nearBy trainer Expiry date label
+  expect(page).to have_css(".dors-well-other .nearBy-license-expirydate")                                 #verify nearBy trainer Expiry date value
+end
+
+And (/^I can see selected "([^"]*)" has same "([^"]*)" course type of "([^"]*)" on summary page$/)do|trainer_name, course,licence_type|
+ find_all(".main-trainer-fullname", match: :first, text: trainer_name)
+  expect(page).to have_css(".dors-well .col-lg-offset-3 h4", text: course)
+ expect(page).to have_css(".dors-well .trainer-license-type", match: :first, text: licence_type)
+end
+
+When (/^I select 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |trainer_name|
+if (trainer_name == 'Heather Mcqueen_Auto')
+  expect(page).to have_css("h1", text:'Request Assessment')
+  find(:button, 'Pick a course', match: :first).click if find(:button, 'Pick a course', match: :first)
+end
+  if(trainer_name == 'Chris _Auto')
+    expect(page).to have_css("h1", text:'Request Assessment')
+    find_all(".dors-table-row.row .btn",visible: true)[1].click
+  end
+  end
+
+
+Then (/^I can see "([^"]*)" has "([^"]*)" course type of "([^"]*)" on request assessment page$/)do|trainer_name,course,licence|
+  expect(page).to have_css(".trainer-full-name", match: :first, text: trainer_name)
+  expect(page).to have_css(".license-scheme-name", match: :first, text: course)
+  expect(page).to have_css(".license-type", match: :first, text: licence)
+  end

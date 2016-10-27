@@ -55,22 +55,22 @@ class NguSearchAssessmentIDPage < SitePrism::Page
   end
 
   def delete_assessments_from_DB
-
     client = TinyTds::Client.new username: 'swapna.gopu', password: 'Password1', host: '10.100.8.64', port: '1433'
     client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainerLicenseAssessment]")
     client.execute("DELETE FROM [DORS_Classified].[dbo].[tbl_TrainingAssessment]")
+    #[DORS_Classified]
   end
 
    def book_assessment
     find('a', text: "REQUEST ASSESSMENT").click
-    find(:button, 'Pick a course', match: :first).click
+    find(:button, 'Pick a couse', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
-    find(".include-main-trainer-checkbox", match: :first).click
-    expect(page).to have_css(".include-nearby-trainer-checkbox", visible:true)
-    all('.include-nearby-trainer-checkbox',visible:true)[2].click
+    expect(page).to have_css(".include-main-trainer-checkbox", visible: true)
+    all('.include-main-trainer-checkbox', visible: true)[1].click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[2].click
     click_button("Submit")
-
   end
 
   def request_assessment
@@ -105,9 +105,9 @@ class NguSearchAssessmentIDPage < SitePrism::Page
       licenses= row.text
       actual_licenses.push(licenses)
 
-    puts expect(actual_licenses).to include("111333")
-    puts expect(actual_licenses).to include("111222")
-    puts expect(actual_licenses).to include("111999")
+    expect(actual_licenses).to include("111333")
+    expect(actual_licenses).to include("111222")
+    expect(actual_licenses).to include("111999")
   end
 
 end

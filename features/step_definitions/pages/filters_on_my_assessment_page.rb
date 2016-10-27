@@ -4,6 +4,7 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   elements :status_values, "#single-button+ul li label"
 
 
+
   def verify_status_filter_visibility_on_myassessments(new_table)
   staus =[], actual_status_values = []
   page.has_css?("#single-button")
@@ -33,4 +34,7 @@ class FiltersONMyAssessmentPage < SitePrism::Page
     fill_in("cancellationNotes", :with => "Notes for Rejection")
     click_button('Yes')
   end
+
+
+
 end

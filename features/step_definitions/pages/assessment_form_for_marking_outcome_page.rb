@@ -32,7 +32,7 @@ class AssessmentFormForMarkingOutcomePage < SitePrism::Page
   def select_outcome_against_trainer
     select('Absent', :from => 'status-281')
     select('Absent', :from => 'status-279')
-    select('Absent', :from => 'status-392')
+    select('Absent', :from => 'status-280')
   end
 
 

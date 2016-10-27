@@ -4,11 +4,12 @@ And(/^the option to filter the list by courses is displayed$/) do
 end
 
 And(/^no course filters are selected$/) do
-  expect(find("#scheme-filter-container").value).to eq(nil)
+  #expect(find("#scheme-filter-container").value).to eq(nil)
+  expect(find("#txt-scheme-filter-search").value).to eq('')
 end
 
 And(/^no course filters are applied$/) do
-  expect(find("#scheme-filter-container input").value).to eql('')
+  expect(find("#txt-scheme-filter-search").value).to eql('')
 end
 
 When(/^I select one "([^"]*)" from the dropdown$/) do |course_name|
@@ -63,5 +64,67 @@ end
 
 
 Then(/^I see message "([^"]*)" on request assessment page$/) do |message|
- expect(page).to have_css(".alert.alert-info", text: message)
+  expect(page).to have_css(".alert.alert-info", text: message)
+end
+
+Then(/^I can see icons for practical and theory course are visible$/) do
+  within(".theory-practical-legend") do
+    expect(page).to have_css(".glyphicon.glyphicon-road", visible: true)
+    expect(page).to have_css(".glyphicon.glyphicon-book", visible: true)
+  end
+end
+
+And(/^also labels "([^"]*)" and "([^"]*)" for practical and theory icons$/) do |practical_value, theory_value|
+  within(".theory-practical-legend") do
+    expect(page).to have_css(".legend-practical-label", visible: true, text: practical_value)
+    expect(page).to have_css(".legend-theory-label", visible: true, text: theory_value)
+  end
+end
+
+When(/^I select "([^"]*)" from course filter of "([^"]*)"$/) do |course_name, course_type|
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.set(course_name)
+  expect(page).to have_css(".ui-select-choices-row-inner", visible: true)
+  if (course_name == "National Driver Alertness Course" && course_type == "Practical")
+    find("#ui-select-choices-row-1-1", visible: true).click
+  else
+    @trainers.course_filter_on_request_assessment_page.scheme_filter.send_keys(:enter)
+  end
+end
+
+And(/^the licences are of type "([^"]*)"$/) do |course_type|
+  @trainers.course_filter_on_request_assessment_page.verify_type(course_type)
+end
+
+And(/^I select "([^"]*)" of "([^"]*)"$/) do |course_name, course_type|
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.set(course_name)
+  if (course_type == "Practical")
+
+  end
+end
+
+When(/^I select  multiple courses "([^"]*)", "([^"]*)" from the dropdown$/) do |course1, course2|
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.set(course1)
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.send_keys(:enter)
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.set(course2)
+  @trainers.course_filter_on_request_assessment_page.scheme_filter.send_keys(:enter)
+  @trainers.course_filter_on_request_assessment_page.trainer_filter.click
+end
+
+And(/^"([^"]*)" will be displayed of "([^"]*)" part of trainer licence$/) do |course_name, course_type|
+  if (course_type == "Theory" and course_name == "National Driver Alertness Course")
+    expect(all(".dors-table .row :nth-child(4)")[0].text).to eq(course_name)
+    expect(all(".dors-table .row :nth-child(5) span")[0].text).to eq(course_type)
+    expect(all(".dors-table .row :nth-child(4)")[4].text).to eq(course_name)
+    expect(all(".dors-table .row :nth-child(5) span")[4].text).to eq(course_type)
+  else
+    expect(all(".dors-table .row :nth-child(4)")[1].text).to eq(course_name)
+    expect(all(".dors-table .row :nth-child(5) span")[1].text).to eq(course_type)
+  end
+end
+
+Then(/^the results are displayed based on filters applied for courses "([^"]*)", "([^"]*)", "([^"]*)" of "([^"]*)" for  trainer "([^"]*)"$/) do |course1, course2, course3, type, trainer_id|
+  expect(page).to have_css(".dors-table", visible: true, count: 1)
+  expect(page).to have_css(".trainer-licenseCode", visible: true, text: trainer_id)
+  expect(page).to have_css(".license-scheme-name", visible: true, text: course3)
+  expect(page).to have_css(".license-type", visible: true, text: type)
 end
