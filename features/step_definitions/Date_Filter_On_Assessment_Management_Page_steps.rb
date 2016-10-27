@@ -19,7 +19,7 @@ end
 
 
 And (/^I should not see 'Approved' status is selected$/) do
-  find("#assessmentStatusChk1", visible: true).should_not be_checked
+  find("#assessmentStatusChk1").should_not be_checked
 end
 
 And (/^I request assessments$/) do
@@ -40,7 +40,7 @@ end
 
 
 And (/^default Date range filter will have no selection$/) do
-  raise "date range filter is not empty" unless find('#txtStartDate').value.empty?
+  raise "date range filter is not empty" if page.find('#txtStartDate').value.should_not be_empty
   raise "date range filter is not empty" unless find("#txtEndDate").value.empty?
 end
 
