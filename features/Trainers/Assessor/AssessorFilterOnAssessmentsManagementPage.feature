@@ -14,6 +14,7 @@
       When I click 'Assessment Status' dropdown button
       Then I see 'Requested' status is in selected status
       And default Date range filter will have no selection
+      And the value of the 'start date' will be 'today date'
 
   Scenario: Verify defalut view of the Assessment Management page
     And I can see default Assessor filter on Assessment Management Page
@@ -46,7 +47,7 @@
       Examples:
         | Assessor Name |Name                 |
         |dee            |deena grit (0123456) |
-        |sud            |sudiv p (11111)      |
+        |sud            |sudiv p       |
 
     Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field

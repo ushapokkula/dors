@@ -1,4 +1,4 @@
-@DR-398  @DR-395 @pass
+@DR-398  @DR-395 @DR_1219 @pass
 Feature: Date Filter on Assessment Page
   As an NGU user,
   I want to able to filter records on Assessments Management page by date range,
@@ -13,7 +13,6 @@ Feature: Date Filter on Assessment Page
     Then I should see a message "There are no assessments to display."
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
-    And I should not see 'Approved' status is selected
     And I logout
 
   Scenario: Verify the Assessments sorted by (Date) with nearest Date first
@@ -25,9 +24,11 @@ Feature: Date Filter on Assessment Page
     Then I will see list of all requested assessments
     And The assessment list will be sorted by assessment course date
 
+  @DR_1219
   Scenario: Verify default date range filter selection
      When I login as an "Compliance Manager"
       And default Date range filter will have no selection
+      And the value of the 'start date' will be 'today date'
 
   Scenario Outline: Verify Start date and End Date fields enable functionality
     When I login as an "Assessor3"
@@ -43,7 +44,7 @@ Feature: Date Filter on Assessment Page
       |15/06/2016|
       |23/12/2016|
 
-  Scenario Outline: 'start date' value auto populates to todays date
+  Scenario Outline: 'start date' value auto populates to today's date
     When I login as an "Assessor3"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessments
