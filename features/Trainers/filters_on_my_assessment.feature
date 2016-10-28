@@ -59,7 +59,7 @@ Feature: Filter on My Assessment page
       | REJECTED       | CANCELLED      | Rejected          | Cancelled         |
       | REJECTED       | COMPLETED      | Rejected          | Completed         |
 
-  @DR_385
+  @DR_385 @pass
   Scenario: Verify the scheme filter visibility on my assessements page
     Given I am on the My Assessments page
     And I can see "Filters" section on My assessments page
@@ -67,7 +67,7 @@ Feature: Filter on My Assessment page
     And no course filters are selected
     And  no course filters are applied
 
-  @DR_385
+  @DR_385 @pass
   Scenario Outline: Verify the assessments list after applying single course from course filter
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -88,7 +88,7 @@ Feature: Filter on My Assessment page
       | Requested | Speed Control |
       | Booked    | Speed Control |
 
-  @DR_385
+  @DR_385  @pass
   Scenario Outline: Verify the results after applying multiple courses from the filter without other filters
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -110,7 +110,7 @@ Feature: Filter on My Assessment page
       | Requested | Speed Control | RiDE    | National Driver Alertness Course |
       | Booked    | Speed Control | RiDE    | National Driver Alertness Course |
 
-  @DR_385
+  @DR_385  @pass
   Scenario Outline: Verify the message when there are no assessments matching course filter
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -128,3 +128,39 @@ Feature: Filter on My Assessment page
       | Type      | Course |
       | Requested | RiDE   |
       | Booked    | RiDE   |
+
+
+   @DR_384
+   Scenario: Veirfy the visibility of force filter on my assessments page
+     Given I am on the My Assessments page
+     And I can see "Filters" section on My assessments page
+     And the option to filter the list by "Force Areas" is Displayed
+     And The option to include all force areas is available with "Yes" and "No" buttons
+
+    Scenario Outline: : Verify the visibility of pre-selected force area in the force filter and its results
+      Given I am on the My Assessments page
+      And I can see "Filters" section on My assessments page
+      And the option to filter the list by "Force Areas" is Displayed
+      And the option to include all force areas is available with "Yes" and "No" buttons
+      And I can see "<Selected-Force>" as default force in the force filter
+      And the results are displayed based on "<Selected-Force>" force
+
+      Examples:
+      |Selected-Force|
+      |Essex         |
+
+      Scenario Outline: Verify the results after apply single force filter without other filters
+        Given I am on the My Assessments page
+        And I can see "Filters" section on My assessments page
+        And the option to filter the list by "Force Areas" is Displayed
+        When I apply single force "<Force>" in the force filter
+        And no others filters are applied
+        Then the list of assessments will be displayed based on the force filter selected
+
+        Examples:
+        |Force|
+        |Cheshire|
+
+
+
+
