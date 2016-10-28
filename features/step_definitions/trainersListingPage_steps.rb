@@ -22,7 +22,7 @@ And(/^Trainer Name,license number, Expiry Date, Scheme name, course type will be
  expect(page).to have_css(".trainer-licenseCode")
  expect(page).to have_css(".license-expiry-date")
  expect(page).to have_css(".license-scheme-name")
- expect(page).to have_css(".license-scheme-type")
+ expect(page).to have_css(".license-type")
 end
 
 Then(/^the license expiring soon will be shown at top$/)do
