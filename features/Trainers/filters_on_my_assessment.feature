@@ -130,36 +130,67 @@ Feature: Filter on My Assessment page
       | Booked    | RiDE   |
 
 
-   @DR_384
-   Scenario: Veirfy the visibility of force filter on my assessments page
-     Given I am on the My Assessments page
-     And I can see "Filters" section on My assessments page
-     And the option to filter the list by "Force Areas" is Displayed
-     And The option to include all force areas is available with "Yes" and "No" buttons
+  @DR_384
+  Scenario: Veirfy the visibility of force filter on my assessments page
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    And The option to include all force areas is available with "Yes" and "No" buttons
 
-    Scenario Outline: : Verify the visibility of pre-selected force area in the force filter and its results
+  Scenario Outline: : Verify the visibility of pre-selected force area in the force filter and its results
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    And the option to include all force areas is available with "Yes" and "No" buttons
+    And I can see "<Selected-Force>" as default force in the force filter
+    And the results are displayed based on "<Selected-Force>" force
+
+    Examples:
+      | Selected-Force |
+      | ESSEX          |
+
+  Scenario Outline: Verify the assessments listing after apply single force without other filters
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    When I apply single force "<Force>" in the force filter
+    And no others filters are applied
+    Then The results listing will be updated showing only those assessments who fall under the selected force area
+
+    Examples:
+      | Force    |
+      | CHESHIRE |
+
+  Scenario Outline: Verify the assessments listing after apply multiple forces without other filters
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    When I apply multiple forces like "<Force1>","<Force2>" and "<Force3>"in the force filter
+    And no others filters are applied
+    Then The results listing will be updated showing only those assessments who fall under the selected force area
+
+    Examples:
+      | Force1   |Force2|Force3|
+      | CHESHIRE |ESSEX |BEDFORDSHIRE POLICE|
+
+    Scenario: Verify the assessments listing when 'All' force areas are included
       Given I am on the My Assessments page
       And I can see "Filters" section on My assessments page
       And the option to filter the list by "Force Areas" is Displayed
       And the option to include all force areas is available with "Yes" and "No" buttons
-      And I can see "<Selected-Force>" as default force in the force filter
-      And the results are displayed based on "<Selected-Force>" force
+      When I include all force areas by clicking "Yes" button
+      Then the assessments listing are displayed without applying any force area filters to the results
 
-      Examples:
-      |Selected-Force|
-      |Essex         |
+    Scenario:  Verify the assessments listing when 'No' force areas are included
+      Given I am on the My Assessments page
+      And I can see "Filters" section on My assessments page
+      And the option to filter the list by "Force Areas" is Displayed
+      And the option to include all force areas is available with "Yes" and "No" buttons
+      When no force areas are included by clicking "No" button
+      Then no force area filters are applied to the results
 
-      Scenario Outline: Verify the results after apply single force filter without other filters
-        Given I am on the My Assessments page
-        And I can see "Filters" section on My assessments page
-        And the option to filter the list by "Force Areas" is Displayed
-        When I apply single force "<Force>" in the force filter
-        And no others filters are applied
-        Then the list of assessments will be displayed based on the force filter selected
 
-        Examples:
-        |Force|
-        |Cheshire|
+
 
 
 
