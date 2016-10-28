@@ -12,11 +12,17 @@ Feature: As an NGU,
 
     Scenario: NGU creates assessment record for an assessor
       When I 'pick a course'
-      Then I will be redirected back to the Pick a course page
-      And I click on "Book Assessment"
-      Then I will be redirected to Book Assessment page
+      Then I will be redirected to the Pick a course page
+      And I click "Book Assessment"
+      Then I will be redirected to "" page
+      Then I can select the trainer for which an assessment needs to be added
+      And I can see text saying ""
+      Then I can see "Book Assessment on behalf of" field
+      And I can load the
 
-      Then I can select the trainer for which an assessment needs to be added (same as for an Assessor)
+      Scenario:
+
+
 
 
       Scenario:
