@@ -43,7 +43,7 @@ Then(/^I can select "([^"]*)" for which an assessment needs to be added$/) do|tr
   if trainer_name == 'auto7 trainer'
     expect(page).to have_css(".nearby-trainer-fullname", text: trainer_name)
     expect(find_all(".include-nearby-trainer-checkbox").count>0)
-    find_all(".include-nearby-trainer-checkbox")[1].click
+    find_all(".include-nearby-trainer-checkbox")[0].click
   end
   if trainer_name == 'auto2 trainer'
   expect(page).to have_css(".nearby-trainer-fullname", text: trainer_name)
