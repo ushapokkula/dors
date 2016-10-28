@@ -1,5 +1,5 @@
 Then(/^I see "([^"]*)" on assessment management page$/) do |bookassessment|
-
+#pending
 end
 
 And (/^I can see number of assessments to book$/)do
@@ -65,16 +65,8 @@ expect(page).to have_css('#txt-assessor-name', visible:true)
 fill_in('txt-assessor-name', :with => chars)
 end
 
-Then(/^I enter "([^"]*)" in 'Book Assessment on behalf of' field$/) do |arg1|
-
-end
-
 Then(/^I should see an "([^"]*)" messages on Summary page$/) do|error_msg|
 expect(page).to have_css(".help-block", text:error_msg )
-end
-
-Then(/^the Assessment Request is automatically Approved$/) do
-
 end
 
 Then(/^the NGU user is redirected to the Assessment Management screen$/) do
@@ -82,6 +74,31 @@ expect(page).to have_css("h1", text: "Assessments")
 end
 
 Then(/^a Confirmation message is shown$/) do
-
+expect(page).to have_css("#requested-assessment-info", visible: true)
 end
 
+Then(/^I should see Assessment Request is automatically Approved$/) do
+expect(page).to have_css(".dors-table", :count=>1, visible: true)
+expect(page).to have_css(".assessment-status", text: 'Approved')
+end
+
+And (/^I should see Approved Assessment trainer "([^"]*)", assessor "([^"]*)" details$/)do|trainer_name,assessor_name|
+ expect(page).to have_css(".trainer-full-name", text: trainer_name)
+ expect(page).to have_css(".assessor-name", text: assessor_name)
+end
+
+And (/^I enter data into mileage and notes on summary page of bookassessment$/)do
+  expect(page).to have_css("label[for='mileage']", text:'Total Mileage')
+  expect(page).to have_css("#mileage")
+  expect(page).to have_css('#notes')
+  expect(page).to have_css("label[for='notes']", text:'Notes')
+  fill_in('mileage', :with => '700')
+  fill_in('notes', :with => 'test NGU BOOKASSESSMENT ON BEHALF OF ASSESSOR')
+end
+
+When (/^I start enter assessor as "([^"]*)" in 'Book Assessment on behalf of' field$/)do |assessor_name|
+fill_in("txt-assessor-name", :with=> assessor_name)
+expect(page).to have_css("#txt-assessor-name + ul")
+find('#txt-assessor-name').send_keys(:enter)
+sleep 3
+  end

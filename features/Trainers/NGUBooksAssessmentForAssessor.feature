@@ -24,6 +24,8 @@ Feature: As an NGU,
       Then I can see "Book Assessment on behalf of" field to search for assessor
       When I start typing assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
       Then The system will start autopredicting it and the list of assessor appears
+      When I hit DOWN arrow key from the assessor auto predict list
+      When I hit UP arrow key from the assessor auto predict list
       Examples:
       |Assessor Name|trainer_name |
       |tes          |auto2 trainer|
@@ -65,12 +67,36 @@ Feature: As an NGU,
       And I click "Book Assessment" on Pick a course page
       Then I will be redirected to Course Detail page
       Then I can select "<trainer_name>" for which an assessment needs to be added
-      When I start typing assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
+      When I start enter assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
       And I click "Submit"
-      Then the Assessment Request is automatically Approved
       And the NGU user is redirected to the Assessment Management screen
       And a Confirmation message is shown
+      When I click 'Assessment Status' dropdown button
+      And I select 'Approved' status from 'Assessment Status' dropdown
+      And I click "Apply" button
+      Then I should see Assessment Request is automatically Approved
+      And I should see Approved Assessment trainer "<trainer_name>", assessor "<Assessor Name>" details
       Examples:
       |Assessor Name|trainer_name|
       | deena grit  |auto2 trainer|
 
+
+  Scenario Outline: NGU Books Assessment on behalf an Assessor with mileage and notes
+    When I select 'Pick a course' on Book Assessment Page for "<trainer_name>"
+    Then I will be redirected to the Pick a course page
+    And I click "Book Assessment" on Pick a course page
+    Then I will be redirected to Course Detail page
+    Then I can select "<trainer_name>" for which an assessment needs to be added
+    When I start enter assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
+    And I enter data into mileage and notes on summary page of bookassessment
+    And I click "Submit"
+    And the NGU user is redirected to the Assessment Management screen
+    And a Confirmation message is shown
+    When I click 'Assessment Status' dropdown button
+    And I select 'Approved' status from 'Assessment Status' dropdown
+    And I click "Apply" button
+    Then I should see Assessment Request is automatically Approved
+    And I should see Approved Assessment trainer "<trainer_name>", assessor "<Assessor Name>" details
+    Examples:
+      |Assessor Name|trainer_name|
+      | deena grit  |auto2 trainer|
