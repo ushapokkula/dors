@@ -64,7 +64,7 @@ class NguSearchAssessmentIDPage < SitePrism::Page
 
    def book_assessment
     find('a', text: "REQUEST ASSESSMENT").click
-    find(:button, 'Pick a couse', match: :first).click
+    find(:button, 'Pick a course', match: :first).click
     find(:button, 'Request Assessment', match: :first).click
     expect(page).to have_css(".include-main-trainer-checkbox", visible: true)
     all('.include-main-trainer-checkbox', visible: true)[1].click
