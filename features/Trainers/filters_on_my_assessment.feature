@@ -135,19 +135,22 @@ Feature: Filter on My Assessment page
     Given I am on the My Assessments page
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
-    And The option to include all force areas is available with "Yes" and "No" buttons
+    And The option to "Include All" force areas is available with "Yes" and "No" buttons
 
-  Scenario Outline: : Verify the visibility of pre-selected force area in the force filter and its results
-    Given I am on the My Assessments page
+  @DR_384
+  Scenario Outline: Verify the visibility of pre-selected force area in the force filter and its results
+    Given I deleted the assessments from Database
+    And I request assessment as "<Type>"
+    When I navigate to "MY ASSESSMENTS" page
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
-    And the option to include all force areas is available with "Yes" and "No" buttons
+    And The option to "Include All" force areas is available with "Yes" and "No" buttons
     And I can see "<Selected-Force>" as default force in the force filter
-    And the results are displayed based on "<Selected-Force>" force
+    And the results are displayed based on selected force force
 
     Examples:
-      | Selected-Force |
-      | ESSEX          |
+      | Selected-Force |Type|
+      | ESSEX POLICE   |Booked|
 
   Scenario Outline: Verify the assessments listing after apply single force without other filters
     Given I am on the My Assessments page
@@ -155,6 +158,7 @@ Feature: Filter on My Assessment page
     And the option to filter the list by "Force Areas" is Displayed
     When I apply single force "<Force>" in the force filter
     And no others filters are applied
+    And I click "Apply"
     Then The results listing will be updated showing only those assessments who fall under the selected force area
 
     Examples:
@@ -167,27 +171,30 @@ Feature: Filter on My Assessment page
     And the option to filter the list by "Force Areas" is Displayed
     When I apply multiple forces like "<Force1>","<Force2>" and "<Force3>"in the force filter
     And no others filters are applied
+    And I click "Apply"
     Then The results listing will be updated showing only those assessments who fall under the selected force area
 
     Examples:
-      | Force1   |Force2|Force3|
-      | CHESHIRE |ESSEX |BEDFORDSHIRE POLICE|
+      | Force1   | Force2 | Force3              |
+      | CHESHIRE | ESSEX  | BEDFORDSHIRE POLICE |
 
-    Scenario: Verify the assessments listing when 'All' force areas are included
-      Given I am on the My Assessments page
-      And I can see "Filters" section on My assessments page
-      And the option to filter the list by "Force Areas" is Displayed
-      And the option to include all force areas is available with "Yes" and "No" buttons
-      When I include all force areas by clicking "Yes" button
-      Then the assessments listing are displayed without applying any force area filters to the results
+  Scenario: Verify the assessments listing when 'All' force areas are included
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    And the option to include all force areas is available with "Yes" and "No" buttons
+    When I include all force areas by clicking "Yes" button
+    And I click "Apply"
+    Then the assessments listing are displayed without applying any force area filters to the results
 
-    Scenario:  Verify the assessments listing when 'No' force areas are included
-      Given I am on the My Assessments page
-      And I can see "Filters" section on My assessments page
-      And the option to filter the list by "Force Areas" is Displayed
-      And the option to include all force areas is available with "Yes" and "No" buttons
-      When no force areas are included by clicking "No" button
-      Then no force area filters are applied to the results
+  Scenario:  Verify the assessments listing when 'No' force areas are included
+    Given I am on the My Assessments page
+    And I can see "Filters" section on My assessments page
+    And the option to filter the list by "Force Areas" is Displayed
+    And the option to include all force areas is available with "Yes" and "No" buttons
+    When no force areas are included by clicking "No" button
+    And I click "Apply"
+    Then no force area filters are applied to the results
 
 
 

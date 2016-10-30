@@ -1,6 +1,7 @@
 class AssessmentFormForMarkingOutcomePage < SitePrism::Page
   elements :outcome_dropdown, ".dors-well-other select"
 
+
   def verify_outcomes(new_table)
     outcome_dropdown.each do |row|
       dropdown_elements=[]
