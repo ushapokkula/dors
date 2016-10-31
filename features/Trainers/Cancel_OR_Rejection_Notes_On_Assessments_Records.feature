@@ -42,6 +42,7 @@ Feature: Cancel OR Reject Assessment
     And I click "Approve" button
    And I click "Assessment Status"
     And I select 'Approved' status from 'Assessment Status' dropdown
+   Then I should see 'Approved' Assessment
    And I click "View Details" link
     And I 'Cancel' the 'Approved' Assessment
     Then I select 'Cancelled' status from 'Assessments Status' dropdown

@@ -49,6 +49,9 @@ end
 And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
   expect(page).to have_css("#single-button + .dropdown-menu", visible:true)
   check('assessmentStatusChk1')
+end
+
+Then (/^I should see 'Approved' Assessment$/)do
   expect(page).to have_css(".assessment-status", text: 'Approved')
 end
 
