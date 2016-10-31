@@ -24,6 +24,7 @@ Feature: Apply or Reset on Assessments Management page
   Scenario Outline: Verify Default Filters functionality on Assessments Management page
     And I logout
     And I login as a "<ASSESSOR>" user
+    And I deleted the assessments from Database
     And I book assessment with nearby trainer
     And I logout
     And I login as a "Compliance Manager" user
@@ -63,7 +64,6 @@ Feature: Apply or Reset on Assessments Management page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     When I search with assessor "<Assessor Name>" in the assessor search field
     And I click "Apply" button
-    Then assessments will be shown which fall under selected Assessor "<Assessor Name>"
     Then assessments that meet all filter criteria in combination will be displayed
 
     Examples:
@@ -98,6 +98,7 @@ Feature: Apply or Reset on Assessments Management page
       And the value of the 'start date' will be today's date
       And the end date field value will be empty
       And 'Assessor' filter default value should be empty
+      And 'Trainer' filter default value should be empty
       And I should see default requested assessments for selected "<Assessor Name>" on assessment management page
 
       Examples:
@@ -124,13 +125,13 @@ Feature: Apply or Reset on Assessments Management page
     Then I see 'Apply' button should be disabled
     And I should see 'Reset' button will be enabled
     Then assessments that meet all filter criteria in combination will be displayed
-    And I click "BOOK ASSESSMENT"
-    Then I will be redirected to "Book Assessment" page
+    And I navigate to "BOOK ASSESSMENT" page
+    Then I will be on Book Assessment page
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I see applied filters should remain same
+    Then I see applied filters "<Status_filter1>", "<Status_filter2>", "<Assessor Name>", "<start_date>", "<end_date>" should remain same
     Examples:
         |Assessor Name|Status_filter1|Status_filter2|start_date|end_date|ASSESSOR|
-        |sudiv p  |Requested         | Approved     |15/06/2016|23/05/2017|Assessor|
+        |sudiv p      |Requested     | Approved     |15/06/2016|23/05/2017|Assessor|
 
 
 
@@ -168,8 +169,53 @@ Feature: Apply or Reset on Assessments Management page
       | deena grit  |Requested     | Approved     |15/06/2016|23/05/2017|Assessor3|
 
 
-    Scenario Outline: Apply all filters and search for invalid assessor and verify Reset functionality
-
-
+    Scenario Outline: Apply all statuses with Date and search for invalid assessor and verify Reset functionality
+      When I click 'Assessment Status' dropdown button
+      And I select 'Approved' status from 'Assessment Status' dropdown
+      And I click 'Assessment Status' dropdown button
+      And I select 'Rejected' status from 'Assessments Status' dropdown
+      And I click 'Assessment Status' dropdown button
+      And I select 'Cancelled' status from 'Assessments Status' dropdown
+      And I click 'Assessment Status' dropdown button
+      And I select 'Completed' status from 'Assessments Status' dropdown
+      And I enter "<start_date>" in start date field
+      And I enter "<end_date>" in End date field
+      And I enter "<Trainer Name>" in trainer search field on assessment management page
+      Then I should not see "No such trainer exists." message
+      And I enter "<Assessor Name>" in assessor search field on assessment management page
+      Then I should not see "No such assessor exists." message
+      And I click "Apply"
+      Then I should see a message "There are no assessments to display."
+      And I click "Reset"
+      Then I see 'Apply' button should be disabled
+      And I see 'Reset' button should be disabled
+      Then I click 'Assessment Status' dropdown button
+      And I see 'Requested' status is in selected status
+      And the value of the 'start date' will be today's date
+      And the end date field value will be empty
+      And 'Assessor' filter default value should be empty
+      And 'Trainer' filter default value should be empty
       Examples:
-      |Assessor Name|
+      |Assessor Name|Trainer Name|start_date|end_date  |
+      |asd          |adf         |12/06/2016|28/01/2017|
+
+
+  Scenario Outline: remove default filters on assessement management page and verify Apply n Reset functionality
+    When I click 'Assessment Status' dropdown button
+    And I uncheck "<status>" status
+    And I enter "<start_date>" in start date field
+    And I click "Apply"
+    Then I see 'Apply' button should be disabled
+    And I should see 'Reset' button will be enabled
+    Then I should see a message "There are no assessments to display."
+    And I click "Reset"
+    Then I click 'Assessment Status' dropdown button
+    And I see 'Requested' status is in selected status
+    And the value of the 'start date' will be today's date
+    And the end date field value will be empty
+    And 'Assessor' filter default value should be empty
+    And 'Trainer' filter default value should be empty
+
+    Examples:
+    |start_date|status|
+    |          |Requested|
