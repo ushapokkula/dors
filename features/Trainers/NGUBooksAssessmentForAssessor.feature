@@ -25,6 +25,8 @@ Feature: As an NGU,
       When I start typing assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
       Then The system will start autopredicting it and the list of assessor appears
       When I hit DOWN arrow key from the assessor auto predict list
+      When I start typing assessor as "<Assessor Name>" in 'Book Assessment on behalf of' field
+      Then The system will start autopredicting it and the list of assessor appears
       When I hit UP arrow key from the assessor auto predict list
       Examples:
       |Assessor Name|trainer_name |
@@ -58,7 +60,7 @@ Feature: As an NGU,
     Examples:
       |Assessor Name|trainer_name|
       | tes        |auto2 trainer|
-      |  d566      |auto2 trainer|
+      | d566       |auto2 trainer|
 
 
     Scenario Outline: NGU Books Assessment on behalf an Assessor
