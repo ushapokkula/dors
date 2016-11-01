@@ -106,7 +106,7 @@ Feature: Apply or Reset on Assessments Management page
         | deena grit  | Requested    | Approved     |15/06/2016|23/05/2017|Assessor3|
 
 
-  Scenario Outline: Filter persistence on Assessments Management page(when i navigate to other page and return back)
+  Scenario Outline: Filter persistence on Assessments Management page(when i navigate to other page and return back to ASSESSMENT MANAGEMENT)
     And I logout
     And I login as a "<ASSESSOR>" user
     And I deleted the assessments from Database
@@ -135,7 +135,7 @@ Feature: Apply or Reset on Assessments Management page
 
 
 
-  Scenario Outline: Filter persistence on Assessments Management page (when I logout and return back)
+  Scenario Outline: Filter persistence on Assessments Management page (when I logout and login back to ASSESSMENT MANAGEMENT)
     And I logout
     And I login as a "<ASSESSOR>" user
     And I deleted the assessments from Database
@@ -169,7 +169,7 @@ Feature: Apply or Reset on Assessments Management page
       | deena grit  |Requested     | Approved     |15/06/2016|23/05/2017|Assessor3|
 
 
-    Scenario Outline: Apply all statuses with Date and search for invalid assessor and verify Reset functionality
+    Scenario Outline: Apply all statuses(Req/APP/Cance/Reje/Comple) with Date and search for invalid assessor and verify Reset functionality
       When I click 'Assessment Status' dropdown button
       And I select 'Approved' status from 'Assessment Status' dropdown
       And I click 'Assessment Status' dropdown button
