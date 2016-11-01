@@ -6,6 +6,10 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   element :course_filter, "#txt-scheme-filter-search"
   element :end_date_filter, "#txtEndDate"
   element :start_date_filter, "#txtStartDate"
+  element :x_button, ".close.ui-select-match-close"
+  elements :trainer_name, ".trainer-fullname"
+  element :yes_button, ".clearfix >div> label:nth-child(2)"
+  element :no_button, ".clearfix >div> label:nth-child(3)"
 
 
   def verify_status_filter_visibility_on_myassessments(new_table)
@@ -39,14 +43,28 @@ class FiltersONMyAssessmentPage < SitePrism::Page
   end
 
   def verify_no_assessment_status_filter
-    find("single-button").click
+    find("#single-button").click
     expect(page).to have_css("#single-button + .dropdown-menu")
     find("#assessmentStatusChk0").should_not be_checked
-    find("#assessmentStatusChk1").should_not be_checked
+    find("#assessmentStatusChk1").should be_checked
     find("#assessmentStatusChk2").should_not be_checked
     find("#assessmentStatusChk3").should_not be_checked
     find("#assessmentStatusChk4").should_not be_checked
- end
+  end
 
+  def book_assessment_under_cheshire
+    find(:button, 'Pick a course', match: :first).click
+    find(:button, 'Request Assessment', match: :first).click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[0].click
+    click_button("Submit")
+  end
 
+  def book_assessment_under_british_transport
+    all(".btn.btn-primary")[5].click
+    find(:button, 'Request Assessment', match: :first).click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[10].click
+    click_button("Submit")
+  end
 end

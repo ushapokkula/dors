@@ -149,11 +149,14 @@ Feature: Filter on My Assessment page
     And the results are displayed based on selected force force
 
     Examples:
-      | Selected-Force |Type|
-      | ESSEX POLICE   |Booked|
+      | Selected-Force | Type   |
+      | ESSEX POLICE   | Booked |
 
   Scenario Outline: Verify the assessments listing after apply single force without other filters
-    Given I am on the My Assessments page
+    Given I deleted the assessments from Database
+    And I click "REQUEST ASSESSMENT"
+    And I request assessment as "<Type>" for trainers under "<Force>"
+    And I click "MY ASSESSMENTS"
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
     When I apply single force "<Force>" in the force filter
@@ -162,39 +165,59 @@ Feature: Filter on My Assessment page
     Then The results listing will be updated showing only those assessments who fall under the selected force area
 
     Examples:
-      | Force    |
-      | CHESHIRE |
+      | Force    | Type   |
+      | CHESHIRE | Booked |
 
   Scenario Outline: Verify the assessments listing after apply multiple forces without other filters
-    Given I am on the My Assessments page
+    Given I deleted the assessments from Database
+    And I click "REQUEST ASSESSMENT"
+    And I request assessment as "<Type>" for trainers under "<Force2>"
+    And I click "MY ASSESSMENTS"
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
-    When I apply multiple forces like "<Force1>","<Force2>" and "<Force3>"in the force filter
+    When I apply multiple forces like "<Force1>" and "<Force2>"in the force filter
     And no others filters are applied
     And I click "Apply"
-    Then The results listing will be updated showing only those assessments who fall under the selected force area
+    Then The results listing will be updated showing only those assessments who fall under cheshire and british transport police force area
 
     Examples:
-      | Force1   | Force2 | Force3              |
-      | CHESHIRE | ESSEX  | BEDFORDSHIRE POLICE |
+      | Force1   | Type   | Force2                   |
+      | CHESHIRE | Booked | BRITISH TRANSPORT POLICE |
 
-  Scenario: Verify the assessments listing when 'All' force areas are included
-    Given I am on the My Assessments page
+  Scenario Outline: Verify the assessments listing when 'All' force areas are included
+    Given I deleted the assessments from Database
+    And I request assessment as "<Type>"
+    And I request assessment as "<Type>" for trainers under "<Force>"
+    And I click "MY ASSESSMENTS"
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
-    And the option to include all force areas is available with "Yes" and "No" buttons
+    And The option to "Include All" force areas is available with "Yes" and "No" buttons
     When I include all force areas by clicking "Yes" button
     And I click "Apply"
     Then the assessments listing are displayed without applying any force area filters to the results
 
-  Scenario:  Verify the assessments listing when 'No' force areas are included
-    Given I am on the My Assessments page
+    Examples:
+      | Force    | Type   |
+      | CHESHIRE | Booked |
+
+  Scenario Outline:  Verify the assessments listing when 'No' force areas are included
+    Given I deleted the assessments from Database
+    And I request assessment as "<Type>"
+    And I request assessment as "<Type>" for trainers under "<Force>"
+    And I click "MY ASSESSMENTS"
     And I can see "Filters" section on My assessments page
     And the option to filter the list by "Force Areas" is Displayed
     And the option to include all force areas is available with "Yes" and "No" buttons
+    And I include all force areas by clicking "Yes" button
+    And I click "Apply"
     When no force areas are included by clicking "No" button
     And I click "Apply"
     Then no force area filters are applied to the results
+    And only default force area assessments are displayed on my assessments page
+
+    Examples:
+      | Force    | Type   |
+      | CHESHIRE | Booked |
 
 
 
