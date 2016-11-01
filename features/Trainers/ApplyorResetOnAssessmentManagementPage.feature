@@ -185,9 +185,10 @@ Feature: Apply or Reset on Assessments Management page
       And I enter "<Assessor Name>" in assessor search field on assessment management page
       Then I should not see "No such assessor exists." message
       And I click "Apply"
-      Then I should see a message "There are no assessments to display."
-      And I click "Reset"
       Then I see 'Apply' button should be disabled
+      Then I should see a message "There are no assessments to display."
+      And I should see 'Reset' button will be enabled
+      And I click "Reset"
       And I see 'Reset' button should be disabled
       Then I click 'Assessment Status' dropdown button
       And I see 'Requested' status is in selected status
