@@ -13,7 +13,7 @@ Feature: As an NGU,
     Then I will be redirected to Book Assessment page
     And I can see number of assessments to book
 
-    Scenario Outline: NGU loads an assessor on to book assessment
+    Scenario Outline: NGU loads an assessor on  book assessment page
       When I select 'Pick a course' on Book Assessment Page for "<trainer_name>"
       Then I will be redirected to the Pick a course page
       And I click "Book Assessment" on Pick a course page

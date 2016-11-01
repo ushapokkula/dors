@@ -22,7 +22,6 @@ When (/^I hit enter after typing first three chara assessor name as "([^"]*)"$/)
   fill_in("txt-assessor-name", :with=> name)
   expect(page).to have_css("#txt-assessor-name + ul")
   find('#txt-assessor-name').send_keys(:enter)
-  sleep 3
 end
 
 Then(/^searched assessor "([^"]*)" name includes assessor full name and assessor ID$/)do |name|
