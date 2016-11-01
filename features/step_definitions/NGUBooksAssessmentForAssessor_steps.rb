@@ -1,5 +1,5 @@
 Then(/^I see "([^"]*)" on assessment management page$/) do |bookassessment|
-#pending
+expect(page).to have_css("#menu-book-assessment", text: bookassessment, visible: true)
 end
 
 And (/^I can see number of assessments to book$/)do
@@ -23,10 +23,10 @@ Then(/^I will be redirected to the Pick a course page$/) do
   #expect(page).to have_css(".breadcrumb li)
   expect(find_all(".breadcrumb li"))
   expect(page).to have_selector(".breadcrumb .active>span", text: "Pick a Course")
-  expect(find_all(".btn.btn-primary", match: :first ,text: "BookAssessment"))
 end
 
 And (/^I click "([^"]*)" on Pick a course page$/)do|button|
+  expect(find_all(".btn.btn-primary", match: :first ,text: button))
 find_all('.btn.btn-primary', visible: true)[0].click
 end
 
@@ -35,7 +35,7 @@ Then(/^I will be redirected to Course Detail page$/) do
   expect(page).to have_css(".breadcrumb .active>span", text:'Summary')
 end
 
-Then(/^does not show the Assessor information$/) do
+Then(/^Course Detail page does not show the Assessor information$/) do
  expect(page).to have_no_css(".dors-well-other .span")
 end
 
@@ -101,4 +101,25 @@ fill_in("txt-assessor-name", :with=> assessor_name)
 expect(page).to have_css("#txt-assessor-name + ul")
 find('#txt-assessor-name').send_keys(:enter)
 sleep 3
-  end
+end
+
+And (/^Course Detail page shows the Assessor information$/)do
+expect(page).to have_css(".col-md-12 span", visible: true)
+end
+
+And(/^I can't see text saying "([^"]*)"$/)do|text|
+  expect(page).to have_no_css(".well p", text: text)
+end
+
+Then (/^I can't see "([^"]*)" field to search for assessor$/)do|text|
+  expect(page).to have_no_css("label.required-field", text: text , visible: true)
+  expect(page).to have_no_css("#txt-assessor-name")
+end
+
+And (/^I should see "([^"]*)"$/)do|text|
+  expect(page).to have_css(".well p", text: text, visible: true)
+end
+
+And (/^I should see total mileage filed$/)do
+expect(page).to have_css("#mileage", visible: true)
+end

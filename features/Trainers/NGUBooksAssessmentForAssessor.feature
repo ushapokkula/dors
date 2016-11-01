@@ -8,17 +8,17 @@ Feature: As an NGU,
     And I login as an "Compliance Manager"
     And I deleted the assessments from Database
     Then I am on the Assessment Management page
-    #And I see "BOOK ASSESSMENT" on assessment management page            /waiting for css/
+    And I see "BOOK ASSESSMENT" on assessment management page
     And I navigate to "BOOK ASSESSMENT" page
     Then I will be redirected to Book Assessment page
     And I can see number of assessments to book
 
-    Scenario Outline: NGU loads an assessor on  book assessment page
+    Scenario Outline: NGU loads an assessor on book assessment page
       When I select 'Pick a course' on Book Assessment Page for "<trainer_name>"
       Then I will be redirected to the Pick a course page
       And I click "Book Assessment" on Pick a course page
       Then I will be redirected to Course Detail page
-      And does not show the Assessor information
+      And Course Detail page does not show the Assessor information
       Then I can select "<trainer_name>" for which an assessment needs to be added
       And I can see text saying "Enter the assessor on whose behalf you make the assessment request, enter the mileage for the assessor and it will automatically calculate expenses"
       Then I can see "Book Assessment on behalf of" field to search for assessor
@@ -102,3 +102,25 @@ Feature: As an NGU,
     Examples:
       |Assessor Name|trainer_name|
       | deena grit  |auto2 trainer|
+
+
+    Scenario: Assessor verifies bookassessment fields on course detail page
+      And I logout
+      And I login as a "Assessor3" user
+      Then I navigate to "REQUEST ASSESSMENT" page
+      And I deleted the assessments from Database
+      And I Pick first course
+      Then I will be redirected to the Pick a course page
+      And I click "Request Assessment" on Pick a course page
+      Then I will be redirected to Course Detail page
+      And Course Detail page shows the Assessor information
+      And I can't see text saying "Enter the assessor on whose behalf you make the assessment request, enter the mileage for the assessor and it will automatically calculate expenses"
+      Then I can't see "Book Assessment on behalf of" field to search for assessor
+      And I should see "Enter your mileage below and it will automatically calculate your expenses"
+      And I should see total mileage filed
+
+
+
+
+
+
