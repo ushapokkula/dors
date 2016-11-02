@@ -68,7 +68,7 @@ Then(/^I see licence type "([^"]*)" against the trainer for each "([^"]*)" asses
   if (licence_type == "Practical" and assessment_type == "Requested")
     expect(page).to have_css(".trainer-licences-tyoe", count: 1, text: licence_type)
   elsif (licence_type == "Theory" and assessment_type == "Booked")
-    expect(page).to have_css(".trainer-licences-tyoe", count: 3, text: licence_type)
+    expect(page).to have_css(".trainer-licences-tyoe", count: 2, text: licence_type)
   elsif (licence_type == "Theory" and assessment_type == "Requested")
     expect(page).to have_css(".trainer-licences-tyoe", count: 2, text: licence_type)
   else
@@ -88,14 +88,17 @@ And(/^I select assessment status depending on "([^"]*)"$/) do |cancellation_type
     expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
     find("#assessmentStatusChk0").click
     find("#assessmentStatusChk2", visible: true).click
+    click_button("Apply")
   elsif cancellation_type == "Cancelled"
     expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
     find("#assessmentStatusChk0").click
     find("#assessmentStatusChk3", visible: true).click
+    click_button("Apply")
   else
     expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
     find("#assessmentStatusChk0").click
     find("#assessmentStatusChk4", visible: true).click
+    click_button("Apply")
   end
 end
 
@@ -107,6 +110,7 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
     page.find("#assessmentStatusChk0", visible: true).click
     expect(page).to have_css("#assessmentStatusChk1")
     page.find("#assessmentStatusChk1", visible: true).click
+    click_button("Apply")
   else
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
@@ -114,6 +118,7 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
     page.find("#assessmentStatusChk0", visible: true).click
     expect(page).to have_css("#assessmentStatusChk4")
     page.find("#assessmentStatusChk4", visible: true).click
+    click_button("Apply")
   end
 end
 

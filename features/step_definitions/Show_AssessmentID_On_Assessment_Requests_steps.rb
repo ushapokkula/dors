@@ -102,11 +102,13 @@ And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |use
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk1", visible: true).click
+    click_button("Apply")
     end
   if (user == "Assessor3" && type == "Requested")
   find("#single-button").click
   expect(page).to have_css(".dropdown-menu", visible: true)
   find("#assessmentStatusChk0", visible: true).click
+  click_button("Apply")
   end
 
 end
