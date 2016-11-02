@@ -87,7 +87,7 @@ Then (/^I should see a message saying "([^"]*)"$/)do |message|
 end
 
 And(/^The system will load the page where I can create a new trainer record$/)do
-  expect(page).to have_css('h1',text: 'Trainers management')
+  expect(page).to have_css('h1',text: 'Trainers Management')
   expect((all('.panel-title')[0]).text).to eq("Create Trainer")
 end
 
