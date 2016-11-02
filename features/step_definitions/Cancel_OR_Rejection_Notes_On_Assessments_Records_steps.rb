@@ -6,6 +6,7 @@ end
 Then (/^I select 'Cancelled' status from 'Assessments Status' dropdown$/)do
   page.find("#single-button", visible: true).click
   check('assessmentStatusChk3')
+  click_button("Apply")
 end
 
 And (/^I should see the 'Cancellation Notes' on My Assessment details page$/)do
@@ -37,6 +38,7 @@ end
 Then (/^I select 'Rejected' status from 'Assessments Status' dropdown$/)do
   page.find("#single-button", visible: true).click
   check('assessmentStatusChk2')
+  click_button("Apply")
 end
 
 And (/^I should see the 'Rejection Notes' on Assessment Outcome page$/)do
@@ -50,6 +52,7 @@ And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
   expect(page).to have_css("#single-button + .dropdown-menu", visible:true)
   check('assessmentStatusChk1')
   #expect(page).to have_css(".assessment-status", text: 'Approved')
+  click_button("Apply")
 end
 
 And (/^I 'Cancel' the 'Approved' Assessment$/)do
