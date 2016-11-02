@@ -254,8 +254,10 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def delete_outlook_emails
     visit "https://outlook.live.com/owa/"
+    click_link("Sign in")
     unless page.has_css?("[aria-label='Open menu']", wait: 4)
       find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click
     end
@@ -263,12 +265,12 @@ class CreateAssessorRecordPage < SitePrism::Page
     size = page.all(:xpath, ".//*[@autoid='_lvv2_9']/div").size
     if size > 10
       find("[autoid='_n_h']").hover
-      find("[title='Select everything in this folder']").click
+      find("[title='Select all items in view']").click
       find("[title='Delete (Del)']").click
        find(:xpath, ".//span[text()='OK']").click
     elsif size < 10 && size > 0
       find("[autoid='_n_h']").hover
-      find("[title='Select everything in this folder']").click
+      find("[title='Select all items in view']").click
       find("[title='Delete (Del)']").click
       #find(:xpath, ".//span[text()='OK']").click
     end
