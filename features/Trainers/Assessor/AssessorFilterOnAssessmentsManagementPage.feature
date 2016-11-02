@@ -41,7 +41,7 @@
     Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
       When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
       Then The system will start autopredicting it and the list of assessor appears
-      When I hit enter after typing first three characters of assessor name as "<Assessor Name>"
+      When I hit enter after typing first three chara assessor name as "<Assessor Name>"
       Then searched assessor "<Name>" name includes assessor full name and assessor ID
       Then Assessor first name "<Name>" will be selected from the auto predict list
       Examples:

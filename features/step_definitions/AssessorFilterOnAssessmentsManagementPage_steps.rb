@@ -18,11 +18,10 @@ When (/^I start typing invalid assessor name as "([^"]*)" in the assessor search
   fill_in("txt-assessor-name", :with=> chars)
 end
 
-When (/^I hit enter after typing first three characters of assessor name as "([^"]*)"$/)do|name|
+When (/^I hit enter after typing first three chara assessor name as "([^"]*)"$/)do|name|
   fill_in("txt-assessor-name", :with=> name)
   expect(page).to have_css("#txt-assessor-name + ul")
   find('#txt-assessor-name').send_keys(:enter)
-  sleep 3
 end
 
 Then(/^searched assessor "([^"]*)" name includes assessor full name and assessor ID$/)do |name|
