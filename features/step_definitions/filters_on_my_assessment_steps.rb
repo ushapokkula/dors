@@ -307,7 +307,8 @@ end
 
 When(/^no force areas are included by clicking "([^"]*)" button$/) do |no_button|
   expect(page).to have_css(".clearfix >div> label:nth-child(3)", visible: true, text: no_button)
-  @trainers.filters_on_my_assessment_page.no_button.click
+  all(".clearfix >div> label:nth-child(3)")[1].click
+  #@trainers.filters_on_my_assessment_page.no_button.click
 end
 
 Then(/^no force area filters are applied to the results$/) do
@@ -344,5 +345,5 @@ And(/^only default force area assessments are displayed on my assessments page$/
   click_button("View Details")
   expect(page).to have_css("h1", text: "Assessment Outcome")
   actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
-  expect(actual_trainers).to match_array(["Steve _Auto", "auto7 trainer"])
+  expect(actual_trainers).to match_array(["Heather Mcqueen_Auto", "Bob Thorton_Auto"])
 end
