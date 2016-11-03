@@ -144,5 +144,5 @@ Feature: As an NGU (TrainingGovernance)
     Then other filters "<Status_filter1>","<Status_filter2>","<start_date>","<end_date>" , if set, will be remain same
     Examples:
       |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
-      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|10/12/2016|auto7 Trainer |
+      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|01/12/2016|auto7 Trainer |
       |  auto1             |Trainer          |Requested    | Approved      |5/08/2016 |22/01/2017|auto1 Trainer |
