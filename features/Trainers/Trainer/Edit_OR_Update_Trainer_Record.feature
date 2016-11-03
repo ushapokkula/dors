@@ -7,12 +7,12 @@ Feature: As an NGU,
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
-    Then I see "Trainers management" page
+    Then I see "Trainers Management" page
     And I can see Legend with "Practical Course" and "Theory Course"
 
 
   Scenario: Verify the license status options
-    Given I see "Trainers management" page
+    Given I see "Trainers Management" page
     Then I see the following default Licence status in Licence status dropdown
       | Licence Status          |
       | ---Please select---     |

@@ -5,8 +5,8 @@ Given(/^I search for "([^"]*)" and "([^"]*)" in the trainer search field$/) do |
 end
 
 
-Then(/^I see "Trainers management" page$/) do
-  expect(page).to have_content("Trainers management")
+Then(/^I see "Trainers Management" page$/) do
+  expect(page).to have_content("Trainers Management")
   expect(page).to have_content("Licences")
   expect(page).to have_css(".ui-select-container", visible: true)
   expect(page).to have_css("#licenseStatuses", visible: true)
