@@ -1,9 +1,9 @@
 Then (/^the system will load the trainer form where I can create a new trainer record$/)do
-  expect(page).to have_css("h1", text:'Trainers management')
+  expect(page).to have_css("h1", text:'Trainers Management')
   page.should have_css("h3 > strong", text:'Create Trainer')
   page.should have_css("#btnCreateUpdateTrainer", text:'Create Trainer')
   page.should have_css("#btnCancelTrainer", text: 'Cancel')
-  puts "I am On Trainers management Page"
+  puts "I am On Trainers Management Page"
 end
 
 When(/^I enter ([^"]*) to value ([^"]*)$/) do |field, value|
