@@ -1,8 +1,8 @@
-And(/^I am on the My Assessments page$/)do
+And(/^I am on the My Assessments page$/) do
   expect(page).to have_content("My Assessments")
 end
 
-When(/^The default view of the page of My Assessments is loaded$/)do
+When(/^The default view of the page of My Assessments is loaded$/) do
   @trainers.ngu_search_assessment_id_page.delete_assessments_from_DB
   click_link("REQUEST ASSESSMENT")
   @trainers.ngu_search_assessment_id_page.book_assessment
@@ -94,7 +94,7 @@ When(/^I select "([^"]*)" on My Assessments page$/) do |status_filter|
   end
 end
 
-Then(/^I see that the "([^"]*)" option is selected by default on My Assessments page$/)do|default_status|
+Then(/^I see that the "([^"]*)" option is selected by default on My Assessments page$/) do |default_status|
   within(".dropdown-menu") do
     find("input[type='checkbox']:checked + label").text == default_status
     find("#assessmentStatusChk1").should be_checked
@@ -237,4 +237,113 @@ And(/^I select assessment status depending on "([^"]*)" on my assessments page$/
     find("#assessmentStatusChk0", visible: true).click
     find("#assessmentStatusChk1", visible: true).click
   end
+end
+
+And(/^the option to filter the list by "([^"]*)" is Displayed$/) do |force_filter_header|
+  expect(page).to have_css(".clearfix>label", text: force_filter_header, visible: true)
+end
+
+And(/^The option to "([^"]*)" force areas is available with "([^"]*)" and "([^"]*)" buttons$/) do |include_all, yes_button, no_button|
+  expect(page).to have_css(".pull-left>small", text: include_all, visible: true)
+  #expect(page).to have_css(".clearfix >div> label:nth-child(2)", visible: true, text: yes_button)
+  expect(page).to have_css(".clearfix >div> label:nth-child(2)", visible: true, text: yes_button)
+  expect(page).to have_css("label.btn.btn-primary.active", visible: true, text: no_button)
+  #expect(page).to have_css("label.btn.btn-primary.active", visible: true, text: no_button)
+
+end
+
+And(/^the option to include all force areas is available with "([^"]*)" and "([^"]*)" buttons$/) do |arg1, arg2|
+
+end
+
+And(/^I can see "(.*)" as default force in the force filter$/) do |force_name|
+  expect(page).to have_css(".selectedForceAreaFilter", text: force_name, visible: true)
+end
+
+And(/^the results are displayed based on selected force force$/) do
+  expect(page).to have_css(".dors-well-other", count: 1, visible: true)
+  click_button("View Details")
+  expect(page).to have_content("111333")
+
+end
+
+When(/^I apply single force "([^"]*)" in the force filter$/) do |force_name|
+  @trainers.filters_on_my_assessment_page.x_button.click
+  @trainers.filters_on_my_assessment_page.force_filter.set(force_name)
+  @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
+end
+
+And(/^no others filters are applied$/) do
+  @trainers.filters_on_my_assessment_page.course_filter.text.should.eq('')
+  @trainers.filters_on_my_assessment_page.end_date_filter.text.should.eq('')
+  today_date = (Date.today.strftime('%d/%m/%Y'))
+  expect(find_field('txtStartDate').value).to eq(today_date)
+  @trainers.filters_on_my_assessment_page.verify_no_assessment_status_filter
+end
+
+Then(/^The results listing will be updated showing only those assessments who fall under the selected force area$/) do
+  expect(page).to have_css(".dors-well-other", visible: true, count: 1)
+  click_button("View Details")
+  actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
+  expect(actual_trainers).to include("auto2 trainer", "auto1 trainer")
+end
+
+When(/^I apply multiple forces like "([^"]*)" and "([^"]*)"in the force filter$/) do |force1, force2|
+  @trainers.filters_on_my_assessment_page.x_button.click
+  @trainers.filters_on_my_assessment_page.force_filter.set(force1)
+  @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
+  @trainers.filters_on_my_assessment_page.force_filter.set(force2)
+  @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
+end
+
+When(/^I include all force areas by clicking "([^"]*)" button$/) do |yes_button|
+  expect(page).to have_css(".clearfix >div> label:nth-child(2)", visible: true, text: yes_button)
+  @trainers.filters_on_my_assessment_page.yes_button.click
+end
+
+Then(/^the assessments listing are displayed without applying any force area filters to the results$/) do
+  expect(page).to have_css(".dors-well-other", visible: true, count: 2)
+end
+
+When(/^no force areas are included by clicking "([^"]*)" button$/) do |no_button|
+  expect(page).to have_css(".clearfix >div> label:nth-child(3)", visible: true, text: no_button)
+  all(".clearfix >div> label:nth-child(3)")[1].click
+  #@trainers.filters_on_my_assessment_page.no_button.click
+end
+
+Then(/^no force area filters are applied to the results$/) do
+ expect(page).to have_css(".selectedForceAreaFilter", visible:true,text:"ESSEX POLICE")
+  expect(find("#txt-force-filter-search").text).to eq('')
+  expect(page).to have_css(".dors-well-other",visible:true, count:1)
+end
+
+And(/^I request assessment as "([^"]*)" for trainers under "([^"]*)"$/) do |type, force_name|
+  expect(page).to have_css("h1", text: 'Request Assessment')
+  expect(page).to have_css(".selectedForceAreaFilter", text: "ESSEX POLICE")
+  @trainers.filters_on_my_assessment_page.x_button.click
+  @trainers.filters_on_my_assessment_page.force_filter.set("CHESHIRE")
+  @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
+  if force_name == "CHESHIRE" and type == "Booked"
+    @trainers.filters_on_my_assessment_page.book_assessment_under_cheshire
+  else
+    @trainers.filters_on_my_assessment_page.force_filter.set(force_name)
+    @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
+    @trainers.filters_on_my_assessment_page.book_assessment_under_british_transport
+  end
+end
+
+Then(/^The results listing will be updated showing only those assessments who fall under cheshire and british transport police force area$/) do
+  expect(page).to have_css(".dors-well-other", visible: true, count: 1)
+  click_button("View Details")
+  expect(page).to have_css("h1", text: "Assessment Outcome")
+  actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
+  expect(actual_trainers).to match_array(["Steve _Auto", "auto7 trainer"])
+end
+
+And(/^only default force area assessments are displayed on my assessments page$/) do
+  expect(page).to have_css(".dors-well-other", visible: true, count: 1)
+  click_button("View Details")
+  expect(page).to have_css("h1", text: "Assessment Outcome")
+  actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
+  expect(actual_trainers).to match_array(["Heather Mcqueen_Auto", "Bob Thorton_Auto"])
 end
