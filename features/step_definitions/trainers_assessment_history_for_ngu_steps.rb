@@ -15,7 +15,7 @@ end
 
 Then (/^the system will filter assessment records in all "([^"]*)","([^"]*)","([^"]*)","([^"]*)"combination on assessment management page$/)do|date,trainer_name,status1,status2|
   if (status1 == "Requested" && status2 == "Approved")
-expect(page).to have_css(".dors-table")
+expect(page).to have_css(".dors-table", :count=>2, visible: true)
 expect(page).to have_css(".trainer-full-name", text: trainer_name )
 expect(page).to have_css(".assessment-date", text: date)
 

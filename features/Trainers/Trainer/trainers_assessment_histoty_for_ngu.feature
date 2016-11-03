@@ -106,9 +106,11 @@ Feature: As an NGU (TrainingGovernance)
     Then I am on the Assessment Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
+    And I click 'Assessment Status' dropdown button
     Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
+    And I click "Apply"
     Then the system will filter assessment records in all "<end_date>","<Status_filter1>","<Status_filter2>","<selected_trainer_name>"combination on assessment management page
     Examples:
       |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
