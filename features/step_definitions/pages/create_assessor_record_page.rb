@@ -130,7 +130,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def isAssessorCreatePage()
-    should have_content('Assessors management')
+    should have_content('Assessors Management')
     should have_content('Create New Assessor')
     find_button('Create Assessor')
     puts "Yes I am on Create assessor page"
