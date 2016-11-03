@@ -139,7 +139,7 @@ Feature: As an NGU (TrainingGovernance)
     When I click X against the selected trainer as shown in trainer search field
     Then "<selected_trainer_name>" will be removed from trainer search field
     And I click "Apply"
-    And assessments list on the Assessments page will be refreshed to show updated data
+   # And assessments list on the Assessments page will be refreshed to show updated data
     When I click "Assessment Status"
     Then other filters "<Status_filter1>","<Status_filter2>","<start_date>","<end_date>" , if set, will be remain same
     Examples:

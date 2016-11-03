@@ -44,7 +44,8 @@ end
     find("#single-button",visible:true).click
     WaitUtil.wait_for_condition("waiting for drop down to appear", :timeout_sec => 5, :delay_sec => 0.5) do
     expect(page).to have_css("#assessmentStatusChk1", visible: true)
-    check('assessmentStatusChk1')
+    page.find("#assessmentStatusChk1").click
+    page.find("#btnApplyFilters").click
     click_link_or_button('View Details')
    select('Cancelled', :from=> 'status-281')
     fill_in('notes-281',:with=> 'TEST TRAINER OUTCOME')

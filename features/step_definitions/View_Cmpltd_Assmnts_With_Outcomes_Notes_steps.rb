@@ -9,7 +9,8 @@ end
 Then (/^I load detailed view of 'Completed' Assessment$/)do
   page.find("#single-button", visible:true).click                    #clicking on  'Assessment status dropdown'
   expect(page).to have_css("#assessmentStatusChk4", visible: true)
-  check('assessmentStatusChk4')                                      #selecting Completed status#
+  check('assessmentStatusChk4') #selecting Completed status#
+  page.find("#btnApplyFilters").click
   expect(page).to have_css(".assessment-status", text:'Completed')
   click_link_or_button("View Details")                                 #clicking on 'View detail' link'
 end
