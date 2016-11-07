@@ -1,5 +1,5 @@
 And(/^the option to filter the list by courses is displayed$/) do
-  expect(page).to have_css(".col-md-4.has-feedback>label" ,visible: true, text: 'Filter By Course')
+  expect(page).to have_css(".col-md-4.has-feedback>label" ,visible: true, text: 'Course')
   expect(page).to have_css("#scheme-filter-container", visible: true)
 end
 
@@ -85,7 +85,7 @@ When(/^I select "([^"]*)" from course filter of "([^"]*)"$/) do |course_name, co
   @trainers.course_filter_on_request_assessment_page.scheme_filter.set(course_name)
   expect(page).to have_css(".ui-select-choices-row-inner", visible: true)
   if (course_name == "National Driver Alertness Course" && course_type == "Practical")
-    find("#ui-select-choices-row-1-1", visible: true).click
+    find("#ui-select-choices-row-3-1", visible: true).click
   else
     @trainers.course_filter_on_request_assessment_page.scheme_filter.send_keys(:enter)
   end
@@ -112,13 +112,13 @@ end
 
 And(/^"([^"]*)" will be displayed of "([^"]*)" part of trainer licence$/) do |course_name, course_type|
   if (course_type == "Theory" and course_name == "National Driver Alertness Course")
-    expect(all(".dors-table .row :nth-child(4)")[0].text).to eq(course_name)
-    expect(all(".dors-table .row :nth-child(5) span")[0].text).to eq(course_type)
-    expect(all(".dors-table .row :nth-child(4)")[4].text).to eq(course_name)
-    expect(all(".dors-table .row :nth-child(5) span")[4].text).to eq(course_type)
+    expect(all(".license-scheme-name")[0].text).to eq(course_name)
+    expect(all(".license-type")[0].text).to eq(course_type)
+    expect(all(".license-scheme-name")[4].text).to eq(course_name)
+    expect(all(".license-type")[4].text).to eq(course_type)
   else
-    expect(all(".dors-table .row :nth-child(4)")[1].text).to eq(course_name)
-    expect(all(".dors-table .row :nth-child(5) span")[1].text).to eq(course_type)
+    expect(all(".license-scheme-name")[1].text).to eq(course_name)
+    expect(all(".license-type")[1].text).to eq(course_type)
   end
 end
 
