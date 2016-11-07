@@ -70,8 +70,8 @@ Feature: Assessor Profile
     And I click "Update"
     And changes have been successfully saved
     Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent To the address with <old email address>
-    And I see that email is Cced to the address with <new email address>
+   And I see that email is sent To the address with <old email address>
+   And I see that email is Cced to the address with <new email address>
 
 
     Examples:
