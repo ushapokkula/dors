@@ -40,12 +40,12 @@ Then(/^I can see "([^"]*)" label for trainer count$/) do |label|
   click_link_or_button("MY ASSESSMENTS")
   expect(page).to have_css(".my-assessments-count-label", text: 'Assessments')
   assessment_label = page.all(".my-assessments-count-label").count
-  expect(assessment_label).to be > 1
+  expect(assessment_label).to eq 1
 end
 
 Then(/^This column will show count of trainers for assessment$/) do
   assessment_count = page.all(".my-assessments-count").count
-  expect(assessment_count).to be > 1
+  expect(assessment_count).to eq 1
 end
 
 Then(/^Trainer names are not displayed on summary page$/) do
