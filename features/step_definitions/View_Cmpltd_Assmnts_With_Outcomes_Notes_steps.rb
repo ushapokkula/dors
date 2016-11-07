@@ -16,13 +16,13 @@ Then (/^I load detailed view of 'Completed' Assessment$/)do
 end
 
 
-Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do |information|
+Then (/^I should see below information in view mode on 'Assessment Outcome' page$/)do|information|
   expect(page).to have_css("h1", text:'Assessment Outcome')
   expect(page).to have_css(".trainer-full-name")
   expect(page).to have_css(".trainer-license")
   expect(page).to have_css(".trainer-outcome-label",text: 'Outcome')
   expect(page).to have_css(".trainer-outcome")
-  expect(page).to have_css(".trainer-compliance-notes-label", text: 'Compliance Notes')
+  expect(page).to have_css(".trainer-compliance-notes-label", text: 'Notes')
   expect(page).to have_css(".trainer-compliance-notes")
 end
 
@@ -45,7 +45,7 @@ Then(/^I should see below information in view mode on 'My assessment details' pa
   expect(page).to have_css(".license-code")
   expect(page).to have_css(".license-outcome-label",text: 'Outcome')
   expect(page).to have_css(".license-outcome")
-  expect(page).to have_css(".license-compliance-notes-label", text: 'Compliance Notes')
+  expect(page).to have_css(".license-compliance-notes-label", text: 'Notes')
   expect(page).to have_css(".license-compliance-notes")
 
 end
