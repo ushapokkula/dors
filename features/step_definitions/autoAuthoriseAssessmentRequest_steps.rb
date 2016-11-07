@@ -68,7 +68,7 @@ And(/^I can see "([^"]*)" field available on the page$/) do |filter_label|
 
 end
 
-When(/^I start typing atleast three characters as "([^"]*)"in the 'filter by trainer' field$/) do |chars|
+When(/^I start typing atleast three characters as "([^"]*)"in the trainer field$/) do |chars|
   fill_in('txt-trainer-name', :with => chars)
 end
 
