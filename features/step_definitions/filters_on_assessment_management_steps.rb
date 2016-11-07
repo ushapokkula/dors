@@ -1,4 +1,4 @@
-Given(/^I am on the Assessment Management page$/) do
+Given(/^I am on the Assessments Management page$/) do
   expect(page).to have_css(".title-header", text: "Assessments")
 end
 
@@ -41,6 +41,7 @@ When(/^I select "([^"]*)"$/) do |status_filter|
     @trainers.ngu_search_assessment_id_page.request_assessment
     click_link("Sign out")
     @trainers.trainer_login_page.login_as("Compliance Manager")
+   # click_button("Apply")
     expect(page).to have_css("#single-button")
     find("#single-button").click
     check('assessmentStatusChk0')

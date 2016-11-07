@@ -43,9 +43,9 @@ Feature: As a NGU user,
       | Status Filter | Status Assertion |
       | REQUESTED     | Requested        |
       | APPROVED      | Approved         |
-      | REJECTED      | Rejected         |
-      | CANCELLED     | Cancelled        |
-      | COMPLETED     | Completed        |
+     # | REJECTED      | Rejected         |
+     # | CANCELLED     | Cancelled        |
+     # | COMPLETED     | Completed        |
 
   @status_filter4
   Scenario Outline: Verify the visibility of assessments when combination of status filter is selected
