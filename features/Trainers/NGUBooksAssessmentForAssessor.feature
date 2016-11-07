@@ -1,4 +1,4 @@
-@DR_42  @pass
+@DR_42 @pass
 Feature: As an NGU,
   I want to be able to create an assessment record for an assessor irrespective of date of training session,
   so that unusual scenarios and errors can be catered for.

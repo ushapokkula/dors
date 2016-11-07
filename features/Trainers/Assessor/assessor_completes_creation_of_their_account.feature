@@ -26,7 +26,7 @@ Feature: Assessor Creates Their Account
       | New account created for you on DORS+ | A new account has been created for you on DORS+ system; the username for which will be communicated to you separately. Please use the link below to set a password for your account following which you will be able to use the system. |
 
   @successfully_set_password @nologout
-  Scenario: Assessor sucessfully sets the password
+  Scenario: Assessor successfully sets the password
 
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
