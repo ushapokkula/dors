@@ -41,7 +41,7 @@ end
 
 Then(/^The system will start autopredicting it and the list of highlight "([^"]*)" appear$/) do |forceareaname|
   expect(page).to have_css('.ui-select-container', visible: true)
-  expect(page).to have_css("#ui-select-choices-row-0-0", text: forceareaname)
+  expect(page).to have_css("#ui-select-choices-row-2-0", text: forceareaname)
 end
 
 And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/) do |forceareaname|

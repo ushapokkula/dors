@@ -7,7 +7,7 @@ so that I can ensure my account security and continued access to the system.
   Background:
     Given that I have licence.ndors.org.uk page opened
 
-
+  @pass
   Scenario Outline: Collapsible sections
     When I login as an "<user>"
     And I navigate to "MY PROFILE" page
@@ -21,7 +21,7 @@ so that I can ensure my account security and continued access to the system.
       |Assessor|
       |Trainer2|
 
-
+  @pass
   Scenario Outline: Entered incorrect 'Current Password' and verify that field validation message
     When I login as an "<user>"
     And I navigate to "MY PROFILE" page
@@ -39,7 +39,7 @@ so that I can ensure my account security and continued access to the system.
       |Assessor| test@1234 |test@123 | test@123 |
       |Trainer2| test!1234  |test@123| test@123 |
 
-
+  @pass
   Scenario Outline: Verify validation message when Password and confirm Password mismatches
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
@@ -58,7 +58,7 @@ so that I can ensure my account security and continued access to the system.
       |Assessor| test@123  |auto_test123|test#!&12|
       |Trainer2| test@123  |auto_test123|test#!&12|
 
-
+  @pass
   Scenario Outline: verify Password  message when Password value not as per business rule
     Given I login as an "<user>"
     And I navigate to "MY PROFILE" page
