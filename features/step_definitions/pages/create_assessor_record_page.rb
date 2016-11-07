@@ -254,13 +254,23 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def delete_outlook_emails
     visit "https://outlook.live.com/owa/"
-    click_link("Sign in")
-    unless page.has_css?("[aria-label='Open menu']", wait: 4)
+    if page.has_css?("#idSIButton9")
+      login_to_outlook
+    else
+      click_link("Sign in")
       find("input[type='email']").set("dors_test@outlook.com")
       click_button("Next")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click
     end
+    # unless page.has_css?("[aria-label='Open menu']", wait: 4)
+    #   click_link("Sign in")
+    #   find("input[type='email']").set("dors_test@outlook.com")
+    #   click_button("Next")
+    #   find("[name='passwd']").set("dorstest123")
+    #   find("[value='Sign in']").click
+    # end
+
     expect(page).to have_css("#O365_MainLink_Settings") # settings css
     size = page.all(:xpath, ".//*[@autoid='_lvv2_9']/div").size
     if size > 24

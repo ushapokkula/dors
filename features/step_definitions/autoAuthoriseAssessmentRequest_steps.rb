@@ -76,7 +76,7 @@ Then(/^The system will auto\-predict and shows possible trainer names and IDs in
   expect(page).to have_css("#txt-trainer-name + .dropdown-menu li", minimum: 1)
 end
 
-When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the filter by trainer field$/) do |trainer_id|
+When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the trainer field$/) do |trainer_id|
   fill_in('txt-trainer-name', :with => trainer_id)
 end
 
