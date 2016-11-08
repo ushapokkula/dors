@@ -5,7 +5,8 @@ end
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/) do
   expect(page).to have_css("h1", text: 'My Assessments') #verifying header#
   page.find("#single-button", visible: true).click
-  check('assessmentStatusChk0')
+  expect(page).to have_css("#single-button + .dropdown-menu")
+  find("#assessmentStatusChk0").click
 end
 
 Then (/^I see "([^"]*)" assessments on 'My Assessments' page$/) do |status|
@@ -104,7 +105,7 @@ And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |use
     find("#assessmentStatusChk1", visible: true).click
     click_button("Apply")
     end
-  if (user == "Assessor3" && type == "Requested")
+  if (user == "Assessor" && type == "Requested")
   find("#single-button").click
   expect(page).to have_css(".dropdown-menu", visible: true)
   find("#assessmentStatusChk0", visible: true).click
