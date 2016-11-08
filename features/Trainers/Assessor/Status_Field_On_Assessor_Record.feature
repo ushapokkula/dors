@@ -28,7 +28,7 @@ Feature:Status Field on Assessor Record
      And I update Assessor record
      Examples:
      |Assessor|
-     |esx|
+     |test_rd|
 
   @nologout
   Scenario Outline: When set to inactive by NGU/CCU; the Assessors cannot login to the system.
@@ -44,7 +44,7 @@ Feature:Status Field on Assessor Record
      And message will appear as: "Your login credentials are invalid. Please try again with correct login credentials."
      Examples:
      |Assessor|
-     |esx |
+     |test_rd|
 
   @nologout
    Scenario Outline: When set to inactive by NGU/CCU; the Assessors cannot use the reset password function
@@ -60,8 +60,8 @@ Feature:Status Field on Assessor Record
      Then I should see the message as "If the details you entered are correct, you will receive an email shortly with instructions to reset your password. If you do not receive the email, try requesting a password reset again using the 'Forgot Your Password?' feature. Alternatively, you can contact your local administrator or Support Desk."
      And I should not see that the email generated and sent to the registered email address  with "<Subject>"
        Examples:
-       | Matching Username | Matching Email            |Subject             |
-       |  test738          | dors_test@outlook.com     |DORS+: Reset Password  |
+       | Matching Username              | Matching Email            |Subject             |
+       |  test_assessor_status          | dors_test@outlook.com     |DORS+: Reset Password  |
 
   @nologout
     Scenario Outline: Edit assessor status
@@ -74,4 +74,4 @@ Feature:Status Field on Assessor Record
       And I logout
       Examples:
       |Assessor|
-      |esx     |
+      |test_rd  |

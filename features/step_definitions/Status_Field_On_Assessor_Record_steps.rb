@@ -19,11 +19,9 @@ And(/^'Inactive' status field will be disabled$/)do
 end
 
 And (/^I loads an existing "([^"]*)" record$/)do |assessor|
-  expect(page).to have_css("#txt-assessor-name")
-  page.find("#txt-assessor-name").click
+  expect(page).to have_css("#txt-assessor-name", visible: true)
   fill_in('txt-assessor-name', :with=> assessor)
-  find("#txt-assessor-name").send_keys(:enter)
-  sleep 1
+  find("#txt-assessor-name + ul li", match: :first).click
 end
 
 Then (/^I should see the Assessor details$/)do
