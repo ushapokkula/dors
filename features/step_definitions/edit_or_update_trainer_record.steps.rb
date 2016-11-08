@@ -27,14 +27,14 @@ Then(/^I see the following default Licence status in Licence status dropdown$/) 
 end
 
 And(/^I change "([^"]*)" in past for trainer which has Licence state of 'Full' or 'Provisional'$/) do |date|
-  if find("#licenseStatuses_0").value.to_i == 1
-    page.find("#licenseExpiryDate_0").set(date)
-    page.find("#licenseExpiryDate_0").send_keys(:enter)
+  if find("#licenseStatuses_3").value.to_i == 2
+    page.find("#licenseExpiryDate_3").set(date)
+    page.find("#licenseExpiryDate_3").send_keys(:enter)
   end
 
-  if find("#licenseStatuses_1").value.to_i == 2
-    page.find("#licenseExpiryDate_1").set(date)
-    page.find("#licenseExpiryDate_1").send_keys(:enter)
+  if find("#licenseStatuses_3").value.to_i == 1
+    page.find("#licenseExpiryDate_3").set(date)
+    page.find("#licenseExpiryDate_3").send_keys(:enter)
   end
 end
 
