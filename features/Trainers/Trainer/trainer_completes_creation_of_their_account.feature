@@ -5,9 +5,11 @@ Feature: Trainer completes the creation of their account
   I want to be able to set a password for my newly created account and complete its creation,
   so that I can login and use the system to perform my day to day operations.
 
+  Background:
+    Given I have deleted all the emails in the test email inbox
+
   @verify_the_welcome_page @nologout
   Scenario Outline: Verify the welcome page after clicking the password link
-    Given I have deleted all the emails in the test email inbox
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "TRAINERS" page
