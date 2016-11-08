@@ -6,8 +6,8 @@ class MaxFourTrainersAllowedPage< SitePrism::Page
     find(".include-main-trainer-checkbox", match: :first)
     all('.include-main-trainer-checkbox')[1].click
     find(".include-nearby-trainer-checkbox", match: :first)
-   all('.include-nearby-trainer-checkbox')[0].click
-    page.all('.include-nearby-trainer-checkbox')[1].click
+   all('.include-nearby-trainer-checkbox')[1].click
+    page.all('.include-nearby-trainer-checkbox')[2].click
   end
 
   require 'tiny_tds'
