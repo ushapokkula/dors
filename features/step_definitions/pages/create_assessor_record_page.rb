@@ -262,10 +262,12 @@ class CreateAssessorRecordPage < SitePrism::Page
       end
     if page.has_css?(".linkButton")
       click_link("Sign in")
-      find("input[type='email']").set("dors_test@outlook.com")
+      unless page.has_css?("[aria-label='Open menu']", wait: 4)
+        find("input[type='email']").set("dors_test@outlook.com")
       click_button("Next")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click
+       end
     end
     # unless page.has_css?("[aria-label='Open menu']", wait: 4)
     #   click_link("Sign in")
@@ -294,7 +296,7 @@ class CreateAssessorRecordPage < SitePrism::Page
       #find(:xpath, ".//span[text()='OK']").click
     end
     find("[aria-label='Open menu']").click
-    find(:xpath, ".//*[text()='Sign out']").click
+   # find(:xpath, ".//*[text()='Sign out']").click
   end
 
 
@@ -318,7 +320,7 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def verify_email_generation
     login_to_outlook
-    sleep 30
+    sleep 3
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")
