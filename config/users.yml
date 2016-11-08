@@ -27,7 +27,7 @@ Trainer4:
  password: P@s5w0rd1
 
 Trainer5:
- username: trainer_status #123896 (trainer login attempt failure)
+ username: trainer_status #123896 (trainer login attempt failure) made it inactive rejected
  password: P@ssw0rd
 
 Trainer6:

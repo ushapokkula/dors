@@ -22,7 +22,7 @@ Feature: Status Field On Trainer Record
       And the Status fields will be shown enabled now
       When I set the status to "Inactive"
       And I click on Update Trainer
-      Then I will see a Inactive Trainer message with text, "Setting the status of this trainer to Inactive will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?"
+      Then I will see a Inactive Trainer message with text, "You are marking the trainer's licence agreement as Rejected which will also inactivate their account. This will invalidate their licences and they will lose access to DORS+ system. Are you sure you want to continue?"
       When I click on Cancel button
       Then the message will close and no further action will be taken
       And I click on Update Trainer
