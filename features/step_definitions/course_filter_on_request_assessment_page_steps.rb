@@ -1,5 +1,5 @@
 And(/^the option to filter the list by courses is displayed$/) do
-  expect(page).to have_css(".col-md-4.has-feedback>label" ,visible: true, text: 'Course')
+  expect(page).to have_css("label[for='txt-scheme-filter-search']" ,visible: true, text: 'Course')
   expect(page).to have_css("#scheme-filter-container", visible: true)
 end
 
