@@ -95,8 +95,6 @@ class NguSearchAssessmentIDPage < SitePrism::Page
     select("Absent", :from => 'status-281')
 
     select("Absent", :from => 'status-279')
-
-    select("Absent", :from => 'status-392')
   end
 
   def assessor_availability
