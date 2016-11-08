@@ -65,14 +65,14 @@ Assessor4:
 #  password: P@s6w0rd
 
 Assessor5:
- username: test738   #test tesxt#
+ username: test_assessor_status    #121212      testroopa1
  password: P@ssw0rd2
 
 Assessor_Completed:
  username: Assessor_Completed
  password: P@ssw0rd1
 
-
+#Note: #test738   #test tesxt#  no more exists in AD
 
 
 
