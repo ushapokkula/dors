@@ -255,8 +255,12 @@ class CreateAssessorRecordPage < SitePrism::Page
   def delete_outlook_emails
     visit "https://outlook.live.com/owa/"
     if page.has_css?("#idSIButton9")
-      login_to_outlook
-    else
+      find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
+      find("[name='passwd']").set("dorstest123")
+      find("[value='Sign in']").click
+      end
+    if page.has_css?(".linkButton")
       click_link("Sign in")
       find("input[type='email']").set("dors_test@outlook.com")
       click_button("Next")
@@ -296,7 +300,14 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def login_to_outlook
     visit "https://outlook.live.com/owa/"
-    unless page.has_css?("[aria-label='Open menu']", wait: 8)
+    if page.has_css?("#idSIButton9")
+      find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
+      find("[name='passwd']").set("dorstest123")
+      find("[value='Sign in']").click
+    end
+    if page.has_css?(".linkButton")
+      click_link("Sign in")
       find("input[type='email']").set("dors_test@outlook.com")
       click_button("Next")
       find("[name='passwd']").set("dorstest123")
