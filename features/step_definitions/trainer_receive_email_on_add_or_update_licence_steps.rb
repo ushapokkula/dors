@@ -3,8 +3,9 @@ And(/^I am on update trainer page$/)do
 end
 
 When(/^I add new licence with "([^"]*)" course and "([^"]*)" licence status$/) do |course, licence_status|
-  expect(page).to have_css("#courseNames")
-  select(course,:from=> 'courseNames')
+  page.find(".ui-select-container").click
+  page.find(".ui-select-search").set(course)
+  page.find(".ui-select-search").send_keys(:enter)
   select(licence_status,:from=> 'licenseStatuses')
 end
 

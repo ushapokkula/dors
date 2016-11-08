@@ -6,7 +6,8 @@ Feature: DR-170 ,DR-520
   so that they can set a password and complete creation of their account.
 
   Background:
-    Given that I have licence.ndors.org.uk page opened
+    Given I have deleted all the emails in the test email inbox
+    And that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I navigate to "ASSESSORS" page
     And I fill all assessor fields on the create assessor form
