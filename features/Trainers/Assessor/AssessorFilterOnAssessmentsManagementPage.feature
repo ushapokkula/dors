@@ -47,7 +47,7 @@
       Examples:
         | Assessor Name |Name                 |
         |dee            |deena grit (0123456) |
-        |sud            |sudiv p       |
+        |sud            |sudiv p (123456)     |
 
     Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field

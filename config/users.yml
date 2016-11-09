@@ -16,7 +16,7 @@ Trainer2:
 
 Trainer3:
  username: trainer_3           #333111
- password: test@?12
+ password: P@ssw0rd3
 
 TrainerLicence:
  username: trainer_licence_agreement
@@ -27,19 +27,19 @@ Trainer4:
  password: P@s5w0rd1
 
 Trainer5:
- username: trainer_status #123896 (trainer login attempt failure) made it inactive rejected
+ username: trainer_status   #123896 (trainer login attempt failure) made it inactive rejected
  password: P@ssw0rd
 
 Trainer6:
- username: trainer6  #to verify licence agree
+ username: trainer6     #to verify licence agree text
  password: P@s5w0rd6
 
 Trainer7:
- username: roopa_licences  #131275
+ username: roopa_licences    #131275
  password: P@s5w0rd7
 
 Trainer8:
- username: test_prac_licences  #141386 only practical Licences
+ username: test_prac_licences    #141386 only practical Licences
  password: P@s5w0rd8
 
 
@@ -57,7 +57,7 @@ Assessor3:
   password: P@s5w0rd
 
 Assessor4:
-  username: chiefd    #No Assessments#
+  username: chiefd       #No Assessments#
   password: Ch123456
 
 #Assessor5:
@@ -65,7 +65,7 @@ Assessor4:
 #  password: P@s6w0rd
 
 Assessor5:
- username: test_assessor_status    #121212      testroopa1
+ username: test_assessor_status      #121212      testroopa1
  password: P@ssw0rd2
 
 Assessor_Completed:
