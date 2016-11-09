@@ -14,7 +14,7 @@ Then(/^I will be shown a welcome page with the message "([^"]*)"$/) do |message|
   expect(page).to have_css(".alert.alert-info", text: message)
 end
 
-And(/^I enter Username$/) do
+And(/^I enter Trainerlicencenumber$/) do
   fill_in('username', :with => fetch("username"))
 end
 

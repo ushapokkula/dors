@@ -47,14 +47,14 @@ Feature:  Login
     Given that I have licence.ndors.org.uk page opened
     And I enter valid "Assessor" password
     And click Sign in
-    Then I see a message "Please provide a username."
+    Then I see a message "Please provide a trainer licence number."
 
   @login6 @nologout
   Scenario: Verify Login without entering username and password
 
     Given that I have licence.ndors.org.uk page opened
     And click Sign in
-    Then I see a message "Please provide a username."
+    Then I see a message "Please provide a trainer licence number."
     And I see a message "Please provide a password."
 
 #  @login7 @manual

@@ -1,75 +1,75 @@
 Assessor:
- username: sudiv
+ trainer_licence_number: sudiv
  password: P@ssw0rd2
 
 Compliance Manager:
- username: NGU_User
+ trainer_licence_number: NGU_User
  password: P@ssw0rd1
 
 Trainer1:
- username: newtrainer  #989797#
+ trainer_licence_number: newtrainer  #989797#
  password: P@s5w0rd1
 
 Trainer2:
- username: roopa_setty1  #No Licences Added# (676767)
+ trainer_licence_number: roopa_setty1  #No Licences Added# (676767)
  password: P@s5w0rd2
 
 Trainer3:
- username: trainer_3           #333111
+ trainer_licence_number: trainer_3           #333111
  password: P@ssw0rd3
 
 TrainerLicence:
- username: trainer_licence_agreement
+ trainer_licence_number: trainer_licence_agreement
  password: P@ssw0rd1
 
 Trainer4:
- username: fabTrainer9  #888889# (P+T)
+ trainer_licence_number: fabTrainer9  #888889# (P+T)
  password: P@s5w0rd1
 
 Trainer5:
- username: trainer_status   #123896 (trainer login attempt failure) made it inactive rejected
+ trainer_licence_number: trainer_status   #123896 (trainer login attempt failure) made it inactive rejected
  password: P@ssw0rd
 
 Trainer6:
- username: trainer6     #to verify licence agree text
+ trainer_licence_number: trainer6     #to verify licence agree text
  password: P@s5w0rd6
 
 Trainer7:
- username: roopa_licences    #131275
+ trainer_licence_number: roopa_licences    #131275
  password: P@s5w0rd7
 
 Trainer8:
- username: test_prac_licences    #141386 only practical Licences
+ trainer_licence_number: test_prac_licences    #141386 only practical Licences
  password: P@s5w0rd8
 
 
 
 Assessor1:
- username: johnny
+ trainer_licence_number: johnny
  password: P@ssw0rd1
 
 Assessor2:
-  username: test_forces
+  trainer_licence_number: test_forces
   password: P@ssw0rd1
 
 Assessor3:
-  username: deena
+  trainer_licence_number: deena
   password: P@s5w0rd
 
 Assessor4:
-  username: chiefd       #No Assessments#
+  trainer_licence_number: chiefd       #No Assessments#
   password: Ch123456
 
 #Assessor5:
-#  username: test2auto
+#  trainer_licence_number: test2auto
 #  password: P@s6w0rd
 
 Assessor5:
- username: test_assessor_status      #121212      testroopa1
+ trainer_licence_number: test_assessor_status      #121212      testroopa1
  password: P@ssw0rd2
 
 Assessor_Completed:
- username: Assessor_Completed
+ trainer_licence_number: Assessor_Completed
  password: P@ssw0rd1
 
 #Note: #test738   #test tesxt#  no more exists in AD
@@ -78,19 +78,19 @@ Assessor_Completed:
 
 
 LFU:
-  username: SwapnaLFU    #LFU user on police portal#
+  trainer_licence_number: SwapnaLFU    #LFU user on police portal#
   password: P@ssw0rd1
 
 LFA:
-  username: SwapnaLFA    #LFA user on police portal#
+  trainer_licence_number: SwapnaLFA    #LFA user on police portal#
   password: P@ssw0rd1
 
 LSU:
-  username: SwapnaLSU    #LSU user on supplier portal#
+  trainer_licence_number: SwapnaLSU    #LSU user on supplier portal#
   password: P@ssw0rd1
 
 LSA:
-  username: SwapnaLSA    #LSA user on supplier portal#
+  trainer_licence_number: SwapnaLSA    #LSA user on supplier portal#
   password: P@ssw0rd1
 
 
