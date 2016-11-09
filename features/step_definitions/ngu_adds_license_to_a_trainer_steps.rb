@@ -10,10 +10,9 @@ Then(/^The "([^"]*)" button  is not visible when maximum licenses are added to a
   end
 end
 
-And(/^I select course name, licence status and expiry date to add a new licence$/) do
+And(/^I select "([^"]*)", licence status and expiry date to add a new licence$/) do|course_name|
   page.find(".ui-select-search").set(course_name)
   page.find(".ui-select-search").send_keys(:enter)
-  #select('Motorway Course', :from => 'courseNames')
   select('Full', :from => 'licenseStatuses')
 end
 
@@ -48,7 +47,6 @@ end
 And(/^I select Course "([^"]*)" to add a licence$/) do |course_name|
   page.find(".ui-select-search").set(course_name)
   page.find(".ui-select-search").send_keys(:enter)
-  #select(course_name, :from => 'courseNames')
 end
 
 And(/^I select licence as "([^"]*)" to add a licence$/) do |licence|
