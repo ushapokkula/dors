@@ -76,7 +76,7 @@ Feature: NGU Adds a license to a trainer
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
     When I click "<field_name>" without setting the data
-    And I click "Update Trainer"
+    And I click "Add licence"
     Then I see "<validation_error_message>" against each "<field_name>"
 
     Examples:
@@ -85,15 +85,18 @@ Feature: NGU Adds a license to a trainer
       | Licence status | Please select a licence status. |
       | Expiry Date    | Please select an expiry date.   |
 
+
   @verify_duplicate_courses
   Scenario Outline: Verify adding duplicate courses to licences
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
+    And I click on Course Name field
     And I select Course "<Course Name>" to add a licence
     When I select licence as "<Licence Status>" to add a licence
     And I click "Add licence" button
     And The system will add another row of licence entry below those already displayed
-    Then The "<Course Name>" is not available in the Course dropdown to select for another licence
+    And I click on Course Name field
+    Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
 
     Examples:
       | Course Name     | Licence Status |
@@ -120,9 +123,11 @@ Feature: NGU Adds a license to a trainer
   Scenario Outline: Verify the licences for the same course
     And I search for "Bob" and "Thorton" in the trainer search field
     And I have trainer record loaded in editable view
+    And I click on Course Name field
     And I select Course "<Course Name1>" to add a licence
     When I select licence as "<Licence Status1>" to add a licence
     And I click "Add licence" button
+    And I click on Course Name field
     And I select Course "<Course Name2>" to add a licence
     When I select licence as "<Licence Status2>" to add a licence
     When I click "Add licence" button

@@ -69,23 +69,23 @@ And(/^I click X button$/) do
   find(".btn-remove-license").click
 end
 
-And(/^Changes will be reflected on page$/) do
-  find("#courseNames").click
-  expect(page).to have_select('courseNames', :with_options => ['Motorway Course'])
-  # page.should have_select('#courseNames', :options => 'Motorway Course')
-end
-
 And(/^I click "([^"]*)" without setting the data$/) do |field_name|
+  if field_name == 'Course name'
+    page.find(".ui-select-container").click
+  else
   find_field(field_name).click
-end
+  end
+  end
 
 Then(/^I see "([^"]*)" against each "([^"]*)"$/) do |message, field|
-  error_message = find(:xpath, ".//*[text()='#{field}']/parent::Div//p").text
-  expect(error_message).to eq(message)
-end
+  if field == 'Course name'
+    expect(page).to have_css(".help-block p", text: message)
+  else
+    expect(page).to have_css(".help-block p", text: message)
+  end
+  end
 
 And(/^The "([^"]*)" is not available in the Course dropdown to select for another licence$/) do |course_name|
-  find("#courseNames").click
   expect(page).to have_no_select('courseNames', :with_options => [course_name])
 end
 
