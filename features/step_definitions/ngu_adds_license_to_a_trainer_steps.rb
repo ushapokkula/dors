@@ -11,9 +11,10 @@ Then(/^The "([^"]*)" button  is not visible when maximum licenses are added to a
 end
 
 And(/^I select course name, licence status and expiry date to add a new licence$/) do
-  select('Motorway Course', :from => 'courseNames')
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
+  #select('Motorway Course', :from => 'courseNames')
   select('Full', :from => 'licenseStatuses')
-
 end
 
 And(/^The system will add another row of licence entry below those already displayed$/) do
@@ -45,7 +46,9 @@ And(/^The Expiry Date will be defaulted to "([^"]*)"$/) do |days|
 end
 
 And(/^I select Course "([^"]*)" to add a licence$/) do |course_name|
-  select(course_name, :from => 'courseNames')
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
+  #select(course_name, :from => 'courseNames')
 end
 
 And(/^I select licence as "([^"]*)" to add a licence$/) do |licence|
@@ -90,10 +93,12 @@ end
 
 
 And(/^I add two licences to the trainer with "([^"]*)" and "([^"]*)" with status as "([^"]*)"$/) do |course1, course2, status|
-  select(course1, :from => 'courseNames')
+  page.find(".ui-select-search").set(course1)
+  page.find(".ui-select-search").send_keys(:enter)
   select(status, :from => 'licenseStatuses')
   click_button('Add licence')
-  select(course2, :from => 'courseNames')
+  page.find(".ui-select-search").set(course2)
+  page.find(".ui-select-search").send_keys(:enter)
   select(status, :from => 'licenseStatuses')
 end
 
@@ -145,7 +150,8 @@ And(/^I have not reached the limit of maximum licences possible$/) do
 end
 
 And(/^I add a new licence with "([^"]*)" course and licence status as "([^"]*)"$/) do |course_name, licence_status|
-  select(course_name, :from => 'courseNames')
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
   select(licence_status, :from => 'licenseStatuses')
 end
 

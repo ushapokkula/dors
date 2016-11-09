@@ -69,7 +69,7 @@ Feature: Show Assessment ID
     Examples:
       | Type      | User               |
       | Requested | Compliance Manager |
-      | Booked    | Compliance Manager |
+      | Approved   | Compliance Manager |
 
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of My Assessments page
@@ -85,7 +85,7 @@ Feature: Show Assessment ID
     Examples:
       | Type      | User      |
       | Requested | Assessor |
-      | Booked    | Assessor |
+      | Approved    | Assessor |
 
 
   @DR-898

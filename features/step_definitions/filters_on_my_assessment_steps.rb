@@ -215,12 +215,14 @@ end
 Then(/^I see that the "([^"]*)" assessments are displayed which belong to the selected "([^"]*)","([^"]*)" and "([^"]*)"$/) do |type, course1, course2, course3|
   if (type == "Requested")
     expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Request')
+    expect(page).to have_css(".assessmentStatus", text: type, visible: true)
     expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
     expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course1)
   else
     expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Outcome')
+    expect(page).to have_css(".assessmentStatus", text: type, visible: true)
     expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
-    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course3)
+    #expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course3)
   end
 end
 
@@ -236,5 +238,10 @@ And(/^I select assessment status depending on "([^"]*)" on my assessments page$/
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk0", visible: true).click
     find("#assessmentStatusChk1", visible: true).click
+  else
+   type == "Approved"
+    find("#single-button", visible: true).click
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk1").should be_checked
   end
 end

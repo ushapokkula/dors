@@ -86,7 +86,7 @@ Feature: Filter on My Assessment page
     Examples:
       | Type      | Course        |
       | Requested | Speed Control |
-      | Booked    | Speed Control |
+      | Approved  | Speed Control |
 
   @DR_385
   Scenario Outline: Verify the results after applying multiple courses from the filter without other filters
@@ -108,7 +108,7 @@ Feature: Filter on My Assessment page
     Examples:
       | Type      | Course1       | Course2 | Course3                          |
       | Requested | Speed Control | RiDE    | National Driver Alertness Course |
-      | Booked    | Speed Control | RiDE    | National Driver Alertness Course |
+      | Approved  | Speed Control | RiDE    | National Driver Alertness Course |
 
   @DR_385
   Scenario Outline: Verify the message when there are no assessments matching course filter
@@ -127,4 +127,4 @@ Feature: Filter on My Assessment page
     Examples:
       | Type      | Course |
       | Requested | RiDE   |
-      | Booked    | RiDE   |
+      | Approved  | RiDE   |

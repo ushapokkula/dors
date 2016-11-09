@@ -90,7 +90,7 @@ And(/^I see the success message "([^"]*)" on the assessor page$/) do |message|
 end
 
 And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
-  if assessment_type == "Booked"
+  if assessment_type == "Approved"
     @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
   else
     @trainers.ngu_search_assessment_id_page.search_requested_assessment_id
@@ -99,7 +99,7 @@ And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
 end
 
 And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |user, type|
-  if (user == "Compliance Manager" && type == "Booked")
+  if (user == "Compliance Manager" && type == "Approved")
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk1", visible: true).click
