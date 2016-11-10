@@ -1,10 +1,11 @@
-@DR-1110 @pass
+@DR-1110  @DR-28 @pass
 Feature: In order to specify whether the license I have is a Theory or Practical License
          As a Trainer administrator
          I want to select a license type when adding a license to a trainer
   #2 practical
   #1 theory
 
+  @DR_584
   Scenario Outline: Verify Course Names and Icons in Course Name Dropdown
         Given that I have licence.ndors.org.uk page opened
         And I login as an "Compliance Manager"
@@ -21,6 +22,7 @@ Feature: In order to specify whether the license I have is a Theory or Practical
         |Theory Course |
 
 
+  @DR_584
   Scenario Outline: Verify the theory and Practical Courses
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
@@ -51,13 +53,14 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     And I see 'X' button for added new licence which is not saved to database
     Then I should see added licence type shown with "<Course Name>", "<Licence status>", "<Expiry Date>"
     Examples:
-      |Course Name|Licence status           |Expiry Date|Course Type|
-      |drive well | Provisional/Conditional |31/03/2017 | Theory Course|
-      |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
-      |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
-      |Driving For Change                 |Full          |5/10/2018  |Practical Course|
+      |Course Name                        |Licence status            |Expiry Date|Course Type|
+      |drive well                         | Provisional/Conditional  |31/03/2017 | Theory Course|
+      |National Driver Alertness Course   | Full                     | 5/10/2018 |Practical Course|
+      |National Driver Alertness Course   | Full                     | 5/10/2015 |Theory Course|
+      |Driving For Change                 |Full                      |5/10/2018  |Practical Course|
 
 
+  @DR_678
   Scenario Outline: added scheme can't be available in the licence type dropdown
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
@@ -69,11 +72,13 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     When I click on Course Name field
     Then I see added Scheme "<Course Name>" no longer available in the dropdown for selection
     Examples:
-      |Course Name                        |Licence status |Course Type|
-      |Speed Awareness                    |Full            |Theory Course|
+      |Course Name                        |Licence status  |Course Type     |
+      |Speed Awareness                    |Full            |Theory Course   |
       |National Driver Alertness Course   | Full           |Practical Course|
-      |National Driver Alertness Course   | Full           |Theory Course|
+      |National Driver Alertness Course   | Full           |Theory Course   |
 
+
+  @DR_677
   Scenario Outline: successfully added licence type can be removed
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"

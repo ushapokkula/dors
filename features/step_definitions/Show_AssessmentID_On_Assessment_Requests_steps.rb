@@ -6,7 +6,7 @@ Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/) do
   expect(page).to have_css("h1", text: 'My Assessments') #verifying header#
   page.find("#single-button", visible: true).click
   expect(page).to have_css("#single-button + .dropdown-menu")
-  find("#assessmentStatusChk0").click
+  find("#assessmentStatusChk0", visible: true).click
 end
 
 Then (/^I see "([^"]*)" assessments on 'My Assessments' page$/) do |status|
