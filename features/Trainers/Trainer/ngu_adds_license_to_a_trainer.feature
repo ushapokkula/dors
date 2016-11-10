@@ -167,7 +167,7 @@ Feature: NGU Adds a license to a trainer
 ##      And I see button "Add licence" available under the licences section
 
 
-     @DR-672  @add_licence_button_disabled/enabled   @manual
+     @DR-672  @add_licence_button_disabled/enabled @pass
       Scenario: Verify the Add licence button disabled/enabled when maximum licences are reached
       When I search for "test_button" and "add_licence" in the trainer search field
       And I have trainer record loaded in editable view

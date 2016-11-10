@@ -1,4 +1,4 @@
-@DR-1110  @DR-28 @pass
+@DR-1110 @DR-28 @DR-584 @DR-678 @DR-677 @pass
 Feature: In order to specify whether the license I have is a Theory or Practical License
          As a Trainer administrator
          I want to select a license type when adding a license to a trainer
@@ -117,6 +117,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
       |National Driver Alertness Course   | Full         | 5/10/2018 |Practical Course|
       |National Driver Alertness Course   | Full         | 5/10/2015 |Theory Course|
 
+
+
   Scenario Outline: Verify create trainer functionality by Adding licences
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
@@ -150,6 +152,8 @@ Feature: In order to specify whether the license I have is a Theory or Practical
     Examples:
       | Course Name                      | Licence status | Course Type      |
       | National Driver Alertness Course | Full           | Practical Course |
+
+
 
   Scenario Outline: Verify the course visibility in course dropdown after adding and removing the course
     Given that I have licence.ndors.org.uk page opened

@@ -118,7 +118,7 @@ Feature: As an NGU,
     |roopa2             |trainer2           |National Driver Alertness Course  |   Full       |  05/10/2018|
 
 
-  @Dr_1150
+  @DR_1150
   Scenario Outline: Verify added courses types are theory or Practical Courses
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details
