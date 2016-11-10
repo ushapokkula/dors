@@ -123,6 +123,7 @@ Feature: Assessment Management Default View
     And I select possible outcome against each trainer depending on "<Type>"
     And I click "Mark Complete"
     When I select "<Status_Type2>" from assessment status dropdown
+    And I click "Apply"
     Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
 
     Examples:
