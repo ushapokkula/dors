@@ -25,14 +25,17 @@ end
 
 And (/^I enter the current password as "([^"]*)"$/)do |current_pwd|
   fill_in('currentPassword', :with=> current_pwd)
+  sleep 1
 end
 
 And(/^I enter Password as "([^"]*)"$/)do|password|
   fill_in('password', :with=> password)
+  sleep 1
 end
 
 And (/^I enter Confirm password as "([^"]*)"$/)do|confirm_pwd|
 fill_in('passwordConfirm', :with=> confirm_pwd)
+  sleep 1
 end
 
 
