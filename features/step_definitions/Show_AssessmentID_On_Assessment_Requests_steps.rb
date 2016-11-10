@@ -99,7 +99,7 @@ And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
 end
 
 And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |user, type|
-  if (user == "Compliance Manager" && type == "Approved")
+  if (user == "Compliance Manager" && type == "Booked")
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk1", visible: true).click
