@@ -46,7 +46,7 @@
       Then Assessor first name "<Name>" will be selected from the auto predict list
       Examples:
         | Assessor Name |Name                 |
-        |dee            |deena grit (0123456) |
+        |roo            |roopa_t test (720674)|
         |sud            |sudiv p (123456)     |
 
     Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
