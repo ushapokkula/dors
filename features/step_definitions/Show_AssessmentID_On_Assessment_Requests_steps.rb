@@ -91,9 +91,9 @@ end
 
 And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
   if assessment_type == "Approved"
-    @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
+    @trainers.filters_on_my_assessment_page.book_assessment_with_3_courses
   else
-    @trainers.ngu_search_assessment_id_page.search_requested_assessment_id
+    @trainers.filters_on_my_assessment_page.request_assessment_with_3_courses
   end
 
 end

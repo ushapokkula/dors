@@ -1,4 +1,3 @@
-
 @DR-167 @pass
 Feature: Filter on My Assessment page
 
@@ -125,6 +124,6 @@ Feature: Filter on My Assessment page
     Then I see the message "There are no assessments to display" on my assessments page
 
     Examples:
-      | Type      | Course |
-      | Requested | RiDE   |
-      | Approved  | RiDE   |
+      | Type      | Course         |
+      | Requested | Motorway Course |
+      | Approved  | Motorway Course |
