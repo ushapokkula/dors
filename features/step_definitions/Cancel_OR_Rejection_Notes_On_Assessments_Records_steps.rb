@@ -31,6 +31,7 @@ And (/^I 'Reject' the 'Requested' Assessment$/)do
   #expect(page).to have_css(".assessment-status", text: 'Requested')
   @trainers.cancel_or_rejection_notes_on_assessments_records_page.reject_Assessment
   expect(page).to have_css(".alert.alert-success")
+
 end
 
 Then (/^I select 'Rejected' status from 'Assessments Status' dropdown$/)do
@@ -48,12 +49,16 @@ end
 And (/^I select 'Approved' status from 'Assessment Status' dropdown$/)do
   expect(page).to have_css("#single-button + .dropdown-menu", visible:true)
   check('assessmentStatusChk1')
-  #expect(page).to have_css(".assessment-status", text: 'Approved')
+end
+
+Then (/^I should see 'Approved' Assessment$/)do
+  expect(page).to have_css(".assessment-status", text: 'Approved')
 end
 
 And (/^I 'Cancel' the 'Approved' Assessment$/)do
   @trainers.cancel_or_rejection_notes_on_assessments_records_page.cancel_Approved_Assessment
   expect(page).to have_css(".alert.alert-success")
+
 end
 
 And (/^I should see the 'Cancellation Notes' on Assessment Outcome page$/)do
