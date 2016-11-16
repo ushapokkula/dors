@@ -58,24 +58,24 @@ Feature: Assessor Profile
       | DHDgddsggg415fnhm56386+9xbvfyi689e0vhm,c.3w4678 415^& | 078765456$%&BVH        |                         |                 |               | DV&/.()jc | ha0  3pb |
 
 
-  @DR-860 @nologout @manual @pass
-   Scenario Outline: Verify the email notification sent when assessor change their primary email address
-    Given I have deleted all the emails in the test email inbox
-    Given that I have licence.ndors.org.uk page opened
-    And I login as an "Assessor3"
-    And I navigate to "MY PROFILE" page
-    Given I am on accessors details page
-    And I see the primary email address as "<old email address>"
-    When I change the assessors primary address from 'old email address' to "<new email address>"
-    And I click "Update"
-    And changes have been successfully saved
-    Then I will receive the email notification with "<Subject>" and "<Body>"
-    And I see that email is sent To the address with <old email address>
-    And I see that email is Cced to the address with <new email address>
-
-
-    Examples:
-      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email address     | new email address         |
-      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test@outlook.com | Roopa.Ramisetty@wtg.co.uk |
+#  @DR-860 @nologout @manual
+#   Scenario Outline: Verify the email notification sent when assessor change their primary email address
+#    Given I have deleted all the emails in the test email inbox
+#    Given that I have licence.ndors.org.uk page opened
+#    And I login as an "Assessor3"
+#    And I navigate to "MY PROFILE" page
+#    Given I am on accessors details page
+#    And I see the primary email address as "<old email address>"
+#    When I change the assessors primary address from 'old email address' to "<new email address>"
+#    And I click "Update"
+#    And changes have been successfully saved
+#    Then I will receive the email notification with "<Subject>" and "<Body>"
+#   And I see that email is sent To the address with <old email address>
+#   And I see that email is Cced to the address with <new email address>
+#
+#
+#    Examples:
+#      | Subject                                             | Body                                                                                                                                                                                                                                                                | old email address     | new email address         |
+#      | Your email address has been changed on DORS+ system | This is to notify you that the primary email address linked to your profile on the DORS+ system has been changed. If you have not made this change, please contact your employer or Support Desk immediately to prevent potential unauthorized use of your account. | dors_test@outlook.com | Roopa.Ramisetty@wtg.co.uk |
 
 

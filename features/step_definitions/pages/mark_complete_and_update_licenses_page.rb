@@ -40,7 +40,7 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
 
     select(outcome1, :from => 'status-279')
 
-    select(outcome1, :from => 'status-392')
+    #select(outcome1, :from => 'status-392')
 
   end
 
@@ -59,7 +59,6 @@ class MarkCompleteAndUpdateLicensesPage < SitePrism::Page
   def visibility_of_trainers
      expect(page).to have_content('111333')
      expect(page).to have_content('111222')
-     expect(page).to have_content('111999')
   end
 
   def verify_license_status_for_actionnote_competent

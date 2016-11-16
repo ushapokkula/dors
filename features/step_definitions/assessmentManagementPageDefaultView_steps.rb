@@ -118,8 +118,7 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
     page.find("#assessmentStatusChk0", visible: true).click
     expect(page).to have_css("#assessmentStatusChk4")
     page.find("#assessmentStatusChk4", visible: true).click
-    click_button("Apply")
-  end
+    end
 end
 
 And(/^I select possible outcome against each trainer depending on "([^"]*)"$/) do |type|

@@ -1,36 +1,35 @@
-@manual
-@DR-167
+@DR-167 @pass
 Feature: Filter on My Assessment page
 
   Background:
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
 
-#
-#  @my_assessment_status_filter1
-#  Scenario: Verify the assessment status filter visibility on My Assessments page and default view
-#    And I am on the My Assessments page
-#    When The default view of the page of My Assessments is loaded
-#    Then I can see the assessment status filter with these following options on My Assessments page
-#      | Expected Status Filters |
-#      | Requested               |
-#      | Approved                |
-#      | Rejected                |
-#      | Cancelled               |
-#      | Completed               |
-#
-#  @my_assessment_status_filter2
-#  Scenario: Verify the default option selected as 'Booked' from the status filter
-#    And I am on the My Assessments page
-#    When I can see the assessment status filter with these following options on My Assessments page
-#      | Expected Status Filters |
-#      | Requested               |
-#      | Approved                |
-#      | Rejected                |
-#      | Cancelled               |
-#      | Completed               |
-#    Then I see that the "Approved" option is selected by default on My Assessments page
-#
+  @my_assessment_status_filter1
+  Scenario: Verify the assessment status filter visibility on My Assessments page and default view
+    And I am on the My Assessments page
+    When The default view of the page of My Assessments is loaded
+    Then I can see the assessment status filter with these following options on My Assessments page
+      | Expected Status Filters |
+      | Requested               |
+      | Approved                |
+      | Rejected                |
+      | Cancelled               |
+      | Completed               |
+
+  @my_assessment_status_filter2
+  Scenario: Verify the default option selected as 'Booked' from the status filter
+    And I am on the My Assessments page
+    When I can see the assessment status filter with these following options on My Assessments page
+      | Expected Status Filters |
+      | Requested               |
+      | Approved                |
+      | Rejected                |
+      | Cancelled               |
+      | Completed               |
+    Then I see that the "Approved" option is selected by default on My Assessments page
+
+
 #  @my_assessment_status_filter3
 #  Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
 #    And I am on the My Assessments page
@@ -59,6 +58,7 @@ Feature: Filter on My Assessment page
 #      | REJECTED       | CANCELLED      | Rejected          | Cancelled         |
 #      | REJECTED       | COMPLETED      | Rejected          | Completed         |
 
+
   @DR_385 @pass
   Scenario: Verify the scheme filter visibility on my assessements page
     Given I am on the My Assessments page
@@ -86,7 +86,7 @@ Feature: Filter on My Assessment page
     Examples:
       | Type      | Course        |
       | Requested | Speed Control |
-      | Booked    | Speed Control |
+      | Approved  | Speed Control |
 
   @DR_385  @pass
   Scenario Outline: Verify the results after applying multiple courses from the filter without other filters
@@ -103,12 +103,10 @@ Feature: Filter on My Assessment page
     Then I see assessments matching with that course filter are displayed
     And I click "View Details"
     Then I see that the "<Type>" assessments are displayed which belong to the selected "<Course1>","<Course2>" and "<Course3>"
-
-
     Examples:
       | Type      | Course1       | Course2 | Course3                          |
       | Requested | Speed Control | RiDE    | National Driver Alertness Course |
-      | Booked    | Speed Control | RiDE    | National Driver Alertness Course |
+      | Approved   | Speed Control | RiDE    | National Driver Alertness Course |
 
   @DR_385  @pass
   Scenario Outline: Verify the message when there are no assessments matching course filter
@@ -126,8 +124,8 @@ Feature: Filter on My Assessment page
 
     Examples:
       | Type      | Course |
-      | Requested | RiDE   |
-      | Booked    | RiDE   |
+      | Requested | Motorway Course   |
+      | Approved  | Motorway Course   |
 
 
   @DR_384
@@ -149,8 +147,8 @@ Feature: Filter on My Assessment page
     And the results are displayed based on selected force force
 
     Examples:
-      | Selected-Force | Type   |
-      | ESSEX POLICE   | Booked |
+      | Selected-Force | Type     |
+      | ESSEX POLICE   | Approved |
 
   Scenario Outline: Verify the assessments listing after apply single force without other filters
     Given I deleted the assessments from Database
@@ -165,8 +163,8 @@ Feature: Filter on My Assessment page
     Then The results listing will be updated showing only those assessments who fall under the selected force area
 
     Examples:
-      | Force    | Type   |
-      | CHESHIRE | Booked |
+      | Force    | Type     |
+      | CHESHIRE | Approved   |
 
   Scenario Outline: Verify the assessments listing after apply multiple forces without other filters
     Given I deleted the assessments from Database
@@ -181,8 +179,8 @@ Feature: Filter on My Assessment page
     Then The results listing will be updated showing only those assessments who fall under cheshire and british transport police force area
 
     Examples:
-      | Force1   | Type   | Force2                   |
-      | CHESHIRE | Booked | BRITISH TRANSPORT POLICE |
+      | Force1   | Type     | Force2                   |
+      | CHESHIRE | Approved | BRITISH TRANSPORT POLICE |
 
   Scenario Outline: Verify the assessments listing when 'All' force areas are included
     Given I deleted the assessments from Database
@@ -197,8 +195,8 @@ Feature: Filter on My Assessment page
     Then the assessments listing are displayed without applying any force area filters to the results
 
     Examples:
-      | Force    | Type   |
-      | CHESHIRE | Booked |
+      | Force    | Type    |
+      | CHESHIRE | Approved |
 
   Scenario Outline:  Verify the assessments listing when 'No' force areas are included
     Given I deleted the assessments from Database
@@ -216,8 +214,8 @@ Feature: Filter on My Assessment page
     And only default force area assessments are displayed on my assessments page
 
     Examples:
-      | Force    | Type   |
-      | CHESHIRE | Booked |
+      | Force    | Type     |
+      | CHESHIRE | Approved |
 
 
 

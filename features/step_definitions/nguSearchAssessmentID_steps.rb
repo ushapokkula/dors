@@ -25,7 +25,6 @@ end
 Then(/^the page include Outcome dropdown$/) do
   expect(page).to have_select('status-281', :with_options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
   expect(page).to have_select('status-279', :with_options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
-  expect(page).to have_select('status-392', :with_options => ['Absent', 'Action Note', 'Cancelled', 'Competent', 'Compliance Note'])
 end
 
 And(/^I type the Request Assessment ID in the Assessment search field$/) do
@@ -44,7 +43,7 @@ And(/^I login as Compliance Manager and click assessment management tab to searc
   @trainers.trainer_login_page.login_as("Compliance Manager")
   click_link_or_button("ASSESSMENT MANAGEMENT")
   expect(page).to have_css(".title-header", text: 'Assessments')
-  expect(page).to have_css("#txt-assessment-id"), visible:true
+  expect(page).to have_css("#txt-assessment-id", visible:true)
   fill_in('txt-assessment-id', :with =>$booked_status)
 end
 

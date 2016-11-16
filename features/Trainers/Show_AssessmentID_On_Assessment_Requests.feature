@@ -13,6 +13,7 @@ Feature: Show Assessment ID
     And I request assessment
     And I navigate to "MY ASSESSMENTS" page
     Then I select 'Requested' status from 'Assessment Status' dropdown
+    And I click "Apply"
     And I see "Requested" assessments on 'My Assessments' page
     Then I should see the "Assessment ID" on summary view of assessment on 'My assessment' page
 
@@ -24,6 +25,7 @@ Feature: Show Assessment ID
     And I request assessment
     And I navigate to "MY ASSESSMENTS" page
     Then I select 'Requested' status from 'Assessment Status' dropdown
+    And I click "Apply"
     And I click on "View Details" button on 'My Assessments' page
     And I should see "Assessment ID" on detailed view of assessment request
 
@@ -54,7 +56,7 @@ Feature: Show Assessment ID
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of assessment management page
     Given that I have licence.ndors.org.uk page opened
-    When I login as an "Assessor3"
+    When I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Type>"
     And I logout
@@ -67,7 +69,7 @@ Feature: Show Assessment ID
     Examples:
       | Type      | User               |
       | Requested | Compliance Manager |
-      | Booked    | Compliance Manager |
+      | Approved   | Compliance Manager |
 
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of My Assessments page
@@ -82,8 +84,8 @@ Feature: Show Assessment ID
 
     Examples:
       | Type      | User      |
-      | Requested | Assessor3 |
-      | Booked    | Assessor3 |
+      | Requested | Assessor |
+      | Approved    | Assessor |
 
 
   @DR-898
@@ -108,6 +110,7 @@ Feature: Show Assessment ID
     And I login as an "Assessor3"
     And I click "MY ASSESSMENTS"
     And I select 'Requested' status from 'Assessment Status' dropdown
+    And I click "Apply"
     When I click on "View Details" button on 'My Assessments' page
     Then I see in assessor section there is no assessor number displayed
 

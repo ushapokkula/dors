@@ -14,8 +14,10 @@ Feature: Cancel OR Reject Assessment
   Scenario: As an Assessor can Cancel 'Requested' assessment but have to fill in mandatory 'Cancellation Notes' field
     And I navigate to "MY ASSESSMENTS" page
     Then I select 'Requested' status from 'Assessment Status' dropdown
+    And I click "Apply"
     And I 'Cancel' the 'Requested' Assessment
     Then I select 'Cancelled' status from 'Assessments Status' dropdown
+    And I click "Apply"
     And I click "View Details"
     And I should see the 'Cancellation Notes' on My Assessment details page
 
@@ -23,12 +25,13 @@ Feature: Cancel OR Reject Assessment
     And I logout
     Then I login as an "Compliance Manager"
     When I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click "View Details" link
     And I 'Reject' the 'Requested' Assessment
     Then I select 'Rejected' status from 'Assessments Status' dropdown
+    And I click "Apply"
     And I click "View Details" link
     And I should see the 'Rejection Notes' on Assessment Outcome page
 
@@ -36,15 +39,17 @@ Feature: Cancel OR Reject Assessment
     And I logout
     When I login as an "Compliance Manager"
     And I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
-   When I click 'Assessment Status' dropdown button
-   Then I see 'Requested' status is in selected status
+    Then I am on the Assessments Management page
+    When I click 'Assessment Status' dropdown button
+    Then I see 'Requested' status is in selected status
     And I click "Approve" button
-   And I click "Assessment Status"
+    And I click "Assessment Status"
     And I select 'Approved' status from 'Assessment Status' dropdown
-   And I click "View Details" link
+    And I click "Apply"
+    And I click "View Details" link
     And I 'Cancel' the 'Approved' Assessment
     Then I select 'Cancelled' status from 'Assessments Status' dropdown
+    And I click "Apply"
     And I click "View Details" link
     And I should see the 'Cancellation Notes' on Assessment Outcome page
 

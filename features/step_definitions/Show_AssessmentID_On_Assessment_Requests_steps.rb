@@ -5,8 +5,8 @@ end
 Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/) do
   expect(page).to have_css("h1", text: 'My Assessments') #verifying header#
   page.find("#single-button", visible: true).click
-  check('assessmentStatusChk0')
-  click_button("Apply")
+  expect(page).to have_css("#single-button + .dropdown-menu")
+  find("#assessmentStatusChk0", visible: true).click
 end
 
 Then (/^I see "([^"]*)" assessments on 'My Assessments' page$/) do |status|
@@ -90,22 +90,22 @@ And(/^I see the success message "([^"]*)" on the assessor page$/) do |message|
 end
 
 And(/^I request assessment as "([^"]*)"$/) do |assessment_type|
-  if assessment_type == "Booked"
-    @trainers.ngu_search_assessment_id_page.search_booked_assessment_id
+  if assessment_type == "Approved"
+    @trainers.filters_on_my_assessment_page.book_assessment_with_3_courses
   else
-    @trainers.ngu_search_assessment_id_page.search_requested_assessment_id
+    @trainers.filters_on_my_assessment_page.request_assessment_with_3_courses
   end
 
 end
 
 And(/^I select assessment status depending on "([^"]*)" and "([^"]*)"$/) do |user, type|
-  if (user == "Compliance Manager" && type == "Booked")
+  if (user == "Compliance Manager" && type == "Approved")
     find("#single-button").click
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk1", visible: true).click
     click_button("Apply")
     end
-  if (user == "Assessor3" && type == "Requested")
+  if (user == "Assessor" && type == "Requested")
   find("#single-button").click
   expect(page).to have_css(".dropdown-menu", visible: true)
   find("#assessmentStatusChk0", visible: true).click

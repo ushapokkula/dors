@@ -36,10 +36,6 @@ After ('~@nologout') do |scenario|
    end
 end
 
-# After ('~@nologout') do |scenario|
-#    if (scenario.failed?)
-#      find('#btn-signout').click
-#    end
 # end
 
 #delete the images files before every test
@@ -64,3 +60,8 @@ end
 #create reports directory if not present
 Dir.mkdir("reports") unless File.directory?("reports")
 
+
+# After ('~@nologout') do |scenario|
+#    if (scenario.failed?)
+#      find('#btn-signout').click
+#    end

@@ -1,4 +1,4 @@
-@DR_42  @pass
+@DR_42 @pass
 Feature: As an NGU,
   I want to be able to create an assessment record for an assessor irrespective of date of training session,
   so that unusual scenarios and errors can be catered for.
@@ -7,7 +7,7 @@ Feature: As an NGU,
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I deleted the assessments from Database
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     And I see "BOOK ASSESSMENT" on assessment management page
     And I navigate to "BOOK ASSESSMENT" page
     Then I will be redirected to Book Assessment page

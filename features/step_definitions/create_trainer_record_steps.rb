@@ -51,6 +51,7 @@ end
 
 And (/^I click on Update Trainer$/)do
   @trainers.create_trainer_record_page.update_trainer_button.click
+  sleep 1
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|

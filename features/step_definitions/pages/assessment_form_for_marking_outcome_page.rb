@@ -20,14 +20,14 @@ class AssessmentFormForMarkingOutcomePage < SitePrism::Page
     find("#status-281").value == 5
     select('Absent', :from => 'status-279')
     find("#status-279").value == 4
-    select('Action Note', :from => 'status-392')
-    find("#status-392").value == 2
+    #select('Action Note', :from => 'status-392')
+    #find("#status-392").value == 2
   end
 
   def verify_compliance_notes
     find("#notes-281").visible?
     find("#notes-279").visible?
-    find("#notes-392").visible?
+    #find("#notes-392").visible?
   end
 
   def select_outcome_against_trainer

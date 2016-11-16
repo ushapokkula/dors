@@ -41,7 +41,7 @@ end
 
 Then(/^The system will start autopredicting it and the list of highlight "([^"]*)" appear$/) do |forceareaname|
   expect(page).to have_css('.ui-select-container', visible: true)
-  expect(page).to have_css("#ui-select-choices-row-0-0", text: forceareaname)
+  expect(page).to have_css("#ui-select-choices-row-2-0", text: forceareaname)
 end
 
 And (/^I hit enter to see the selected "([^"]*)" in Force Area filter$/) do |forceareaname|
@@ -68,7 +68,7 @@ And(/^I can see "([^"]*)" field available on the page$/) do |filter_label|
 
 end
 
-When(/^I start typing atleast three characters as "([^"]*)"in the 'filter by trainer' field$/) do |chars|
+When(/^I start typing atleast three characters as "([^"]*)"in the trainer field$/) do |chars|
   fill_in('txt-trainer-name', :with => chars)
 end
 
@@ -76,7 +76,7 @@ Then(/^The system will auto\-predict and shows possible trainer names and IDs in
   expect(page).to have_css("#txt-trainer-name + .dropdown-menu li", minimum: 1)
 end
 
-When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the filter by trainer field$/) do |trainer_id|
+When(/^I enter a valid and existing trainer ID of six digits as "([^"]*)" in the trainer field$/) do |trainer_id|
   fill_in('txt-trainer-name', :with => trainer_id)
 end
 

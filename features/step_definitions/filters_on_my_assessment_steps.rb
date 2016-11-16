@@ -215,13 +215,15 @@ end
 Then(/^I see that the "([^"]*)" assessments are displayed which belong to the selected "([^"]*)","([^"]*)" and "([^"]*)"$/) do |type, course1, course2, course3|
   if (type == "Requested")
     expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Request')
+    expect(page).to have_css(".assessmentStatus", text: type, visible: true)
     expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
-    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course1)
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course2)
   else
     expect(page).to have_css("#assessment-title-header", visible: true, text: 'Assessment Outcome')
+    expect(page).to have_css(".assessmentStatus", text: type, visible: true)
     expect((find_all(".col-md-offset-3.col-md-3 h4")[0]).text).to eq(course1)
-    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course3)
-  end
+    expect((find_all(".col-md-offset-3.col-md-3 h4")[1]).text).to eq(course2)
+   end
 end
 
 
@@ -236,8 +238,14 @@ And(/^I select assessment status depending on "([^"]*)" on my assessments page$/
     expect(page).to have_css(".dropdown-menu", visible: true)
     find("#assessmentStatusChk0", visible: true).click
     find("#assessmentStatusChk1", visible: true).click
+  else
+   type == "Approved"
+    find("#single-button", visible: true).click
+    expect(page).to have_css("#single-button + .dropdown-menu", visible: true)
+    find("#assessmentStatusChk1").should be_checked
   end
-end
+  end
+
 
 And(/^the option to filter the list by "([^"]*)" is Displayed$/) do |force_filter_header|
   expect(page).to have_css(".clearfix>label", text: force_filter_header, visible: true)
@@ -252,7 +260,10 @@ And(/^The option to "([^"]*)" force areas is available with "([^"]*)" and "([^"]
 
 end
 
-And(/^the option to include all force areas is available with "([^"]*)" and "([^"]*)" buttons$/) do |arg1, arg2|
+And(/^the option to include all force areas is available with "([^"]*)" and "([^"]*)" buttons$/) do |yes, no|
+expect(page).to have_css("label.btn.btn-primary", text: yes )
+expect(page).to have_css("label.btn.btn-primary.active", text: no )
+
 
 end
 
@@ -323,7 +334,7 @@ And(/^I request assessment as "([^"]*)" for trainers under "([^"]*)"$/) do |type
   @trainers.filters_on_my_assessment_page.x_button.click
   @trainers.filters_on_my_assessment_page.force_filter.set("CHESHIRE")
   @trainers.filters_on_my_assessment_page.force_filter.send_keys(:enter)
-  if force_name == "CHESHIRE" and type == "Booked"
+  if force_name == "CHESHIRE" and type == "Approved"
     @trainers.filters_on_my_assessment_page.book_assessment_under_cheshire
   else
     @trainers.filters_on_my_assessment_page.force_filter.set(force_name)

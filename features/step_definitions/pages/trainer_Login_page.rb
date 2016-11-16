@@ -4,14 +4,14 @@ class TrainerLoginPage < SitePrism::Page
 
 
   element :sign_out_link, "#btn-signout"
-  element :username_field, "#txtemail"
+  element :trainerlicencenumber_field, "#txtemail"
   element :password_field, "#txtpassword"
   element :sign_in_button, ".btn.btn-primary.btn"
 
 
   def login_as(user)
     # verify_no_user_is_signed_in
-    username_field.set($users[user]['username'])
+    trainerlicencenumber_field.set($users[user]['trainer_licence_number'])
     password_field.set($users[user]['password'])
     sign_in_button.click
   end
@@ -24,7 +24,7 @@ class TrainerLoginPage < SitePrism::Page
 
 
   def enter_valid_username(user)
-    username_field.set($users[user]['username'])
+    trainerlicencenumber_field.set($users[user]['trainer_licence_number'])
   end
 
   def enter_valid_password(user)
@@ -44,10 +44,10 @@ def verify_fullname(user)
   client.execute("EXECUTE sproc_Set_Context_Info @AuditUserName = 'swapna',  @AuditIPAddress = '10.12.18.189'")
   if user == "Assessor"
   result= client.execute("SELECT  tbl_User.Forename + ' ' + tbl_User.Surname AS Fullname FROM  tbl_User
-                         WHERE tbl_User.ActiveDirectoryUsername="+"'"+($users[user]['username'])+"'")
+                         WHERE tbl_User.ActiveDirectoryUsername="+"'"+($users[user]['trainer_licence_number'])+"'")
   elsif user == "Trainer2"
   result= client.execute("SELECT tbl_User.Forename + ' ' + tbl_User.Surname AS Fullname FROM tbl_User
-                          WHERE tbl_User.ActiveDirectoryUsername ="+"'"+($users[user]['username'])+"'")
+                          WHERE tbl_User.ActiveDirectoryUsername ="+"'"+($users[user]['trainer_licence_number'])+"'")
   end
   result.each do |row|
    @fullname = row['Fullname']

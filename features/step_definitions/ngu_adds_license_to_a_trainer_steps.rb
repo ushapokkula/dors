@@ -10,10 +10,10 @@ Then(/^The "([^"]*)" button  is not visible when maximum licenses are added to a
   end
 end
 
-And(/^I select course name, licence status and expiry date to add a new licence$/) do
-  select('Motorway Course', :from => 'courseNames')
+And(/^I select "([^"]*)", licence status and expiry date to add a new licence$/) do|course_name|
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
   select('Full', :from => 'licenseStatuses')
-
 end
 
 And(/^The system will add another row of licence entry below those already displayed$/) do
@@ -45,7 +45,8 @@ And(/^The Expiry Date will be defaulted to "([^"]*)"$/) do |days|
 end
 
 And(/^I select Course "([^"]*)" to add a licence$/) do |course_name|
-  select(course_name, :from => 'courseNames')
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
 end
 
 And(/^I select licence as "([^"]*)" to add a licence$/) do |licence|
@@ -68,32 +69,34 @@ And(/^I click X button$/) do
   find(".btn-remove-license").click
 end
 
-And(/^Changes will be reflected on page$/) do
-  find("#courseNames").click
-  expect(page).to have_select('courseNames', :with_options => ['Motorway Course'])
-  # page.should have_select('#courseNames', :options => 'Motorway Course')
-end
-
 And(/^I click "([^"]*)" without setting the data$/) do |field_name|
+  if field_name == 'Course name'
+    page.find(".ui-select-container").click
+  else
   find_field(field_name).click
-end
+  end
+  end
 
 Then(/^I see "([^"]*)" against each "([^"]*)"$/) do |message, field|
-  error_message = find(:xpath, ".//*[text()='#{field}']/parent::Div//p").text
-  expect(error_message).to eq(message)
-end
+  if field == 'Course name'
+    expect(page).to have_css(".help-block p", text: message)
+  else
+    expect(page).to have_css(".help-block p", text: message)
+  end
+  end
 
 And(/^The "([^"]*)" is not available in the Course dropdown to select for another licence$/) do |course_name|
-  find("#courseNames").click
   expect(page).to have_no_select('courseNames', :with_options => [course_name])
 end
 
 
 And(/^I add two licences to the trainer with "([^"]*)" and "([^"]*)" with status as "([^"]*)"$/) do |course1, course2, status|
-  select(course1, :from => 'courseNames')
+  page.find(".ui-select-search").set(course1)
+  page.find(".ui-select-search").send_keys(:enter)
   select(status, :from => 'licenseStatuses')
   click_button('Add licence')
-  select(course2, :from => 'courseNames')
+  page.find(".ui-select-search").set(course2)
+  page.find(".ui-select-search").send_keys(:enter)
   select(status, :from => 'licenseStatuses')
 end
 
@@ -145,7 +148,8 @@ And(/^I have not reached the limit of maximum licences possible$/) do
 end
 
 And(/^I add a new licence with "([^"]*)" course and licence status as "([^"]*)"$/) do |course_name, licence_status|
-  select(course_name, :from => 'courseNames')
+  page.find(".ui-select-search").set(course_name)
+  page.find(".ui-select-search").send_keys(:enter)
   select(licence_status, :from => 'licenseStatuses')
 end
 

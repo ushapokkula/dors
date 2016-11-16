@@ -2,6 +2,7 @@ Given(/^I have licence agreement as "([^"]*)" for trainer Id "([^"]*)"$/) do |ag
   click_link("TRAINERS")
   expect(page).to have_css("#txt-trainer-name", visible:true)
   fill_in('txt-trainer-name', :with => trainer_id)
+  sleep 1
   find("#txt-trainer-name + ul li", match: :first).click
   select(agreement_status, :from => 'licenseAgreementStatus')
   expect(page).to have_css('#licenseAgreementStatus', text: agreement_status)

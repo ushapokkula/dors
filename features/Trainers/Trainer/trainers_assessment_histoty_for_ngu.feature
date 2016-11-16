@@ -83,7 +83,7 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     Then I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I enter "<start date>" in start date field
@@ -104,7 +104,7 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     When I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click 'Assessment Status' dropdown button
@@ -129,7 +129,7 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     Then I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     When I click 'Assessment Status' dropdown button
