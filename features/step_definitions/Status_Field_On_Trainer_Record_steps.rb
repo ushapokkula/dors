@@ -17,8 +17,6 @@ end
 Then(/^the system will load the trainer form where I can edit or update$/) do
   page.find("#trainer-status-active").click
   page.all("h3", text: 'Update Trainer')
-  page.find("#btnCreateUpdateTrainer").click
-
 end
 
 When(/^I set the status to "([^"]*)"$/) do |arg1|

@@ -130,7 +130,7 @@ class CreateAssessorRecordPage < SitePrism::Page
   end
 
   def isAssessorCreatePage()
-    should have_content('Assessors management')
+    should have_content('Assessors Management')
     should have_content('Create New Assessor')
     find_button('Create Assessor')
     puts "Yes I am on Create assessor page"
@@ -254,42 +254,75 @@ class CreateAssessorRecordPage < SitePrism::Page
 
   def delete_outlook_emails
     visit "https://outlook.live.com/owa/"
-    unless page.has_css?("[aria-label='Open menu']", wait: 4)
+    if page.has_css?("#idSIButton9")
       find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click
+      end
+    if page.has_css?(".linkButton")
+      click_link("Sign in")
+      unless page.has_css?("[aria-label='Open menu']", wait: 4)
+        find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
+      find("[name='passwd']").set("dorstest123")
+      find("[value='Sign in']").click
+       end
     end
+    # unless page.has_css?("[aria-label='Open menu']", wait: 4)
+    #   click_link("Sign in")
+    #   find("input[type='email']").set("dors_test@outlook.com")
+    #   click_button("Next")
+    #   find("[name='passwd']").set("dorstest123")
+    #   find("[value='Sign in']").click
+    # end
+
     expect(page).to have_css("#O365_MainLink_Settings") # settings css
     size = page.all(:xpath, ".//*[@autoid='_lvv2_9']/div").size
-    if size > 10
+    if size > 24
       find("[autoid='_n_h']").hover
-      find("[title='Select everything in this folder']").click
+      find("[title='Select all items in view']").click
+      find(:xpath, ".//*[text()='Select everything']").click
       find("[title='Delete (Del)']").click
        find(:xpath, ".//span[text()='OK']").click
+    elsif size > 10 && size < 24
+      find("[autoid='_n_h']").hover
+      find("[title='Select all items in view']").click
+      find("[title='Delete (Del)']").click
     elsif size < 10 && size > 0
       find("[autoid='_n_h']").hover
-      find("[title='Select everything in this folder']").click
+      find("[title='Select all items in view']").click
       find("[title='Delete (Del)']").click
       #find(:xpath, ".//span[text()='OK']").click
     end
     find("[aria-label='Open menu']").click
-    find(:xpath, ".//*[text()='Sign out']").click
+   # find(:xpath, ".//*[text()='Sign out']").click
   end
 
 
   def login_to_outlook
     visit "https://outlook.live.com/owa/"
-    unless page.has_css?("[aria-label='Open menu']", wait: 8)
+    if page.has_css?("#idSIButton9")
       find("input[type='email']").set("dors_test@outlook.com")
+      click_button("Next")
       find("[name='passwd']").set("dorstest123")
       find("[value='Sign in']").click
+    end
+    if page.has_css?(".linkButton")
+      click_link("Sign in")
+      unless page.has_css?("[aria-label='Open menu']", wait: 4)
+        find("input[type='email']").set("dors_test@outlook.com")
+        click_button("Next")
+        find("[name='passwd']").set("dorstest123")
+        find("[value='Sign in']").click
+      end
     end
     expect(page).to have_css("[aria-label='Open menu']")
   end
 
   def verify_email_generation
     login_to_outlook
-    sleep 30
+    sleep 3
     find(:xpath, ".//span[text()='DORS Test']", match: :first).click
     expect(page).to have_css(".rpHighlightAllClass.rpHighlightSubjectClass")
     expect(page).to have_xpath("//*[@id='Item.MessageUniqueBody']")

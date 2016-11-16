@@ -47,7 +47,7 @@ end
 
 #DR-39# #DR-674#
 And (/^I will remain on the trainer's record page$/) do
-  expect(page).to have_content("Trainers management")
+  expect(page).to have_content("Trainers Management")
   expect(page).to have_selector(:css, "h3.panel-title", match: :first, text: 'Update Trainer')
   expect(page).to have_selector(:css, "h3.panel-title", match: :'one', text: 'Licences')
   expect(page).to have_css("#btnCreateUpdateTrainer", text: 'Update Trainer')

@@ -121,11 +121,7 @@ end
 
 And(/^the primary trainer by default it will be checked and disabled$/) do
    expect(page).to have_css(".include-main-trainer-checkbox[disabled='disabled']:nth-child(1)", visible:true)
-
    find_all(".include-main-trainer-checkbox[type='checkbox']")[0].should be_checked
-
-   find_all((".include-main-trainer-checkbox[type='checkbox']:nth-child(1)")).should be_checked
-
 end
 
 
@@ -197,7 +193,7 @@ And (/^I can see selected "([^"]*)" has same "([^"]*)" course type of "([^"]*)" 
  expect(page).to have_css(".dors-well .trainer-license-type", match: :first, text: licence_type)
 end
 
-When (/^I select 'Pick a slot' on Request Assessment Page for "([^"]*)"$/)do |trainer_name|
+When (/^I select 'Pick a course' on Request Assessment Page for "([^"]*)"$/)do |trainer_name|
 if (trainer_name == 'Heather Mcqueen_Auto')
   expect(page).to have_css("h1", text:'Request Assessment')
   find(:button, 'Pick a course', match: :first).click if find(:button, 'Pick a course', match: :first)

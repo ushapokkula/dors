@@ -35,6 +35,28 @@ class FiltersONMyAssessmentPage < SitePrism::Page
     click_button('Yes')
   end
 
+  def book_assessment_with_3_courses
+    find('a', text: "REQUEST ASSESSMENT").click
+    find(:button, 'Pick a course', match: :first).click
+    find(:button, 'Request Assessment', match: :first).click
+    expect(page).to have_css(".include-main-trainer-checkbox", visible: true)
+    all('.include-main-trainer-checkbox', visible: true)[1].click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[9].click
+    click_button("Submit")
+  end
+
+  def request_assessment_with_3_courses
+    find('a', text: "REQUEST ASSESSMENT").click
+    find(:button, 'Pick a course', match: :first).click
+    find(:button, 'Request Assessment', match: :first).click
+    expect(page).to have_css(".include-main-trainer-checkbox", visible: true)
+    all('.include-main-trainer-checkbox', visible: true)[1].click
+    expect(page).to have_css(".include-nearby-trainer-checkbox", visible: true)
+    all('.include-nearby-trainer-checkbox', visible: true)[9].click
+    fill_in('mileage', :with => '500')
+    click_button("Submit")
+  end
 
 
 end

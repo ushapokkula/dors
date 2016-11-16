@@ -7,7 +7,7 @@
     Background:
       Given that I have licence.ndors.org.uk page opened
       When I login as an "Compliance Manager"
-      Then I am on the Assessment Management page
+      Then I am on the Assessments Management page
       And I deleted the assessments from Database
       And I click "ASSESSMENT MANAGEMENT"
       Then I should see a message "There are no assessments to display."
@@ -41,13 +41,13 @@
     Scenario Outline: Verify the format of displaying the list of names when assessor name is searched
       When I start typing atleast three characters as "<Assessor Name>" in the assessor search field
       Then The system will start autopredicting it and the list of assessor appears
-      When I hit enter after typing first three characters of assessor name as "<Assessor Name>"
+      When I hit enter after typing first three chara assessor name as "<Assessor Name>"
       Then searched assessor "<Name>" name includes assessor full name and assessor ID
       Then Assessor first name "<Name>" will be selected from the auto predict list
       Examples:
         | Assessor Name |Name                 |
-        |dee            |deena grit (0123456) |
-        |sud            |sudiv p       |
+        |roo            |roopa_t test (720674)|
+        |sud            |sudiv p (123456)     |
 
     Scenario Outline: Verify Assessor details by moving up and down arrow keys from auto-predict list
       And I start typing atleast three characters as "<Assessor Name>" in the assessor search field
@@ -69,7 +69,7 @@
       And I logout
       And I login as an "Compliance Manager"
       Then I navigate to "ASSESSMENT MANAGEMENT" page
-      When I am on the Assessment Management page
+      When I am on the Assessments Management page
       Then I click 'Assessment Status' dropdown button
       And I see 'Requested' status is in selected status
       And I search with assessor "<Assessor Name>" in the assessor search field
@@ -93,7 +93,7 @@
       And I logout
       And I login as an "Compliance Manager"
       Then I navigate to "ASSESSMENT MANAGEMENT" page
-      When I am on the Assessment Management page
+      When I am on the Assessments Management page
       Then I click 'Assessment Status' dropdown button
       And I see 'Requested' status is in selected status
       And I search with assessor "<Assessor Name>" in the assessor search field

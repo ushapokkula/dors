@@ -51,6 +51,7 @@ end
 
 And (/^I click on Update Trainer$/)do
   @trainers.create_trainer_record_page.update_trainer_button.click
+  sleep 1
 end
 
 Then (/^a Success message will be displayed for Update Trainer "([^"]*)"$/)do |message|
@@ -87,7 +88,7 @@ Then (/^I should see a message saying "([^"]*)"$/)do |message|
 end
 
 And(/^The system will load the page where I can create a new trainer record$/)do
-  expect(page).to have_css('h1',text: 'Trainers management')
+  expect(page).to have_css('h1',text: 'Trainers Management')
   expect((all('.panel-title')[0]).text).to eq("Create Trainer")
 end
 

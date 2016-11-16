@@ -172,7 +172,7 @@ Feature: submit assessment request feature
        Then I deleted the assessments from Database
        And I navigate to "REQUEST ASSESSMENT" page
        Then I can see "<trainer_name>" has "<Course_name>" course type of "<Licence Type>" on request assessment page
-       When I select 'Pick a slot' on Request Assessment Page for "<trainer_name>"
+       When I select 'Pick a course' on Request Assessment Page for "<trainer_name>"
        And I will be taken to "Pick a Course" page
        And I click Request assessment button against trainer I want to book an assessment
        Then I can see selected "<trainer_name>" has same "<Course_name>" course type of "<Licence Type>" on summary page

@@ -49,8 +49,8 @@ Feature: DR-268 and DR-719
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    Then I can see "Filter By Trainer:" field available on the page
-    When I start typing atleast three characters as "<Trainer Name>"in the 'filter by trainer' field
+    Then I can see "Trainer" field available on the page
+    When I start typing atleast three characters as "<Trainer Name>"in the trainer field
     Then The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     Examples:
       | Trainer Name |
@@ -63,7 +63,7 @@ Feature: DR-268 and DR-719
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     When I click "REQUEST ASSESSMENT"
-    And I enter a valid and existing trainer ID of six digits as "<Trainer ID>" in the filter by trainer field
+    And I enter a valid and existing trainer ID of six digits as "<Trainer ID>" in the trainer field
     Then The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     Examples:
       | Trainer ID |
@@ -89,7 +89,7 @@ Feature: DR-268 and DR-719
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
     And I click "REQUEST ASSESSMENT"
-    And I start typing atleast three characters as "<Trainer Name>"in the 'filter by trainer' field
+    And I start typing atleast three characters as "<Trainer Name>"in the trainer field
     And The system will auto-predict and shows possible trainer names and IDs in a dropped down list
     When I hit DOWN arrow key from the trainer auto predict list
     Then The second value will be selected from the auto predict list of trainer filter "<Down_Arrow>"

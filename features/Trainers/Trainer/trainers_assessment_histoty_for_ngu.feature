@@ -83,12 +83,13 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     Then I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I enter "<start date>" in start date field
     And I enter "<end date>" in End date field
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
+    And I click "Apply"
     Then I should see a message "There are no assessments to display."
     Examples:
     |Trainer First Name|Trainer Last Name|start date|end date|
@@ -103,12 +104,14 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     When I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
+    And I click 'Assessment Status' dropdown button
     Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
+    And I click "Apply"
     Then the system will filter assessment records in all "<end_date>","<Status_filter1>","<Status_filter2>","<selected_trainer_name>"combination on assessment management page
     Examples:
       |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
@@ -126,18 +129,20 @@ Feature: As an NGU (TrainingGovernance)
     And I logout
     And I login as an "Compliance Manager"
     Then I navigate to "ASSESSMENT MANAGEMENT" page
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
+    When I click 'Assessment Status' dropdown button
     Then I set status "<Status_filter1>" and "<Status_filter2>" available on the assessment page
     And I set "<start_date>" and "<end_date>" filter on assessment page
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
     When I click X against the selected trainer as shown in trainer search field
     Then "<selected_trainer_name>" will be removed from trainer search field
-    And assessments list on the Assessments page will be refreshed to show updated data
+    And I click "Apply"
+   # And assessments list on the Assessments page will be refreshed to show updated data
     When I click "Assessment Status"
     Then other filters "<Status_filter1>","<Status_filter2>","<start_date>","<end_date>" , if set, will be remain same
     Examples:
       |Trainer First Name  |Trainer Last Name|Status_filter1|Status_filter2|start_date|end_date |selected_trainer_name|
-      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|10/12/2016|auto7 Trainer |
+      |  auto7             |Trainer          | Requested    | Approved     |25/07/2016|01/12/2016|auto7 Trainer |
       |  auto1             |Trainer          |Requested    | Approved      |5/08/2016 |22/01/2017|auto1 Trainer |

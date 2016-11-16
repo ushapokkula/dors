@@ -15,7 +15,7 @@ end
 
 Then (/^the system will filter assessment records in all "([^"]*)","([^"]*)","([^"]*)","([^"]*)"combination on assessment management page$/)do|date,trainer_name,status1,status2|
   if (status1 == "Requested" && status2 == "Approved")
-expect(page).to have_css(".dors-table")
+expect(page).to have_css(".dors-table", :count=>2, visible: true)
 expect(page).to have_css(".trainer-full-name", text: trainer_name )
 expect(page).to have_css(".assessment-date", text: date)
 
@@ -41,7 +41,7 @@ Then (/^The first name "([^"]*)" will be selected from the auto predict list$/)d
 end
 
 And (/^assessments list on the Assessments page will be refreshed to show updated data$/)do
-  expect(page.all('.dors-table').count).to be>=1
+  expect(page.all('.dors-table').count).to eq 0
 end
 
 And (/^other filters "([^"]*)","([^"]*)","([^"]*)","([^"]*)" , if set, will be remain same$/)do|status1,status2, start_date, end_date|

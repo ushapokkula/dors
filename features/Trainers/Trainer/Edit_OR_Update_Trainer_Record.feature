@@ -7,12 +7,12 @@ Feature: As an NGU,
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Compliance Manager"
     And I click "TRAINERS"
-    Then I see "Trainers management" page
+    Then I see "Trainers Management" page
     And I can see Legend with "Practical Course" and "Theory Course"
 
 
   Scenario: Verify the license status options
-    Given I see "Trainers management" page
+    Given I see "Trainers Management" page
     Then I see the following default Licence status in Licence status dropdown
       | Licence Status          |
       | ---Please select---     |
@@ -64,7 +64,7 @@ Feature: As an NGU,
     Then the system will show a soft warning message, "You are setting the validity of this licence for more than 2 years. Please ensure your date selection is correct."
     Examples:
       | trainer first name | trainer last name | Expiry Date |
-      | roopa              | trainer           | 26/04/2019  |
+      | roopa_setty         | trainer          | 26/04/2019  |
 
   Scenario Outline: Verify the 'updated message' after few changes
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
@@ -74,7 +74,7 @@ Feature: As an NGU,
     And I will remain on the trainer's record page
     Examples:
       | trainer first name | trainer last name | Postcode |
-      | roopa              | trainer           | HA9 7lm  |
+      | roopa_setty        | trainer           | HA9 7lm  |
 
 
     @DR-675 @DR-510
@@ -85,7 +85,7 @@ Feature: As an NGU,
      Then the system will trigger the user with an error message "Sorry, the licence has expired, please amend the status accordingly" on trainer page
      Examples:
       | trainer first name | trainer last name | Expiry date |
-      | roopa              | trainer           | 04/04/2016  |
+      | roopa_setty              | trainer           | 04/04/2016  |
 
 
   @DR-1150
@@ -118,7 +118,7 @@ Feature: As an NGU,
     |roopa2             |trainer2           |National Driver Alertness Course  |   Full       |  05/10/2018|
 
 
-  @Dr_1150
+  @DR_1150
   Scenario Outline: Verify added courses types are theory or Practical Courses
     Given I search for "<trainer first name>" and "<trainer last name>" in the trainer search field
     Then I should see searched "<trainer first name>" and "<trainer last name>" trainer details

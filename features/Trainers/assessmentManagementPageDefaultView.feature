@@ -108,7 +108,7 @@ Feature: Assessment Management Default View
       | Booked          | Compliance Manager | Practical | Cancelled         |
 
 
-  @DR_1139  #unable to complete the review due to the bugs
+  @DR_1139
   Scenario Outline: Verify the licence type for completed assessment in the assessment management page
     Given that I have licence.ndors.org.uk page opened
     And I login as an "Assessor"
@@ -123,6 +123,7 @@ Feature: Assessment Management Default View
     And I select possible outcome against each trainer depending on "<Type>"
     And I click "Mark Complete"
     When I select "<Status_Type2>" from assessment status dropdown
+    And I click "Apply"
     Then I see licence type "<Type>" against the trainer for each "<Assessment_Type>" assessment in the assessment management page
 
     Examples:

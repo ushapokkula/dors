@@ -1,5 +1,5 @@
 Then (/^I am on create Trainers page$/) do
-  expect(page).to have_css("h1", text: 'Trainers management')
+  expect(page).to have_css("h1", text: 'Trainers Management')
   expect(page).to have_css("h3", text: 'Create Trainer')
 end
 
