@@ -356,5 +356,5 @@ And(/^only default force area assessments are displayed on my assessments page$/
   click_button("View Details")
   expect(page).to have_css("h1", text: "Assessment Outcome")
   actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
-  expect(actual_trainers).to match_array(["Heather Mcqueen_Auto", "Bob Thorton_Auto"])
+  expect(actual_trainers).to match_array(["Heather Mcqueen_Auto", "Bob Thorton_Auto","Wendy Smith_Auto"])
 end
