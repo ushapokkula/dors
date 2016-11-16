@@ -1,11 +1,11 @@
-@DR_1216
+@DR_1216 @pass
 
 Feature: Apply or Reset on Assessments Management page
 
   Background:
     Given that I have licence.ndors.org.uk page opened
     When I login as an "Compliance Manager"
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     And I deleted the assessments from Database
     And I click "ASSESSMENT MANAGEMENT"
     When I click 'Assessment Status' dropdown button
@@ -56,7 +56,7 @@ Feature: Apply or Reset on Assessments Management page
     And I request assessment as requested
     And I logout
     When I login as an "Compliance Manager"
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click "Assessment Status"
@@ -79,7 +79,7 @@ Feature: Apply or Reset on Assessments Management page
       And I request assessment as requested
       And I logout
       When I login as an "Compliance Manager"
-      Then I am on the Assessment Management page
+      Then I am on the Assessments Management page
       When I click 'Assessment Status' dropdown button
       Then I see 'Requested' status is in selected status
       And I click "Assessment Status"
@@ -114,7 +114,7 @@ Feature: Apply or Reset on Assessments Management page
     And I request assessment as requested
     And I logout
     When I login as an "Compliance Manager"
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click "Assessment Status"
@@ -143,7 +143,7 @@ Feature: Apply or Reset on Assessments Management page
     And I request assessment as requested
     And I logout
     When I login as an "Compliance Manager"
-    Then I am on the Assessment Management page
+    Then I am on the Assessments Management page
     When I click 'Assessment Status' dropdown button
     Then I see 'Requested' status is in selected status
     And I click "Assessment Status"
@@ -154,7 +154,6 @@ Feature: Apply or Reset on Assessments Management page
     Then I see 'Apply' button should be disabled
     And I should see 'Reset' button will be enabled
     Then assessments that meet all filter criteria in combination will be displayed
-    When I search with assessor "<Assessor Name>" in the assessor search field
     And I logout
     And I login as a "Compliance Manager" user
     Then I navigate to "ASSESSMENT MANAGEMENT" page
