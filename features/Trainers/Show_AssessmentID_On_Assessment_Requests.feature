@@ -56,6 +56,7 @@ Feature: Show Assessment ID
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of assessment management page
     Given that I have licence.ndors.org.uk page opened
+    And I deleted the assessments from Database
     When I login as an "Assessor"
     And I navigate to "REQUEST ASSESSMENT" page
     And I request assessment as "<Type>"
@@ -74,6 +75,7 @@ Feature: Show Assessment ID
   @DR-898
   Scenario Outline: Assessor address is replaced by assessor number on view details of My Assessments page
     Given that I have licence.ndors.org.uk page opened
+    And I deleted the assessments from Database
     When I login as an "<User>"
     And I navigate to "REQUEST ASSESSMENT" page
     Then I request assessment as "<Type>"
