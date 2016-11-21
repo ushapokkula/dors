@@ -112,7 +112,7 @@ end
 
 And(/^"([^"]*)" will be displayed of "([^"]*)" part of trainer licence$/) do |course_name, course_type|
   if (course_type == "Theory" and course_name == "National Driver Alertness Course")
-    expect(all(".license-scheme-name")[0].text).to eq(course_name)
+    expect(all(".license-scheme-name")[3].text).to eq(course_name)
     expect(all(".license-type")[0].text).to eq(course_type)
     expect(all(".license-scheme-name")[4].text).to eq(course_name)
     expect(all(".license-type")[4].text).to eq(course_type)
