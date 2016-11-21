@@ -89,7 +89,9 @@ Feature: As an NGU (TrainingGovernance)
     And I enter "<start date>" in start date field
     And I enter "<end date>" in End date field
     And I search for "<Trainer First Name>" and "<Trainer Last Name>" in the trainer search field
-    And I click "Apply"
+    And I click "Apply" button on assessments page
+    And I see 'Apply' button should be disabled
+    And I should see 'Reset' button will be enabled
     Then I should see a message "There are no assessments to display."
     Examples:
     |Trainer First Name|Trainer Last Name|start date|end date|

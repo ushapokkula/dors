@@ -30,7 +30,7 @@ And(/^Maximum trainers included are not more than four$/)do
 end
 
 And(/^I see "([^"]*)"$/)do |link|
-  expect(page).to have_css(".dors-table-header > div.col-md-3 > a ", text:link)
+  expect(find_all(".dors-table-header > div.col-md-3 > a ", text:link))
 end
 
 And(/^I see "([^"]*)" button$/) do |button|

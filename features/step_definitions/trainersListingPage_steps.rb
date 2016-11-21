@@ -116,7 +116,7 @@ When(/^I Pick a course against the trainer which has same scheme as the trainer 
 end
 
 When(/^I Pick a course against the trainer which has same scheme as the trainer who is in booked assessment$/) do
-  all(".btn.btn-primary:nth-child(2)")[3].click
+  all(".btn.btn-primary:nth-child(2)")[4].click
 end
 
 Then(/^the requested assessment id is shown against the trainer$/) do

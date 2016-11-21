@@ -52,4 +52,9 @@ And (/^other filters "([^"]*)","([^"]*)","([^"]*)","([^"]*)" , if set, will be r
 find("#txtStartDate").value == start_date
   find("#txtEndDate").value == end_date
 end
-  end
+end
+
+And (/^I click "([^"]*)" button on assessments page$/)do|apply|
+find("#btnApplyFilters").click
+sleep 5
+end
