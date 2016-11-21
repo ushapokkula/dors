@@ -52,7 +52,7 @@ And(/^I request assessment as "([^"]*)" of course type "([^"]*)"$/) do |assessme
     @trainers.ngu_search_assessment_id_page.request_assessment
   elsif (assessment_type == "Requested" && licence_type == "Practical")
     @trainers.assessment_management_default_view_page.request_assessment_with_practical
-  elsif (assessment_type == "Booked" && licence_type == "Theory")
+  elsif (assessment_type == "Approved" && licence_type == "Theory")
     @trainers.ngu_search_assessment_id_page.book_assessment
   else
     (assessment_type == "Booked" && licence_type == "Practical")
@@ -118,6 +118,7 @@ And(/^I select "([^"]*)" from assessment status dropdown$/) do |assessment_type|
     page.find("#assessmentStatusChk0", visible: true).click
     expect(page).to have_css("#assessmentStatusChk4")
     page.find("#assessmentStatusChk4", visible: true).click
+    click_button("Apply")
     end
 end
 

@@ -81,8 +81,8 @@ Feature: Assessment Management Default View
       | Assessment_Type | User               | Type      |
       | Requested       | Compliance Manager | Theory    |
       | Requested       | Compliance Manager | Practical |
-      | Booked          | Compliance Manager | Theory    |
-      | Booked          | Compliance Manager | Practical |
+      | Approved        | Compliance Manager | Theory    |
+      | Approved        | Compliance Manager | Practical |
 
   @DR_1139
   Scenario Outline: Verify the licence type for Rejected/Cancelled assessments in the assessment management page
@@ -104,8 +104,8 @@ Feature: Assessment Management Default View
       | Assessment_Type | User               | Type      | Cancellation_Type |
       | Requested       | Compliance Manager | Theory    | Rejected          |
       | Requested       | Compliance Manager | Practical | Rejected          |
-      | Booked          | Compliance Manager | Theory    | Cancelled         |
-      | Booked          | Compliance Manager | Practical | Cancelled         |
+      | Approved        | Compliance Manager | Theory    | Cancelled         |
+      | Approved        | Compliance Manager | Practical | Cancelled         |
 
 
   @DR_1139
@@ -128,8 +128,8 @@ Feature: Assessment Management Default View
 
     Examples:
       | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
-      | Booked          | Approved     | Completed    | Theory    |
-      | Booked          | Approved     | Completed    | Practical |
+      | Approved        | Approved     | Completed    | Theory    |
+      | Approved        | Approved     | Completed    | Practical |
 
   @DR_1146
   Scenario Outline: Verify the licence type for Requested/Booked assessments in the assessment detailed view
@@ -151,8 +151,8 @@ Feature: Assessment Management Default View
       | Assessment_Type | User               | Type      |
       | Requested       | Compliance Manager | Theory    |
       | Requested       | Compliance Manager | Practical |
-      | Booked          | Compliance Manager | Theory    |
-      | Booked          | Compliance Manager | Practical |
+      | Approved        | Compliance Manager | Theory    |
+      | Approved        | Compliance Manager | Practical |
 
 
   @DR_1146
@@ -179,8 +179,8 @@ Feature: Assessment Management Default View
       | Assessment_Type | User               | Type      | Cancellation_Type |
       | Requested       | Compliance Manager | Theory    | Rejected          |
       | Requested       | Compliance Manager | Practical | Rejected          |
-      | Booked          | Compliance Manager | Theory    | Cancelled         |
-      | Booked          | Compliance Manager | Practical | Cancelled         |
+      | Approved        | Compliance Manager | Theory    | Cancelled         |
+      | Approved        | Compliance Manager | Practical | Cancelled         |
 
 
   @DR_1146
@@ -205,8 +205,8 @@ Feature: Assessment Management Default View
 
     Examples:
       | Assessment_Type | Status_Type1 | Status_Type2 | Type      |
-      | Booked          | Approved     | Completed    | Theory    |
-      | Booked          | Approved     | Completed    | Practical |
+      | Approved          | Approved     | Completed    | Theory    |
+      | Approved          | Approved     | Completed    | Practical |
 
 
 
