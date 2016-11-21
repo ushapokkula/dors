@@ -45,6 +45,7 @@ class CourseFilterOnRequestAssessmentPage < SitePrism::Page
   end
 
   def filter_by_trainer_id(trainer_id)
+    trainer_filter.should be_visible
     trainer_filter.set(trainer_id)
     sleep 5
     expect(page).to have_css("#txt-trainer-name + .dropdown-menu li", visible: true)
