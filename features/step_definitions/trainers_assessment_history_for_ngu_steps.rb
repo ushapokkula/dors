@@ -55,6 +55,6 @@ end
 end
 
 And (/^I click "([^"]*)" button on assessments page$/)do|apply|
-find("#btnApplyFilters").click
+find("#btnApplyFilters", text: apply).click
 sleep 5
 end

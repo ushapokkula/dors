@@ -36,7 +36,7 @@
 #  @status_filter3
 #  Scenario Outline: Verify the visibility of assessments when respective status filter is choosen
 #    When I select "<Status Filter>"
-#    Then Only those assessments will be shown with status as "<Status Assertion>" on Assessment management page
+    #Then Only those assessments will be shown with status as "<Status Assertion>" on Assessment management page
 #
 #
 #    Examples:
