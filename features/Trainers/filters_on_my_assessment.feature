@@ -150,6 +150,7 @@ Feature: Filter on My Assessment page
       | Selected-Force | Type     |
       | ESSEX POLICE   | Approved |
 
+  @DR_384
   Scenario Outline: Verify the assessments listing after apply single force without other filters
     Given I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
@@ -166,6 +167,7 @@ Feature: Filter on My Assessment page
       | Force    | Type     |
       | CHESHIRE | Approved   |
 
+  @DR_384
   Scenario Outline: Verify the assessments listing after apply multiple forces without other filters
     Given I deleted the assessments from Database
     And I click "REQUEST ASSESSMENT"
@@ -182,6 +184,7 @@ Feature: Filter on My Assessment page
       | Force1   | Type     | Force2                   |
       | CHESHIRE | Approved | BRITISH TRANSPORT POLICE |
 
+  @DR_384
   Scenario Outline: Verify the assessments listing when 'All' force areas are included
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
@@ -198,6 +201,7 @@ Feature: Filter on My Assessment page
       | Force    | Type    |
       | CHESHIRE | Approved |
 
+  @DR_384
   Scenario Outline:  Verify the assessments listing when 'No' force areas are included
     Given I deleted the assessments from Database
     And I request assessment as "<Type>"
