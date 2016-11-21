@@ -32,14 +32,19 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
   def request_assessments_without_nearby_course
     click_link("REQUEST ASSESSMENT")
     find(:button,'Pick a course',match: :first).click if find(:button,'Pick a course', match: :first)
-    first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+    if(find("#btnApplyFilters"))
+      find_all('.btn.btn-primary', visible: true)[1].click                       #will change this tep once dr_58 is removed""
+    else
+      first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+    end
      fill_in('mileage',:with=>'500')  #adding mileage#
     fill_in('notes',:with=>'Test')
     click_link_or_button("Submit")
     within('#requested-assessment-info')do
       expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Requested")
     end
-  end
+    end
+
 
 
   def navigate_to_request_summary_page
@@ -52,14 +57,19 @@ class DateFilterOnAssessmentManagementPage < SitePrism::Page
     click_link("REQUEST ASSESSMENT")
     expect(page).to have_css("h1", text: 'Request Assessment')
     find(:button,'Pick a course', match: :first).click if find(:button,'Pick a course', match: :first)
-   first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
-   page.find_all(".include-nearby-trainer-checkbox", match: :first)
+    if(find("#btnApplyFilters"))
+      find_all('.btn.btn-primary', visible: true)[1].click                       #will change this tep once dr_58 is removed""
+    else
+      first(:button,'Request Assessment').click if find(:button,'Request Assessment',match: :first)
+    end
+    page.find_all(".include-nearby-trainer-checkbox", match: :first)
    find('.include-nearby-trainer-checkbox', match: :first).click if find('.include-nearby-trainer-checkbox', match: :first)
    click_link_or_button("Submit")
     within('#requested-assessment-info')do
       expect(page).to have_content("Assessment #{assessment_id.text} scheduled for #{assessment_date.text} has been Booked")
     end
-  end
+    end
+
 
 
     def verify_assessments_combination_filter_criteria
