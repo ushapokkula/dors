@@ -2,6 +2,7 @@
 Feature: As an NGU,
   I want to be able to create an assessment record for an assessor irrespective of date of training session,
   so that unusual scenarios and errors can be catered for.
+  #  /*here i have chosen cheshire which has pick a slot to book assessments*/
 
   Background:
     Given that I have licence.ndors.org.uk page opened
@@ -11,7 +12,9 @@ Feature: As an NGU,
     And I see "BOOK ASSESSMENT" on assessment management page
     And I navigate to "BOOK ASSESSMENT" page
     Then I will be redirected to Book Assessment page
+    And I enter force area as 'CHESHIRE'
     And I can see number of assessments to book
+
 
     Scenario Outline: NGU loads an assessor on book assessment page
       When I select 'Pick a course' on Book Assessment Page for "<trainer_name>"
@@ -30,7 +33,7 @@ Feature: As an NGU,
       When I hit UP arrow key from the assessor auto predict list
       Examples:
       |Assessor Name|trainer_name |
-      |tes          |auto2 trainer|
+      |tes          |auto1 trainer|
       |roo          |auto7 trainer|
 
 
@@ -45,7 +48,7 @@ Feature: As an NGU,
     Then I should see an "<error>" messages on Summary page
     Examples:
     |Assessor Name|trainer_name|error|
-    |             |auto2 trainer|An assessor must be selected.|
+    |             |auto1 trainer|An assessor must be selected.|
 
 
   Scenario Outline: Verify Error message for invalid assessor name
@@ -59,8 +62,8 @@ Feature: As an NGU,
     Then I see the message "No such assessor exists."
     Examples:
       |Assessor Name|trainer_name|
-      | tes        |auto2 trainer|
-      | d566       |auto2 trainer|
+      | tes        |auto1 trainer|
+      | d566       |auto1 trainer|
 
 
     Scenario Outline: NGU Books Assessment on behalf an Assessor
@@ -80,7 +83,7 @@ Feature: As an NGU,
       And I should see Approved Assessment trainer "<trainer_name>", assessor "<Assessor Name>" details
       Examples:
       |Assessor Name|trainer_name|
-      | deena grit  |auto2 trainer|
+      | deena grit  |auto1 trainer|
 
 
   Scenario Outline: NGU Books Assessment on behalf an Assessor with mileage and notes
@@ -101,7 +104,7 @@ Feature: As an NGU,
     And I should see Approved Assessment trainer "<trainer_name>", assessor "<Assessor Name>" details
     Examples:
       |Assessor Name|trainer_name|
-      | deena grit  |auto2 trainer|
+      | deena grit  |auto1 trainer|
 
 
     Scenario: Assessor verifies bookassessment fields on course detail page

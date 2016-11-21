@@ -11,11 +11,11 @@ Then(/^I will be redirected to Book Assessment page$/) do
 end
 
 When(/^I select 'Pick a course' on Book Assessment Page for "([^"]*)"$/) do|trainer_name|
-  if(trainer_name == 'auto2 trainer')
-    find_all(".dors-table-row.row .btn", visible: true)[4].click
+  if(trainer_name == 'auto1 trainer')
+    find_all(".dors-table-row.row .btn", visible: true)[0].click
   else
     (trainer_name == 'auto7 trainer')
-       find_all(".dors-table-row.row .btn",visible: true)[5].click
+       find_all(".dors-table-row.row .btn",visible: true)[1].click
   end
 end
 
@@ -26,9 +26,13 @@ Then(/^I will be redirected to the Pick a course page$/) do
 end
 
 And (/^I click "([^"]*)" on Pick a course page$/)do|button|
-  expect(find_all(".btn.btn-primary", match: :first ,text: button))
-find_all('.btn.btn-primary', visible: true)[0].click
-end
+  if(find("#btnApplyFilters"))
+    find_all('.btn.btn-primary', visible: true)[1].click                       #will change this tep once dr_58 is removed""
+  else
+    expect(find_all(".btn.btn-primary", match: :first ,text: button))
+    find_all('.btn.btn-primary', visible: true)[0].click
+  end
+  end
 
 Then(/^I will be redirected to Course Detail page$/) do
   #expect(page).to have_css(".breadcrumb")
@@ -41,12 +45,12 @@ end
 
 Then(/^I can select "([^"]*)" for which an assessment needs to be added$/) do|trainer_name|
   if trainer_name == 'auto7 trainer'
-    expect(page).to have_css(".nearby-trainer-fullname", text: trainer_name)
+    expect(page).to have_css(".nearby-trainer-fullname", text: 'Steve _Auto')
     expect(find_all(".include-nearby-trainer-checkbox").count>0)
     find_all(".include-nearby-trainer-checkbox")[0].click
   end
-  if trainer_name == 'auto2 trainer'
-  expect(page).to have_css(".nearby-trainer-fullname", text: trainer_name)
+  if trainer_name == 'auto1 trainer'
+  expect(page).to have_css(".nearby-trainer-fullname", text: 'auto2 trainer')
  expect(page).to have_css(".include-nearby-trainer-checkbox",:count=> 1, visible: true)
   find(".include-nearby-trainer-checkbox").click
   end
@@ -122,4 +126,9 @@ end
 
 And (/^I should see total mileage filed$/)do
 expect(page).to have_css("#mileage", visible: true)
+end
+
+And (/^I enter force area as 'CHESHIRE'$/)do
+find("#txt-force-filter-search").set('cheshire')
+find("#txt-force-filter-search").send_keys(:enter)
 end
