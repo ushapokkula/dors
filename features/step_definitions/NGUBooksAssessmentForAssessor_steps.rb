@@ -26,9 +26,13 @@ Then(/^I will be redirected to the Pick a course page$/) do
 end
 
 And (/^I click "([^"]*)" on Pick a course page$/)do|button|
-  expect(find_all(".btn.btn-primary", match: :first ,text: button))
-find_all('.btn.btn-primary', visible: true)[0].click                          #will chnage this tep once dr_58 is removed""
-end
+  if(find("#btnApplyFilters"))
+    find_all('.btn.btn-primary', visible: true)[1].click                       #will change this tep once dr_58 is removed""
+  else
+    expect(find_all(".btn.btn-primary", match: :first ,text: button))
+    find_all('.btn.btn-primary', visible: true)[0].click
+  end
+  end
 
 Then(/^I will be redirected to Course Detail page$/) do
   #expect(page).to have_css(".breadcrumb")
