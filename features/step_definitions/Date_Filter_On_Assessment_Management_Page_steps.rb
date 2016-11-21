@@ -4,7 +4,7 @@ end
 
 Then (/^I should see a message "([^"]*)"$/) do |no_assessments_msg|
   expect(page).to have_css(".alert.alert-info", text: no_assessments_msg)
-end
+  end
 
 When(/^I click 'Assessment Status' dropdown button$/) do
   page.find("#single-button", visible: true).click
