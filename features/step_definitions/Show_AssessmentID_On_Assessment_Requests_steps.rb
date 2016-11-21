@@ -45,8 +45,9 @@ end
 
 And (/^I click on "([^"]*)" button on 'Assessment management' page$/) do |button|
   expect(page).to have_css(".lnk-assessment-details", text: button)
-  click_link_or_button('View Details')
-end
+    click_link_or_button('View Details')
+  end
+
 
 Then (/^I should see "([^"]*)" on detailed view of an assessment request$/) do |assessmentID|
   expect(page).to have_css("h1", text: 'Assessment Request') #Verifying header#
