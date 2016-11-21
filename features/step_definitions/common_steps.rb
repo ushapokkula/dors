@@ -7,8 +7,9 @@ When(/^I click "(.*?)" tab$/) do |tab|
 end
 
 When(/^I navigate to "([^"]*)" page$/) do |tab|
-  click_link_or_button(tab)
   sleep 2
+  click_link_or_button(tab)
+
 end
 
 
