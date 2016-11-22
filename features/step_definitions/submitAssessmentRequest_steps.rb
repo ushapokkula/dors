@@ -143,7 +143,7 @@ end
 
 And(/^I include all the trainers from "([^"]*)" scheme as the trainer who is in assessment$/) do |scheme_name|
   expect(page).to have_css(".breadcrumb .active>span", text:'Summary')
- find_all(".include-nearby-trainer-checkbox",visible: true)[0].click
+ find_all(".include-nearby-trainer-checkbox",visible: true)[1].click
 end
 
 Then(/^the "([^"]*)" scheme courses are hidden as all the trainers from that scheme are in assessment$/) do |scheme_name|

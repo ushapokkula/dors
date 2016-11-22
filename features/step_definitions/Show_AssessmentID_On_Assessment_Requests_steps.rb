@@ -23,6 +23,7 @@ Then (/^I should see the "([^"]*)" on summary view of assessment on 'My assessme
 end
 
 And (/^I click on "([^"]*)" button on 'My Assessments' page$/) do |view_details|
+  sleep 4
   click_link_or_button(view_details)
 end
 

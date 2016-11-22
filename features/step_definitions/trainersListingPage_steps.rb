@@ -116,7 +116,7 @@ When(/^I Pick a course against the trainer which has same scheme as the trainer 
 end
 
 When(/^I Pick a course against the trainer which has same scheme as the trainer who is in booked assessment$/) do
-  all(".btn.btn-primary:nth-child(2)")[4].click
+  all(".btn.btn-primary:nth-child(2)")[1].click
 end
 
 Then(/^the requested assessment id is shown against the trainer$/) do
@@ -131,5 +131,6 @@ end
 
 And(/^I include trainer in near by course$/) do
  # all(('.include-nearby-trainer-checkbox:nth-child(1)')[0], visible:true)
+  expect(page).to have_css(".include-nearby-trainer-checkbox:nth-child(1)", visible:true)
   all('.include-nearby-trainer-checkbox:nth-child(1)')[0].click
 end
