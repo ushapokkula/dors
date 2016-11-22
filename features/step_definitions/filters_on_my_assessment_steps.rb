@@ -295,8 +295,9 @@ end
 Then(/^The results listing will be updated showing only those assessments who fall under the selected force area$/) do
   expect(page).to have_css(".dors-well-other", visible: true, count: 1)
   click_button("View Details")
+  sleep 3
   actual_trainers = @trainers.filters_on_my_assessment_page.trainer_name.map { |x| x.text }
-  expect(actual_trainers).to match_array(["auto2 trainer", "auto1 trainer"])
+  expect(actual_trainers).to match_array(["auto1 trainer", "auto2 trainer"])
 end
 
 When(/^I apply multiple forces like "([^"]*)" and "([^"]*)"in the force filter$/) do |force1, force2|

@@ -7,6 +7,7 @@ Then (/^I select 'Requested' status from 'Assessment Status' dropdown$/) do
   page.find("#single-button", visible: true).click
   expect(page).to have_css("#single-button + .dropdown-menu")
   find("#assessmentStatusChk0", visible: true).click
+  sleep 2
 end
 
 Then (/^I see "([^"]*)" assessments on 'My Assessments' page$/) do |status|
