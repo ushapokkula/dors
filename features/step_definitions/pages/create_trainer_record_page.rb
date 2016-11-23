@@ -90,7 +90,7 @@ class CreateTrainerRecordPage < SitePrism::Page
   end
 
   def fill_trainer_id      # fill with new trainer id if already exists
-    trainer_id.set Faker::Number.numerify('16####')
+    trainer_id.set Faker::Number.numerify('17####')
     first(".panel-body").click
     # trainer_first_name.click
     x = false
