@@ -96,7 +96,7 @@ class CreateTrainerRecordPage < SitePrism::Page
     x = false
     unless x
       if page.has_css?(".form-group.has-error p", text: 'Sorry, the trainer id already exist. Please try a different trainer id.', wait: 5)
-        trainer_id.set Faker::Number.numerify('16####')
+        trainer_id.set Faker::Number.numerify('17####')
       end
       x = true if page.has_content?('Sorry, the trainer id already exist. Please try a different trainer id.',wait: 2)
     end
